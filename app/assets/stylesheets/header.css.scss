@@ -1,0 +1,86 @@
+#blur-content > header {
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+
+    padding-top: $header-padding-top;
+    padding-bottom: $header-padding-bottom;
+    line-height: $header-height;
+    height: $header-height;
+    z-index: 10;
+
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    background: rgba(255, 255, 255, 0.97255);
+
+    div {
+        width: 960px;
+        margin: 0px auto;
+        position: relative;
+    }
+
+    h1 {
+        line-height: $header-height;
+
+        > a {
+            height: 25px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+
+    menu {
+        float: right;
+        margin-top: -$header-height;
+
+        nav {
+            text-align: middle;
+            display: inline-block;
+
+            a {
+                font-size: 12px;
+                letter-spacing: 2px;
+                color: #aaa;
+                text-transform: lowercase;
+                display: inline-block;
+                margin-right: 20px;
+                margin-left: 20px;
+
+                &.selected {
+                    color: #777;
+                }
+            }
+        }
+
+        p {
+            text-transform: uppercase;
+            color: #aaa;
+            display: inline-block;
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-right: 20px;
+
+            a {
+                color: #aaa;
+                text-transform: lowercase;
+            }
+
+            a:hover{
+                color: #777;
+            }
+
+            span {
+                background-color: rgba(0,0,0,0.30);
+                color: white;
+                padding: 4px 6px 2px 6px;
+                border-radius: 2px;
+                letter-spacing: 0px;
+                text-transform: lowercase;
+
+                .empty {
+                    visibility: hidden;
+                }
+            }
+        }
+    }
+}

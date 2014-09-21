@@ -1,0 +1,108 @@
+#subscribe-popup {
+    background-color: rgba(255, 255, 255, 0.7);
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 1.0;
+
+    &.hidden {
+        opacity: 0.0;
+    }
+
+    > p {
+        color: white;
+        font-size: 25px;
+        text-align: center;
+        position: fixed;
+        left: 0px;
+        right: 0px;
+        top: 50%;
+        height: 25px;
+        margin-top: -12px;
+        font-family: HelveticaNeueLTStd-LT;
+    }
+
+    -webkit-transition: opacity 1.5s;
+    -moz-transition: opacity 1.5s;
+    -ms-transition: opacity 1.5s;
+    transition: opacity 1.5s;
+
+    > div {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -75px;
+        margin-left: -112px;
+        width: 280px;
+        height: 110px;
+        border-radius: 15px;
+        padding: 20px 20px;
+        font-family: HelveticaNeueLT-Roman, Helvetica, sans-serif;
+        letter-spacing: 1px;
+        font-size: 16px;
+
+        #text-container {
+            height: 16px;
+            position: relative;
+
+            label, p {
+                position: absolute;
+                top: 0px;
+                font-family: HelveticaNeueLTStd-LT, Helvetica, sans-serif;
+                font-size: 17px;
+                color: #111;
+                width: 216px;
+                text-align: center;
+            }
+        }
+
+        p input[type=text] {
+            background-color: rgba(0, 0, 0, 0.07);
+            border: none;
+            border-radius: 5px;
+            height: 25px;
+            margin-top: 15px;
+            padding: 4px 0px 4px 8px;
+            font-size: 14px;
+            width: 211px;
+            margin-bottom: 17px;
+            outline: none;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 32px;
+            color: rgba(0,0,0,0.2);
+            position: absolute;
+            top: 49px;
+            left: 240px;
+            height: 33px;
+            padding-left: 6px;
+
+            -webkit-transition: left 0.8s;
+            -moz-transition: left 0.8s;
+            -ms-transition: left 0.8s;
+            transition: left 1.2s, color 1.2s;
+
+            &.complete {
+                left: 120px;
+                color: rgba(142,168,214,0.65);
+            }
+
+            &:hover {
+                color: rgba(142,168,214,0.25);
+            }
+        }
+
+        div.clear {
+            text-align: center;
+            font-size: 14px;
+            color: rgba(0,0,0,0.35);
+        }
+    }
+}
