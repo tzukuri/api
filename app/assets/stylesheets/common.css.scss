@@ -109,25 +109,25 @@ main > article {
         > p + p {
             margin-top: 20px;
         }
+    }
 
-        // share button
-        .share {
+    // share button
+    .share {
+        display: inline-block;
+        height: $share-height;
+        width: $share-width;
+
+        color: #bbb;
+        font-size: 18px;
+        line-height: 18px;
+        font-weight: 300;
+        text-align: center;
+        text-transform: lowercase;
+
+        img {
+            width: 24px;
+            height: 30px;
             display: inline-block;
-            height: $share-height;
-            width: $share-width;
-
-            color: #bbb;
-            font-size: 18px;
-            line-height: 18px;
-            font-weight: 300;
-            text-align: center;
-            text-transform: lowercase;
-
-            img {
-                width: 24px;
-                height: 30px;
-                display: inline-block;
-            }
         }
     }
 }
