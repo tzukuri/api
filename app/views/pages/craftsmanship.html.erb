@@ -1,0 +1,176 @@
+<main>
+    <article id="front">
+        <dl>
+            <span>
+                <dd id="countdown-days">6</dd>
+                <dt>days</dt>
+            </span>
+            <span>
+                <dd id="countdown-hours">15</dd>
+                <dt>hours</dt>
+            </span>
+            <span>
+                <dd id="countdown-minutes">28</dd>
+                <dt>minutes</dt>
+            </span>
+            <span>
+                <dd id="countdown-seconds">32</dd>
+                <dt>seconds</dt>
+            </span>
+        </dl>
+        <p>
+            Preorder the world's first unloseable sunglasses here.<br>
+            Only 1800 pairs available first round.
+        </p>
+        <p class="small">Be at Tzukuri.com on September 19 at 12 a.m. EST to be the first to get a pair.</p>
+        <p class="small calendar"><a href="#">
+            <i class="fa fa-calendar-o"></i><br>
+            Add to your calendar
+        </a></p>
+        <script>
+            countdown(
+                // number of milliseconds since Unix epoch UTC. required since new Date() returns local time.
+                // js date measures months from 0, so 8 == September. hours adjusted for EST summer time (UTC -4)
+                Date.UTC(2014, 8, 19, 4),
+                function(ts) {
+                    console.log(ts);
+                    $('#countdown-days').text(ts.days);
+                    $('#countdown-hours').text(ts.hours);
+                    $('#countdown-minutes').text(ts.minutes);
+                    $('#countdown-seconds').text(ts.seconds);
+                },
+                countdown.DEFAULTS // trigger callback roughly once per second
+            );
+        </script>
+    </article>
+
+    <article id="deposit">
+        <div>
+            <p>$100 deposit only. Free shipping worldwide.</p>
+        </div>
+    </article>
+
+    <article id="unloseable">
+        <div class="left background" style="background-image: url(<%= image_url 'map_phone.jpg' %>)"></div>
+        <div class="content">
+            <h1>Unloseable.</h1>
+            <h2>Sunglasses + iPhone.</h2>
+            <p>Your iPhone alerts you if you leave your Tzukuris behind, and the app shows you where you left them. The app also recognises if you've left your iPhone behind and will ring extra loudly to alert you.</p>
+            <p><a href="/technology">Learn more about the technology</a></p>
+            <a href="#" class="share"><%= image_tag 'share.png' %>Share</a>
+        </div>
+    </article>
+
+    <article id="ibeacon">
+        <div>
+            <%= image_tag 'ibeacon.png', width: 150, height: 150 %>
+            <p>Sealed seamlessly inside every handmade Tzukuri solar frame is the world's smallest light powered Bluetooth Low Energy beacon.</p>
+        </div>
+    </article>
+
+    <article id="fashion">
+        <div class="background" style="background-image: url(<%= image_url 'fashion.jpg' %>)"></div>
+    </article>
+
+    <article id="frames">
+            <ul>
+                <li><%= image_tag 'frames/atticus/front.jpg', width: 360 %></li>
+                <li><%= image_tag 'frames/monaco/front.jpg', width: 360 %></li>
+                <li><%= image_tag 'frames/ford/front.jpg', width: 360 %></li>
+                <li><%= image_tag 'frames/fitzgerald/front.jpg', width: 360 %></li>
+                <li><%= image_tag 'frames/truman/front.jpg', width: 360 %></li>
+                <li><%= image_tag 'frames/stark/front.jpg', width: 360 %></li>
+            </ul>
+            <menu>
+                <div class="selected">
+                    <div></div>
+                    <p>Front</p>
+                </div>
+                <div>
+                    <div></div>
+                    <p>Side</p>
+                </div>
+                <div>
+                    <div></div>
+                    <p>Profile</p>
+                </div>
+            </menu>
+            <a href="#" class="share"><%= image_tag 'share.png' %>Share</a>
+    </article>
+
+    <article id="design">
+        <div>
+            <h1>Inspired by heroes.</h1>
+            <h1>Designed with science.</h1>
+            <p>By analysing facial geometry, we designed the smallest number of frames to suit the broadest range of face shapes. The result is six beautiful designs in three sizes, refined geometrically so you can find the perfect pair.</p>
+            <p><a href="/design">Learn more about the design.</a></p>
+            <p><a href="#" class="share"><%= image_tag 'share.png' %>Share</a></p>
+        </div>
+    </article>
+
+    <article id="craftsmanship">
+        <div class="background" style="background-image: url(<%= image_url 'watch.jpg' %>)"></div>
+        <div>
+            <h1>Handmade in Japan.</h1>
+            <h2>Polarised lenses by Carl Zeiss included.</h2>
+            <p>Our frames are handmade in Japan by the finest artisans in the world. Japanese precision equipment and high quality acetates make of a pair of glasses unparalleled in beauty and durability.</p>
+            <p><a href="/craftsmanship">Learn more about the craftsmanship.</a></p>
+            <dl><span id="craftsmanship-weeks">
+                    <dd>3</dd>
+                    <dt>weeks to make</dt>
+                </span><span id="craftsmanship-qc">
+                    <dd>8</dd>
+                    <dt>quality control checks</dt>
+                </span><span id="craftsmanship-processes">
+                    <dd>100</dd>
+                    <dt>production processes</dt>
+                </span>
+            </dl>
+            <p><a href="#" class="share"><%= image_tag 'share.png' %>Share</a></p>
+        </div>
+    </article>
+
+    <article id="environment">
+        <div>
+            <h1>For the environment.</h1>
+            <p>With 1 in 2 people losing a pair of sunglasses in the first year, Tzukuri is starting a fight against 26 kilotonnes of plastic waste. With the integrated solar cells, every pair is powered by 100% renewable energy. But we took it much further.</p>
+            <p><i class="fa fa-globe"></i></p>
+            <dl>
+                <span>
+                    <dd>no</dd>
+                    <dt>manual<br>recharging</dt>
+                </span>
+                <span>
+                    <dd>no</dd>
+                    <dt>battery<br>replacements</dt>
+                </span>
+                <span>
+                    <dd>100<span>%</span></dd>
+                    <dt>renewable<br>materials</dt>
+                </span>
+                <span>
+                    <dd>100<span>%</span></dd>
+                    <dt>recyclable<br>packaging</dt>
+                </span>
+            </dl>
+            <p><a href="#" class="share"><%= image_tag 'share.png' %>Share</a></p>
+        </div>
+    </article>
+
+    <article id="remaining">
+        <div>
+            <dl>
+                <dd>462</dd>
+                <dt>Remaining</dt>
+            </dl>
+            <a href="#" class="button">Preorder</a>
+            <footer>
+                Designed by Tzukuri &copy; 2014
+                <a href="/legal">legal</a>
+                <a href="/faq">faq</a>
+                <a href="/faq">contact</a>
+                <a href="/faq">about</a>
+            </footer>
+        </div>
+    </article>
+</main>
