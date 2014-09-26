@@ -1,101 +1,33 @@
 <main>
-    <article id="front">
-        <dl>
-            <span>
-                <dd id="countdown-days">6</dd>
-                <dt>days</dt>
-            </span>
-            <span>
-                <dd id="countdown-hours">15</dd>
-                <dt>hours</dt>
-            </span>
-            <span>
-                <dd id="countdown-minutes">28</dd>
-                <dt>minutes</dt>
-            </span>
-            <span>
-                <dd id="countdown-seconds">32</dd>
-                <dt>seconds</dt>
-            </span>
-        </dl>
-        <p>
-            Preorder the world's first unloseable sunglasses here.<br>
-            Only 1800 pairs available first round.
-        </p>
-        <p class="small">Be at Tzukuri.com on September 19 at 12 a.m. EST to be the first to get a pair.</p>
-        <p class="small calendar"><a href="#">
-            <i class="fa fa-calendar-o"></i><br>
-            Add to your calendar
-        </a></p>
-        <script>
-            countdown(
-                // number of milliseconds since Unix epoch UTC. required since new Date() returns local time.
-                // js date measures months from 0, so 8 == September. hours adjusted for EST summer time (UTC -4)
-                Date.UTC(2014, 8, 19, 4),
-                function(ts) {
-                    console.log(ts);
-                    $('#countdown-days').text(ts.days);
-                    $('#countdown-hours').text(ts.hours);
-                    $('#countdown-minutes').text(ts.minutes);
-                    $('#countdown-seconds').text(ts.seconds);
-                },
-                countdown.DEFAULTS // trigger callback roughly once per second
-            );
-        </script>
-    </article>
-
-    <article id="deposit">
-        <div>
-            <p>$100 deposit only. Free shipping worldwide.</p>
-        </div>
-    </article>
-
     <article id="unloseable">
-        <div class="left background" style="background-image: url(<%= image_url 'map_phone.jpg' %>)"></div>
+        <div class="left background" style="background-image: url(<%= image_url 'notification.png' %>)"></div>
         <div class="content">
-            <h1>Unloseable.</h1>
-            <h2>Sunglasses + iPhone.</h2>
-            <p>Your iPhone alerts you if you leave your Tzukuris behind, and the app shows you where you left them. The app also recognises if you've left your iPhone behind and will ring extra loudly to alert you.</p>
-            <p><a href="/technology">Learn more about the technology</a></p>
+            <h1>Unforgettable.</h1>
+            <p>If you leave your Tzukuri Solars behind, the app sends you alerts at a 5, 10 and 15 metre distances unless you clear one of the notifications. They’ll automatically be turned off if you’re at home or at work.</p>
             <a href="#" class="share"><%= image_tag 'share.png' %>Share</a>
         </div>
     </article>
 
     <article id="ibeacon">
         <div>
-            <%= image_tag 'ibeacon.png', width: 150, height: 150 %>
-            <p>Sealed seamlessly inside every handmade Tzukuri solar frame is the world's smallest light powered Bluetooth Low Energy beacon.</p>
-        </div>
-    </article>
-
-    <article id="fashion">
-        <div class="background" style="background-image: url(<%= image_url 'japan.jpg' %>)"></div>
-    </article>
-
-    <article id="design">
-        <div>
-            <h1>Inspired by heroes.</h1>
-            <h1>Designed with science.</h1>
-            <p>By analysing facial geometry, we designed the smallest number of frames to suit the broadest range of face shapes. The result is six beautiful designs in three sizes, refined geometrically so you can find the perfect pair.</p>
-            <p><a href="/design">Learn more about the design.</a></p>
-            <p><a href="#" class="share"><%= image_tag 'share.png' %>Share</a></p>
+            <%= image_tag 'chip.png', width: 350, height: 350 %>
+            <p>The beacon uses Bluetooth Low Energy, a new technology that draws very little power. This means the solar cells can keep it charged and using the app won't drain your iPhones battery either.</p>
         </div>
     </article>
 
     <article id="craftsmanship">
-        <div class="background" style="background-image: url(<%= image_url 'sizes.jpg' %>)"></div>
+        <div class="background" style="background-image: url(<%= image_url 'mainscreen.png' %>)"></div>
         <div>
-            <h1>Three sizes.</h1>
-            <h2>Because one size doesn't fit all.</h2>
-            <p>We all have different sized heads, so wouldn’t you have different sized glasses? The right size is just as important as the right shape. That’s why all our designs come in up to 3 sizes.</p>
+            <h1>Easily <br> found.</h1>
+            <p>If you misplace your Tzukuri Solars at home, just open the app. It’ll show you exactly how far away they are to help you find them. If they’re not in range, it’ll show you their last location on a map.</p>
             <p><a href="#" class="share"><%= image_tag 'share.png' %>Share</a></p>
         </div>
     </article>
 
     <article id="environment">
         <div>
-            <h1>Two brilliant colours.</h1>
-            <p>Every frame comes in gorgeous glossy black or a sleek matte tortoise. Just these two colours match a large range of skin tones. What colour are you?</p>
+            <h1>MORE THAN UNLOSEABLE.</h1>
+            <p>Imagine sunglasses that could tell your friends you’re close by. Or glasses that could turn on the lights if you walk into a room. This is what Tzukuri could be when the Tzukuri Solar API is released to developers mid-2015. Unloseable is just the start.</p>
         </div>
     </article>
 

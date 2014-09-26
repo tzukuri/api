@@ -1,88 +1,10 @@
 html.technology {
-    // ---------------------------------
-    // countdown
-    // ---------------------------------
-    #front {
-        padding-bottom: 60px;
-        text-align: center;
-
-        // time components
-        dl {
-            margin-top: 60px;
-            margin-bottom: 80px;
-
-            span {
-                margin-right: 120px;
-                width: 135px;
-
-                &:last-child {
-                    margin-right: 0px;
-                }
-
-                dt {
-                    font-size: 30px;
-                }
-
-                dd {
-                    font-size: 120px;
-                    color: #444;
-                }
-            }
-        }
-
-        p {
-            margin-bottom: 20px;
-            font-weight: 300;
-            font-size: 24px;
-            line-height: 30px;
-            color: #555;
-
-
-            // smaller "Be at Tzukuri..." text and "Add to calendar"
-            &.small {
-                line-height: 16px;
-                font-size: 16px;
-                color: #666;
-
-                &.calendar {
-                    margin-top: 10px;   // calendar icon and text is spaced 20px + 10px from the last line of text
-                    line-height: 24px;
-                }
-
-                a {
-                    // "Add to calendar" text
-                    color: #8EA8D6;
-                    &:hover { color: #7286AB; }
-
-                    // calendar icon. should consider making the text & icon colours consistent
-                    i { color: #aaa; }
-                    &:hover i { color: #777; }
-                }
-            }
-        }
-    }
-
-    #deposit {
-        background-color: #f7f7f7;
-        padding: 40px 40px;
-
-        p {
-            font-weight: 200;
-            font-size: 46px;
-            text-align: center;
-            color: black;
-
-            position: relative;
-            top: 4px;
-        }
-    }
-
     $unloseable-height: 460px;
     #unloseable {
         height: $unloseable-height;
 
         .left.background {
-            top: $panel-padding + 100px;
+            top: $panel-padding + 50px;
         }
 
         .content {
@@ -109,7 +31,7 @@ html.technology {
         }
 
         p {
-            width: 360px;
+            width: 440px;
             font-weight: 200;
             display: inline-block;
             vertical-align: middle;
@@ -188,8 +110,15 @@ html.technology {
 
     $craftsmanship-stats-width: 365px;
     #craftsmanship {
+        height: 700px;
+        h1{
+          margin-top: 100px;
+          margin-left: 200px;
+        }
+
         p {
-            width: 400px;
+            margin-left: 200px;
+            width: 250px;
 
             // share button
             &:last-child {
@@ -198,39 +127,6 @@ html.technology {
 
                 .share {
                     position: relative;
-                    left: 112px;
-                }
-            }
-        }
-
-        dl {
-            width: $craftsmanship-stats-width;
-            margin-top: 40px;
-            position: relative;
-            left: -15px;
-
-            > span {
-                margin-right: 20px;
-
-                dd {
-                    font-size: 66px;
-                }
-
-                dt {
-                    width: 100%;
-                    font-size: 18px;
-                }
-
-                &#craftsmanship-weeks {
-                    width: 70px;
-                }
-
-                &#craftsmanship-qc {
-                    width: 110px;
-                }
-
-                &#craftsmanship-processes {
-                    width: 110px;
                 }
             }
         }
