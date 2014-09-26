@@ -82,7 +82,7 @@ html.index {
         height: $unloseable-height;
 
         .left.background {
-            top: $panel-padding + 100px;
+            top: $panel-padding/2;
         }
 
         .content {
@@ -186,10 +186,10 @@ html.index {
         }
     }
 
-    $craftsmanship-stats-width: 365px;
+    $craftsmanship-stats-width: 450px;
     #craftsmanship {
         p {
-            width: 400px;
+            width: 450px;
 
             // share button
             &:last-child {
@@ -198,7 +198,7 @@ html.index {
 
                 .share {
                     position: relative;
-                    left: 112px;
+                    left: 450px;
                 }
             }
         }
@@ -210,7 +210,7 @@ html.index {
             left: -15px;
 
             > span {
-                margin-right: 20px;
+                margin-right: 40px;
 
                 dd {
                     font-size: 66px;
@@ -218,7 +218,7 @@ html.index {
 
                 dt {
                     width: 100%;
-                    font-size: 18px;
+                    font-size: 16px;
                 }
 
                 &#craftsmanship-weeks {

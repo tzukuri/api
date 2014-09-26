@@ -1,122 +1,6 @@
 html.craftsmanship {
-    // ---------------------------------
-    // countdown
-    // ---------------------------------
-    #front {
-        padding-bottom: 60px;
-        text-align: center;
 
-        // time components
-        dl {
-            margin-top: 60px;
-            margin-bottom: 80px;
-
-            span {
-                margin-right: 120px;
-                width: 135px;
-
-                &:last-child {
-                    margin-right: 0px;
-                }
-
-                dt {
-                    font-size: 30px;
-                }
-
-                dd {
-                    font-size: 120px;
-                    color: #444;
-                }
-            }
-        }
-
-        p {
-            margin-bottom: 20px;
-            font-weight: 300;
-            font-size: 24px;
-            line-height: 30px;
-            color: #555;
-
-
-            // smaller "Be at Tzukuri..." text and "Add to calendar"
-            &.small {
-                line-height: 16px;
-                font-size: 16px;
-                color: #666;
-
-                &.calendar {
-                    margin-top: 10px;   // calendar icon and text is spaced 20px + 10px from the last line of text
-                    line-height: 24px;
-                }
-
-                a {
-                    // "Add to calendar" text
-                    color: #8EA8D6;
-                    &:hover { color: #7286AB; }
-
-                    // calendar icon. should consider making the text & icon colours consistent
-                    i { color: #aaa; }
-                    &:hover i { color: #777; }
-                }
-            }
-        }
-    }
-
-    #deposit {
-        background-color: #f7f7f7;
-        padding: 40px 40px;
-
-        p {
-            font-weight: 200;
-            font-size: 46px;
-            text-align: center;
-            color: black;
-
-            position: relative;
-            top: 4px;
-        }
-    }
-
-    $unloseable-height: 460px;
-    #unloseable {
-        height: $unloseable-height;
-
-        .left.background {
-            top: $panel-padding + 100px;
-        }
-
-        .content {
-            padding-left: 510px;
-            width: 450px;
-
-            .share {
-                position: absolute;
-                top: $unloseable-height - $share-height;
-                right: 0px;
-            }
-        }
-    }
-
-    #ibeacon {
-        // the ibeacon logo (img) is 150x150
-        line-height: 150px;
-        text-align: center;
-        padding-top: 0px;
-
-        img {
-            vertical-align: middle;
-            margin-right: 60px;
-        }
-
-        p {
-            width: 360px;
-            font-weight: 200;
-            display: inline-block;
-            vertical-align: middle;
-        }
-    }
-
-    #fashion {
+    #japan {
         height: 450px;
     }
 
@@ -243,7 +127,7 @@ html.craftsmanship {
         }
 
         p {
-            max-width: 650px;
+            max-width: 550px;
             margin-right: auto;
             margin-left: auto;
             text-align: center;
