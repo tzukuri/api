@@ -4,10 +4,11 @@ html.technology {
         height: $unloseable-height;
 
         .left.background {
-            top: $panel-padding + 50px;
+            top: $panel-padding;
         }
 
         .content {
+            padding-top: 50px;
             padding-left: 510px;
             width: 450px;
 
