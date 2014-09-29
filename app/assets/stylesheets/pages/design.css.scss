@@ -1,7 +1,6 @@
 html.design {
     #whichpair {
         padding-top: 160px;
-        padding-bottom: 150px;
 
         div {
             > h1 {
@@ -18,10 +17,19 @@ html.design {
 
         section {
             display: block;
+            margin-top: 150px;
+
+            &#design-atticus {
+                margin-top: 60px;
+            }
+
+            h1, h2, p {
+                padding-left: 120px;
+            }
 
             h1 {
                 font-weight: 600;
-                font-size: 30px;
+                font-size: 22px;
                 text-transform: uppercase;
                 margin-bottom: 5px;
             }
@@ -36,7 +44,7 @@ html.design {
             }
 
             p {
-                width: 300px;
+                width: 340px;
                 line-height: 15px;
             }
         }
