@@ -1,16 +1,44 @@
 html.design {
     #whichpair {
         padding-top: 160px;
+        padding-bottom: 150px;
 
-        h1 {
-            text-align: center;
+        div {
+            > h1 {
+                text-align: center;
+            }
+
+            > p {
+                max-width: 650px;
+                margin-right: auto;
+                margin-left: auto;
+                text-align: center;
+            }
         }
 
-        p {
-            max-width: 650px;
-            margin-right: auto;
-            margin-left: auto;
-            text-align: center;
+        section {
+            display: block;
+
+            h1 {
+                font-weight: 600;
+                font-size: 30px;
+                text-transform: uppercase;
+                margin-bottom: 5px;
+            }
+
+            h2, p {
+                font-weight: 300;
+                font-size: 13px;
+            }
+
+            h2 {
+                margin-bottom: 13px;
+            }
+
+            p {
+                width: 300px;
+                line-height: 15px;
+            }
         }
     }
 
