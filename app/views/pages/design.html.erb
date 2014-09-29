@@ -1,0 +1,52 @@
+<main>
+    <article id="whichpair">
+        <div>
+            <h1>Which pair are you?</h1>
+            <p>Not only were the six frames designed to suit you, every pair was inspired by someone who changed the world. Who will you be?</p>
+            <%= image_tag 'frames/atticus/angle.jpg', width: 960, height: 640%>
+            <%= image_tag 'frames/fitzgerald/angle.jpg', width: 960, height: 640%>
+            <%= image_tag 'frames/ford/angle.jpg', width: 960, height: 640%>
+            <%= image_tag 'frames/monaco/angle.jpg', width: 960, height: 640%>
+            <%= image_tag 'frames/stark/angle.jpg', width: 960, height: 640%>
+            <%= image_tag 'frames/truman/angle.jpg', width: 960, height: 640%>
+        </div>
+    </article>
+
+    <article id="craftsmanship">
+        <div class="background" style="background-image: url(<%= image_url 'sizes.png' %>)"></div>
+        <div>
+            <h1>Three sizes.</h1>
+            <h2>Because one size doesn't fit all.</h2>
+            <p>We all have different sized heads, so why wouldn’t you have different sized glasses? The right size is just as important as the right shape. That’s why all our designs come in up to 3 sizes.</p>
+            <p><a href="#" class="share"><%= image_tag 'share.png' %>Share</a></p>
+        </div>
+    </article>
+
+    <article id="environment">
+        <div>
+            <h1>Two brilliant colours.</h1>
+            <p>Every frame comes in gorgeous glossy black or a sleek matte tortoise. Just these two colours match a large range of skin tones. What colour are you?</p>
+        </div>
+    </article>
+
+    <article id="fashion">
+        <div class="background" style="background-image: url(<%= image_url 'color.jpg' %>)"></div>
+    </article>
+
+    <article id="remaining">
+        <div>
+            <dl>
+                <dd>462</dd>
+                <dt>Remaining</dt>
+            </dl>
+            <a href="#" class="button">Preorder</a>
+            <footer>
+                Designed by Tzukuri &copy; 2014
+                <a href="/legal">legal</a>
+                <a href="/faq">faq</a>
+                <a href="/faq">contact</a>
+                <a href="/faq">about</a>
+            </footer>
+        </div>
+    </article>
+</main>
