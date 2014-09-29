@@ -267,6 +267,8 @@ dl {
     width: 960px;
     margin-left: -480px;
     display: table;
+    z-index: 1;
+    // background-color: rgba(0,0,0,0.1);
 
     div {
         display: table-cell;
@@ -280,25 +282,25 @@ dl {
             border-radius: 60px;
             line-height: 60px;
             text-align: center;
-            background-color: #bbb;
-            color: white;
-            font-size: 30px;
-            margin-right: 40px;
-            margin-bottom: 30px;
+            // background-color: #bbb;
+            color: #777;
+            font-size: 35px;
+            margin-right: 50px;
+            margin-bottom: 40px;
 
             &:hover {
                 text-decoration: none;
-                background-color: #777;
+                color: black;
             }
         }
     }
 
     #close-share-panel {
         position: absolute;
-        top: 20px;
-        right: 20px;
+        top: 50px;
+        right: 80px;
         font-size: 15px;
-        color: #bbb;
+        color: #111;
 
         &:hover {
             text-decoration: none;
