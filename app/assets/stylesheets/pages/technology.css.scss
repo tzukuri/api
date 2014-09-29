@@ -133,14 +133,41 @@ html.technology {
         }
     }
 
+    #unforgettable {
+        height: 400px;
+        h1{
+          margin-left: 480px;
+          color: white;
+          opacity: 0.85;
+        }
+
+        p {
+            margin-left: 480px;
+            width: 400px;
+            color: #f7f7f7;
+
+            // share button
+            &:last-child {
+                width: $craftsmanship-stats-width;
+                margin-top: 20px;
+
+                .share {
+                    position: relative;
+                }
+            }
+        }
+    }
+
     #environment {
+
+        background-color: #f7f7f7;
 
         h1 {
             text-align: center;
         }
 
         p {
-            max-width: 650px;
+            max-width: 720px;
             margin-right: auto;
             margin-left: auto;
             text-align: center;
@@ -166,7 +193,7 @@ html.technology {
 
     #remaining {
         text-align: center;
-        background-color: #f7f7f7;
+        background-color: white;
         padding-bottom: 20px;
 
         dl {

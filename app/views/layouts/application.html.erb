@@ -2,9 +2,9 @@
 <html class="<%= params[:page] || controller_name %>">
     <head>
         <title><%= @page_title || "Tzukuri - Beautiful wearable technology" %></title>
-        
-        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-        <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+        <%= stylesheet_link_tag    'application', media: 'all' %>
+        <%= javascript_include_tag 'application' %>
         <%= csrf_meta_tags %>
         <link rel="stylesheet" href="/fonts/pe-icon-7-filled/css/pe-icon-7-filled.css">
 
