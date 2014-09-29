@@ -80,9 +80,11 @@ html.index {
     $unloseable-height: 460px;
     #unloseable {
         height: $unloseable-height;
+        padding-bottom: 0px;
 
         .left.background {
             top: $panel-padding/2;
+            bottom: 0px;
         }
 
         .content {
@@ -91,7 +93,7 @@ html.index {
 
             .share {
                 position: absolute;
-                top: $unloseable-height - $share-height;
+                top: $unloseable-height - $share-height - 130px;
                 right: 0px;
             }
         }
@@ -101,7 +103,10 @@ html.index {
         // the ibeacon logo (img) is 150x150
         line-height: 150px;
         text-align: center;
-        padding-top: 0px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        border-top: 1px solid rgba(0, 0, 0, 0.07);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.07);
 
         img {
             vertical-align: middle;
@@ -123,6 +128,7 @@ html.index {
     #frames {
         text-align: center;
         padding-bottom: 0px;
+        padding-top: 40px;
 
         li {
             display: inline-block;
@@ -272,52 +278,5 @@ html.index {
             margin-bottom: $environment-stat-margin;
         }
     }
-
-    #remaining {
-        text-align: center;
-        background-color: #f7f7f7;
-        padding-bottom: 20px;
-
-        dl {
-            margin-bottom: 40px;
-
-            dd {
-                font-size: 120px;
-                font-weight: 100;
-                color: #333;
-            }
-
-            dt {
-                font-size: 30px;
-                text-transform: lowercase;
-                font-weight: 200;
-            }
-        }
-
-        .button {
-            font-size: 20px;
-            line-height: 20px;
-            height: auto;
-            padding: 10px 35px;
-            @include border-radius(35px);
-            font-weight: 200;
-            margin-bottom: $panel-padding * 1.5;
-        }
-
-        footer {
-            color: #bbb;
-            font-size: 12px;
-            font-weight: 400;
-
-            a {
-                color: #9a9a9a;
-                display: inline-block;
-                margin-left: 30px;
-            }
-
-            a:visited {
-                color: #9a9a9a;
-            }
-        }
-    }
+    
 }

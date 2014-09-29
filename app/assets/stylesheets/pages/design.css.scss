@@ -1,9 +1,7 @@
 html.design {
-    #fashion {
-        height: 450px;
-    }
-
     #whichpair {
+        padding-top: 160px;
+
         h1 {
             text-align: center;
         }
@@ -13,70 +11,23 @@ html.design {
             margin-right: auto;
             margin-left: auto;
             text-align: center;
-
-            // learn more link
-            &:last-child {
-                text-align: center;
-            }
-        }
-
-        img {
-            margin-right: auto;
-            margin-left: auto;
         }
     }
 
-    $craftsmanship-stats-width: 365px;
-    #craftsmanship {
+    #sizes {
         p {
             width: 400px;
-
-            // share button
-            &:last-child {
-                width: $craftsmanship-stats-width;
-                margin-top: 20px;
-
-                .share {
-                    position: relative;
-                    left: 112px;
-                }
-            }
         }
 
-        dl {
-            width: $craftsmanship-stats-width;
-            margin-top: 40px;
-            position: relative;
-            left: -15px;
-
-            > span {
-                margin-right: 20px;
-
-                dd {
-                    font-size: 66px;
-                }
-
-                dt {
-                    width: 100%;
-                    font-size: 18px;
-                }
-
-                &#craftsmanship-weeks {
-                    width: 70px;
-                }
-
-                &#craftsmanship-qc {
-                    width: 110px;
-                }
-
-                &#craftsmanship-processes {
-                    width: 110px;
-                }
-            }
+        .share {
+            position: absolute;
+            left: 160px;
+            bottom: -70px;
         }
     }
 
-    #environment {
+    #colours {
+        padding-bottom: 0px;
 
         h1 {
             text-align: center;
@@ -88,70 +39,10 @@ html.design {
             margin-left: auto;
             text-align: center;
         }
-
-        i {
-            font-size: 230px;
-        }
-
-        dd {
-            position: relative;
-            left: 7px;
-
-            span {
-                font-size: 30px;
-                margin-left: 5px;
-                position: relative;
-                top: -23px;
-                color: #777;
-            }
-        }
     }
 
-    #remaining {
-        text-align: center;
-        background-color: #f7f7f7;
-        padding-bottom: 20px;
-
-        dl {
-            margin-bottom: 40px;
-
-            dd {
-                font-size: 120px;
-                font-weight: 100;
-                color: #333;
-            }
-
-            dt {
-                font-size: 30px;
-                text-transform: lowercase;
-                font-weight: 200;
-            }
-        }
-
-        .button {
-            font-size: 20px;
-            line-height: 20px;
-            height: auto;
-            padding: 10px 35px;
-            @include border-radius(35px);
-            font-weight: 200;
-            margin-bottom: $panel-padding * 1.5;
-        }
-
-        footer {
-            color: #bbb;
-            font-size: 12px;
-            font-weight: 400;
-
-            a {
-                color: #9a9a9a;
-                display: inline-block;
-                margin-left: 30px;
-            }
-
-            a:visited {
-                color: #9a9a9a;
-            }
-        }
+    #two-up {
+        padding-top: 0px;
+        height: 450px;
     }
 }

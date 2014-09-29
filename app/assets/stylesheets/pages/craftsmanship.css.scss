@@ -1,58 +1,7 @@
 html.craftsmanship {
+    #history {
+        padding-top: 160px;
 
-    #japan {
-        height: 450px;
-    }
-
-    #frames {
-        text-align: center;
-        padding-bottom: 0px;
-
-        li {
-            display: inline-block;
-            margin: 0px 35px;
-        }
-
-        menu {
-            margin-top: 80px;
-
-            > div {
-                display: inline-block;
-                width: 50px;
-                margin: 0px 10px;
-                cursor: pointer;
-
-                > div {
-                    display: inline-block;
-                    margin-bottom: 7px;
-                    width: 7px;
-                    height: 7px;
-                    border-radius: 7px;
-                    border: 1px solid #999;
-                }
-
-                p {
-                    text-transform: lowercase;
-                    color: #999;
-                    font-weight: 300;
-                    position: relative;
-                    left: 1px;
-                }
-
-                &.selected > div {
-                    background-color: #ddd;
-                }
-            }
-        }
-
-        .share {
-            position: absolute;
-            bottom: 0px;
-            right: 0px;
-        }
-    }
-
-    #design {
         h1 {
             text-align: center;
         }
@@ -62,66 +11,14 @@ html.craftsmanship {
             margin-right: auto;
             margin-left: auto;
             text-align: center;
-
-            // learn more link
-            &:last-child {
-                text-align: center;
-            }
         }
     }
 
-    $craftsmanship-stats-width: 365px;
-    #craftsmanship {
-        p {
-            width: 400px;
-
-            // share button
-            &:last-child {
-                width: $craftsmanship-stats-width;
-                margin-top: 20px;
-
-                .share {
-                    position: relative;
-                    left: 112px;
-                }
-            }
-        }
-
-        dl {
-            width: $craftsmanship-stats-width;
-            margin-top: 40px;
-            position: relative;
-            left: -15px;
-
-            > span {
-                margin-right: 20px;
-
-                dd {
-                    font-size: 66px;
-                }
-
-                dt {
-                    width: 100%;
-                    font-size: 18px;
-                }
-
-                &#craftsmanship-weeks {
-                    width: 70px;
-                }
-
-                &#craftsmanship-qc {
-                    width: 110px;
-                }
-
-                &#craftsmanship-processes {
-                    width: 110px;
-                }
-            }
-        }
+    #japan {
+        height: 480px;
     }
 
-    #environment {
-
+    #polarised {
         h1 {
             text-align: center;
         }
@@ -134,68 +31,11 @@ html.craftsmanship {
             padding-bottom: 30px;
         }
 
-        i {
-            font-size: 230px;
-        }
+        dl span {
+            width: auto;
 
-        dd {
-            position: relative;
-            left: 7px;
-
-            span {
-                font-size: 30px;
-                margin-left: 5px;
-                position: relative;
-                top: -23px;
-                color: #777;
-            }
-        }
-    }
-
-    #remaining {
-        text-align: center;
-        background-color: #f7f7f7;
-        padding-bottom: 20px;
-
-        dl {
-            margin-bottom: 40px;
-
-            dd {
-                font-size: 120px;
-                font-weight: 100;
-                color: #333;
-            }
-
-            dt {
-                font-size: 30px;
-                text-transform: lowercase;
-                font-weight: 200;
-            }
-        }
-
-        .button {
-            font-size: 20px;
-            line-height: 20px;
-            height: auto;
-            padding: 10px 35px;
-            @include border-radius(35px);
-            font-weight: 200;
-            margin-bottom: $panel-padding * 1.5;
-        }
-
-        footer {
-            color: #bbb;
-            font-size: 12px;
-            font-weight: 400;
-
-            a {
-                color: #9a9a9a;
-                display: inline-block;
-                margin-left: 30px;
-            }
-
-            a:visited {
-                color: #9a9a9a;
+            &:first-child {
+                margin-right: 150px;
             }
         }
     }

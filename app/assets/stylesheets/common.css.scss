@@ -213,3 +213,52 @@ dl {
     }
 }
 
+
+
+#remaining {
+    text-align: center;
+    background-color: #f7f7f7;
+    padding-bottom: 20px;
+
+    dl {
+        margin-bottom: 100px;
+
+        dd {
+            font-size: 120px;
+            font-weight: 100;
+            color: #333;
+        }
+
+        dt {
+            font-size: 30px;
+            text-transform: lowercase;
+            font-weight: 200;
+        }
+    }
+
+    .button {
+        font-size: 20px;
+        line-height: 20px;
+        height: auto;
+        padding: 10px 35px;
+        @include border-radius(35px);
+        font-weight: 200;
+        margin-bottom: $panel-padding * 1.5;
+    }
+
+    footer {
+        color: #bbb;
+        font-size: 12px;
+        font-weight: 400;
+
+        a {
+            color: #9a9a9a;
+            display: inline-block;
+            margin-left: 30px;
+        }
+
+        a:visited {
+            color: #9a9a9a;
+        }
+    }
+}
