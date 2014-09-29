@@ -162,7 +162,7 @@ button, .button {
 
 
 /* content gets blured when a popover panel is shown */
-#blur-content {
+#blur-content, main > article {
     -webkit-transition: -webkit-filter 1s;
     -ms-transition: -ms-filter 1s ease;
     transition: filter 1s ease, -webkit-filter 1s;
@@ -213,8 +213,6 @@ dl {
     }
 }
 
-
-
 #remaining {
     text-align: center;
     background-color: #f7f7f7;
@@ -259,6 +257,52 @@ dl {
 
         a:visited {
             color: #9a9a9a;
+        }
+    }
+}
+
+#share-panel {
+    position: absolute;
+    left: 50%;
+    width: 960px;
+    margin-left: -480px;
+    display: table;
+
+    div {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+
+        a {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            border-radius: 60px;
+            line-height: 60px;
+            text-align: center;
+            background-color: #bbb;
+            color: white;
+            font-size: 30px;
+            margin-right: 40px;
+            margin-bottom: 30px;
+
+            &:hover {
+                text-decoration: none;
+                background-color: #777;
+            }
+        }
+    }
+
+    #close-share-panel {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 15px;
+        color: #bbb;
+
+        &:hover {
+            text-decoration: none;
+            color: #777;
         }
     }
 }

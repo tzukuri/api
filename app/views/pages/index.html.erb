@@ -33,7 +33,6 @@
                 // js date measures months from 0, so 8 == September. hours adjusted for EST summer time (UTC -4)
                 Date.UTC(2014, 8, 19, 4),
                 function(ts) {
-                    console.log(ts);
                     $('#countdown-days').text(ts.days);
                     $('#countdown-hours').text(ts.hours);
                     $('#countdown-minutes').text(ts.minutes);
