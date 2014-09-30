@@ -216,11 +216,8 @@ dl {
 #remaining {
     text-align: center;
     background-color: #f7f7f7;
-    padding-bottom: 20px;
 
     dl {
-        margin-bottom: 100px;
-
         dd {
             font-size: 120px;
             font-weight: 100;
@@ -243,22 +240,28 @@ dl {
         font-weight: 200;
         margin-bottom: $panel-padding * 1.5;
     }
+}
 
-    footer {
-        color: #bbb;
-        font-size: 12px;
-        font-weight: 400;
+article:last-child {
+  padding-bottom: 20px;
 
-        a {
-            color: #9a9a9a;
-            display: inline-block;
-            margin-left: 30px;
-        }
+  footer {
+      color: #bbb;
+      font-size: 12px;
+      font-weight: 400;
+      text-align: center;
+      margin-top: 100px;
 
-        a:visited {
-            color: #9a9a9a;
-        }
-    }
+      a {
+          color: #9a9a9a;
+          display: inline-block;
+          margin-left: 30px;
+      }
+
+      a:visited {
+          color: #9a9a9a;
+      }
+  }
 }
 
 #share-panel {
