@@ -39,4 +39,26 @@ html.craftsmanship {
             }
         }
     }
+
+        #better {
+        h1 {
+            text-align: center;
+        }
+
+        p {
+            max-width: 650px;
+            margin-right: auto;
+            margin-left: auto;
+            text-align: center;
+            padding-bottom: 30px;
+        }
+
+        dl span {
+            width: auto;
+
+            &:first-child {
+                margin-right: 150px;
+            }
+        }
+    }
 }

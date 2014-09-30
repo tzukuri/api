@@ -34,18 +34,20 @@ html.design {
                 margin-bottom: 5px;
             }
 
+
             h2, p {
                 font-weight: 300;
-                font-size: 13px;
             }
 
             h2 {
-                margin-bottom: 13px;
+                margin-bottom: 10px;
+                font-size: 13px;
             }
 
-            p {
-                width: 340px;
-                line-height: 15px;
+            p { 
+                font-size: 11px;
+                width: 280px;
+                line-height: 14px;
             }
         }
     }
