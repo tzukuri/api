@@ -162,7 +162,7 @@ button, .button {
 
 
 /* content gets blured when a popover panel is shown */
-#blur-content, main > article {
+#blur-content, main > article, #whichpair section {
     -webkit-transition: -webkit-filter 1s;
     -ms-transition: -ms-filter 1s ease;
     transition: filter 1s ease, -webkit-filter 1s;

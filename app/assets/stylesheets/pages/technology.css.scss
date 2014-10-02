@@ -13,6 +13,16 @@ html.technology {
             margin-left: 480px;
             width: 400px;
             color: #f7f7f7;
+
+            &:last-child {
+              text-align: right;
+
+              .share {
+                position: relative;
+                right: -140px;
+                top: 20px;
+              }
+            }
         }
     }
 
@@ -44,6 +54,12 @@ html.technology {
         p {
             margin-left: 110px;
             width: 250px;
+
+            .share {
+              position: relative;
+              top: 20px;
+              left: -5px;
+            }
         }
     }
 
@@ -65,6 +81,6 @@ html.technology {
 
     #two-up {
         margin-top: 20px;
-        height: 350px;
-    }    
+        height: 460px;
+    }
 }

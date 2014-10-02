@@ -44,10 +44,16 @@ html.design {
                 font-size: 13px;
             }
 
-            p { 
+            p {
                 font-size: 11px;
                 width: 280px;
                 line-height: 14px;
+
+                .share {
+                  position: relative;
+                  top: -$share-height;
+                  left: 680px;
+                }
             }
         }
     }

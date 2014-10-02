@@ -1,4 +1,4 @@
-html.index {
+html.preview {
     // ---------------------------------
     // countdown
     // ---------------------------------
@@ -93,7 +93,7 @@ html.index {
 
             .share {
                 position: absolute;
-                top: $unloseable-height - $share-height - 60px;
+                top: $unloseable-height - $share-height - 130px;
                 right: 0px;
             }
         }
