@@ -11,7 +11,7 @@ html.technology {
 
         p {
             margin-left: 480px;
-            width: 400px;
+            width: 450px;
             color: #f7f7f7;
 
             &:last-child {
@@ -64,7 +64,7 @@ html.technology {
     }
 
     #more {
-        background-color: #f7f7f7;
+        background-color: #fafafa;
         margin-top: 40px;
 
         h1 {
@@ -88,7 +88,7 @@ html.technology {
         }
 
         p {
-            max-width: 720px;
+            max-width: 600px;
             margin-right: auto;
             margin-left: auto;
             text-align: center;
@@ -103,5 +103,9 @@ html.technology {
 
     #side {
         height: 480px;
+    }
+
+    #remaining{
+      background-color: #f4f4f4;
     }
 }
