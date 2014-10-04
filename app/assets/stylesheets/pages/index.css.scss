@@ -130,45 +130,64 @@ html.index {
         padding-bottom: 0px;
         padding-top: 40px;
 
-        li {
-            display: inline-block;
-            margin: 0px 35px;
-        }
+        div {
+            max-width: 1300px;
 
-        menu {
-            margin-top: 80px;
-
-            > div {
+            li {
                 display: inline-block;
-                width: 50px;
-                margin: 0px 10px;
-                cursor: pointer;
+                margin: 0px 35px;
+                width: 360px;
+                height: 244px;
+                overflow: hidden;
+                position: relative;
+
+                img {
+                    position: absolute;
+                    top: 0px;
+                    left: 0px;
+                }
+            }
+
+            menu {
+                margin-top: 80px;
 
                 > div {
                     display: inline-block;
-                    margin-bottom: 7px;
-                    width: 7px;
-                    height: 7px;
-                    border-radius: 7px;
-                    border: 1px solid #999;
-                }
+                    width: 50px;
+                    margin: 0px 10px;
+                    cursor: pointer;
 
-                p {
-                    text-transform: lowercase;
-                    color: #999;
-                    font-weight: 300;
-                    position: relative;
-                    left: 1px;
-                }
+                    > div {
+                        display: inline-block;
+                        margin-bottom: 7px;
+                        width: 7px;
+                        height: 7px;
+                        border-radius: 7px;
+                        border: 1px solid #999;
+                    }
 
-                &.selected > div {
-                    background-color: #ddd;
+                    p {
+                        text-transform: lowercase;
+                        color: #999;
+                        font-weight: 300;
+                        position: relative;
+                        left: 1px;
+                    }
+
+                    &.selected > div {
+                        background-color: #ddd;
+                    }
                 }
             }
-        }
 
-        .share {
-            margin-top: 20px;
+
+            > p {
+                text-align: center;
+
+                .share {
+                    margin-top: 20px;
+                }
+            }
         }
     }
 

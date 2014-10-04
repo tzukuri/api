@@ -8,17 +8,29 @@
         </div>
     </article>
 
-    <article id="ibeacon">
+    <article id="solar">
+        <div>
+            <h1>SOLAR POWERED. <br> BATTERY EFFICIENT.</h1>
+            <p>The beacon uses Bluetooth Low Energy, a new technology that draws very little power. This means the solar cells can keep it charged and using the app won't drain your iPhones battery either.</p>
+        </div>
+    </article>
+
+    <article id="side">
+        <div class="background" style="background-image: url(<%= image_url 'side2.jpg' %>)"></div>
+    </article>
+
+    <!-- <article id="ibeacon">
         <div>
             <%= image_tag 'chip.png', width: 350, height: 350 %>
             <p>The beacon uses Bluetooth Low Energy, a new technology that draws very little power. This means the solar cells can keep it charged and using the app won't drain your iPhones battery either.</p>
         </div>
-    </article>
+    </article> -->
 
     <article id="easily-found">
         <div class="background" style="background-image: url(<%= image_url 'mainscreen.png' %>)"></div>
         <div>
             <h1>Easily <br> found.</h1>
+            <%= image_tag 'frames/atticus/cropped.jpg', width: 960, height: 436 %>
             <p>If you misplace your Tzukuri Solars at home, just open the app. It’ll show you exactly how far away they are to help you find them. If they’re not in range, it’ll show you their last location on a map.</p>
             <p><a href="#" class="share"><%= image_tag 'share.png' %>Share</a></p>
         </div>
