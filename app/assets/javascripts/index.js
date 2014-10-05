@@ -7,8 +7,8 @@ $(function() {
         var option = $(this);
         var newFrames = option.attr('data-image');
 
-        $('#frames ul img.' + currentFrames).fadeOut();
-        $('#frames ul img.' + newFrames).fadeIn();
+        $('#frames ul img.' + currentFrames).css('opacity', 0);
+        $('#frames ul img.' + newFrames).css('opacity', 1);
         currentFrames = newFrames;
 
         $('#frames menu div').removeClass('selected');

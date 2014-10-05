@@ -145,6 +145,8 @@ html.index {
                     position: absolute;
                     top: 0px;
                     left: 0px;
+                    opacity: 1.0;
+                    @include single-transition(opacity, 2s);
                 }
             }
 
