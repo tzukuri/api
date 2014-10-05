@@ -16,11 +16,11 @@ html.faq, html.legal {
             letter-spacing: 0px;
             margin-bottom: 40px;
             margin-top: 120px;
-            font-family: HelveticaNeueLT-Thin, Helvetica, sans-serif;
+            font-weight: 200;
         }
 
         h2 {
-            font-family: HelveticaNeueLT-Roman, Helvetica, sans-serif;
+            font-weight: normal;
             margin-bottom: 10px;
             margin-top: 44px;
         }
@@ -28,7 +28,7 @@ html.faq, html.legal {
         p {
             color: #333;
             font-size: 16px;
-            font-family: HelveticaNeueLTStd-Lt, Helvetica, sans-serif;
+            font-weight: 300;
             margin-bottom: 24px;
             line-height: 24px;
             text-align: justify;
@@ -98,7 +98,7 @@ html.faq #static-content {
             color: #8EA8D6;
             font-size: 26px;
             margin-bottom: 22px;
-            font-family: HelveticaNeueLT-Thin, Helvetica, sans-serif;
+            font-weight: 200;
         }
 
         a:hover {
@@ -118,18 +118,18 @@ html.faq #static-content {
             margin-top: 0px;
             margin-bottom: 10px;
             padding-top: 150px;
-            font-family: HelveticaNeueLT-Thin, Helvetica, sans-serif;
+            font-weight: 200;
             text-transform: lowercase;
         }
 
         &#general h1 {
-            padding-top: $body-flow-offset + $body-header-offset;
+            padding-top: 170px;
         }
 
         h2 {
             text-align: left;
             font-size: 24px;
-            font-family: HelveticaNeueLTStd-Lt, Helvetica, sans-serif;
+            font-weight: 300;
             margin-bottom: 9px;
         }
 
