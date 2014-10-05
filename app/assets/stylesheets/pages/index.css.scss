@@ -79,45 +79,51 @@ html.index {
 
     $unloseable-height: 460px;
     #unloseable {
-        height: $unloseable-height;
         padding-bottom: 0px;
 
-        .left.background {
-            top: $panel-padding/2;
-            bottom: 0px;
-        }
+        .panel {
+            height: $unloseable-height;
 
-        .content {
-            padding-left: 510px;
-            width: 450px;
+            .background {
+                width: 435px;
+            }
 
-            .share {
-                position: absolute;
-                top: $unloseable-height - $share-height - 60px;
-                right: 0px;
+            .content {
+                padding-left: 510px;
+                width: 450px;
+
+                .share {
+                    position: absolute;
+                    top: $unloseable-height - $share-height - 60px;
+                    right: 0px;
+                }
             }
         }
+
     }
 
     #ibeacon {
-        // the ibeacon logo (img) is 150x150
-        line-height: 150px;
-        text-align: center;
         padding-top: 50px;
         padding-bottom: 50px;
         border-top: 1px solid rgba(0, 0, 0, 0.07);
         border-bottom: 1px solid rgba(0, 0, 0, 0.07);
 
-        img {
-            vertical-align: middle;
-            margin-right: 60px;
-        }
+        .content {
+            // the ibeacon logo (img) is 150x150
+            line-height: 150px;
+            text-align: center;
 
-        p {
-            width: 360px;
-            font-weight: 200;
-            display: inline-block;
-            vertical-align: middle;
+            img {
+                vertical-align: middle;
+                margin-right: 60px;
+            }
+
+            p {
+                width: 360px;
+                font-weight: 200;
+                display: inline-block;
+                vertical-align: middle;
+            }
         }
     }
 

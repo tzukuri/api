@@ -44,21 +44,27 @@ html.technology {
     }
 
     #easily-found {
-        height: 800px;
+        .panel {
+            height: 800px;
 
-        h1 {
-          margin-top: 100px;
-          margin-left: 110px;
-        }
+            .right.image {
+                width: 280px;
+            }
 
-        p {
-            margin-left: 110px;
-            width: 250px;
+            h1 {
+              margin-top: 100px;
+              margin-left: 110px;
+            }
 
-            .share {
-              position: relative;
-              top: 20px;
-              left: -5px;
+            p {
+                margin-left: 110px;
+                width: 250px;
+
+                .share {
+                  position: relative;
+                  top: 20px;
+                  left: -5px;
+                }
             }
         }
     }

@@ -40,31 +40,44 @@ main > article {
         padding-top: ($header-height + $header-padding-top + $header-padding-bottom) - $panel-padding;
     }
 
-    > div {
+    .panel {
         max-width: $panel-max-width;
         margin: 0px auto;
         position: relative;
-        z-index: 2;
+    }
 
-        // stretched background image
-        &.background {
+    // stretched background image
+    .background {
+        position: absolute;
+        z-index: 1;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+
+        .image {
             position: absolute;
-            z-index: 1;
             top: 0px;
             right: 0px;
             bottom: 0px;
             left: 0px;
-            max-width: none;
             background-size: cover;
-        }
 
-        // pinned to the left
-        &.left {
-            max-width: $panel-max-width;
-            top: $panel-padding;
-            bottom: $panel-padding;
-            background-position: top left;
+            &.left {
+                right: auto;
+                background-position: top left;
+            }
+
+            &.right {
+                left: auto;
+                background-position: top right;
+            }
         }
+    }
+
+    .content {
+        position: relative;
+        z-index: 2;
 
         // h1
         > h1 {
