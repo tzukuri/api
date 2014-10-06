@@ -81,6 +81,7 @@ test:
 #
 production:
   <<: *default
-  database: newtzu_production
-  username: newtzu
-  password: <%= ENV['NEWTZU_DATABASE_PASSWORD'] %>
+  database: <%= ENV['POSTGRES_DATABASE'] %>
+  username: <%= ENV['POSTGRES_USERNAME'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  url: <%= ENV['HEROKU_POSTGRESQL_RED_URL'] %>
