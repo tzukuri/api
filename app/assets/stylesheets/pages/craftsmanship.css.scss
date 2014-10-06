@@ -38,10 +38,12 @@ html.craftsmanship {
         }
 
         #lens {
-            height: 50vw;
+            height: 60vw;
             max-height: 635px;
             background-repeat: no-repeat;
             background-size: contain;
+            background-image: image-url('lens.png');
+            background-position: center center;
         }
     }
 
@@ -82,12 +84,16 @@ html.craftsmanship {
             }
         }
 
-        #polarised dl {
-            margin-bottom: 20px;
-        }
+        #polarised {
+            dl {
+                margin-bottom: 40px;
+            }
 
-        #lens {
-            margin-bottom: 20px;
+            #lens {
+                margin-bottom: 40px;
+                height: 80vw;
+                background-image: image-url('lens-mobile.png');
+            }
         }
     }
 }
