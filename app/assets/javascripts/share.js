@@ -37,6 +37,9 @@ $(function() {
         $('article.blur').removeClass('blur');
         $('section.blur').removeClass('blur');
         $('#share-panel').fadeOut();
+        setTimeout(function() {
+            $('#share-copy').hide();
+        }, 1000);
     }
 
     function showWindow(url, title) {
@@ -99,6 +102,7 @@ $(function() {
 
     $('#share-link').click(function(event) {
         event.preventDefault();
-        closeSharePanel();
+        $('#share-copy').val(url);
+        $('#share-copy').show();
     });
 });

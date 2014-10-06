@@ -217,9 +217,9 @@ button, .button {
     transition: filter 1s ease, -webkit-filter 1s;
     -moz-transition: none;
 
-    -webkit-filter: blur(0px);
-    -ms-filter: blur(0px);
-    filter: blur(0px);
+    // -webkit-filter: blur(0px);
+    // -ms-filter: blur(0px);
+    // filter: blur(0px);
 
     &.blur {
         -webkit-filter: blur(20px);
@@ -306,6 +306,15 @@ article:last-child {
 
                 &:last-child {
                     text-align: left;
+                }
+
+                input {
+                    background-color: #777;
+                    border-radius: 2px;
+                    color: white;
+                    outline: none;
+                    border: none;
+                    height: 22px;
                 }
             }
         }
