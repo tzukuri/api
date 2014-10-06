@@ -11,21 +11,25 @@ html.index {
             margin-top: 60px;
             margin-bottom: 80px;
 
-            span {
-                margin-right: 120px;
-                width: 135px;
+            div {
+                display: inline-block;
+                margin-right: 80px;
 
-                &:last-child {
-                    margin-right: 0px;
-                }
+                span {
+                    width: 130px;
 
-                dt {
-                    font-size: 30px;
-                }
+                    &:first-child {
+                        margin-right: 80px;
+                    }
 
-                dd {
-                    font-size: 120px;
-                    color: #444;
+                    dt {
+                        font-size: 30px;
+                    }
+
+                    dd {
+                        font-size: 120px;
+                        color: #444;
+                    }
                 }
             }
         }
@@ -36,11 +40,12 @@ html.index {
             font-size: 24px;
             line-height: 30px;
             color: #555;
+            text-align: center;
 
 
             // smaller "Be at Tzukuri..." text and "Add to calendar"
             &.small {
-                line-height: 16px;
+                line-height: 18px;
                 font-size: 16px;
                 color: #666;
 
@@ -119,7 +124,7 @@ html.index {
             }
 
             p {
-                width: 360px;
+                max-width: 360px;
                 font-weight: 200;
                 display: inline-block;
                 vertical-align: middle;
@@ -286,22 +291,127 @@ html.index {
             font-size: 230px;
         }
 
-        dd {
-            position: relative;
-            left: 7px;
+        dl div {
+            display: inline;
 
-            span {
-                font-size: 30px;
-                margin-left: 5px;
+            dd {
                 position: relative;
-                top: -23px;
-                color: #777;
-            }
-        }
+                left: 7px;
 
-        dt {
-            margin-bottom: $environment-stat-margin;
+                span {
+                    font-size: 30px;
+                    margin-left: 5px;
+                    position: relative;
+                    top: -23px;
+                    color: #777;
+                }
+            }
+
+            dt {
+                margin-bottom: $environment-stat-margin;
+            }
         }
     }
 
 }
+
+
+/* ---------------- */
+/* countdown        */
+/* ---------------- */
+@media only screen and (max-width: 1000px) {
+    html.index #front dl {
+        div {
+            display: block;
+            margin-bottom: 40px;
+            margin-right: 0px;
+        }
+    }
+}
+
+
+@media only screen and (max-width: 500px) {
+    html.index #front {
+        padding-top: 0px;
+
+        dl div span {
+            width: 110px;
+
+            &:first-child {
+                margin-right: 60px;
+            }
+
+            dt {
+                font-size: 20px;
+            }
+
+            dd {
+                font-size: 80px;
+            }
+        }
+    }
+}
+
+
+/* ---------------- */
+/* unloseable       */
+/* ---------------- */
+@media only screen and (max-width: 995px) {
+
+}
+
+/* ---------------- */
+/* ibeacon          */
+/* ---------------- */
+@media only screen and (max-width: 615px) {
+    html.index #ibeacon .content {
+        line-height: 100px;
+
+        img {
+            margin-right: 0px;
+        }
+
+        p {
+            display: block;
+            text-align: center;
+            margin: 20px auto 0px auto;
+        }
+    }
+}
+
+/* ---------------- */
+/* environment      */
+/* ---------------- */
+@media only screen and (max-width: 805px) {
+    html.index #environment .content {
+        dl {
+            margin-top: 40px;
+
+            div {
+                display: block;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 405px) {
+    html.index #environment {
+        padding-bottom: 20px;
+
+        .content {
+            dl > div > span {
+                width: 115px;
+
+                dd {
+                    font-size: 50px;
+                }
+
+                dt {
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+}
+
+

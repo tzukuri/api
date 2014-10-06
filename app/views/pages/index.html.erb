@@ -1,46 +1,40 @@
 <main>
     <article id="front">
-        <dl>
-            <span>
-                <dd id="countdown-days">6</dd>
-                <dt>days</dt>
-            </span>
-            <span>
-                <dd id="countdown-hours">15</dd>
-                <dt>hours</dt>
-            </span>
-            <span>
-                <dd id="countdown-minutes">28</dd>
-                <dt>minutes</dt>
-            </span>
-            <span>
-                <dd id="countdown-seconds">32</dd>
-                <dt>seconds</dt>
-            </span>
-        </dl>
-        <p>
-            Preorder the world's first unloseable sunglasses here.<br>
-            Only 1200 pairs available first round.
-        </p>
-        <p class="small">Be at Tzukuri.com on October 15 at 1 p.m. US Eastern Time to be the first to get a pair.</p>
-        <p class="small calendar"><a href="#">
-            <i class="fa fa-calendar-o"></i><br>
-            Add to your calendar
-        </a></p>
-        <script>
-            countdown(
-                // number of milliseconds since Unix epoch UTC. required since new Date() returns local time.
-                // js date measures months from 0, so 8 == September. hours adjusted for EST summer time (UTC -4)
-                Date.UTC(2014, 8, 19, 4),
-                function(ts) {
-                    $('#countdown-days').text(ts.days);
-                    $('#countdown-hours').text(ts.hours);
-                    $('#countdown-minutes').text(ts.minutes);
-                    $('#countdown-seconds').text(ts.seconds);
-                },
-                countdown.DEFAULTS // trigger callback roughly once per second
-            );
-        </script>
+        <div class="panel">
+            <div class="content">
+                <dl>
+                    <div>
+                        <span>
+                            <dd id="countdown-days">6</dd>
+                            <dt>days</dt>
+                        </span>
+                        <span>
+                            <dd id="countdown-hours">15</dd>
+                            <dt>hours</dt>
+                        </span>
+                    </div>
+                    <div>
+                        <span>
+                            <dd id="countdown-minutes">28</dd>
+                            <dt>minutes</dt>
+                        </span>
+                        <span>
+                            <dd id="countdown-seconds">32</dd>
+                            <dt>seconds</dt>
+                        </span>
+                    </div>
+                </dl>
+                <p>
+                    Preorder the world's first unloseable sunglasses here.<br>
+                    Only 1200 pairs available first round.
+                </p>
+                <p class="small">Be at Tzukuri.com on October 15 at 1 p.m. US Eastern Time to be the first to get a pair.</p>
+                <p class="small calendar"><a href="#">
+                    <i class="fa fa-calendar-o"></i><br>
+                    Add to your calendar
+                </a></p>
+            </div>
+        </div>
     </article>
 
     <article id="deposit">
@@ -171,22 +165,26 @@
                 <p>With 1 in 2 people losing a pair of sunglasses in the first year, Tzukuri is starting a fight against 26 kilotonnes of plastic waste. With the integrated solar cells, every pair is powered by 100% renewable energy. But we took it much further.</p>
                 <p><i class="fa fa-globe"></i></p>
                 <dl>
-                    <span>
-                        <dd>no</dd>
-                        <dt>manual<br>recharging</dt>
-                    </span>
-                    <span>
-                        <dd>no</dd>
-                        <dt>battery<br>replacements</dt>
-                    </span>
-                    <span>
-                        <dd>100<span>%</span></dd>
-                        <dt>renewable<br>materials</dt>
-                    </span>
-                    <span>
-                        <dd>100<span>%</span></dd>
-                        <dt>recyclable<br>packaging</dt>
-                    </span>
+                    <div>
+                        <span>
+                            <dd>no</dd>
+                            <dt>manual<br>recharging</dt>
+                        </span>
+                        <span>
+                            <dd>no</dd>
+                            <dt>battery<br>replacements</dt>
+                        </span>
+                    </div>
+                    <div>
+                        <span>
+                            <dd>100<span>%</span></dd>
+                            <dt>renewable<br>materials</dt>
+                        </span>
+                        <span>
+                            <dd>100<span>%</span></dd>
+                            <dt>recyclable<br>packaging</dt>
+                        </span>
+                    </div>
                 </dl>
             </div>
         </div>

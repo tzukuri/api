@@ -5,7 +5,7 @@ $header-padding-bottom: 8px;
 $h1-size: 60px;
 $h2-size: 32px;
 $p-size:  20px;
-$mobile-h1-size: 50px;
+$mobile-h1-size: 45px;
 $mobile-h2-size: 26px;
 $mobile-p-size: 18px;
 $content-color: #666;
@@ -137,7 +137,7 @@ main > article {
             text-align: center;
             color: $content-color;
 
-            > span {
+            > span, > div > span {
                 display: inline-block;
                 text-align: center;
                 margin-right: 30px;
