@@ -79,9 +79,9 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+# database: <%= ENV['POSTGRES_DATABASE'] %>
+# username: <%= ENV['POSTGRES_USERNAME'] %>
+# password: <%= ENV['POSTGRES_PASSWORD'] %>
 production:
   <<: *default
-  database: <%= ENV['POSTGRES_DATABASE'] %>
-  username: <%= ENV['POSTGRES_USERNAME'] %>
-  password: <%= ENV['POSTGRES_PASSWORD'] %>
   url: <%= ENV['HEROKU_POSTGRESQL_RED_URL'] %>
