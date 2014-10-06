@@ -2,35 +2,41 @@ html.contact {
     #contact {
         text-align: center;
 
-        .content div a {
-            margin-top: 60px;
-            margin-left: 60px;
-            margin-right: 60px;
-            color: #444;
-            display: inline-block;
+        .content > div {
+            text-align: center;
 
-            &:hover {
-                text-decoration: none;
-                color: black;
+            &#first-row {
+                margin-top: 40px;
             }
 
-            span {
-                margin-top: 50px;
-                display: block;
-                font-size: 50px;
-                margin-bottom:10px;
-            }
+            a {
+                padding-top: 0px;
+                color: #444;
+                display: inline-block;
+                font-size: 16px;
+                width: 100px;
 
-            font-size: 16px;
+                &:first-child {
+                    margin-right: 40px;
+                }
+
+                &:hover {
+                    text-decoration: none;
+                    color: black;
+                }
+
+                span {
+                    margin-top: 50px;
+                    display: block;
+                    font-size: 50px;
+                    margin-bottom: 10px;
+                }
+            }
         }
     }
 }
 
 @media only screen and (max-width: $content-width-cutoff) {
     html.contact {
-        #contact .content div a {
-            margin-top: 30px;
-            margin-left: 30px;
-        }
     }
 }
