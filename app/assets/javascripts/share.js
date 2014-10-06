@@ -6,12 +6,12 @@ $(function() {
         var panel = $(this).closest('article');
 
         if (panel[0].id == 'whichpair') {
-          var panel = $(this).closest('section');
-          $('section.blur').removeClass('blur');
-          pairs = true
+            var panel = $(this).closest('section');
+            $('section.blur').removeClass('blur');
+            pairs = true
         } else {
-          $('article.blur').removeClass('blur');
-          pairs = false;
+            $('article.blur').removeClass('blur');
+            pairs = false;
         }
 
         panel.addClass('blur');
@@ -19,10 +19,13 @@ $(function() {
         url = window.location.href.split('#')[0] + '#' + panel[0].id;
 
         if (pairs)
-          $('#share-panel').css('top', panel.position().top + 360);
+            $('#share-panel').css('top', panel.position().top + 360);
         else
-          $('#share-panel').css('top', panel.position().top + 60);
+            $('#share-panel').css('top', panel.position().top + 60);
+
         $('#share-panel').css('height', panel.height());
+        $('#share-panel').css('width', panel.width());
+        $('#share-panel').css('margin-left', '-' + (panel.width() / 2) + 'px');
         $('#share-panel').fadeIn();
 
         event.preventDefault();

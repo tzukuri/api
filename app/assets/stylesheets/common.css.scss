@@ -5,6 +5,9 @@ $header-padding-bottom: 8px;
 $h1-size: 60px;
 $h2-size: 32px;
 $p-size:  20px;
+$mobile-h1-size: 50px;
+$mobile-h2-size: 26px;
+$mobile-p-size: 18px;
 $content-color: #666;
 
 $panel-padding: 100px;
@@ -128,6 +131,33 @@ main > article {
         > p + p {
             margin-top: 20px;
         }
+
+        dl {
+            margin-top: 20px;
+            text-align: center;
+            color: $content-color;
+
+            > span {
+                display: inline-block;
+                text-align: center;
+                margin-right: 30px;
+                width: 165px;
+
+                &:last-child {
+                    margin-right: 0px;
+                }
+
+                dt {
+                    font-weight: 200;
+                    font-size: 20px;
+                }
+
+                dd {
+                    font-weight: 100;
+                    font-size: 70px;
+                }
+            }
+        }
     }
 
     // share button
@@ -199,39 +229,6 @@ button, .button {
     }
 }
 
-
-
-
-dl {
-    margin-top: 20px;
-    text-align: center;
-    color: $content-color;
-
-    // the spacing and font sizes were changed to make the text look better on a 15"
-    // at 144px/34px the time components stretched the 960px correctly, but looked too
-    // big. These sizes are a compromise, but will need to be changed for mobile
-    > span {
-        display: inline-block;
-        text-align: center;
-        margin-right: 30px;    // spacing between time components
-        width: 165px;
-
-        &:last-child {
-            margin-right: 0px;
-        }
-
-        dt {
-            font-weight: 200;
-            font-size: 20px;    // component type; 34 is too large on 15"
-        }
-
-        dd {
-            font-weight: 100;
-            font-size: 70px;   // component value; 144 is too large on 15"
-        }
-    }
-}
-
 #remaining {
     text-align: center;
     background-color: #f7f7f7;
@@ -287,16 +284,31 @@ article:last-child {
 #share-panel {
     position: absolute;
     left: 50%;
-    width: 960px;
-    margin-left: -480px;
     display: table;
     z-index: 1;
-    // background-color: rgba(0,0,0,0.1);
 
     div {
         display: table-cell;
         vertical-align: middle;
         text-align: center;
+
+        div {
+            display: table;
+            width: 100%;
+
+            span {
+                display: table-cell;
+                width: 33.33%;
+
+                &:first-child {
+                    text-align: right;
+                }
+
+                &:last-child {
+                    text-align: left;
+                }
+            }
+        }
 
         a {
             display: inline-block;
@@ -305,10 +317,8 @@ article:last-child {
             border-radius: 60px;
             line-height: 60px;
             text-align: center;
-            // background-color: #bbb;
             color: #777;
             font-size: 35px;
-            margin-right: 50px;
             margin-bottom: 40px;
 
             &:hover {
@@ -319,9 +329,11 @@ article:last-child {
     }
 
     #close-share-panel {
-        position: absolute;
-        top: 50px;
-        right: 80px;
+        /*position: absolute;
+        top: 50%;
+        margin-top: 80px;
+        left: 50%;
+        margin-left: -14px;*/
         font-size: 25px;
         color: #777;
 
@@ -336,6 +348,8 @@ article:last-child {
 @media only screen and (max-width: $menu-width-cutoff) {
     // footer links
     article:last-child footer {
+        margin-top: 50px;
+
         span {
             display: block;
             margin-top: 10px;
@@ -356,6 +370,39 @@ article:last-child {
 @media only screen and (max-width: $content-width-cutoff) {
     main > article {
         padding: $mobile-panel-padding $horz-padding;
+
+        .content {
+            > h1 {
+                font-size: $mobile-h1-size;
+                line-height: $mobile-h1-size;
+            }
+
+            > h2 {
+                font-size: $mobile-h2-size;
+                line-height: $mobile-h2-size;
+            }
+
+            > p {
+                font-size: $mobile-p-size;
+            }
+
+            dl > span {
+                display: block;
+                margin-right: 0px;
+            }
+        }
+    }
+
+    #remaining {
+        dl {
+            dd {
+                font-size: 80px;
+            }
+
+            dt {
+                font-size: 26px;
+            }
+        }
     }
 }
 
