@@ -342,7 +342,7 @@ html.index {
             width: 110px;
 
             &:first-child {
-                margin-right: 60px;
+                margin-right: 40px;
             }
 
             dt {
@@ -371,6 +371,10 @@ html.index {
 
             p {
                 text-align: center;
+            }
+
+            h1 {
+                font-size: 40px;
             }
         }
 
@@ -413,6 +417,10 @@ html.index {
 /* ---------------- */
 @media only screen and (max-width: 805px) {
     html.index #environment .content {
+        h1 {
+            font-size: 37px;
+        }
+
         dl {
             margin-top: 40px;
 

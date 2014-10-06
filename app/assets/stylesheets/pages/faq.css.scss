@@ -130,3 +130,26 @@ html.faq #static-content {
         }
     }
 }
+
+
+@media only screen and (max-width: 990px) {
+    html.faq #static-content {
+        width: auto;
+        
+        > nav {
+            position: static;
+            margin-left: 20px;
+            margin-top: 160px;
+        }
+
+        section {
+            padding-left: 20px;
+            padding-right: 20px;
+
+            &#general h1 {
+                padding-top: 40px;
+            }
+        }
+    }
+}
+

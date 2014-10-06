@@ -207,11 +207,19 @@ html.technology {
 
 
 @media only screen and (max-width: $content-width-cutoff) {
-    html.technology #unforgettable {
-        height: 380px;
+    html.technology {
+        #unforgettable {
+            height: 380px;
 
-        h1 {
-            font-size: 35px;
+            h1 {
+                font-size: 31px;
+            }
+        }
+
+        #more {
+            h1 {
+                font-size: 40px;
+            }
         }
     }
 }
