@@ -1,7 +1,7 @@
 $(function() {
     var url = null;
     var pairs = false;
-    var DEFAULT_TEXT = 'Meet+the+world%27s+first+unloseable+sunglasses';
+    var DEFAULT_TEXT = 'Meet%20the%20world%27s%20first%20unloseable%20sunglasses';
     var DEFAULT_IMAGE = encodeURIComponent('http://tzukuri.com/share_image.jpg');
 
     $('a.share').click(function(event) {
@@ -33,12 +33,11 @@ $(function() {
         event.preventDefault();
     });
 
-    $('#close-share-panel').click(function(event) {
+    function closeSharePanel() {
         $('article.blur').removeClass('blur');
         $('section.blur').removeClass('blur');
         $('#share-panel').fadeOut();
-        event.preventDefault();
-    });
+    }
 
     function showWindow(url, title) {
         var centre = Math.floor(document.width / 2) - 335;
@@ -51,43 +50,55 @@ $(function() {
         );
     }
 
-    $('#share-fb').click(function(event) {
+    $('#close-share-panel').click(function(event) {
+        closeSharePanel();
         event.preventDefault();
+    });
+
+    $('#share-fb').click(function(event) {
         showWindow(
             'https://www.facebook.com/sharer.php?app_id=311590038897709&sdk=joey&display=popup&u=http%3A%2F%2Ftzukuri.com%2F', //+ encodeURIComponent(url),
             'Facebook'
         );
+        event.preventDefault();
+        closeSharePanel();
     });
 
     $('#share-twitter').click(function(event) {
-        event.preventDefault();
         showWindow(
             'https://twitter.com/intent/tweet?text=' + DEFAULT_TEXT + '&url=' + encodeURIComponent(url),
             'Twitter'
         );
+        event.preventDefault();
+        closeSharePanel();
     });
 
     $('#share-pinterest').click(function(event) {
-        event.preventDefault();
         showWindow(
             'http://www.pinterest.com/pin/create/button/?url=' + encodeURIComponent(url) + '&description=' + DEFAULT_TEXT + '&media=' + DEFAULT_IMAGE,
             'Pinterest'
         );
+        event.preventDefault();
+        closeSharePanel();
     });
 
     $('#share-tumblr').click(function(event) {
-        event.preventDefault();
         showWindow(
             'https://www.tumblr.com/share/photo?' + DEFAULT_IMAGE + '&caption=' + DEFAULT_TEXT + '&clickthru=' + encodeURIComponent(url),
             'Tumblr'
         );
+        event.preventDefault();
+        closeSharePanel();
     });
 
     $('#share-email').click(function(event) {
+        window.location = 'mailto:?subject=' + DEFAULT_TEXT + '&body=' + encodeURIComponent(url);
         event.preventDefault();
+        closeSharePanel();
     });
 
     $('#share-link').click(function(event) {
         event.preventDefault();
+        closeSharePanel();
     });
 });
