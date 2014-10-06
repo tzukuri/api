@@ -1,4 +1,9 @@
 html.design {
+    #share-panel {
+        div a {
+            color: #333;
+        }
+    }
     #whichpair {
         padding-top: 160px;
 
@@ -26,6 +31,7 @@ html.design {
             span img {
                 width: 960px;
                 height: 436px;
+                z-index: 0;
             }
 
             h1, h2, p {
@@ -109,10 +115,6 @@ html.design {
 
 @media only screen and (max-width: $content-width-cutoff) {
     html.design {
-        #share-panel {
-            margin-top: -380px;
-        }
-
         #two-up {
             height: 250px;
 
@@ -182,7 +184,7 @@ html.design {
                 p .share {
                     top: 30px;
                     left: 50%;
-                    margin-left: -10px;
+                    margin-left: -35px;
                 }
             }
         }

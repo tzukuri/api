@@ -21,7 +21,7 @@ $(function() {
         url = window.location.href.split('#')[0] + '#' + panel[0].id;
 
         if (pairs)
-            $('#share-panel').css('top', panel.position().top + 1850);
+            $('#share-panel').css('top', panel.position().top + 1600);
         else
             $('#share-panel').css('top', panel.position().top + 60);
 
