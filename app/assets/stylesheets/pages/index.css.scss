@@ -1,3 +1,5 @@
+$unloseable-height: 460px;
+
 html.index {
     // ---------------------------------
     // countdown
@@ -13,7 +15,10 @@ html.index {
 
             div {
                 display: inline-block;
-                margin-right: 80px;
+
+                &:first-child {
+                    margin-right: 80px;
+                }
 
                 span {
                     width: 130px;
@@ -82,7 +87,6 @@ html.index {
         }
     }
 
-    $unloseable-height: 460px;
     #unloseable {
         padding-bottom: 0px;
 
@@ -157,6 +161,7 @@ html.index {
                     top: 0px;
                     left: 0px;
                     opacity: 1.0;
+                    width: 360px;
                     @include single-transition(opacity, 2s);
                 }
             }
@@ -324,11 +329,10 @@ html.index {
         div {
             display: block;
             margin-bottom: 40px;
-            margin-right: 0px;
+            margin-right: 0px !important;
         }
     }
 }
-
 
 @media only screen and (max-width: 500px) {
     html.index #front {
@@ -352,12 +356,37 @@ html.index {
     }
 }
 
-
 /* ---------------- */
 /* unloseable       */
 /* ---------------- */
-@media only screen and (max-width: 995px) {
+@media only screen and (max-width: 980px) {
+    html.index #unloseable .panel {
+        height: auto;
 
+        .content {
+            padding-left: 0px;
+            width: auto;
+            text-align: center;
+            margin-bottom: 40px;
+
+            p {
+                text-align: center;
+            }
+        }
+
+        .background {
+            display: block;
+            position: static;
+            width: auto;
+
+            .image {
+                position: static;
+                width: 310px;
+                height: 300px;
+                margin: 0px auto;
+            }
+        }
+    }
 }
 
 /* ---------------- */
@@ -414,4 +443,39 @@ html.index {
     }
 }
 
+/* ---------------- */
+/* frames           */
+/* ---------------- */
+@media only screen and (max-width: 905px) {
+    html.index #frames div li {
+        margin: 0px 25px;
+        width: 240px;
+        height: 164px;
 
+        img {
+            width: 240px;
+        }
+    }
+}
+
+@media only screen and (max-width: 630px) {
+    html.index #frames div li {
+        margin: 0px 15px;
+        width: 125px;
+        height: 94px;
+
+        img {
+            width: 125px;
+        }
+    }
+}
+
+
+/* ---------------- */
+/* design           */
+/* ---------------- */
+@media only screen and (max-width: $content-width-cutoff) {
+    html.index #design h1:first-child {
+        display: none;
+    }
+}
