@@ -15,10 +15,13 @@
     background: rgba(255, 255, 255, 0.97255);
 
     div {
-        width: 960px;
+        max-width: 960px;
         margin: 0px auto;
         position: relative;
-    }
+        @include box-sizing(border-box);
+        padding-left: $horz-padding;
+        padding-right: $horz-padding;
+    }    
 
     h1 {
         line-height: $header-height;
@@ -28,6 +31,10 @@
             display: inline-block;
             vertical-align: middle;
         }
+    }
+
+    #hamburger {
+        display: none;
     }
 
     menu {
@@ -54,3 +61,25 @@
         }
     }
 }
+
+@media only screen and (max-width: $menu-width-cutoff) {
+    #blur-content > header {
+        #hamburger {
+            position: absolute;
+            right: 20px;
+            top: 13px;
+            display: block;
+            color: #555;
+            font-size: 16px;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+
+        menu {
+            display: none;
+        }
+    }
+}
+

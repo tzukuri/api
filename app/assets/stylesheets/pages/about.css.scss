@@ -1,27 +1,27 @@
 html.about {
     #overview, #philosophy {
         h1 {
-          text-transform: lowercase;
-          font-weight: 200;
-          font-size: 42px;
+            text-transform: lowercase;
+            font-weight: 200;
+            font-size: 42px;
         }
 
-        p{
-          max-width: 348px;
-          font-size: 16px;
-          font-weight: 300;
-          line-height: 22px;
+        p {
+            max-width: 348px;
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 22px;
         }
 
-        h2{
-          margin-top: 30px;
-          font-size: 22px;
-          font-weight: 300px;
+        h2 {
+            margin-top: 30px;
+            font-size: 22px;
+            font-weight: 300px;
         }
     }
 
     #overview {
-      padding-top: 120px;
+        padding-top: 80px;
     }
 
     #philosophy {
@@ -30,27 +30,34 @@ html.about {
 
     #founders, #board {
         h1 {
-          text-transform: lowercase;
-          font-weight: 200;
-          font-size: 42px;
+            text-transform: lowercase;
+            font-weight: 200;
+            font-size: 42px;
         }
 
-        p{
-          margin-top: 0px;
-          max-width: 348px;
-          font-size: 12px;
-          font-weight: 400;
+        p {
+            margin-top: 0px;
+            max-width: 348px;
+            font-size: 12px;
+            font-weight: 400;
         }
 
-        h2{
-          margin-top: 50px;
-          font-size: 20px;
-          font-weight: 300px;
+        h2 {
+            margin-top: 50px;
+            font-size: 20px;
+            font-weight: 300px;
         }
     }
 
     #board {
-      background-color: #f7f7f7;
+        background-color: #f7f7f7;
     }
+}
 
+@media only screen and (max-width: $content-width-cutoff) {
+    html.about {
+        #overview {
+            padding-top: 40px;
+        }
+    }
 }

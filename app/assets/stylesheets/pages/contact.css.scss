@@ -1,28 +1,36 @@
 html.contact {
     #contact {
-      text-align: center;
+        text-align: center;
 
-      > div > div a {
-        margin-top: 60px;
-        margin-left: 60px;
-        margin-right: 60px;
-        color: #444;
-        display: inline-block;
+        .content div a {
+            margin-top: 60px;
+            margin-left: 60px;
+            margin-right: 60px;
+            color: #444;
+            display: inline-block;
 
-        &:hover {
-            text-decoration: none;
-            color: black;
+            &:hover {
+                text-decoration: none;
+                color: black;
+            }
+
+            span {
+                margin-top: 50px;
+                display: block;
+                font-size: 50px;
+                margin-bottom:10px;
+            }
+
+            font-size: 16px;
         }
+    }
+}
 
-        span {
-          margin-top: 50px;
-          display: block;
-          font-size: 50px;
-          margin-bottom:10px;
-
+@media only screen and (max-width: $content-width-cutoff) {
+    html.contact {
+        #contact .content div a {
+            margin-top: 30px;
+            margin-left: 30px;
         }
-
-        font-size: 16px;
-      }
     }
 }

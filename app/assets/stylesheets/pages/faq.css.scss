@@ -1,9 +1,5 @@
-html.faq, html.legal {
+html.faq {
     color: #333;
-
-    body {
-        overflow: auto;
-    }
 
     #static-content {
         width: 800px;
@@ -40,16 +36,11 @@ html.faq, html.legal {
     }
 }
 
-html.legal #static-content h1:first-child {
-    margin-top: 0px;
-}
-
-
 $faq-nav-width: 210px;
 $body-flow-offset: 120px;
 $body-header-offset: 150px;
 
-html.faq, html.legal {
+html.faq {
     width: auto;
     height: auto;
     overflow: visible;
@@ -61,10 +52,6 @@ html.faq, html.legal {
         position: relative;
         top: -$body-flow-offset;
     }
-}
-
-html.legal body {
-    top: 0px;
 }
 
 html.faq #static-content {

@@ -8,10 +8,15 @@ $p-size:  20px;
 $content-color: #666;
 
 $panel-padding: 100px;
+$mobile-panel-padding: 50px;
 $panel-max-width: 960px;
 
 $share-height: 52px;
 $share-width: 50px;
+
+$horz-padding: 20px;
+$menu-width-cutoff: 720px;
+$content-width-cutoff: 376px;
 
 
 /* typography */
@@ -31,13 +36,14 @@ a {
 
 /* panel styling */
 main > article {
-    padding: $panel-padding 0px;
+    @include box-sizing(border-box);
+    padding: $panel-padding $horz-padding;
     overflow: hidden;
     position: relative;
 
     // pad the first panel's content so it appears below the header
-    &:first-child div {
-        padding-top: ($header-height + $header-padding-top + $header-padding-bottom) - $panel-padding;
+    &:first-child {
+        margin-top: $header-height + $header-padding-top + $header-padding-bottom;
     }
 
     .panel {
@@ -255,26 +261,27 @@ dl {
     }
 }
 
+// footer links
 article:last-child {
-  padding-bottom: 20px;
+    padding-bottom: 20px;
 
-  footer {
-      color: #bbb;
-      font-size: 12px;
-      font-weight: 400;
-      text-align: center;
-      margin-top: 100px;
+    footer {
+        color: #bbb;
+        font-size: 12px;
+        font-weight: 400;
+        text-align: center;
+        margin-top: 100px;
 
-      a {
-          color: #9a9a9a;
-          display: inline-block;
-          margin-left: 30px;
-      }
+        a {
+            color: #9a9a9a;
+            display: inline-block;
+            margin-left: 30px;
+        }
 
-      a:visited {
-          color: #9a9a9a;
-      }
-  }
+        a:visited {
+            color: #9a9a9a;
+        }
+    }
 }
 
 #share-panel {
@@ -324,3 +331,31 @@ article:last-child {
         }
     }
 }
+
+
+@media only screen and (max-width: $menu-width-cutoff) {
+    // footer links
+    article:last-child footer {
+        span {
+            display: block;
+            margin-top: 10px;
+
+            a {
+                margin-left: 0px;
+
+                &:last-child {
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
+}
+
+
+
+@media only screen and (max-width: $content-width-cutoff) {
+    main > article {
+        padding: $mobile-panel-padding $horz-padding;
+    }
+}
+
