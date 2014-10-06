@@ -19,7 +19,7 @@ $(function() {
     countdown(
         // number of milliseconds since Unix epoch UTC. required since new Date() returns local time.
         // js date measures months from 0, so 8 == September. hours adjusted for EST summer time (UTC -4)
-        Date.UTC(2014, 8, 19, 4),
+        Date.UTC(2014, 9, 15, 17),
         function(ts) {
             $('#countdown-days').text(ts.days);
             $('#countdown-hours').text(ts.hours);
