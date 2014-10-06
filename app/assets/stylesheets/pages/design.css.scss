@@ -23,6 +23,11 @@ html.design {
                 margin-top: 60px;
             }
 
+            span img {
+                width: 960px;
+                height: 436px;
+            }
+
             h1, h2, p {
                 padding-left: 120px;
             }
@@ -94,5 +99,82 @@ html.design {
     #two-up {
         padding-top: 0px;
         height: 550px;
+
+        .background .image {
+            background-position: center center;
+        }
+    }
+}
+
+
+@media only screen and (max-width: $content-width-cutoff) {
+    html.design {
+        #share-panel {
+            margin-top: -380px;
+        }
+
+        #two-up {
+            height: 250px;
+
+            .background .image {
+                height: 250px;
+            }
+        }
+
+        #sizes {
+            text-align: center;
+
+            h2 {
+                max-width: 300px;
+                margin: 12px auto 0px auto;
+            }
+
+            p {
+                width: auto;
+                text-align: center;
+            }
+
+            .background {
+                display: none;
+            }
+        }
+
+        #whichpair {
+            padding-top: $mobile-panel-padding;
+
+            section {
+                &#design-atticus {
+                    margin-top: 150px;
+                }
+                
+                span {
+                    display: block;
+                    text-align: center;
+
+                    img {
+                        width: 280px;
+                        height: 127px;
+                    }
+                }
+
+                h1, h2, p {
+                    padding-left: 20px;
+                }
+
+                h1 {
+                    padding-top: 20px;
+                }
+
+                p {
+                    width: 260px;
+                }
+
+                p .share {
+                    top: 30px;
+                    left: 50%;
+                    margin-left: -10px;
+                }
+            }
+        }
     }
 }

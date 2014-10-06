@@ -459,13 +459,19 @@ html.index {
 }
 
 @media only screen and (max-width: 630px) {
-    html.index #frames div li {
-        margin: 0px 15px;
-        width: 125px;
-        height: 94px;
+    html.index #frames {
+        div menu {
+            margin-top: 40px;
+        }
 
-        img {
+        div li {
+            margin: 0px 15px;
             width: 125px;
+            height: 94px;
+
+            img {
+                width: 125px;
+            }
         }
     }
 }

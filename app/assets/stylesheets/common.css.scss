@@ -390,6 +390,16 @@ article:last-child {
                 display: block;
                 margin-right: 0px;
             }
+
+            .share {
+                font-size: 16px;
+                line-height: 16px;
+
+                img {
+                    width: 20px;
+                    height: 25px;
+                }
+            }
         }
     }
 
