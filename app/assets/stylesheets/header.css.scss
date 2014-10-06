@@ -78,7 +78,29 @@
         }
 
         menu {
-            display: none;
+            position: fixed;
+            margin-top: 0px;
+            background-color: rgba(230, 230, 230, 0.99);
+            top: $header-height + $header-padding-top + $header-padding-bottom + 1px;
+            right: -220px;
+            bottom: 0px;
+            width: 200px;
+            padding: 20px 10px;
+            @include single-transition(right, 1s);
+
+            &.showing {
+                right: 0px;
+            }
+
+            nav a {
+                font-size: 16px;
+                display: block;
+            }
+
+            button {
+                margin-left: 50px;
+                margin-top: 40px;
+            }
         }
     }
 }

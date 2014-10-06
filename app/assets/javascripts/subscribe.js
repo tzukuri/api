@@ -1,12 +1,13 @@
 $(function() {
     $('#show-subscribe').click(function(event) {
+        event.preventDefault();
         $('#subscribe-popup').show();
         setTimeout(function() {
             $('#subscribe-popup').removeClass('hidden');
         }, 20);
         $('#blur-content').addClass('blur');
-        $('#subscribe-form input[type=text]').focus();
-        event.preventDefault();
+        if ($('html').width() > 720)
+            $('#subscribe-form input[type=text]').focus();
     });
             
     $('#subscribe-popup').click(function(event) {
