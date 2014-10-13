@@ -2,7 +2,7 @@
     <article id="front">
         <div class="panel">
             <div class="content">
-                <iframe width="956" height="538" src="//www.youtube.com/embed/Rw78E8hJ-UY?rel=0&controls=2&showinfo=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
+                <iframe width="960" height="540" src="//www.youtube.com/embed/Rw78E8hJ-UY?rel=0&controls=2&showinfo=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
                 <dl>
                     <div>
                         <span id="day-span">
@@ -77,47 +77,47 @@
         </div>
     </article>
 
-    <!-- <article id="fashion">
-        <div class="background" style="background-image: url(<%= image_url 'fashion.jpg' %>)"></div>
-    </article> -->
+    <article id="fashion">
+        <div class="background"><div class="image" style="background-image: url(<%= image_url 'fashion.jpg' %>)"></div></div>
+    </article>
 
     <article id="frames">
         <div class="panel">
             <div class="content">
                 <ul>
                     <li>
-                        <%= image_tag 'frames/atticus/tortoise-front.jpg', class: 'tortoise' %>
-                        <%= image_tag 'frames/atticus/black-front.jpg', class: 'black', style: 'opacity: 0.0' %>
+                        <%= image_tag 'frames/atticus/black-front.jpg', class: 'black' %>
+                        <%= image_tag 'frames/atticus/tortoise-front.jpg', class: 'tortoise', style: 'opacity: 0.0' %>
                     </li>
                     <li>
-                        <%= image_tag 'frames/monaco/tortoise-front.jpg', class: 'tortoise' %>
-                        <%= image_tag 'frames/monaco/black-front.jpg', class: 'black', style: 'opacity: 0.0' %>
+                        <%= image_tag 'frames/monaco/black-front.jpg', class: 'black' %>
+                        <%= image_tag 'frames/monaco/tortoise-front.jpg', class: 'tortoise', style: 'opacity: 0.0' %>
                     </li>
                     <li>
-                        <%= image_tag 'frames/ford/tortoise-front.jpg', class: 'tortoise'%>
-                        <%= image_tag 'frames/ford/black-front.jpg', class: 'black', style: 'opacity: 0.0' %>
+                        <%= image_tag 'frames/ford/black-front.jpg', class: 'black'%>
+                        <%= image_tag 'frames/ford/tortoise-front.jpg', class: 'tortoise', style: 'opacity: 0.0' %>
                     </li>
                     <li>
-                        <%= image_tag 'frames/fitzgerald/tortoise-front.jpg', class: 'tortoise' %>
-                        <%= image_tag 'frames/fitzgerald/black-front.jpg', class: 'black', style: 'opacity: 0.0' %>
+                        <%= image_tag 'frames/fitzgerald/black-front.jpg', class: 'black' %>
+                        <%= image_tag 'frames/fitzgerald/tortoise-front.jpg', class: 'tortoise', style: 'opacity: 0.0' %>
                     </li>
                     <li>
-                        <%= image_tag 'frames/truman/tortoise-front.jpg', class: 'tortoise' %>
-                        <%= image_tag 'frames/truman/black-front.jpg', class: 'black', style: 'opacity: 0.0' %>
+                        <%= image_tag 'frames/truman/black-front.jpg', class: 'black' %>
+                        <%= image_tag 'frames/truman/tortoise-front.jpg', class: 'tortoise', style: 'opacity: 0.0' %>
                     </li>
                     <li>
-                        <%= image_tag 'frames/stark/tortoise-front.jpg', class: 'tortoise' %>
-                        <%= image_tag 'frames/stark/black-front.jpg', class: 'black', style: 'opacity: 0.0' %>
+                        <%= image_tag 'frames/stark/black-front.jpg', class: 'black' %>
+                        <%= image_tag 'frames/stark/tortoise-front.jpg', class: 'tortoise', style: 'opacity: 0.0' %>
                     </li>
                 </ul>
                 <menu>
-                    <div data-image="tortoise" class="selected">
-                        <div></div>
-                        <p>Tortoise</p>
-                    </div>
-                    <div data-image="black">
+                    <div data-image="black" class ='selected'>
                         <div></div>
                         <p>Black</p>
+                    </div>
+                    <div data-image="tortoise">
+                        <div></div>
+                        <p>Tortoise</p>
                     </div>
                 </menu>
                 <p><a href="#" class="share"><%= image_tag 'share.png' %>Share</a></p>
