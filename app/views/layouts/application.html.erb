@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="<%= params[:page] || controller_name %>">
     <head>
-        <title><%= @page_title || "Tzukuri - Beautiful wearable technology" %></title>
+        <title>Tzukuri - Beautiful wearable technology<%= " - #{@page_title}" if @page_title %></title>
 
         <%= stylesheet_link_tag    'application', media: 'all' %>
         <%= javascript_include_tag 'application' %>
@@ -85,6 +85,7 @@
             })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
             ga('create', 'UA-49901333-1', 'tzukuri.com');
+            ga('require', 'displayfeatures');
             ga('send', 'pageview');
         </script>
     </body>
