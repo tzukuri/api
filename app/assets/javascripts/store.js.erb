@@ -251,15 +251,9 @@ $(function() {
     });
 
     /* sizing measurement */
-    $('#enter-measurement a').click(function(event) {
-        $('#enter-measurement a').removeClass('selected');
-        $(this).addClass('selected');
-        event.preventDefault();
-    });
-
-    $('#measurement-width').keyup(function(event) {
+    function calcHighlight() {
         $('#three-up a').removeClass('selected');
-        var size = $(this).val();
+        var size = $('#measurement-width').val();
 
         if ($('#inches').hasClass('selected'))
             size = size * 25.4;
@@ -271,6 +265,17 @@ $(function() {
         } else {
             $('#three-up a.large').addClass('selected');
         }
+    }
+
+    $('#enter-measurement a').click(function(event) {
+        $('#enter-measurement a').removeClass('selected');
+        $(this).addClass('selected');
+        calcHighlight();
+        event.preventDefault();
+    });
+
+    $('#measurement-width').keyup(function(event) {
+        calcHighlight();
     });
 
     /* stripe charges */
