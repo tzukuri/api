@@ -24,7 +24,7 @@ class PurchasesController < ApplicationController
                 amount: 10000,
                 currency: 'usd',
                 customer: customer.id,
-                description: params[:name]
+                description: "Tzukuri - #{params[:frame].titleize}, #{params[:colour].titleize}, #{params[:size].titleize} - #{params[:name]}"
             )
             
             purchase = Purchase.create(

@@ -141,9 +141,14 @@ $(function() {
 
         // set the main frame image and the checkout image
         showImage();
-
         panel.show();
-        $('#store-cover').show();            
+        $('#store-cover').show();
+
+        // monaco doesn't have a male photo
+        if (name == 'monaco')
+            $('#frame div[data-image=male]').hide();
+        else
+            $('#frame div[data-image=male]').show();
 
         setTimeout(function() {
             $('#frames').addClass('blur');
@@ -210,6 +215,10 @@ $(function() {
         closePanel();
     });
 
+    $('.close').click(function(event) {
+        closePanel();
+    })
+
 
 
     /* ----------------------------- */
@@ -231,11 +240,15 @@ $(function() {
         $('#form').fadeIn();
     });
 
-    /*$('#submit button').click(function(event) {
-        event.preventDefault();
+    $('#sizes .back').click(function(event) {
+        $('#sizes').fadeOut();
+        $('#frame').fadeIn();
+    });
+
+    $('#form .back').click(function(event) {
         $('#form').fadeOut();
-        $('#complete').fadeIn();
-    });*/
+        $('#sizes').fadeIn();
+    });
 
     /* sizing measurement */
     $('#enter-measurement a').click(function(event) {
