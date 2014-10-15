@@ -1,5 +1,5 @@
 <main>
-    <article id="front">
+    <!-- <article id="front">
         <div class="panel">
             <div class="content">
                 <dl>
@@ -35,17 +35,24 @@
                 </a></p>
             </div>
         </div>
+    </article> -->
+
+    <article id="video">
+        <div class="panel">
+            <iframe width="960" height="540" src="//www.youtube.com/embed/Rw78E8hJ-UY?rel=0&controls=2&showinfo=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
+            <ul id="funding-stats">
+                <li><%= 1200 - Purchase.count %> pairs<span>remaining to ship March 2015</span></li>
+                <li id="purchase-item">
+                    <div>$249 <a href="https://www.tzukuri.com/store" class="button">Preorder</a></div>
+                    <p>You will only be charged a $100 deposit. The remainder will be charged when your pair ships in Mar 2015.</p>
+                </li>
+            </ul>
+        </div>
     </article>
 
     <article id="deposit">
         <div class="panel">
             <p>$100 deposit. Free shipping. Free exchanges.</p>
-        </div>
-    </article>
-
-    <article id="video">
-        <div class="panel">
-            <iframe width="960" height="540" src="//www.youtube.com/embed/Rw78E8hJ-UY?rel=0&controls=2&showinfo=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
         </div>
     </article>
 
@@ -199,7 +206,7 @@
     <article id="remaining">
         <div class="panel">
             <dl>
-                <dd>1200</dd>
+                <dd><%= 1200 - Purchase.count %></dd>
                 <dt>Remaining</dt>
             </dl>
             <!-- <a href="#" class="button">Preorder</a> -->
