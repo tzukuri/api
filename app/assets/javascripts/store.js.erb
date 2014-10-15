@@ -1,0 +1,198 @@
+$(function() {
+    var frames = {
+        atticus: {
+            sub: 'inspired by Atticus Finch.',
+            desc: 'The balance of roundness and depth complements the dimensions and angularity of most longer faces.',
+
+            black: {
+                side: "<%= image_path('frames/atticus/black-side.jpg') %>",
+                front: "<%= image_path('frames/atticus/black-front.jpg') %>",
+                angle: "<%= image_path('frames/atticus/black-angle.jpg') %>",
+                male: "<%= image_path('frames/atticus/black-m.jpg') %>",
+                female: "<%= image_path('frames/atticus/black-f.jpg') %>"
+            },
+
+            tortoise: {
+                side: "<%= image_path('frames/atticus/tortoise-side.jpg') %>",
+                front: "<%= image_path('frames/atticus/tortoise-front.jpg') %>",
+                angle: "<%= image_path('frames/atticus/tortoise-angle.jpg') %>",
+                male: "<%= image_path('frames/atticus/tortoise-m.jpg') %>",
+                female: "<%= image_path('frames/atticus/tortoise-f.jpg') %>"
+            },
+        },
+
+        fitzgerald: {
+            sub: 'inspired by John Fitzgerald Kennedy.',
+            desc: 'Softer angles and horizontal planes to add subtle definition to cheekbones. A classic and understated style.',
+
+            black: {
+                side: "<%= image_path('frames/fitzgerald/black-side.jpg') %>",
+                front: "<%= image_path('frames/fitzgerald/black-front.jpg') %>",
+                angle: "<%= image_path('frames/fitzgerald/black-angle.jpg') %>",
+                male: "<%= image_path('frames/fitzgerald/black-m.jpg') %>",
+                female: "<%= image_path('frames/fitzgerald/black-f.jpg') %>"
+            },
+
+            tortoise: {
+                side: "<%= image_path('frames/fitzgerald/tortoise-side.jpg') %>",
+                front: "<%= image_path('frames/fitzgerald/tortoise-front.jpg') %>",
+                angle: "<%= image_path('frames/fitzgerald/tortoise-angle.jpg') %>",
+                male: "<%= image_path('frames/fitzgerald/tortoise-m.jpg') %>",
+                female: "<%= image_path('frames/fitzgerald/tortoise-f.jpg') %>"
+            },
+        },
+
+        ford: {
+            sub: 'inspired by Tom Ford.',
+            desc: 'Strong curves and depth soften strong and angular features like prominent jaws and broader foreheads.',
+
+            black: {
+                side: "<%= image_path('frames/ford/black-side.jpg') %>",
+                front: "<%= image_path('frames/ford/black-front.jpg') %>",
+                angle: "<%= image_path('frames/ford/black-angle.jpg') %>",
+                male: "<%= image_path('frames/ford/black-m.jpg') %>",
+                female: "<%= image_path('frames/ford/black-f.jpg') %>"
+            },
+
+            tortoise: {
+                side: "<%= image_path('frames/ford/tortoise-side.jpg') %>",
+                front: "<%= image_path('frames/ford/tortoise-front.jpg') %>",
+                angle: "<%= image_path('frames/ford/tortoise-angle.jpg') %>",
+                male: "<%= image_path('frames/ford/tortoise-m.jpg') %>",
+                female: "<%= image_path('frames/ford/tortoise-f.jpg') %>"
+            },
+        },
+
+        monaco: {
+            sub: 'inspired by Grace Kelly.',
+            desc: 'A refined cat-eye frame which draws attention upwards towards the eyes and adds height to your cheekbones.',
+
+            black: {
+                side: "<%= image_path('frames/monaco/black-side.jpg') %>",
+                front: "<%= image_path('frames/monaco/black-front.jpg') %>",
+                angle: "<%= image_path('frames/monaco/black-angle.jpg') %>",
+                male: "<%= image_path('frames/monaco/black-m.jpg') %>",
+                female: "<%= image_path('frames/monaco/black-f.jpg') %>"
+            },
+
+            tortoise: {
+                side: "<%= image_path('frames/monaco/tortoise-side.jpg') %>",
+                front: "<%= image_path('frames/monaco/tortoise-front.jpg') %>",
+                angle: "<%= image_path('frames/monaco/tortoise-angle.jpg') %>",
+                male: "<%= image_path('frames/monaco/tortoise-m.jpg') %>",
+                female: "<%= image_path('frames/monaco/tortoise-f.jpg') %>"
+            },
+        },
+
+        stark: {
+            sub: 'inspired by James Dean.',
+            desc: 'A hybrid aviator, fusing depth and teardrop shapes to create a top-heavy effect and balance out fuller jaws.',
+
+            black: {
+                side: "<%= image_path('frames/stark/black-side.jpg') %>",
+                front: "<%= image_path('frames/stark/black-front.jpg') %>",
+                angle: "<%= image_path('frames/stark/black-angle.jpg') %>",
+                male: "<%= image_path('frames/stark/black-m.jpg') %>",
+                female: "<%= image_path('frames/stark/black-f.jpg') %>"
+            },
+
+            tortoise: {
+                side: "<%= image_path('frames/stark/tortoise-side.jpg') %>",
+                front: "<%= image_path('frames/stark/tortoise-front.jpg') %>",
+                angle: "<%= image_path('frames/stark/tortoise-angle.jpg') %>",
+                male: "<%= image_path('frames/stark/tortoise-m.jpg') %>",
+                female: "<%= image_path('frames/stark/tortoise-f.jpg') %>"
+            },
+        },
+
+        truman: {
+            sub: 'inspired by Truman Capote.',
+            desc: 'The combination of depth and angularity adds height to cheekbones and gives your face a longer, thinner profile.',
+
+            black: {
+                side: "<%= image_path('frames/truman/black-side.jpg') %>",
+                front: "<%= image_path('frames/truman/black-front.jpg') %>",
+                angle: "<%= image_path('frames/truman/black-angle.jpg') %>",
+                male: "<%= image_path('frames/truman/black-m.jpg') %>",
+                female: "<%= image_path('frames/truman/black-f.jpg') %>"
+            },
+
+            tortoise: {
+                side: "<%= image_path('frames/truman/tortoise-side.jpg') %>",
+                front: "<%= image_path('frames/truman/tortoise-front.jpg') %>",
+                angle: "<%= image_path('frames/truman/tortoise-angle.jpg') %>",
+                male: "<%= image_path('frames/truman/tortoise-m.jpg') %>",
+                female: "<%= image_path('frames/truman/tortoise-f.jpg') %>"
+            },
+        },
+    };
+
+    function showFrame(name) {
+        var panel = $('#panel');
+        panel.attr('data-frame', name);
+        panel.attr('data-image', 'angle');
+        //panel.attr('data-colour', 'tortoise');
+        //panel.find('div[data-colour]').removeClass('selected');
+        //panel.find('div[data-colour=tortoise]').addClass('selected');
+        panel.find('div[data-image]').removeClass('selected');
+        panel.find('div[data-image=angle]').addClass('selected');
+
+        var frame = frames[name];
+        panel.find('aside > h1').text(name);
+        panel.find('aside > h2').text(frame.sub);
+        panel.find('#frame aside .desc').text(frame.desc);
+        showImage();
+
+        panel.show();
+        $('#store-cover').show();            
+
+        setTimeout(function() {
+            $('#frames').addClass('blur');
+            $('#store-cover').addClass('visible');
+            panel.addClass('visible');
+        }, 100);
+    }
+
+    function showImage() {
+        var panel = $('#panel');
+        var colour = panel.attr('data-colour');
+        var image = panel.attr('data-image');
+        var frame = panel.attr('data-frame');
+
+        var path = frames[frame][colour][image];
+        panel.find('.photo').css('background-image', 'url(' + path + ')');
+    }
+
+    $('#panel menu div[data-colour]').click(function(event) {
+        var panel = $(this).closest('#panel');
+        panel.attr('data-colour', $(this).attr('data-colour'));
+        showImage(panel);
+
+        panel.find('div[data-colour]').removeClass('selected');
+        $(this).addClass('selected');
+    });
+
+    $('#panel menu div[data-image]').click(function(event) {
+        var panel = $(this).closest('#panel');
+        panel.attr('data-image', $(this).attr('data-image'));
+        showImage(panel);
+
+        panel.find('div[data-image]').removeClass('selected');
+        $(this).addClass('selected');
+    });
+
+    $('#frames li').click(function(event) {
+        showFrame($(this).attr('data-frame'));
+    });
+
+    $('#store-cover').click(function(event) {
+        $('#panel').removeClass('visible');
+        $('#store-cover').removeClass('visible');
+        $('#frames').removeClass('blur');
+
+        setTimeout(function() {
+            $('#store-cover').hide();
+            $('#panel').hide();
+        }, 1050);
+    });
+});

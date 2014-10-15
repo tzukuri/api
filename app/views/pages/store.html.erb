@@ -1,0 +1,218 @@
+<main>
+    <ul id="frames">
+        <div id="recom">
+            <h1>Recommendations</h1>
+            <p>We want you to get the best pair of glasses possible, lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget consequat diam. Morbi suscipit lorem id suscipit tempus. Vestibulum blandit nunc quis purus aliquet varius.</p>
+            <ul id="mf">
+                <li data-style="masculine" class="selected">
+                    <%= image_tag 'ford-checkout.png' %>
+                    <span>Masculine</span>
+                </li>
+                <li data-style="feminine">
+                    <%= image_tag 'mon-checkout.png' %>
+                    <span>Feminine</span>
+                </li>
+            </ul>
+
+            <ul class="faces male">
+                <li data-face="oval" data-frames="truman stark">
+                    <%= image_tag 'face-shapes/m-oval.png' %>
+                    <span>
+                        <h1>Oval</h1>
+                        <p>Your face is longer than it is wide, with your cheekbones being the widest part.</p>
+                    </span>
+                </li>
+                <li data-face="square" data-frames="fitzgerald truman">
+                    <%= image_tag 'face-shapes/m-square.png' %>
+                    <span>
+                        <h1>Square</h1>
+                        <p>You have a wide angular jawline, and your chin and forehead are of equal width. Face length can vary.</p>
+                    </span>
+                </li>
+                <li data-face="triangular" data-frames="atticus ford">
+                    <%= image_tag 'face-shapes/m-triangle.png' %>
+                    <span>
+                        <h1>Triangular</h1>
+                        <p>Your forehead is your widest feature, which then narrows towards a slimmer chin.</p>
+                    </span>
+                </li>
+                <li data-face="round" data-frames="atticus stark">
+                    <%= image_tag 'face-shapes/m-round.png' %>
+                    <span>
+                        <h1>Round</h1>
+                        <p>The widest part of your face is about the same as the length of your face.</p>
+                    </span>
+                </li>
+            </ul>
+
+            <ul class="faces female" style="display: none">
+                <li data-face="round" data-frames="fitzgerald truman">
+                    <%= image_tag 'face-shapes/f-round.png' %>
+                    <span>
+                        <h1>Round</h1>
+                        <p>The widest part of your face is about the same as the length of your face.</p>
+                    </span>
+                </li>
+                <li data-face="heart" data-frames="monaco atticus">
+                    <%= image_tag 'face-shapes/f-heart.png' %>
+                    <span>
+                        <h1>Heart</h1>
+                        <p>Your forehead is your widest feature, which then narrows towards a slimmer chin.</p>
+                    </span>
+                </li>
+                <li data-face="oblong" data-frames="ford stark">
+                    <%= image_tag 'face-shapes/f-oblong.png' %>
+                    <span>
+                        <h1>Oblong</h1>
+                        <p>Your forehead and chin are similar in width, and you have a fuller jaw. Face length can vary.</p>
+                    </span>
+                </li>
+                <li data-face="oval" data-frames="atticus truman">
+                    <%= image_tag 'face-shapes/f-oval.png' %>
+                    <span>
+                        <h1>Oval</h1>
+                        <p>Your face is longer than it is wide, with your cheekbones being the widest part.</p>
+                    </span>
+                </li>
+            </ul>
+        </div>
+
+        <li data-frame="atticus">
+            <div>
+                <%= image_tag 'frames/atticus/tortoise-front.jpg', class: 'tortoise' %>
+                <%= image_tag 'frames/atticus/black-front.jpg', class: 'black', style: 'opacity: 0.0' %>
+            </div>
+            <h1>Atticus</h1>
+            <p>Inspired by Atticus Finch.<!-- The balance of roundness and depth complements the dimensions and angularity of most longer faces.--></p>
+        </li>
+        <li data-frame="monaco">
+            <div>
+                <%= image_tag 'frames/monaco/tortoise-front.jpg', class: 'tortoise' %>
+                <%= image_tag 'frames/monaco/black-front.jpg', class: 'black', style: 'opacity: 0.0' %>
+            </div>
+            <h1>Monaco</h1>
+            <p>Inspired by Grace Kelly.<!-- A refined cat-eye frame which draws attention upwards towards the eyes and adds height to your cheekbones.--></p>
+        </li>
+        <li data-frame="ford">
+            <div>
+                <%= image_tag 'frames/ford/tortoise-front.jpg', class: 'tortoise'%>
+                <%= image_tag 'frames/ford/black-front.jpg', class: 'black', style: 'opacity: 0.0' %>
+            </div>
+            <h1>Ford</h1>
+            <p>Inspired by Tom Ford.<!-- Strong curves and depth soften strong and angular features like prominent jaws and broader foreheads.--></p>
+        </li>
+        <li data-frame="fitzgerald">
+            <div>
+                <%= image_tag 'frames/fitzgerald/tortoise-front.jpg', class: 'tortoise' %>
+                <%= image_tag 'frames/fitzgerald/black-front.jpg', class: 'black', style: 'opacity: 0.0' %>
+            </div>
+            <h1>Fitzgerald</h1>
+            <p>Inspired by John Fitzgerald Kennedy.<!-- Softer angles and horizontal planes to add subtle definition to cheekbones. A classic and understated style.--></p>
+        </li>
+        <li data-frame="truman">
+            <div>
+                <%= image_tag 'frames/truman/tortoise-front.jpg', class: 'tortoise' %>
+                <%= image_tag 'frames/truman/black-front.jpg', class: 'black', style: 'opacity: 0.0' %>
+            </div>
+            <h1>Truman</h1>
+            <p>Inspired by Truman Capote.<!-- The combination of depth and angularity adds height to cheekbones and gives your face a longer, thinner profile.--></p>
+        </li>
+        <li data-frame="stark">
+            <div>
+                <%= image_tag 'frames/stark/tortoise-front.jpg', class: 'tortoise' %>
+                <%= image_tag 'frames/stark/black-front.jpg', class: 'black', style: 'opacity: 0.0' %>
+            </div>
+            <h1>Stark</h1>
+            <p>Inspired by James Dean.<!-- A hybrid aviator, fusing depth and teardrop shapes to create a top-heavy effect and balance out fuller jaws.--></p>
+        </li>
+    </ul>
+
+    <div id="store-cover" style="display: block"></div>
+
+    <div id="panel" style="display: block" data-colour="tortoise">
+        <div id="frame" style="display: none">
+            <aside>
+                <h1></h1>
+                <h2></h2>
+                <p class="desc"></p>
+                <menu>
+                    <div data-colour="tortoise" class="selected">
+                        <div></div>
+                        <p>Tortoise</p>
+                    </div>
+                    <div data-colour="black">
+                        <div></div>
+                        <p>Black</p>
+                    </div>
+                </menu>
+                <p id="order-row"><button>select</button></p>
+            </aside>
+            <div class="photo"></div>
+            <menu>
+                <div data-image="angle">
+                    <div></div>
+                    <p>Angle</p>
+                </div>
+                <div data-image="front">
+                    <div></div>
+                    <p>Front</p>
+                </div>
+                <div data-image="side">
+                    <div></div>
+                    <p>Side</p>
+                </div>
+                <div data-image="female">
+                    <div></div>
+                    <p>Female</p>
+                </div>
+                <div data-image="male">
+                    <div></div>
+                    <p>Male</p>
+                </div>
+            </menu>
+        </div>
+
+        <div id="sizes">
+            <aside>
+                <h1>Sizing</h1>
+                <p class="desc">The right size is just as important as the right shape for the perfect fit. Just follow the graphic below and enter your measurement below to select your size.</p>
+                <p class="desc">Don't worry, you can change this later.</p>
+                <div id="enter-measurement">
+                    <p>Enter measurement</p>
+                    <div>
+                        <input type="text" id="measurement-width">
+                        <div>
+                            <a href="#" id="millimetres" class="selected">millimetres</a>
+                            <a href="#" id="inches">inches</a>
+                        </div>
+                    </div>
+                </div>
+                <p><%= image_tag 'measure.png', width: 150 %></p>
+            </aside>
+            <div id="three-up">
+                <div>
+                    <div>
+                        <a href="#" class="small">
+                            <%= image_tag 'size.png' %>
+                            <span>S</span>
+                        </a>
+                        <a href="#" class="medium">
+                            <%= image_tag 'size.png' %>
+                            <span>M</span>
+                        </a>
+                        <a href="#" class="large">
+                            <%= image_tag 'size.png' %>
+                            <span>L</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="form" style="display: none">
+        </div>
+
+        <div id="complete" style="display: none">
+        </div>
+    </div>
+</main>

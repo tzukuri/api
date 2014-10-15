@@ -176,7 +176,7 @@ html.store {
         bottom: 0px;
         left: 0px;
         background-color: rgba(0,0,0,0.03);
-        opacity: 0.0;
+        opacity: 1.0;
         @include single-transition(opacity, 0.6s);
 
         &.visible {
@@ -193,25 +193,34 @@ html.store {
         margin-top: -270px;
         background-color: white;
         box-shadow: 0px 0px 10px rgba(0,0,0,0.03);
-        opacity: 0.0;
+        opacity: 1.0;
         @include single-transition(opacity, 0.6s);
 
         &.visible {
             opacity: 1.0;
         }
 
-        > aside {
+        > div {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+        }
+
+        div > aside {
             position: absolute;
             top: 40px;
             right: 40px;
             width: 300px;
             bottom: 40px;
+            overflow: auto;
 
             > h1 {
                 text-transform: uppercase;
                 font-size: 40px;
                 font-weight: 600;
-                margin-bottom: 8px;
+                margin-bottom: 10px;
             }
 
             > h2 {
@@ -221,10 +230,11 @@ html.store {
                 margin-bottom: 30px;
             }
 
-            #desc {
+            .desc {
                 font-size: 14px;
                 line-height: 22px;
                 color: #666;
+                margin-bottom: 10px;
             }
 
             > menu {
@@ -240,9 +250,20 @@ html.store {
                 right: 0px;
                 width: 100%;
             }
+
+            input[type=text], input[type=email] {
+                @include border-radius(5px);
+                background-color: #eee;
+                color: #333;
+                font-size: 14px;
+                height: 24px;
+                padding: 4px 8px;
+                outline: none;
+                border: none;
+            }
         }
 
-        menu {
+        #frame menu {
             text-align: center;
 
             > div {
@@ -289,7 +310,7 @@ html.store {
             //bottom: 40px;
         }
 
-        > menu {
+        #frame > menu {
             position: absolute;
             bottom: 25px;
             left: 30px;
@@ -318,6 +339,101 @@ html.store {
                         width: 100%;
                         left: 0px;
                         border-bottom: 1px solid #eee;
+                    }
+                }
+            }
+        }
+
+        #sizes {
+            #enter-measurement {
+                margin-top: 30px;
+                margin-bottom: 45px;
+
+                > div {
+                    input {
+                        display: inline-block;
+                        position: relative;
+                        left: -4px;
+                        margin-top: 6px;
+                    }
+
+                    > div {
+                        display: inline-block;
+                        
+                        a {
+                            font-size: 11px;
+                            line-height: 15px;
+                            display: block;
+                            color: #aaa;
+
+                            &.selected {
+                                color: #333;
+                            }
+                        }
+                    }
+                }
+            }
+
+            #three-up {
+                position: absolute;
+                top: 60px;
+                left: 60px;
+                bottom: 60px;
+                right: 400px;
+
+                > div {
+                    display: table;
+                    width: 100%;
+                    height: 100%;
+
+                    > div {
+                        vertical-align: middle;
+                        display: table-cell;
+                        text-align: center;
+                    }
+                }
+
+                a {
+                    display: inline-block;
+                    width: 105px;
+                    opacity: 0.4;
+                    @include single-transition(opacity, 0.2s);
+
+                    &:hover {
+                        text-decoration: none;
+                        opacity: 1.0;
+                    }
+
+                    span {
+                        text-align: left;
+                        display: block;
+                        font-size: 35px;
+                        font-weight: 200;
+                        color: #333;
+                        margin-top: 20px;
+                        padding-left: 15px;
+                    }
+
+                    &.small {
+                        margin-right: 40px;
+
+                        img {
+                            width: 85px;
+                        }
+                    }
+
+                    &.medium {
+                        margin-right: 50px;
+
+                        img {
+                            width: 95px;
+                        }
+                    }
+
+                    &.large {
+                        img {
+                            width: 105px;
+                        }
                     }
                 }
             }
