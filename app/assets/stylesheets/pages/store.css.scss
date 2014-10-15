@@ -1,13 +1,106 @@
 $large-frame-size: 320px;
 
 html.store {
-    //background-color: #fafafa;
-
     main {
-        padding-top: 60px;
+        padding-top: 100px;
     }
 
     #frames {
+        padding-left: 410px;
+        margin-right: 20px;
+        position: relative;
+
+        #recom {
+            position: absolute;
+            width: 320px;
+            top: 60px;
+            left: 80px;
+            text-align: left;
+
+            h1 {
+                text-transform: uppercase;
+                font-weight: 600;
+                font-size: 16px;
+            }
+
+            p {
+                font-weight: 400;
+                font-size: 14px;
+                color: #777;
+                line-height: 22px;
+                margin-top: 8px;
+            }
+
+            #mf {
+                margin-top: 40px;
+                margin-bottom: 80px;
+
+                li {
+                    font-size: 13px;
+                    font-weight: 300;
+                    color: #ddd;
+                    height: 65px;
+                    line-height: 65px;
+                    display: inline-block;
+                    text-align: center;
+
+                    &:first-child {
+                        margin-right: 50px;
+                    }
+
+                    img {
+                        width: 125px;
+                        //margin-right: 20px;
+                        margin-bottom: 10px;
+                        vertical-align: middle;
+                        opacity: 0.4;
+                    }
+
+                    span {
+                        display: block;
+                        line-height: 14px;
+                    }
+
+                    &.selected, &:hover {
+                        color: #999;
+                        cursor: pointer;
+
+                        img {
+                            opacity: 1.0;
+                        }
+                    }
+                }
+            }
+
+            .faces {
+                li {
+                    margin-bottom: 20px;
+                    vertical-align: top;
+
+                    img {
+                        height: 100px;
+                        display: inline-block;
+                        vertical-align: top;
+                    }
+
+                    span {
+                        display: inline-block;
+                        width: 200px;
+                        vertical-align: top;
+
+                        h1 {
+                            font-size: 13px;
+                        }
+
+                        p {
+                            font-size: 12px;
+                            line-height: 14px;
+                        }
+                    }
+                }
+            }
+        }
+
         text-align: center;
         -webkit-transition: -webkit-filter 0.6s;
         -ms-transition: -ms-filter 0.6s ease;
@@ -21,15 +114,15 @@ html.store {
             filter: url(/svg_blur.xml#svgBlur);
         }
 
-        li {
+        li[data-frame] {
             display: inline-block;
-            margin: 60px 30px;
+            margin: 0px 5px 60px 0px;
             width: 370px;
             border-top: 1px solid transparent;
             border-bottom: 1px solid transparent;
 
             &:hover {
-                border-top-color: #eee;
+                //border-top-color: #eee;
                 //border-bottom-color: #eee;
                 cursor: pointer;
             }
@@ -53,16 +146,18 @@ html.store {
 
             h1 {
                 line-height: 14px;
-                font-size: 14px;
-                padding: 17px 30px 3px 30px;
-                text-align: left;
+                font-size: 11px;
+                //padding: 17px 30px 3px 30px;
+                text-align: center;
                 text-transform: uppercase;
-                font-weight: 600;
-                color: #777;
-                background-color: #f5f5f5;
+                font-weight: 300;
+                color: #999;
+                letter-spacing: 1px;
+                //background-color: #f5f5f5;
             }
 
             p {
+                display: none;
                 font-size: 12px;
                 font-weight: 200;
                 text-align: left;
@@ -94,8 +189,8 @@ html.store {
         top: 50%;
         left: 100px;
         right: 100px;
-        height: 500px;
-        margin-top: -250px;
+        height: 600px;
+        margin-top: -270px;
         background-color: white;
         box-shadow: 0px 0px 10px rgba(0,0,0,0.03);
         opacity: 0.0;
