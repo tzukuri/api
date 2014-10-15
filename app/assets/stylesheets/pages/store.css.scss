@@ -533,6 +533,20 @@ html.store {
                 #submit {
                     margin-top: 30px;
                     text-align: left;
+
+                    button {
+                        display: inline-block;
+                        width: 131px;
+                    }
+                }
+
+                #payment-message {
+                    display: inline-block;
+                    width: 150px;
+                    color: #555;
+                    font-size: 13px;
+                    line-height: 16px;
+                    margin-left: 10px;
                 }
             }
 

@@ -255,7 +255,7 @@
                             <p><input type="text" name="postcode" placeholder="postcode / zip" id="postcode"></p>
                             <p><input type="text" name="country" placeholder="country" id="country"></p>
                         </div>
-                        <div id="submit"><button type="submit">preorder now</button></div>
+                        <div id="submit"><button type="submit">preorder now</button><div id="payment-message"></div></div>
                     </form>
                 </div>
             </aside>
@@ -276,7 +276,7 @@
             <aside>
                 <h1>Preorder Complete</h1>
                 <p class="desc">Thank you for preordering, we hope you are as excited as we are that you'll be one of the first in the world to own a pair of unloseable sunglasses in March.</p>
-                <p class="desc">Order Reference: 1234</p>
+                <p class="desc">Order Reference: <span id="order-ref">1234</span></p>
             </aside>
             <article id="share-links" data-url="http://tzukuri.com/" data-not-panel="true">
                 <div>
@@ -324,10 +324,10 @@
     
     function stripeResponseHandler(status, response) {
         if (response.error) {
-            //$('#payment-message').text(response.error.message);
+            $('#payment-message').text(response.error.message);
             $('#submit button').prop('disabled', false);
         } else {
-            //$('#payment-message').text("Charging your card...");
+            $('#payment-message').text("Charging your card...");
             $.post('/purchases', {
                 email: $('#email').val(),
                 name: $('#name').val(),
@@ -342,27 +342,26 @@
                 size: $('#panel').attr('data-size')
             }, function(data, status) {
                 if (data.success) {
-                    /*$('#payment-form').hide();
-                    $('#order-popup > div > div > header > h1').hide();
-                    $('#order-popup > div > div > h1').text("Thank you! We'll be in touch to ask for your shipping details when your glasses are ready.");*/
+                    $('#order-ref').text(data.ref);
+                    $('#payment-message').text('');
                     $('#form').fadeOut();
                     $('#complete').fadeIn();
                 } else {
-                    /*if (data.reason)
+                    if (data.reason)
                         $('#payment-message').text(data.reason);
                     else
-                        $('#payment-message').text('Sorry, an unknown error occurred.');*/
+                        $('#payment-message').text('Sorry, an unknown error occurred.');
                     $('#submit button').prop('disabled', false);
                 }
             }, 'json').fail(function() {
-                //$('#payment-message').text('Sorry, an unknown error occurred. Please try again later.');
+                $('#payment-message').text('Sorry, an unknown error occurred. Please try again later.');
             });
         }
     }
     
     $('#payment-form').submit(function(event) {
         $('#submit button').prop('disabled', true);
-        //$('#payment-message').text("Checking your card details...");
+        $('#payment-message').text("Checking your card details...");
         Stripe.card.createToken($(this), stripeResponseHandler);
         event.preventDefault();
     });

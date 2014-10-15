@@ -27,7 +27,7 @@ class PurchasesController < ApplicationController
                 description: params[:name]
             )
             
-            Purchase.create(
+            purchase = Purchase.create(
                 name: params[:name],
                 email: params[:email],
                 address1: params[:address1],
@@ -42,7 +42,7 @@ class PurchasesController < ApplicationController
                 charge_id: charge.id
             )
             
-            render json: {success: true, }
+            render json: {success: true, ref: "#{params[:frame].downcase[0..3]}#{purchase.id}"}
         rescue Stripe::CardError => e
             render json: {success: false, reason: e.json_body[:error][:message]}
         end
