@@ -145,7 +145,7 @@
                         <p>Black</p>
                     </div>
                 </menu>
-                <p id="order-row"><button>select</button></p>
+                <p id="order-row"><button id="start-purchase">select</button></p>
             </aside>
             <div class="photo"></div>
             <menu>
@@ -192,15 +192,15 @@
             <div id="three-up">
                 <div>
                     <div>
-                        <a href="#" class="small">
+                        <a href="#" class="small" data-size="small">
                             <%= image_tag 'size.png' %>
                             <span><button>S</button></span>
                         </a>
-                        <a href="#" class="medium">
+                        <a href="#" class="medium" data-size="medium">
                             <%= image_tag 'size.png' %>
                             <span><button>M</button></span>
                         </a>
-                        <a href="#" class="large">
+                        <a href="#" class="large" data-size="large">
                             <%= image_tag 'size.png' %>
                             <span><button>L</button></span>
                         </a>
@@ -263,11 +263,11 @@
                 <div id="preview-photo" style="background-image: url(<%= image_path('frames/fitzgerald/tortoise-angle.jpg') %>)"></div>
                 <dl>
                     <dt>Frame</dt>
-                    <dd>Fitzgerald</dd>
+                    <dd id="preview-frame">Fitzgerald</dd>
                     <dt>Colour</dt>
-                    <dd>Tortoise</dd>
+                    <dd id="preview-colour">Tortoise</dd>
                     <dt>Size</dt>
-                    <dd>Medium</dd>
+                    <dd id="preview-size">Medium</dd>
                 </dl>
             </div>
         </div>

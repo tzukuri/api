@@ -165,6 +165,10 @@ $(function() {
         // the checkout image is always angle
         var path = frames[frame][colour]['angle'];
         panel.find('#preview-photo').css('background-image', 'url(' + path + ')');
+
+        // update the checkout form details text
+        $('#preview-frame').text(frame);
+        $('#preview-colour').text(colour);
     }
 
     $('#panel menu div[data-colour]').click(function(event) {
@@ -189,7 +193,7 @@ $(function() {
         showFrame($(this).attr('data-frame'));
     });
 
-    $('#store-cover').click(function(event) {
+    function closePanel() {
         $('#panel').removeClass('visible');
         $('#store-cover').removeClass('visible');
         $('#frames').removeClass('blur');
@@ -197,12 +201,43 @@ $(function() {
         setTimeout(function() {
             $('#store-cover').hide();
             $('#panel').hide();
+            $('#panel > div').hide();
+            $('#frame').show();
         }, 1050);
+    }
+
+    $('#store-cover').click(function(event) {
+        closePanel();
     });
 
 
 
-    /* checkout */
+    /* ----------------------------- */
+    /* checkout                      */
+    /* ----------------------------- */
+    /* flow */
+    $('#start-purchase').click(function(event) {
+        event.preventDefault();
+        $('#frame').fadeOut();
+        $('#sizes').fadeIn();
+    });
+
+    $('#three-up a').click(function(event) {
+        event.preventDefault();
+        var size = $(this).attr('data-size');
+        $(this).closest('#panel').attr('data-size', size);
+        $('#preview-size').text(size);
+        $('#sizes').fadeOut();
+        $('#form').fadeIn();
+    });
+
+    $('#submit button').click(function(event) {
+        event.preventDefault();
+        $('#form').fadeOut();
+        $('#complete').fadeIn();
+    });
+
+    /* sizing measurement */
     $('#enter-measurement a').click(function(event) {
         $('#enter-measurement a').removeClass('selected');
         $(this).addClass('selected');
@@ -224,4 +259,6 @@ $(function() {
             $('#three-up a.large').addClass('selected');
         }
     });
+
+    /* stripe charges */
 });
