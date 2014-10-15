@@ -6,7 +6,7 @@ html.store {
     }
 
     #frames {
-        padding-left: 410px;
+        //padding-left: 410px;
         margin-right: 20px;
         position: relative;
 
@@ -16,6 +16,7 @@ html.store {
             top: 60px;
             left: 80px;
             text-align: left;
+            display: none;
 
             h1 {
                 text-transform: uppercase;
@@ -192,11 +193,13 @@ html.store {
     /* -------------------------------------------- */
     #panel {
         position: fixed;
-        top: 50%;
-        left: 60px;
-        right: 60px;
-        height: 650px;
-        margin-top: -295px;
+        //top: 50%;
+        left: 0px;
+        right: 0px;
+        //height: 650px;
+        top: 60px;
+        bottom: 0px;
+        //margin-top: -295px;
         background-color: white;
         box-shadow: 0px 0px 10px rgba(0,0,0,0.03);
         opacity: 0.0;
