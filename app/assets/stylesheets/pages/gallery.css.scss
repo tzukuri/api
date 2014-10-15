@@ -5,7 +5,17 @@ html.gallery {
         }
     }
 
-    #gallery {
-        height: 1300px;
+    article {
+        padding-top: 0px;
+        padding-bottom: 20px;
+        width: 100%;
+
+        img {
+          width: 100%;
+        }
+
+        &:last-child {
+            padding-top: 100px;
+        }
     }
 }
