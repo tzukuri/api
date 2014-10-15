@@ -184,6 +184,10 @@ html.store {
         }
     }
 
+
+
+
+
     #panel {
         position: fixed;
         top: 50%;
@@ -263,6 +267,8 @@ html.store {
             }
         }
 
+
+        /* frames */
         #frame menu {
             text-align: center;
 
@@ -344,30 +350,62 @@ html.store {
             }
         }
 
+        /* checkout shows a progress bar */
+        #progress {
+
+        }
+
+        /* checkout panels are reversed */
+        #sizes, #form, #complete {
+            > aside {
+                position: absolute;
+                top: 40px;
+                left: 50px;
+                width: 300px;
+                bottom: 40px;
+                overflow: auto;
+            }
+        }
+
+        /* sizes */
         #sizes {
             #enter-measurement {
                 margin-top: 30px;
                 margin-bottom: 45px;
+
+                p {
+                    color: #666;
+                    font-weight: 600;
+                    font-size: 15px;
+                }
 
                 > div {
                     input {
                         display: inline-block;
                         position: relative;
                         left: -4px;
-                        margin-top: 6px;
+                        margin-top: 8px;
+                        width: 205px;
+                        margin-right: 10px;
                     }
 
                     > div {
                         display: inline-block;
+                        position: relative;
+                        top: 4px;
                         
                         a {
                             font-size: 11px;
-                            line-height: 15px;
+                            line-height: 14px;
                             display: block;
                             color: #aaa;
 
                             &.selected {
                                 color: #333;
+
+                                &:hover {
+                                    text-decoration: none;
+                                }
                             }
                         }
                     }
@@ -376,10 +414,10 @@ html.store {
 
             #three-up {
                 position: absolute;
-                top: 60px;
-                left: 60px;
-                bottom: 60px;
-                right: 400px;
+                top: 40px;
+                right: 40px;
+                bottom: 40px;
+                left: 400px;
 
                 > div {
                     display: table;
@@ -390,18 +428,25 @@ html.store {
                         vertical-align: middle;
                         display: table-cell;
                         text-align: center;
+                        padding-left: 100px;
                     }
                 }
 
                 a {
                     display: inline-block;
                     width: 105px;
-                    opacity: 0.4;
-                    @include single-transition(opacity, 0.2s);
 
-                    &:hover {
+                    img {
+                        opacity: 0.4;
+                        @include single-transition(opacity, 0.2s);
+                    }
+
+                    &:hover, &.selected {
                         text-decoration: none;
-                        opacity: 1.0;
+
+                        img {
+                            opacity: 1.0;
+                        }
                     }
 
                     span {
@@ -412,6 +457,10 @@ html.store {
                         color: #333;
                         margin-top: 20px;
                         padding-left: 15px;
+
+                        button {
+                            text-transform: uppercase;
+                        }
                     }
 
                     &.small {
@@ -431,6 +480,8 @@ html.store {
                     }
 
                     &.large {
+                        margin-right: 1px;
+
                         img {
                             width: 105px;
                         }

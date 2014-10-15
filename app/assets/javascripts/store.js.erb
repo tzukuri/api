@@ -195,4 +195,29 @@ $(function() {
             $('#panel').hide();
         }, 1050);
     });
+
+
+
+    /* checkout */
+    $('#enter-measurement a').click(function(event) {
+        $('#enter-measurement a').removeClass('selected');
+        $(this).addClass('selected');
+        event.preventDefault();
+    });
+
+    $('#measurement-width').keyup(function(event) {
+        $('#three-up a').removeClass('selected');
+        var size = $(this).val();
+
+        if ($('#inches').hasClass('selected'))
+            size = size * 25.4;
+
+        if (size <= 122) {
+            $('#three-up a.small').addClass('selected');
+        } else if (size <= 129) {
+            $('#three-up a.medium').addClass('selected');
+        } else {
+            $('#three-up a.large').addClass('selected');
+        }
+    });
 });
