@@ -176,7 +176,7 @@ html.store {
         bottom: 0px;
         left: 0px;
         background-color: rgba(0,0,0,0.03);
-        opacity: 1.0;
+        opacity: 0.0;
         @include single-transition(opacity, 0.6s);
 
         &.visible {
@@ -199,7 +199,7 @@ html.store {
         margin-top: -295px;
         background-color: white;
         box-shadow: 0px 0px 10px rgba(0,0,0,0.03);
-        opacity: 1.0;
+        opacity: 0.0;
         @include single-transition(opacity, 0.6s);
 
         &.visible {
