@@ -10,4 +10,12 @@ class EmailsController < ApplicationController
         email = Email.create(email: params[:email][:email], ip: request.ip)
         render json: {success: true}
     end
+
+    def csv
+        lines = ["email,ip,created_at"]
+        Email.all.each do |email|
+            lines << "#{email.email},#{email.ip},#{email.created_at}"
+        end
+        render text: lines.join("\n")
+    end
 end

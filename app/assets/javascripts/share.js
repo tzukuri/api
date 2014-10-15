@@ -4,8 +4,13 @@ $(function() {
     var DEFAULT_TEXT = 'Meet%20the%20world%27s%20first%20unloseable%20sunglasses';
     var DEFAULT_IMAGE = encodeURIComponent('http://tzukuri.com/share_image.jpg');
 
+    window.setShareURL = function(newURL) {
+        url = newURL;
+    }
+
     $('a.share').click(function(event) {
         var panel = $(this).closest('article');
+        event.preventDefault();
 
         if (panel[0].id == 'whichpair') {
             var panel = $(this).closest('section');
@@ -18,19 +23,20 @@ $(function() {
 
         panel.addClass('blur');
 
-        url = window.location.href.split('#')[0] + '#' + panel[0].id;
+        if (panel.attr('data-url'))
+            url = panel.attr('data-url');
+        else
+            url = window.location.href.split('#')[0] + '#' + panel[0].id;
 
         if (pairs)
             $('#share-panel').css('top', panel.position().top + 1600);
         else
             $('#share-panel').css('top', panel.position().top + 60);
-
+        
         $('#share-panel').css('height', panel.height());
         $('#share-panel').css('width', panel.width());
         $('#share-panel').css('margin-left', '-' + (panel.width() / 2) + 'px');
         $('#share-panel').fadeIn();
-
-        event.preventDefault();
     });
 
     function closeSharePanel() {
@@ -60,7 +66,7 @@ $(function() {
 
     $('#share-fb').click(function(event) {
         showWindow(
-            'https://www.facebook.com/sharer.php?app_id=311590038897709&sdk=joey&display=popup&u=http%3A%2F%2Ftzukuri.com%2F', //+ encodeURIComponent(url),
+            'https://www.facebook.com/sharer.php?app_id=311590038897709&sdk=joey&display=popup&u=' + encodeURIComponent(url),
             'Facebook'
         );
         event.preventDefault();

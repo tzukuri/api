@@ -209,7 +209,7 @@
             </div>
         </div>
 
-        <div id="form" style="display: block">
+        <div id="form" style="display: none">
             <aside>
                 <h1>Payment</h1>
                 <div id="form-scroll">
@@ -272,7 +272,45 @@
             </div>
         </div>
 
-        <div id="complete" style="display: none">
+        <div id="complete" style="display: block">
+            <aside>
+                <h1>Preorder Complete</h1>
+                <p class="desc">Thank you for preordering, we hope you are as excited as we are that you'll be one of the first in the world to own a pair of unloseable sunglasses in March.</p>
+                <p class="desc">Order Reference: 1234</p>
+            </aside>
+            <article id="share-links" data-url="http://tzukuri.com/" data-not-panel="true">
+                <div>
+                    <div>
+                        <div id="share-panel-content">
+                            <h1>tell a friend</h1>
+                            <p>With 1 in 2 people losing a pair of sunglasses in the first year of buying them, you probably know someone who's lost a pair. Please share Tzukuri with them.</p>
+                            <div>
+                                <div>
+                                    <span><a href="#" class="fa fa-facebook" id="share-fb"></a></span>
+                                    <span><a href="#" class="fa fa-twitter" id="share-twitter"></a></span>
+                                    <span><a href="#" class="fa fa-pinterest" id="share-pinterest"></a></span>
+                                </div>
+                                <div>
+                                    <span><a href="#" class="fa fa-tumblr" id="share-tumblr"></a></span>
+                                    <span><a href="#" class="fa fa-envelope-square" id="share-email"></a></span>
+                                    <span><a href="#" class="fa fa-link" id="share-link"></a></span>
+                                </div>
+                                <div>
+                                    <span>&nbsp;</span>
+                                    <span><input type="text" id="share-copy" style="display: none"></span>
+                                    <span>&nbsp;</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
         </div>
     </div>
 </main>
+
+<script>
+    $(function() {
+        window.setShareURL('http://tzukuri.com/');
+    });
+</script>
