@@ -5,7 +5,102 @@ html.gallery {
         }
     }
 
-    #gallery {
-        height: 1300px;
+    #campaign1 {
+        #frame {
+            height: 90vw;
+            max-height: 850px;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-image: image-url('one.jpg');
+            background-position: center center;
+        }
+    }
+
+    #campaign2 {
+        #frame {
+            height: 90vw;
+            max-height: 850px;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-image: image-url('two.jpg');
+            background-position: center center;
+        }
+    }
+
+    #campaign3 {
+        #frame {
+            height: 90vw;
+            max-height: 850px;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-image: image-url('three.jpeg');
+            background-position: center center;
+        }
+    }
+
+    #campaign4 {
+        #frame {
+            height: 90vw;
+            max-height: 850px;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-image: image-url('four.jpeg');
+            background-position: center center;
+        }
+    }
+
+    #campaign5 {
+        #frame {
+            height: 90vw;
+            max-height: 850px;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-image: image-url('five.jpeg');
+            background-position: center center;
+        }
+    }
+
+    #campaign6 {
+        #frame {
+            height: 90vw;
+            max-height: 850px;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-image: image-url('seven.jpeg');
+            background-position: center center;
+        }
+    }
+
+    #campaign7 {
+        #frame {
+            height: 90vw;
+            max-height: 850px;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-image: image-url('seven.jpg');
+            background-position: center center;
+        }
+    }
+
+    #campaign8 {
+        #frame {
+            height: 90vw;
+            max-height: 850px;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-image: image-url('eight.jpeg');
+            background-position: center center;
+        }
+    }
+
+    #campaign9 {
+        #frame {
+            height: 90vw;
+            max-height: 1400px;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-image: image-url('nine.jpg');
+            background-position: center center;
+        }
     }
 }
