@@ -131,16 +131,15 @@ $(function() {
         var panel = $('#panel');
         panel.attr('data-frame', name);
         panel.attr('data-image', 'angle');
-        //panel.attr('data-colour', 'tortoise');
-        //panel.find('div[data-colour]').removeClass('selected');
-        //panel.find('div[data-colour=tortoise]').addClass('selected');
         panel.find('div[data-image]').removeClass('selected');
         panel.find('div[data-image=angle]').addClass('selected');
 
         var frame = frames[name];
-        panel.find('aside > h1').text(name);
-        panel.find('aside > h2').text(frame.sub);
+        panel.find('#frameaside > h1').text(name);
+        panel.find('#frame aside > h2').text(frame.sub);
         panel.find('#frame aside .desc').text(frame.desc);
+
+        // set the main frame image and the checkout image
         showImage();
 
         panel.show();
@@ -159,8 +158,13 @@ $(function() {
         var image = panel.attr('data-image');
         var frame = panel.attr('data-frame');
 
+        // set the main frame image
         var path = frames[frame][colour][image];
         panel.find('.photo').css('background-image', 'url(' + path + ')');
+
+        // the checkout image is always angle
+        var path = frame[frame][colour]['angle'];
+        panel.find('#preview-photo').css('background-image', 'url(' + path + ')');
     }
 
     $('#panel menu div[data-colour]').click(function(event) {

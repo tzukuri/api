@@ -187,14 +187,16 @@ html.store {
 
 
 
-
+    /* -------------------------------------------- */
+    /* popup panel                                  */
+    /* -------------------------------------------- */
     #panel {
         position: fixed;
         top: 50%;
-        left: 100px;
-        right: 100px;
-        height: 600px;
-        margin-top: -270px;
+        left: 60px;
+        right: 60px;
+        height: 650px;
+        margin-top: -295px;
         background-color: white;
         box-shadow: 0px 0px 10px rgba(0,0,0,0.03);
         opacity: 1.0;
@@ -259,8 +261,8 @@ html.store {
                 @include border-radius(5px);
                 background-color: #eee;
                 color: #333;
-                font-size: 14px;
-                height: 24px;
+                font-size: 13px;
+                height: 32px;
                 padding: 4px 8px;
                 outline: none;
                 border: none;
@@ -313,7 +315,6 @@ html.store {
             background-size: cover;
             background-position: center center;
             bottom: 90px;
-            //bottom: 40px;
         }
 
         #frame > menu {
@@ -485,6 +486,99 @@ html.store {
                         img {
                             width: 105px;
                         }
+                    }
+                }
+            }
+        }
+
+        #form {
+            #form-scroll {
+                overflow: auto;
+                position: absolute;
+                top: 45px;
+                left: 0px;
+                right: 0px;
+                bottom: 0px;
+            }
+            form {
+                margin-top: 30px;
+
+                p {
+                    margin-bottom: 8px;
+                }
+
+                input[type=text], input[type=email] {
+                    @include box-sizing(border-box);
+                    width: 100%;
+                }
+
+                #cc {
+                    width: 200px;
+
+                    select {
+                        padding-left: 10px;
+                        @include border-radius(5px);
+                        background-color: #eee;
+                        color: #333;
+                        font-size: 13px;
+                        height: 32px;
+                        outline: none;
+                        border: none;
+                        -webkit-appearance: none;
+                    }
+                }
+
+                #contact {
+                    margin-top: 35px;
+                }
+
+                #submit {
+                    margin-top: 30px;
+                    text-align: left;
+                }
+            }
+
+            #form-preview {
+                position: absolute;
+                top: 40px;
+                right: 40px;
+                bottom: 40px;
+                left: 400px;
+
+                #preview-photo {
+                    position: absolute;
+                    top: 0px;
+                    left: 0px;
+                    right: 0px;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    background-position: center center;
+                    bottom: 130px;
+                }
+
+                dl {
+                    position: absolute;
+                    bottom: 50px;
+                    right: 0px;
+                    width: 200px;
+
+                    dt, dd {
+                        display: inline-block;
+                        margin-bottom: 3px;
+                        font-size: 12px;
+                    }
+
+                    dt {
+                        width: 60px;
+                        text-transform: uppercase;
+                        font-weight: 600;
+                        text-align: right;
+                        margin-right: 10px;
+                    }
+
+                    dd {
+                        text-transform: capitalize;
+                        width: 120px;
                     }
                 }
             }
