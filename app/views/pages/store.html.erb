@@ -294,8 +294,8 @@
                 <div>
                     <div>
                         <div id="share-panel-content">
-                            <h1>tell a friend</h1>
-                            <p>With 1 in 2 people losing a pair of sunglasses in the first year of buying them, you probably know someone who's lost a pair. Please share Tzukuri with them.</p>
+                            <h1>we need your help.</h1>
+                            <p>The faster preorders sellout, the faster production on your pair can begin. With 1 in 2 people losing a pair of sunglasses in the first year of buying them, you definitely know a friend who's lost a pair. Please share Tzukuri with them.</p>
                             <div>
                                 <div>
                                     <span><a href="#" class="fa fa-facebook" id="share-fb"></a></span>
@@ -333,7 +333,7 @@
     <% else %>
         Stripe.setPublishableKey('pk_live_VAzrbCZ5hRh2i3tXpoS9GL5I');
     <% end %>
-    
+
     function stripeResponseHandler(status, response) {
         if (response.error) {
             $('#payment-message').text(response.error.message);
@@ -370,7 +370,7 @@
             });
         }
     }
-    
+
     $('#payment-form').submit(function(event) {
         $('#submit button').prop('disabled', true);
         $('#payment-message').text("Checking your card details...");
