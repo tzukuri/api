@@ -598,3 +598,24 @@ html.index {
         }
     }
 }
+
+
+@media only screen and (max-width: 906px) {
+    html.index #video {
+        .panel .content #funding-stats {
+            li {
+                display: block;
+                text-align: center;
+                margin-right: 0px;
+
+                &#purchase-item {
+                    margin-top: 40px;
+
+                    p {
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+    }
+}

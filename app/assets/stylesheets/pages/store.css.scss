@@ -428,6 +428,10 @@ html.store {
                 }
             }
 
+            #measure-up {
+                width: 150px;
+            }
+
             #three-up {
                 position: absolute;
                 top: 40px;
@@ -718,6 +722,10 @@ html.store {
 
 @media only screen and (max-width: 916px) {
     html.store {
+        #panel #frame > menu > div {
+            width: auto;
+        }
+
         #panel {
             #frame {
                 overflow: auto;
@@ -752,6 +760,10 @@ html.store {
 
                 > menu {
                     position: static;
+
+                    > div {
+                        width: auto;
+                    }
                 }
             }
 
@@ -773,6 +785,10 @@ html.store {
                         text-align: center;
                         padding-left: 55px;
                     }
+                }
+
+                #measure-up {
+                    width: 250px;
                 }
 
                 #three-up {
