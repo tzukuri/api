@@ -40,7 +40,12 @@
     <article id="video">
         <div class="panel">
             <div class="content">
-                <iframe width="100%" height="540" src="//www.youtube.com/embed/Rw78E8hJ-UY?rel=0&controls=2&showinfo=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
+                <div id="youtube-thumb">
+                    <div><span class="fa fa-play"></span></div>
+                </div>
+                <div id="youtube-video" style="display: none">
+                    <div></div>
+                </div>
                 <ul id="funding-stats">
                     <li><%= 1200 - Purchase.count %> pairs<span>remaining to ship March 2015</span></li>
                     <li id="purchase-item">

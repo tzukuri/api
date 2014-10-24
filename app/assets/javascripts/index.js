@@ -2,6 +2,15 @@ $(function() {
     if (!$('html').hasClass('index'))
         return;
 
+    $('#youtube-thumb').click(function() {
+        $('#youtube-thumb').hide();
+        $('#youtube-video div').html(
+            '<iframe width="100%" height="100%"' +
+            'src="//www.youtube.com/embed/Rw78E8hJ-UY?rel=0&controls=2&showinfo=0&modestbranding=1&autoplay=1"' +
+            'frameborder="0" allowfullscreen></iframe>');
+        $('#youtube-video').show();
+    })
+
     var currentFrames = 'front';
     $('#frames menu div').click(function(event) {
         var option = $(this);
