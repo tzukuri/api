@@ -47,7 +47,7 @@
                     <div></div>
                 </div>
                 <ul id="funding-stats">
-                    <li><%= 1200 - Purchase.count %> pairs<span>remaining to ship March 2015</span></li>
+                    <li>limited<span>remaining to ship March 2015</span></li>
                     <li id="purchase-item">
                         <div>$249 <a href="https://www.tzukuri.com/store" class="button">Preorder</a></div>
                         <p>You will only be charged a $100 deposit. The remainder will be charged when your pair ships in Mar 2015.</p>
@@ -213,7 +213,9 @@
     <article id="remaining">
         <div class="panel">
             <dl>
-                <dd><%= 1200 - Purchase.count %></dd>
+                <dd>limited</dd>
+
+                <!-- <%= 1200 - Purchase.count %> -->
                 <dt>Remaining</dt>
             </dl>
             <!-- <a href="#" class="button">Preorder</a> -->
