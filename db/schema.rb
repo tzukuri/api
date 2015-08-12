@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150811221259) do
+ActiveRecord::Schema.define(version: 20150812133728) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,34 @@ ActiveRecord::Schema.define(version: 20150811221259) do
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
   add_index "admin_users", ["unlock_token"], name: "index_admin_users_on_unlock_token", unique: true, using: :btree
 
+  create_table "devices", force: :cascade do |t|
+    t.string   "mac_address"
+    t.string   "frame"
+    t.string   "size"
+    t.string   "colour"
+    t.datetime "frame_manufacture_ts"
+    t.datetime "board_manufacture_ts"
+    t.string   "board_revision"
+    t.string   "frame_revision"
+    t.string   "firmware_version"
+    t.datetime "charge_qc_pass_ts"
+    t.datetime "rf_qc_pass_ts"
+    t.datetime "shipped"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "devices", ["mac_address"], name: "index_devices_on_mac_address", unique: true, using: :btree
+
+  create_table "ownerships", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "device_id"
+    t.datetime "revoked"
+    t.string   "reason"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -69,6 +97,7 @@ ActiveRecord::Schema.define(version: 20150811221259) do
     t.datetime "locked_at"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

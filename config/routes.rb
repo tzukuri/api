@@ -57,6 +57,10 @@ Rails.application.routes.draw do
     #     # (app/controllers/admin/products_controller.rb)
     #     resources :products
     #   end
+    
+    namespace :v0 do
+        resources :ownerships
+    end
 
     #root to: '/login'
 end
