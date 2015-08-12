@@ -5,5 +5,7 @@ class User < ActiveRecord::Base
     has_many :ownerships
     has_many :devices, through: :ownerships
 
-    # current_ownerships
+    def current_ownerships
+        ownerships.where(revoked: nil)
+    end
 end
