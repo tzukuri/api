@@ -15,13 +15,14 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 gem 'activeadmin', '~> 1.0.0.pre1'
 gem 'devise'
 gem 'cancancan', '~> 1.10'
 gem 'draper', '~> 1.3'
 gem 'omniauth', '~> 1.2.2'
+gem 'simple_token_authentication', '~> 1.0'
 
 group :development, :test do
     # Call 'byebug' anywhere in the code to stop execution and get a debugger console

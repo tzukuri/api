@@ -2,7 +2,7 @@ class Device < ActiveRecord::Base
     has_many :ownerships
 
     def current_owner
-        ownerships.where(revoked: nil).first
+        ownerships.where(revoked: nil)
     end
 
     def name
