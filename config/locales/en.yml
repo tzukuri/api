@@ -1,23 +1,63 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+    not_owner: "This device is not linked to this account."
+    unknown_email: "No account with this email address exists."
+    invalid_password: "No account with this email and password exists."
+    unknown_app: "No app with this ID exists."
+    unknown_error: "An unknown error occurred. Please try again later."
+    invalid_token: "This email and auth token pair are invalid."
+    validation_error: "Some errors in the data you submitted prevented the form from being saved."
+    unknown_device: "No device with this id exists."
+    unknown_record: "No record with this id exists."
+    unknown_action: "Unknown action."
+    already_linked: "This device is already linked to another account."
+    invalid_pin: "The PIN provided for this device is incorrect."
+    unknown_api_device: "No API device with this ID exists."
+    invalid_diagnostics: ""
+    invalid_coords: ""
+    invalid_timestamp: ""
+    app_params:
+        settings:
+            sleeping_on_text: "ON"
+            sleeping_off_text: "OFF"
+            details_unknown: "Unknown"
+        map:
+            pin_title: "Tzukuri"
+            pin_subtitle: "Your glasses are here"
+        hud_titles:
+            logging_in: "Logging In"
+            connecting: "Connecting"
+        warning_screens:
+            bluetooth_warning_line_1: "Enable Bluetooth"
+            bluetooth_warning_line_2: "to use Tzukuri"
+            location_services_warning_header: "Location Services are disabled"
+            location_services_warning_description: "Tzukuri uses Location Services to show you the last location of your glasses. Enable Location Services for Tzukuri in Settings to use this feature."
+            location_services_warning_dismiss_button: "OK"
+            location_services_warning_help_button: "Help"
+            notifications_warning_header: "Notifications are disabled"
+            notifications_warning_description: "Tzukuri sends you notifications when you lose your glasses and when they need to be charged. Enable Notifications for Tzukuri in Settings to use this feature."
+            notifications_warning_dismiss_button: "OK"
+            notifications_warning_help_button: "Help"
+            motion_activity_warning_header: "Motion & Fitness is disabled"
+            motion_activity_warning_description: "Tzukuri uses Motion & Fitness to help you locate your glasses. Enable Motion & Fitness for Tzukuri in Settings to use this feature."
+            motion_activity_warning_dismiss_button: "OK"
+            motion_activity_warning_help_button: "Help"
+        alerts:
+            sleep_fail_title: "Unable to enter Aeroplane mode"
+            sleep_fail_message: "An error occurred while putting your glasses into Aeroplane mode. Please ensure they're connected and try again."
+            sleep_title: "Are you sure you want to turn on Aeroplane mode?"
+            sleep_message: "Your glasses will turn off and you will need your charger to turn them on again."
+            unlink_title: "Are you sure you want to unlink your glasses?"
+            unlink_message: "This will unlink your glasses from this phone and your Tzukuri account."
+            logout_title: "Are you sure you want to logout?"
+            logout_message: "You will need to log in again to continue using Tzukuri."
+            password_mismatch_title: "Your password and confirmation are different"
+            password_mismatch_message: "Please ensure your password and confirmation are entered correctly."
+            registration_failed_title: "Registration failed"
+            login_failed_title: "Login failed"
+            unreachable_message: "Could not connect to the Tzukuri server. Please check you have network connectivity."
+            unknown_error_message: "An unknown error occurred. Please try again, or contact us if you'd like help."
+            invalid_registration_message: "These errors prevented registration:"
+        notifications:
+            bluetooth_unavailable: "Bluetooth is disabled. Please enable Bluetooth to use Tzukuri."
+            left_behind: "You've left your glasses behind"
+            low_battery: "Your glasses are low on battery"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150814144041) do
+ActiveRecord::Schema.define(version: 20151104132913) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,38 +53,79 @@ ActiveRecord::Schema.define(version: 20150814144041) do
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
   add_index "admin_users", ["unlock_token"], name: "index_admin_users_on_unlock_token", unique: true, using: :btree
 
+  create_table "api_devices", force: :cascade do |t|
+    t.string   "token_id"
+    t.string   "launch_language"
+    t.string   "preferred_language"
+    t.string   "locale"
+    t.string   "name"
+    t.string   "os"
+    t.string   "device_type"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
   create_table "apps", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "token_id"
+    t.string   "private_key"
+    t.string   "callback_url"
   end
 
   create_table "auth_tokens", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "app_id"
     t.string   "token"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "email"
+    t.datetime "revoked"
+    t.string   "reason"
+    t.integer  "api_device_id"
+    t.string   "apns_token"
+    t.string   "app_version"
+    t.string   "diagnostics_sync_token"
   end
 
   create_table "devices", force: :cascade do |t|
     t.string   "mac_address"
-    t.string   "frame"
+    t.string   "design"
     t.string   "size"
     t.string   "colour"
     t.datetime "frame_manufacture_ts"
-    t.datetime "board_manufacture_ts"
-    t.string   "board_revision"
+    t.datetime "hardware_manufacture_ts"
+    t.string   "hardware_revision"
     t.string   "frame_revision"
-    t.string   "firmware_version"
+    t.string   "firmware_revision"
     t.datetime "charge_qc_pass_ts"
     t.datetime "rf_qc_pass_ts"
     t.datetime "shipped"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.string   "charger_revision"
+    t.string   "serial"
+    t.integer  "pin"
+    t.integer  "state",                       default: 0
+    t.integer  "state_set_by_auth_token_id"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.integer  "coords_set_by_auth_token_id"
+    t.integer  "coords_set_at"
+    t.integer  "state_set_at"
   end
 
-  add_index "devices", ["mac_address"], name: "index_devices_on_mac_address", unique: true, using: :btree
+  add_index "devices", ["serial"], name: "index_devices_on_serial", unique: true, using: :btree
+
+  create_table "log_entries", force: :cascade do |t|
+    t.integer  "auth_token_id"
+    t.datetime "created_at"
+    t.string   "type"
+    t.string   "data"
+  end
+
+  add_index "log_entries", ["auth_token_id", "created_at", "type"], name: "index_log_entries_on_auth_token_id_and_created_at_and_type", order: {"created_at"=>:desc}, using: :btree
 
   create_table "ownerships", force: :cascade do |t|
     t.integer  "user_id"
@@ -112,10 +153,9 @@ ActiveRecord::Schema.define(version: 20150814144041) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "name"
-    t.string   "authentication_token"
+    t.integer  "confirmed_tc_version"
   end
 
-  add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree

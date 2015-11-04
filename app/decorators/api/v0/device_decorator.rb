@@ -1,4 +1,4 @@
-class V0::OwnershipDecorator < Draper::Decorator
+class Api::V0::DeviceDecorator < Draper::Decorator
   delegate_all
 
   # Define presentation-specific methods here. Helpers are accessed through

@@ -3,63 +3,41 @@ Rails.application.routes.draw do
     devise_for :users
     ActiveAdmin.routes(self)
 
-    # The priority is based upon order of creation: first created -> highest priority.
-    # See how all your routes lay out with "rake routes".
+    namespace :api do
+        namespace :v0 do
+            namespace :app_params do
+                get '', action: 'show'
+            end
 
-    # You can have the root of your site routed with "root"
-    # root 'welcome#index'
+            namespace :diagnostics do
+                post ':diagnostic_sync_token/:device_id/:date/:file_name', action: 'create'
+            end
 
-    # Example of regular route:
-    #   get 'products/:id' => 'catalog#view'
+            namespace :api_devices do
+                put ':id', action: 'update'
+            end
+            
+            namespace :users do
+                post '', action: 'create'
+                get 'current', action: 'show'
+                put 'current', action: 'update'
+            end
 
-    # Example of named route that can be invoked with purchase_url(id: product.id)
-    #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+            namespace :auth_tokens do
+                post '', action: 'create'
+                delete '', action: 'delete'
+            end
 
-    # Example resource route (maps HTTP verbs to controller actions automatically):
-    #   resources :products
-
-    # Example resource route with options:
-    #   resources :products do
-    #     member do
-    #       get 'short'
-    #       post 'toggle'
-    #     end
-    #
-    #     collection do
-    #       get 'sold'
-    #     end
-    #   end
-
-    # Example resource route with sub-resources:
-    #   resources :products do
-    #     resources :comments, :sales
-    #     resource :seller
-    #   end
-
-    # Example resource route with more complex sub-resources:
-    #   resources :products do
-    #     resources :comments
-    #     resources :sales do
-    #       get 'recent', on: :collection
-    #     end
-    #   end
-
-    # Example resource route with concerns:
-    #   concern :toggleable do
-    #     post 'toggle'
-    #   end
-    #   resources :posts, concerns: :toggleable
-    #   resources :photos, concerns: :toggleable
-
-    # Example resource route within a namespace:
-    #   namespace :admin do
-    #     # Directs /admin/products/* to Admin::ProductsController
-    #     # (app/controllers/admin/products_controller.rb)
-    #     resources :products
-    #   end
-    
-    namespace :v0 do
-        resources :ownerships
+            namespace :devices do
+                get '', action: 'index'
+                get ':id', action: 'show'
+                post ':id/link', action: 'link'
+                post ':id/unlink', action: 'unlink'
+                post ':id/location', action: 'location'
+                post ':id/connected', action: 'connected'
+                post ':id/disconnected', action: 'disconnected'
+            end
+        end
     end
 
     #root to: '/login'
