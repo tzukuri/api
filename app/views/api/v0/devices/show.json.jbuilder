@@ -8,8 +8,15 @@ json.device do
     
     # device parameters
     json.params do
-        json.low_battery_threshold      412
-        json.disconnect_grace_period    7
+        json.notifications do
+            json.low_battery_threshold          412
+            json.disconnect_grace_period        7
+            json.disconnect_throttling_period   120
+        end
+
+        json.connection do
+            json.temporary_disconnect_period    30
+        end
 
         # distance calculation parameters
         json.distance do
