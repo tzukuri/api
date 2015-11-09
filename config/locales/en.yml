@@ -26,6 +26,7 @@ en:
         hud_titles:
             logging_in: "Logging In"
             connecting: "Connecting"
+            registering: "Registering"
         warning_screens:
             bluetooth_warning_line_1: "Enable Bluetooth"
             bluetooth_warning_line_2: "to use Tzukuri"

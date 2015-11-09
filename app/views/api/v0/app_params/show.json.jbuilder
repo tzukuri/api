@@ -18,6 +18,7 @@ json.params do
     json.hud_titles do
         json.logging_in                                 t('app_params.hud_titles.logging_in')
         json.connecting                                 t('app_params.hud_titles.connecting')
+        json.registering                                t('app_params.hud_titles.registering')
     end
 
     json.alerts do

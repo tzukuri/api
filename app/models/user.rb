@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
     has_many :devices, through: :active_ownerships
     has_many :log_entries, through: :auth_tokens
 
-    validates :name, presence: true
+    validates :name, presence: true, length: { minimum: 2 }
     validates :email, uniqueness: true
 
     after_update do |record|
