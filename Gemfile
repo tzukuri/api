@@ -20,6 +20,8 @@ gem 'draper', '~> 1.3'
 gem 'omniauth', '~> 1.2.2'
 gem 'ruby_rncryptor', '~> 3.0.0'
 
+gem 'appsignal', '~> 0.12.rc'
+
 group :development, :test do
     # Call 'byebug' anywhere in the code to stop execution and get a debugger console
     gem 'byebug'

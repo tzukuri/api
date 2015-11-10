@@ -9,7 +9,7 @@ en:
     unknown_device: "No device with this id exists."
     unknown_record: "No record with this id exists."
     unknown_action: "Unknown action."
-    already_linked: "This device is already linked to another account."
+    already_linked: "These glasses are already linked to another account."
     invalid_pin: "The PIN provided for this device is incorrect."
     unknown_api_device: "No API device with this ID exists."
     invalid_diagnostics: ""

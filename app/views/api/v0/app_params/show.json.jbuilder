@@ -92,6 +92,7 @@ json.params do
     json.connection do
         json.scan_seconds                               10
         json.reconnect_attempts                         3
+        json.coupling_write_pin_timeout                 2
         json.coupling_read_serial_timeout               5
     end
 end

@@ -14,7 +14,7 @@ class Api::V0::UsersController < Api::ApiController
 
         # attempt to create a new user record, any validation
         # errors will exit the response early
-        User.create!(params.permit(:name, :email, :password))
+        @user = User.create!(params.permit(:name, :email, :password))
 
         # after successfully creating a new user, create a new
         # record for their device if needed

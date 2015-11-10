@@ -38,7 +38,7 @@ class AuthToken < ActiveRecord::Base
             app_id: app.id,
             email: user.email,
             token: Devise.friendly_token,
-            diagnostic_sync_token: Devise.friendly_token
+            diagnostics_sync_token: Devise.friendly_token
         )
     end
 end

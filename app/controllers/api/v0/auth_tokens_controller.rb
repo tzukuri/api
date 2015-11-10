@@ -27,7 +27,7 @@ class Api::V0::AuthTokensController < Api::ApiController
         # authenticated with this app and device
         unless @api_device.nil?
             @token = AuthToken.active_token_for(user: @user, app: @app, api_device: @api_device)
-            render(action: 'create') unless @token.nil?
+            return render(action: 'create') unless @token.nil?
         else
             @api_device = ApiDevice.create!(token_id: api_device_token_id)
         end
