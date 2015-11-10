@@ -1,15 +1,17 @@
 module Api::ResponseRendering
     extend ActiveSupport::Concern
 
-    # TODO: print exception and validation errors out in development
-
     included do
         # rescue all other exceptions. handlers are checked
         # bottom to top so this handler will be checked last
-        #rescue_from StandardError do
-        #    payload = response_for_error(:unknown_error)
-        #    render json: payload, status: 500
-        #end
+        rescue_from StandardError do |exception|
+            # print exception and add to appsignal
+            puts exception.inspect
+            puts exception.backtrace.join("\n")
+            Appsignal.add_exception(exception)
+            payload = response_for_error(:unknown_error)
+            render json: payload, status: 500
+        end
 
         # response from call to render_error or render_success
         rescue_from ::Tzukuri::Response do |exception|
@@ -17,7 +19,8 @@ module Api::ResponseRendering
         end
 
         # callbacks returned false and prevented save
-        rescue_from ActiveRecord::RecordNotSaved do
+        rescue_from ActiveRecord::RecordNotSaved do |exception|
+            Appsignal.add_exception(exception)
             payload = response_for_error(:unknown_error)
             render json: payload, status: 400
         end
@@ -35,8 +38,8 @@ module Api::ResponseRendering
 
         # lookup failed. these should be handled by the action,
         # so this is considered an implementation error
-        rescue_from ActiveRecord::RecordNotFound do
-            # TODO: log this occurred
+        rescue_from ActiveRecord::RecordNotFound do |exception|
+            Appsignal.add_exception(exception)
             payload = response_for_error(:unknown_record)
             render json: payload, status: 404
         end
@@ -62,6 +65,7 @@ module Api::ResponseRendering
 
     private
         def response_for_error(error, other_data = {})
+            Appsignal.increment_counter(error.to_s, 1)
             {
                 success: false,
                 error: error.to_s,

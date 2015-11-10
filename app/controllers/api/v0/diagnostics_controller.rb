@@ -10,6 +10,7 @@ class Api::V0::DiagnosticsController < Api::ApiController
         # is used when uploads are performed and no user is logged into
         # the app. a device id is used to match the data to a user.
         token = params[:diagnostic_sync_token]
+        Rails.logger.info("Request diagnostics token: '#{token}'")
         render_error(:invalid_token) if token.nil?
 
         date = params[:date]

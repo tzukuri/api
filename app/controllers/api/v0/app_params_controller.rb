@@ -1,3 +1,5 @@
 class Api::V0::AppParamsController < Api::ApiController
-    before_action :log_in_with_auth_token
+    def show
+        Rails.logger.info("Request device ID: '#{params['api_device_token_id']}'")
+    end
 end

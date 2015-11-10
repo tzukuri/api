@@ -18,6 +18,7 @@ class Api::ApiController < ApplicationController
 
         # lookup app
         app_token = request.headers['X-tzu-app-token']
+        Rails.logger.info("Request app token: '#{app_token}'")
         render_error(:unknown_app, status: 404) if app_token.nil?
         @app = App.find_by_token_id(app_token)
         render_error(:unknown_app, status: 404) if @app.nil?
@@ -38,6 +39,7 @@ class Api::ApiController < ApplicationController
                 encrypted_token,
                 decryption_password
             )
+            Rails.logger.info("Request auth token: '#{decrypted_token}'")
         rescue RuntimeError
             render_error(:invalid_token)
         end
@@ -48,5 +50,9 @@ class Api::ApiController < ApplicationController
 
         # "log the user in" by retrieving the user record
         @user = @token.user
+        Appsignal.tag_request(
+            user: @user.id,
+            auth_token: @token.id
+        )
     end
 end
