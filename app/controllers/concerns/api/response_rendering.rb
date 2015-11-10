@@ -6,8 +6,8 @@ module Api::ResponseRendering
         # bottom to top so this handler will be checked last
         rescue_from StandardError do |exception|
             # print exception and add to appsignal
-            Rails.logger.warning exception.inspect
-            Rails.logger.warning exception.backtrace.join("\n")
+            Rails.logger.warn exception.inspect
+            Rails.logger.warn exception.backtrace.join("\n")
             Appsignal.add_exception(exception)
             payload = response_for_error(:unknown_error)
             render json: payload, status: 500
