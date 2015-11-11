@@ -32,7 +32,7 @@ class Api::V0::DevicesController < Api::ApiController
 
     def location
         # ignore update if we have a newer location
-        render_success if @device.coords_set_at.nil? || (@ts < @device.coords_set_at)
+        render_success if @device.coords_set_at.present? && (@ts < @device.coords_set_at)
 
         # ensure location data exists
         latitude = params[:lat]
@@ -40,16 +40,18 @@ class Api::V0::DevicesController < Api::ApiController
         render_error(:invalid_coords) if latitude.nil? || longitude.nil?
 
         @device.update!(
-            latitude: lat.to_f,
-            longitude: lon.to_f,
+            latitude: latitude.to_f,
+            longitude: longitude.to_f,
             coords_set_at: @ts,
             coords_set_by_auth_token_id: @token.id
         )
+
+        render_success
     end
 
     def connected
         # ignore update if we have a newer state
-        render_success if @device.state_set_at.nil? || (@ts < @device.state_set_at)
+        render_success if @device.state_set_at.present? && (@ts < @device.state_set_at)
         @device.update!(
             state: Device.states[:connected],
             state_set_at: @ts,
@@ -61,7 +63,7 @@ class Api::V0::DevicesController < Api::ApiController
 
     def disconnected
         # ignore update if we have a newer state
-        render_success if @device.state_set_at.nil? || (@ts < @device.state_set_at)
+        render_success if @device.state_set_at.present? && (@ts < @device.state_set_at)
         @device.update!(
             state: Device.states[:disconnected],
             state_set_at: @ts,
