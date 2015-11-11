@@ -66,27 +66,22 @@ json.params do
         json.location_services_warning_description      t('app_params.warning_screens.location_services_warning_description')
         json.location_services_warning_dismiss_button   t('app_params.warning_screens.location_services_warning_dismiss_button')
         json.location_services_warning_help_button      t('app_params.warning_screens.location_services_warning_help_button')
-        json.max_location_services_warning_frequency    24.hours.to_i
         json.location_services_warning_enabled          true
 
         json.notifications_warning_header               t('app_params.warning_screens.notifications_warning_header')
         json.notifications_warning_description          t('app_params.warning_screens.notifications_warning_description')
         json.notifications_warning_dismiss_button       t('app_params.warning_screens.notifications_warning_dismiss_button')
         json.notifications_warning_help_button          t('app_params.warning_screens.notifications_warning_help_button')
-        json.max_motion_activity_warning_frequency      24.hours.to_i
         json.notifications_warning_enabled              true
 
         json.motion_activity_warning_header             t('app_params.warning_screens.motion_activity_warning_header')
         json.motion_activity_warning_description        t('app_params.warning_screens.motion_activity_warning_description')
         json.motion_activity_warning_dismiss_button     t('app_params.warning_screens.motion_activity_warning_dismiss_button')
         json.motion_activity_warning_help_button        t('app_params.warning_screens.motion_activity_warning_help_button')
-        json.max_notifications_warning_frequency        24.hours.to_i
         json.motion_activity_warning_enabled            true
     end
 
     json.syncing do
-        json.location_sync_interval                     15.minutes.to_i
-        json.diagnostics_sync_interval                  24.hours.to_i
     end
 
     json.connection do
@@ -94,5 +89,16 @@ json.params do
         json.reconnect_attempts                         3
         json.coupling_write_pin_timeout                 2
         json.coupling_read_serial_timeout               5
+    end
+
+    json.intervals do
+        json.location_services_warning                  24.hours.to_i
+        json.notifications_warning                      24.hours.to_i
+        json.sensors_warning                            24.hours.to_i
+        json.app_params_sync                            24.hours.to_i
+        json.glasses_params_sync                        24.hours.to_i
+        json.device_sync                                24.hours.to_i
+        json.location_sync                              15.minutes.to_i
+        json.diagnostics_sync                           12.hours.to_i
     end
 end
