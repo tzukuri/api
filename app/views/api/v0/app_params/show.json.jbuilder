@@ -7,7 +7,7 @@ json.params do
         json.sleeping_off_text                          t('app_params.settings.sleeping_off_text')
         json.details_unknown                            t('app_params.settings.details_unknown')
     end
-    
+
     json.map do
         json.pin_title                                  t('app_params.map.pin_title')
         json.pin_subtitle                               t('app_params.map.pin_subtitle')
@@ -52,6 +52,37 @@ json.params do
     end
 
     json.setup do
+        # json.activate_title   t('app_params.setup.activate_title'),
+        # json.activate_line_1  t('app_params.setup.activate_line_1'),
+        # json.activate_line_2  t('app_params.setup.activate_line_2'),
+        #
+        # json.enter_pin_title  t('app_params.setup.enter_pin_title'),
+        # json.enter_pin_subtitle t('app_params.setup.enter_pin_subtitle'),
+        #
+        # json.signup_title   t('app_params.setup.signup_title'),
+        # json.signup_subtitle  t('app_params.setup.signup_subtitle'),
+        # json.signup_button_title  t('app_params.setup.signup_button_title'),
+        # json.already_have_account_button_title t('app_params.setup.already_have_account_button_title'),
+        #
+        # json.login_title  t('app_params.setup.login_title'),
+        # json.login_subtitle t('app_params.setup.login_subtitle'),
+        # json.login_button_title t('app_params.setup.login_button_title'),
+        # json.dont_have_account_button_title t('app_params.setup.dont_have_account_button_title'),
+        #
+        # json.linking_header t('app_params.setup.linking_header'),
+        #
+        # json.permissions_header t('app_params.setup.permissions_header'),
+        # json.location_services_header t('app_params.setup.location_services_header'),
+        # json.location_services_description t('app_params.setup.location_services_description'),
+        # json.motion_and_fitness_header t('app_params.setup.motion_and_fitness_header'),
+        # json.motion_and_fitness_description t('app_params.setup.motion_and_fitness_description'),
+        # json.notifications_header t('app_params.setup.notifications_header'),
+        # json.notifications_description  t('app_params.setup.notifications_description'),
+        # json.permissions_finish_title t('app_params.setup.permissions_finish_title')
+        #
+        # json.finished_title t('app_params.setup.finished_title'),
+        # json.enjoy_your_tzukuris_title  t('app_params.setup.enjoy_your_tzukuris_title')
+        #
         json.forgot_password_link                       "http://account.tzukuri.com/users/password/new"
     end
 
@@ -61,7 +92,7 @@ json.params do
         json.bluetooth_warning_line_1                   t('app_params.warning_screens.bluetooth_warning_line_1')
         json.bluetooth_warning_line_2                   t('app_params.warning_screens.bluetooth_warning_line_2')
         json.bluetooth_warning_enabled                  true
-        
+
         json.location_services_warning_header           t('app_params.warning_screens.location_services_warning_header')
         json.location_services_warning_description      t('app_params.warning_screens.location_services_warning_description')
         json.location_services_warning_dismiss_button   t('app_params.warning_screens.location_services_warning_dismiss_button')
