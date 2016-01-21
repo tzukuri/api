@@ -24,30 +24,30 @@ en:
             pin_title: "Tzukuri"
             pin_subtitle: "Your glasses are here"
         setup:
-            activate_title: "ACTIVATE",
-            activate_line_1: "Connect your glasses to their charger",
-            activate_line_2: "A green light should appear on the charger if done correctly.",
-            enter_pin_title: "ENTER PIN",
-            enter_pin_subtitle: "Enter the 6 digit code engraved on your Tzukuris.",
-            signup_title: "SIGN UP",
-            signup_subtitle: "Sign up to register your Tzukuris and activate your warranty.",
-            signup_button_title: "SIGN UP",
-            already_have_account_button_title: "Have an account? Log in.",
-            login_title: "LOG IN",
-            login_subtitle: "Log in to register your Tzukuris and activate your warranty.",
-            login_button_title: "LOG IN",
-            dont_have_account_button_title: "Don't have an account? Sign up.",
-            linking_header: "Linking your Tzukuris to your account.",
-            permissions_header: "PERMISSIONS",
-            location_services_header: "Location Services",
-            location_services_description: "Tzukuri uses your location to show you where you leave your glasses. Your location can also be used to turn off notifications at certain locations, such as home or work.",
-            motion_and_fitness_header: "Motion & Fitness",
-            motion_and_fitness_description: "Tzukuri uses Activity & Fitness to help calculate the distance to your glasses as you walk around, and to determine when to show you notifications.",
-            notifications_header: "Notifications",
-            notifications_description: "Tzukuri sends you notifications when you leave your glasses behind and when they need charging.",
-            permissions_finish_title: "FINISH",
-            finished_title: "FINISHED",
-            enjoy_your_tzukuris_title: "Enjoy your Tzukuris!",
+            activate_title: "ACTIVATE"
+            activate_line_1: "Connect your glasses to their charger"
+            activate_line_2: "A green light should appear on the charger if done correctly."
+            enter_pin_title: "ENTER PIN"
+            enter_pin_subtitle: "Enter the 6 digit code engraved on your Tzukuris."
+            signup_title: "SIGN UP"
+            signup_subtitle: "Sign up to register your Tzukuris and activate your warranty."
+            signup_button_title: "SIGN UP"
+            already_have_account_button_title: "Have an account? Log in."
+            login_title: "LOG IN"
+            login_subtitle: "Log in to register your Tzukuris and activate your warranty."
+            login_button_title: "LOG IN"
+            dont_have_account_button_title: "Don't have an account? Sign up."
+            linking_header: "Linking your Tzukuris to your account."
+            permissions_header: "PERMISSIONS"
+            location_services_header: "Location Services"
+            location_services_description: "Tzukuri uses your location to show you where you leave your glasses. Your location can also be used to turn off notifications at certain locations, such as home or work."
+            motion_and_fitness_header: "Motion & Fitness"
+            motion_and_fitness_description: "Tzukuri uses Activity & Fitness to help calculate the distance to your glasses as you walk around, and to determine when to show you notifications."
+            notifications_header: "Notifications"
+            notifications_description: "Tzukuri sends you notifications when you leave your glasses behind and when they need charging."
+            permissions_finish_title: "FINISH"
+            finished_title: "FINISHED"
+            enjoy_your_tzukuris_title: "Enjoy your Tzukuris!"
         hud_titles:
             logging_in: "Logging In"
             connecting: "Connecting"
