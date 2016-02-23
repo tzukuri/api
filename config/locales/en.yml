@@ -17,9 +17,35 @@ en:
     invalid_timestamp: ""
     app_params:
         settings:
-            sleeping_on_text: "ON"
-            sleeping_off_text: "OFF"
-            details_unknown: "Unknown"
+
+            # notification cells
+            notification_left_behind: "When left behind"
+            notification_bluetooth_disabled: "When Bluetooth disabled"
+            notification_header: "Notifications"
+            notification_footer: "Tzukuri will also send you a notification whenever your glasses are low on battery."
+
+            # glasses cells
+            glasses_details: "Details"
+            glasses_aeroplane_mode: "Aeroplane Mode"
+            glasses_unlink: "Unlink Glasses"
+            glasses_header: "Glasses"
+
+            # account cells
+            account_details: "Details"
+            account_synchronise: "Synchronise"
+            account_logout: "Logout"
+            account_header: "Account"
+
+            # help cells
+            help_title: "Help"
+            help_website: "Website"
+            help_header: "Help"
+
+            # quiet zone cells
+            quiet_zone_title: "Add a quiet zone"
+            quiet_zone_header: "Quiet Zones"
+            quiet_zone_footer: "In quiet zones you will not recieve notifications if you are out of range of your glasses. If you leave a quiet zone and your glasses are disconnected, you will recieve a notification."
+
         map:
             pin_title: "Tzukuri"
             pin_subtitle: "Your glasses are here"

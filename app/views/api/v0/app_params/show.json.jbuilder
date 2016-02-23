@@ -3,9 +3,34 @@ json.params do
     json.settings do
         json.website_link                               "http://www.tzukuri.com/"
         json.help_link                                  "http://tzukuri.helpscoutdocs.com/"
-        json.sleeping_on_text                           t('app_params.settings.sleeping_on_text')
-        json.sleeping_off_text                          t('app_params.settings.sleeping_off_text')
-        json.details_unknown                            t('app_params.settings.details_unknown')
+
+        # notification cells
+        json.notification_left_behind                   t('app_params.settings.notification_left_behind')
+        json.notification_bluetooth_disabled            t('app_params.settings.notification_bluetooth_disabled')
+        json.notification_header                        t('app_params.settings.notification_header')
+        json.notification_footer                        t('app_params.settings.notification_footer')
+
+        # glasses cells
+        json.glasses_details                            t('app_params.settings.glasses_details')
+        json.glasses_aeroplane_mode                     t('app_params.settings.glasses_aeroplane_mode')
+        json.glasses_unlink                             t('app_params.settings.glasses_unlink')
+        json.glasses_header                             t('app_params.settings.glasses_header')
+
+        # account cells
+        json.account_details                            t('app_params.settings.account_details')
+        json.account_synchronise                        t('app_params.settings.account_synchronise')
+        json.account_logout                             t('app_params.settings.account_logout')
+        json.account_header                             t('app_params.settings.account_header')
+
+        # help cells
+        json.help_title                                 t('app_params.settings.help_title')
+        json.help_website                               t('app_params.settings.help_website')
+        json.help_header                                t('app_params.settings.help_header')
+
+        # quiet zone cells
+        json.quiet_zone_title                           t('app_params.settings.quiet_zone_title')
+        json.quiet_zone_header                          t('app_params.settings.quiet_zone_header')
+        json.quiet_zone_footer                          t('app_params.settings.quiet_zone_footer')
     end
 
     json.map do
