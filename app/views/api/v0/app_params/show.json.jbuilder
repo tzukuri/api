@@ -77,36 +77,41 @@ json.params do
     end
 
     json.setup do
-        json.activate_title   t('app_params.setup.activate_title')
-        json.activate_line_1  t('app_params.setup.activate_line_1')
-        json.activate_line_2  t('app_params.setup.activate_line_2')
 
-        json.enter_pin_title  t('app_params.setup.enter_pin_title')
-        json.enter_pin_subtitle t('app_params.setup.enter_pin_subtitle')
+        # power
+        json.activate_prompt                            t('app_params.setup.activate_prompt')
 
-        json.signup_title   t('app_params.setup.signup_title')
-        json.signup_subtitle  t('app_params.setup.signup_subtitle')
-        json.signup_button_title  t('app_params.setup.signup_button_title')
-        json.already_have_account_button_title t('app_params.setup.already_have_account_button_title')
+        # pin entry
+        json.enter_pin_prompt                           t('app_params.setup.enter_pin_prompt')
+        json.enter_pin_error                            t('app_params.setup.enter_pin_error')
 
-        json.login_title  t('app_params.setup.login_title')
-        json.login_subtitle t('app_params.setup.login_subtitle')
-        json.login_button_title t('app_params.setup.login_button_title')
-        json.dont_have_account_button_title t('app_params.setup.dont_have_account_button_title')
+        # register
+        json.register_prompt                            t('app_params.setup.register_prompt')
+        json.register_name_placeholder                  t('app_params.setup.register_name_placeholder')
+        json.register_email_placeholder                 t('app_params.setup.register_email_placeholder')
+        json.register_password_placeholder              t('app_params.setup.register_password_placeholder')
+        json.register_signup_button                     t('app_params.setup.register_signup_button')
+        json.register_login_button                      t('app_params.setup.register_login_button')
 
-        json.linking_header t('app_params.setup.linking_header')
+        # login
+        json.login_prompt                               t('app_params.setup.login_prompt')
+        json.login_email_placeholder                    t('app_params.setup.login_email_placeholder')
+        json.login_password_placeholder                 t('app_params.setup.login_password_placeholder')
+        json.login_register_button                      t('app_params.setup.login_register_button')
+        json.login_login_button                         t('app_params.setup.login_login_button')
 
-        json.permissions_header t('app_params.setup.permissions_header')
-        json.location_services_header t('app_params.setup.location_services_header')
-        json.location_services_description t('app_params.setup.location_services_description')
-        json.motion_and_fitness_header t('app_params.setup.motion_and_fitness_header')
-        json.motion_and_fitness_description t('app_params.setup.motion_and_fitness_description')
-        json.notifications_header t('app_params.setup.notifications_header')
-        json.notifications_description  t('app_params.setup.notifications_description')
-        json.permissions_finish_title t('app_params.setup.permissions_finish_title')
+        # linking
+        json.linking_header                             t('app_params.setup.linking_header')
 
-        json.finished_title t('app_params.setup.finished_title')
-        json.enjoy_your_tzukuris_title  t('app_params.setup.enjoy_your_tzukuris_title')
+        # permissions
+        josn.permissions_prompt                         t('app_params.setup.permissions_prompt')
+        json.location_services_header                   t('app_params.setup.location_services_header')
+        json.location_services_description              t('app_params.setup.location_services_description')
+        json.motion_and_fitness_header                  t('app_params.setup.motion_and_fitness_header')
+        json.motion_and_fitness_description             t('app_params.setup.motion_and_fitness_description')
+        json.notifications_header                       t('app_params.setup.notifications_header')
+        json.notifications_description                  t('app_params.setup.notifications_description')
+        json.permissions_finished_title                 t('app_params.setup.permissions_finished_title')
 
         json.forgot_password_link                       "http://account.tzukuri.com/users/password/new"
     end
