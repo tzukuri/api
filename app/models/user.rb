@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
     has_many :ownerships
     has_many :auth_tokens
+    has_many :quietzones
     has_many :active_ownerships,
                 -> { Ownership.active },
                 class_name: 'Ownership'
