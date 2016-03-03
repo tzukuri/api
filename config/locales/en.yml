@@ -12,6 +12,7 @@ en:
     already_linked: "These glasses are already linked to another account."
     invalid_pin: "The PIN provided for this device is incorrect."
     unknown_api_device: "No API device with this ID exists."
+    invalid_quietzone: "One or more of the quietzone parameters was invalid"
     invalid_diagnostics: ""
     invalid_coords: ""
     invalid_timestamp: ""

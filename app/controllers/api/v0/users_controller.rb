@@ -21,7 +21,7 @@ class Api::V0::UsersController < Api::ApiController
         if @api_device.nil?
             @api_device = ApiDevice.create!(token_id: api_device_token_id)
         end
-        
+
         # generate a new token
         @token = AuthToken.create_for!(user: @user, app: @app, api_device: @api_device)
     end
@@ -30,5 +30,9 @@ class Api::V0::UsersController < Api::ApiController
     end
 
     def update
+    end
+
+    def get_quietzones
+        log_in_with_auth_token
     end
 end
