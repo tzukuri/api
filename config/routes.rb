@@ -21,9 +21,6 @@ Rails.application.routes.draw do
                 post '', action: 'create'
                 get 'current', action: 'show'
                 put 'current', action: 'update'
-
-                # returns all the quietzones for the current user
-                get 'current_quietzones', action: 'get_quietzones'
             end
 
             namespace :auth_tokens do
@@ -41,18 +38,8 @@ Rails.application.routes.draw do
                 post ':id/disconnected', action: 'disconnected'
             end
 
-            namespace :quietzones do
-                # POST /api/v0/quietzones creates a new quiet zone for current user
-                post 'new', action: 'create'
+            resources :quietzones
 
-                # PUT /api/v0/quietzones/<id> updates the quietzone with the given id
-                put 'update/:id', action: 'update'
-
-                # DELETE /api/v0/quietzones/<id> deletes the quiet zone with the given id
-                delete 'delete/:id', action: 'delete'
-            end
         end
     end
-
-    #root to: '/login'
 end
