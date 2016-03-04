@@ -15,5 +15,4 @@ class Recording < ActiveRecord::Base
   # TODO: update this to use the real data type if it's different
   validates_attachment_content_type :data, content_type: "text/plain"
 
-
 end

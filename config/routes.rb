@@ -38,7 +38,9 @@ Rails.application.routes.draw do
                 post ':id/disconnected', action: 'disconnected'
             end
 
-            resources :quietzones
+            resources :quietzones do
+              resources :rooms
+            end
 
         end
     end

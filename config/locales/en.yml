@@ -13,6 +13,8 @@ en:
     invalid_pin: "The PIN provided for this device is incorrect."
     unknown_api_device: "No API device with this ID exists."
     invalid_quietzone: "One or more of the quietzone parameters was invalid"
+    invalid_room: "One or more of the room parameters was invalid"
+    invalid_recording: "One or more of the recording parameters was invalid"
     invalid_diagnostics: ""
     invalid_coords: ""
     invalid_timestamp: ""
