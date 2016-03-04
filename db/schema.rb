@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160303031758) do
+ActiveRecord::Schema.define(version: 20160304003947) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -150,6 +150,16 @@ ActiveRecord::Schema.define(version: 20160303031758) do
 
   add_index "quietzones", ["user_id"], name: "index_quietzones_on_user_id", using: :btree
 
+  create_table "rooms", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "quietzone_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "rooms", ["quietzone_id", "created_at"], name: "index_rooms_on_quietzone_id_and_created_at", using: :btree
+  add_index "rooms", ["quietzone_id"], name: "index_rooms_on_quietzone_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -175,4 +185,5 @@ ActiveRecord::Schema.define(version: 20160303031758) do
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
   add_foreign_key "quietzones", "users"
+  add_foreign_key "rooms", "quietzones"
 end

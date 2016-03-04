@@ -1,6 +1,7 @@
 class Quietzone < ActiveRecord::Base
   # every quiet zone must have a user association
-  belongs_to :user
+  belongs_to  :user
+  has_many    :rooms
 
   # validations
   validates :name,        presence: true
