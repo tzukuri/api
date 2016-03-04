@@ -31,8 +31,4 @@ class Api::V0::UsersController < Api::ApiController
 
     def update
     end
-
-    def get_quietzones
-        log_in_with_auth_token
-    end
 end
