@@ -22,6 +22,8 @@ gem 'ruby_rncryptor', '~> 3.0.0'
 
 gem 'appsignal', '~> 0.12.rc'
 
+gem "paperclip", "~> 4.3"
+
 group :development, :test do
     # Call 'byebug' anywhere in the code to stop execution and get a debugger console
     gem 'byebug'

@@ -148,6 +148,7 @@ ActiveRecord::Schema.define(version: 20160304012607) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "quietzones", ["user_id", "created_at"], name: "index_quietzones_on_user_id_and_created_at", using: :btree
   add_index "quietzones", ["user_id"], name: "index_quietzones_on_user_id", using: :btree
 
   create_table "recordings", force: :cascade do |t|
@@ -155,8 +156,12 @@ ActiveRecord::Schema.define(version: 20160304012607) do
     t.string   "recording_date"
     t.string   "date"
     t.integer  "room_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "data_file_name"
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.datetime "data_updated_at"
   end
 
   add_index "recordings", ["device_id"], name: "index_recordings_on_device_id", using: :btree
