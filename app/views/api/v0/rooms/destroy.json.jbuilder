@@ -1,2 +1,2 @@
 json.success true
-json.room @deleted_room
+json.room @room

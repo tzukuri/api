@@ -7,7 +7,5 @@ class CreateRooms < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    # so that we can look up rooms by their quiet zones efficiently
-    add_index :rooms, [:quietzone_id, :created_at]
   end
 end

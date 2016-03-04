@@ -39,7 +39,9 @@ Rails.application.routes.draw do
             end
 
             resources :quietzones do
-              resources :rooms
+              resources :rooms do
+                resources :recordings
+              end
             end
 
         end

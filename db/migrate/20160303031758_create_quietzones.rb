@@ -12,7 +12,5 @@ class CreateQuietzones < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    # make sure that we can efficiently look up users by their index
-    add_index :quietzones, [:user_id, :created_at]
   end
 end

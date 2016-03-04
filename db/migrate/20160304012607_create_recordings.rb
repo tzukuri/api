@@ -9,9 +9,5 @@ class CreateRecordings < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    add_attachment :recordings, :data
-
-    # so that we can look up recordings by their rooms efficiently
-    add_index :recordings, [:room_id, :created_at]
   end
 end
