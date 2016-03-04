@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160304003947) do
+ActiveRecord::Schema.define(version: 20160304012607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -150,6 +150,19 @@ ActiveRecord::Schema.define(version: 20160304003947) do
 
   add_index "quietzones", ["user_id"], name: "index_quietzones_on_user_id", using: :btree
 
+  create_table "recordings", force: :cascade do |t|
+    t.integer  "device_id"
+    t.string   "recording_date"
+    t.string   "date"
+    t.integer  "room_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "recordings", ["device_id"], name: "index_recordings_on_device_id", using: :btree
+  add_index "recordings", ["room_id", "created_at"], name: "index_recordings_on_room_id_and_created_at", using: :btree
+  add_index "recordings", ["room_id"], name: "index_recordings_on_room_id", using: :btree
+
   create_table "rooms", force: :cascade do |t|
     t.string   "name"
     t.integer  "quietzone_id"
@@ -185,5 +198,7 @@ ActiveRecord::Schema.define(version: 20160304003947) do
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
   add_foreign_key "quietzones", "users"
+  add_foreign_key "recordings", "devices"
+  add_foreign_key "recordings", "rooms"
   add_foreign_key "rooms", "quietzones"
 end

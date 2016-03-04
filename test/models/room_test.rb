@@ -2,7 +2,6 @@ require 'test_helper'
 
 class RoomTest < ActiveSupport::TestCase
 
-
   def setup
     @room = Room.new(name: "TEST ROOM", quietzone_id: 1);
   end
