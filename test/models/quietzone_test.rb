@@ -3,7 +3,7 @@ require 'test_helper'
 class QuietzoneTest < ActiveSupport::TestCase
 
   def setup
-    @quietzone = Quietzone.new(name: "TEST ZONE", latitude: -33.758876, longitude: 151.103704, radius: 25, starttime: 1456971596, endtime:1456971596, user_id:1)
+    @quietzone = Quietzone.new(name: "TEST ZONE", latitude: -33.758876, longitude: 151.103704, radius: 25, starttime: Time.now, endtime: Time.now, user_id:1)
   end
 
   test "should be valid" do

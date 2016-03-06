@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160304064201) do
+ActiveRecord::Schema.define(version: 20160306225531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -152,8 +152,6 @@ ActiveRecord::Schema.define(version: 20160304064201) do
 
   create_table "recordings", force: :cascade do |t|
     t.integer  "device_id"
-    t.string   "recording_date"
-    t.string   "date"
     t.integer  "room_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
@@ -161,6 +159,7 @@ ActiveRecord::Schema.define(version: 20160304064201) do
     t.string   "data_content_type"
     t.integer  "data_file_size"
     t.datetime "data_updated_at"
+    t.datetime "recording_date"
   end
 
   add_index "recordings", ["device_id"], name: "index_recordings_on_device_id", using: :btree

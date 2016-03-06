@@ -3,7 +3,7 @@ require 'test_helper'
 class RecordingTest < ActiveSupport::TestCase
 
   def setup
-    @recording = Recording.new(device_id: 0, room_id:0, recording_date: 1457054992, data: File.open("#{Rails.root}/test/models/testdata.txt"))
+    @recording = Recording.new(device_id: 0, room_id:0, recording_date: Date.today, data: File.open("#{Rails.root}/test/models/testdata.txt"))
   end
 
   test "should be valid" do
