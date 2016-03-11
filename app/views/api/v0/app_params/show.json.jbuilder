@@ -104,7 +104,7 @@ json.params do
         json.linking_header                             t('app_params.setup.linking_header')
 
         # permissions
-        josn.permissions_prompt                         t('app_params.setup.permissions_prompt')
+        json.permissions_prompt                         t('app_params.setup.permissions_prompt')
         json.location_services_header                   t('app_params.setup.location_services_header')
         json.location_services_description              t('app_params.setup.location_services_description')
         json.motion_and_fitness_header                  t('app_params.setup.motion_and_fitness_header')
