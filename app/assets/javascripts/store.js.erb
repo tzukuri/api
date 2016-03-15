@@ -1,12 +1,12 @@
 $(function() {
     var frames = {
-        atticus: {
-            sub: 'inspired by Atticus Finch.',
+        ive: {
+            sub: 'inspired by Jony Ive.',
             desc: 'The balance of roundness and depth complements the dimensions and angularity of most longer faces.',
 
             black: {
                 side: "<%= image_path('frames/atticus/black-side.jpg') %>",
-                front: "<%= image_path('frames/atticus/black-front.jpg') %>",
+                front: "<%= image_path('frames/ive/black-front.png') %>",
                 angle: "<%= image_path('frames/atticus/black-angle.jpg') %>",
                 male: "<%= image_path('frames/atticus/m.jpg') %>",
                 female: "<%= image_path('frames/atticus/f.jpg') %>"
@@ -14,31 +14,10 @@ $(function() {
 
             tortoise: {
                 side: "<%= image_path('frames/atticus/tortoise-side.jpg') %>",
-                front: "<%= image_path('frames/atticus/tortoise-front.jpg') %>",
+                front: "<%= image_path('frames/ive/tortoise-front.png') %>",
                 angle: "<%= image_path('frames/atticus/tortoise-angle.jpg') %>",
                 male: "<%= image_path('frames/atticus/m.jpg') %>",
                 female: "<%= image_path('frames/atticus/f.jpg') %>"
-            },
-        },
-
-        fitzgerald: {
-            sub: 'inspired by John Fitzgerald Kennedy.',
-            desc: 'Softer angles and horizontal planes to add subtle definition to cheekbones. A classic and understated style.',
-
-            black: {
-                side: "<%= image_path('frames/fitzgerald/black-side.jpg') %>",
-                front: "<%= image_path('frames/fitzgerald/black-front.jpg') %>",
-                angle: "<%= image_path('frames/fitzgerald/black-angle.jpg') %>",
-                male: "<%= image_path('frames/fitzgerald/m.jpg') %>",
-                female: "<%= image_path('frames/fitzgerald/f.jpg') %>"
-            },
-
-            tortoise: {
-                side: "<%= image_path('frames/fitzgerald/tortoise-side.jpg') %>",
-                front: "<%= image_path('frames/fitzgerald/tortoise-front.jpg') %>",
-                angle: "<%= image_path('frames/fitzgerald/tortoise-angle.jpg') %>",
-                male: "<%= image_path('frames/fitzgerald/m.jpg') %>",
-                female: "<%= image_path('frames/fitzgerald/f.jpg') %>"
             },
         },
 
@@ -47,82 +26,19 @@ $(function() {
             desc: 'Strong curves and depth soften strong and angular features like prominent jaws and broader foreheads.',
 
             black: {
-                side: "<%= image_path('frames/ford/black-side.jpg') %>",
-                front: "<%= image_path('frames/ford/black-front.jpg') %>",
-                angle: "<%= image_path('frames/ford/black-angle.jpg') %>",
-                male: "<%= image_path('frames/ford/m.jpg') %>",
-                female: "<%= image_path('frames/ford/f.jpg') %>"
+                side: "<%= image_path('frames/ford-old/black-side.jpg') %>",
+                front: "<%= image_path('frames/ford/black-front.png') %>",
+                angle: "<%= image_path('frames/ford-old/black-angle.jpg') %>",
+                male: "<%= image_path('frames/ford-old/m.jpg') %>",
+                female: "<%= image_path('frames/ford-old/f.jpg') %>"
             },
 
             tortoise: {
-                side: "<%= image_path('frames/ford/tortoise-side.jpg') %>",
-                front: "<%= image_path('frames/ford/tortoise-front.jpg') %>",
-                angle: "<%= image_path('frames/ford/tortoise-angle.jpg') %>",
-                male: "<%= image_path('frames/ford/m.jpg') %>",
-                female: "<%= image_path('frames/ford/f.jpg') %>"
-            },
-        },
-
-        monaco: {
-            sub: 'inspired by Grace Kelly.',
-            desc: 'A refined cat-eye frame which draws attention upwards towards the eyes and adds height to your cheekbones.',
-
-            black: {
-                side: "<%= image_path('frames/monaco/black-side.jpg') %>",
-                front: "<%= image_path('frames/monaco/black-front.jpg') %>",
-                angle: "<%= image_path('frames/monaco/black-angle.jpg') %>",
-                male: "<%= image_path('frames/monaco/f.jpg') %>",
-                female: "<%= image_path('frames/monaco/f.jpg') %>"
-            },
-
-            tortoise: {
-                side: "<%= image_path('frames/monaco/tortoise-side.jpg') %>",
-                front: "<%= image_path('frames/monaco/tortoise-front.jpg') %>",
-                angle: "<%= image_path('frames/monaco/tortoise-angle.jpg') %>",
-                male: "<%= image_path('frames/monaco/f.jpg') %>",
-                female: "<%= image_path('frames/monaco/f.jpg') %>"
-            },
-        },
-
-        stark: {
-            sub: 'inspired by James Dean.',
-            desc: 'A hybrid aviator, fusing depth and teardrop shapes to create a top-heavy effect and balance out fuller jaws.',
-
-            black: {
-                side: "<%= image_path('frames/stark/black-side.jpg') %>",
-                front: "<%= image_path('frames/stark/black-front.jpg') %>",
-                angle: "<%= image_path('frames/stark/black-angle.jpg') %>",
-                male: "<%= image_path('frames/stark/m.jpg') %>",
-                female: "<%= image_path('frames/stark/f.jpg') %>"
-            },
-
-            tortoise: {
-                side: "<%= image_path('frames/stark/tortoise-side.jpg') %>",
-                front: "<%= image_path('frames/stark/tortoise-front.jpg') %>",
-                angle: "<%= image_path('frames/stark/tortoise-angle.jpg') %>",
-                male: "<%= image_path('frames/stark/m.jpg') %>",
-                female: "<%= image_path('frames/stark/f.jpg') %>"
-            },
-        },
-
-        truman: {
-            sub: 'inspired by Truman Capote.',
-            desc: 'The combination of depth and angularity adds height to cheekbones and gives your face a longer, thinner profile.',
-
-            black: {
-                side: "<%= image_path('frames/truman/black-side.jpg') %>",
-                front: "<%= image_path('frames/truman/black-front.jpg') %>",
-                angle: "<%= image_path('frames/truman/black-angle.jpg') %>",
-                male: "<%= image_path('frames/truman/m.jpg') %>",
-                female: "<%= image_path('frames/truman/f.jpg') %>"
-            },
-
-            tortoise: {
-                side: "<%= image_path('frames/truman/tortoise-side.jpg') %>",
-                front: "<%= image_path('frames/truman/tortoise-front.jpg') %>",
-                angle: "<%= image_path('frames/truman/tortoise-angle.jpg') %>",
-                male: "<%= image_path('frames/truman/m.jpg') %>",
-                female: "<%= image_path('frames/truman/f.jpg') %>"
+                side: "<%= image_path('frames/ford-old/tortoise-side.jpg') %>",
+                front: "<%= image_path('frames/ford/tortoise-front.png') %>",
+                angle: "<%= image_path('frames/ford-old/tortoise-angle.jpg') %>",
+                male: "<%= image_path('frames/ford-old/m.jpg') %>",
+                female: "<%= image_path('frames/ford-old/f.jpg') %>"
             },
         },
     };
@@ -219,6 +135,11 @@ $(function() {
         closePanel();
     })
 
+    $('#done').click(function(event) {
+      // just refresh the page
+      location.reload();
+    });
+
 
 
     /* ----------------------------- */
@@ -231,7 +152,7 @@ $(function() {
         $('#sizes').fadeIn();
     });
 
-    $('#three-up a').click(function(event) {
+    $('#two-up a').click(function(event) {
         event.preventDefault();
         var size = $(this).attr('data-size');
         $(this).closest('#panel').attr('data-size', size);
@@ -252,18 +173,16 @@ $(function() {
 
     /* sizing measurement */
     function calcHighlight() {
-        $('#three-up a').removeClass('selected');
+        $('#two-up a').removeClass('selected');
         var size = $('#measurement-width').val();
 
         if ($('#inches').hasClass('selected'))
             size = size * 25.4;
 
         if (size <= 122) {
-            $('#three-up a.small').addClass('selected');
-        } else if (size <= 129) {
-            $('#three-up a.medium').addClass('selected');
+            $('#two-up a.small').addClass('selected');
         } else {
-            $('#three-up a.large').addClass('selected');
+            $('#two-up a.large').addClass('selected');
         }
     }
 

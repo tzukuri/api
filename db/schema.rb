@@ -11,10 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141015154935) do
+ActiveRecord::Schema.define(version: 20160314054003) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "beta_reservations", force: true do |t|
+    t.string   "email"
+    t.string   "frame"
+    t.string   "colour"
+    t.string   "size"
+    t.string   "name"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "postcode"
+    t.string   "country"
+    t.string   "state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "emails", force: true do |t|
     t.string   "email"

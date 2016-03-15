@@ -1,0 +1,215 @@
+<main>
+    <ul id="frames">
+        <li data-frame="ford">
+            <div>
+                <%= image_tag 'frames/ford/tortoise-front.png', class: 'tortoise', style: 'opacity: 1' %>
+                <%= image_tag 'frames/ford/black-front.png', class: 'black', style: 'opacity: 0' %>
+            </div>
+            <h1>Ford</h1>
+        </li>
+        <li data-frame="ive">
+            <div>
+                <%= image_tag 'frames/ive/tortoise-front.png', class: 'tortoise', style: 'opacity: 1' %>
+                <%= image_tag 'frames/ive/black-front.png', class: 'black', style: 'opacity: 0' %>
+            </div>
+            <h1>Ive</h1>
+        </li>
+    </ul>
+
+    <div id="store-cover" style="display: none"></div>
+
+    <div id="panel" style="display: none" data-colour="tortoise">
+        <div id="frame" style="display: block">
+            <div class="close">
+                <span class="fa fa-times"></span>
+            </div>
+            <aside>
+                <h1></h1>
+                <h2></h2>
+                <p class="desc"></p>
+                <menu>
+                    <div data-colour="tortoise" class="selected">
+                        <div></div>
+                        <p>Tortoise</p>
+                    </div>
+                    <div data-colour="black">
+                        <div></div>
+                        <p>Black</p>
+                    </div>
+                </menu>
+                <p id="order-row"><button id="start-purchase">select</button></p>
+            </aside>
+            <div class="photo"></div>
+            <menu>
+                <div data-image="angle">
+                    <div></div>
+                    <p>Angle</p>
+                </div>
+                <div data-image="front">
+                    <div></div>
+                    <p>Front</p>
+                </div>
+                <div data-image="side">
+                    <div></div>
+                    <p>Side</p>
+                </div>
+            </menu>
+        </div>
+
+        <div id="sizes" style="display: none">
+            <div class="back">
+                <span class="fa fa-angle-left"></span> Back
+            </div>
+            <aside>
+                <h1>Sizing</h1>
+                <br/>
+                <p class="desc">Follow the graphic and enter your measurement below to select your size.</p>
+                <div id="enter-measurement">
+                    <p>Enter measurement</p>
+                    <div>
+                        <input type="text" id="measurement-width">
+                        <div>
+                            <a href="#" id="millimetres" class="selected">millimetres</a>
+                            <a href="#" id="inches">inches</a>
+                        </div>
+                    </div>
+                </div>
+                <p><%= image_tag 'measure.png', id: 'measure-up' %></p>
+            </aside>
+            <div id="two-up">
+                <div>
+                    <div>
+                        <a href="#" class="small" data-size="small">
+                            <%= image_tag 'size.png' %>
+                            <span><button>S</button></span>
+                        </a>
+                        <a href="#" class="large" data-size="large">
+                            <%= image_tag 'size.png' %>
+                            <span><button>L</button></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="form" style="display: none">
+            <div class="back">
+                <span class="fa fa-angle-left"></span> Back
+            </div>
+            <aside>
+                <h1>Reserve</h1>
+                <div id="form-scroll">
+                    <p class="desc">
+                        Enter your details, these will be used to ship your glasses.
+                    </p>
+                    <form id="payment-form">
+                        <div id="contact">
+                            <p><input type="text" name="name" placeholder="name" id="name"></p>
+                            <p><input type="email" name="email" placeholder="email" id="email"></p>
+                            <p><input type="text" name="address1" placeholder="address line 1" id="address1"></p>
+                            <p><input type="text" name="address2" placeholder="address line 2" id="address2"></p>
+                            <p><input type="text" name="state" placeholder="state" id="state"></p>
+                            <p><input type="text" name="postcode" placeholder="postcode / zip" id="postcode"></p>
+                            <p><input type="text" name="country" placeholder="country" id="country"></p>
+                        </div>
+                        <div id="submit"><button type="submit">reserve</button><div id="payment-message"></div></div>
+                    </form>
+                </div>
+            </aside>
+            <div id="form-preview">
+                <div id="preview-photo" style="background-image: url(<%= image_path('frames/fitzgerald/tortoise-angle.jpg') %>)"></div>
+                <dl>
+                    <dt>Frame</dt>
+                    <dd id="preview-frame">Fitzgerald</dd>
+                    <dt>Colour</dt>
+                    <dd id="preview-colour">Tortoise</dd>
+                    <dt>Size</dt>
+                    <dd id="preview-size">Medium</dd>
+                </dl>
+            </div>
+        </div>
+
+        <div id="complete" style="display: none">
+            <!--<div class="close">-->
+                <!--<span class="fa fa-times"></span>-->
+            <!--</div>-->
+            <aside>
+                <h1>Reservation Complete</h1>
+                <br/>
+                <p class="desc">Thank you for reserving your Tzukuris. We hope you are as excited as we are that you'll be one of the first in the world to own a pair of unloseable sunglasses.</p>
+                <!--<p class="desc">Order Reference: <span id="order-ref">1234</span></p>-->
+                <br/>
+                <span><button id="done">finish</button></span>
+            </aside>
+            <!--<article id="share-links" data-url="http://tzukuri.com/" data-not-panel="true">-->
+                <!--<div>-->
+                    <!--<div>-->
+                        <!--<div id="share-panel-content">-->
+                            <!--<h1>we need your help.</h1>-->
+                            <!--<p>The faster preorders sellout, the faster production on your pair can begin. With 1 in 2 people losing a pair of sunglasses in the first year of buying them, you definitely know a friend who's lost a pair. Please share Tzukuri with them.</p>-->
+                            <!--<div>-->
+                                <!--<div>-->
+                                    <!--<span><a href="#" class="fa fa-facebook" id="share-fb"></a></span>-->
+                                    <!--<span><a href="#" class="fa fa-twitter" id="share-twitter"></a></span>-->
+                                    <!--<span><a href="#" class="fa fa-pinterest" id="share-pinterest"></a></span>-->
+                                <!--</div>-->
+                                <!--<div>-->
+                                    <!--<span><a href="#" class="fa fa-tumblr" id="share-tumblr"></a></span>-->
+                                    <!--<span><a href="#" class="fa fa-envelope-square" id="share-email"></a></span>-->
+                                    <!--<span><a href="#" class="fa fa-link" id="share-link"></a></span>-->
+                                <!--</div>-->
+                                <!--<div>-->
+                                    <!--<span>&nbsp;</span>-->
+                                    <!--<span><input type="text" id="share-copy" style="display: none"></span>-->
+                                    <!--<span>&nbsp;</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</article>-->
+        </div>
+    </div>
+</main>
+
+<script>
+    $(function() {
+        window.setShareURL('http://tzukuri.com/');
+    });
+
+    $('#payment-form').submit(function(event) {
+        $('#submit button').prop('disabled', true);
+        $('#payment-message').text("Reserving your Tzukuris...");
+
+      // create a new reservation
+      $.post('/beta_reservations', {
+        email: $('#email').val(),
+        name: $('#name').val(),
+        address1: $('#address1').val(),
+        address2: $('#address2').val(),
+        state: $('#state').val(),
+        postcode: $('#postcode').val(),
+        country: $('#country').val(),
+        frame: $('#panel').attr('data-frame'),
+        colour: $('#panel').attr('data-colour'),
+        size: $('#panel').attr('data-size')
+      }, function(data, status) {
+        if (data.success) {
+          $('#order-ref').text(data.ref);
+          $('#payment-message').text('');
+          $('#form').fadeOut();
+          $('#complete').fadeIn();
+        } else {
+          if (data.reason)
+            $('#payment-message').text(data.reason);
+          else
+            $('#payment-message').text('Sorry, an unknown error occurred.');
+          $('#submit button').prop('disabled', false);
+        }
+      }, 'json').fail(function() {
+        $('#payment-message').text('Sorry, an unknown error occurred. Please try again later.');
+      });
+
+        event.preventDefault();
+    });
+</script>

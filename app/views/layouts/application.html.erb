@@ -20,6 +20,7 @@
         <meta property="og:title" content="Tzukuri - Beautiful wearable technology">
         <meta property="og:image" content="http://www.tzukuri.com/share_image.jpg">
         <meta property="og:image:secure_url" content="https://newtzu.herokuapp.com/share_image.jpg">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
     </head>
 
     <body>
@@ -36,7 +37,8 @@
                             <a href="/craftsmanship" class="<%= 'selected' if params[:page] == 'craftsmanship' %>">craftsmanship</a>
                             <a href="/gallery" class="<%= 'selected' if params[:page] == 'gallery' %>">gallery</a>
                         </nav>
-                        <button id="show-subscribe">Subscribe</button>
+                        <!--<button id="show-subscribe">Subscribe</button>-->
+                        <a href="/beta_store" class="button">reserve</a>
                         <!-- <a href="https://www.tzukuri.com/store" class="button">Preorder</a> -->
                     </menu>
                 </div>
