@@ -1,0 +1,114 @@
+<main>
+
+  <div id="hero">
+
+    <div id="invite-header">
+      <span id="tzukuri">T Z U K U R I</span>
+      <span id="date">APRIL 4</span>
+    </div>
+
+    <div id="invite-details">
+      Please join us for an invitation-only demonstration event at <strong>Track 8, Carriageworks</strong> (245 Wilson Street, Eveleigh) at <strong>3:45 PM</strong>.
+    </div>
+
+    <div id="invite-rsvp">
+      <a href="#">RSVP</a>
+    </div>
+
+  </div>
+
+</main>
+
+
+<script>
+
+  $(function() {
+    $('#invite-rsvp a').click(function(event) {
+
+      $('#rsvp-popup').show();
+
+      setTimeout(function() {
+        $('#rsvp-popup').removeClass('hidden');
+      }, 20);
+
+      $('#blur-content').addClass('blur');
+    });
+  });
+
+  $(function() {
+    $('#rsvp-form input').keyup(function(event) {
+      // don't do this on enter
+      if (event.keyCode == 13) return;
+
+      var name = $("#rsvp_name").val();
+      var email = $("#rsvp_email").val();
+
+      if (name.length > 0 && email.length > 0) {
+        $('#rsvp-form button').fadeIn();
+      } else {
+        $('#rsvp-form button').fadeOut();
+      }
+    });
+
+    function showSubscribeError(msg) {
+      $('#subscribe-status').text(msg);
+      $('#text-container label').fadeOut();
+      $('#subscribe-status').fadeIn();
+    }
+
+    $('#new_rsvp').on('ajax:success', function(e, data, status, xhr) {
+      console.log(data);
+
+      if (data.success) {
+
+        // disable the fields
+        $("#rsvp_name").prop("disabled", true);
+        $("#rsvp_email").prop("disabled", true);
+        $("#rsvp_inviter").prop("disabled", true);
+
+        $('#rsvp-form button').fadeOut();
+
+        $('#rsvp-form #rsvp-confirm #rsvp-status').fadeIn();
+        $("#rsvp-form #rsvp-confirm #add-calendar").fadeIn();
+
+//        $('#rsvp-popup').hide();
+//
+//        setTimeout(function() {
+//          $('#rsvp-popup').addClass('hidden');
+//        }, 20);
+//
+//        $('#blur-content').removeClass('blur');
+      } else {
+        // show some kind of error
+      }
+
+//      if (data.success) {
+//        $('#text-container').fadeOut();
+//        $('#rsvp-form input[type=text]').fadeOut();
+//        $('#rsvp-form button').addClass('complete');
+//
+//        setTimeout(function() {
+//          $('#blur-content').removeClass('blur');
+//          $('#rsvp-popup').addClass('hidden');
+//          setTimeout(function() {
+//            $('#rsvp-popup').hide();
+//            $('#text-container').show();
+//            $('#rsvp-form input[type=text]').show();
+//            $('#rsvp-form input[type=text]').val('');
+//            $('#rsvp-form button').removeClass('complete');
+//            $('#text-container label').show();
+//            $('#subscribe-status').hide();
+//            $('#rsvp-form button').hide();
+//            buttonShowing = false;
+//          }, 1000);
+//        }, 1300);
+//      } else {
+//        showSubscribeError(data.reason);
+//      }
+    }).on('ajax:error', function(e, xhr, status, error) {
+//      showSubscribeError('Network error, try again.');
+    });
+  });
+
+
+</script>

@@ -1,0 +1,19 @@
+<header>
+
+  <div>
+    <h1><a href="/"><%= image_tag 'logo.png', height: 25, alt: 'Tzukuri' %></a></h1>
+    <span class="pe-7f-check" style="color: white; opacity: 0.0"></span>
+    <a id="hamburger" class="fa fa-bars"></a>
+    <menu>
+      <nav>
+        <a href="/technology" class="<%= 'selected' if params[:page] == 'technology' %>">technology</a>
+        <a href="/design" class="<%= 'selected' if params[:page] == 'design' %>">design</a>
+        <a href="/craftsmanship" class="<%= 'selected' if params[:page] == 'craftsmanship' %>">craftsmanship</a>
+        <a href="/gallery" class="<%= 'selected' if params[:page] == 'gallery' %>">gallery</a>
+      </nav>
+      <!--<button id="show-subscribe">Subscribe</button>-->
+      <a href="/beta_store" class="button">reserve</a>
+      <!-- <a href="https://www.tzukuri.com/store" class="button">Preorder</a> -->
+    </menu>
+  </div>
+</header>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :rsvps
+
   resources :beta_reservations
 
     resources :purchases do

@@ -25,24 +25,11 @@
 
     <body>
         <div id="blur-content">
-            <header>
-                <div>
-                    <h1><a href="/"><%= image_tag 'logo.png', height: 25, alt: 'Tzukuri' %></a></h1>
-                    <span class="pe-7f-check" style="color: white; opacity: 0.0"></span>
-                    <a id="hamburger" class="fa fa-bars"></a>
-                    <menu>
-                        <nav>
-                            <a href="/technology" class="<%= 'selected' if params[:page] == 'technology' %>">technology</a>
-                            <a href="/design" class="<%= 'selected' if params[:page] == 'design' %>">design</a>
-                            <a href="/craftsmanship" class="<%= 'selected' if params[:page] == 'craftsmanship' %>">craftsmanship</a>
-                            <a href="/gallery" class="<%= 'selected' if params[:page] == 'gallery' %>">gallery</a>
-                        </nav>
-                        <!--<button id="show-subscribe">Subscribe</button>-->
-                        <a href="/beta_store" class="button">reserve</a>
-                        <!-- <a href="https://www.tzukuri.com/store" class="button">Preorder</a> -->
-                    </menu>
-                </div>
-            </header>
+
+            <% if !current_page?("/event") %>
+                <%= render 'layouts/header' %>
+            <% end %>
+
 
             <%= yield %>
 
@@ -80,6 +67,23 @@
                     </p>
                 <% end %>
             </div>
+        </div>
+
+        <div id="rsvp-popup" class="hidden" style="display: none">
+          <div id="rsvp-form">
+            <%= form_for Rsvp.new, remote: true do |f| %>
+                <p><%= f.text_field :name, placeholder: 'full name' %></p>
+                <p><%= f.text_field :email, placeholder: 'email address' %></p>
+                <p><%= f.text_field :inviter, placeholder: 'inviter' %></p>
+                <button style="display: none">RSVP</button>
+          <% end %>
+
+            <div id="rsvp-confirm">
+              <p id="rsvp-status">Thanks for your RSVP, we look forward to seeing you!</p>
+              <p id="add-calendar"><a href="tzukuri_demo_event.ics" download>Add to Calendar</a></p>
+            </div>
+
+          </div>
         </div>
 
         <script>
