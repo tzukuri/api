@@ -21,6 +21,8 @@ en:
     app_params:
         settings:
 
+            details_unknown: "Unknown"
+
             # notification cells
             notification_left_behind: "When left behind"
             notification_bluetooth_disabled: "When Bluetooth disabled"

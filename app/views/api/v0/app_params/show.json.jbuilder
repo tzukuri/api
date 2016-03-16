@@ -1,6 +1,7 @@
 json.success true
 json.params do
     json.settings do
+        json.details_unknown                            t('app_params.settings.details_unknown')
         json.website_link                               "http://www.tzukuri.com/"
         json.help_link                                  "http://tzukuri.helpscoutdocs.com/"
 
