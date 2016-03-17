@@ -1,5 +1,5 @@
 class RsvpsController < ApplicationController
-
+  http_basic_authenticate_with name: "a@tzukuri.com", password: "ksV-Pxq-646-feS", except: :create
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   def create
@@ -13,12 +13,22 @@ class RsvpsController < ApplicationController
     render json: {success: true}
   end
 
-  # def csv
-  #   lines = ["email,ip,created_at"]
-  #   Email.all.each do |email|
-  #     lines << "#{email.email},#{email.ip},#{email.created_at}"
-  #   end
-  #   render text: lines.join("\n")
-  # end
+  def index
+    @rsvps = Rsvp.all
+  end
+
+  def show
+    @rsvps = Rsvp.find(params[:id])
+  end
+
+  def csv
+    lines = ["name, email, inviter, created_at"]
+
+    Rsvp.all.each do |rsvp|
+      lines << "#{rsvp.name}, #{rsvp.email}, #{rsvp.inviter}, #{rsvp.created_at}"
+    end
+
+    render text: lines.join("\n")
+  end
 
 end

@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  resources :rsvps
-
-  resources :beta_reservations
+    resources :beta_reservations
 
     resources :purchases do
         collection do
@@ -13,6 +11,13 @@ Rails.application.routes.draw do
             get :csv
         end
     end
+
+    resources :rsvps do
+      collection do
+        get :csv
+      end
+    end
+
     get '*page', to: 'pages#index'
     root 'pages#index', page: 'index'
 end
