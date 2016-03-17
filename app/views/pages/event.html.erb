@@ -70,43 +70,19 @@
 
         $('#rsvp-form #rsvp-confirm #rsvp-status').fadeIn();
         $("#rsvp-form #rsvp-confirm #add-calendar").fadeIn();
-
-//        $('#rsvp-popup').hide();
-//
-//        setTimeout(function() {
-//          $('#rsvp-popup').addClass('hidden');
-//        }, 20);
-//
-//        $('#blur-content').removeClass('blur');
       } else {
         // show some kind of error
-      }
+        $('#rsvp-form button').fadeOut();
 
-//      if (data.success) {
-//        $('#text-container').fadeOut();
-//        $('#rsvp-form input[type=text]').fadeOut();
-//        $('#rsvp-form button').addClass('complete');
-//
-//        setTimeout(function() {
-//          $('#blur-content').removeClass('blur');
-//          $('#rsvp-popup').addClass('hidden');
-//          setTimeout(function() {
-//            $('#rsvp-popup').hide();
-//            $('#text-container').show();
-//            $('#rsvp-form input[type=text]').show();
-//            $('#rsvp-form input[type=text]').val('');
-//            $('#rsvp-form button').removeClass('complete');
-//            $('#text-container label').show();
-//            $('#subscribe-status').hide();
-//            $('#rsvp-form button').hide();
-//            buttonShowing = false;
-//          }, 1000);
-//        }, 1300);
-//      } else {
-//        showSubscribeError(data.reason);
-//      }
+        $('#rsvp-form #rsvp-confirm #rsvp-status').fadeIn();
+        $('#rsvp-form #rsvp-confirm #rsvp-status').html("An error occurred, please reload and try again.");
+      }
     }).on('ajax:error', function(e, xhr, status, error) {
-//      showSubscribeError('Network error, try again.');
+      // show some kind of error
+      $('#rsvp-form button').fadeOut();
+
+      $('#rsvp-form #rsvp-confirm #rsvp-status').fadeIn();
+      $('#rsvp-form #rsvp-confirm #rsvp-status').html("Network error, please reload and try again.");
     });
   });
 
