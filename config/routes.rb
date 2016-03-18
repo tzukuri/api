@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-    resources :beta_reservations
+    resources :betareservations
 
     resources :purchases do
         collection do

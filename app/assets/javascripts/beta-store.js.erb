@@ -87,16 +87,16 @@ $(function() {
 
   // model selection
   $("#models li#ford-model").click(function(event) {
-    stepContainer.attr("data-model", "ford");
+    stepContainer.attr("data-frame", "ford");
 
-    setColourSelectionData(stepContainer.attr("data-type"), stepContainer.attr("data-model"));
+    setColourSelectionData(stepContainer.attr("data-type"), stepContainer.attr("data-frame"));
     fadeBetween(currentElement, $("#select-colour"));
   });
 
   $("#models li#ive-model").click(function(event) {
-    stepContainer.attr("data-model", "ive");
+    stepContainer.attr("data-frame", "ive");
 
-    setColourSelectionData(stepContainer.attr("data-type"), stepContainer.attr("data-model"));
+    setColourSelectionData(stepContainer.attr("data-type"), stepContainer.attr("data-frame"));
     fadeBetween(currentElement, $("#select-colour"));
   });
 
@@ -111,14 +111,14 @@ $(function() {
   $("#colours li#black-colour").click(function(event) {
     stepContainer.attr("data-colour", "black");
 
-    setSizeSelectionData(stepContainer.attr("data-model"));
+    setSizeSelectionData(stepContainer.attr("data-frame"));
     fadeBetween(currentElement, $("#select-size"));
   });
 
   $("#colours li#tortoise-colour").click(function(event) {
     stepContainer.attr("data-colour", "tortoise");
 
-    setSizeSelectionData(stepContainer.attr("data-model"));
+    setSizeSelectionData(stepContainer.attr("data-frame"));
     fadeBetween(currentElement, $("#select-size"));
   });
 
@@ -134,14 +134,14 @@ $(function() {
   $("#sizes li#small-size").click(function(event) {
     stepContainer.attr("data-size", "s");
 
-    setPersonalDetailsData(stepContainer.attr("data-type"), stepContainer.attr("data-model"), stepContainer.attr("data-colour"), stepContainer.attr("data-size"));
+    setPersonalDetailsData(stepContainer.attr("data-type"), stepContainer.attr("data-frame"), stepContainer.attr("data-colour"), stepContainer.attr("data-size"));
     fadeBetween(currentElement, $("#enter-details"));
   });
 
   $("#sizes li#large-size").click(function(event) {
     stepContainer.attr("data-size", "l");
 
-    setPersonalDetailsData(stepContainer.attr("data-type"), stepContainer.attr("data-model"), stepContainer.attr("data-colour"), stepContainer.attr("data-size"));
+    setPersonalDetailsData(stepContainer.attr("data-type"), stepContainer.attr("data-frame"), stepContainer.attr("data-colour"), stepContainer.attr("data-size"));
     fadeBetween(currentElement, $("#enter-details"));
   });
 
@@ -161,10 +161,28 @@ $(function() {
 
   // personal details collection
   $('#details-form').submit(function(event) {
-    console.log('form submitted');
+    // todo: disable button
+
+    $("#details-message").text("Reserving your Tzukuris");
+
+    $.post('/betareservations', {
+      email: $('#email').val(),
+      name: $('#name').val(),
+      address1: $('#address1').val(),
+      address2: $('#address2').val(),
+      state: $('#state').val(),
+      postcode: $('#postcode').val(),
+      country: $('#country').val(),
+      frame: stepContainer.attr('data-frame'),
+      colour: stepContainer.attr('data-colour'),
+      size: stepContainer.attr('data-size'),
+      model: stepContainer.attr("data-type")
+    }, function(data, status) {
+      console.log(status);
+    });
+
     event.preventDefault();
   });
-
 
   $('.back').click(function(event) {
     var previousElement;
