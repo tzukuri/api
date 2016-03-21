@@ -1,8 +1,8 @@
 <main>
 
   <div id="header">
-    <span id="tzukuri">T Z U K U R I</span>
-    <br/><br/><br/><br/>
+    <%= image_tag '/logo.png', id: "logo" %>
+    <br/><br/><br/>
     <span id="subheading">choose your type of glasses</span>
   </div>
 
@@ -21,9 +21,9 @@
     </div>
 
     <!-- select the model of the glasses (ford vs. ive) -->
-    <div class="select-step" id="select-model" style="display:none">
+    <div class="select-step" id="select-model" style="display: none">
       <div class="back">
-        <span class="fa fa-angle-left"></span> Back
+        <span class="fa fa-angle-left"></span> back
       </div>
 
         <ul id="models">
@@ -42,7 +42,7 @@
     <!-- select the colour of the glasses -->
     <div class="select-step" id="select-colour" style="display:none">
       <div class="back">
-        <span class="fa fa-angle-left"></span> Back
+        <span class="fa fa-angle-left"></span> back
       </div>
 
       <ul id="colours">
@@ -61,7 +61,7 @@
     <!-- select the size of the glasses -->
     <div class="select-step" id="select-size" style="display:none">
       <div class="back">
-        <span class="fa fa-angle-left"></span> Back
+        <span class="fa fa-angle-left"></span> back
       </div>
 
       <ul id="sizes">
@@ -80,7 +80,7 @@
     <div class="select-step" id="enter-details" style="display: none">
 
       <div class="back">
-        <span class="fa fa-angle-left"></span> Back
+        <span class="fa fa-angle-left"></span> back
       </div>
 
       <div id="form-container">
@@ -116,6 +116,16 @@
         </div>
     </div>
 
+    <div class="select-step" id="complete" style="display: none">
+      <span id="thank-you">Thank you for reserving your Tzukuris!</span>
+      <br/><br/>
+      <p id="thank-you-subheading">We hope you are as excited as we are that you'll be one of the first in the world to own a pair of unloseable sunglasses in May.</p>
+      <br/><br/>
+      <button>done</button>
+    </div>
+
   </div>
+
+  <div id="progress" class="step-1"></div>
 
 </main>

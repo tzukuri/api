@@ -1,19 +1,18 @@
 class BetareservationsController < ApplicationController
   http_basic_authenticate_with name: "a@tzukuri.com", password: "ksV-Pxq-646-feS", except: :create
-  EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   def create
-    if params[:name].empty?
-      render json: {success: false, reason: 'Please enter your name.'}
-      return
-    end
+    # if params[:name].empty?
+    #   render json: {success: false, reason: 'Please enter your name.'}
+    #   return
+    # end
+    #
+    # if params[:email].empty? || !(params[:email] =~ EMAIL_REGEX)
+    #   render json: {success: false, reason: 'Please enter a valid email address.'}
+    #   return
+    # end
 
-    if params[:email].empty? || !(params[:email] =~ EMAIL_REGEX)
-      render json: {success: false, reason: 'Please enter a valid email address.'}
-      return
-    end
-
-    betareservation = Betareservation.create(
+    @betareservation = Betareservation.create(
         name: params[:name],
         email: params[:email],
         address1: params[:address1],
@@ -27,7 +26,11 @@ class BetareservationsController < ApplicationController
         model: params[:model]
     )
 
-    render json: {success: true}
+    if (@betareservation.valid?)
+      render json: {success: true, betareservation: @betareservation}
+    else
+      render json: {success:false, errors:@betareservation.errors}
+    end
 
   end
 

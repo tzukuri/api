@@ -79,6 +79,7 @@ $(function() {
 
   function setModelSelectionData(type) {
     $("#subheading").html("choose your style");
+    $("#progress").attr("class", "step-2");
 
     $("#models #ford-model .select-model-image").attr("src", frames.ford[type].black.front)
     $("#models #ive-model .select-model-image").attr("src", frames.ive[type].black.front)
@@ -102,6 +103,7 @@ $(function() {
 
   function setColourSelectionData(type, model) {
     $("#subheading").html("choose your colour");
+    $("#progress").attr("class", "step-3");
 
     $("#select-colour #colours #black-colour .select-colour-image").attr("src", frames[model][type].black.front);
     $("#select-colour #colours #tortoise-colour .select-colour-image").attr("src", frames[model][type].tortoise.front);
@@ -122,8 +124,9 @@ $(function() {
     fadeBetween(currentElement, $("#select-size"));
   });
 
-  function setSizeSelectionData(model) {
+  function setSizeSelectionData(model, color) {
     $("#subheading").html("choose your size");
+    $("#progress").attr("class", "step-4");
 
 
     $("#sizes #small-size #size-header").html(frames[model].size.small);
@@ -147,10 +150,8 @@ $(function() {
 
   function setPersonalDetailsData(type, model, colour, size) {
     $("#subheading").html("enter your shipping details");
-
-
+    $("#progress").attr("class", "step-5");
     $("#glasses-preview #glasses-preview-image").attr("src", frames[model][type][colour].front);
-
     $("#glasses-details #type").html(type);
     $("#glasses-details #frame").html(model);
     $("#glasses-details #colour").html(colour);
@@ -161,42 +162,94 @@ $(function() {
 
   // personal details collection
   $('#details-form').submit(function(event) {
-    // todo: disable button
-
-    $("#details-message").text("Reserving your Tzukuris");
-
-    $.post('/betareservations', {
-      email: $('#email').val(),
-      name: $('#name').val(),
-      address1: $('#address1').val(),
-      address2: $('#address2').val(),
-      state: $('#state').val(),
-      postcode: $('#postcode').val(),
-      country: $('#country').val(),
-      frame: stepContainer.attr('data-frame'),
-      colour: stepContainer.attr('data-colour'),
-      size: stepContainer.attr('data-size'),
-      model: stepContainer.attr("data-type")
-    }, function(data, status) {
-      console.log(status);
-    });
-
     event.preventDefault();
+    $("#details-message").text("reserving your tzukuris...");
+
+    $.post('/betareservations',
+        { email: $('#email').val(),
+          name: $('#name').val(),
+          address1: $('#address1').val(),
+          address2: $('#address2').val(),
+          state: $('#state').val(),
+          postcode: $('#postcode').val(),
+          country: $('#country').val(),
+          frame: stepContainer.attr('data-frame'),
+          colour: stepContainer.attr('data-colour'),
+          size: stepContainer.attr('data-size'),
+          model: stepContainer.attr("data-type")
+        }).done(function(response) {
+          if (response.success) {
+            $("#progress").attr("class", "complete");
+            $("#header").fadeOut();
+
+            setTimeout(function() {
+              fadeBetween(currentElement, $("#complete"));
+            }, 200);
+          } else {
+            // todo: handle the error case
+            var errors = response.errors;
+            console.log(errors);
+
+            $("#details-message").text("some fields are incorrect or missing");
+
+            if (errors.name) {
+              $("#details-form p #name").attr("class", "error");
+            } else {
+              $("#details-form p #name").removeClass("error");
+            }
+
+            if (errors.email) {
+              $("#details-form p #email").attr("class", "error");
+            } else {
+              $("#details-form p #email").removeClass("error");
+            }
+
+            if (errors.address1) {
+              $("#details-form p #address1").attr("class", "error");
+            } else {
+              $("#details-form p #address1").removeClass("error");
+            }
+
+            if (errors.state) {
+              $("#details-form p #state").attr("class", "error");
+            } else {
+              $("#details-form p #state").removeClass("error");
+            }
+
+            if (errors.postcode) {
+              $("#details-form p #postcode").attr("class", "error");
+            } else {
+              $("#details-form p #postcode").removeClass("error");
+            }
+
+            if (errors.country) {
+              $("#details-form p #country").attr("class", "error");
+            } else {
+              $("#details-form p #country").removeClass("error");
+            }
+          }
+        }).fail( function(xhr, textStatus, errorThrown) {
+          $("#details-message").text("network error occured, please try again");
+        });
   });
 
   $('.back').click(function(event) {
     var previousElement;
 
     if (currentElement[0] == $("#select-model")[0]) {
+      $("#progress").attr("class", "step-1");
       $("#subheading").html("choose your type of glasses");
       previousElement = $("#select-type");
     } else if (currentElement[0] == $("#select-colour")[0]) {
+      $("#progress").attr("class", "step-2");
       $("#subheading").html("choose your style");
       previousElement = $("#select-model");
     } else if (currentElement[0] == $("#select-size")[0]){
+      $("#progress").attr("class", "step-3");
       $("#subheading").html("choose your colour");
       previousElement = $("#select-colour");
     } else if (currentElement[0] == $("#enter-details")[0]) {
+      $("#progress").attr("class", "step-4");
       $("#subheading").html("choose your size");
       previousElement = $("#select-size");
     }
@@ -204,10 +257,34 @@ $(function() {
     fadeBetween(currentElement, previousElement);
   });
 
+  function reset() {
+    // go back to the home view
+    fadeBetween(currentElement, $("#select-type"));
+
+    // show heading
+    setTimeout(function() {
+      $("#header").show();
+    }, 200);
+
+    // reset the progress view
+    $("#progress").attr("class", "step-1");
+
+    // clear out form data
+    $("#enter-details #form-container form")[0].reset();
+    $("#details-message").text("");
+    $("#subheading").html("choose your type of glasses");
+  }
+
+  $("#complete button").click(function() {
+    reset();
+  });
 
   // document ready function
   $( document ).ready(function() {
     stepContainer = $("#steps-container");
+
+    // prevent the document from scrolling
+    document.ontouchmove = function(e) {e.preventDefault()};
   });
 
   // helper functions

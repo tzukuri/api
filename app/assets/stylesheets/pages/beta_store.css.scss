@@ -17,6 +17,7 @@ html.beta_store {
     cursor: pointer;
     font-size: 14pt;
     color: #555;
+    font-weight: 200;
 
     span {
       font-size: 16px;
@@ -24,10 +25,20 @@ html.beta_store {
     }
   }
 
+  #details-message {
+    margin-top: 20px;
+    color: #888;
+    font-size: 10pt;
+  }
+
 
   #header {
     text-align: center;
-    margin-top: 50px;
+    margin-top: 75px;
+
+    #logo {
+      height: 50px;
+    }
 
     #tzukuri {
       font-size: 56pt;
@@ -40,6 +51,35 @@ html.beta_store {
       letter-spacing: 0.5pt;
       color: #999;
     }
+  }
+
+  #progress {
+    background-color: #5AA4E8;
+    height: 4px;
+    position: absolute;
+    bottom: 0;
+    @include transition(width 0.5s);
+    transition-timing-function: ease-in-out;
+
+    &.step-1 {
+      width: 0%;
+    }
+    &.step-2 {
+      width: 20%;
+    }
+    &.step-3 {
+      width: 40%;
+    }
+    &.step-4 {
+      width: 60%;
+    }
+    &.step-5 {
+      width: 80%;
+    }
+    &.complete {
+      width: 100%;
+    }
+
   }
 
   #steps-container {
@@ -55,13 +95,13 @@ html.beta_store {
         .type-button {
           margin-left: auto;
           margin-right: auto;
-          width: 300px;
-          height: 100px;
+          width: 270px;
+          height: 75px;
           text-align: center;
           border: 1px solid #5AA4E8;
           border-radius: 100pt;
           color: #5AA4E8;
-          font-size: 22pt;
+          font-size: 20pt;
           font-weight: 100;
           letter-spacing: 0pt;
         }
@@ -155,7 +195,7 @@ html.beta_store {
 
         padding-left: 100px;
         padding-right: 100px;
-        padding-top: 50px;
+        padding-top: 75px;
         display: flex;
 
         #form-container {
@@ -193,6 +233,14 @@ html.beta_store {
                 padding: 4px 8px;
                 outline: none;
                 border: none;
+                -webkit-appearance:none;  /* Remove default shadow */
+                @include transition(border-color 0.5s);
+
+                &.error {
+                  color: RGBA(240, 97, 77, 1);
+                  border: 1px solid RGBA(240, 97, 77, 0.5);
+                }
+
               }
             }
           }
@@ -214,7 +262,7 @@ html.beta_store {
             dt, dd {
               display: inline-block;
               margin-bottom: 3px;
-              font-size: 12px;
+              font-size: 14px;
             }
 
             dt {
@@ -232,6 +280,38 @@ html.beta_store {
           }
 
         }
+      }
+
+      &#complete {
+        margin-top: 25%;
+        text-align: center;
+        display: block;
+
+        #thank-you {
+          font-size: 32pt;
+          line-height: 50pt;
+          font-weight: 200;
+        }
+
+        #thank-you-subheading {
+          font-size: 12pt;
+          font-weight: 200;
+          line-height: 20pt;
+          color: #999;
+        }
+
+        button {
+          border: 1px solid #5AA4E8;
+          border-radius: 50pt;
+          color: #5AA4E8;
+          font-size: 14pt;
+          font-weight: 200;
+          letter-spacing: 0pt;
+          padding-left: 50px;
+          padding-right: 50px;
+          height: 50px;
+        }
+
       }
     }
   }
