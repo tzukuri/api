@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-    resources :betareservations
+    resources :betareservations do
+      collection do
+        get :csv
+      end
+    end
 
     resources :purchases do
         collection do

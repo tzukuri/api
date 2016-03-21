@@ -1,17 +1,9 @@
+require 'csv'
+
 class BetareservationsController < ApplicationController
   http_basic_authenticate_with name: "a@tzukuri.com", password: "ksV-Pxq-646-feS", except: :create
 
   def create
-    # if params[:name].empty?
-    #   render json: {success: false, reason: 'Please enter your name.'}
-    #   return
-    # end
-    #
-    # if params[:email].empty? || !(params[:email] =~ EMAIL_REGEX)
-    #   render json: {success: false, reason: 'Please enter a valid email address.'}
-    #   return
-    # end
-
     @betareservation = Betareservation.create(
         name: params[:name],
         email: params[:email],
@@ -34,24 +26,14 @@ class BetareservationsController < ApplicationController
 
   end
 
-  # def index
-  #   @purchases = Purchase.all
-  # end
-  #
-  # def show
-  #   @purchase = Purchase.find(params[:id])
-  # end
-  #
-  # def destroy
-  #   Purchase.find(params[:id]).destroy
-  #   redirect_to purchases_path
-  # end
-  #
-  # def csv
-  #   lines = ["date,name,email,frame,colour,size,customer_id"]
-  #   Purchase.all.each do |purchase|
-  #     lines << "#{purchase.created_at},#{purchase.name},#{purchase.email},#{purchase.frame},#{purchase.colour},#{purchase.size},#{purchase.customer_id}"
-  #   end
-  #   render text: lines.join("\n")
-  # end
+  def csv
+    csv_string = CSV.generate do |csv|
+      csv << Betareservation.attribute_names
+      Betareservation.all.each do |betareservation|
+        csv << betareservation.attributes.values
+      end
+    end
+
+    render body: csv_string
+  end
 end
