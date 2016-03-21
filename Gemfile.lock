@@ -50,9 +50,6 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     ansi (1.5.0)
-    appsignal (0.12.rc.5)
-      rack
-      thread_safe
     arbre (1.0.3)
       activesupport (>= 3.0.0)
     arel (6.0.3)
@@ -64,6 +61,27 @@ GEM
       thor (~> 0.19)
     builder (3.2.2)
     byebug (8.1.0)
+    celluloid (0.17.3)
+      celluloid-essentials
+      celluloid-extras
+      celluloid-fsm
+      celluloid-pool
+      celluloid-supervision
+      timers (>= 4.1.1)
+    celluloid-essentials (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-extras (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-fsm (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-io (0.17.3)
+      celluloid (>= 0.17.2)
+      nio4r (>= 1.1)
+      timers (>= 4.1.1)
+    celluloid-pool (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-supervision (0.20.5)
+      timers (>= 4.1.1)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.8)
@@ -114,6 +132,8 @@ GEM
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
     hashie (3.4.3)
+    hitimes (1.2.3)
+    http-2 (0.8.0)
     i18n (0.7.0)
     inherited_resources (1.6.0)
       actionpack (>= 3.2, < 5)
@@ -139,6 +159,9 @@ GEM
       rb-inotify (>= 0.9.7)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
+    lowdown (0.3.1)
+      celluloid-io (>= 0.17.3)
+      http-2 (>= 0.8)
     lumberjack (1.0.10)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
@@ -157,6 +180,7 @@ GEM
       ruby-progressbar
     multi_json (1.11.2)
     nenv (0.3.0)
+    nio4r (1.2.1)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     notiffany (0.0.8)
@@ -179,7 +203,14 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    que (0.11.4)
+    que-web (0.4.0)
+      erubis
+      que (~> 0.8)
+      sinatra
     rack (1.6.4)
+    rack-protection (1.5.3)
+      rack
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.3)
@@ -234,8 +265,11 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     shellany (0.0.1)
+    sinatra (1.4.7)
+      rack (~> 1.5)
+      rack-protection (~> 1.4)
+      tilt (>= 1.3, < 3)
     slop (3.6.0)
-    spring (1.4.1)
     sprockets (3.4.0)
       rack (> 1, < 3)
     sprockets-rails (2.3.3)
@@ -248,6 +282,8 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.1)
+    timers (4.1.1)
+      hitimes
     turbolinks (2.5.3)
       coffee-rails
     tzinfo (1.2.2)
@@ -268,7 +304,6 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin (~> 1.0.0.pre1)
-  appsignal (~> 0.12.rc)
   bcrypt (~> 3.1.7)
   byebug
   devise
@@ -276,20 +311,19 @@ DEPENDENCIES
   guard-minitest (= 2.3.1)
   jbuilder (~> 2.0)
   jquery-rails
+  lowdown (~> 0.3.1)
   mini_backtrace (= 0.1.3)
   minitest-reporters (= 1.0.5)
   omniauth (~> 1.2.2)
   paperclip (~> 4.3)
   pg
+  que (~> 0.11.4)
+  que-web (~> 0.4.0)
   rails (= 4.2.3)
   ruby_rncryptor (~> 3.0.0)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
-  spring
   therubyracer
   turbolinks
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
-
-BUNDLED WITH
-   1.11.2

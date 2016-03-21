@@ -1,7 +1,11 @@
+require 'que/web'
+
 Rails.application.routes.draw do
     devise_for :admin_users, ActiveAdmin::Devise.config
     devise_for :users
     ActiveAdmin.routes(self)
+
+    mount Que::Web => '/que'
 
     namespace :api do
         namespace :v0 do

@@ -2,41 +2,52 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.3'
 gem 'pg'
+
+# assets
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-gem 'therubyracer', platforms: :ruby
-
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
-gem 'sdoc', '~> 0.4.0', group: :doc
 
-# Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.7'
+# uploads
+gem 'paperclip', '~> 4.3'
 
+# admin
 gem 'activeadmin', '~> 1.0.0.pre1'
+
+# permissions
 gem 'devise'
 gem 'draper', '~> 1.3'
 gem 'omniauth', '~> 1.2.2'
+
+# security
 gem 'ruby_rncryptor', '~> 3.0.0'
+gem 'bcrypt', '~> 3.1.7'
 
-gem 'appsignal', '~> 0.12.rc'
+# queue
+gem 'que', '~> 0.11.4'
+gem 'que-web', '~> 0.4.0'
+gem 'lowdown', '~> 0.3.1'
 
-gem "paperclip", "~> 4.3"
+#gem 'appsignal', '~> 0.12.rc'
+
+group :doc do
+    gem 'sdoc', '~> 0.4.0'
+end
 
 group :development, :test do
-    # Call 'byebug' anywhere in the code to stop execution and get a debugger console
     gem 'byebug'
-
-    # Access an IRB console on exception pages or by using <%= console %> in views
     gem 'web-console', '~> 2.0'
-
-    # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-    gem 'spring'
+    #gem 'spring' # until #696 is fixed: https://github.com/celluloid/celluloid/issues/696
 end
 
 group :test do
-  gem 'minitest-reporters', '1.0.5'
-  gem 'mini_backtrace',     '0.1.3'
-  gem 'guard-minitest',     '2.3.1'
+    gem 'minitest-reporters', '1.0.5'
+    gem 'mini_backtrace',     '0.1.3'
+    gem 'guard-minitest',     '2.3.1'
+end
+
+group :production do
+    gem 'therubyracer', platforms: :ruby
 end
