@@ -21,14 +21,17 @@ class RsvpsController < ApplicationController
     @rsvps = Rsvp.find(params[:id])
   end
 
-  def csv
-    lines = ["name, email, inviter, created_at"]
 
-    Rsvp.all.each do |rsvp|
-      lines << "#{rsvp.name}, #{rsvp.email}, #{rsvp.inviter}, #{rsvp.created_at}"
+  def csv
+    csv_string = CSV.generate do |csv|
+      csv << Rsvp.attribute_names
+      Rsvp.all.each do |rsvp|
+        csv << rsvp.attributes.values
+      end
     end
 
-    render text: lines.join("\n")
+    render body: csv_string
+
   end
 
 end
