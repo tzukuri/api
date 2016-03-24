@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160311012125) do
+ActiveRecord::Schema.define(version: 20160324031130) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,6 +114,7 @@ ActiveRecord::Schema.define(version: 20160311012125) do
     t.integer  "coords_set_by_auth_token_id"
     t.integer  "coords_set_at"
     t.integer  "state_set_at"
+    t.boolean  "optical"
   end
 
   add_index "devices", ["serial"], name: "index_devices_on_serial", unique: true, using: :btree

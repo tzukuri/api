@@ -5,6 +5,7 @@ json.device do
     json.serial @device.serial
     json.design @device.design
     json.colour @device.colour
+    json.optical @device.optical
     
     # device parameters
     json.params do
