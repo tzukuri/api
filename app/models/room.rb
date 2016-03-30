@@ -3,7 +3,9 @@ class Room < ActiveRecord::Base
   belongs_to :quietzone
 
   # validations
-  validates :name,             presence: true
+  validates :name,             presence: true,
+                                uniqueness: { scope: :quietzone, message: 'room names should be unique for each quietzone'}
+
   validates :quietzone_id,     presence: true
 
 end
