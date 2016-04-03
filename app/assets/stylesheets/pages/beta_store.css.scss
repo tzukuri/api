@@ -37,7 +37,7 @@ html.beta_store {
     margin-top: 75px;
 
     #logo {
-      height: 50px;
+      height: 65px;
     }
 
     #tzukuri {
@@ -46,7 +46,7 @@ html.beta_store {
     }
 
     #subheading {
-      font-size: 22pt;
+      font-size: 28pt;
       font-weight: 100;
       letter-spacing: 0.5pt;
       color: #999;
@@ -90,18 +90,18 @@ html.beta_store {
 
       // type selection
       &#select-type {
-        padding-top: 150px;
+        padding-top: 200px;
 
         .type-button {
           margin-left: auto;
           margin-right: auto;
-          width: 270px;
-          height: 75px;
+          width: 400px;
+          height: 125px;
           text-align: center;
           border: 1px solid #5AA4E8;
           border-radius: 100pt;
           color: #5AA4E8;
-          font-size: 20pt;
+          font-size: 26pt;
           font-weight: 100;
           letter-spacing: 0pt;
         }
@@ -119,7 +119,7 @@ html.beta_store {
 
           li {
             img.select-model-image {
-              width: 400px;
+              width: 600px;
             }
             #model-header {
               font-size: 11pt;
@@ -143,7 +143,7 @@ html.beta_store {
 
           li {
             img.select-colour-image {
-              width: 400px;
+              width: 600px;
             }
             #colour-header {
               font-size: 11pt;
@@ -157,24 +157,25 @@ html.beta_store {
 
       // size selection
       &#select-size {
-        padding-top: 50px;
+        padding-top: 100px;
         padding-left: 350px;
         padding-right: 350px;
 
         #sizes {
           display: flex;
           text-align: center;
+          margin-left:150px;
 
           li {
             &#small-size {
               margin-right: 100px;
               img {
-                height: 300px;
+                height: 430px;
               }
             }
 
             &#large-size img {
-              height: 350px;
+              height: 500px;
             }
 
             p {
@@ -193,8 +194,8 @@ html.beta_store {
 
       &#enter-details {
 
-        padding-left: 100px;
-        padding-right: 100px;
+        padding-left: 200px;
+        padding-right: 200px;
         padding-top: 75px;
         display: flex;
 
@@ -229,7 +230,7 @@ html.beta_store {
                 background-color: #eee;
                 color: #333;
                 font-size: 13px;
-                height: 32px;
+                height: 44px;
                 padding: 4px 8px;
                 outline: none;
                 border: none;
@@ -251,12 +252,12 @@ html.beta_store {
           flex: 1;
           margin-left: 50px;
           img {
-            width: 450px;
+            width: 600px;
           }
 
           #glasses-details {
             position: absolute;
-            right: 0px;
+            right: 100px;
             width: 200px;
 
             dt, dd {
