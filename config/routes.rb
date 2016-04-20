@@ -48,6 +48,4 @@ Rails.application.routes.draw do
     end
 
     get '*page', to: 'pages#index'
-    # get 'privacy', to: 'privacy#index'
-    # get 'terms', to: 'terms#index'
 end
