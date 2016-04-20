@@ -131,8 +131,29 @@
                 <p>These Terms, whether interpreted in a court of law or in arbitration, shall be governed by the laws of the State of New South Wales (NSW), Australia and the NSW Fair Trading laws as they apply to agreements entered into by those from NSW, and without regard to conflict of law principles. To the extent that any lawsuit or court proceeding is permitted hereunder, you and Tzukuri agree to submit to the personal and exclusive jurisdiction of the state courts and federal courts located within the district of NSW for the purpose of litigating all such claims or disputes. These Terms (including the various additional terms incorporated herein by reference) constitute the entire agreement between you and Tzukuri, and supersedes any and all prior agreements, negotiations, or other communications between you and Tzukuri, whether oral or written, with respect to the subject matter hereof, and, except as expressly provided herein, cannot be modified except in writing signed by both parties. In the event that any provision of these Terms is held to be invalid or unenforceable, then: (a) such provision shall be deemed reformed to the extent strictly necessary to render such provision valid and enforceable, or if not capable of such reformation shall be deemed severed from these Terms; and (b) the validity and enforceability of all of the other provisions hereof, shall in no way be affected or impaired thereby. You agree to abide by all applicable laws in your use of the Service, including export control laws and similar regulations governing the transfer of software and other technology outside of the Australia or other jurisdictions. You may not assign these Terms without the prior written consent of Tzukuri, whether expressly or by operation of law, including in connection with a merger or change of control, and any such attempted assignment shall be void and of no effect. Tzukuri may assign these Terms without restriction. Subject to the foregoing, these Terms shall be binding on the parties and their respective successors and permitted assigns. You acknowledge and understand that if Tzukuri is unable to provide the Service as a result of a force majeure event Tzukuri will not be in breach of these Terms. A force majeure event means any event beyond the control of Tzukuri. The failure to exercise, or delay in exercising, a right, power or remedy provided in these Terms or by law shall not constitute a waiver of that right, power or remedy. Tzukuri’s waiver of any obligation or breach of these Terms shall not operate as a waiver of any other obligation or subsequent breach of these Terms.
                 </p>
 
+              <!-- if the repond param is present, show buttons for accepting and rejecting -->
+              <% if params["respond"] == "true" %>
+                  <center>
+                    <button id="accept-terms">accept</button>
+                    <button id="reject-terms">reject</button>
+                  </center>
+              <%end%>
+
                 <%= render partial: 'footer' %>
             </div>
         </div>
     </article>
 </main>
+
+<script>
+  $("#accept-terms").click(function() {
+    // redirect, this will be caught by the app to handle and accept state
+    window.location.href = 'tzukuri://terms-accept';
+  });
+
+  $("#reject-terms").click(function() {
+    // redirect, this will be caught by the app to handle a reject state
+    window.location.href = 'tzukuri://terms-reject';
+  });
+</script>
+

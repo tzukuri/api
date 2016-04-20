@@ -6,8 +6,29 @@
 
         <p>PLACEHOLDER FOR TZUKURI PRIVACY POLICY</p>
 
+        <!-- if the repond param is present, show buttons for accepting and rejecting -->
+        <% if params["respond"] == "true" %>
+            <center>
+              <button id="accept-privacy">accept</button>
+              <button id="reject-privacy">reject</button>
+            </center>
+        <%end%>
+
         <%= render partial: 'footer' %>
+
       </div>
     </div>
   </article>
 </main>
+
+<script>
+  $("#accept-privacy").click(function() {
+    // redirect, this will be caught by the app to handle and accept state
+    window.location.href = 'tzukuri://privacy-accept';
+  });
+
+  $("#reject-privacy").click(function() {
+    // redirect, this will be caught by the app to handle a reject state
+    window.location.href = 'tzukuri://privacy-reject';
+  });
+</script>
