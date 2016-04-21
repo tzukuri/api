@@ -3,6 +3,10 @@ Rails.application.routes.draw do
     devise_for :users
     ActiveAdmin.routes(self)
 
+    get '*page', to: 'pages#index'
+    # get 'privacy', to: 'privacy#index'
+    # get 'terms', to: 'terms#index'
+
     namespace :api do
         namespace :v0 do
             namespace :app_params do

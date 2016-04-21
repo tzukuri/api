@@ -1,0 +1,107 @@
+#blur-content > header {
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    z-index: 20;
+
+    padding-top: $header-padding-top;
+    padding-bottom: $header-padding-bottom;
+    line-height: $header-height;
+    height: $header-height;
+    z-index: 10;
+
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    background: rgba(255, 255, 255, 0.97255);
+
+    div {
+        max-width: 960px;
+        margin: 0px auto;
+        position: relative;
+        @include box-sizing(border-box);
+        padding-left: $horz-padding;
+        padding-right: $horz-padding;
+    }
+
+    h1 {
+        line-height: $header-height;
+
+        > a {
+            height: 25px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+
+    #hamburger {
+        display: none;
+    }
+
+    menu {
+        float: right;
+        margin-top: -$header-height;
+
+        nav {
+            text-align: middle;
+            display: inline-block;
+
+            a {
+                font-size: 12px;
+                letter-spacing: 1px;
+                color: #aaa;
+                text-transform: lowercase;
+                display: inline-block;
+                margin-right: 20px;
+                margin-left: 20px;
+
+                &.selected {
+                    color: #777;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: $menu-width-cutoff) {
+    #blur-content > header {
+        #hamburger {
+            position: absolute;
+            right: 20px;
+            top: 12px;
+            display: block;
+            color: #555;
+            font-size: 16px;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+
+        menu {
+            position: fixed;
+            margin-top: 0px;
+            background-color: rgba(230, 230, 230, 0.99);
+            top: $header-height + $header-padding-top + $header-padding-bottom + 1px;
+            right: -220px;
+            bottom: 0px;
+            width: 200px;
+            padding: 20px 10px;
+            @include single-transition(right, 0.5s);
+
+            &.showing {
+                right: 0px;
+            }
+
+            nav a {
+                font-size: 16px;
+                display: block;
+            }
+
+            button {
+                margin-left: 50px;
+                margin-top: 40px;
+            }
+        }
+    }
+}
+
