@@ -17,10 +17,24 @@ class User < ActiveRecord::Base
     validates :name, presence: true, length: { minimum: 2 }
     validates :email, uniqueness: true
 
-    after_update do |record|
-        record.auth_tokens.each do |token|
-            # TODO: track when this fails and continue on other tokens
-            token.update!(:email, record.email)
+    # override lockable.lock_access
+    def lock_access!(opts = {})
+        super(opts)
+        # destroy all auth tokens
+        self.auth_tokens.destroy_all
+    end
+
+    after_update do |user|
+        # if password was changed, destroy all auth tokens
+        if user.changes["encrypted_password"]
+            user.auth_tokens.destroy_all
+        end
+
+        # if email was changed, update all associated tokens with the new email
+        if user.changes["email"]
+            user.auth_tokens.each do |token|
+                token.update!(:email, user.email)
+            end
         end
     end
 end

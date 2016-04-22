@@ -20,6 +20,9 @@ class Api::V0::AuthTokensController < Api::ApiController
         @user = User.find_by_email(email)
         render_error(:unknown_email, status: 404) if @user.nil?
 
+        # return an error if this account is locked
+        render_error(:account_locked, status: 423) if @user.access_locked?
+
         # confirm credentials
         render_error(:invalid_password) unless @user.valid_password?(params[:password])
 
@@ -31,8 +34,8 @@ class Api::V0::AuthTokensController < Api::ApiController
         else
             @api_device = ApiDevice.create!(token_id: api_device_token_id)
         end
-        
-        # generate a new token        
+
+        # generate a new token
         @token = AuthToken.create_for!(user: @user, app: @app, api_device: @api_device)
     end
 

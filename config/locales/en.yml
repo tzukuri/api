@@ -2,6 +2,7 @@ en:
     not_owner: "This device is not linked to this account."
     unknown_email: "No account with this email address exists."
     invalid_password: "No account with this email and password exists."
+    account_locked: "Account has been locked due to an excessive number of unsuccessful sign in attempts."
     unknown_app: "No app with this ID exists."
     unknown_error: "An unknown error occurred. Please try again later."
     invalid_token: "This email and auth token pair are invalid."
