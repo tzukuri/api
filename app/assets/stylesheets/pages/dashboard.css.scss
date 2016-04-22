@@ -1,88 +1,105 @@
-    html.dashboard {
+html.dashboard {
+    background-color:black;
+    font-family: HelveticaNeueLT, Helvetica, sans-serif;
 
-        background-color:black;
-        font-family: HelveticaNeueLT, Helvetica, sans-serif;
+    #main-map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        z-index: -1;
+        &.blur {
+            opacity: 0.5;
+            -webkit-filter: blur(4px);
+        }
+    }
 
-        #main-map {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 100%;
-            z-index: -1;
-            &.blur {
-                opacity: 0.5;
-                -webkit-filter: blur(5px);
+    #user-info {
+        background-color:white;
+        width: 300px;
+        margin-left: 20px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 20px;
+        color: black;
+
+        ul {
+            li {
+                padding-top: 10px;
             }
         }
-
-        #login-container {
-            width: 500px;
-            height: 400px;
-
-            position:absolute; /*it can be fixed too*/
-            left:0; right:0;
-            top:0; bottom:0;
-            margin:auto;
-
-            margin-top: 200px;
-
-            /*this to solve "the content will not be cut when the window is smaller than the content": */
-            max-width:100%;
-            max-height:100%;
-            overflow:auto;
-            border-radius: 15px;
-            text-align:center;
-
-            h1 {
-                color: white;
-                font-size: 42pt;
-                margin-bottom: 50px;
-                font-weight: 100;
-            }
-
-            ::-webkit-input-placeholder {
-               color: rgba(255, 255, 255, 0.3);
-            }
-
-
-            input {
-                width: 80%;
-                height: 40px;
-                display: block;
-                margin-left: auto;
-                margin-right: auto;
-                border-radius: 5px;
-                border: none;
-                background-color: rgba(255, 255, 255, 0.1);
-                color: white;
-                font-size: 14pt;
-                outline: none;
-                border: 0.5px solid #4B5054;
-                padding-left: 10px;
-                font-weight:200;
-
-                &#user_email {
-                    border-bottom-left-radius: 0px;
-                    border-bottom-right-radius: 0px;
-                }
-
-                &#user_password {
-                    border-top-left-radius: 0px;
-                    border-top-right-radius: 0px;
-                }
-
-                &#sign_in {
-                    color: rgb(61, 150, 251);
-                    background-color: rgba(255, 255, 255, 0);
-                    border: none;
-                }
-            }
-
-                a {
-                    font-size: 10pt;
-                }
-        }
-
-
 
     }
+
+    #login-container {
+        width: 500px;
+        height: 400px;
+        position:absolute;
+        left:0;
+        right:0;
+        top:0;
+        bottom:0;
+        margin:auto;
+        margin-top: 200px;
+        max-width:100%;
+        max-height:100%;
+        overflow:auto;
+        border-radius: 15px;
+        text-align:center;
+
+        #tzukuri-head {
+            color: white;
+            font-size: 42pt;
+            margin-bottom: 50px;
+            font-weight: 100;
+        }
+
+        input {
+            width: 80%;
+            height: 40px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 5px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 10pt;
+            outline: none;
+            border: 0.5px solid #4B5054;
+            padding-left: 10px;
+            font-weight:200;
+
+            &#user_email {
+                border-bottom-left-radius: 0px;
+                border-bottom-right-radius: 0px;
+            }
+
+            &#user_password {
+                border-top-left-radius: 0px;
+                border-top-right-radius: 0px;
+            }
+
+            &#sign_in {
+                color: rgb(61, 150, 251);
+                background-color: rgba(255, 255, 255, 0);
+                border: 0.8px solid rgb(61, 150, 251);
+                border-radius: 20px;
+                font-size: 16pt;
+                width: 200px;
+                margin-top: 20px;
+                cursor: pointer;
+            }
+        }
+
+        ::-webkit-input-placeholder {
+           color: rgba(255, 255, 255, 0.3);
+        }
+
+        #forgot_password {
+            font-size: 10pt;
+            text-decoration: none;
+        }
+    }
+}

@@ -1,41 +1,44 @@
+  <!-- if the user is authenticated, display the regular dashboard -->
+  <% if user_signed_in? %>
+    <div id="user-info">
+      <%= current_user.email %>
+      <ul>
+        <li>Design: <%= current_user.devices.first.design %> </li>
+        <li>Colour: <%= current_user.devices.first.colour %></li>
+        <li>Latitude: <%= current_user.devices.first.latitude %></li>
+        <li>Longitude: <%= current_user.devices.first.longitude %></li>
+      </ul>
 
-    <!-- if the user is authenticated, display the regular dashboard -->
-    <% if user_signed_in? %>
-      <div style="background-color:white; width: 300px; height: 100px; z-index:9999">
-        Signed in as: <%= current_user.email %>
+      <br/>
+      <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
+    </div>
+
+  <!-- otherwise, display the login overlay -->
+  <% else %>
+    <div id="login-container">
+      <h1 id="tzukuri-head">T Z U K U R I</h1>
+      <%= form_for(:user, :url => session_path(:user)) do |f| %>
+        <%= f.text_field :email, :placeholder => "email address" %>
+        <%= f.password_field :password, :placeholder => "password" %>
         <br/>
-        <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
-      </div>
-    <!-- otherwise, display the login overlay -->
-    <% else %>
-      <div id="login-container">
-        <h1>T Z U K U R I</h1>
+          <%= f.submit 'sign in', :id => "sign_in" %>
+        <br/><br/>
+        <%= link_to "Forgot your password?", new_password_path(:user), :id => 'forgot_password' %>
+      <% end %>
+    </div>
+  <% end %>
 
-        <%= form_for(:user, :url => session_path(:user)) do |f| %>
-          <%= f.text_field :email, :placeholder => "email address" %>
-          <%= f.password_field :password, :placeholder => "password" %>
-          <br/>
-            <%= f.submit 'Sign in', :id => "sign_in" %>
-          <br/><br/>
-          <%= link_to "Forgot your password?", new_password_path(:user) %>
-        <% end %>
-      </div>
-    <% end %>
+<div id="main-map" class="<%= 'blur' if !user_signed_in? %>"></div>
 
-  <div id="main-map" class="<%= 'blur' if !user_signed_in? %>"></div>
+<script>
+  L.mapbox.accessToken = 'pk.eyJ1Ijoic2FtdHp1a3VyaSIsImEiOiJjaW45cW9qc2QwYzNndHFsd2g4czRpM3ExIn0.BnJfjpwRj2E1cF2bqD42Xw';
+  var map = L.mapbox.map('main-map', '', {zoomControl: false}).setView([-33.852222, 151.210556], 15);
+  L.mapbox.styleLayer('mapbox://styles/samtzukuri/cin9rek1k00dhbckvr9fezhpl').addTo(map);
 
-  <script>
-    L.mapbox.accessToken = 'pk.eyJ1Ijoic2FtdHp1a3VyaSIsImEiOiJjaW45cW9qc2QwYzNndHFsd2g4czRpM3ExIn0.BnJfjpwRj2E1cF2bqD42Xw';
-    var map = L.mapbox.map('main-map', '', {
-  zoomControl: false
-}).setView([-33.758682, 151.103679], 15)
-    L.mapbox.styleLayer('mapbox://styles/samtzukuri/cin9rek1k00dhbckvr9fezhpl').addTo(map);
-
-// Disable drag and zoom handlers.
-map.dragging.disable();
-map.touchZoom.disable();
-map.doubleClickZoom.disable();
-map.scrollWheelZoom.disable();
-map.keyboard.disable();
-
-  </script>
+  // disable drag and zoom handlers
+  map.dragging.disable();
+  map.touchZoom.disable();
+  map.doubleClickZoom.disable();
+  map.scrollWheelZoom.disable();
+  map.keyboard.disable();
+</script>
