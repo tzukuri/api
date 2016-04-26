@@ -1,4 +1,4 @@
-html.dashboard {
+html.sessions {
     background-color:black;
     font-family: HelveticaNeueLT, Helvetica, sans-serif;
 
@@ -8,51 +8,37 @@ html.dashboard {
         bottom: 0;
         width: 100%;
         z-index: -1;
-        &.blur {
-            opacity: 0.5;
-            -webkit-filter: blur(4px);
-        }
-    }
-
-    #user-info {
-        background-color:white;
-        width: 300px;
-        margin-left: 20px;
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
-        background-color: rgba(255, 255, 255, 0.9);
-        padding: 20px;
-        color: black;
-
-        ul {
-            li {
-                padding-top: 10px;
-            }
-        }
-
+        opacity: 0.8;
+        -webkit-filter: blur(4px);
+        cursor: default;
+        background-color:black;
     }
 
     #login-container {
         width: 500px;
-        height: 400px;
-        position:absolute;
-        left:0;
-        right:0;
-        top:0;
-        bottom:0;
         margin:auto;
-        margin-top: 200px;
+        margin-top: 15%;
         max-width:100%;
         max-height:100%;
         overflow:auto;
-        border-radius: 15px;
         text-align:center;
+
+        #flash_messages {
+            margin-top: 20px;
+            color:#BB3931;
+            font-size: 11pt;
+        }
 
         #tzukuri-head {
             color: white;
-            font-size: 42pt;
+            font-size: 48pt;
             margin-bottom: 50px;
             font-weight: 100;
+        }
+
+        a {
+            font-size:10pt;
+            text-decoration: none;
         }
 
         input {
@@ -65,11 +51,11 @@ html.dashboard {
             border: none;
             background-color: rgba(255, 255, 255, 0.1);
             color: white;
-            font-size: 10pt;
+            font-size: 11pt;
             outline: none;
-            border: 0.5px solid #4B5054;
+            border: 1px solid #4B5054;
             padding-left: 10px;
-            font-weight:200;
+            font-weight:300;
 
             &#user_email {
                 border-bottom-left-radius: 0px;
@@ -84,11 +70,11 @@ html.dashboard {
             &#sign_in {
                 color: rgb(61, 150, 251);
                 background-color: rgba(255, 255, 255, 0);
-                border: 0.8px solid rgb(61, 150, 251);
+                border: 1px solid rgb(61, 150, 251);
                 border-radius: 20px;
                 font-size: 16pt;
                 width: 200px;
-                margin-top: 20px;
+                margin-top: 40px;
                 cursor: pointer;
             }
         }

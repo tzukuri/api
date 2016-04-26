@@ -1,5 +1,6 @@
 @import "compass";
 @import "compass/reset";
+@import "mapbox";
 @import "helvetica";
 
 @import "common";
@@ -7,4 +8,6 @@
 
 @import "pages/privacy";
 @import "pages/terms";
-@import "pages/dashboard"
+@import "dashboard";
+
+@import "devise/sessions/new";

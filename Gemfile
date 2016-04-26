@@ -25,6 +25,9 @@ gem 'appsignal', '~> 0.12.rc'
 
 gem "paperclip", "~> 4.3"
 
+# install mapbox rails from this fork, which adds support for mapbox 2.3.0
+gem 'mapbox-rails', :git => 'https://github.com/dkniffin/mapbox-rails'
+
 group :development, :test do
     # Call 'byebug' anywhere in the code to stop execution and get a debugger console
     gem 'byebug'

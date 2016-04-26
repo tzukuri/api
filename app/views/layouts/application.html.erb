@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html class="<%= params[:page] || controller_name %>">
 <head>
-  <title>Api</title>
-<script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
-<link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
+  <title>Tzukuri - <%= params[:page] || controller_name %></title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
