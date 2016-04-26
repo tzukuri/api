@@ -1,4 +1,4 @@
-body.sessions {
+body.passwords {
     background-color:black;
     font-family: HelveticaNeueLT, Helvetica, sans-serif;
 
@@ -13,6 +13,7 @@ body.sessions {
         cursor: default;
         background-color:black;
     }
+
 
     #login-container {
         width: 500px;
@@ -36,6 +37,12 @@ body.sessions {
             font-weight: 100;
         }
 
+        #forgot-password {
+            color:white;
+            font-size:16pt;
+
+        }
+
         a {
             font-size:10pt;
             text-decoration: none;
@@ -57,23 +64,12 @@ body.sessions {
             padding-left: 10px;
             font-weight:300;
 
-            &#user_email {
-                border-bottom-left-radius: 0px;
-                border-bottom-right-radius: 0px;
-            }
-
-            &#user_password {
-                border-top-left-radius: 0px;
-                border-top-right-radius: 0px;
-            }
-
-            &#sign_in {
+            &#password_reset {
                 color: rgb(61, 150, 251);
                 background-color: rgba(255, 255, 255, 0);
                 border: 1px solid rgb(61, 150, 251);
                 border-radius: 20px;
                 font-size: 16pt;
-                width: 200px;
                 margin-top: 40px;
                 cursor: pointer;
             }
@@ -81,11 +77,6 @@ body.sessions {
 
         ::-webkit-input-placeholder {
            color: rgba(255, 255, 255, 0.3);
-        }
-
-        #forgot_password {
-            font-size: 10pt;
-            text-decoration: none;
         }
     }
 }
