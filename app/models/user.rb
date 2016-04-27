@@ -18,11 +18,11 @@ class User < ActiveRecord::Base
     validates :email, uniqueness: true
 
     # override lockable.lock_access
-    def lock_access!(opts = {})
-        super(opts)
-        # destroy all auth tokens
-        self.auth_tokens.destroy_all
-    end
+    # def lock_access!(opts = {})
+    #     super(opts)
+    #     # destroy all auth tokens
+    #     self.auth_tokens.destroy_all
+    # end
 
     after_update do |user|
         # if password was changed, destroy all auth tokens

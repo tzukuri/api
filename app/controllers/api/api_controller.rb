@@ -48,6 +48,9 @@ class Api::ApiController < ApplicationController
         @token = AuthToken.find_by_token(decrypted_token)
         render_error(:invalid_token) if @token.nil? || @token.revoked?
 
+        # return an error if this account is locked
+        render_error(:account_locked, status: 423) if @token.user.access_locked?
+
         # "log the user in" by retrieving the user record
         @user = @token.user
         Appsignal.tag_request(
