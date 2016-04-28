@@ -47,6 +47,6 @@ Rails.application.routes.draw do
         end
     end
 
-    get '*page', to: 'pages#index'
     get '/dashboard', to: 'dashboard#index'
+    get '*page', to: 'pages#index'
 end
