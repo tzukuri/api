@@ -1,0 +1,131 @@
+<main>
+
+  <div id="header">
+    <%= image_tag '/logo.png', id: "logo" %>
+    <br/><br/><br/>
+    <span id="subheading">choose your type of glasses</span>
+  </div>
+
+
+  <!-- contains all the info for the selected type, model, colour and size-->
+  <div id="steps-container" data-type="" data-frame="" data-colour="" data-size="">
+
+    <!-- select the type of glasses (optical vs. sunglasses) -->
+    <div class="select-step" id="select-type">
+      <button class="type-button" id="sunglasses">
+        <p>sun</p>
+      </button>
+      <button class="type-button" id="optical">
+        <p>optical</p>
+      </button>
+    </div>
+
+    <!-- select the model of the glasses (ford vs. ive) -->
+    <div class="select-step" id="select-model" style="display: none">
+      <div class="back">
+        <span class="fa fa-angle-left"></span> back
+      </div>
+
+        <ul id="models">
+          <li id="ford-model">
+            <%= image_tag 'frames/ford-beta/black-front.png', class: 'select-model-image' %>
+            <p id="model-header">FORD</p>
+          </li>
+
+          <li id="ive-model">
+            <%= image_tag 'frames/ive/black-front.png', class: 'select-model-image' %>
+            <p id="model-header">IVE</p>
+          </li>
+        </ul>
+    </div>
+
+    <!-- select the colour of the glasses -->
+    <div class="select-step" id="select-colour" style="display:none">
+      <div class="back">
+        <span class="fa fa-angle-left"></span> back
+      </div>
+
+      <ul id="colours">
+        <li id="black-colour">
+          <%= image_tag 'frames/ford-beta/black-front.png', class: 'select-colour-image' %>
+          <p id="colour-header">BLACK</p>
+        </li>
+
+        <li id="tortoise-colour">
+          <%= image_tag 'frames/ford-beta/tortoise-front.png', class: 'select-colour-image' %>
+          <p id="colour-header">TORTOISE SHELL</p>
+        </li>
+      </ul>
+    </div>
+
+    <!-- select the size of the glasses -->
+    <div class="select-step" id="select-size" style="display:none">
+      <div class="back">
+        <span class="fa fa-angle-left"></span> back
+      </div>
+
+      <ul id="sizes">
+        <li id="small-size">
+          <%= image_tag 'size.png' %>
+          <p id="size-header">48 mm</p>
+        </li>
+
+        <li id="large-size">
+          <%= image_tag 'size.png' %>
+          <p id="size-header">50.5 mm</p>
+        </li>
+      </ul>
+    </div>
+
+    <div class="select-step" id="enter-details" style="display: none">
+
+      <div class="back">
+        <span class="fa fa-angle-left"></span> back
+      </div>
+
+      <div id="form-container">
+        <form id="details-form">
+            <p><input type="text" name="name" placeholder="full name" id="name"></p>
+            <p><input type="email" name="email" placeholder="email" id="email"></p>
+            <p><input type="text" name="address1" placeholder="address line 1" id="address1"></p>
+            <p><input type="text" name="address2" placeholder="address line 2" id="address2"></p>
+            <p><input type="text" name="state" placeholder="state" id="state"></p>
+            <p><input type="text" name="postcode" placeholder="postcode / zip" id="postcode"></p>
+            <p><input type="text" name="country" placeholder="country" id="country"></p>
+
+          <div id="submit">
+            <button type="submit">reserve</button>
+            <div id="details-message"></div>
+          </div>
+        </form>
+      </div>
+
+      <div id="glasses-preview">
+        <%= image_tag 'frames/ive/black-front.png', id: 'glasses-preview-image' %>
+
+          <dl id="glasses-details">
+            <dt>Type</dt>
+            <dd id="type">sunglasses</dd>
+            <dt>Frame</dt>
+            <dd id="frame">ford</dd>
+            <dt>Colour</dt>
+            <dd id="colour">black</dd>
+            <dt>Size</dt>
+            <dd id="size">medium</dd>
+          </dl>
+        </div>
+    </div>
+
+    <div class="select-step" id="complete" style="display: none">
+      <span id="thank-you">Thank you for reserving your Tzukuris!</span>
+      <br/><br/>
+      <p id="thank-you-subheading">We hope you are as excited as we are that you'll be one of the first in the world to own a pair of unloseable sunglasses in May.</p>
+      <br/><br/>
+      <button>done</button>
+    </div>
+
+  </div>
+
+  <div id="progress" class="step-1"></div>
+
+</main>

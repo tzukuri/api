@@ -21,7 +21,6 @@ class RsvpsController < ApplicationController
     @rsvps = Rsvp.find(params[:id])
   end
 
-
   def csv
     csv_string = CSV.generate do |csv|
       csv << Rsvp.attribute_names
@@ -31,7 +30,6 @@ class RsvpsController < ApplicationController
     end
 
     render body: csv_string
-
   end
 
 end

@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
-  resources :beta_signups
+    resources :beta_signups
 
-    resources :beta_reservations
+    resources :betareservations do
+      collection do
+        get :csv
+      end
+    end
 
     resources :purchases do
         collection do
