@@ -13,7 +13,7 @@ gem 'font-awesome-rails'
 gem 'httparty'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
-group :development, :test do
+group :development do
     gem 'byebug'
     gem 'web-console', '~> 2.0'
     gem 'spring'
@@ -21,5 +21,9 @@ end
 
 group :production do
     gem 'therubyracer', platforms: :ruby
+end
+
+group :test do
+
 end
 

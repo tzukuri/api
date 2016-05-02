@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :beta_signups
+
     resources :beta_reservations
 
     resources :purchases do
