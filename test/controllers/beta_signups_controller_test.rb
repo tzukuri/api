@@ -1,7 +1,9 @@
 require 'test_helper'
 
 class BetaSignupsControllerTest < ActionController::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+
+  def create
+    puts "CREATING SIGNUP"
+  end
+
 end
