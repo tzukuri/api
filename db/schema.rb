@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160502062454) do
+ActiveRecord::Schema.define(version: 20160503041538) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,10 @@ ActiveRecord::Schema.define(version: 20160502062454) do
     t.string   "invite_code"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "score",         default: 0
   end
+
+  add_index "beta_signups", ["invite_code"], name: "index_beta_signups_on_invite_code", using: :btree
 
   create_table "betareservations", force: true do |t|
     t.string   "name"

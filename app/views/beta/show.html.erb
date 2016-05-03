@@ -1,0 +1,16 @@
+<!-- used the view stats about a person who has already signed up -->
+<main>
+  <article>
+
+    <% if @beta_signup %>
+        <ul>
+          <li>email address: <%= @beta_signup.email %></li>
+          <li>score: <%= @beta_signup.score %></li>
+          <li>rank: <%= @rank %></li>
+        </ul>
+    <% else %>
+      <p>invalid invite code</p>
+    <% end %>
+
+  </article>
+</main>

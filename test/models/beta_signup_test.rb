@@ -33,15 +33,20 @@ class BetaSignupTest < ActiveSupport::TestCase
     @signup1.email = "invalid@email"
     @signup1.save
 
-    assert !@signup1.valid?
+    assert @signup1.invalid?
     assert @signup2.valid?
+  end
+
+  test "does validate unique email" do
+    dup_email_signup = BetaSignup.create(email: "test1@tzukuri.com", country: "Australia")
+    assert dup_email_signup.invalid?
   end
 
   test "does validate country presence" do
     @signup1.country = ""
     @signup1.save
 
-    assert !@signup1.valid?
+    assert @signup1.invalid?
     assert @signup2.valid?
   end
 
@@ -57,19 +62,24 @@ class BetaSignupTest < ActiveSupport::TestCase
   # relationship tests
   # ----------------------
   test "does set invited_by" do
-    @signup2.invited_by = @signup1
-    @signup2.save
+    @signup1.invite(@signup2)
     assert @signup2.invited_by == @signup1
   end
 
   test "does set invitees" do
-    @signup2.invited_by = @signup1
-    @signup3.invited_by = @signup1
-
-    @signup2.save
-    @signup3.save
-
+    @signup1.invite(@signup2)
+    @signup1.invite(@signup3)
     assert @signup1.invitees.count == 2
   end
+
+  test "does set score" do
+    @signup1.invite(@signup2)
+    @signup1.invite(@signup3)
+
+    assert @signup1.score == 2
+    assert @signup2.score == 1
+    assert @signup3.score == 1
+  end
+
 
 end

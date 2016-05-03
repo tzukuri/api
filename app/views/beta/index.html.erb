@@ -1,0 +1,15 @@
+<!-- used to join the beta program -->
+<main>
+  <article>
+
+    <% if @invite_code %>
+        <ul>
+          <li>invite code: <%= @invite_code %></li>
+          <li>You've been invited by: <%= @invited_by.email %></li>
+        </ul>
+    <% else %>
+      <p>no invite code provided</p>
+    <% end %>
+
+  </article>
+</main>

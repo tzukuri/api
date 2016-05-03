@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-    resources :beta_signups
+    resources :beta, param: :invite_code
 
     resources :betareservations do
       collection do
@@ -26,4 +26,5 @@ Rails.application.routes.draw do
 
     get '*page', to: 'pages#index'
     root 'pages#index', page: 'index'
+
 end
