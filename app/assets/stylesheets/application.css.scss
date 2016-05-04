@@ -2,6 +2,7 @@
 @import "compass/reset";
 @import "font-awesome";
 @import "helvetica";
+@import "skeleton";
 
 @import "common";
 @import "header";
@@ -21,3 +22,6 @@
 @import "pages/privacy";
 @import "pages/gallery";
 @import "pages/event";
+
+@import "beta/index";
+@import "beta/show";

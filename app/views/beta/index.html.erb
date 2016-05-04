@@ -1,15 +1,57 @@
 <!-- used to join the beta program -->
 <main>
-  <article>
+<article>
 
-    <% if @invite_code %>
+  <div class="container">
+
+      <!-- show a message saying they have been invited by someone -->
+      <% if @invited_by %>
         <ul>
           <li>invite code: <%= @invite_code %></li>
           <li>You've been invited by: <%= @invited_by.email %></li>
         </ul>
-    <% else %>
-      <p>no invite code provided</p>
-    <% end %>
 
-  </article>
+      <!-- show a message saying that the invite code is not valid -->
+      <% elsif @invite_code %>
+        invite code is invalid
+      <% end %>
+
+      <!-- show the signup form -->
+        <div id="signup-container">
+          <%= form_for @beta_signup, :url => beta_signups_path, :html => { :method => :post}, remote: true do |f| %>
+            <%= f.email_field :email, placeholder: "email address" %> <br/>
+            <%= f.text_field :country, placeholder: "country" %><br/>
+            <% if @invited_by %>
+              <%= f.hidden_field :invited_by, value:@invited_by.invite_code%><br/>
+            <% end %>
+            <%= f.submit "sign up"%>
+          <% end %>
+        </div>
+
+      </div>
+
+    </article>
+
 </main>
+
+
+
+<script>
+  $(document).ready(function(){
+
+    // hook for new_beta_signup form
+    $('#new_beta_signup').on('ajax:success', function(e, data, status, xhr) {
+      if (data.success) {
+        //  redirect to the page for this signup
+        window.location.replace("/beta/" + data.beta_signup.invite_code);
+      } else {
+        // todo: render errors on the form
+      }
+
+    }).on('ajax:error',function(e, xhr, status, error) {
+      // todo: handle an error (probably a 500)
+    });
+
+
+  });
+</script>

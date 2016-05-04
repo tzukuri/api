@@ -1,0 +1,45 @@
+html.beta {
+
+  font-family: "Helvetica Neue", sans-serif;
+
+  .background {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    .image {
+      width:100%;
+      height:100%;
+    }
+  }
+
+  #signup-container {
+    #signup-content {
+
+      #tzukuri {
+        font-size: 38pt;
+        font-weight: 100;
+        #beta {
+          font-weight: 200;
+          padding-left:10px;
+          font-size: 32pt;
+        }
+
+      }
+
+    }
+
+    #signup-hero {
+      // background-color:blue;
+    }
+
+    #marketing-content {
+      margin-top:20px;
+      font-size:16pt;
+      line-height: 32pt;
+    }
+
+  }
+
+}

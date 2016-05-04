@@ -2,12 +2,15 @@
 <main>
   <article>
 
+    <!-- VIEW SIGNUP DETAILS [SUCCESS STATE] -->
     <% if @beta_signup %>
         <ul>
           <li>email address: <%= @beta_signup.email %></li>
           <li>score: <%= @beta_signup.score %></li>
           <li>rank: <%= @rank %></li>
         </ul>
+
+    <!-- INVALID INVITE CODE [ERROR STATE] -->
     <% else %>
       <p>invalid invite code</p>
     <% end %>
