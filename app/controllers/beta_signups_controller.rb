@@ -1,8 +1,6 @@
 class BetaSignupsController < ApplicationController
 
   def create
-    puts params
-
     if params[:beta_signup][:email].empty? || params[:beta_signup][:country].empty?
       render json: {success: false, reason: "One or more fields is empty"}
       return
