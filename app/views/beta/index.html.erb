@@ -1,57 +1,102 @@
 <!-- used to join the beta program -->
 <main>
-<article>
+<article id="beta-index">
 
   <div class="container">
-
       <!-- show a message saying they have been invited by someone -->
       <% if @invited_by %>
-        <ul>
-          <li>invite code: <%= @invite_code %></li>
-          <li>You've been invited by: <%= @invited_by.email %></li>
-        </ul>
+        <div id="welcome-head">
+          <h1>T Z U K U R I <span id="beta">[beta]</span></h1>
+          <h2>Welcome, you've been invited by <span class="strong"><%= @invited_by.email %></span></h2>
+        </div>
 
-      <!-- show a message saying that the invite code is not valid -->
-      <% elsif @invite_code %>
-        invite code is invalid
-      <% end %>
-
-      <!-- show the signup form -->
-        <div id="signup-container">
+        <!-- show the signup form -->
+        <div id="signup-form-container">
           <%= form_for @beta_signup, :url => beta_signups_path, :html => { :method => :post}, remote: true do |f| %>
-            <%= f.email_field :email, placeholder: "email address" %> <br/>
-            <%= f.text_field :country, placeholder: "country" %><br/>
+            <%= f.email_field :email, placeholder: "email address", autofocus: true %>
+            <%= f.country_select :country, priority_countries: ["AU", "US", "CN", "GB"] %>
+
             <% if @invited_by %>
-              <%= f.hidden_field :invited_by, value:@invited_by.invite_code%><br/>
+              <%= f.hidden_field :invited_by, value:@invited_by.invite_code%>
             <% end %>
-            <%= f.submit "sign up"%>
+
+            <div id="form-errors"></div>
+
+            <br/>
+            <%= f.submit "register", id: "submit-btn"%>
           <% end %>
         </div>
 
-      </div>
+        <div id="faq-link">
+          <a href="#">Want to know more? Read our FAQ</a>
+        </div>
 
-    </article>
+      <% else %>
+          <div id="invalid-invite">
+          <% if @invite_code %> The invite code you provided is invalid, please try again with a different code. <% end %>
+          </div>
 
+        <!-- beta promotion page indicating how people can join -->
+        <div class="row">
+          <div class="six columns" id="beta-content">
+            <h1> T Z U K U R I <span id="beta">[beta]</span></h>
+
+            <!-- <h2>THE WORLD'S FIRST UNLOSEABLE GLASSES ARE ALMOST HERE!</h2> -->
+
+            <p>Later this month, we're shipping out free pairs of glasses to beta testers all over the world. To apple to be a beta tester, you'll have to be invited by someone who is already in our beta program.</p>
+
+            <p>We'll be selecting beta testers based on the number of friends they have invited and their location.</p>
+
+            <div id="faq-link">
+              <a href="#">Want to know more? Read our FAQ</a>
+            </div>
+
+          </div>
+          <div class="six columns" id="beta-hero">
+            <%= image_tag 'frames/ive/black-front.png', class: 'beta-hero-image' %>
+          </div>
+        </div>
+
+      <% end %>
+  </div>
+
+  </article>
 </main>
 
 
 
 <script>
   $(document).ready(function(){
-
     // hook for new_beta_signup form
     $('#new_beta_signup').on('ajax:success', function(e, data, status, xhr) {
       if (data.success) {
         //  redirect to the page for this signup
         window.location.replace("/beta/" + data.beta_signup.invite_code);
       } else {
-        // todo: render errors on the form
+        // handle errors on this form
+        handleErrors(this, data.errors);
       }
 
     }).on('ajax:error',function(e, xhr, status, error) {
       // todo: handle an error (probably a 500)
+      console.log(error)
     });
-
-
   });
+
+  function handleErrors(form, errors) {
+    // make sure all error classes are removed
+    $(form).find(':input').each(function() {
+      $(this).removeClass("error");
+    })
+
+    // empty any existing errors
+    $("#form-errors").html("");
+
+    // highlight form fields & render errors
+    if (errors.email) {
+      $("#form-errors").html("email " + errors.email);
+      $("#beta_signup_email").addClass("error");
+    }
+  }
+
 </script>

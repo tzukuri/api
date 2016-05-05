@@ -4,6 +4,8 @@ class BetaSignup < ActiveRecord::Base
   # before we validate the signup, generate the invite code
   before_validation :generate_invite_code, on: :create
 
+  #todo: on create send an email to the user confirming their registration
+
   # each signup can be invited by at most one person
   belongs_to :invited_by, :class_name => "BetaSignup"
   # each signup can invite 0 or more signups

@@ -1,45 +1,131 @@
 html.beta {
+  #beta-index {
+    margin-top:0px;
+    font-family: "Helvetica Neue", sans-serif;
 
-  font-family: "Helvetica Neue", sans-serif;
+  .container {
+    margin-top:100px;
 
-  .background {
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    .image {
-      width:100%;
-      height:100%;
+    #beta{
+      color: #5AA4E8;
     }
-  }
 
-  #signup-container {
-    #signup-content {
+    text-align:center;
+    font-weight:200;
 
-      #tzukuri {
-        font-size: 38pt;
-        font-weight: 100;
-        #beta {
-          font-weight: 200;
-          padding-left:10px;
-          font-size: 32pt;
+      #invalid-invite {
+        margin-top:40px;
+        color: #CF4339;
+      }
+
+      #beta-content {
+        text-align:left;
+        h1 {
+          font-size:46pt;
+          font-weight: 100;
         }
+        h2 {
+          font-weight: bold;
+          font-size:16pt;
+          margin-top:20px;
+        }
+        p {
+          font-size:15pt;
+          margin-top:40px;
+          margin-bottom:40px;
+          line-height:25pt;
+          font-weight:300;
+          color:gray;
+        }
+      }
 
+      #beta-hero {
+        .beta-hero-image {
+          width:100%;
+        }
+      }
+
+    #faq-link {
+      margin-top:20px;
+      font-size:12pt;
+      font-weight:300;
+      a {
+        text-decoration: none;
+        color: #5AA4E8;
+      }
+    }
+
+    #welcome-head {
+      h1 {
+        font-size:46pt;
+        font-weight:100;
+      }
+      h2 {
+        margin-top:30px;
+        color:gray;
+        font-weight:300;
+        font-size:14pt;
+      }
+    }
+
+    #signup-form-container {
+      margin-top:50px;
+
+      #form-errors {
+        color: #CF4339;
+        margin-top:20px;
+      }
+
+      input {
+        padding:10px;
+        font-size:16pt;
+        width:300px;
+        font-weight: 300;
+        -o-transition:.5s;
+        -ms-transition:.5s;
+        -moz-transition:.5s;
+        -webkit-transition:.5s;
+        transition:.5s;
+        border: 0.5px solid #BFBFBF;
+
+        &.error {
+          border: 0.5px solid #CF4339;
+          color: #CF4339;
+        }
+      }
+      select {
+        border: 0.5px solid #BFBFBF;
+        background:transparent;
+        -webkit-appearance: none;
+        padding:10px;
+        width: 300px;
+        font-size:16pt;
+        border-radius:0;
+        color: #232323;
+        font-weight:300;
+      }
+      #submit-btn {
+        padding:15px;
+        background-color:#5AA4E8;
+        color:white;
+        border-radius:5px;
+        border:none;
+        font-weight:300;
+        -o-transition:.5s;
+        -ms-transition:.5s;
+        -moz-transition:.5s;
+        -webkit-transition:.5s;
+        transition:.5s;
+        cursor: pointer;
+        &:hover {
+          background:white;
+          border: 1px solid #5AA4E8;
+          color: #5AA4E8;
+        }
       }
 
     }
-
-    #signup-hero {
-      // background-color:blue;
-    }
-
-    #marketing-content {
-      margin-top:20px;
-      font-size:16pt;
-      line-height: 32pt;
-    }
-
   }
+}
 
 }

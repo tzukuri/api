@@ -12,6 +12,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'font-awesome-rails'
 gem 'httparty'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+gem 'country_select'
 
 group :development do
     gem 'byebug'

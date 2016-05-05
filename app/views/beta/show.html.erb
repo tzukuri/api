@@ -7,6 +7,11 @@
         <% if @beta_signup %>
             <div class="twelve columns" id="registration-email">
                 <%= @beta_signup.email %>
+
+                <% if @invited_by %>
+                    <p>invited by <%= @invited_by.email %></p>
+                <% end %>
+
                 <!-- <p>You have registered for the Tzukuri Beta</p> -->
             </div>
 
@@ -53,16 +58,40 @@
 
             <% else %>
                 <!-- todo: do something with an invalid code -->
-                invalid invite code
+
+                <% if @invite_code != "forgot" %>
+                    <span id="invalid-code">Looks like the code you provided is invalid!</span><br/><br/>
+                <% end %>
+
+                Enter your email below to retrieve your registration status.
+                    <%= form_tag beta_retrieve_path,remote: true do %>
+                      <%= text_field_tag :email %> <br/>
+                      <%= submit_tag "retrieve account"%>
+                    <% end %>
+
+
             <% end %>
-
-
     </div>
   </article>
 
 </main>
 
 <script>
+  $(document).ready(function(){
+
+    // hook for new_beta_signup form
+    $('#new_beta_signup').on('ajax:success', function(e, data, status, xhr) {
+      if (data.success) {
+        //  redirect to the page for this signup
+        window.location.replace("/beta/" + data.beta_signup.invite_code);
+      } else {
+        // todo: render errors on the form
+      }
+
+    }).on('ajax:error',function(e, xhr, status, error) {
+      // todo: handle an error (probably a 500)
+    });
 
 
+  });
 </script>
