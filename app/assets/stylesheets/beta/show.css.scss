@@ -1,0 +1,80 @@
+html.beta {
+    #beta-show {
+        margin-top:0px;
+        .container {
+            text-align: center;
+            font-weight: 200;
+
+            #registration-email {
+                margin-bottom: 40px;
+                font-size: 28pt;
+                line-height: 38pt;
+
+                p {
+                    font-size: 12pt;
+                    color: $tzukuri-dark-grey;
+                }
+            }
+
+            #registration-details {
+                color: $tzukuri-blue;
+                border: 1px solid $tzukuri-blue;
+                padding: 50px;
+
+                h1 {
+                    font-size: 32pt;
+                    font-weight: 200;
+                }
+            }
+
+            #social-details {
+                #priority-head {
+                    font-weight: 300;
+                    margin-top: 60px;
+                    font-size: 20pt;
+                }
+
+                #priority-content {
+                    margin-top: 20px;
+                    font-size: 16pt;
+                    line-height: 26pt;
+                    color: $tzukuri-light-grey;
+                }
+
+                #social-content {
+                    margin-top: 40px;
+
+                    .social-button {
+                        background-color: $tzukuri-blue;
+                        color: white;
+                        border-radius: 5px;
+                        width: 200px;
+                        height: 50px;
+                        font-size: 14pt;
+                        letter-spacing: 0pt;
+                        border: 1px solid $tzukuri-blue;
+                        margin-top: 10px;
+                        margin-bottom: 10px;
+                        @include transition(0.5s ease);
+
+                        &:hover {
+                            background-color: white;
+                            color: #5AA4E8;
+                        }
+                    }
+                }
+
+                #share-link {
+                    margin-top: 40px;
+
+                    input {
+                        padding: 10px;
+                        font-size: 13pt;
+                        width: 300px;
+                        font-weight: 200;
+                    }
+                }
+            }
+        }
+    }
+}

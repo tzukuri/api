@@ -2,36 +2,26 @@
 
 one:
   name: MyString
-  string,: MyString
-  email: 
+  email: MyString
   address1: MyString
-  string,: MyString
   address2: MyString
-  string,: MyString
   state: MyString
-  string,: MyString
-  country: 
   postcode: MyString
-  string,: MyString
-  colour: 
+  country: MyString
   frame: MyString
-  string,: MyString
+  colour: MyString
   size: MyString
+  model: MyString
 
 two:
   name: MyString
-  string,: MyString
-  email: 
+  email: MyString
   address1: MyString
-  string,: MyString
   address2: MyString
-  string,: MyString
   state: MyString
-  string,: MyString
-  country: 
   postcode: MyString
-  string,: MyString
-  colour: 
+  country: MyString
   frame: MyString
-  string,: MyString
+  colour: MyString
   size: MyString
+  model: MyString

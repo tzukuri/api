@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class BetaReservationsControllerTest < ActionController::TestCase
+class BetaMailerTest < ActionMailer::TestCase
   # test "the truth" do
   #   assert true
   # end

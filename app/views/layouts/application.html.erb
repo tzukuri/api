@@ -26,7 +26,7 @@
     <body>
         <div id="blur-content">
 
-            <% if !current_page?("/event") %>
+            <% if !current_page?("/event") && !current_page?("/beta_store") %>
                 <%= render 'layouts/header' %>
             <% end %>
 

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
     # -----------------------------
     # devise routes
     # -----------------------------
@@ -57,6 +58,16 @@ Rails.application.routes.draw do
     # other web routes
     # -----------------------------
     resources :beta_reservations
+=======
+    resources :beta, param: :invite_code
+    resources :beta_signups
+
+    resources :betareservations do
+      collection do
+        get :csv
+      end
+    end
+>>>>>>> beta_signups
 
     resources :purchases do
         collection do
@@ -78,4 +89,5 @@ Rails.application.routes.draw do
 
     get '*page', to: 'pages#index'
     root 'pages#index', page: 'index'
+
 end

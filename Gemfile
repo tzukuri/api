@@ -22,6 +22,7 @@ gem 'appsignal', '~> 0.12.rc'
 gem 'paperclip', "~> 4.3"
 gem 'httparty'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+gem 'country_select'
 
 group :test do
   gem 'minitest-reporters', '1.0.5'
@@ -29,8 +30,8 @@ group :test do
   gem 'guard-minitest',     '2.3.1'
 end
 
-group :development, :test do
-  gem 'byebug'
-  gem 'web-console', '~> 2.0'
-  gem 'spring'
+group :development do
+    gem 'byebug'
+    gem 'web-console', '~> 2.0'
+    gem 'spring'
 end
