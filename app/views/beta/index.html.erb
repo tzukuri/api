@@ -1,102 +1,88 @@
 <!-- used to join the beta program -->
 <main>
 <article id="beta-index">
-
   <div class="container">
-      <!-- show a message saying they have been invited by someone -->
-      <% if @invited_by %>
-        <div id="welcome-head">
-          <h1>T Z U K U R I <span id="beta">[beta]</span></h1>
-          <h2>Welcome, you've been invited by <span class="strong"><%= @invited_by.email %></span></h2>
-        </div>
 
-        <!-- show the signup form -->
-        <div id="signup-form-container">
-          <%= form_for @beta_signup, :url => beta_signups_path, :html => { :method => :post}, remote: true do |f| %>
-            <%= f.email_field :email, placeholder: "email address", autofocus: true %>
-            <%= f.country_select :country, priority_countries: ["AU", "US", "CN", "GB"] %>
+    <% if @invited_by %>
+      <!-- view allowing beta signup -->
+      <div id="welcome-head">
+        <h1>T Z U K U R I <span id="beta">[beta]</span></h1>
+        <h2>Welcome, you've been invited by <span class="strong"><%= @invited_by.email %></span></h2>
+      </div>
 
-            <% if @invited_by %>
-              <%= f.hidden_field :invited_by, value:@invited_by.invite_code%>
-            <% end %>
-
-            <div id="form-errors"></div>
-
-            <br/>
-            <%= f.submit "register", id: "submit-btn"%>
+      <div id="signup-form-container">
+        <%= form_for @beta_signup, :url => beta_signups_path, :html => { :method => :post}, remote: true do |f| %>
+          <%= f.text_field :name, placeholder: "name", autofocus: true %> <br/>
+          <%= f.email_field :email, placeholder: "email address" %> <br/>
+          <%= f.country_select :country, priority_countries: ["AU", "US", "CN", "GB"] %> <br/>
+          <% if @invited_by %>
+          <%= f.hidden_field :invited_by, value:@invited_by.invite_code%>
           <% end %>
-        </div>
+          <div id="form-errors"></div>
+          <br/>
+          <%= f.submit "register", id: "submit-btn"%>
+        <% end %>
+      </div>
+      <div id="faq-link">
+        <a href="#">Want to know more? Read our FAQ</a>
+      </div>
 
-        <div id="faq-link">
-          <a href="#">Want to know more? Read our FAQ</a>
-        </div>
+    <% else %>
+      <!-- no valid user, so just display a marketing page -->
+      <div id="invalid-invite">
+        <% if @invite_code %> The invite code you provided is invalid, please try again with a different code. <% end %>
+      </div>
 
-      <% else %>
-          <div id="invalid-invite">
-          <% if @invite_code %> The invite code you provided is invalid, please try again with a different code. <% end %>
-          </div>
-
-        <!-- beta promotion page indicating how people can join -->
-        <div class="row">
-          <div class="six columns" id="beta-content">
-            <h1> T Z U K U R I <span id="beta">[beta]</span></h>
-
-            <!-- <h2>THE WORLD'S FIRST UNLOSEABLE GLASSES ARE ALMOST HERE!</h2> -->
-
-            <p>Later this month, we're shipping out free pairs of glasses to beta testers all over the world. To apple to be a beta tester, you'll have to be invited by someone who is already in our beta program.</p>
-
-            <p>We'll be selecting beta testers based on the number of friends they have invited and their location.</p>
-
-            <div id="faq-link">
-              <a href="#">Want to know more? Read our FAQ</a>
-            </div>
-
-          </div>
-          <div class="six columns" id="beta-hero">
-            <%= image_tag 'frames/ive/black-front.png', class: 'beta-hero-image' %>
+      <div class="row">
+        <div class="six columns" id="beta-content">
+          <h1> T Z U K U R I <span id="beta">[beta]</span></h>
+          <p>Later this month, we're shipping out free pairs of glasses to beta testers all over the world. To apply to be a beta tester, you'll have to be invited by someone who is already in our beta program.</p>
+          <p>We'll be selecting beta testers based on the number of friends they have invited and their location.</p>
+          <div id="faq-link">
+            <a href="#">Want to know more? Read our FAQ</a>
           </div>
         </div>
+        <div class="six columns" id="beta-hero">
+          <!-- todo: rotating images of glasses like in app -->
+          <%= image_tag 'frames/ive/black-front.png', class: 'beta-hero-image' %>
+        </div>
+      </div>
+    <% end %>
 
-      <% end %>
   </div>
-
-  </article>
+</article>
 </main>
-
 
 
 <script>
   $(document).ready(function(){
     // hook for new_beta_signup form
-    $('#new_beta_signup').on('ajax:success', function(e, data, status, xhr) {
+    $('#new_beta_signup').on('ajax:success', function(e, data) {
       if (data.success) {
         //  redirect to the page for this signup
         window.location.replace("/beta/" + data.beta_signup.invite_code);
       } else {
         // handle errors on this form
-        handleErrors(this, data.errors);
+        handleErrors(this, data.errors, data.error_messages);
       }
-
-    }).on('ajax:error',function(e, xhr, status, error) {
-      // todo: handle an error (probably a 500)
-      console.log(error)
     });
   });
 
-  function handleErrors(form, errors) {
+  // todo: make this able to handle any error messages
+  function handleErrors(form, errors, error_messages) {
     // make sure all error classes are removed
     $(form).find(':input').each(function() {
       $(this).removeClass("error");
     })
 
-    // empty any existing errors
-    $("#form-errors").html("");
+    // add any error classes
+    $.each(errors, function(error, val) {
+      $("#beta_signup_" + error).addClass("error")
+    })
 
-    // highlight form fields & render errors
-    if (errors.email) {
-      $("#form-errors").html("email " + errors.email);
-      $("#beta_signup_email").addClass("error");
-    }
+    $("#form-errors").html("")
+    $.each(error_messages, function(i, message) {
+      $("#form-errors").append(message + "<br/><br/>");
+    })
   }
-
 </script>

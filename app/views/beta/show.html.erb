@@ -1,6 +1,6 @@
 <!-- used the view stats about a person who has already signed up -->
 <main>
-  <article id="beta_show">
+  <article id="beta-show">
 
     <div class="container">
 
@@ -17,8 +17,10 @@
 
             <div class="twelve columns" id="registration-details">
             <!-- VIEW SIGNUP DETAILS [SUCCESS STATE] -->
-                <% if @rank == 0 %>
-                    <h1>Congrats, you're the first in line! &nbsp; 😎</h1>
+                <% if !@rank %>
+                    <h1>Congratulations! You've been selected. </h1>
+                <% elsif @rank == 0 %>
+                    <h1>Congrats, you're the first in line &nbsp; 😎</h1>
                 <% elsif @rank == 1 %>
                     <h1><%= @rank %> person is ahead of you </h1>
                 <% else %>
@@ -28,7 +30,7 @@
 
             <div class="twelve columns" id="social-details">
                 <p id="priority-head">Really want a pair?</p>
-                <p id="priority-content">Beta participants will be selected based on the number of friends they invite. The more friends you get to sign up, the better the chances are for both of you!</p>
+                <p id="priority-content">Beta participants will be selected based on the number of friends they invite. The more friends you get to sign up, the better the chances are for both of you.</p>
 
                 <div class="row" id="social-content">
                     <div class="one-third column">
@@ -76,22 +78,3 @@
 
 </main>
 
-<script>
-  $(document).ready(function(){
-
-    // hook for new_beta_signup form
-    $('#new_beta_signup').on('ajax:success', function(e, data, status, xhr) {
-      if (data.success) {
-        //  redirect to the page for this signup
-        window.location.replace("/beta/" + data.beta_signup.invite_code);
-      } else {
-        // todo: render errors on the form
-      }
-
-    }).on('ajax:error',function(e, xhr, status, error) {
-      // todo: handle an error (probably a 500)
-    });
-
-
-  });
-</script>

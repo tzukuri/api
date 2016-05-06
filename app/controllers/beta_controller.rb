@@ -11,7 +11,7 @@ class BetaController < ApplicationController
 
     # only attempt to calculate the rank if the signup exists
     if @beta_signup = BetaSignup.find_by_invite_code(@invite_code)
-      @rank = BetaSignup.order(score: :desc).index(@beta_signup)
+      @rank = BetaSignup.order(score: :desc).where(selected: false).index(@beta_signup)
       @invited_by = @beta_signup.invited_by
     end
   end

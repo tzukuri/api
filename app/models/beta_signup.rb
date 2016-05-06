@@ -11,6 +11,7 @@ class BetaSignup < ActiveRecord::Base
   # each signup can invite 0 or more signups
   has_many :invitees, :class_name => "BetaSignup", :foreign_key => "invited_by_id"
 
+  validates :name, presence: true
   validates :email, presence: true, uniqueness: true
   validates :country, presence: true
   validates :invite_code, presence: true,  uniqueness: true, :length => { :is => INVITE_CODE_LENGTH }

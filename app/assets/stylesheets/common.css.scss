@@ -21,6 +21,22 @@ $horz-padding: 20px;
 $menu-width-cutoff: 720px;
 $content-width-cutoff: 376px;
 
+// colours
+$tzukuri-blue: #5AA4E8;
+$tzukuri-red: #CF4339;
+$tzukuri-dark-grey: #686868;
+$tzukuri-light-grey: #B8B8B8;
+$tzukuri-black: #232323;
+
+// mixins
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
 
 /* typography */
 html, body {

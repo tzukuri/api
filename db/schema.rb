@@ -17,14 +17,15 @@ ActiveRecord::Schema.define(version: 20160503041538) do
   enable_extension "plpgsql"
 
   create_table "beta_signups", force: true do |t|
+    t.string   "name"
     t.string   "email"
     t.string   "country"
-    t.boolean  "selected"
+    t.boolean  "selected",      default: false
     t.integer  "invited_by_id"
     t.string   "invite_code"
+    t.integer  "score",         default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "score",         default: 0
   end
 
   add_index "beta_signups", ["invite_code"], name: "index_beta_signups_on_invite_code", using: :btree
