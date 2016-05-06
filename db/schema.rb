@@ -12,8 +12,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20160503041538) do
-# These are extensions that must be enabled in order to support this database
-enable_extension "plpgsql"
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -22,36 +23,8 @@ enable_extension "plpgsql"
     t.string   "resource_type", null: false
     t.integer  "author_id"
     t.string   "author_type"
-  end
-
-  create_table "beta_signups", force: true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "country"
-    t.boolean  "selected",      default: false
-    t.integer  "invited_by_id"
-    t.string   "invite_code"
-    t.integer  "score",         default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  add_index "beta_signups", ["invite_code"], name: "index_beta_signups_on_invite_code", using: :btree
-
-  create_table "betareservations", force: true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "address1"
-    t.string   "address2"
-    t.string   "state"
-    t.string   "postcode"
-    t.string   "country"
-    t.string   "frame"
-    t.string   "colour"
-    t.string   "size"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "model"
   end
 
   add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
@@ -114,6 +87,35 @@ enable_extension "plpgsql"
     t.string   "apns_token"
     t.string   "app_version"
     t.string   "diagnostics_sync_token"
+  end
+
+  create_table "beta_signups", force: :cascade do |t|
+    t.string   "email"
+    t.string   "country"
+    t.boolean  "selected"
+    t.integer  "invited_by_id"
+    t.string   "invite_code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "score",         default: 0
+  end
+
+  add_index "beta_signups", ["invite_code"], name: "index_beta_signups_on_invite_code", using: :btree
+
+  create_table "betareservations", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "state"
+    t.string   "postcode"
+    t.string   "country"
+    t.string   "frame"
+    t.string   "colour"
+    t.string   "size"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "model"
   end
 
   create_table "devices", force: :cascade do |t|

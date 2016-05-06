@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
     # -----------------------------
     # devise routes
     # -----------------------------
@@ -58,7 +57,6 @@ Rails.application.routes.draw do
     # other web routes
     # -----------------------------
     resources :beta_reservations
-=======
     resources :beta, param: :invite_code
     resources :beta_signups
 
@@ -67,7 +65,6 @@ Rails.application.routes.draw do
         get :csv
       end
     end
->>>>>>> beta_signups
 
     resources :purchases do
         collection do
