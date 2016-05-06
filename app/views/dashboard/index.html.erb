@@ -1,0 +1,60 @@
+
+<!-- TODO: Potentially update header to user the global header (when site gets migrated) -->
+<!-- HEADER NAV BAR -->
+<div id="header">
+  <div class="left-content">
+   <span id="tzukuri">T Z U K U R I</span>
+ </div>
+
+  <div class="right-content">
+    <%= current_user.name %> | <%= link_to "log out", destroy_user_session_path, :method => :delete %>
+  </div>
+</div>
+
+
+<!-- GLASSES DETAIL CONTAINER-->
+<!-- TODO: Remove assumption that only one device will be present -->
+<div id="details-container">
+  <img src="images/Ford_Black_Sunglasses.png" id="glasses-image"/><br/>
+
+  <span id="connected-status"> <%= current_user.devices.first.state.titleize %> <div id="circle" class="<%= current_user.devices.first.state %>"></div> </span>  <br/><br/>
+
+  <span id="seen-at">Seen at <%= current_user.devices.first.updated_at %></span>
+</div>
+
+<!-- MAP BACKGROUND -->
+<!-- latitude and longitude of the glasses are stored on the object for access in javascript -->
+<div id="main-map" data-latitude="<%=current_user.devices.first.latitude%>" data-longitude="<%=current_user.devices.first.longitude%>"></div>
+
+
+<!-- JAVASCRIPT -->
+<script>
+
+$(document).ready(function() {
+  // read and store the latitude and longitude
+  // FIXME: Handle the case where a latitude and/or longitude cannot be found
+  var glassesLocation = {
+    latitude: $("#main-map").attr("data-latitude"),
+    longitude: $("#main-map").attr("data-longitude")
+  };
+
+  // initialise the glasses map marker
+  var glassesMarker = L.icon({
+    iconUrl: 'images/map_marker.png',
+    iconRetinaUrl: 'images/map_marker@2x.png',
+    iconSize: [40, 40]
+  });
+
+  // initialise the map and hide the attribution label
+  // TODO: potentially move this out to some shared location as parts of it will be reused
+  var zoomLevel = 16;
+  L.mapbox.accessToken = 'pk.eyJ1Ijoic2FtdHp1a3VyaSIsImEiOiJjaW45cW9qc2QwYzNndHFsd2g4czRpM3ExIn0.BnJfjpwRj2E1cF2bqD42Xw';
+  var mainMap = L.mapbox.map('main-map').setView([glassesLocation.latitude, glassesLocation.longitude], zoomLevel);
+  $(".leaflet-control-attribution").css("visibility", "hidden");
+
+  // add style layers and a marker to indicate the position of the glasses
+  L.mapbox.styleLayer('mapbox://styles/samtzukuri/cin9rek1k00dhbckvr9fezhpl').addTo(mainMap);
+  L.marker([glassesLocation.latitude, glassesLocation.longitude], {icon: glassesMarker}).addTo(mainMap);
+});
+
+</script>

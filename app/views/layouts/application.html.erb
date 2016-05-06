@@ -23,13 +23,16 @@
         <meta name="apple-mobile-web-app-capable" content="yes" />
     </head>
 
+<!--     <body class="<%= params[:page] || controller_name %>">
+      <%= yield %>
+    </body> -->
+
     <body>
         <div id="blur-content">
 
             <% if !current_page?("/event") && !current_page?("/beta_store") %>
                 <%= render 'layouts/header' %>
             <% end %>
-
 
             <%= yield %>
 
@@ -98,5 +101,5 @@
             ga('require', 'displayfeatures');
             ga('send', 'pageview');
         </script>
-    </body>
+
 </html>

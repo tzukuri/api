@@ -1,16 +1,43 @@
-<h2>Forgot your password?</h2>
+<div id="login-container">
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
+  <h1 id="tzukuri-head">forgot password?</h1>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    <%= devise_error_messages! %>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
+    <div class="field">
+      <%= f.email_field :email, autofocus: true, placeholder: "email address" %>
+    </div>
 
-<%= render "devise/shared/links" %>
+    <div class="actions">
+      <%= f.submit "send password reset instructions", id: "password_reset" %>
+    </div>
+  <% end %>
+
+    <br/><br/>
+    <%= render "devise/shared/links" %>
+
+</div>
+
+
+<div id="main-map" class="blur"></div>
+
+<!-- JAVASCRIPT -->
+<script>
+  // initialise mapbox
+  L.mapbox.accessToken = 'pk.eyJ1Ijoic2FtdHp1a3VyaSIsImEiOiJjaW45cW9qc2QwYzNndHFsd2g4czRpM3ExIn0.BnJfjpwRj2E1cF2bqD42Xw';
+  var map = L.mapbox.map('main-map').setView([-33.852222, 151.210556], 16);
+  L.mapbox.styleLayer('mapbox://styles/samtzukuri/cin9rek1k00dhbckvr9fezhpl').addTo(map);
+
+  // disable drag and zoom handlers
+  map.touchZoom.disable();
+  map.dragging.disable();
+  map.doubleClickZoom.disable();
+  map.scrollWheelZoom.disable();
+  map.boxZoom.disable();
+  map.keyboard.disable();
+
+  // hide leaflet controls
+  $(".leaflet-control-zoom").css("visibility", "hidden");
+  $(".leaflet-control-attribution").css("visibility", "hidden");
+</script>

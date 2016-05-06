@@ -23,6 +23,7 @@ gem 'paperclip', "~> 4.3"
 gem 'httparty'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'country_select'
+gem 'mapbox-rails', :git => 'https://github.com/dkniffin/mapbox-rails'
 
 group :test do
   gem 'minitest-reporters', '1.0.5'

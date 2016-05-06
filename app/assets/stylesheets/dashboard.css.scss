@@ -1,0 +1,170 @@
+body.dashboard {
+    background-color:black;
+    font-family: HelveticaNeueLT, Helvetica, sans-serif;
+
+    #main-map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        z-index: -1;
+        background-color:black;
+
+        .leaflet-control-container {
+          .leaflet-top {
+            top: 70px;
+          }
+        }
+    }
+
+    #header {
+      width: 100%;
+      background-color: white;
+      padding:15px;
+      display: flex;
+      justify-content: space-between;
+      margin-left:auto;
+      margin-right:auto;
+
+      .right-content {
+        margin-right: 80px;
+        margin-top: 10px;
+      }
+
+      #tzukuri {
+        margin-left: 80px;
+        font-size: 26pt;
+        font-weight: 100;
+      }
+    }
+
+    #details-container {
+        background-color: white;
+        width: 300px;
+        right: 20px;
+        top:80px;
+        position:absolute;
+        padding: 20px;
+        padding-top:0px;
+        color: black;
+        text-align:center;
+        border-radius:5px;
+
+        #glasses-image {
+          width: 70%;
+          margin-left:auto;
+          margin-right:auto;
+          display:block;
+          top:0
+        }
+
+        ul {
+            li {
+                padding-top: 10px;
+            }
+        }
+
+      #seen-at {
+        color:gray;
+        font-size:10pt;
+      }
+
+      #connected-status {
+        display:flex;
+        justify-content: center;
+        #circle {
+            background: #3DAC65;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            margin-left:20px;
+
+            &.disconnected {
+              background-color:#E14C43;
+            }
+
+            &.connected {
+              background-color: #3DAC65;
+            }
+
+        }
+
+      }
+
+    }
+
+    #login-container {
+        width: 500px;
+        margin:auto;
+        margin-top: 15%;
+        max-width:100%;
+        max-height:100%;
+        overflow:auto;
+        text-align:center;
+
+        #flash_messages {
+            margin-top: 20px;
+            color:#BB3931;
+            font-size: 11pt;
+        }
+
+        #tzukuri-head {
+            color: white;
+            font-size: 48pt;
+            margin-bottom: 50px;
+            font-weight: 100;
+        }
+
+        a {
+            font-size:10pt;
+            text-decoration: none;
+        }
+
+        input {
+            width: 80%;
+            height: 40px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 5px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 11pt;
+            outline: none;
+            border: 1px solid #4B5054;
+            padding-left: 10px;
+            font-weight:300;
+
+            &#user_email {
+                border-bottom-left-radius: 0px;
+                border-bottom-right-radius: 0px;
+            }
+
+            &#user_password {
+                border-top-left-radius: 0px;
+                border-top-right-radius: 0px;
+            }
+
+            &#sign_in {
+                color: rgb(61, 150, 251);
+                background-color: rgba(255, 255, 255, 0);
+                border: 1px solid rgb(61, 150, 251);
+                border-radius: 20px;
+                font-size: 16pt;
+                width: 200px;
+                margin-top: 40px;
+                cursor: pointer;
+            }
+        }
+
+        ::-webkit-input-placeholder {
+           color: rgba(255, 255, 255, 0.3);
+        }
+
+        #forgot_password {
+            font-size: 10pt;
+            text-decoration: none;
+        }
+    }
+}

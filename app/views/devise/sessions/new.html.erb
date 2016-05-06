@@ -1,26 +1,48 @@
-<h2>Log in</h2>
+<div id="login-container">
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+  <h1 id="tzukuri-head">T Z U K U R I</h1>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <%= f.email_field :email, placeholder: "email address" %>
     </div>
-  <% end -%>
+    <div class="field">
+      <%= f.password_field :password, placeholder: "password", autocomplete: "off" %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
+    <%= render "devise/shared/flash_messages" %>
 
-<%= render "devise/shared/links" %>
+    <div class="actions">
+      <%= f.submit "sign in", id: "sign_in" %>
+    </div>
+  <% end %>
+
+  <br/><br/>
+  <%= render "devise/shared/links" %>
+</div>
+
+<div id="main-map" class="blur"></div>
+
+
+
+
+
+<!-- JAVASCRIPT -->
+<script>
+  // initialise mapbox
+  L.mapbox.accessToken = 'pk.eyJ1Ijoic2FtdHp1a3VyaSIsImEiOiJjaW45cW9qc2QwYzNndHFsd2g4czRpM3ExIn0.BnJfjpwRj2E1cF2bqD42Xw';
+  var map = L.mapbox.map('main-map').setView([-33.852222, 151.210556], 16);
+  L.mapbox.styleLayer('mapbox://styles/samtzukuri/cin9rek1k00dhbckvr9fezhpl').addTo(map);
+
+  // disable drag and zoom handlers
+  map.touchZoom.disable();
+  map.dragging.disable();
+  map.doubleClickZoom.disable();
+  map.scrollWheelZoom.disable();
+  map.boxZoom.disable();
+  map.keyboard.disable();
+
+  // hide leaflet controls
+  $(".leaflet-control-zoom").css("visibility", "hidden");
+  $(".leaflet-control-attribution").css("visibility", "hidden");
+</script>

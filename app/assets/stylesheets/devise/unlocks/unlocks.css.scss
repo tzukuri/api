@@ -1,0 +1,107 @@
+body.unlocks {
+    background-color:black;
+    font-family: HelveticaNeueLT, Helvetica, sans-serif;
+
+    #main-map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        z-index: -1;
+        opacity: 0.8;
+        -webkit-filter: blur(4px);
+        cursor: default;
+        background-color:black;
+    }
+
+
+    #login-container {
+        width: 500px;
+        margin:auto;
+        margin-top: 15%;
+        max-width:100%;
+        max-height:100%;
+        overflow:auto;
+        text-align:center;
+
+        #flash_messages {
+            margin-top: 20px;
+            color:#BB3931;
+            font-size: 11pt;
+        }
+
+        #tzukuri-head {
+            color: white;
+            font-size: 48pt;
+            margin-bottom: 50px;
+            font-weight: 100;
+        }
+
+        #forgot-password {
+            color:white;
+            font-size:16pt;
+
+        }
+
+        a {
+            font-size:10pt;
+            text-decoration: none;
+        }
+
+        #error_explanation {
+            color: white;
+        }
+
+        input {
+            width: 80%;
+            height: 40px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 5px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 11pt;
+            outline: none;
+            border: 1px solid #4B5054;
+            padding-left: 10px;
+            font-weight:300;
+
+            &#user_password {
+                border-bottom-left-radius: 0px;
+                border-bottom-right-radius: 0px;
+            }
+
+            &#user_password_confirmation {
+                border-top-left-radius: 0px;
+                border-top-right-radius: 0px;
+            }
+
+
+            &#password_reset {
+                color: rgb(61, 150, 251);
+                background-color: rgba(255, 255, 255, 0);
+                border: 1px solid rgb(61, 150, 251);
+                border-radius: 20px;
+                font-size: 16pt;
+                margin-top: 40px;
+                cursor: pointer;
+            }
+
+            &#send_unlock {
+                color: rgb(61, 150, 251);
+                background-color: rgba(255, 255, 255, 0);
+                border: 1px solid rgb(61, 150, 251);
+                border-radius: 20px;
+                font-size: 16pt;
+                margin-top: 40px;
+                cursor: pointer;
+            }
+        }
+
+        ::-webkit-input-placeholder {
+           color: rgba(255, 255, 255, 0.3);
+        }
+    }
+}
