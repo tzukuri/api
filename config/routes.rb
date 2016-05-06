@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
+    # -----------------------------
+    # devise routes
+    # -----------------------------
     devise_for :admin_users, ActiveAdmin::Devise.config
     devise_for :users
     ActiveAdmin.routes(self)
 
+    # -----------------------------
+    # api namespace routes
+    # -----------------------------
     namespace :api do
         namespace :v0 do
             namespace :app_params do
@@ -47,7 +53,29 @@ Rails.application.routes.draw do
         end
     end
 
+    # -----------------------------
+    # other web routes
+    # -----------------------------
+    resources :beta_reservations
+
+    resources :purchases do
+        collection do
+            get :csv
+        end
+    end
+
+    resources :emails do
+        collection do
+            get :csv
+        end
+    end
+
+    resources :rsvps do
+      collection do
+        get :csv
+      end
+    end
+
     get '*page', to: 'pages#index'
-    # get 'privacy', to: 'privacy#index'
-    # get 'terms', to: 'terms#index'
+    root 'pages#index', page: 'index'
 end

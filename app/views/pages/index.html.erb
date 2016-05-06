@@ -1,0 +1,214 @@
+<main>
+    <!-- <article id="front">
+        <div class="panel">
+            <div class="content">
+                <dl>
+                    <div>
+                        <span id="day-span">
+                            <dd id="countdown-days">6</dd>
+                            <dt>days</dt>
+                        </span>
+                        <span>
+                            <dd id="countdown-hours">15</dd>
+                            <dt>hours</dt>
+                        </span>
+                    </div>
+                    <div>
+                        <span>
+                            <dd id="countdown-minutes">28</dd>
+                            <dt>minutes</dt>
+                        </span>
+                        <span>
+                            <dd id="countdown-seconds">32</dd>
+                            <dt>seconds</dt>
+                        </span>
+                    </div>
+                </dl>
+                <p>
+                    Preorder the world's first unloseable sunglasses.<br>
+                    Only 1200 pairs available first round for a special price of USD $249.
+                </p>
+                <p class="small">Be at Tzukuri.com on October 15 at 1 p.m. US Eastern Time to be the first to get a pair.</p>
+                <p class="small calendar"><a href="/tzukuri_launch.ics">
+                    <i class="fa fa-calendar-o"></i><br>
+                    Add to your calendar
+                </a></p>
+            </div>
+        </div>
+    </article> -->
+
+    <article id="video">
+        <div class="panel">
+            <div class="content">
+                <div id="youtube-thumb">
+                    <div><span class="fa fa-play"></span></div>
+                </div>
+                <div id="youtube-video" style="display: none">
+                    <div></div>
+                </div>
+                <ul id="funding-stats">
+                    <!-- <li>Preorders<span>are now closed</span></li> -->
+                    <li id="purchase-item">
+                        <!-- <div>$249 <a href="https://www.tzukuri.com/store" class="button">Preorder</a></div> -->
+                        <p>Preorders are now closed.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </article>
+
+    <article id="deposit">
+        <div class="panel">
+            <p>Available March 2016.</p>
+        </div>
+    </article>
+
+    <article id="unloseable">
+        <div class="panel">
+            <div class="content">
+                <h1>Unloseable.</h1>
+                <h2>Sunglasses + iPhone.</h2>
+                <p>Your iPhone alerts you if you leave your Tzukuris behind, and the app shows you where you left them. The app also recognises if you've left your iPhone behind and will ring extra loudly to alert you.</p>
+                <p><a href="/technology">Learn more about the technology</a></p>
+                <a href="#" class="share"><%= image_tag 'share.png' %>Share</a>
+            </div>
+            <div class="background"><div class="image" style="background-image: url(<%= image_url 'white.jpg' %>)"></div></div>
+        </div>
+    </article>
+
+    <!-- <article id="unloseable">
+        <div class="background" style="background-image: url(<%= image_url 'phone.png' %>)"></div>
+        <div class="content">
+            <h1>Unloseable.</h1>
+            <h2>Sunglasses + iPhone.</h2>
+            <p>Your iPhone alerts you if you leave your Tzukuris behind, and the app shows you where you left them. The app also recognises if you've left your iPhone behind and will ring extra loudly to alert you.</p>
+            <p><a href="/technology">Learn more about the technology</a></p>
+            <p><a href="#" class="share"><%= image_tag 'share.png' %>Share</a></p>
+        </div>
+    </article> -->
+
+    <article id="ibeacon">
+        <div class="panel">
+            <div class="content">
+                <p>Sealed seamlessly inside every handmade Tzukuri frame is the world's smallest Bluetooth Low Energy beacon.</p>
+            </div>
+        </div>
+    </article>
+
+    <article id="fashion">
+        <div class="background"><div class="image" style="background-image: url(<%= image_url 'fashion.jpg' %>)"></div></div>
+    </article>
+
+    <article id="frames">
+        <div class="panel">
+            <div class="content">
+                <ul>
+                    <li>
+                        <%= image_tag 'frames/atticus/black-front.jpg', class: 'black' %>
+                        <%= image_tag 'frames/atticus/tortoise-front.jpg', class: 'tortoise', style: 'opacity: 0.0' %>
+                    </li>
+                    <!-- <li>
+                        <%= image_tag 'frames/monaco/black-front.jpg', class: 'black' %>
+                        <%= image_tag 'frames/monaco/tortoise-front.jpg', class: 'tortoise', style: 'opacity: 0.0' %>
+                    </li>
+                    <li>
+                        <%= image_tag 'frames/ford/black-front.jpg', class: 'black'%>
+                        <%= image_tag 'frames/ford/tortoise-front.jpg', class: 'tortoise', style: 'opacity: 0.0' %>
+                    </li>
+                    <li>
+                        <%= image_tag 'frames/fitzgerald/black-front.jpg', class: 'black' %>
+                        <%= image_tag 'frames/fitzgerald/tortoise-front.jpg', class: 'tortoise', style: 'opacity: 0.0' %>
+                    </li> -->
+                    <li>
+                        <%= image_tag 'frames/truman/black-front.jpg', class: 'black' %>
+                        <%= image_tag 'frames/truman/tortoise-front.jpg', class: 'tortoise', style: 'opacity: 0.0' %>
+                    </li>
+                    <!-- <li>
+                        <%= image_tag 'frames/stark/black-front.jpg', class: 'black' %>
+                        <%= image_tag 'frames/stark/tortoise-front.jpg', class: 'tortoise', style: 'opacity: 0.0' %>
+                    </li> -->
+                </ul>
+                <menu>
+                    <div data-image="black" class ='selected'>
+                        <div></div>
+                        <p>Black</p>
+                    </div>
+                    <div data-image="tortoise">
+                        <div></div>
+                        <p>Tortoise</p>
+                    </div>
+                </menu>
+                <p><a href="#" class="share"><%= image_tag 'share.png' %>Share</a></p>
+            </div>
+        </div>
+    </article>
+
+    <article id="design">
+        <div class="panel">
+            <div class="content">
+                <h1>Inspired by heroes.</h1>
+                <h1>Designed with science.</h1>
+                <!-- !!!! --><p>By analysing the visual field of the human eye, we designed frames to suit the broadest range of face shapes. The result is two beautiful designs in two colours, refined geometrically so you can find the perfect pair.</p>
+                <p><a href="/design">Learn more about the design.</a></p>
+            </div>
+        </div>
+    </article>
+
+    <article id="craftsmanship">
+        <div class="background"><div class="image" style="background-image: url(<%= image_url 'frames.jpg' %>)"></div></div>
+        <div class="panel">
+            <div class="content">
+                <h1>Handmade in Sydney.</h1>
+                <h2>Lenses produced by Carl Zeiss Vision.</h2>
+                <p>Our frames are handmade in Sydney, using techniques inspired by the finest Japanese artisans. Japanese precision equipment and high quality acetates make of a pair of glasses unparalleled in beauty and durability.</p>
+                <p><a href="/craftsmanship">Learn more about the craftsmanship.</a></p>
+                <dl><span id="craftsmanship-weeks">
+                        <dd>3</dd>
+                        <dt>weeks to make</dt>
+                    </span><span id="craftsmanship-qc">
+                        <dd>8</dd>
+                        <dt>quality control checks</dt>
+                    </span><span id="craftsmanship-processes">
+                        <dd>110</dd>
+                        <dt>production processes</dt>
+                    </span>
+                </dl>
+            </div>
+        </div>
+    </article>
+
+    <article id="environment">
+        <div class="panel">
+            <div class="content">
+                <h1>For the environment.</h1>
+                <p>With 1 in 2 people losing a pair of sunglasses in the first year, Tzukuri is starting a fight against 26 kilotonnes of plastic waste.</p>
+                <p><i class="fa fa-globe"></i></p>
+                <dl>
+                    <div>
+                        <span>
+                            <dd>98<span>%</span></dd>
+                            <dt>renewable<br>materials</dt>
+                        </span>
+                        <span>
+                            <dd>98<span>%</span></dd>
+                            <dt>recyclable<br>packaging</dt>
+                        </span>
+                    </div>
+                </dl>
+            </div>
+        </div>
+    </article>
+
+    <article id="remaining">
+        <div class="panel">
+            <dl>
+                <dd>preorder</dd>
+
+                <!-- <%= 1200 - Purchase.count %> -->
+                <dt>now closed</dt>
+            </dl>
+            <!-- <a href="#" class="button">Preorder</a> -->
+            <%= render partial: 'footer' %>
+        </div>
+    </article>
+</main>

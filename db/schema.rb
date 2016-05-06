@@ -119,6 +119,13 @@ ActiveRecord::Schema.define(version: 20160324031130) do
 
   add_index "devices", ["serial"], name: "index_devices_on_serial", unique: true, using: :btree
 
+  create_table "emails", force: :cascade do |t|
+    t.string   "email"
+    t.string   "ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "log_entries", force: :cascade do |t|
     t.integer  "auth_token_id"
     t.datetime "created_at"
@@ -135,6 +142,23 @@ ActiveRecord::Schema.define(version: 20160324031130) do
     t.string   "reason"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "purchases", force: :cascade do |t|
+    t.string   "email"
+    t.string   "frame"
+    t.string   "colour"
+    t.string   "size"
+    t.string   "customer_id"
+    t.string   "name"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "postcode"
+    t.string   "country"
+    t.string   "state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "charge_id"
   end
 
   create_table "quietzones", force: :cascade do |t|
@@ -174,6 +198,14 @@ ActiveRecord::Schema.define(version: 20160324031130) do
   end
 
   add_index "rooms", ["quietzone_id"], name: "index_rooms_on_quietzone_id", using: :btree
+
+  create_table "rsvps", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "inviter"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

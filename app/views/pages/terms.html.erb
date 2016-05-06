@@ -145,20 +145,30 @@
             </p>
         </div>
 
+          <!-- if the repond param is present, show buttons for accepting and rejecting -->
+          <% if params["respond"] == "true" %>
+              <center>
+                <button id="accept-terms">accept</button>
+                <button id="reject-terms">reject</button>
+              </center>
+          <%end%>
+
+        <%= render partial: 'footer' %>
+
     </div>
 </div>
 </article>
-</main>
 
 <script>
   $("#accept-terms").click(function() {
     // redirect, this will be caught by the app to handle and accept state
     window.location.href = 'tzukuri://terms-accept';
-});
+  });
 
   $("#reject-terms").click(function() {
     // redirect, this will be caught by the app to handle a reject state
     window.location.href = 'tzukuri://terms-reject';
-});
+  });
 </script>
+
 

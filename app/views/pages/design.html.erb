@@ -1,0 +1,93 @@
+<main>
+    <article id="colours">
+        <div class="panel">
+            <div class="content">
+                <h1>Two brilliant colours.</h1>
+                <p>Every frame comes in gorgeous glossy black or a sleek matte tortoise. Just these two colours match a large range of skin tones. What colour are you?</p>
+            </div>
+        </div>
+    </article>
+
+    <article id="two-up">
+        <div class="background"><div class="image" style="background-image: url(<%= image_url 'twoup.jpg' %>)"></div></div>
+    </article>
+
+    <!-- <article id="sizes">
+        <div class="panel">
+            <div class="content">
+                <h1>Three sizes.</h1>
+                <h2>Because one size doesn't fit all.</h2>
+                <p>We all have different sized heads, so why wouldn’t you have different sized glasses? The right size is just as important as the right shape. That’s why all our designs come in up to 3 sizes.</p>
+            </div>
+        </div>
+        <div class="background"><div class="right image" style="background-image: url(<%= image_url 'sizes.jpg' %>)"></div></div>
+    </article> -->
+
+    <article id="whichpair">
+        <div class="panel">
+            <div class="content">
+                <h1>Which pair are you?</h1>
+                <p>Not only was each frame designed to suit most faces, every pair was inspired by someone who changed the world. Who will you be?</p>
+
+                <section id="design-atticus">
+                    <span><%= image_tag 'frames/atticus/cropped.jpg' %></span>
+                    <h1>Atticus</h1>
+                    <h2>inspired by Atticus Finch.</h2>
+                    <p>The balance of roundness and depth complements the dimensions and angularity of most longer faces.</p>
+                    <p><a href="#" class="share"><%= image_tag 'share.png' %>Share</a></p>
+                </section>
+
+                <!-- <section id="design-fitzgerald">
+                    <span><%= image_tag 'frames/fitzgerald/cropped.jpg' %></span>
+                    <h1>Fitzgerald</h1>
+                    <h2>inspired by John Fitzgerald Kennedy.</h2>
+                    <p>Softer angles and horizontal planes to add subtle definition to cheekbones. A classic and understated style.</p>
+                    <p><a href="#" class="share"><%= image_tag 'share.png' %>Share</a></p>
+                </section>
+
+                <section id="design-ford">
+                    <span><%= image_tag 'frames/ford/cropped.jpg' %></span>
+                    <h1>Ford</h1>
+                    <h2>inspired by Tom Ford.</h2>
+                    <p>Strong curves and depth soften strong and angular features like prominent jaws and broader foreheads.</p>
+                    <p><a href="#" class="share"><%= image_tag 'share.png' %>Share</a></p>
+                </section>
+
+                <section id="design-monaco">
+                    <span><%= image_tag 'frames/monaco/cropped.jpg' %></span>
+                    <h1>Monaco</h1>
+                    <h2>inspired by Grace Kelly.</h2>
+                    <p>A refined cat-eye frame which draws attention upwards towards the eyes and adds height to your cheekbones.</p>
+                    <p><a href="#" class="share"><%= image_tag 'share.png' %>Share</a></p>
+                </section>
+
+                <section id="design-stark">
+                    <span><%= image_tag 'frames/stark/cropped.jpg' %></span>
+                    <h1>Stark</h1>
+                    <h2>inspired by James Dean.</h2>
+                    <p>A hybrid aviator, fusing depth and teardrop shapes to create a top-heavy effect and balance out fuller jaws.</p>
+                    <p><a href="#" class="share"><%= image_tag 'share.png' %>Share</a></p>
+                </section> -->
+
+                <section id="design-truman">
+                    <span><%= image_tag 'frames/truman/cropped.jpg' %></span>
+                    <h1>Truman</h1>
+                    <h2>inspired by Truman Capote.</h2>
+                    <p>The combination of depth and angularity adds height to cheekbones and gives your face a longer, thinner profile.</p>
+                    <p><a href="#" class="share"><%= image_tag 'share.png' %>Share</a></p>
+                </section>
+            </div>
+        </div>
+    </article>
+
+    <article id="remaining">
+        <div>
+            <dl>
+                <dd>preorder</dd>
+                <dt>now closed</dt>
+            </dl>
+            <!-- <a href="#" class="button">Preorder</a> -->
+            <%= render partial: 'footer' %>
+        </div>
+    </article>
+</main>

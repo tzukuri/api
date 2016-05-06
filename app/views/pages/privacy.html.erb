@@ -2,7 +2,6 @@
   <article>
     <div class="panel">
       <div class="content">
-
         <!-- if the repond param is present, show buttons for accepting and rejecting -->
         <% if params["respond"] == "true" %>
         <div id="policy-changed">
@@ -25,19 +24,31 @@
 
             Aliquam erat volutpat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce venenatis porttitor scelerisque. Mauris venenatis blandit viverra. Nunc velit nisi, accumsan in sem id, dictum egestas sem. Aenean vestibulum, sem maximus mattis varius, magna mauris pharetra erat, ullamcorper dignissim tortor nisi at lacus. Quisque ornare nulla eget aliquam ullamcorper. Integer neque sapien, tincidunt facilisis est a, commodo placerat quam. Suspendisse blandit lectus vitae ante aliquet, eu pellentesque nisl pharetra.</p>
           </div>
-        </div>
-      </div>
-    </article>
-  </main>
 
-  <script>
+        <!-- if the repond param is present, show buttons for accepting and rejecting -->
+        <% if params["respond"] == "true" %>
+            <center>
+              <button id="accept-privacy">accept</button>
+              <button id="reject-privacy">reject</button>
+            </center>
+        <%end%>
+
+        <%= render partial: 'footer' %>
+
+      </div>
+    </div>
+  </article>
+</main>
+
+
+<script>
     $("#accept-privacy").click(function() {
-    // redirect, this will be caught by the app to handle and accept state
-    window.location.href = 'tzukuri://privacy-accept';
-  });
+      // redirect, this will be caught by the app to handle and accept state
+      window.location.href = 'tzukuri://privacy-accept';
+    });
 
     $("#reject-privacy").click(function() {
-    // redirect, this will be caught by the app to handle a reject state
-    window.location.href = 'tzukuri://privacy-reject';
-  });
+      // redirect, this will be caught by the app to handle a reject state
+      window.location.href = 'tzukuri://privacy-reject';
+    });
 </script>

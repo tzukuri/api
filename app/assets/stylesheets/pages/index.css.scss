@@ -1,0 +1,666 @@
+$unloseable-height: 460px;
+
+html.index {
+    #funding-stats {
+        margin-top: 30px;
+        text-align: center;
+
+        li {
+            display: inline-block;
+            font-weight: 300;
+            font-size: 32px;
+            text-align: left;
+            margin-right: 305px;
+            color: #000;
+            vertical-align: top;
+
+            &#purchase-item {
+                margin-right: 0px;
+            }
+
+            span {
+                font-size: 20px;
+                display: block;
+                margin-top: 5px;
+                color: #555;
+            }
+
+            div {
+                font-size: 24px;
+                color: #000;
+                margin-bottom: 5px;
+                text-align: center;
+
+                a {
+                    height: 30px;
+                    line-height: 30px;
+                    color: white;
+                    text-transform: lowercase;
+                    background-color: white; //#2AAFFE;
+                    border-radius: 18px;
+                    border: 1px solid #8EA8D6;
+                    padding: 0px 22px;
+                    display: inline-block;
+                    letter-spacing: 2px;
+                    font-size: 12px;
+                    margin-left: 20px;
+                    position: relative;
+                    top: -4px;
+                    color: white;
+                    color: #8EA8D6 !important;
+                    font-family: HelveticaNeueLTStd-Lt, Helvetica, sans-serif;
+
+                    &:visited {
+                        color: white;
+                    }
+                }
+            }
+
+            p {
+                width: 295px !important;
+                margin: 0px !important;
+                color: #999;
+                font-size: 12px;
+                line-height: 15px;
+                text-align: center;
+            }
+        }
+    }
+
+    #video {
+        #youtube-thumb, #youtube-video {
+            width: 100%;
+            padding-bottom: 56.25%; // width: 960, height: 540
+            position: relative;
+        }
+
+        #youtube-thumb {
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center center;
+            background-image: image-url('youtube-thumb.jpg');
+
+            div {
+                width: 40px;
+                height: 40px;
+                border: 1px solid #555;
+                @include border-radius(40px);
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-left: -20px;
+                margin-top: -20px;
+                text-align: center;
+                line-height: 40px;
+
+                span {
+                    color: #555;
+                    font-size: 22px;
+                    position: relative;
+                    top: 4px;
+                    left: 3px;
+                }
+            }
+        }
+
+        #youtube-video > div {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+        }
+    }
+
+    // ---------------------------------
+    // countdown
+    // ---------------------------------
+    #front {
+        padding-bottom: 60px;
+        text-align: center;
+
+        // time components
+        dl {
+            margin-top: 60px;
+            margin-bottom: 80px;
+
+            div {
+                display: inline-block;
+
+                &:first-child {
+                    margin-right: 80px;
+                }
+
+                span {
+                    width: 130px;
+
+                    &:first-child {
+                        margin-right: 80px;
+                    }
+
+                    dt {
+                        font-size: 30px;
+                    }
+
+                    dd {
+                        font-size: 120px;
+                        color: #444;
+                    }
+                }
+
+                #day-span {
+                    width: 70px;
+                }
+            }
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-weight: 300;
+            font-size: 24px;
+            line-height: 30px;
+            color: #555;
+            text-align: center;
+
+
+            // smaller "Be at Tzukuri..." text and "Add to calendar"
+            &.small {
+                line-height: 18px;
+                font-size: 16px;
+                color: #666;
+
+                &.calendar {
+                    margin-top: 10px;   // calendar icon and text is spaced 20px + 10px from the last line of text
+                    line-height: 24px;
+                }
+
+                a {
+                    // "Add to calendar" text
+                    color: #8EA8D6;
+                    &:hover { color: #7286AB; }
+
+                    // calendar icon. should consider making the text & icon colours consistent
+                    i { color: #aaa; }
+                    &:hover i { color: #777; }
+                }
+            }
+        }
+    }
+
+    #deposit {
+        background-color: #f7f7f7;
+        padding: 40px 40px;
+
+        p {
+            font-weight: 200;
+            font-size: 46px;
+            text-align: center;
+            color: black;
+
+            position: relative;
+            top: 4px;
+        }
+    }
+
+    #unloseable {
+        padding-bottom: 0px;
+
+        .panel {
+            height: $unloseable-height;
+
+            .background {
+                width: 435px;
+            }
+
+            .content {
+                padding-left: 510px;
+                width: 450px;
+
+                .share {
+                    position: absolute;
+                    top: $unloseable-height - $share-height - 60px;
+                    right: 0px;
+                }
+            }
+        }
+
+    }
+
+    #ibeacon {
+        padding-top: 50px;
+        padding-bottom: 50px;
+        border-top: 1px solid rgba(0, 0, 0, 0.07);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+
+        .content {
+            // the ibeacon logo (img) is 150x150
+            line-height: 150px;
+            text-align: center;
+
+            img {
+                vertical-align: middle;
+                margin-right: 60px;
+            }
+
+            p {
+                max-width: 360px;
+                font-weight: 200;
+                display: inline-block;
+                vertical-align: middle;
+            }
+        }
+    }
+
+    #fashion {
+        height: 650px;
+    }
+
+    #frames {
+        text-align: center;
+        padding-bottom: 0px;
+        padding-top: 40px;
+
+        div {
+            max-width: 1300px;
+
+            li {
+                display: inline-block;
+                margin: 0px 35px;
+                width: 360px;
+                height: 244px;
+                overflow: hidden;
+                position: relative;
+
+                img {
+                    position: absolute;
+                    top: 0px;
+                    left: 0px;
+                    opacity: 1.0;
+                    width: 360px;
+                    @include single-transition(opacity, 2s);
+                }
+            }
+
+            menu {
+                margin-top: 80px;
+
+                > div {
+                    display: inline-block;
+                    width: 50px;
+                    margin: 0px 10px;
+                    cursor: pointer;
+
+                    > div {
+                        display: inline-block;
+                        margin-bottom: 7px;
+                        width: 7px;
+                        height: 7px;
+                        border-radius: 7px;
+                        border: 1px solid #999;
+                    }
+
+                    p {
+                        text-transform: lowercase;
+                        color: #999;
+                        font-weight: 300;
+                        position: relative;
+                        left: 1px;
+                    }
+
+                    &.selected > div {
+                        background-color: #ddd;
+                    }
+                }
+            }
+
+
+            > p {
+                text-align: center;
+
+                .share {
+                    margin-top: 20px;
+                }
+            }
+        }
+    }
+
+    #design {
+        h1 {
+            text-align: center;
+        }
+
+        p {
+            max-width: 650px;
+            margin-right: auto;
+            margin-left: auto;
+            text-align: center;
+
+            // learn more link
+            &:last-child {
+                text-align: center;
+            }
+        }
+    }
+
+    $craftsmanship-stats-width: 450px;
+    #craftsmanship {
+        p {
+            width: 450px;
+
+            // share button
+            &:last-child {
+                width: $craftsmanship-stats-width;
+                margin-top: 20px;
+
+                .share {
+                    position: relative;
+                    left: 150px;
+                }
+            }
+        }
+
+        dl {
+            width: $craftsmanship-stats-width;
+            margin-top: 40px;
+            position: relative;
+            left: -15px;
+
+            > span {
+                margin-right: 40px;
+
+                dd {
+                    font-size: 66px;
+                }
+
+                dt {
+                    width: 100%;
+                    font-size: 16px;
+                }
+
+                &#craftsmanship-weeks {
+                    width: 70px;
+                }
+
+                &#craftsmanship-qc {
+                    width: 110px;
+                }
+
+                &#craftsmanship-processes {
+                    width: 110px;
+                }
+            }
+        }
+    }
+
+    $environment-stat-margin: 40px;
+    #environment {
+        padding-bottom: $panel-padding - $environment-stat-margin;
+
+        h1 {
+            text-align: center;
+        }
+
+        p {
+            max-width: 650px;
+            margin-right: auto;
+            margin-left: auto;
+            text-align: center;
+        }
+
+        i {
+            font-size: 230px;
+        }
+
+        dl div {
+            display: inline;
+
+            dd {
+                position: relative;
+                //left: 7px;
+
+                span {
+                    font-size: 30px;
+                    margin-left: 5px;
+                    position: relative;
+                    top: -23px;
+                    color: #777;
+                }
+            }
+
+            dt {
+                margin-bottom: $environment-stat-margin;
+            }
+        }
+    }
+
+}
+
+
+/* ---------------- */
+/* countdown        */
+/* ---------------- */
+@media only screen and (max-width: 1000px) {
+    html.index #front dl {
+        div {
+            display: block;
+            margin-bottom: 40px;
+            margin-right: 0px !important;
+        }
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    html.index #front {
+        padding-top: 0px;
+
+        dl div span {
+            width: 110px;
+
+            &:first-child {
+                margin-right: 40px;
+            }
+
+            dt {
+                font-size: 20px;
+            }
+
+            dd {
+                font-size: 80px;
+            }
+        }
+    }
+}
+
+/* ---------------- */
+/* unloseable       */
+/* ---------------- */
+@media only screen and (max-width: 980px) {
+    html.index #unloseable .panel {
+        height: auto;
+
+        .content {
+            padding-left: 0px;
+            width: auto;
+            text-align: center;
+            margin-bottom: 40px;
+
+            p {
+                text-align: center;
+            }
+
+            h1 {
+                font-size: 40px;
+            }
+        }
+
+        .background {
+            display: block;
+            position: static;
+            width: auto;
+
+            .image {
+                position: static;
+                width: 310px;
+                height: 300px;
+                margin: 0px auto;
+            }
+        }
+    }
+}
+
+/* ---------------- */
+/* ibeacon          */
+/* ---------------- */
+@media only screen and (max-width: 615px) {
+    html.index #ibeacon .content {
+        line-height: 100px;
+
+        img {
+            margin-right: 0px;
+        }
+
+        p {
+            display: block;
+            text-align: center;
+            margin: 20px auto 0px auto;
+        }
+    }
+}
+
+/* ---------------- */
+/* environment      */
+/* ---------------- */
+@media only screen and (max-width: 805px) {
+    html.index #environment .content {
+        h1 {
+            font-size: 37px;
+        }
+
+        dl {
+            margin-top: 40px;
+
+            div {
+                display: block;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 405px) {
+    html.index #environment {
+        padding-bottom: 20px;
+
+        .content {
+            dl > div > span {
+                width: 115px;
+
+                dd {
+                    font-size: 50px;
+                }
+
+                dt {
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+}
+
+/* ---------------- */
+/* frames           */
+/* ---------------- */
+@media only screen and (max-width: 905px) {
+    html.index #frames div li {
+        margin: 0px 25px;
+        width: 240px;
+        height: 164px;
+
+        img {
+            width: 240px;
+        }
+    }
+}
+
+@media only screen and (max-width: 630px) {
+    html.index #frames {
+        div menu {
+            margin-top: 40px;
+        }
+
+        div li {
+            margin: 0px 15px;
+            width: 125px;
+            height: 94px;
+
+            img {
+                width: 125px;
+            }
+        }
+    }
+}
+
+
+/* ---------------- */
+/* design           */
+/* ---------------- */
+@media only screen and (max-width: $content-width-cutoff) {
+    html.index #design h1:first-child {
+        display: none;
+    }
+}
+
+
+/* ---------------- */
+/* craftsmanship    */
+/* ---------------- */
+@media only screen and (max-width: $content-width-cutoff) {
+    html.index #craftsmanship {
+        background-color: #f7f7f7;
+        text-align: center;
+
+        .background {
+            display: none;
+        }
+
+        .content {
+            p {
+                width: auto;
+                text-align: center;
+            }
+
+            dl {
+                width: auto;
+                left: 0px;
+
+                span {
+                    margin-right: 0px;
+                    display: block;
+                    width: auto !important;
+                    text-align: center;
+                    margin-bottom: 40px;
+                }
+            }
+        }
+    }
+}
+
+
+@media only screen and (max-width: 906px) {
+    html.index #video {
+        .panel .content #funding-stats {
+            li {
+                display: block;
+                text-align: center;
+                margin-right: 0px;
+
+                &#purchase-item {
+                    margin-top: 40px;
+
+                    p {
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+    }
+}
