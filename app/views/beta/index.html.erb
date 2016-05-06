@@ -24,7 +24,7 @@
         <% end %>
       </div>
       <div id="faq-link">
-        <a href="#">Want to know more? Read our FAQ</a>
+        <a href="/faq#beta">Want to know more? Read our FAQ</a>
       </div>
 
     <% else %>
@@ -39,7 +39,7 @@
           <p>Later this month, we're shipping out free pairs of glasses to beta testers all over the world. To apply to be a beta tester, you'll have to be invited by someone who is already in our beta program.</p>
           <p>We'll be selecting beta testers based on the number of friends they have invited and their location.</p>
           <div id="faq-link">
-            <a href="#">Want to know more? Read our FAQ</a>
+            <a href="/faq#beta">Want to know more? Read our FAQ</a>
           </div>
         </div>
         <div class="six columns" id="beta-hero">
@@ -65,6 +65,8 @@
         // handle errors on this form
         handleErrors(this, data.errors, data.error_messages);
       }
+    }).on('ajax:error', function(e, data) {
+      $("#form-errors").html("An unknown error occurred, please try again.")
     });
   });
 

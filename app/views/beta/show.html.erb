@@ -64,14 +64,6 @@
                 <% if @invite_code != "forgot" %>
                     <span id="invalid-code">Looks like the code you provided is invalid!</span><br/><br/>
                 <% end %>
-
-                Enter your email below to retrieve your registration status.
-                    <%= form_tag beta_retrieve_path,remote: true do %>
-                      <%= text_field_tag :email %> <br/>
-                      <%= submit_tag "retrieve account"%>
-                    <% end %>
-
-
             <% end %>
     </div>
   </article>

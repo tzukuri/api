@@ -3,8 +3,7 @@ class BetaSignup < ActiveRecord::Base
 
   # before we validate the signup, generate the invite code
   before_validation :generate_invite_code, on: :create
-
-  #todo: on create send an email to the user confirming their registration
+  after_create :send_confirmation_email
 
   # each signup can be invited by at most one person
   belongs_to :invited_by, :class_name => "BetaSignup"
@@ -32,6 +31,10 @@ class BetaSignup < ActiveRecord::Base
 
   private
     INVITE_MAX_RETRIES = 5
+
+    def send_confirmation_email
+      BetaMailer.send_beta_confirmation_email(self).deliver
+    end
 
     # generate an invite code of INVITE_CODE_LENGTH
     # will try up to INVITE_MAX_RETRIES times if a generated token is not unieq

@@ -10,6 +10,7 @@ class BetaSignupsController < ApplicationController
     end
 
     # if an invite code is provided, this user has been invited by another
+    # todo: potentially integrate this as part of the create process
     if @invite_code
       invited_by = BetaSignup.find_by_invite_code(@invite_code)
       invited_by.invite(@beta_signup)
