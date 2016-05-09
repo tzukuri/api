@@ -1,0 +1,280 @@
+body.preview {
+    // ---------------------------------
+    // countdown
+    // ---------------------------------
+    #front {
+        padding-bottom: 60px;
+        text-align: center;
+
+        // time components
+        dl {
+            margin-top: 60px;
+            margin-bottom: 80px;
+
+            span {
+                margin-right: 120px;
+                width: 135px;
+
+                &:last-child {
+                    margin-right: 0px;
+                }
+
+                dt {
+                    font-size: 30px;
+                }
+
+                dd {
+                    font-size: 120px;
+                    color: #444;
+                }
+            }
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-weight: 300;
+            font-size: 24px;
+            line-height: 30px;
+            color: #555;
+
+
+            // smaller "Be at Tzukuri..." text and "Add to calendar"
+            &.small {
+                line-height: 16px;
+                font-size: 16px;
+                color: #666;
+
+                &.calendar {
+                    margin-top: 10px;   // calendar icon and text is spaced 20px + 10px from the last line of text
+                    line-height: 24px;
+                }
+
+                a {
+                    // "Add to calendar" text
+                    color: #8EA8D6;
+                    &:hover { color: #7286AB; }
+
+                    // calendar icon. should consider making the text & icon colours consistent
+                    i { color: #aaa; }
+                    &:hover i { color: #777; }
+                }
+            }
+        }
+    }
+
+    #deposit {
+        background-color: #f7f7f7;
+        padding: 40px 40px;
+
+        p {
+            font-weight: 200;
+            font-size: 46px;
+            text-align: center;
+            color: black;
+
+            position: relative;
+            top: 4px;
+        }
+    }
+
+    $unloseable-height: 460px;
+    #unloseable {
+        height: $unloseable-height;
+        padding-bottom: 0px;
+
+        .left.background {
+            top: $panel-padding/2;
+            bottom: 0px;
+        }
+
+        .content {
+            padding-left: 510px;
+            width: 450px;
+
+            .share {
+                position: absolute;
+                top: $unloseable-height - $share-height - 130px;
+                right: 0px;
+            }
+        }
+    }
+
+    #ibeacon {
+        // the ibeacon logo (img) is 150x150
+        line-height: 150px;
+        text-align: center;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        border-top: 1px solid rgba(0, 0, 0, 0.07);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+
+        img {
+            vertical-align: middle;
+            margin-right: 60px;
+        }
+
+        p {
+            width: 360px;
+            font-weight: 200;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+
+    #fashion {
+        height: 450px;
+    }
+
+    #frames {
+        text-align: center;
+        padding-bottom: 0px;
+        padding-top: 40px;
+
+        li {
+            display: inline-block;
+            margin: 0px 35px;
+        }
+
+        menu {
+            margin-top: 80px;
+
+            > div {
+                display: inline-block;
+                width: 50px;
+                margin: 0px 10px;
+                cursor: pointer;
+
+                > div {
+                    display: inline-block;
+                    margin-bottom: 7px;
+                    width: 7px;
+                    height: 7px;
+                    border-radius: 7px;
+                    border: 1px solid #999;
+                }
+
+                p {
+                    text-transform: lowercase;
+                    color: #999;
+                    font-weight: 300;
+                    position: relative;
+                    left: 1px;
+                }
+
+                &.selected > div {
+                    background-color: #ddd;
+                }
+            }
+        }
+
+        .share {
+            margin-top: 20px;
+        }
+    }
+
+    #design {
+        h1 {
+            text-align: center;
+        }
+
+        p {
+            max-width: 650px;
+            margin-right: auto;
+            margin-left: auto;
+            text-align: center;
+
+            // learn more link
+            &:last-child {
+                text-align: center;
+            }
+        }
+    }
+
+    $craftsmanship-stats-width: 450px;
+    #craftsmanship {
+        p {
+            width: 450px;
+
+            // share button
+            &:last-child {
+                width: $craftsmanship-stats-width;
+                margin-top: 20px;
+
+                .share {
+                    position: relative;
+                    left: 150px;
+                }
+            }
+        }
+
+        dl {
+            width: $craftsmanship-stats-width;
+            margin-top: 40px;
+            position: relative;
+            left: -15px;
+
+            > span {
+                margin-right: 40px;
+
+                dd {
+                    font-size: 66px;
+                }
+
+                dt {
+                    width: 100%;
+                    font-size: 16px;
+                }
+
+                &#craftsmanship-weeks {
+                    width: 70px;
+                }
+
+                &#craftsmanship-qc {
+                    width: 110px;
+                }
+
+                &#craftsmanship-processes {
+                    width: 110px;
+                }
+            }
+        }
+    }
+
+    $environment-stat-margin: 40px;
+    #environment {
+        padding-bottom: $panel-padding - $environment-stat-margin;
+
+        h1 {
+            text-align: center;
+        }
+
+        p {
+            max-width: 650px;
+            margin-right: auto;
+            margin-left: auto;
+            text-align: center;
+        }
+
+        i {
+            font-size: 230px;
+        }
+
+        dd {
+            position: relative;
+            left: 7px;
+
+            span {
+                font-size: 30px;
+                margin-left: 5px;
+                position: relative;
+                top: -23px;
+                color: #777;
+            }
+        }
+
+        dt {
+            margin-bottom: $environment-stat-margin;
+        }
+    }
+
+}

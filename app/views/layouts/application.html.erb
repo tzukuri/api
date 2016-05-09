@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="<%= params[:page] || controller_name %>">
+<html>
     <head>
         <title>Tzukuri - Beautiful wearable technology<%= " - #{@page_title}" if @page_title %></title>
 
@@ -23,18 +23,23 @@
         <meta name="apple-mobile-web-app-capable" content="yes" />
     </head>
 
-<!--     <body class="<%= params[:page] || controller_name %>">
-      <%= yield %>
-    </body> -->
-
-    <body>
+    <body class="<%= params[:page] || controller_name %>">
         <div id="blur-content">
 
-            <% if !current_page?("/event") && !current_page?("/beta_store") %>
-                <%= render 'layouts/header' %>
+            <!-- render the header -->
+            <% if current_page?("/dashboard") %>
+                <!-- render the dashboard header -->
+                <%= render 'layouts/dashboard_header' %>
+            <% elsif current_page?("/event") || current_page?("/beta_store") || current_page?("/users/sign_in")  %>
+                <!-- render no header -->
+            <% else %>
+                <!-- render the regular store header -->
+                <%= render 'layouts/store_header' %>
             <% end %>
 
             <%= yield %>
+
+            <%= render 'layouts/store_footer' %>
 
             <div id="share-panel" style="display: none">
                 <div>

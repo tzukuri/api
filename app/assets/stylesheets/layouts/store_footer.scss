@@ -1,0 +1,19 @@
+footer {
+    text-align: center;
+    color: $tzukuri-black;
+    background-color:transparent;
+    padding: 30px;
+    font-family: 'Helvetica';
+    font-weight: 200;
+    font-size: 11pt;
+
+    opacity:1;
+
+    span {
+        margin-left: 20px;
+
+        a {
+            margin-left: 20px;
+        }
+    }
+}

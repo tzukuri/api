@@ -32,7 +32,7 @@ $(function() {
             $('#share-panel').css('top', panel.position().top + 1600);
         else
             $('#share-panel').css('top', panel.position().top + 60);
-        
+
         $('#share-panel').css('height', panel.height());
         $('#share-panel').css('width', panel.width());
         $('#share-panel').css('margin-left', '-' + (panel.width() / 2) + 'px');
@@ -51,7 +51,7 @@ $(function() {
     function showWindow(url, title) {
         var centre = Math.floor(document.width / 2) - 335;
         var window_left = window.screenX || window.screenLeft;
-        var popup_left = window_left + centre; 
+        var popup_left = window_left + centre;
         window.open(
             url,
             title,

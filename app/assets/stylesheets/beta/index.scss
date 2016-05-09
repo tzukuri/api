@@ -1,0 +1,110 @@
+body.beta {
+    #beta-index {
+        margin-top: 0px;
+
+        .container {
+            margin-top: 100px;
+            margin-bottom:100px;
+            text-align: center;
+            font-weight: 200;
+
+            #beta {
+                color: $tzukuri-blue;
+            }
+
+            #invalid-invite {
+                color: $tzukuri-red;
+            }
+
+            #beta-content {
+                text-align: left;
+
+                h1 {
+                    font-size: 46pt;
+                    font-weight: 100;
+                }
+
+                h2 {
+                    font-weight: bold;
+                    font-size: 16pt;
+                    margin-top: 20px;
+                }
+
+                p {
+                    font-size: 15pt;
+                    margin-top: 40px;
+                    margin-bottom: 40px;
+                    line-height: 25pt;
+                    font-weight: 300;
+                    color: $tzukuri-dark-grey;
+                }
+            }
+
+            #beta-hero {
+                .beta-hero-image {
+                    width: 100%;
+                }
+            }
+
+            #faq-link {
+                margin-top: 20px;
+                font-size: 12pt;
+                font-weight: 300;
+
+                a {
+                    text-decoration: none;
+                    color: $tzukuri-blue;
+                }
+            }
+
+            #welcome-head {
+                h1 {
+                    font-size: 46pt;
+                    font-weight: 100;
+                }
+
+                h2 {
+                    margin-top: 30px;
+                    color: $tzukuri-dark-grey;
+                    font-weight: 300;
+                    font-size: 14pt;
+                }
+            }
+
+            #signup-form-container {
+                margin-top: 50px;
+
+                #form-errors {
+                    color: $tzukuri-red;
+                    margin-top: 20px;
+                }
+
+                input {
+                    padding: 10px;
+                    font-size: 16pt;
+                    width: 300px;
+                    font-weight: 300;
+                    margin-bottom:10px;
+                    @include transition(0.5s ease);
+
+                    &.error {
+                        border: 1px solid $tzukuri-red;
+                        color: $tzukuri-red;
+                    }
+                }
+
+                select {
+                    border: 1px solid #BFBFBF;
+                    background: transparent;
+                    -webkit-appearance: none;
+                    padding: 10px;
+                    width: 321px;
+                    font-size: 16pt;
+                    border-radius: 0;
+                    color: #232323;
+                    font-weight: 300;
+                }
+            }
+        }
+    }
+}

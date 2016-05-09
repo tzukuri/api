@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160503041538) do
+ActiveRecord::Schema.define(version: 20160509002314) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,12 +92,13 @@ ActiveRecord::Schema.define(version: 20160503041538) do
   create_table "beta_signups", force: :cascade do |t|
     t.string   "email"
     t.string   "country"
-    t.boolean  "selected"
     t.integer  "invited_by_id"
     t.string   "invite_code"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "score",         default: 0
+    t.string   "name"
+    t.boolean  "selected",      default: false
   end
 
   add_index "beta_signups", ["invite_code"], name: "index_beta_signups_on_invite_code", using: :btree

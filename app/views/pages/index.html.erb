@@ -1,43 +1,6 @@
 <main>
-    <!-- <article id="front">
-        <div class="panel">
-            <div class="content">
-                <dl>
-                    <div>
-                        <span id="day-span">
-                            <dd id="countdown-days">6</dd>
-                            <dt>days</dt>
-                        </span>
-                        <span>
-                            <dd id="countdown-hours">15</dd>
-                            <dt>hours</dt>
-                        </span>
-                    </div>
-                    <div>
-                        <span>
-                            <dd id="countdown-minutes">28</dd>
-                            <dt>minutes</dt>
-                        </span>
-                        <span>
-                            <dd id="countdown-seconds">32</dd>
-                            <dt>seconds</dt>
-                        </span>
-                    </div>
-                </dl>
-                <p>
-                    Preorder the world's first unloseable sunglasses.<br>
-                    Only 1200 pairs available first round for a special price of USD $249.
-                </p>
-                <p class="small">Be at Tzukuri.com on October 15 at 1 p.m. US Eastern Time to be the first to get a pair.</p>
-                <p class="small calendar"><a href="/tzukuri_launch.ics">
-                    <i class="fa fa-calendar-o"></i><br>
-                    Add to your calendar
-                </a></p>
-            </div>
-        </div>
-    </article> -->
 
-    <article id="video">
+<!--     <article id="video">
         <div class="panel">
             <div class="content">
                 <div id="youtube-thumb">
@@ -46,23 +9,16 @@
                 <div id="youtube-video" style="display: none">
                     <div></div>
                 </div>
-                <ul id="funding-stats">
-                    <!-- <li>Preorders<span>are now closed</span></li> -->
-                    <li id="purchase-item">
-                        <!-- <div>$249 <a href="https://www.tzukuri.com/store" class="button">Preorder</a></div> -->
-                        <p>Preorders are now closed.</p>
-                    </li>
-                </ul>
             </div>
         </div>
-    </article>
+    </article> -->
 
-    <article id="deposit">
+<!--     <article id="deposit">
         <div class="panel">
             <p>Available March 2016.</p>
         </div>
     </article>
-
+ -->
     <article id="unloseable">
         <div class="panel">
             <div class="content">
@@ -86,14 +42,14 @@
             <p><a href="#" class="share"><%= image_tag 'share.png' %>Share</a></p>
         </div>
     </article> -->
-
+<!--
     <article id="ibeacon">
         <div class="panel">
             <div class="content">
                 <p>Sealed seamlessly inside every handmade Tzukuri frame is the world's smallest Bluetooth Low Energy beacon.</p>
             </div>
         </div>
-    </article>
+    </article> -->
 
     <article id="fashion">
         <div class="background"><div class="image" style="background-image: url(<%= image_url 'fashion.jpg' %>)"></div></div>
@@ -199,16 +155,4 @@
         </div>
     </article>
 
-    <article id="remaining">
-        <div class="panel">
-            <dl>
-                <dd>preorder</dd>
-
-                <!-- <%= 1200 - Purchase.count %> -->
-                <dt>now closed</dt>
-            </dl>
-            <!-- <a href="#" class="button">Preorder</a> -->
-            <%= render partial: 'footer' %>
-        </div>
-    </article>
 </main>

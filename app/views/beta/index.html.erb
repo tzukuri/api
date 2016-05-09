@@ -20,7 +20,7 @@
           <% end %>
           <div id="form-errors"></div>
           <br/>
-          <%= f.submit "register", id: "submit-btn"%>
+          <%= f.submit "register", id: "submit-btn", class: "cta-button"%>
         <% end %>
       </div>
       <div id="faq-link">
@@ -30,7 +30,7 @@
     <% else %>
       <!-- no valid user, so just display a marketing page -->
       <div id="invalid-invite">
-        <% if @invite_code %> The invite code you provided is invalid, please try again with a different code. <% end %>
+        <!-- <% if @invite_code %> The invite code you provided is invalid, please try again with a different code. <% end %> -->
       </div>
 
       <div class="row">

@@ -1,5 +1,5 @@
 $(function() {
-    if (!$('html').hasClass('index'))
+    if (!$('body').hasClass('index'))
         return;
 
     $('#youtube-thumb').click(function() {

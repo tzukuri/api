@@ -1,0 +1,99 @@
+body.craftsmanship {
+    #history {
+        h1 {
+            text-align: center;
+        }
+
+        p {
+            max-width: 650px;
+            margin-right: auto;
+            margin-left: auto;
+            text-align: center;
+        }
+    }
+
+    #japan {
+        height: 700px;
+    }
+
+    #polarised {
+        h1 {
+            text-align: center;
+        }
+
+        p {
+            max-width: 650px;
+            margin-right: auto;
+            margin-left: auto;
+            text-align: center;
+            padding-bottom: 30px;
+        }
+
+        dl span {
+            width: auto;
+
+            &:first-child {
+                margin-right: 150px;
+            }
+        }
+
+        #lens {
+            height: 60vw;
+            max-height: 635px;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-image: image-url('lens.png');
+            background-position: center center;
+        }
+    }
+
+    #better {
+        h1 {
+            text-align: center;
+        }
+
+        p {
+            max-width: 650px;
+            margin-right: auto;
+            margin-left: auto;
+            text-align: center;
+            padding-bottom: 30px;
+        }
+
+        dl span {
+            width: auto;
+
+            &:first-child {
+                margin-right: 150px;
+            }
+        }
+    }
+}
+
+// at < 600px, the two dls display incorrectly horizontally and need to be layed out vertically
+@media only screen and (max-width: 600px) {
+    html.craftsmanship {
+        #polarised dl, #better dl {
+            span:first-child {
+                margin-right: 0px;
+                margin-bottom: 30px;
+            }
+
+            span {
+                display: block;
+            }
+        }
+
+        #polarised {
+            dl {
+                margin-bottom: 40px;
+            }
+
+            #lens {
+                margin-bottom: 40px;
+                height: 80vw;
+                background-image: image-url('lens-mobile.png');
+            }
+        }
+    }
+}
