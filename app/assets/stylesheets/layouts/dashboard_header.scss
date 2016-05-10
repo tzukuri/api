@@ -1,0 +1,23 @@
+header {
+  width: 100%;
+  background-color: white;
+  padding:15px;
+  display: flex;
+  justify-content: space-between;
+  margin-left:auto;
+  margin-right:auto;
+
+  .right-content {
+    margin-right: 80px;
+  }
+
+  .left-content {
+    margin-left:0px;
+  }
+
+  #tzukuri {
+    margin-left: 80px;
+    font-size: 26pt;
+    font-weight: 100;
+  }
+}

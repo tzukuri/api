@@ -20,8 +20,8 @@ var map = (function () {
     L.mapbox.accessToken = MAPBOX_TOKEN
 
     if (args.glassesLat && args.glassesLon) {
-      mainMap = L.mapbox.map('main-map').setView([glassesLocation.latitude, glassesLocation.longitude], ZOOMLEVEL)
-      L.marker([glassesLocation.latitude, glassesLocation.longitude], {
+      mainMap = L.mapbox.map('main-map').setView([args.glassesLat, args.glassesLon], ZOOMLEVEL)
+      L.marker([args.glassesLat, args.glassesLon], {
         icon: glassesMarker
       }).addTo(mainMap)
     } else {

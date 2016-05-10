@@ -4,6 +4,7 @@ class BetaSignup < ActiveRecord::Base
   # before we validate the signup, generate the invite code
   before_validation :generate_invite_code, on: :create
   after_create :send_confirmation_email
+  after_save :check_for_selected
 
   # each signup can be invited by at most one person
   belongs_to :invited_by, :class_name => "BetaSignup"
@@ -31,6 +32,13 @@ class BetaSignup < ActiveRecord::Base
 
   private
     INVITE_MAX_RETRIES = 5
+
+    def check_for_selected
+      if changes[:selected] && self.selected == true
+        # send a beta acceptance email
+        BetaMailer.send_beta_acceptance_email(self).deliver
+      end
+    end
 
     def send_confirmation_email
       BetaMailer.send_beta_confirmation_email(self).deliver

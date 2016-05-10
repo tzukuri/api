@@ -17,27 +17,6 @@ body.dashboard {
         }
     }
 
-    #header {
-      width: 100%;
-      background-color: white;
-      padding:15px;
-      display: flex;
-      justify-content: space-between;
-      margin-left:auto;
-      margin-right:auto;
-
-      .right-content {
-        margin-right: 80px;
-        margin-top: 10px;
-      }
-
-      #tzukuri {
-        margin-left: 80px;
-        font-size: 26pt;
-        font-weight: 100;
-      }
-    }
-
     #details-container {
         background-color: white;
         width: 300px;

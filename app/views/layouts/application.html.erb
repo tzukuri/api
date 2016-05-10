@@ -22,7 +22,7 @@
         <div class="tzukuri-modal hidden">
             <!-- subscription modal -->
             <div id="subscription-modal" class="modal-dialog light hidden">
-                <h1>Subscribe to receive the latest updates from Tzukuri!</h1>
+                <h1>Subscribe to receive the latest updates from Tzukuri</h1>
                 <%= form_for Email.new, remote: true do |f| %>
                 <%= f.text_field :email, placeholder: 'email address', autofocus: true %><br/>
                 <button>subscribe</button>
@@ -70,6 +70,8 @@
 
         <% if controller_name == "pages" || controller_name == "beta" %>
             <%= render 'layouts/store_header' %>
+        <% elsif controller_name == "dashboard" %>
+            <%= render 'layouts/dashboard_header' %>
         <% end %>
 
         <%= yield %>
