@@ -26,8 +26,6 @@
 
 <br/><br/>
 <%= render "devise/shared/links" %>
-
-
 </div>
 
 
@@ -35,20 +33,9 @@
 
 <!-- JAVASCRIPT -->
 <script>
-  // initialise mapbox
-  L.mapbox.accessToken = 'pk.eyJ1Ijoic2FtdHp1a3VyaSIsImEiOiJjaW45cW9qc2QwYzNndHFsd2g4czRpM3ExIn0.BnJfjpwRj2E1cF2bqD42Xw';
-  var map = L.mapbox.map('main-map').setView([-33.852222, 151.210556], 16);
-  L.mapbox.styleLayer('mapbox://styles/samtzukuri/cin9rek1k00dhbckvr9fezhpl').addTo(map);
-
-  // disable drag and zoom handlers
-  map.touchZoom.disable();
-  map.dragging.disable();
-  map.doubleClickZoom.disable();
-  map.scrollWheelZoom.disable();
-  map.boxZoom.disable();
-  map.keyboard.disable();
-
-  // hide leaflet controls
-  $(".leaflet-control-zoom").css("visibility", "hidden");
-  $(".leaflet-control-attribution").css("visibility", "hidden");
+  // inject the map into the view
+  tzukuri.map.inject({
+    element: 'main-map',
+    disableControls: true
+  })
 </script>

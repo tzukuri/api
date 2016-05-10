@@ -1,46 +1,42 @@
 <!-- GLASSES DETAIL CONTAINER-->
 <!-- TODO: Remove assumption that only one device will be present -->
+<% if @device %>
 <div id="details-container">
-  <img src="images/Ford_Black_Sunglasses.png" id="glasses-image"/><br/>
+    <img src="images/Ford_Black_Sunglasses.png" id="glasses-image"/><br/>
 
-  <span id="connected-status"> <%= current_user.devices.first.state.titleize %> <div id="circle" class="<%= current_user.devices.first.state %>"></div> </span>  <br/><br/>
+    <span id="connected-status"> <%= @device.state.titleize %> <div id="circle" class="<%= @device.state %>"></div> </span>  <br/><br/>
 
-  <span id="seen-at">Seen at <%= current_user.devices.first.updated_at %></span>
+    <span id="seen-at">Seen at <%= @device.updated_at %></span>
 </div>
+<% end %>
 
-<!-- MAP BACKGROUND -->
-<!-- latitude and longitude of the glasses are stored on the object for access in javascript -->
-<div id="main-map" data-latitude="<%=current_user.devices.first.latitude%>" data-longitude="<%=current_user.devices.first.longitude%>"></div>
-
+<% if @device %>
+  <div id="main-map" data-device="true" data-latitude="<%=@device.latitude%>" data-longitude="<%= @device.longitude %>"></div>
+<% else %>
+  <div id="main-map" data-device="false"></div>
+<% end %>
 
 <!-- JAVASCRIPT -->
 <script>
+$(document).on('tzukuri.page.load', function() {
+  var device = $("#main-map").attr("data-device");
 
-$(document).ready(function() {
-  // read and store the latitude and longitude
-  // FIXME: Handle the case where a latitude and/or longitude cannot be found
-  var glassesLocation = {
-    latitude: $("#main-map").attr("data-latitude"),
-    longitude: $("#main-map").attr("data-longitude")
-  };
+  // if device is not present, show the modal
+  if (device == "false") {
+    tzukuri.modal.show({
+      modal: "#dashboard-empty-device-modal",
+      dismissable: false,
+      tint: "dark"
+    })
+  }
 
-  // initialise the glasses map marker
-  var glassesMarker = L.icon({
-    iconUrl: 'images/map_marker.png',
-    iconRetinaUrl: 'images/map_marker@2x.png',
-    iconSize: [40, 40]
-  });
+  // inject the map into the view
+  tzukuri.map.inject({
+    element: 'main-map',
+    glassesLat: $("#main-map").attr("data-latitude"),
+    glassesLon: $("#main-map").attr("data-longitude"),
+    disableControls: false
+  })
 
-  // initialise the map and hide the attribution label
-  // TODO: potentially move this out to some shared location as parts of it will be reused
-  var zoomLevel = 16;
-  L.mapbox.accessToken = 'pk.eyJ1Ijoic2FtdHp1a3VyaSIsImEiOiJjaW45cW9qc2QwYzNndHFsd2g4czRpM3ExIn0.BnJfjpwRj2E1cF2bqD42Xw';
-  var mainMap = L.mapbox.map('main-map').setView([glassesLocation.latitude, glassesLocation.longitude], zoomLevel);
-  $(".leaflet-control-attribution").css("visibility", "hidden");
-
-  // add style layers and a marker to indicate the position of the glasses
-  L.mapbox.styleLayer('mapbox://styles/samtzukuri/cin9rek1k00dhbckvr9fezhpl').addTo(mainMap);
-  L.marker([glassesLocation.latitude, glassesLocation.longitude], {icon: glassesMarker}).addTo(mainMap);
-});
-
+})
 </script>

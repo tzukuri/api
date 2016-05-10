@@ -37,8 +37,54 @@ $tzukuri-black: #232323;
   transition: $args;
 }
 
+.tzukuri-modal {
+    z-index:100;
+    height:100%;
+    width:100%;
+    position:fixed;
+    @include transition(0.5s);
+    background-color: rgba(255,255,255, 0.8);
+    -webkit-backdrop-filter: blur(10px);
+
+    display:flex;
+    align-items: center;
+    justify-content: center;
+
+    &.dark {
+        background-color: rgba(35,35,35, 0.8);
+    }
+
+    &.light {
+        background-color: rgba(255,255,255, 0.8);
+    }
+
+    .modal-content {
+        background-color: white;
+        width:50%;
+        border-radius:20px;
+        padding:20px;
+        text-align:center;
+
+        &.light {
+            background-color: rgba(255,255,255, 0.8);
+            color: $tzukuri-black;
+        }
+
+        &.dark {
+            background-color: rgba(35,35,35, 0.8);
+            color:white;
+        }
+
+        &.clear {
+            background-color: transparent;
+        }
+    }
+}
+
 // tzukuri standard input styles
 input {
+    margin-top:20px;
+    margin-bottom:20px;
     padding:10px;
     font-size:12pt;
 }
@@ -459,3 +505,4 @@ article:last-child {
         }
     }
 }
+

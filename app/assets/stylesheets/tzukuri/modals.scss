@@ -1,0 +1,114 @@
+// primary style for the tzukuri modal
+.tzukuri-modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+
+    @include transition(0.8s);
+
+    background-color: rgba(255, 255, 255, 0.8);
+    -webkit-backdrop-filter: blur(10px);
+
+    &.hidden {
+        opacity: 0;
+        z-index: -1;
+    }
+
+    &.dark {
+        background-color: rgba(35, 35, 35, 0.5);
+    }
+
+    &.light {
+        background-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .modal-dialog {
+        background-color: white;
+        width: 50%;
+        border-radius: 20px;
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0px 0px 20px #ECF0F1;
+
+        &.hidden {
+            opacity: 0;
+            display: none;
+        }
+
+        &.light {
+            box-shadow: 0px 0px 20px #ECF0F1;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: $tzukuri-black;
+        }
+
+        &.dark {
+            box-shadow: none;
+            background-color: rgba(35, 35, 35, 0.9);
+            color: white;
+        }
+
+        &.clear {
+            background-color: transparent;
+        }
+    }
+}
+
+// individual modal styles
+#subscription-modal {
+    h1 {
+        font-size: 18pt;
+        padding-bottom: 10px;
+        font-weight: 200;
+    }
+
+    input {
+        width: 50%;
+    }
+
+    #subscribe-status {
+        display: none;
+        font-size:10pt;
+        margin-top:20px;
+        &.error {
+            color: $tzukuri-red;
+        }
+        &.success {
+            color: #30AD63;
+        }
+    }
+}
+
+#rsvp-modal {
+
+}
+
+#share-modal {
+    padding:60px;
+    #share-icons {
+        span {
+            padding:20px;
+            a {
+                text-decoration: none;
+            }
+        }
+    }
+
+}
+
+#dashboard-empty-device-modal {
+    h1 {
+        font-size:21pt;
+        color: $tzukuri-red;
+    }
+    p {
+        font-size:14pt;
+        line-height:30px;
+        font-weight:200;
+    }
+    button {
+        font-size:12pt;
+    }
+}

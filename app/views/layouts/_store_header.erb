@@ -1,5 +1,4 @@
 <header>
-
   <div>
     <h1><a href="/"><%= image_tag 'logo.png', height: 25, alt: 'Tzukuri' %></a></h1>
     <span class="pe-7f-check" style="color: white; opacity: 0.0"></span>
@@ -10,12 +9,8 @@
         <a href="/design" class="<%= 'selected' if params[:page] == 'design' %>">design</a>
         <a href="/craftsmanship" class="<%= 'selected' if params[:page] == 'craftsmanship' %>">craftsmanship</a>
         <a href="/gallery" class="<%= 'selected' if params[:page] == 'gallery' %>">gallery</a>
-        <!-- <a href="/dashboard" class="<%= 'selected' if params[:page] == 'dashboard' %>">dashboard</a> -->
       </nav>
-      <a href="/beta" class="button">join the beta</a>
-      <!--<button id="show-subscribe">Subscribe</button>-->
-      <!-- <a href="/beta_store" class="button">reserve</a> -->
-      <!-- <a href="https://www.tzukuri.com/store" class="button">Preorder</a> -->
+      <button id="show-subscribe">Subscribe</button>
     </menu>
   </div>
 </header>

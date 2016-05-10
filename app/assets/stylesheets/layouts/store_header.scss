@@ -1,9 +1,8 @@
-#blur-content > header {
-    position: fixed;
+header {
+    position:fixed;
     left: 0px;
     right: 0px;
     top: 0px;
-    z-index: 20;
 
     padding-top: $header-padding-top;
     padding-bottom: $header-padding-bottom;
@@ -63,7 +62,7 @@
 }
 
 @media only screen and (max-width: $menu-width-cutoff) {
-    #blur-content > header {
+    header {
         #hamburger {
             position: absolute;
             right: 20px;

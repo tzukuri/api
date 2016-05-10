@@ -9,7 +9,8 @@
 @import "frameworks/skeleton";
 
 // common tzukuri styles
-@import "tzukuri";
+@import "tzukuri/tzukuri";
+@import "tzukuri/modals";
 
 // layouts
 @import "layouts/store_header";
