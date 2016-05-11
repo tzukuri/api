@@ -1,12 +1,10 @@
-$(document).on('tzukuri.page.load', function() {
-    // bind showing modal to show-subscribe
-    $('#show-subscribe').click(function(event) {
-        tzukuri.modal.show({
-            modal: "#subscription-modal",
-            tint: "light",
-            dismissable: true
-        });
-    })
+// bind subscribe click
+$(document).on("click", "#show-subscribe", function() {
+    tzukuri.modal.show({
+        modal: "#subscription-modal",
+        tint: "light",
+        dismissable: true
+    });
 })
 
 $(function() {

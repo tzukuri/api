@@ -70,7 +70,7 @@ body.terms main > article {
 
 
 @media only screen and (max-width: $content-width-cutoff) {
-    html.legal main > article .content {
+    body.terms main > article .content {
         h1 {
             font-size: 30px;
             line-height: 30px;

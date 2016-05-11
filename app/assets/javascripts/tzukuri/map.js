@@ -6,8 +6,8 @@ var map = (function () {
   var m = {}
 
   var glassesMarker = L.icon({
-    iconUrl: 'images/map_marker.png',
-    iconRetinaUrl: 'images/map_marker@2x.png',
+    iconUrl: '',
+    iconRetinaUrl: '',
     iconSize: [40, 40]
   });
 
@@ -21,9 +21,15 @@ var map = (function () {
 
     if (args.glassesLat && args.glassesLon) {
       mainMap = L.mapbox.map('main-map').setView([args.glassesLat, args.glassesLon], ZOOMLEVEL)
+
+      // set the correct marker in the view
+      glassesMarker.options.iconUrl = 'images/markers/Marker_' + args.glassesModel + "_" + args.glassesState + ".png";
+      glassesMarker.options.iconRetinaUrl = 'images/markers/Marker_' + args.glassesModel + "_" + args.glassesState + "@2x.png"
+
       L.marker([args.glassesLat, args.glassesLon], {
         icon: glassesMarker
       }).addTo(mainMap)
+
     } else {
       mainMap = L.mapbox.map(e).setView([-33.852222, 151.210556], ZOOMLEVEL)
     }

@@ -72,7 +72,7 @@ body.craftsmanship {
 
 // at < 600px, the two dls display incorrectly horizontally and need to be layed out vertically
 @media only screen and (max-width: 600px) {
-    html.craftsmanship {
+    body.craftsmanship {
         #polarised dl, #better dl {
             span:first-child {
                 margin-right: 0px;

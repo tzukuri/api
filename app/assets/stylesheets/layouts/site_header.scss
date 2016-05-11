@@ -1,4 +1,4 @@
-header {
+header#store {
     position:fixed;
     left: 0px;
     right: 0px;
@@ -62,7 +62,7 @@ header {
 }
 
 @media only screen and (max-width: $menu-width-cutoff) {
-    header {
+    header#store {
         #hamburger {
             position: absolute;
             right: 20px;

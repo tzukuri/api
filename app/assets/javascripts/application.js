@@ -15,4 +15,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require mapbox.js
+//= require moment
+//= require moment-timezone
 //= require_tree .

@@ -2,11 +2,11 @@
 <!-- TODO: Remove assumption that only one device will be present -->
 <% if @device %>
 <div id="details-container">
-    <img src="images/Ford_Black_Sunglasses.png" id="glasses-image"/><br/>
+    <img data-design="<%= @device.design %>" data-colour="<%= @device.colour %>" data-optical="<%= @device.optical %>" data-connected="<%= @device.state.titleize %>"id="glasses-image"/><br/>
 
     <span id="connected-status"> <%= @device.state.titleize %> <div id="circle" class="<%= @device.state %>"></div> </span>  <br/><br/>
 
-    <span id="seen-at">Seen at <%= @device.updated_at %></span>
+    <span id="seen-at" data-updated="<%= @device.updated_at %>"></span>
 </div>
 <% end %>
 
@@ -19,6 +19,7 @@
 <!-- JAVASCRIPT -->
 <script>
 $(document).on('tzukuri.page.load', function() {
+
   var device = $("#main-map").attr("data-device");
 
   // if device is not present, show the modal
@@ -30,13 +31,30 @@ $(document).on('tzukuri.page.load', function() {
     })
   }
 
+  // update the lat seen label
+  var updatedAt = moment.utc($("#seen-at").attr("data-updated")).local()
+  $("#seen-at").text("Last seen on " + updatedAt.format("dddd") + " at " + updatedAt.format("h:mma"))
+
+  var glassesImage = $("#glasses-image")
+  glassesSrc = glassesImage.attr("data-design") + "_" + glassesImage.attr("data-colour") + "_"
+
+  if (glassesImage.attr("data-optical") == "true") {
+    glassesSrc += "Sunglasses"
+  } else {
+    glassesSrc += "Optical"
+  }
+
   // inject the map into the view
   tzukuri.map.inject({
     element: 'main-map',
     glassesLat: $("#main-map").attr("data-latitude"),
     glassesLon: $("#main-map").attr("data-longitude"),
+    glassesModel: glassesSrc,
+    glassesState: glassesImage.attr("data-connected"),
     disableControls: false
   })
 
+  // todo: clean this up
+  glassesImage.attr("src", "images/glasses/" + glassesSrc + ".png")
 })
 </script>

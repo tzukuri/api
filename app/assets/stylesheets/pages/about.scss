@@ -55,7 +55,7 @@ body.about {
 }
 
 @media only screen and (max-width: $content-width-cutoff) {
-    html.about {
+    body.about {
         #overview {
             padding-top: 40px;
         }

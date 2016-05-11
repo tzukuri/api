@@ -135,7 +135,7 @@ body.technology {
 
 
 @media only screen and (max-width: 1100px) {
-    html.technology #unforgettable {
+    body.technology #unforgettable {
         height: 470px;
         background-color: black;
 
@@ -169,7 +169,7 @@ body.technology {
 
 
 @media only screen and (max-width: 730px) {
-    html.technology #easily-found {
+    body.technology #easily-found {
         text-align: center;
         padding-bottom: 20px;
 
@@ -211,7 +211,7 @@ body.technology {
 
 
 @media only screen and (max-width: $content-width-cutoff) {
-    html.technology {
+    body.technology {
         #unforgettable {
             height: 380px;
 

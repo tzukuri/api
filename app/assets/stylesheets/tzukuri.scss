@@ -249,7 +249,7 @@ button, .button {
 
 
 /* content gets blured when a popover panel is shown */
-#blur-content, main > article, #whichpair section {
+main > article, #whichpair section {
     height:100%;
     -webkit-transition: -webkit-filter 1s;
     -ms-transition: -ms-filter 1s ease;

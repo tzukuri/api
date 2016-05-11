@@ -441,7 +441,7 @@ body.index {
 /* countdown        */
 /* ---------------- */
 @media only screen and (max-width: 1000px) {
-    html.index #front dl {
+    body.index #front dl {
         div {
             display: block;
             margin-bottom: 40px;
@@ -451,7 +451,7 @@ body.index {
 }
 
 @media only screen and (max-width: 500px) {
-    html.index #front {
+    body.index #front {
         padding-top: 0px;
 
         dl div span {
@@ -476,7 +476,7 @@ body.index {
 /* unloseable       */
 /* ---------------- */
 @media only screen and (max-width: 980px) {
-    html.index #unloseable .panel {
+    body.index #unloseable .panel {
         height: auto;
 
         .content {
@@ -513,7 +513,7 @@ body.index {
 /* ibeacon          */
 /* ---------------- */
 @media only screen and (max-width: 615px) {
-    html.index #ibeacon .content {
+    body.index #ibeacon .content {
         line-height: 100px;
 
         img {
@@ -532,7 +532,7 @@ body.index {
 /* environment      */
 /* ---------------- */
 @media only screen and (max-width: 805px) {
-    html.index #environment .content {
+    body.index #environment .content {
         h1 {
             font-size: 37px;
         }
@@ -548,7 +548,7 @@ body.index {
 }
 
 @media only screen and (max-width: 405px) {
-    html.index #environment {
+    body.index #environment {
         padding-bottom: 20px;
 
         .content {
@@ -571,7 +571,7 @@ body.index {
 /* frames           */
 /* ---------------- */
 @media only screen and (max-width: 905px) {
-    html.index #frames div li {
+    body.index #frames div li {
         margin: 0px 25px;
         width: 240px;
         height: 164px;
@@ -583,7 +583,7 @@ body.index {
 }
 
 @media only screen and (max-width: 630px) {
-    html.index #frames {
+    body.index #frames {
         div menu {
             margin-top: 40px;
         }
@@ -605,7 +605,7 @@ body.index {
 /* design           */
 /* ---------------- */
 @media only screen and (max-width: $content-width-cutoff) {
-    html.index #design h1:first-child {
+    body.index #design h1:first-child {
         display: none;
     }
 }
@@ -615,7 +615,7 @@ body.index {
 /* craftsmanship    */
 /* ---------------- */
 @media only screen and (max-width: $content-width-cutoff) {
-    html.index #craftsmanship {
+    body.index #craftsmanship {
         background-color: #f7f7f7;
         text-align: center;
 
@@ -647,7 +647,7 @@ body.index {
 
 
 @media only screen and (max-width: 906px) {
-    html.index #video {
+    body.index #video {
         .panel .content #funding-stats {
             li {
                 display: block;
