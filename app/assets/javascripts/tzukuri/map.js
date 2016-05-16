@@ -36,8 +36,11 @@ var map = (function () {
 
     L.mapbox.styleLayer(STYLELAYER).addTo(mainMap);
 
+    console.log(args.disableControls)
+
     // disable controls on the map
-    if (args.disableControls) {
+    if (args.disableControls == "true") {
+      console.log("disabling controls")
       mainMap.touchZoom.disable();
       mainMap.dragging.disable();
       mainMap.doubleClickZoom.disable();

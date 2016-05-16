@@ -27,7 +27,7 @@ class BetaSignupsController < ApplicationController
 
   # required parameters out of the params object
   def beta_signup_params
-    params.require(:beta_signup).permit(:name, :email, :country)
+    params.require(:beta_signup).permit(:name, :email, :country, :birth_date)
   end
 
 end

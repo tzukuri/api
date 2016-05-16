@@ -1,2 +1,4 @@
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
+$('#beta_signup_birth_date').on('input', function() {
+  console.log("input")
+    $(this).val() // get the current value of the input field.
+});

@@ -9,6 +9,15 @@ header#dashboard {
 
   .right-content {
     margin-right: 80px;
+    font-size:12pt;
+    font-weight:200;
+    margin-top:5px;
+    #user {
+      margin-right:20px;
+    }
+    a {
+      font-weight:300;
+    }
   }
 
   .left-content {
@@ -17,7 +26,12 @@ header#dashboard {
 
   #tzukuri {
     margin-left: 80px;
-    font-size: 26pt;
+    font-size: 18pt;
     font-weight: 100;
+    #dashboard {
+      margin-left:10px;
+      letter-spacing:1pt;
+      font-size:12pt;
+    }
   }
 }

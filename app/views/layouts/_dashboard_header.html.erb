@@ -1,9 +1,9 @@
 <header id="dashboard">
   <div class="left-content">
-   <span id="tzukuri">T Z U K U R I</span>
+   <span id="tzukuri">T Z U K U R I <span id="dashboard">dashboard</span></span>
  </div>
 
   <div class="right-content">
-    <%= current_user.name %> | <%= link_to "log out", destroy_user_session_path, :method => :delete %>
+    <span id="user"><%= current_user.name %></span> <%= link_to "logout", destroy_user_session_path, :method => :delete %>
   </div>
 </header>

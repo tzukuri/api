@@ -1,12 +1,8 @@
 body.beta {
     #beta-index {
-        margin-top: 0px;
 
-        .container {
-            margin-top: 100px;
-            margin-bottom:100px;
-            text-align: center;
-            font-weight: 200;
+            text-align:center;
+            padding-top:140px;
 
             #beta {
                 color: $tzukuri-blue;
@@ -14,6 +10,15 @@ body.beta {
 
             #invalid-invite {
                 color: $tzukuri-red;
+            }
+
+            #register-conditions {
+                font-size:10pt;
+                margin-top:40px;
+                margin-bottom:40px;
+                font-weight:300;
+                color:$tzukuri-dark-grey;
+                line-height:16pt;
             }
 
             #beta-content {
@@ -47,7 +52,8 @@ body.beta {
             }
 
             #faq-link {
-                margin-top: 20px;
+                margin-top: 40px;
+                margin-bottom:40px;
                 font-size: 12pt;
                 font-weight: 300;
 
@@ -72,39 +78,43 @@ body.beta {
             }
 
             #signup-form-container {
-                margin-top: 50px;
+                margin-top: 30px;
 
-                #form-errors {
-                    color: $tzukuri-red;
-                    margin-top: 20px;
-                }
-
-                input {
-                    padding: 10px;
-                    font-size: 16pt;
-                    width: 300px;
-                    font-weight: 300;
-                    margin-bottom:10px;
-                    @include transition(0.5s ease);
-
-                    &.error {
-                        border: 1px solid $tzukuri-red;
-                        color: $tzukuri-red;
+                #birthday_hint {
+                    font-size:10pt;
+                    color: $tzukuri-dark-grey;
+                    &.success {
+                        color:#34B969;
                     }
                 }
 
+                .beta-input, select {
+                    background-color:$tzukuri-light-grey;
+                    border-radius:5px;
+                    border: 1px solid $tzukuri-light-grey;
+                    margin: 10px;
+                    width: 400px;
+                    &.error {
+                        border: 1px solid $tzukuri-red;
+                    }
+                }
+
+                .error-field {
+                    color: $tzukuri-red;
+                    font-size:10pt;
+                }
+
                 select {
-                    border: 1px solid #BFBFBF;
-                    background: transparent;
                     -webkit-appearance: none;
-                    padding: 10px;
-                    width: 321px;
-                    font-size: 16pt;
-                    border-radius: 0;
-                    color: #232323;
-                    font-weight: 300;
+                    padding:10px;
+                    width: 420px;
+                    font-size:12pt;
+                }
+
+                #submit-btn {
+                    margin-top:20px;
+                    width: 200px;
                 }
             }
-        }
     }
 }

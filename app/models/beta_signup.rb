@@ -16,6 +16,7 @@ class BetaSignup < ActiveRecord::Base
   validates :country, presence: true
   validates :invite_code, presence: true,  uniqueness: true, :length => { :is => INVITE_CODE_LENGTH }
   validates :score, presence: true
+  validates :birth_date, presence: true
 
   # enforce email regex
   validates_format_of :email,:with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/

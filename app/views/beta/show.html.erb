@@ -18,14 +18,22 @@
             <div class="twelve columns" id="registration-details">
             <!-- VIEW SIGNUP DETAILS [SUCCESS STATE] -->
                 <% if !@rank %>
-                    <h1>Congratulations! You've been selected. </h1>
+                    <h1>Congratulations, you've been selected </h1>
                 <% elsif @rank == 0 %>
-                    <h1>Congrats, you're the first in line &nbsp; 😎</h1>
+                    <h1>Congratulations, you're the first in line &nbsp; 😎</h1>
                 <% elsif @rank == 1 %>
                     <h1><%= @rank %> person is ahead of you </h1>
                 <% else %>
                     <h1><%= @rank %> people are ahead of you </h1>
                 <% end %>
+                <br/><br/>
+                <h2>As a result of your invites, <%= @num_invited %>
+                    <% if @num_invited == 1 %>
+                        person has
+                    <% else %>
+                        people have
+                    <% end %> signed up
+                </h2>
             </div>
 
             <div class="twelve columns" id="social-details">
