@@ -25,5 +25,6 @@ module Api
 
     # Tzukuri rendering exception handler
     config.autoload_paths << Rails.root.join('lib')
+    config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**}')]
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160511042425) do
+ActiveRecord::Schema.define(version: 20160516234549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,18 @@ ActiveRecord::Schema.define(version: 20160511042425) do
     t.string   "diagnostics_sync_token"
   end
 
+  create_table "beta_identities", force: :cascade do |t|
+    t.integer  "beta_user_id"
+    t.string   "provider"
+    t.string   "access_token"
+    t.string   "private_token"
+    t.string   "uid"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "beta_identities", ["beta_user_id"], name: "index_beta_identities_on_beta_user_id", using: :btree
+
   create_table "beta_signups", force: :cascade do |t|
     t.string   "email"
     t.string   "country"
@@ -103,6 +115,21 @@ ActiveRecord::Schema.define(version: 20160511042425) do
   end
 
   add_index "beta_signups", ["invite_code"], name: "index_beta_signups_on_invite_code", using: :btree
+
+  create_table "beta_users", force: :cascade do |t|
+    t.string   "email",        default: "",  null: false
+    t.string   "name"
+    t.string   "invite_token"
+    t.float    "score",        default: 0.0
+    t.boolean  "selected"
+    t.string   "user_agent"
+    t.string   "ip_address"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "beta_users", ["email"], name: "index_beta_users_on_email", unique: true, using: :btree
+  add_index "beta_users", ["invite_token"], name: "index_beta_users_on_invite_token", using: :btree
 
   create_table "betareservations", force: :cascade do |t|
     t.string   "name"
@@ -262,6 +289,7 @@ ActiveRecord::Schema.define(version: 20160511042425) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
+  add_foreign_key "beta_identities", "beta_users"
   add_foreign_key "quietzones", "users"
   add_foreign_key "recordings", "devices"
   add_foreign_key "recordings", "rooms", on_delete: :cascade

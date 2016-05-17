@@ -27,6 +27,17 @@ gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'country_select'
 gem 'mapbox-rails', :git => 'https://github.com/dkniffin/mapbox-rails'
 
+#omniauth strategies
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem 'omniauth-instagram'
+
+# api wrappers
+gem 'twitter'
+gem 'instagram'
+gem 'koala'
+gem 'fb_graph'
+
 group :test do
   gem 'minitest-reporters', '1.0.5'
   gem 'mini_backtrace',     '0.1.3'

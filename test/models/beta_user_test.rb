@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class BetaControllerTest < ActionController::TestCase
+class BetaUserTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

@@ -4,6 +4,12 @@ Rails.application.routes.draw do
     # -----------------------------
     devise_for :admin_users, ActiveAdmin::Devise.config
     devise_for :users
+    devise_for :beta_users, :controllers => {omniauth_callbacks: 'omniauth_callbacks'}
+    devise_scope :beta_user do
+        post    '/beta_users/sign_in'   => 'devise/sessions#create'
+        delete  '/beta_users/sign_out'  => 'devise/sessions#destroy'
+    end
+
     ActiveAdmin.routes(self)
 
     # -----------------------------
@@ -56,9 +62,9 @@ Rails.application.routes.draw do
     # -----------------------------
     # other web routes
     # -----------------------------
-    resources :beta_reservations
-    resources :beta, param: :invite_code
-    resources :beta_signups
+    # resources :beta_reservations
+    # resources :beta, param: :invite_code
+    # resources :beta_signups
 
     resources :betareservations do
       collection do
@@ -84,6 +90,7 @@ Rails.application.routes.draw do
       end
     end
 
+    get '/beta/:token' => 'beta#index'
     get '/dashboard', to: 'dashboard#index'
     get '*page', to: 'pages#index'
     root 'pages#index', page: 'index'
