@@ -1,0 +1,18 @@
+<br>
+<br>
+<br>
+<br>
+
+<% if beta_user_signed_in? %>
+  user is signed in, not displaying sign up form
+<% else %>
+  displaying signup form
+
+  <%= form_for @beta_user, :url => beta_user_registration_path(@beta_user) do |f| %>
+    <%= f.text_field :name, placeholder: "name", autofocus: true %> <br>
+    <%= f.text_field :email, placeholder: "email address"%> <br/>
+    <%= f.hidden_field :invite_token, value: @token %><br/>
+    <%= f.submit "login"%>
+  <% end %>
+
+<% end %>

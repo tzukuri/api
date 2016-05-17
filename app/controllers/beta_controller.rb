@@ -6,16 +6,22 @@ class BetaController < ApplicationController
 
     if beta_user_signed_in?
       # the user is signed in, so get the data for their details
-      # @beta_user = BetaUser.find_by_invite_token(@token)
       @beta_user = current_beta_user
     else
       # otherwise create an empty user and show the form
-      @beta_user = BetaUser.new()
+      @beta_user = BetaUser.new
     end
   end
 
   def invite
-    @invite_code = params[:invite_code]
+    @token = params[:token]
+
+    if beta_user_signed_in?
+      puts "USER SIGNED IN!"
+      redirect_to "/beta/" + current_beta_user.invite_token
+    end
+
+    @beta_user = BetaUser.new
   end
 
 

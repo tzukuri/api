@@ -1,8 +1,12 @@
 class BetaUser < ActiveRecord::Base
 
-  devise :omniauthable, :my_authentication
+  devise :omniauthable, :registerable, :my_authentication
 
   has_many :beta_identities
+
+  before_validation :generate_invite_token, on: :create
+
+  # todo: validations
 
   # ------------------
   # twitter
@@ -59,4 +63,19 @@ class BetaUser < ActiveRecord::Base
       @instagram_client = Instagram.client(access_token: instagram.access_token)
     end
   end
+
+  private
+    INVITE_CODE_LENGTH = 6
+    INVITE_MAX_RETRIES = 5
+
+    # generate an invite code of INVITE_CODE_LENGTH
+    # will try up to INVITE_MAX_RETRIES times if a generated token is not unieq
+    def generate_invite_token
+      self.invite_token = Devise.friendly_token(INVITE_CODE_LENGTH)
+    rescue ActiveRecord::RecordNotUnique => e
+      @token_attempts = @token_attempts.to_i += 1
+      retry if @token_attempts < INVITE_MAX_RETRIES
+      raise e, "Retried exhausted, could not find a unique token"
+    end
+
 end

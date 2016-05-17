@@ -21,4 +21,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     redirect_to "/beta/" + @beta_user.invite_token
   end
+
+
 end
