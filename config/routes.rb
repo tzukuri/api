@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     devise_for :admin_users, ActiveAdmin::Devise.config
     devise_for :users
     devise_for :beta_users, :controllers => {omniauth_callbacks: 'omniauth_callbacks'}
+
     devise_scope :beta_user do
         post    '/beta_users/sign_in'   => 'devise/sessions#create'
         delete  '/beta_users/sign_out'  => 'devise/sessions#destroy'
