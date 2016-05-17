@@ -1,12 +1,12 @@
 class BetaUser < ActiveRecord::Base
-
   devise :omniauthable, :registerable, :my_authentication
-
   has_many :beta_identities
 
-  before_validation :generate_invite_token, on: :create
+  # beta referrals
+  has_many :beta_referrals, :foreign_key => "inviter_id"
+  has_many :invitees, :through => :beta_referrals
 
-  # todo: validations
+  before_validation :generate_invite_token, on: :create
 
   # ------------------
   # twitter
