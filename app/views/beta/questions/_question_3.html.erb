@@ -1,0 +1,6 @@
+<!-- how old are you -->
+<%= form_for BetaResponse.new, :url => beta_responses_path, :html => { :method => :post}, remote: true do |f| %>
+  <%= f.hidden_field :question_id, value: question.id%>
+    <%= f.select(:response, options_for_select(['18-29', '30-39', '40-49', '50-59', '60+'])) %>
+  <%= f.submit "answer" %>
+<% end %>

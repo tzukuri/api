@@ -1,6 +1,8 @@
 class BetaUser < ActiveRecord::Base
   devise :omniauthable, :registerable, :my_authentication
-  has_many :beta_identities
+
+  has_many :identities, foreign_key: "beta_user_id", class_name: "BetaIdentity"
+  has_many :responses,  foreign_key: "beta_user_id", class_name: "BetaResponse"
 
   # beta referrals
   has_many :beta_referrals, :foreign_key => "inviter_id"
@@ -19,15 +21,30 @@ class BetaUser < ActiveRecord::Base
     )
   end
 
+  # return a list of all the questions a user has not answered
+  def unanswered_questions
+    answered_ids = self.responses.map(&:beta_question_id)
+    BetaQuestion.where.not(id: answered_ids)
+  end
+
+  # answer a question
+  def answer_question(q_id, response)
+    BetaResponse.create(
+      beta_user_id: self.id,
+      beta_question_id: q_id,
+      response: response
+    )
+  end
+
   # ------------------
   # twitter
   # ------------------
   def twitter
-    beta_identities.where(:provider => 'twitter').first
+    identities.where(:provider => 'twitter').first
   end
 
   def twitter?
-    beta_identities.where(:provider => 'twitter').exists?
+    identities.where(:provider => 'twitter').exists?
   end
 
   def twitter_client
@@ -45,11 +62,11 @@ class BetaUser < ActiveRecord::Base
   # facebook
   # ------------------
   def facebook
-    beta_identities.where(:provider => 'facebook').first
+    identities.where(:provider => 'facebook').first
   end
 
   def facebook?
-    beta_identities.where(:provider => 'facebook').exists?
+    identities.where(:provider => 'facebook').exists?
   end
 
   def facebook_client
@@ -62,11 +79,11 @@ class BetaUser < ActiveRecord::Base
   # instagram
   # ------------------
   def instagram
-    beta_identities.where(:provider => 'instagram').first
+    identities.where(:provider => 'instagram').first
   end
 
   def instagram?
-    beta_identities.where(:provider => 'instagram').exists?
+    identities.where(:provider => 'instagram').exists?
   end
 
   def instagram_client

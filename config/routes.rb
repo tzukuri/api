@@ -73,6 +73,8 @@ Rails.application.routes.draw do
     # resources :beta, param: :invite_code
     # resources :beta_signups
 
+    resources :beta_responses
+
     resources :betareservations do
       collection do
         get :csv

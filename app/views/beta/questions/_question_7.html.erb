@@ -1,0 +1,6 @@
+<!-- where do you purchase your optical glasses -->
+<%= form_for BetaResponse.new, :url => beta_responses_path, :html => { :method => :post}, remote: true do |f| %>
+  <%= f.hidden_field :question_id, value: question.id%>
+  <%= f.text_field :response %>
+  <%= f.submit "answer" %>
+<% end %>

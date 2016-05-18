@@ -5,9 +5,19 @@
     <p>Email: <%= @beta_user.email %></p><br/>
     <p>Invite Token: <%= @beta_user.invite_token %></p><br/>
     <p>Score: <%= @beta_user.score %></p><br/>
-    <p>Invite Link: http://localhost:3000/invite/<%= @beta_user.invite_token %> </p>
-    <br/>
-    <br/>
+    <p>Invite Link: http://localhost:3000/invite/<%= @beta_user.invite_token %> </p><br/>
+
+    <div class="progress-bar"></div>
+
+    <div class="questions" style="margin-top:20px; margin-bottom:20px; border: 1px solid blue; padding:10px;">
+      <% @beta_user.unanswered_questions.each do |question| %>
+        <div class="question" id="question_<%=question.id%>" style="display:none">
+          <p><%= question.content %> [<%= question.point_value %>]</p>
+          <%= render '/beta/questions/question_' + question.id.to_s, :question => question %><br/><br/>
+        </div>
+      <% end %>
+      <a href="#" id="skip-question">skip</a>
+    </div>
 
     <div class="row">
       <div class="one-third column">
@@ -51,3 +61,57 @@
     <% end %>
   <% end %>
 </div>
+
+<script>
+
+    var currentQuestion;
+    var FADETIME = 500;
+
+    var showQuestion = function(question) {
+      $('.question').fadeOut(FADETIME);
+      setTimeout(function() {
+        $(question).fadeIn();
+      }, FADETIME);
+      currentQuestion = question;
+    }
+
+    var skipQuestion = function() {
+      if ($(currentQuestion).next('.question').length > 0) {
+        showQuestion($(currentQuestion).next('.question'))
+      } else {
+        showQuestion($('.question').first())
+      }
+    }
+
+    var updateProgress = function() {
+      var percentComplete = 100 - ($('.question').length / 10) * 100
+      console.log(percentComplete)
+      $(".progress-bar").css("width", percentComplete + "%")
+    }
+
+    $(document).on("tzukuri.page.load", function() {
+      showQuestion($('.question').first())
+      updateProgress()
+    })
+
+    $("#skip-question").on("click", function() {
+      skipQuestion()
+    })
+
+    // responding to a question being successfully answered
+    $('.new_beta_response').on('ajax:success', function(e, data) {
+      console.log(data)
+
+      if (data.success) {
+        // todo: probably display some kind of success status on the display
+        // fade out and remove the question and skip to next
+        skipQuestion()
+        $($("#question_" + data.beta_response.beta_question_id)).remove()
+        updateProgress()
+      } else {
+
+      }
+    }).on('ajax:error', function(e, data) {
+
+    });
+</script>

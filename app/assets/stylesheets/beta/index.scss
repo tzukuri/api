@@ -1,6 +1,14 @@
 body.beta {
-    #beta-index {
 
+    .progress-bar {
+        @include transition(0.5s);
+        width: 0%;
+        height: 3px;
+        background: $tzukuri-blue;
+    }
+
+
+    #beta-index {
             text-align:center;
             padding-top:140px;
 

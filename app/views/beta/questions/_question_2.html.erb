@@ -1,0 +1,6 @@
+<!-- what is your yearly income -->
+<%= form_for BetaResponse.new, :url => beta_responses_path, :html => { :method => :post}, remote: true do |f| %>
+  <%= f.hidden_field :question_id, value: question.id%>
+  <%= f.select(:response, options_for_select(['Less than $20,000', '$20,000 to $50,000', '$50,000 to $100,000', '$100,000 to $150,000', 'Greater than $150,000'])) %>
+  <%= f.submit "answer" %>
+<% end %>
