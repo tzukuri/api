@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     devise_for :admin_users, ActiveAdmin::Devise.config
     devise_for :users
 
+    # devise for beta user with custom controllers for omniauth and registrations
     devise_for :beta_users, :controllers => {
         omniauth_callbacks: 'beta_users/omniauth_callbacks',
         registrations: 'beta_users/registrations'

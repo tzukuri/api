@@ -8,6 +8,17 @@ class BetaUser < ActiveRecord::Base
 
   before_validation :generate_invite_token, on: :create
 
+  # validations
+  validates :invite_token, presence: true
+
+  # create a beta referral for this user
+  def referred_by(referrer_token)
+    BetaReferral.create(
+      inviter_id: BetaUser.find_by_invite_token(referrer_token).id,
+      invitee_id: self.id
+    )
+  end
+
   # ------------------
   # twitter
   # ------------------

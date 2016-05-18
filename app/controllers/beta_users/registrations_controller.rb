@@ -9,7 +9,7 @@ class BetaUsers::RegistrationsController < Devise::RegistrationsController
 
     # if the resource is saved, create a referral record
     if resource.save
-      BetaReferral.create_for(resource.id, invited_by_token)
+      resource.referred_by(invited_by_token)
     end
   end
 

@@ -1,43 +1,53 @@
-<br>
-<br>
-<br>
-<br>
+<div class="container" style="text-align: center; margin-top:100px;">
+  <% if beta_user_signed_in? %>
+    <p>Signed in as: <%= @beta_user.name %> </p>
+    <br/><br/>
+    <p>Email: <%= @beta_user.email %></p><br/>
+    <p>Invite Token: <%= @beta_user.invite_token %></p><br/>
+    <p>Score: <%= @beta_user.score %></p><br/>
+    <p>Invite Link: http://localhost:3000/invite/<%= @beta_user.invite_token %> </p>
+    <br/>
+    <br/>
 
-<% if beta_user_signed_in? %>
-  <p>Successfully signed in as <%= @beta_user.name %> </p>
-  <br/><br/>
-  <p>Email: <%= @beta_user.email %></p>
-  <p>Invite Token: <%= @beta_user.invite_token %> </p>
-  <p>Score: <%= @beta_user.score %></p>
-  <br/>
+    <div class="row">
+      <div class="one-third column">
+        <% if @beta_user.twitter? %>
+          Already connected Twitter account
+        <% else %>
+          <%= link_to 'Connect Twitter account', oauth_path(:twitter) %>
+        <% end %>
+      </div>
 
-  <% if @beta_user.twitter? %>
-    Already linked to twitter account
+      <div class="one-third column">
+        <% if @beta_user.facebook? %>
+          Already connected Facebook account
+        <% else %>
+          <%= link_to 'Connect Facebook account', oauth_path(:facebook) %>
+        <% end %>
+      </div>
+
+      <div class="one-third column">
+        <%if @beta_user.instagram? %>
+          Already connected Instagram account
+        <% else %>
+          <%= link_to 'Connect Instagram Account', oauth_path(:instagram) %><br/>
+        <% end %>
+      </div>
+    </div>
+
+    <br>
+
+    <%= link_to "logout", beta_users_sign_out_path, :method => :delete %>
+
   <% else %>
-    <%= link_to 'Sign in with Twitter', oauth_path(:twitter) %>
-  <% end %>
-  <br/>
 
-  <% if @beta_user.facebook? %>
-    Already linked to facebook account
-  <% else %>
-    <%= link_to 'Sign in with Facebook', oauth_path(:facebook) %>
-  <% end %>
-  <br/>
+    <h1>Welcome back, enter the email address you registered with to continue</h1>
+    <br/><br/>
 
-  <%if @beta_user.instagram? %>
-    Already linked to instagram account
-  <% else %>
-    <%= link_to 'Sign in with Instagram', oauth_path(:instagram) %><br/>
+    <%= form_for @beta_user, :url => beta_users_sign_in_path(@beta_user) do |f| %>
+      <%= f.text_field :email, placeholder: "email address", autofocus: true %> <br/>
+      <%= f.hidden_field :invite_token, value: @token %><br/>
+      <%= f.submit "login"%>
+    <% end %>
   <% end %>
-  <br/><br/>
-
-  <%= link_to "logout", beta_users_sign_out_path, :method => :delete %>
-
-<% else %>
-  <%= form_for @beta_user, :url => beta_users_sign_in_path(@beta_user) do |f| %>
-    <%= f.text_field :email, placeholder: "email address", autofocus: true %> <br/>
-    <%= f.hidden_field :invite_token, value: @token %><br/>
-    <%= f.submit "login"%>
-  <% end %>
-<% end %>
+</div>
