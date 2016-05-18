@@ -19,6 +19,9 @@ class BetaUsers::OmniauthCallbacksController < Devise::OmniauthCallbacksControll
     @beta_user = @identity.beta_user || current_beta_user
     @identity.update_attribute( :beta_user_id, @beta_user.id )
 
+    # increase the score for this user (+5 points for a social account)
+    @beta_user.update_score(5)
+
     redirect_to "/beta/" + @beta_user.invite_token
   end
 

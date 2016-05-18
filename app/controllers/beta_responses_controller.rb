@@ -12,6 +12,10 @@ class BetaResponsesController < ApplicationController
       return
     end
 
+    # update the score for creating a response
+    points = BetaQuestion.find_by(id: beta_response_params[:question_id]).point_value
+    current_beta_user.update_score(points)
+
     if @beta_response.save
       render :json => {success: true, beta_response: @beta_response}
     else

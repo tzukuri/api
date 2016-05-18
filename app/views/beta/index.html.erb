@@ -1,45 +1,64 @@
-<div class="container" style="text-align: center; margin-top:100px;">
+<div id="beta-index" class="container" style="text-align: center; margin-top:100px;">
   <% if beta_user_signed_in? %>
     <p>Signed in as: <%= @beta_user.name %> </p>
     <br/><br/>
     <p>Email: <%= @beta_user.email %></p><br/>
     <p>Invite Token: <%= @beta_user.invite_token %></p><br/>
     <p>Score: <%= @beta_user.score %></p><br/>
-    <p>Invite Link: http://localhost:3000/invite/<%= @beta_user.invite_token %> </p><br/>
+    <p>Rank:  <%= @rank %></p><br/>
+    <p>Selected: <%= @beta_user.selected %></p><br/>
+    <p>Invite Link: http://localhost:3000/beta/invite/<%= @beta_user.invite_token %> </p><br/>
 
     <div class="progress-bar"></div>
 
-    <div class="questions" style="margin-top:20px; margin-bottom:20px; border: 1px solid blue; padding:10px;">
-      <% @beta_user.unanswered_questions.each do |question| %>
-        <div class="question" id="question_<%=question.id%>" style="display:none">
-          <p><%= question.content %> [<%= question.point_value %>]</p>
-          <%= render '/beta/questions/question_' + question.id.to_s, :question => question %><br/><br/>
-        </div>
-      <% end %>
-      <a href="#" id="skip-question">skip</a>
+
+    <div class="questions-container">
+      <div class="questions">
+        <% @beta_user.unanswered_questions.each do |question| %>
+          <div class="question" id="question_<%=question.id%>">
+            <p><%= question.content %> [<%= question.point_value %>]</p>
+            <%= render '/beta/questions/question_' + question.id.to_s, :question => question %><br/><br/>
+          </div>
+        <% end %>
+        <a id="skip-questions" class="<%= 'hidden' if @beta_user.unanswered_questions.count <= 1%>" href="#">skip</a>
+      </div>
+
+      <div class="questions-complete <%= 'hidden' if @beta_user.unanswered_questions.count > 0 %>">
+        Congratulations, you finished all the questions!
+      </div>
+
     </div>
 
+
+
     <div class="row">
+
+      <!-- twitter button -->
       <div class="one-third column">
         <% if @beta_user.twitter? %>
           Already connected Twitter account
         <% else %>
+          <i class="fa fa-2x fa-twitter"></i>
           <%= link_to 'Connect Twitter account', oauth_path(:twitter) %>
         <% end %>
       </div>
 
+      <!-- facebook button -->
       <div class="one-third column">
         <% if @beta_user.facebook? %>
           Already connected Facebook account
         <% else %>
+          <i class="fa fa-2x fa-facebook"></i>
           <%= link_to 'Connect Facebook account', oauth_path(:facebook) %>
         <% end %>
       </div>
 
+      <!-- instagram button -->
       <div class="one-third column">
         <%if @beta_user.instagram? %>
           Already connected Instagram account
         <% else %>
+          <i class="fa fa-2x fa-instagram"></i>
           <%= link_to 'Connect Instagram Account', oauth_path(:instagram) %><br/>
         <% end %>
       </div>
@@ -50,16 +69,17 @@
     <%= link_to "logout", beta_users_sign_out_path, :method => :delete %>
 
   <% else %>
-
     <h1>Welcome back, enter the email address you registered with to continue</h1>
     <br/><br/>
-
     <%= form_for @beta_user, :url => beta_users_sign_in_path(@beta_user) do |f| %>
       <%= f.text_field :email, placeholder: "email address", autofocus: true %> <br/>
       <%= f.hidden_field :invite_token, value: @token %><br/>
       <%= f.submit "login"%>
     <% end %>
   <% end %>
+
+  <br/>
+  <p style="color: red;"><%= flash[:alert] %></p>
 </div>
 
 <script>
@@ -72,6 +92,7 @@
       setTimeout(function() {
         $(question).fadeIn();
       }, FADETIME);
+
       currentQuestion = question;
     }
 
@@ -85,7 +106,6 @@
 
     var updateProgress = function() {
       var percentComplete = 100 - ($('.question').length / 10) * 100
-      console.log(percentComplete)
       $(".progress-bar").css("width", percentComplete + "%")
     }
 
@@ -103,11 +123,20 @@
       console.log(data)
 
       if (data.success) {
-        // todo: probably display some kind of success status on the display
-        // fade out and remove the question and skip to next
-        skipQuestion()
+        // remove the answered question from the list
         $($("#question_" + data.beta_response.beta_question_id)).remove()
-        updateProgress()
+
+        // check if there are any more questions remaining
+        if ($('.question').length == 0) {
+          // do something if there are no more questions
+          $(".questions-complete").removeClass('hidden')
+          $("#skip-questions").addClass('hidden')
+        } else {
+          skipQuestion()
+        }
+
+        updateProgress();
+
       } else {
 
       }

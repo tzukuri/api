@@ -1,128 +1,150 @@
 body.beta {
-
-    .progress-bar {
-        @include transition(0.5s);
-        width: 0%;
-        height: 3px;
-        background: $tzukuri-blue;
-    }
-
-
     #beta-index {
-            text-align:center;
-            padding-top:140px;
+        .progress-bar {
+            @include transition(0.5s);
 
-            #beta {
+            width: 0%;
+            height: 3px;
+            background: $tzukuri-blue;
+        }
+
+        .questions-container {
+            margin-bottom: 20px;
+            border: 1px solid $tzukuri-blue;
+            padding: 10px;
+
+            .questions {
+                .question {
+                    display: none;
+                }
+
+                #skip-questions {
+                    &.hidden {
+                        display: none;
+                    }
+                }
+            }
+
+            .questions-complete {
+                &.hidden {
+                    display: none;
+                }
+            }
+        }
+
+        #beta {
+            color: $tzukuri-blue;
+        }
+
+        #invalid-invite {
+            color: $tzukuri-red;
+        }
+
+        #register-conditions {
+            font-size: 10pt;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            font-weight: 300;
+            color: $tzukuri-dark-grey;
+            line-height: 16pt;
+        }
+
+        #beta-content {
+            text-align: left;
+
+            h1 {
+                font-size: 46pt;
+                font-weight: 100;
+            }
+
+            h2 {
+                font-weight: bold;
+                font-size: 16pt;
+                margin-top: 20px;
+            }
+
+            p {
+                font-size: 15pt;
+                margin-top: 40px;
+                margin-bottom: 40px;
+                line-height: 25pt;
+                font-weight: 300;
+                color: $tzukuri-dark-grey;
+            }
+        }
+
+        #beta-hero {
+            .beta-hero-image {
+                width: 100%;
+            }
+        }
+
+        #faq-link {
+            margin-top: 40px;
+            margin-bottom: 40px;
+            font-size: 12pt;
+            font-weight: 300;
+
+            a {
+                text-decoration: none;
                 color: $tzukuri-blue;
             }
+        }
 
-            #invalid-invite {
-                color: $tzukuri-red;
+        #welcome-head {
+            h1 {
+                font-size: 46pt;
+                font-weight: 100;
             }
 
-            #register-conditions {
-                font-size:10pt;
-                margin-top:40px;
-                margin-bottom:40px;
-                font-weight:300;
-                color:$tzukuri-dark-grey;
-                line-height:16pt;
-            }
-
-            #beta-content {
-                text-align: left;
-
-                h1 {
-                    font-size: 46pt;
-                    font-weight: 100;
-                }
-
-                h2 {
-                    font-weight: bold;
-                    font-size: 16pt;
-                    margin-top: 20px;
-                }
-
-                p {
-                    font-size: 15pt;
-                    margin-top: 40px;
-                    margin-bottom: 40px;
-                    line-height: 25pt;
-                    font-weight: 300;
-                    color: $tzukuri-dark-grey;
-                }
-            }
-
-            #beta-hero {
-                .beta-hero-image {
-                    width: 100%;
-                }
-            }
-
-            #faq-link {
-                margin-top: 40px;
-                margin-bottom:40px;
-                font-size: 12pt;
-                font-weight: 300;
-
-                a {
-                    text-decoration: none;
-                    color: $tzukuri-blue;
-                }
-            }
-
-            #welcome-head {
-                h1 {
-                    font-size: 46pt;
-                    font-weight: 100;
-                }
-
-                h2 {
-                    margin-top: 30px;
-                    color: $tzukuri-dark-grey;
-                    font-weight: 300;
-                    font-size: 14pt;
-                }
-            }
-
-            #signup-form-container {
+            h2 {
                 margin-top: 30px;
+                color: $tzukuri-dark-grey;
+                font-weight: 300;
+                font-size: 14pt;
+            }
+        }
 
-                #birthday_hint {
-                    font-size:10pt;
-                    color: $tzukuri-dark-grey;
-                    &.success {
-                        color:#34B969;
-                    }
-                }
+        #signup-form-container {
+            margin-top: 30px;
 
-                .beta-input, select {
-                    background-color:$tzukuri-light-grey;
-                    border-radius:5px;
-                    border: 1px solid $tzukuri-light-grey;
-                    margin: 10px;
-                    width: 400px;
-                    &.error {
-                        border: 1px solid $tzukuri-red;
-                    }
-                }
+            #birthday_hint {
+                font-size: 10pt;
+                color: $tzukuri-dark-grey;
 
-                .error-field {
-                    color: $tzukuri-red;
-                    font-size:10pt;
-                }
-
-                select {
-                    -webkit-appearance: none;
-                    padding:10px;
-                    width: 420px;
-                    font-size:12pt;
-                }
-
-                #submit-btn {
-                    margin-top:20px;
-                    width: 200px;
+                &.success {
+                    color: #34B969;
                 }
             }
+
+            .beta-input, select {
+                background-color: $tzukuri-light-grey;
+                border-radius: 5px;
+                border: 1px solid $tzukuri-light-grey;
+                margin: 10px;
+                width: 400px;
+
+                &.error {
+                    border: 1px solid $tzukuri-red;
+                }
+            }
+
+            .error-field {
+                color: $tzukuri-red;
+                font-size: 10pt;
+            }
+
+            select {
+                -webkit-appearance: none;
+                padding: 10px;
+                width: 420px;
+                font-size: 12pt;
+            }
+
+            #submit-btn {
+                margin-top: 20px;
+                width: 200px;
+            }
+        }
     }
 }

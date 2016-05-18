@@ -250,7 +250,7 @@ Devise.setup do |config|
   # end
 
   config.warden do |manager|
-    manager.failure_app = MyAuthFailure
+    manager.failure_app = TzukuriAuthFailure
   end
 
   # ==> Mountable engine configurations

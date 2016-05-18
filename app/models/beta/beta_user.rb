@@ -1,5 +1,5 @@
 class BetaUser < ActiveRecord::Base
-  devise :omniauthable, :registerable, :my_authentication
+  devise :omniauthable, :registerable, :beta_authable
 
   has_many :identities, foreign_key: "beta_user_id", class_name: "BetaIdentity"
   has_many :responses,  foreign_key: "beta_user_id", class_name: "BetaResponse"
@@ -15,8 +15,13 @@ class BetaUser < ActiveRecord::Base
 
   # create a beta referral for this user
   def referred_by(referrer_token)
+    referred_by = BetaUser.find_by(invite_token: referrer_token)
+
+    # update the score of the person that referred this user
+    referred_by.update_score(1)
+
     BetaReferral.create(
-      inviter_id: BetaUser.find_by_invite_token(referrer_token).id,
+      inviter_id: referred_by.id,
       invitee_id: self.id
     )
   end
@@ -34,6 +39,11 @@ class BetaUser < ActiveRecord::Base
       beta_question_id: q_id,
       response: response
     )
+  end
+
+  def update_score(by_amount)
+    self.score += by_amount
+    self.save
   end
 
   # ------------------

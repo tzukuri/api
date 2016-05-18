@@ -1,24 +1,19 @@
-module Tzukuri
-  class BetaAuthable < Devise::Strategies::Authenticatable
+module BetaAuthable
+  class BetaAuthenticationStrategy < Devise::Strategies::Authenticatable
 
-    # This check is run before +authenticate!+ is called to determine if this
-    # authentication strategy is applicable. In this case we only try to authenticate
-    # if the login and password are present
-    #
+    # if false the rest of authentication does not continue
     def valid?
-      puts "VALIDITY CHECK"
       return email && invite_token
     end
 
     def authenticate!
-      puts "======AUTHENTICATING!======"
-      # beta_user = BetaUser.find_by_invite_code(invite_token)
+      beta_user = BetaUser.find_by_invite_token(invite_token)
 
-      # if beta_user && invite_token == beta_user.invite_code
-      #   success! beta_user
-      # else
-      #   fail! "Sorry, your email/invite code combination is incorrect"
-      # end
+      if beta_user && invite_token == beta_user.invite_token && email == beta_user.email
+        success! beta_user
+      else
+        fail! 'The email address you provided is incorrect'
+      end
     end
 
     private
@@ -28,15 +23,11 @@ module Tzukuri
     end
 
     def invite_token
-      (params[:beta_user] || {})[:invite_code]
+      (params[:beta_user] || {})[:invite_token]
     end
   end
 end
 
-# for warden, `:my_authentication`` is just a name to identify the strategy
-Warden::Strategies.add :beta_authable, Tzukuri::BetaAuthable
-
-# for devise, there must be a module named 'MyAuthentication' (name.to_s.classify), and then it looks to warden
-# for that strategy. This strategy will only be enabled for models using devise and `:my_authentication` as an
-# option in the `devise` class method within the model.
+# add module to devise and strategy to warden
+Warden::Strategies.add :beta_authable, BetaAuthable::BetaAuthenticationStrategy
 Devise.add_module :beta_authable, :strategy => true
