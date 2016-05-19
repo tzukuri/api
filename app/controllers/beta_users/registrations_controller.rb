@@ -1,25 +1,31 @@
 class BetaUsers::RegistrationsController < Devise::RegistrationsController
+
   def create
-    super
-    invited_by_token = params[:beta_user][:invite_token]
+    build_resource(sign_up_params)
+    resource.save
 
-    # store the user agent on the beta user object
-    resource.ip_address = request.remote_ip
-    resource.user_agent = request.env["HTTP_USER_AGENT"]
+    yield resource if block_given?
 
-    # if the resource is saved, create a referral record
-    if resource.save
-      resource.referred_by(invited_by_token)
+    if resource.persisted?
+      if resource.active_for_authentication?
+        set_flash_message :notice, :signed_up
+        sign_up(resource_name, resource)
+        respond_with resource, location: after_sign_up_path_for(resource)
+      else
+        set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}"
+        expire_data_after_sign_in!
+        respond_with resource, location: after_inactive_sign_up_path_for(resource)
+      end
+    else
+      # store the error messages in flash and redirect to the invite path
+      flash[:notice] = flash[:notice].to_a.concat resource.errors.full_messages
+      redirect_to beta_user_invite_path(sign_up_params[:invite_token])
     end
   end
 
   private
 
   def sign_up_params
-    params.require(:beta_user).permit(:email, :name, :invite_token)
-  end
-
-  def account_update_params
     params.require(:beta_user).permit(:email, :name, :invite_token)
   end
 

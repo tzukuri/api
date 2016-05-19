@@ -22,7 +22,7 @@ class BetaUsers::OmniauthCallbacksController < Devise::OmniauthCallbacksControll
     # increase the score for this user (+5 points for a social account)
     @beta_user.update_score(5)
 
-    redirect_to "/beta/" + @beta_user.invite_token
+    redirect_to beta_user_path(@beta_user.invite_token)
   end
 
 

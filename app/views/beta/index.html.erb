@@ -66,12 +66,12 @@
 
     <br>
 
-    <%= link_to "logout", beta_users_sign_out_path, :method => :delete %>
+    <%= link_to "logout", destroy_beta_user_session_path, :method => :delete %>
 
   <% else %>
     <h1>Welcome back, enter the email address you registered with to continue</h1>
     <br/><br/>
-    <%= form_for @beta_user, :url => beta_users_sign_in_path(@beta_user) do |f| %>
+    <%= form_for @beta_user, :url => beta_user_session_path(@beta_user) do |f| %>
       <%= f.text_field :email, placeholder: "email address", autofocus: true %> <br/>
       <%= f.hidden_field :invite_token, value: @token %><br/>
       <%= f.submit "login"%>

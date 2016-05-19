@@ -12,10 +12,12 @@ Rails.application.routes.draw do
     }
 
     devise_scope :beta_user do
-        post    '/beta_users/sign_in'   => 'devise/sessions#create'
-        delete  '/beta_users/sign_out'  => 'devise/sessions#destroy'
+        post    '/beta_users/sign_in'   => 'devise/sessions#create',    :as => :beta_user_session
+        get     '/beta_users/sign_in'   => 'devise/sessions#new',       :as => :new_beta_user_session
+        delete  '/beta_users/sign_out'  => 'devise/sessions#destroy',   :as => :destroy_beta_user_session
         post    '/beta_users/sign_up'   => 'devise/registrations#new'
     end
+
 
     ActiveAdmin.routes(self)
 
@@ -100,8 +102,8 @@ Rails.application.routes.draw do
     end
 
     # beta index and invite routes
-    get '/beta/:token' => 'beta#index'
-    get '/beta/invite/:token' => 'beta#invite'
+    get '/beta/:token'          => 'beta#index',    :as => :beta_user
+    get '/beta/invite/:token'   => 'beta#invite',   :as => :beta_user_invite
 
     get '/dashboard', to: 'dashboard#index'
     get '*page', to: 'pages#index'

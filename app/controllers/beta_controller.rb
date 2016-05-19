@@ -1,10 +1,7 @@
 class BetaController < ApplicationController
 
   def index
-    # authenticate_beta_user!
     @token = params[:token]
-
-    # check for a token mismatch
 
     if beta_user_signed_in?
       # the user is signed in, so get the data for their details
@@ -17,12 +14,10 @@ class BetaController < ApplicationController
   end
 
   def invite
+    # if we're already authenticated redirect them to their details page
+    redirect_to beta_user_path(current_beta_user.invite_token) if beta_user_signed_in?
+
     @token = params[:token]
-
-    if beta_user_signed_in?
-      redirect_to "/beta/" + current_beta_user.invite_token
-    end
-
     @beta_user = BetaUser.new
   end
 
