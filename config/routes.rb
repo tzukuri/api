@@ -11,6 +11,7 @@ Rails.application.routes.draw do
         registrations: 'beta_users/registrations'
     }
 
+    # devise routes to replace the ones that you usually get from database_authenticatable
     devise_scope :beta_user do
         post    '/beta_users/sign_in'   => 'devise/sessions#create',    :as => :beta_user_session
         get     '/beta_users/sign_in'   => 'devise/sessions#new',       :as => :new_beta_user_session
@@ -71,10 +72,6 @@ Rails.application.routes.draw do
     # -----------------------------
     # other web routes
     # -----------------------------
-    # resources :beta_reservations
-    # resources :beta, param: :invite_code
-    # resources :beta_signups
-
     resources :beta_responses
 
     resources :betareservations do
@@ -101,11 +98,10 @@ Rails.application.routes.draw do
       end
     end
 
-    # beta index and invite routes
-    get '/beta/:token'          => 'beta#index',    :as => :beta_user
-    get '/beta/invite/:token'   => 'beta#invite',   :as => :beta_user_invite
+    get '/beta/:token'          => 'beta#index',        :as => :beta_user
+    get '/beta/invite/:token'   => 'beta#invite',       :as => :beta_user_invite
+    get '/dashboard'            => 'dashboard#index',   :as => :dashboard
+    get '*page'                 => 'pages#index'
 
-    get '/dashboard', to: 'dashboard#index'
-    get '*page', to: 'pages#index'
     root 'pages#index', page: 'index'
 end

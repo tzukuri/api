@@ -7,12 +7,12 @@
 
     <br/>
     <b>Really want a pair?</b>
-    <p>Increase your chances of getting selected for the beta by inviting your friends. We'll be inviting people based on the number of people they get to sign up. The more friends you invite, the better the chances are for both of you. Share this link with them: <a href="http://tzukuri.com/beta?ref=<%=@beta_signup.invite_code %>">http://tzukuri.com/beta?ref=<%=@beta_signup.invite_code %></a>.</p>
+    <p>Increase your chances of getting selected for the beta by inviting your friends. We'll be inviting people based on the number of people they get to sign up. The more friends you invite, the better the chances are for both of you. Share this link with them: <a href="http://tzukuri.com/beta/invite/<%=@beta_user.invite_token %>">http://tzukuri.com/beta/invite/<%=@beta_user.invite_token %></a></p>
 
     <br/>
     <p>You can check your position in line at any time by visiting:</p>
     <div style="background-color:#FBFCFC; padding:5px">
-      <p style="font-size:22pt; color:#5AA4E8; ">http://tzukuri.com/beta/<%= @beta_signup.invite_code %></p>
+      <p style="font-size:22pt; color:#5AA4E8; ">http://tzukuri.com/beta/<%= @beta_user.invite_token %></p>
     </div>
   </div>
 

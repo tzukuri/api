@@ -13,10 +13,10 @@ class BetaUser < ActiveRecord::Base
   after_save        :check_for_selected
 
   # property validations
-  validates :name, presence: true
-  validates :email, presence: true, uniqueness: true
-  validates :invite_token, presence: true,  uniqueness: true, :length => { :is => 6 }
-  validates :score, presence: true
+  validates :name,          presence: true
+  validates :email,         presence: true,   uniqueness: true
+  validates :invite_token,  presence: true,   uniqueness: true, :length => { :is => 6 }
+  validates :score,         presence: true
   validates_format_of :email,:with => Devise.email_regexp
 
   # methods
@@ -96,14 +96,18 @@ class BetaUser < ActiveRecord::Base
     rescue ActiveRecord::RecordNotUnique => e
       @token_attempts = @token_attempts.to_i += 1
       retry if @token_attempts < INVITE_MAX_RETRIES
-      raise e, "Retried exhausted, could not find a unique token"
+      raise e, "Retries exhausted, could not find a unique token"
     end
 
+    # send the user a confirmation email
     def send_confirmation_email
-      # todo: send the user a confirmation email
+      BetaMailer.send_beta_confirmation_email(self).deliver_later
     end
 
+    # check if the user has been selected and send them an email alerting them of their status
     def check_for_selected
-      # todo: check if the user has been selected and send them an email alerting them of their status
+      if changes[:selected] && self.selected == true
+        BetaMailer.send_beta_acceptance_email(self).deliver_later
+      end
     end
 end

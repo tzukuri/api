@@ -40,7 +40,7 @@
 // dashboard styles
 @import "dashboard/index";
 
-// devise styles
-@import "devise/sessions/new";
-@import "devise/passwords/passwords";
-@import "devise/unlocks/unlocks";
+// styles for user devise sessions
+@import "users/sessions/new";
+@import "users/passwords/passwords";
+@import "users/unlocks/unlocks";
