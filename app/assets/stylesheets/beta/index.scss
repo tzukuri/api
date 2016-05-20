@@ -1,149 +1,248 @@
 body.beta {
-    #beta-index {
-        .progress-bar {
-            @include transition(0.5s);
+    // move to tzukuri.scss
+    .blue {
+        color: $tzukuri-blue;
+    }
 
-            width: 0%;
-            height: 3px;
-            background: $tzukuri-blue;
+    .bold {
+        font-weight: 500;
+    }
+
+    // main page
+    #beta-index {
+        margin-top: 150px;
+
+        hr {
+            margin-top: 20px;
+            margin-bottom: 40px;
         }
 
-        .questions-container {
-            margin-bottom: 20px;
-            border: 1px solid $tzukuri-blue;
-            padding: 10px;
+        // main container
+        #details-container {
+            // header section
+            #header-section {
+                font-weight: 200;
 
-            .questions {
-                .question {
-                    display: none;
+                #welcome-header {
+                    font-size: 32pt;
+                }
+
+                #welcome-sub {
+                    font-size: 16pt;
+                    line-height: 26pt;
+                }
+
+                #score-section {
+                    text-align: center;
+                    font-size: 36pt;
+                    margin-top: 40px;
+                    font-weight: 300;
+
+                    #score {}
+
+                    #score-sub {
+                        font-size: 16pt;
+                        margin-top: 10px;
+                    }
+
+                    a {
+                        font-size: 12pt;
+                    }
+                }
+            }
+
+            // actions
+            .action-container {
+                margin-left: 0px;
+                margin-bottom: 50px;
+                font-weight: 300;
+
+                h1 {
+                    font-size: 18pt;
+                }
+
+                h2 {
+                    font-size: 12pt;
+                }
+            }
+
+            // connect social media
+            #connect-social {
+                a {
+                    text-decoration: none;
+                }
+
+                // social buttons for facebook/twitter/instagram
+                .social-button {
+                    border: 1px solid $tzukuri-blue;
+                    border-radius: 15px;
+                    font-size: 10pt;
+                    text-align: center;
+                    padding: 15px;
+                    margin-top: 20px;
+                    font-weight: 400;
+
+                    @include transition(0.5s);
+
+                    i {
+                        color: $tzukuri-blue;
+                        float: right;
+                        margin-top: -8px;
+                    }
+
+                    &:hover {
+                        background-color: $tzukuri-blue;
+                        cursor: pointer;
+                        color: white;
+
+                        i, a {
+                            color: white;
+                        }
+                    }
+
+                    &.connected {
+                        background-color: $tzukuri-blue;
+                        color: white;
+
+                        i {
+                            color: white;
+                        }
+
+                        &:hover {
+                            cursor: auto;
+                        }
+                    }
+                }
+            }
+
+            // answer questions
+            #answer-questions {
+                .questions-container {
+                    margin-top: 20px;
+
+                    .question {
+                        // questions are hidden by default
+                        display: none;
+                        font-weight: 300;
+
+                        #question-head {
+                            font-size: 14pt;
+                            color: $tzukuri-dark-grey;
+                            line-height: 18pt;
+                            margin-bottom: 10px;
+                        }
+
+                        // form for this question, defined in partials
+                        form {
+                            input, select {
+                                background-color: $tzukuri-light-grey;
+                                border-radius: 15px;
+                                font-size: 10pt;
+                            }
+
+                            input {
+                                border: none;
+                                padding-left: 20px;
+                            }
+
+                            select {
+                                padding: 10px;
+                                margin-left: 20px;
+                                border: 1px solid $tzukuri-light-grey;
+                                -webkit-appearance: none;
+                            }
+
+                            .question-submit {
+                                background-color: white;
+                                border: 1px solid $tzukuri-blue;
+                                color: $tzukuri-blue;
+                                padding: 10px;
+
+                                @include transition(0.5s);
+
+                                &:hover {
+                                    background-color: $tzukuri-blue;
+                                    color: white;
+                                    cursor: pointer;
+                                }
+                            }
+                        }
+                    }
                 }
 
                 #skip-questions {
+                    font-size: 12pt;
+
                     &.hidden {
                         display: none;
                     }
                 }
             }
 
-            .questions-complete {
-                &.hidden {
-                    display: none;
+            // invite friends
+            #invite-friends {
+                .invite-container {
+                    margin-top: 15px;
+                    font-size: 10pt;
+
+                    #unique-link {
+                        border-radius: 15px;
+                        border: none;
+                        background-color: $tzukuri-light-grey;
+                        padding-left: 20px;
+                        width: 100%;
+                    }
+
+                    #link-exp {
+                        line-height: 14pt;
+                        margin-left: 20px;
+                        margin-top: 5px;
+                        font-weight: 300;
+                        color: $tzukuri-dark-grey;
+                    }
                 }
             }
         }
 
-        #beta {
-            color: $tzukuri-blue;
-        }
-
-        #invalid-invite {
-            color: $tzukuri-red;
-        }
-
-        #register-conditions {
-            font-size: 10pt;
-            margin-top: 40px;
-            margin-bottom: 40px;
-            font-weight: 300;
-            color: $tzukuri-dark-grey;
-            line-height: 16pt;
-        }
-
-        #beta-content {
-            text-align: left;
+        #login-container {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 10px;
 
             h1 {
-                font-size: 46pt;
+                font-size: 42pt;
                 font-weight: 100;
+                margin-bottom: 20px;
             }
 
             h2 {
-                font-weight: bold;
-                font-size: 16pt;
-                margin-top: 20px;
-            }
-
-            p {
-                font-size: 15pt;
-                margin-top: 40px;
-                margin-bottom: 40px;
-                line-height: 25pt;
-                font-weight: 300;
-                color: $tzukuri-dark-grey;
-            }
-        }
-
-        #beta-hero {
-            .beta-hero-image {
-                width: 100%;
-            }
-        }
-
-        #faq-link {
-            margin-top: 40px;
-            margin-bottom: 40px;
-            font-size: 12pt;
-            font-weight: 300;
-
-            a {
-                text-decoration: none;
-                color: $tzukuri-blue;
-            }
-        }
-
-        #welcome-head {
-            h1 {
-                font-size: 46pt;
-                font-weight: 100;
-            }
-
-            h2 {
-                margin-top: 30px;
-                color: $tzukuri-dark-grey;
-                font-weight: 300;
-                font-size: 14pt;
-            }
-        }
-
-        #signup-form-container {
-            margin-top: 30px;
-
-            #birthday_hint {
-                font-size: 10pt;
-                color: $tzukuri-dark-grey;
-
-                &.success {
-                    color: #34B969;
-                }
-            }
-
-            .beta-input, select {
-                background-color: $tzukuri-light-grey;
-                border-radius: 5px;
-                border: 1px solid $tzukuri-light-grey;
-                margin: 10px;
-                width: 400px;
-
-                &.error {
-                    border: 1px solid $tzukuri-red;
-                }
-            }
-
-            .error-field {
-                color: $tzukuri-red;
-                font-size: 10pt;
-            }
-
-            select {
-                -webkit-appearance: none;
-                padding: 10px;
-                width: 420px;
                 font-size: 12pt;
+                font-weight: 300;
+                color: $tzukuri-dark-grey;
+                margin-bottom: 20px;
             }
 
-            #submit-btn {
-                margin-top: 20px;
-                width: 200px;
+            form#new_beta_user {
+                #submit-btn {
+                    width: 400px;
+                }
+
+                .beta-input {
+                    background-color: $tzukuri-light-grey;
+                    border-radius: 5px;
+                    border: 1px solid $tzukuri-light-grey;
+                    width: 380px;
+
+                    &.error {
+                        border: 1px solid $tzukuri-red;
+                    }
+                }
+
+                #error-messages {
+                    color: $tzukuri-red;
+                    font-size: 10pt;
+                    padding-top: 10px;
+                }
             }
         }
     }

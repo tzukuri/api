@@ -1,7 +1,7 @@
 body.beta {
     #beta-show {
-        margin-top:0px;
-        margin-bottom:20px;
+        margin-top: 0px;
+        margin-bottom: 20px;
 
         .container {
             text-align: center;
@@ -56,7 +56,9 @@ body.beta {
                         border: 1px solid $tzukuri-blue;
                         margin-top: 10px;
                         margin-bottom: 10px;
+
                         @include transition(0.5s ease);
+
                         font-family: "Helvetica";
 
                         &:hover {

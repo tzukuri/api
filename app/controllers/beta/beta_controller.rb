@@ -18,7 +18,9 @@ class BetaController < ApplicationController
     redirect_to beta_user_path(current_beta_user.invite_token) if beta_user_signed_in?
 
     @token = params[:token]
+    @invited_by = BetaUser.find_by(invite_token: @token)
     @beta_user = BetaUser.new
+
   end
 
 
