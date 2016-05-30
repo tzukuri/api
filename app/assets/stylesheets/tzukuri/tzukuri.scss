@@ -4,7 +4,7 @@ $header-padding-bottom: 8px;
 
 $h1-size: 60px;
 $h2-size: 32px;
-$p-size:  20px;
+$p-size: 20px;
 $mobile-h1-size: 45px;
 $mobile-h2-size: 26px;
 $mobile-p-size: 18px;
@@ -27,52 +27,63 @@ $tzukuri-red: #CF4339;
 $tzukuri-dark-grey: #686868;
 $tzukuri-light-grey: #F6F6F6;
 $tzukuri-black: #232323;
+$tzukuri-green: #36C26E;
 
 // mixins
 @mixin transition($args...) {
-  -webkit-transition: $args;
-  -moz-transition: $args;
-  -ms-transition: $args;
-  -o-transition: $args;
-  transition: $args;
+    -webkit-transition: $args;
+    -moz-transition: $args;
+    -ms-transition: $args;
+    -o-transition: $args;
+    transition: $args;
+}
+
+// move to tzukuri.scss
+.blue {
+    color: $tzukuri-blue;
+}
+
+.bold {
+    font-weight: 400;
 }
 
 .tzukuri-modal {
-    z-index:100;
-    height:100%;
-    width:100%;
-    position:fixed;
-    @include transition(0.5s);
-    background-color: rgba(255,255,255, 0.8);
-    -webkit-backdrop-filter: blur(10px);
+    z-index: 100;
+    height: 100%;
+    width: 100%;
+    position: fixed;
 
-    display:flex;
+    @include transition(0.5s);
+
+    background-color: rgba(255, 255, 255, 0.8);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
     align-items: center;
     justify-content: center;
 
     &.dark {
-        background-color: rgba(35,35,35, 0.8);
+        background-color: rgba(35, 35, 35, 0.8);
     }
 
     &.light {
-        background-color: rgba(255,255,255, 0.8);
+        background-color: rgba(255, 255, 255, 0.8);
     }
 
     .modal-content {
         background-color: white;
-        width:50%;
-        border-radius:20px;
-        padding:20px;
-        text-align:center;
+        width: 50%;
+        border-radius: 20px;
+        padding: 20px;
+        text-align: center;
 
         &.light {
-            background-color: rgba(255,255,255, 0.8);
+            background-color: rgba(255, 255, 255, 0.8);
             color: $tzukuri-black;
         }
 
         &.dark {
-            background-color: rgba(35,35,35, 0.8);
-            color:white;
+            background-color: rgba(35, 35, 35, 0.8);
+            color: white;
         }
 
         &.clear {
@@ -83,14 +94,14 @@ $tzukuri-black: #232323;
 
 // tzukuri standard input styles
 input {
-    padding:10px;
-    font-size:12pt;
+    padding: 10px;
+    font-size: 12pt;
 }
 
 /* typography */
 html, body {
     font-family: HelveticaNeueLT, Helvetica, sans-serif;
-    height:100%;
+    height: 100%;
 }
 
 a {
@@ -105,6 +116,7 @@ a {
 /* panel styling */
 main > article {
     @include box-sizing(border-box);
+
     padding: $panel-padding $horz-padding;
     overflow: hidden;
     position: relative;
@@ -230,7 +242,6 @@ main > article {
         display: inline-block;
         height: $share-height;
         width: $share-width;
-
         color: #bbb;
         font-size: 18px;
         line-height: 18px;
@@ -246,7 +257,6 @@ main > article {
     }
 }
 
-
 /* single pixel border rounded button */
 button, .button {
     height: 30px;
@@ -255,21 +265,21 @@ button, .button {
     font-weight: 400;
     color: $tzukuri-blue;
     text-transform: lowercase;
-
     box-sizing: border-box;
     background-color: transparent;
+
     @include border-radius(18px);
+
     border: 1px solid $tzukuri-blue;
     padding: 2px 22px;
     display: inline-block;
-
     cursor: pointer;
     outline: none;
 
     @include transition(0.5s);
 
     &:hover {
-        color:  white;
+        color: white;
         background-color: $tzukuri-blue;
         text-decoration: none;
     }
@@ -281,7 +291,9 @@ button, .button {
     color: white;
     border-radius: 5px;
     font-weight: 300;
+
     @include transition(0.5s ease);
+
     cursor: pointer;
     border: 1px solid $tzukuri-blue;
 
@@ -291,10 +303,9 @@ button, .button {
     }
 }
 
-
 /* content gets blured when a popover panel is shown */
 #blur-content, main > article, #whichpair section {
-    height:100%;
+    height: 100%;
     -webkit-transition: -webkit-filter 1s;
     -ms-transition: -ms-filter 1s ease;
     transition: filter 1s ease, -webkit-filter 1s;
@@ -335,7 +346,9 @@ button, .button {
         line-height: 20px;
         height: auto;
         padding: 10px 35px;
+
         @include border-radius(35px);
+
         font-weight: 200;
         margin-bottom: $panel-padding * 1.5;
     }
@@ -351,6 +364,7 @@ article:last-child {
         font-weight: 400;
         text-align: center;
         margin-top: 100px;
+        position:absolute;
 
         a {
             color: #9a9a9a;
@@ -432,7 +446,6 @@ article:last-child {
     }
 }
 
-
 @media only screen and (max-width: $menu-width-cutoff) {
     // footer links
     article:last-child footer {
@@ -452,8 +465,6 @@ article:last-child {
         }
     }
 }
-
-
 
 @media only screen and (max-width: $content-width-cutoff) {
     main > article {
@@ -503,4 +514,3 @@ article:last-child {
         }
     }
 }
-

@@ -17,4 +17,5 @@
 //= require mapbox.js
 //= require moment
 //= require moment-timezone
+//= require lodash
 //= require_tree .

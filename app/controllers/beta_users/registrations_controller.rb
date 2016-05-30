@@ -10,6 +10,9 @@ class BetaUsers::RegistrationsController < Devise::RegistrationsController
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up
         sign_up(resource_name, resource)
+
+        # set up referral and assign points
+        resource.referred_by(sign_up_params[:invite_token])
         respond_with resource, location: after_sign_up_path_for(resource)
       else
         set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}"
@@ -26,7 +29,7 @@ class BetaUsers::RegistrationsController < Devise::RegistrationsController
   private
 
   def sign_up_params
-    params.require(:beta_user).permit(:email, :name, :invite_token)
+    params.require(:beta_user).permit(:email, :name, :invite_token, :birth_date, :city, :country)
   end
 
 end

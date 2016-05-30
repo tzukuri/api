@@ -1,96 +1,116 @@
 body.beta {
-    // move to tzukuri.scss
-    .blue {
-        color: $tzukuri-blue;
-    }
-
-    .bold {
-        font-weight: 500;
-    }
-
     // main page
     #beta-index {
-        margin-top: 150px;
+        padding-top: 120px;
+
+        p {
+            font-size: 12pt;
+            line-height: 22pt;
+            color: $tzukuri-dark-grey;
+            font-weight: 300;
+        }
 
         hr {
-            margin-top: 20px;
-            margin-bottom: 40px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+            border-top: 1px solid $tzukuri-light-grey;
         }
 
         // main container
         #details-container {
+            .progress-bar {
+                background-color: $tzukuri-blue;
+                color: white;
+                padding: 2px;
+                font-size: 8pt;
+                width: 100%;
+                margin-bottom: 20px;
+
+                @include transition(0.5s);
+            }
+
+            #score-section {
+                text-align: center;
+                font-size: 24pt;
+                font-weight: 300;
+                margin-top: 15px;
+                margin-bottom: 15px;
+
+                #score-sub {
+                    font-size: 16pt;
+                }
+
+                #user {
+                    margin-top: 40px;
+                    font-size: 16pt;
+                    color: $tzukuri-dark-grey;
+                }
+
+                a {
+                    font-size: 12pt;
+                }
+            }
+
             // header section
             #header-section {
-                font-weight: 200;
-
                 #welcome-header {
                     font-size: 32pt;
+                    padding-bottom: 20px;
                 }
 
                 #welcome-sub {
-                    font-size: 16pt;
+                    font-size: 18pt;
                     line-height: 26pt;
-                }
-
-                #score-section {
-                    text-align: center;
-                    font-size: 36pt;
-                    margin-top: 40px;
+                    color: $tzukuri-dark-grey;
+                    margin-bottom: 20px;
                     font-weight: 300;
-
-                    #score {}
-
-                    #score-sub {
-                        font-size: 16pt;
-                        margin-top: 10px;
-                    }
-
-                    a {
-                        font-size: 12pt;
-                    }
                 }
             }
 
             // actions
             .action-container {
-                margin-left: 0px;
-                margin-bottom: 50px;
-                font-weight: 300;
+                margin-top: 20px;
 
                 h1 {
-                    font-size: 18pt;
+                    font-size: 16pt;
+                    font-weight: 400;
                 }
 
                 h2 {
                     font-size: 12pt;
+                    font-weight: 300;
+                    color: $tzukuri-dark-grey;
                 }
             }
 
             // connect social media
             #connect-social {
+                margin-left: 0px;
+                margin-bottom: 20px;
+
                 a {
                     text-decoration: none;
                 }
 
-                // social buttons for facebook/twitter/instagram
                 .social-button {
-                    border: 1px solid $tzukuri-blue;
-                    border-radius: 15px;
-                    font-size: 10pt;
-                    text-align: center;
-                    padding: 15px;
                     margin-top: 20px;
-                    font-weight: 400;
 
-                    @include transition(0.5s);
+                    .content {
+                        border: 1px solid $tzukuri-blue;
+                        text-align: center;
+                        padding: 10px;
+                        border-radius: 15px;
+                        font-size: 10pt;
+                        width: 70%;
+
+                        @include transition(0.5s);
+                    }
 
                     i {
                         color: $tzukuri-blue;
-                        float: right;
-                        margin-top: -8px;
                     }
 
-                    &:hover {
+                    &:hover .content {
                         background-color: $tzukuri-blue;
                         cursor: pointer;
                         color: white;
@@ -100,78 +120,58 @@ body.beta {
                         }
                     }
 
-                    &.connected {
+                    &.connected .content {
                         background-color: $tzukuri-blue;
                         color: white;
-
-                        i {
-                            color: white;
-                        }
-
-                        &:hover {
-                            cursor: auto;
-                        }
                     }
                 }
             }
 
             // answer questions
             #answer-questions {
-                .questions-container {
-                    margin-top: 20px;
+                .question {
+                    // questions are hidden by default
+                    display: none;
+                    font-weight: 400;
 
-                    .question {
-                        // questions are hidden by default
-                        display: none;
-                        font-weight: 300;
+                    // form for this question, defined in partials
+                    form {
+                        margin-left: 0px;
+                        margin-top: 10px;
 
-                        #question-head {
-                            font-size: 14pt;
-                            color: $tzukuri-dark-grey;
-                            line-height: 18pt;
-                            margin-bottom: 10px;
-                        }
+                        input {
+                            background-color: white;
+                            border: 1px solid $tzukuri-blue;
+                            color: $tzukuri-blue;
+                            padding: 10px 15px 10px 15px;
+                            border-radius: 20px;
+                            font-size: 10pt;
+                            min-width: 75px;
 
-                        // form for this question, defined in partials
-                        form {
-                            input, select {
-                                background-color: $tzukuri-light-grey;
-                                border-radius: 15px;
-                                font-size: 10pt;
-                            }
+                            @include transition(0.5s);
 
-                            input {
-                                border: none;
-                                padding-left: 20px;
-                            }
-
-                            select {
-                                padding: 10px;
-                                margin-left: 20px;
-                                border: 1px solid $tzukuri-light-grey;
-                                -webkit-appearance: none;
-                            }
-
-                            .question-submit {
-                                background-color: white;
-                                border: 1px solid $tzukuri-blue;
-                                color: $tzukuri-blue;
-                                padding: 10px;
-
-                                @include transition(0.5s);
-
-                                &:hover {
-                                    background-color: $tzukuri-blue;
-                                    color: white;
-                                    cursor: pointer;
-                                }
+                            &:hover {
+                                background-color: $tzukuri-blue;
+                                color: white;
+                                cursor: pointer;
                             }
                         }
                     }
                 }
 
                 #skip-questions {
-                    font-size: 12pt;
+                    font-size: 10pt;
+
+                    &.hidden {
+                        display: none;
+                    }
+                }
+
+                #questions-complete {
+                    color: $tzukuri-dark-grey;
+                    text-align: center;
+                    padding-top: 10px;
+                    margin-bottom: 30px;
 
                     &.hidden {
                         display: none;
@@ -181,6 +181,8 @@ body.beta {
 
             // invite friends
             #invite-friends {
+                margin-bottom: 20px;
+
                 .invite-container {
                     margin-top: 15px;
                     font-size: 10pt;
@@ -188,50 +190,73 @@ body.beta {
                     #unique-link {
                         border-radius: 15px;
                         border: none;
+                        color: $tzukuri-blue;
                         background-color: $tzukuri-light-grey;
-                        padding-left: 20px;
                         width: 100%;
+                        padding: 15px;
+                        padding-left: 15px;
                     }
 
                     #link-exp {
-                        line-height: 14pt;
-                        margin-left: 20px;
-                        margin-top: 5px;
-                        font-weight: 300;
-                        color: $tzukuri-dark-grey;
+                        // margin-left: 20px;
+                        // margin-top: 5px;
+                        line-height: 0pt !important;
+
+                        // color: $tzukuri-dark-grey;
+
                     }
                 }
+            }
+
+            #selecting-heading {
+                padding-bottom: 40px;
+                font-size: 14pt;
+                font-weight: 300;
+                color: $tzukuri-dark-grey;
+                line-height: 24pt;
             }
         }
 
         #login-container {
             text-align: center;
-            margin-bottom: 50px;
             padding: 10px;
 
             h1 {
                 font-size: 42pt;
                 font-weight: 100;
-                margin-bottom: 20px;
+                margin-bottom: 50px;
             }
 
             h2 {
                 font-size: 12pt;
                 font-weight: 300;
                 color: $tzukuri-dark-grey;
-                margin-bottom: 20px;
+                margin-bottom: 30px;
             }
 
             form#new_beta_user {
                 #submit-btn {
-                    width: 400px;
+                    border-radius: 20px;
+                    padding: 15px;
+                    background-color: white;
+                    border: 1px solid $tzukuri-blue;
+                    color: $tzukuri-blue;
+                    display: none;
+
+                    &:hover {
+                        color: white;
+                        background-color: $tzukuri-blue;
+                    }
                 }
 
                 .beta-input {
+                    &:focus {
+                        outline-width: 0;
+                    }
+
                     background-color: $tzukuri-light-grey;
                     border-radius: 5px;
                     border: 1px solid $tzukuri-light-grey;
-                    width: 380px;
 
                     &.error {
                         border: 1px solid $tzukuri-red;

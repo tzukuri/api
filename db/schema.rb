@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160519021604) do
+ActiveRecord::Schema.define(version: 20160530045922) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,8 +104,9 @@ ActiveRecord::Schema.define(version: 20160519021604) do
   create_table "beta_questions", force: :cascade do |t|
     t.string   "content"
     t.integer  "point_value"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "precondition_id"
   end
 
   create_table "beta_referrals", force: :cascade do |t|
@@ -133,10 +134,14 @@ ActiveRecord::Schema.define(version: 20160519021604) do
     t.string   "ip_address"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+    t.date     "birth_date"
+    t.string   "country"
+    t.string   "city"
   end
 
   add_index "beta_users", ["email"], name: "index_beta_users_on_email", unique: true, using: :btree
   add_index "beta_users", ["invite_token"], name: "index_beta_users_on_invite_token", using: :btree
+  add_index "beta_users", ["score"], name: "index_beta_users_on_score", using: :btree
 
   create_table "betareservations", force: :cascade do |t|
     t.string   "name"

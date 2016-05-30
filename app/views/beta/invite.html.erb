@@ -1,17 +1,39 @@
-<div class="container" style="text-align: center; margin-top:100px;">
-  <% if beta_user_signed_in? %>
-    user is signed in, not displaying sign up form
-  <% else %>
-    <p>You've been invited to register for the Tzukuri Beta by <%= @invited_by.name %></p>
-    <br/><br/>
+<div id="beta-invite" class="container" data-error="<%= 'true' if flash[:notice] %>">
+  <div class="twelve columns" style="padding-bottom: 40px;">
+      <h1>T Z U K U R I <span class="blue">[beta]</span></h1>
+      <br/>
+      <h2>invited by <%= @invited_by.name %></h2>
+  </div>
+  <div class="row">
+    <div class="six columns">
+      <p id="beta-blurb">
+        The world’s first unloseable glasses are almost here. Before our public release, we’d like to find and fix any teething issues that come up. We’d like to do so with your help.
+        <br/><br/>
+        We will be selecting up to 250 users to receive and test our glasses between June and July. At the end of the testing period, you will be allowed to keep the glasses. If you’re selected, you’ll be required to answer a few questions and report any issues you have with the product.
+        <br/><br/>
+        By registering, you will be entering preselection for beta testing. There will be different actions you can take to increase your chances. Tzukuri currently only works with iOS devices.
+      </p>
+    </div>
+    <div class="six columns" id="register-container">
+      <%#= image_tag 'frames/Ive_Tortoise_Sunglasses.png', class: 'beta-hero-image', style: 'width:55%; padding-bottom:20px;' %>
 
-    <%= form_for @beta_user, :url => beta_user_registration_path(@beta_user) do |f| %>
-      <%= f.text_field :name, placeholder: "name", autofocus: true %> <br>
-      <%= f.text_field :email, placeholder: "email address"%> <br/>
+      <%= form_for @beta_user, :url => beta_user_registration_path(@beta_user) do |f| %>
+      <%= f.text_field :name, placeholder: "name", autofocus: true, autocomplete: 'off', class: "beta-input" %> <br>
+      <%= f.text_field :email, placeholder: "email address", autocomplete: 'off', class: "beta-input" %> <br/>
+
+      <%= f.text_field :birth_date, placeholder: "birth date", class: "beta-input", autocomplete: 'off' %>
+      <p id="birthday_hint">dd/mm/yyyy</p>
+
+      <%= f.text_field :city, placeholder: "city", class: "beta-input", autocomplete: 'off' %>
+      <%= f.text_field :country, placeholder: "country", class: "beta-input", autocomplete: 'off' %>
+
       <%= f.hidden_field :invite_token, value: @token %><br/>
-      <%= f.submit "register"%>
-    <% end %>
+      <%= f.submit "register", class: "cta-button", id: "register-btn" %>
+      <% end %>
 
-    <%= flash[:notice] %>
-  <% end %>
+      <% if flash[:notice] %>
+        <p id="form-error" class="error">There was a problem with the information you provided. Please try again.</p>
+      <% end %>
+    </div>
+  </div>
 </div>

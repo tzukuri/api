@@ -24,8 +24,9 @@ gem 'appsignal', '~> 0.12.rc'
 gem 'paperclip', "~> 4.3"
 gem 'httparty'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
-gem 'country_select'
 gem 'mapbox-rails', :git => 'https://github.com/dkniffin/mapbox-rails'
+gem 'animate-rails'
+gem 'lodash-rails'
 
 #omniauth strategies
 gem 'omniauth-twitter'

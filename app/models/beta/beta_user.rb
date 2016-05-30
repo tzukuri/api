@@ -17,23 +17,50 @@ class BetaUser < ActiveRecord::Base
   validates :email,         presence: true,   uniqueness: true
   validates :invite_token,  presence: true,   uniqueness: true, :length => { :is => 6 }
   validates :score,         presence: true
+  validates :birth_date,    presence: true
+  validates :city,          presence: true
+  validates :city,          presence: true
   validates_format_of :email,:with => Devise.email_regexp
 
   # methods
   def referred_by(referrer_token)
     referred_by = BetaUser.find_by(invite_token: referrer_token)
-    referred_by.update_score(1)
     BetaReferral.create(inviter_id: referred_by.id, invitee_id: self.id)
+    referred_by.update_score(10)
   end
 
-  def unanswered_questions
-    answered_ids = self.responses.map(&:beta_question_id)
-    BetaQuestion.where.not(id: answered_ids)
+  # return a list of questions that can be answered by the user
+  # (does not include those that are disabled or already answered)
+  def answerable_questions
+    answerable = []
+
+    unanswered_questions.each do |question|
+      answerable.push(question) if precondition_met(question)
+    end
+
+    return answerable
   end
+
+      # get the rank of the user ordered by their score
+    def rank
+      BetaUser.order(score: :desc).index(self)
+    end
 
   def update_score(by_amount)
     self.score += by_amount
-    self.save
+    self.save!
+  end
+
+  def percentage_chance
+      # todo: refactor this
+      percentage = (100 - rank.to_f/BetaUser.all.count * 100).round(-1);
+
+      # cap percentage at 90
+      if percentage > 90
+        percentage = 90
+      end
+
+      return percentage
   end
 
   # social methods
@@ -109,5 +136,25 @@ class BetaUser < ActiveRecord::Base
       if changes[:selected] && self.selected == true
         BetaMailer.send_beta_acceptance_email(self).deliver_later
       end
+    end
+
+    # get a list of questions that the user hasn't answered yet
+    def unanswered_questions
+      answered_ids = self.responses.map(&:beta_question_id)
+      BetaQuestion.where.not(id: answered_ids)
+    end
+
+    # get the response to a question if is exists
+    def has_answered(question)
+      return question.responses.find_by(beta_user_id: self.id)
+    end
+
+    def precondition_met(question)
+      return true if question.precondition.nil?
+
+      # the user has responded to this question's precondition
+      response = has_answered(question.precondition)
+
+      return true if !response.nil? && response.response == question.precondition.response_options.first
     end
 end

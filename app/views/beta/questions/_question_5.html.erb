@@ -1,6 +1,0 @@
-<!-- which phone do you have -->
-<%= form_for BetaResponse.new, :url => beta_responses_path, :html => { :method => :post}, remote: true do |f| %>
-  <%= f.hidden_field :question_id, value: question.id%>
-  <%= f.select(:response, options_for_select(['iPhone 4s', 'iPhone 5', 'iPhone 5s', 'iPhone 5se', 'iPhone 6', 'iPhone 6 Plus', 'iPhone 6s', 'iPhone 6s Plus', 'Android Device'])) %>
-  <%= f.submit "answer question", class:"question-submit" %>
-<% end %>

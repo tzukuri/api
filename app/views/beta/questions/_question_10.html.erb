@@ -1,6 +1,0 @@
-<!-- how often do you lose your glasses -->
-<%= form_for BetaResponse.new, :url => beta_responses_path, :html => { :method => :post}, remote: true do |f| %>
-  <%= f.hidden_field :question_id, value: question.id%>
-  <%= f.select(:response, options_for_select(['All the time', 'Sometimes', 'Rarely'])) %>
-  <%= f.submit "answer question", class:"question-submit" %>
-<% end %>

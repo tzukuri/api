@@ -1,121 +1,159 @@
 <div id="beta-index" class="container">
+
   <% if beta_user_signed_in? %>
-  <div id="details-container">
-    <div id="header-section" class="row">
-      <div class="nine columns">
-        <h1 id="welcome-header">Welcome back, <%= @beta_user.name.split(" ")[0] %></h1>
+
+    <!-- main beta dashboard container -->
+    <div id="details-container">
+
+      <!-- user detail header -->
+      <div class="row">
+        <div class="nine columns" id="header-section">
+          <h2 id="welcome-sub">
+          Based on your score, there is a <span class="blue bold" id="percentage"><%= @percentage_chance %>% chance</span> that you will be selected for the next round of invites.
+          </h2>
+          <hr/>
+          <div class="progress-bar"></div>
+          <div style="margin-bottom: 40px;">
+            <p>
+              You can increase your chance of being selected by <span class="bold"> connecting your social media accounts</span>, <span class="bold">answering survey questions</span> or <span class="bold">inviting your friends</span> below. <a href="/faq#beta">Got questions?</a>
+            </p>
+          </div>
+        </div>
+        <div class="three columns">
+          <div id="score-section">
+            <h1 id="score" class="blue"><%= @beta_user.score.to_i %> points</h1>
+            <h2 id="user"><%= @beta_user.name %></h2>
+            <%= link_to "logout", destroy_beta_user_session_path, :method => :delete %>
+          </div>
+        </div>
+      </div>
+      <hr>
+
+      <!-- social media section -->
+      <div id="connect-social" class="action-container four columns">
+        <div class="row">
+          <p>Connect social media accounts</p>
+          <p>+20 points</p>
+        </div>
+        <div class="row">
+          <!-- twitter button -->
+          <div class="twelve columns">
+            <% if @beta_user.twitter? %>
+            <div class="row social-button connected">
+              <i class="fa fa-2x fa-twitter two columns"></i>
+              <div class="eight columns content">
+                connected
+              </div>
+            </div>
+            <% else %>
+            <%= link_to oauth_path(:twitter) do %>
+            <div class="row social-button">
+              <i class="fa fa-2x fa-twitter two columns"></i>
+              <div class="eight columns content">
+                connect
+              </div>
+            </div>
+            <% end %>
+            <% end %>
+          </div>
+          <!-- facebook button -->
+          <div class="twelve columns">
+            <% if @beta_user.facebook? %>
+            <div class="row social-button connected">
+              <i class="fa fa-2x fa-facebook two columns"></i>
+              <div class="eight columns content">
+                connected
+              </div>
+            </div>
+            <% else %>
+            <%= link_to oauth_path(:facebook) do %>
+            <div class="row social-button">
+              <i class="fa fa-2x fa-facebook two columns"></i>
+              <div class="eight columns content">
+                connect
+              </div>
+            </div>
+            <% end %>
+            <% end %>
+          </div>
+          <!-- instagram button -->
+          <div class="twelve columns">
+            <%if @beta_user.instagram? %>
+            <div class="row social-button connected">
+              <i class="fa fa-2x fa-instagram two columns"></i>
+              <div class="eight columns content">
+                connected
+              </div>
+            </div>
+            <% else %>
+            <%= link_to oauth_path(:instagram) do %>
+            <div class="row social-button">
+              <i class="fa fa-2x fa-instagram two columns"></i>
+              <div class="eight columns content">
+                connect
+              </div>
+            </div>
+            <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <!-- answer questions -->
+      <div id="answer-questions" class="action-container eight columns">
+        <% BetaQuestion.all.each do |question| %>
+          <div class="question" id="question_<%= question.id %>"
+                data-answerable='<%= @answerable_questions.include?(question) ? 'true' : 'false' %>'>
+            <!-- question header -->
+            <div class="row">
+              <p class="u-pull-left" id="question-head"><%= question.content %></p>
+              <p class="u-pull-right">+5 points</p>
+            </div>
+
+            <!-- question form -->
+            <%= form_for BetaResponse.new, :url => beta_responses_path, :html => {:method => :post}, remote:true do |f| %>
+              <%= f.hidden_field :question_id, value: question.id%>
+              <% question.response_options.each do |response| %>
+                <%= f.submit response %>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+
         <br/>
-        <h2 id="welcome-sub">There are <span class="blue bold"><%= @rank %></span> people ahead of you. We'll be selecting beta users in order of their position in the list.</h2>
-        <hr>
+        <a id="skip-questions" class="<%= 'hidden' if @answerable_questions.count <= 1 %>" href="#">skip question</a>
+        <p id="questions-complete" class="<%= 'hidden' if @answerable_questions.count != 0 %>">Thanks, you've answered all the survey questions &nbsp; 🎉</p>
       </div>
-      <div id="score-section" class="three columns">
-        <h1 id="score" class="blue"><%= @beta_user.score.to_i %></h1>
-        <p id="score-sub">your score</p>
-        <%= link_to('logout', destroy_beta_user_session_path, :method => :delete) %>
-      </div>
-    </div>
 
-    <!-- social media section -->
-    <div id="connect-social" class="action-container nine columns">
-      <div class="row">
-        <h1 class="u-pull-left">connect social media accounts &nbsp;<i class="fa fa-question-circle"></i></h1>
-        <h2 class="u-pull-right">+20 points</h2>
-      </div>
-      <div class="row">
-        <!-- twitter button -->
-        <div class="four columns">
-          <% if @beta_user.twitter? %>
-          <div class="social-button connected">
-            Twitter Connected
-            <i class="fa fa-2x fa-twitter-square"></i>
-          </div>
-          <% else %>
 
-        <%= link_to oauth_path(:twitter) do %>
-          <div class="social-button">
-            <span>Connect Twitter</span>
-            <i class="fa fa-2x fa-twitter-square"></i>
-          </div>
-        <% end %>
-          <% end %>
+      <!-- invite friends -->
+      <div id="invite-friends" class="action-container eight columns">
+        <div class="row">
+          <p class="u-pull-left">Share this unique link with your friends</p>
+          <p class="u-pull-right">+10 points each</p>
         </div>
-        <!-- facebook button -->
-        <div class="four columns">
-          <% if @beta_user.facebook? %>
-          <div class="social-button connected">
-            Facebook Connected
-            <i class="fa fa-2x fa-facebook-square"></i>
+        <div class="row invite-container">
+          <div class="five columns">
+            <input id="unique-link" readonly value="tzukuri.com/beta/invite/<%= @beta_user.invite_token %>">
           </div>
-          <% else %>
-        <%= link_to oauth_path(:facebook) do %>
-          <div class="social-button">
-            <span>Connect Facebook</span>
-            <i class="fa fa-2x fa-facebook-square"></i>
+          <div class="five columns u-pull-right">
           </div>
-        <% end %>
-          <% end %>
-        </div>
-        <!-- instagram button -->
-        <div class="four columns">
-          <%if @beta_user.instagram? %>
-          <div class="social-button connected">
-            Instagram Connected
-            <i class="fa fa-2x fa-instagram"></i>
-          </div>
-          <% else %>
-        <%= link_to oauth_path(:instagram) do %>
-          <div class="social-button">
-            <span>Connect Instagram</span>
-            <i class="fa fa-2x fa-instagram"></i>
-          </div>
-        <% end %>
-          <% end %>
         </div>
       </div>
-    </div>
 
-    <div id="answer-questions" class="action-container nine columns">
-      <div class="row">
-        <h1 class="u-pull-left">answer survey questions &nbsp;<i class="fa fa-question-circle"></i></h1>
-        <h2 class="u-pull-right">+5 points</h2>
-      </div>
-      <div class="questions-container">
-        <% @beta_user.unanswered_questions.each do |question| %>
-        <div class="question row" id="question_<%= question.id %>">
-          <div class="six columns u-pull-left" id="question-head">
-            <%= question.content %>
-          </div>
-          <div class="six columns u-pull-right">
-            <%= render '/beta/questions/question_' + question.id.to_s, :question => question %>
-          </div>
-        </div>
-        <% end %>
-        <a id="skip-questions" class="<%= 'hidden' if @beta_user.unanswered_questions.count <= 1 %>" href="#">skip question</a>
-      </div>
-    </div>
+      <!-- bottom separator -->
+      <hr class="twelve columns"/>
 
-    <div id="invite-friends" class="action-container nine columns">
-      <div class="row">
-        <h1 class="u-pull-left">invite friends &nbsp;<i class="fa fa-question-circle"></i></h1>
-        <h2 class="u-pull-right">+10 points</h2>
-      </div>
-      <div class="row invite-container">
-        <div class="five columns">
-          <input id="unique-link" value="tzukuri.com/beta/invite/x3gh43">
-        </div>
-        <div class="five columns u-pull-right">
-          <p id="link-exp">Share this unique link. You'll get 10 points for each person that signs up.</p>
-        </div>
-      </div>
     </div>
-  </div>
 
   <% else %>
-  <div id="login-container">
+
+  <!-- login container -->
+  <div id="login-container" data-error="<%= 'true' if flash[:alert] %>">
     <h1>T Z U K U R I <span class="blue">[beta]</span></h1>
-    <h2>enter the email address you registered with to continue</h2>
+    <h2>Enter the email address you registered with to continue to the beta dashboard</h2>
     <%= form_for @beta_user, :url => beta_user_session_path(@beta_user) do |f| %>
-    <%= f.text_field :email, placeholder: "email address", autofocus: true, class: "beta-input" %> <br/>
+    <%= f.text_field :email, placeholder: "email address", autofocus: true, class: "beta-input", autocomplete: 'off' %> <br/>
     <p id="error-messages"><%= flash[:alert] %></p>
     <%= f.hidden_field :invite_token, value: @token %><br/>
     <%= f.submit "continue", class: "cta-button", id:"submit-btn"%>
@@ -123,77 +161,3 @@
   </div>
   <% end %>
 </div>
-<script>
-    var currentQuestion;
-    var FADETIME = 500;
-
-    // helper methods
-    var showQuestion = function(question) {
-      $('.question').fadeOut(FADETIME);
-      setTimeout(function() {
-        $(question).fadeIn();
-      }, FADETIME);
-
-      currentQuestion = question;
-    }
-
-    var skipQuestion = function() {
-      if ($(currentQuestion).next('.question').length > 0) {
-        showQuestion($(currentQuestion).next('.question'))
-      } else {
-        showQuestion($('.question').first())
-      }
-    }
-
-    var updateProgress = function() {
-      var percentComplete = 100 - ($('.question').length / 10) * 100
-      $(".progress-bar").css("width", percentComplete + "%")
-    }
-
-    // on document load binding
-    $(document).on("tzukuri.page.load", function() {
-      showQuestion($('.question').first())
-      updateProgress()
-    })
-
-    // dom element bindings
-    $("#skip-questions").on("click", function() {
-      skipQuestion()
-    })
-
-    $("#unique-link").on("click", function() {
-      $(this).select()
-    })
-
-    // responding to a question being successfully answered
-    $('.new_beta_response').on('ajax:success', function(e, data) {
-
-      if (data.success) {
-        // remove the answered question from the list
-        $($("#question_" + data.beta_response.beta_question_id)).remove()
-
-        // check if there are any more questions remaining
-        if ($('.question').length == 0) {
-          // do something if there are no more questions
-          $(".questions-complete").removeClass('hidden')
-          $("#skip-questions").addClass('hidden')
-        } else {
-          skipQuestion()
-        }
-
-        updateProgress();
-
-        // update the score in the view
-        var score = parseInt($("#score").html()) + 5
-
-        $("#score").fadeOut(FADETIME, function() {
-          $("#score").html(score)
-        }).fadeIn(FADETIME);
-
-      } else {
-
-      }
-    }).on('ajax:error', function(e, data) {
-
-    });
-</script>

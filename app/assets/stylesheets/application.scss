@@ -3,6 +3,7 @@
 @import "compass/reset";
 @import "font-awesome";
 @import "mapbox";
+@import "animate";
 
 // imported css frameworks
 @import "frameworks/helvetica";
@@ -35,7 +36,7 @@
 
 // beta styles
 @import "beta/index";
-@import "beta/show";
+@import "beta/invite";
 
 // dashboard styles
 @import "dashboard/index";

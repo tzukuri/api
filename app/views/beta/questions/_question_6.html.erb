@@ -1,6 +1,0 @@
-<!-- do you wear optical glasses -->
-<%= form_for BetaResponse.new, :url => beta_responses_path, :html => { :method => :post}, remote: true do |f| %>
-  <%= f.hidden_field :question_id, value: question.id%>
-    <%= f.select(:response, options_for_select(['Yes', 'No'])) %>
-  <%= f.submit "answer question", class:"question-submit" %>
-<% end %>

@@ -29,43 +29,51 @@
                 <% end %>
                 <p id="subscribe-status"></p>
             </div>
-                <!-- rsvp modal -->
-                <div id="rsvp-modal" class="modal-dialog light hidden">
-                    <div id="rsvp-form">
-                        <%= form_for Rsvp.new, remote: true do |f| %>
-                        <p><%= f.text_field :name, placeholder: 'full name' %></p>
-                        <p><%= f.text_field :email, placeholder: 'email address' %></p>
-                        <p><%= f.text_field :inviter, placeholder: 'inviter' %></p>
-                        <button style="display: none">RSVP</button>
-                        <% end %>
-                        <div id="rsvp-confirm">
-                            <p id="rsvp-status">Thanks for your RSVP, we look forward to seeing you!<br/><br/><span id="rsvp-address">Track 8, Carriageworks (245 Wilson Street, Eveleigh) at 3:45 PM</span></p>
-                            <p id="add-calendar">
-                                <a href="Tzukuri_Demo_Event.ics" download>Add to Calendar</a></p>
-                            </div>
+
+            <!-- rsvp modal -->
+            <div id="rsvp-modal" class="modal-dialog light hidden">
+                <div id="rsvp-form">
+                    <%= form_for Rsvp.new, remote: true do |f| %>
+                    <p><%= f.text_field :name, placeholder: 'full name' %></p>
+                    <p><%= f.text_field :email, placeholder: 'email address' %></p>
+                    <p><%= f.text_field :inviter, placeholder: 'inviter' %></p>
+                    <button style="display: none">RSVP</button>
+                    <% end %>
+                    <div id="rsvp-confirm">
+                        <p id="rsvp-status">Thanks for your RSVP, we look forward to seeing you!<br/><br/><span id="rsvp-address">Track 8, Carriageworks (245 Wilson Street, Eveleigh) at 3:45 PM</span></p>
+                        <p id="add-calendar">
+                            <a href="Tzukuri_Demo_Event.ics" download>Add to Calendar</a></p>
                         </div>
-                </div>
-
-                <!-- share modal -->
-                <div id="share-modal" class="modal-dialog light hidden">
-                    <div id="share-icons">
-                        <span><a href="#" class="fa fa-facebook fa-4x" id="share-fb"></a></span>
-                        <span><a href="#" class="fa fa-twitter fa-4x" id="share-twitter"></a></span>
-                        <span><a href="#" class="fa fa-pinterest fa-4x" id="share-pinterest"></a></span>
-                        <span><a href="#" class="fa fa-tumblr fa-4x" id="share-tumblr"></a></span>
-                        <span><a href="#" class="fa fa-envelope-square fa-4x" id="share-email"></a></span>
                     </div>
-                </div>
+            </div>
 
-                <!-- dashboard modal -->
-                <div id="dashboard-empty-device-modal" class="modal-dialog dark hidden">
-                    <h1>No glasses connected to this account</h1>
-                    <br/><br/>
-                    <p>Set up a pair of glasses with the Tzukuri app to access the dashboard. If you're having trouble, please <a href="/contact">contact us</a>.</p>
-                    <br/><br/>
-                    <%= link_to "logout", destroy_user_session_path, :method => :delete %>
+            <!-- share modal -->
+            <div id="share-modal" class="modal-dialog light hidden">
+                <div id="share-icons">
+                    <span><a href="#" class="fa fa-facebook fa-4x" id="share-fb"></a></span>
+                    <span><a href="#" class="fa fa-twitter fa-4x" id="share-twitter"></a></span>
+                    <span><a href="#" class="fa fa-pinterest fa-4x" id="share-pinterest"></a></span>
+                    <span><a href="#" class="fa fa-tumblr fa-4x" id="share-tumblr"></a></span>
+                    <span><a href="#" class="fa fa-envelope-square fa-4x" id="share-email"></a></span>
                 </div>
             </div>
+
+            <!-- dashboard modal -->
+            <div id="dashboard-empty-device-modal" class="modal-dialog dark hidden">
+                <h1>No glasses connected to this account</h1>
+                <br/><br/>
+                <p>Set up a pair of glasses with the Tzukuri app to access the dashboard. If you're having trouble, please <a href="/contact">contact us</a>.</p>
+                <br/><br/>
+                <%= link_to "logout", destroy_user_session_path, :method => :delete %>
+            </div>
+
+
+            <!-- beta details modal -->
+            <div id="beta-details-modal" class="modal-dialog light hidden">
+                <h2>Tzukuri Beta Details</h2>
+                <p>This is some test content about the Tzukuri beta</p>
+            </div>
+
         </div>
 
         <% if controller_name == "pages" || controller_name == "beta" %>
@@ -76,7 +84,7 @@
 
         <%= yield %>
 
-        <% if controller_name == "pages" || controller_name == "beta" %>
+        <% if controller_name == "pages" %>
             <%= render 'layouts/site_footer' %>
         <% end %>
 

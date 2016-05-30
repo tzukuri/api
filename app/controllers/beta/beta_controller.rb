@@ -6,7 +6,8 @@ class BetaController < ApplicationController
     if beta_user_signed_in?
       # the user is signed in, so get the data for their details
       @beta_user = current_beta_user
-      @rank = BetaUser.order(score: :desc).index(@beta_user)
+      @percentage_chance = @beta_user.percentage_chance
+      @answerable_questions = @beta_user.answerable_questions
     else
       # otherwise create an empty user and show the form
       @beta_user = BetaUser.new
@@ -20,7 +21,6 @@ class BetaController < ApplicationController
     @token = params[:token]
     @invited_by = BetaUser.find_by(invite_token: @token)
     @beta_user = BetaUser.new
-
   end
 
 
