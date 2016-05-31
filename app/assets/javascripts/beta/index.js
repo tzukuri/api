@@ -31,18 +31,6 @@ $(function() {
         }
     }
 
-    // var updateProgress = function() {
-    //     var socialConnected = $('.social-button.connected').length
-    //     var questionCompleted = 10 - $('.question').length
-
-    //     var total = 110
-
-    //     var pointsCompleted = (socialConnected * 20) + (questionCompleted * 5)
-    //     var percentComplete = (pointsCompleted / total) * 100
-
-    //     $(".progress-bar").css("width", percentComplete + "%")
-    // }
-
     // -----------------------------
     // on page load binding
     // -----------------------------
@@ -59,6 +47,75 @@ $(function() {
     // -----------------------------
     // dom element bindings
     // -----------------------------
+
+    // frame selections
+    $('.select-colour').on('click', function() {
+        if ($(this).parent().hasClass('disabled')) return;
+        var colour = $(this).attr('data-colour')
+
+        // disable colour selection and enable design selection
+        $(this).parent().addClass('disabled')
+        $($("#frame-select .four.columns")[1]).removeClass('disabled')
+
+        $("#beta_order_colour").val(colour)
+        $("#colour-selection").html(colour)
+    })
+
+    $('.select-design').on('click', function() {
+        if ($(this).parent().hasClass('disabled')) return;
+        var design = $(this).attr('data-design')
+
+        // disable colour selection and enable design selection
+        $(this).parent().addClass('disabled')
+        $($("#frame-select .four.columns")[2]).removeClass('disabled')
+
+        $("#beta_order_frame").val(design)
+        $("#frame-selection").html(design)
+    })
+
+    $('.select-size').on('click', function() {
+        if ($(this).parent().hasClass('disabled')) return;
+        var size = $(this).attr('data-size')
+
+        $(this).parent().addClass('disabled')
+
+        $("#beta_order_size").val(size)
+        $("#size-selection").html(size)
+
+        // todo: progress to the shipping details form
+        $('#frame-select').fadeOut(function() {
+            $('#shipping-details').fadeIn();
+        });
+    })
+
+    // pulse on mouseover
+    // returns if the parent is disabled
+    $('.select-colour').on('mouseover', function() {
+        if ($(this).parent().hasClass('disabled')) return;
+        $(this).tzAnimate('pulse')
+    })
+
+    $('.select-design').on('mouseover', function() {
+        if ($(this).parent().hasClass('disabled')) return;
+        $(this).tzAnimate('pulse')
+    })
+
+    $('.select-size').on('mouseover', function() {
+        if ($(this).parent().hasClass('disabled')) return;
+        $(this).tzAnimate('pulse')
+    })
+
+
+    $('.step-back').on('click', function() {
+        switch ($(this).attr('id')) {
+            case 'shipping-back':
+                $("#shipping-details").fadeOut()
+                $("#frame-select").fadeIn()
+                $($("#frame-select .four.columns")[2]).removeClass('disabled')
+                break;
+        }
+    })
+
     // pulse the social buttons on mouseover
     $(".social-button .content").on("mouseover", function() {
         $(this).tzAnimate('pulse')
@@ -93,13 +150,29 @@ $(function() {
             // todo: handle the error state
         }
     }).on('ajax:error', function(e, data) {
+        // todo: handle the error state
+    });
+
+    $('.new_beta_order').on('ajax:success', function(e, data) {
+        console.log(data)
+
+        if (data.success) {
+            // fadeout and then reload the view
+            $("#selected-container").fadeOut(function() {
+                location.reload();
+            })
+        } else {
             // todo: handle the error state
+        }
+
+    }).on('ajax:error', function(e, data) {
+        // todo: handle the error state
     });
 
     var updateAnswerables = function(answerables) {
         // iterate through all the question elements and update their answerable value
         _($('.question')).forEach(function(el, i) {
-          $(el).attr('data-answerable', _.includes(answerables, i+1))
+            $(el).attr('data-answerable', _.includes(answerables, i + 1))
         });
 
         // hide all the elements with answerable = false

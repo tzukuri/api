@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160530045922) do
+ActiveRecord::Schema.define(version: 20160531041345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,22 @@ ActiveRecord::Schema.define(version: 20160530045922) do
   end
 
   add_index "beta_identities", ["beta_user_id"], name: "index_beta_identities_on_beta_user_id", using: :btree
+
+  create_table "beta_orders", force: :cascade do |t|
+    t.integer  "beta_user_id"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "state"
+    t.string   "postcode"
+    t.string   "country"
+    t.string   "frame"
+    t.string   "colour"
+    t.string   "size"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "beta_orders", ["beta_user_id"], name: "index_beta_orders_on_beta_user_id", using: :btree
 
   create_table "beta_questions", force: :cascade do |t|
     t.string   "content"
@@ -302,6 +318,7 @@ ActiveRecord::Schema.define(version: 20160530045922) do
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
   add_foreign_key "beta_identities", "beta_users"
+  add_foreign_key "beta_orders", "beta_users"
   add_foreign_key "quietzones", "users"
   add_foreign_key "recordings", "devices"
   add_foreign_key "recordings", "rooms", on_delete: :cascade

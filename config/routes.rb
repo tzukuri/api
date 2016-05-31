@@ -72,7 +72,8 @@ Rails.application.routes.draw do
     # -----------------------------
     # other web routes
     # -----------------------------
-    resources :beta_responses
+    resources  :beta_responses
+    resources  :beta_orders
 
     resources :betareservations do
       collection do

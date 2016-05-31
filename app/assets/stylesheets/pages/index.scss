@@ -202,6 +202,56 @@ body.index {
         }
     }
 
+    #beta {
+        padding:0px;
+        margin:0px;
+
+        .panel {
+            height: $unloseable-height;
+
+            .background {
+                width: 435px;
+            }
+
+            .content {
+                padding-left: 510px;
+                width: 450px;
+
+                .share {
+                    position: absolute;
+                    top: $unloseable-height - $share-height - 60px;
+                    right: 0px;
+                }
+            }
+        }
+        // #beta-image {
+        //     img {
+        //         width: 100%;
+        //     }
+        // }
+
+        // #beta-content {
+        //     // margin-top:40px;
+        //     // padding: 20px;
+        //     // z-index: 1000;
+        //     h1 {
+        //         font-size:36pt;
+        //         font-weight:100;
+        //     }
+        //     p {
+        //         color: $tzukuri-dark-grey;
+        //         font-weight: 200;
+        //         line-height: 22pt;
+        //         margin-top:20px;
+        //         font-size:13pt;
+        //     }
+        //     a {
+        //         font-weight:200;
+        //     }
+        // }
+
+    }
+
     #unloseable {
         padding-bottom: 0px;
 

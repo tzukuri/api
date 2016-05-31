@@ -6,6 +6,7 @@ class BetaUser < ActiveRecord::Base
   has_many  :responses,       :foreign_key => 'beta_user_id', :class_name => 'BetaResponse'
   has_many  :beta_referrals,  :foreign_key => 'inviter_id'
   has_many  :invitees,        :through => :beta_referrals
+  has_one   :order,           :foreign_key => 'beta_user_id', :class_name => 'BetaOrder'
 
   # life cycle callbacks
   before_validation :generate_invite_token, on: :create
@@ -61,6 +62,10 @@ class BetaUser < ActiveRecord::Base
       end
 
       return percentage
+  end
+
+  def order?
+    !order.nil?
   end
 
   # social methods

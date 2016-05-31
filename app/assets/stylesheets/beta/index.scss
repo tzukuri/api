@@ -16,6 +16,173 @@ body.beta {
             border-top: 1px solid $tzukuri-light-grey;
         }
 
+        #order-submitted-container {
+
+            text-align: center;
+
+            #selected-header {
+                margin-bottom: 60px;
+
+                h2 {
+                    font-size: 36pt;
+                    color: $tzukuri-black;
+                    font-weight: 200;
+
+                }
+            }
+
+            ul {
+                text-align: left;
+
+                li {
+                    font-weight: 300;
+                    list-style-type: circle;
+                    margin-bottom: 10px;
+                    line-height: 22pt;
+                    color: $tzukuri-dark-grey;
+                }
+            }
+        }
+
+        #selected-container {
+            text-align: center;
+
+            #selected-header {
+                margin-bottom: 60px;
+
+                h2 {
+                    font-size: 36pt;
+                    color: $tzukuri-black;
+                    font-weight: 200;
+                }
+            }
+
+            #shipping-details {
+                &.hidden {
+                    display: none;
+                }
+
+                form#new_beta_order {
+                    #submit-btn {
+                        border-radius: 20px;
+                        padding: 15px;
+                        background-color: white;
+                        border: 1px solid $tzukuri-blue;
+                        color: $tzukuri-blue;
+
+                        @include transition(0.5s);
+
+                        width: 100px;
+
+                        &:hover {
+                            color: white;
+                            background-color: $tzukuri-blue;
+                        }
+                    }
+
+                    input {
+                        &:focus {
+                            outline-width: 0;
+                        }
+
+                        width: 80%;
+                        background-color: $tzukuri-light-grey;
+                        border-radius: 5px;
+                        border: 1px solid $tzukuri-light-grey;
+                        margin-bottom: 15px;
+
+                        &.error {
+                            border: 1px solid $tzukuri-red;
+                        }
+                    }
+
+                    #error-messages {
+                        color: $tzukuri-red;
+                        font-size: 10pt;
+                        padding-top: 10px;
+                    }
+                }
+            }
+
+            #frame-select {
+                .columns {
+                    border-right: 1px solid $tzukuri-light-grey;
+                    min-height: 400px;
+                    margin-left: 0px;
+
+                    @include transition(0.5s);
+
+                    &.disabled {
+                        opacity: 0.1;
+                    }
+
+                    .select-design {
+                        cursor: pointer;
+
+                        img {
+                            width: 65%;
+                        }
+                    }
+
+                    .select-size {
+                        border: 1px solid $tzukuri-blue;
+                        border-radius: 20px;
+                        margin-bottom: 20px;
+                        margin-top: 20px;
+                        width: 30%;
+                        color: $tzukuri-blue;
+                        margin-left: auto;
+                        margin-right: auto;
+                        margin-top: 80px;
+                        padding: 10px;
+                        pointer: cursor;
+
+                        @include transition(0.5s);
+
+                        &:hover {
+                            background: $tzukuri-blue;
+                            color: white;
+                        }
+                    }
+
+                    .select-colour {
+                        @include transition(0.5s);
+
+                        padding: 5px;
+                        border-radius: 15px;
+                        width: 50%;
+                        margin-left: auto;
+                        margin-right: auto;
+                        margin-top: 40px;
+                        cursor: pointer;
+
+                        &.active {
+                            color: white;
+                            background-color: $tzukuri-dark-grey;
+                        }
+
+                        .circle {
+                            width: 60px;
+                            height: 60px;
+                            border-radius: 30px;
+                            margin-top: 10px;
+                            margin-bottom: 10px;
+                            margin-left: auto;
+                            margin-right: auto;
+
+                            &.tort {
+                                background-color: brown;
+                            }
+
+                            &.black {
+                                background-color: $tzukuri-black;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         // main container
         #details-container {
             .progress-bar {

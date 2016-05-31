@@ -1,150 +1,269 @@
 <div id="beta-index" class="container">
-
   <% if beta_user_signed_in? %>
 
-    <!-- main beta dashboard container -->
-    <div id="details-container">
+    <!-- order has been submitted -->
+    <% if @beta_user.order? %>
 
-      <!-- user detail header -->
-      <div class="row">
-        <div class="nine columns" id="header-section">
-          <h2 id="welcome-sub">
-          Based on your score, there is a <span class="blue bold" id="percentage"><%= @percentage_chance %>% chance</span> that you will be selected for the next round of invites.
-          </h2>
-          <hr/>
-          <div class="progress-bar"></div>
-          <div style="margin-bottom: 40px;">
-            <p>
-              You can increase your chance of being selected by <span class="bold"> connecting your social media accounts</span>, <span class="bold">answering survey questions</span> or <span class="bold">inviting your friends</span> below. <a href="/faq#beta">Got questions?</a>
-            </p>
-          </div>
-        </div>
-        <div class="three columns">
-          <div id="score-section">
-            <h1 id="score" class="blue"><%= @beta_user.score.to_i %> points</h1>
-            <h2 id="user"><%= @beta_user.name %></h2>
-            <%= link_to "logout", destroy_beta_user_session_path, :method => :delete %>
-          </div>
-        </div>
-      </div>
-      <hr>
+      <div id="order-submitted-container">
+            <div id="selected-header">
+            <h2>Thanks, you're all done!</h2>
+            </div>
+            <p>We hope you're as excited as we are that you'll be one of the first people in the world to own a pair of <span class="bold">unloseable glasses</span>. You'll receive and email from us in the next few days confirming the next steps.</p>
+            <br/><br/>
+            <p>To make sure the beta process goes as smoothly as possible, here's a list of things to check before your new glasses arrive:</p>
+            <br/><br/>
+            <hr style="margin-bottom: 20px;">
 
-      <!-- social media section -->
-      <div id="connect-social" class="action-container four columns">
-        <div class="row">
-          <p>Connect social media accounts</p>
-          <p>+20 points</p>
-        </div>
-        <div class="row">
-          <!-- twitter button -->
-          <div class="twelve columns">
-            <% if @beta_user.twitter? %>
-            <div class="row social-button connected">
-              <i class="fa fa-2x fa-twitter two columns"></i>
-              <div class="eight columns content">
-                connected
-              </div>
-            </div>
-            <% else %>
-            <%= link_to oauth_path(:twitter) do %>
-            <div class="row social-button">
-              <i class="fa fa-2x fa-twitter two columns"></i>
-              <div class="eight columns content">
-                connect
-              </div>
-            </div>
-            <% end %>
-            <% end %>
+            <ul>
+              <li>Make sure you have access to an <span class="bold">iPhone 5 or later</span> running the latest version of iOS (Go to Settings > General > Software Update and make sure it says 'Your software is up to date').</li>
+
+              <li>Make sure you have an active Apple ID and you know your password.</li>
+
+              <li>Download the <a href="#">Testflight app</a> from the app store. We will use Testflight to distribute the Tzukuri app during our beta testing phase  (you'll receive more information about this later).</li>
+
+              <li>Don't forget you can still invite your friends to join the beta with this link - <a href="#">tzukuri.com/beta/invite/CEuYsQ</a></li>
+
+              <li>If you've got any questions about the beta or wish to change any of your details, get in touch at <a href="#">beta@tzukuri.com</a>
+            </ul>
           </div>
-          <!-- facebook button -->
-          <div class="twelve columns">
-            <% if @beta_user.facebook? %>
-            <div class="row social-button connected">
-              <i class="fa fa-2x fa-facebook two columns"></i>
-              <div class="eight columns content">
-                connected
-              </div>
-            </div>
-            <% else %>
-            <%= link_to oauth_path(:facebook) do %>
-            <div class="row social-button">
-              <i class="fa fa-2x fa-facebook two columns"></i>
-              <div class="eight columns content">
-                connect
-              </div>
-            </div>
-            <% end %>
-            <% end %>
-          </div>
-          <!-- instagram button -->
-          <div class="twelve columns">
-            <%if @beta_user.instagram? %>
-            <div class="row social-button connected">
-              <i class="fa fa-2x fa-instagram two columns"></i>
-              <div class="eight columns content">
-                connected
-              </div>
-            </div>
-            <% else %>
-            <%= link_to oauth_path(:instagram) do %>
-            <div class="row social-button">
-              <i class="fa fa-2x fa-instagram two columns"></i>
-              <div class="eight columns content">
-                connect
-              </div>
-            </div>
-            <% end %>
-            <% end %>
-          </div>
-        </div>
       </div>
 
-      <!-- answer questions -->
-      <div id="answer-questions" class="action-container eight columns">
-        <% BetaQuestion.all.each do |question| %>
-          <div class="question" id="question_<%= question.id %>"
-                data-answerable='<%= @answerable_questions.include?(question) ? 'true' : 'false' %>'>
-            <!-- question header -->
-            <div class="row">
-              <p class="u-pull-left" id="question-head"><%= question.content %></p>
-              <p class="u-pull-right">+5 points</p>
+    <!-- user is selected but order has not been submitted -->
+    <% elsif @beta_user.selected %>
+      <div id="selected-container">
+        <div class="row">
+          <div id="selected-header">
+            <h2>You're in. </h2>
+            <br/>
+            <p>You've been selected to participate in the Tzukuri Beta. Choose your frames and enter your shipping details below.</p>
+          </div>
+
+          <div id="frame-select">
+            <!-- colour -->
+            <div class="four columns">
+              <p>i. choose your colour</p>
+
+              <div class="select-colour" data-colour="tortoise">
+                <div class="circle tort"></div>
+                <p>Tortoise</p>
+              </div>
+
+              <div class="select-colour" data-colour="black">
+                <div class="circle black"></div>
+                <p>Black</p>
+              </div>
             </div>
 
-            <!-- question form -->
-            <%= form_for BetaResponse.new, :url => beta_responses_path, :html => {:method => :post}, remote:true do |f| %>
-              <%= f.hidden_field :question_id, value: question.id%>
-              <% question.response_options.each do |response| %>
-                <%= f.submit response %>
+            <!-- design -->
+            <div class="four columns disabled">
+              <p>ii. choose your design</p>
+
+              <div class="select-design" data-design="ive">
+                <%= image_tag 'frames/atticus/black-front.jpg' %>
+                <p>Ive</p>
+              </div>
+
+              <div class="select-design" data-design="ford">
+                <%= image_tag 'frames/atticus/black-front.jpg' %>
+                <p>Ford</p>
+              </div>
+
+            </div>
+
+            <!-- size -->
+            <div class="four columns disabled">
+              <p>iii. choose your size</p>
+              <div class="select-size" data-size="small">
+                small
+              </div>
+              <div href="#" class="select-size" data-size="large">
+                large
+              </div>
+            </div>
+          </div>
+
+          <div id="shipping-details" class="row hidden">
+
+            <div class="seven columns">
+              <div class="row">
+                <%= image_tag 'frames/ive/black-front.png', style: "width: 95%; margin-top: -120px; margin-left:auto; margin-right:auto" %>
+              </div>
+              <div class="row">
+                <div class="u-pull-left" style="text-align:left;">
+                  <p>Frame: <span id="frame-selection">Ive</span></p>
+                  <p>Colour: <span id="colour-selection">Tortoise</span></p>
+                  <p>Size: <span id="size-selection">Small</span></p>
+                </div>
+              </div>
+              <!-- <a href="#" class="step-back u-pull-left" id="shipping-back"> &larr; back </a> -->
+            </div>
+
+            <div class="five columns">
+              <%= form_for BetaOrder.new, :url => beta_orders_path, :html => {:method => :post}, remote:true do |f| %>
+
+                <%= f.text_field :address1, placeholder: 'address 1', autofocus: true %><br/>
+                <%= f.text_field :address2, placeholder: 'address 2' %><br/>
+                <%= f.text_field :state,    placeholder: 'state' %><br/>
+                <%= f.text_field :postcode, placeholder: 'postcode' %><br/>
+                <%= f.text_field :country,  placeholder: 'country' %><br/>
+
+                <%= f.hidden_field :frame %>
+                <%= f.hidden_field :colour %>
+                <%= f.hidden_field :size %>
+
+                <%= f.submit 'submit', id: 'submit-btn' %>
               <% end %>
-            <% end %>
+            </div>
           </div>
-        <% end %>
 
-        <br/>
-        <a id="skip-questions" class="<%= 'hidden' if @answerable_questions.count <= 1 %>" href="#">skip question</a>
-        <p id="questions-complete" class="<%= 'hidden' if @answerable_questions.count != 0 %>">Thanks, you've answered all the survey questions &nbsp; 🎉</p>
+
+        </div>
       </div>
 
+    <!-- user has not been selected -->
+    <% else %>
+      <div id="details-container">
 
-      <!-- invite friends -->
-      <div id="invite-friends" class="action-container eight columns">
+        <!-- user detail header -->
         <div class="row">
-          <p class="u-pull-left">Share this unique link with your friends</p>
-          <p class="u-pull-right">+10 points each</p>
-        </div>
-        <div class="row invite-container">
-          <div class="five columns">
-            <input id="unique-link" readonly value="tzukuri.com/beta/invite/<%= @beta_user.invite_token %>">
+          <div class="nine columns" id="header-section">
+            <h2 id="welcome-sub">
+            Based on your score, there is a <span class="blue bold" id="percentage"><%= @percentage_chance %>% chance</span> that you will be selected for the next round of invites.
+            </h2>
+            <hr/>
+            <div class="progress-bar"></div>
+            <div style="margin-bottom: 40px;">
+              <p>
+                You can increase your chance of being selected by <span class="bold"> connecting your social media accounts</span>, <span class="bold">answering survey questions</span> or <span class="bold">inviting your friends</span> below. <a href="/faq#beta">Got questions?</a>
+              </p>
+            </div>
           </div>
-          <div class="five columns u-pull-right">
+          <div class="three columns">
+            <div id="score-section">
+              <h1 id="score" class="blue"><%= @beta_user.score.to_i %> points</h1>
+              <h2 id="user"><%= @beta_user.name %></h2>
+              <%= link_to "logout", destroy_beta_user_session_path, :method => :delete %>
+            </div>
           </div>
         </div>
+        <hr>
+
+        <!-- social media section -->
+        <div id="connect-social" class="action-container four columns">
+          <div class="row">
+            <p>Connect social media accounts</p>
+            <p>+20 points</p>
+          </div>
+          <div class="row">
+            <!-- twitter button -->
+            <div class="twelve columns">
+              <% if @beta_user.twitter? %>
+              <div class="row social-button connected">
+                <i class="fa fa-2x fa-twitter two columns"></i>
+                <div class="eight columns content">
+                  connected
+                </div>
+              </div>
+              <% else %>
+              <%= link_to oauth_path(:twitter) do %>
+              <div class="row social-button">
+                <i class="fa fa-2x fa-twitter two columns"></i>
+                <div class="eight columns content">
+                  connect
+                </div>
+              </div>
+              <% end %>
+              <% end %>
+            </div>
+            <!-- facebook button -->
+            <div class="twelve columns">
+              <% if @beta_user.facebook? %>
+              <div class="row social-button connected">
+                <i class="fa fa-2x fa-facebook two columns"></i>
+                <div class="eight columns content">
+                  connected
+                </div>
+              </div>
+              <% else %>
+              <%= link_to oauth_path(:facebook) do %>
+              <div class="row social-button">
+                <i class="fa fa-2x fa-facebook two columns"></i>
+                <div class="eight columns content">
+                  connect
+                </div>
+              </div>
+              <% end %>
+              <% end %>
+            </div>
+            <!-- instagram button -->
+            <div class="twelve columns">
+              <%if @beta_user.instagram? %>
+              <div class="row social-button connected">
+                <i class="fa fa-2x fa-instagram two columns"></i>
+                <div class="eight columns content">
+                  connected
+                </div>
+              </div>
+              <% else %>
+              <%= link_to oauth_path(:instagram) do %>
+              <div class="row social-button">
+                <i class="fa fa-2x fa-instagram two columns"></i>
+                <div class="eight columns content">
+                  connect
+                </div>
+              </div>
+              <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <!-- answer questions -->
+        <div id="answer-questions" class="action-container eight columns">
+          <% BetaQuestion.all.each do |question| %>
+            <div class="question" id="question_<%= question.id %>"
+                  data-answerable='<%= @answerable_questions.include?(question) ? 'true' : 'false' %>'>
+              <!-- question header -->
+              <div class="row">
+                <p class="u-pull-left" id="question-head"><%= question.content %></p>
+                <p class="u-pull-right">+5 points</p>
+              </div>
+
+              <!-- question form -->
+              <%= form_for BetaResponse.new, :url => beta_responses_path, :html => {:method => :post}, remote:true do |f| %>
+                <%= f.hidden_field :question_id, value: question.id%>
+                <% question.response_options.each do |response| %>
+                  <%= f.submit response %>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+
+          <br/>
+          <a id="skip-questions" class="<%= 'hidden' if @answerable_questions.count <= 1 %>" href="#">skip question</a>
+          <p id="questions-complete" class="<%= 'hidden' if @answerable_questions.count != 0 %>">Thanks, you've answered all the survey questions &nbsp; 🎉</p>
+        </div>
+
+
+        <!-- invite friends -->
+        <div id="invite-friends" class="action-container eight columns">
+          <div class="row">
+            <p class="u-pull-left">Share this unique link with your friends</p>
+            <p class="u-pull-right">+10 points each</p>
+          </div>
+          <div class="row invite-container">
+            <div class="five columns">
+              <input id="unique-link" readonly value="tzukuri.com/beta/invite/<%= @beta_user.invite_token %>">
+            </div>
+            <div class="five columns u-pull-right">
+            </div>
+          </div>
+        </div>
+
+        <!-- bottom separator -->
+        <hr class="twelve columns"/>
       </div>
-
-      <!-- bottom separator -->
-      <hr class="twelve columns"/>
-
-    </div>
+    <% end %>
 
   <% else %>
 
