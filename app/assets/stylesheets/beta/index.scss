@@ -17,7 +17,6 @@ body.beta {
         }
 
         #order-submitted-container {
-
             text-align: center;
 
             #selected-header {
@@ -27,7 +26,6 @@ body.beta {
                     font-size: 36pt;
                     color: $tzukuri-black;
                     font-weight: 200;
-
                 }
             }
 
@@ -62,6 +60,38 @@ body.beta {
                     display: none;
                 }
 
+                .checkout-img {
+                    width: 95%;
+                    margin-top: -120px;
+                    margin-left:auto;
+                    margin-right:auto
+                }
+
+                .checkout-img.hidden {
+                    display: none;
+                }
+
+                dl {
+                    margin-bottom: 20px;
+                    margin-left: 70px;
+
+                    dt, dd {
+                        display: inline-block;
+                        margin-bottom: 3px;
+                        font-size: 12px;
+                    }
+
+                    dt {
+                        text-transform: uppercase;
+                        font-weight: 600;
+                        text-align: right;
+                    }
+
+                    dd {
+                        text-transform: capitalize;
+                    }
+                }
+
                 form#new_beta_order {
                     #submit-btn {
                         border-radius: 20px;
@@ -69,6 +99,8 @@ body.beta {
                         background-color: white;
                         border: 1px solid $tzukuri-blue;
                         color: $tzukuri-blue;
+                        display: none;
+                        cursor: pointer;
 
                         @include transition(0.5s);
 
@@ -135,7 +167,7 @@ body.beta {
                         margin-right: auto;
                         margin-top: 80px;
                         padding: 10px;
-                        pointer: cursor;
+                        cursor: pointer;
 
                         @include transition(0.5s);
 

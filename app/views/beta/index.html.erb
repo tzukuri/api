@@ -30,11 +30,12 @@
 
     <!-- user is selected but order has not been submitted -->
     <% elsif @beta_user.selected %>
+
       <div id="selected-container">
         <div class="row">
           <div id="selected-header">
             <h2>You're in. </h2>
-            <br/>
+            <br/><br/>
             <p>You've been selected to participate in the Tzukuri Beta. Choose your frames and enter your shipping details below.</p>
           </div>
 
@@ -44,7 +45,7 @@
               <p>i. choose your colour</p>
 
               <div class="select-colour" data-colour="tortoise">
-                <div class="circle tort"></div>
+                <div class="circle tort" style="background-image: url(<%= image_url 'tortoise-patch.png' %>)"></div>
                 <p>Tortoise</p>
               </div>
 
@@ -59,12 +60,14 @@
               <p>ii. choose your design</p>
 
               <div class="select-design" data-design="ive">
-                <%= image_tag 'frames/atticus/black-front.jpg' %>
+                <%= image_tag 'frames/ive/black-front.png', id: 'black' %>
+                <%= image_tag 'frames/ive/tortoise-front.png', id: 'tortoise', style: 'display: none' %>
                 <p>Ive</p>
               </div>
 
               <div class="select-design" data-design="ford">
-                <%= image_tag 'frames/atticus/black-front.jpg' %>
+                <%= image_tag 'frames/ford-beta/black-front.png', id: 'black' %>
+                <%= image_tag 'frames/ford-beta/tortoise-front.png', id: 'tortoise', style: 'display: none' %>
                 <p>Ford</p>
               </div>
 
@@ -86,13 +89,23 @@
 
             <div class="seven columns">
               <div class="row">
-                <%= image_tag 'frames/ive/black-front.png', style: "width: 95%; margin-top: -120px; margin-left:auto; margin-right:auto" %>
+                <%= image_tag 'frames/ive/black-front.png', class: 'checkout-img', id: 'ive-black' %>
+                <%= image_tag 'frames/ive/tortoise-front.png', class: 'checkout-img hidden', id: 'ive-tortoise' %>
+                <%= image_tag 'frames/ford-beta/black-front.png', class: 'checkout-img hidden', id: 'ford-black' %>
+                <%= image_tag 'frames/ford-beta/tortoise-front.png', class: 'checkout-img hidden', id: 'ford-tortoise' %>
               </div>
               <div class="row">
-                <div class="u-pull-left" style="text-align:left;">
-                  <p>Frame: <span id="frame-selection">Ive</span></p>
-                  <p>Colour: <span id="colour-selection">Tortoise</span></p>
-                  <p>Size: <span id="size-selection">Small</span></p>
+                <div class="twelve columns" style="text-align:left;">
+                <dl>
+                    <dt>Frame</dt>
+                    <dd id="frame-selection">Fitzgerald</dd>
+                    <br/>
+                    <dt>Colour</dt>
+                    <dd id="colour-selection">Tortoise</dd>
+                    <br/>
+                    <dt>Size</dt>
+                    <dd id="size-selection">Medium</dd>
+                </dl>
                 </div>
               </div>
               <!-- <a href="#" class="step-back u-pull-left" id="shipping-back"> &larr; back </a> -->
@@ -256,6 +269,11 @@
               <input id="unique-link" readonly value="tzukuri.com/beta/invite/<%= @beta_user.invite_token %>">
             </div>
             <div class="five columns u-pull-right">
+                <% if @beta_user.invitees.count == 1 %>
+                  <p>1 person has signed up with your invite code.</p>
+                <% else %>
+                  <p><%= @beta_user.invitees.count %> people have signed up with your invite code.</p>
+                <% end %>
             </div>
           </div>
         </div>

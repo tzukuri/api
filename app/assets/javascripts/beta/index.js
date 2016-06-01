@@ -48,13 +48,37 @@ $(function() {
     // dom element bindings
     // -----------------------------
 
+    $('#new_beta_order').on('input', function() {
+        var complete = true;
+
+        $(this).children("input").each(function(e) {
+            if ($(this).attr('id') == 'beta_order_address2') return true;
+            if ($(this).val() === "") {
+                return complete = false;
+            }
+        })
+
+        if (complete && !$("#submit-btn").is(":visible")) {
+            // show the submit button
+            $("#submit-btn").tzAnimate('bounceIn').show();
+        }
+    })
+
+    var design, colour, size;
+
     // frame selections
     $('.select-colour').on('click', function() {
         if ($(this).parent().hasClass('disabled')) return;
-        var colour = $(this).attr('data-colour')
+        colour = $(this).attr('data-colour')
 
         // disable colour selection and enable design selection
         $(this).parent().addClass('disabled')
+
+        if (colour == 'tortoise') {
+            $("img#black").hide()
+            $("img#tortoise").fadeIn()
+        }
+
         $($("#frame-select .four.columns")[1]).removeClass('disabled')
 
         $("#beta_order_colour").val(colour)
@@ -63,7 +87,7 @@ $(function() {
 
     $('.select-design').on('click', function() {
         if ($(this).parent().hasClass('disabled')) return;
-        var design = $(this).attr('data-design')
+        design = $(this).attr('data-design')
 
         // disable colour selection and enable design selection
         $(this).parent().addClass('disabled')
@@ -75,12 +99,16 @@ $(function() {
 
     $('.select-size').on('click', function() {
         if ($(this).parent().hasClass('disabled')) return;
-        var size = $(this).attr('data-size')
+        size = $(this).attr('data-size')
 
         $(this).parent().addClass('disabled')
 
         $("#beta_order_size").val(size)
         $("#size-selection").html(size)
+
+        // hide all checkout images and only show the selected one
+        $('.checkout-img').hide()
+        $('.checkout-img#' + design + '-' + colour).show()
 
         // todo: progress to the shipping details form
         $('#frame-select').fadeOut(function() {
@@ -163,6 +191,13 @@ $(function() {
             })
         } else {
             // todo: handle the error state
+            $("#new_beta_order input").removeClass('error');
+
+            _(data.errors).forEach(function(error, key) {
+              $("#beta_order_" + key).addClass('error')
+            });
+
+            $("#submit-btn").tzAnimate('shake');
         }
 
     }).on('ajax:error', function(e, data) {
