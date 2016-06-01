@@ -2,10 +2,14 @@ $(function() {
     if (!$('body').hasClass('beta')) return;
 
     var currentQuestion;
+    var design, colour, size;
+    var birthdayTimeout;
 
     // -----------------------------
     // helper methods
     // -----------------------------
+
+    // show a given question element and hide the rest
     var showQuestion = function(question) {
         // the first time this runs we don't need to fade out anything
         if (typeof currentQuestion != 'undefined') {
@@ -19,6 +23,7 @@ $(function() {
         currentQuestion = question;
     }
 
+    // when user is not selected, skip to the next survey question
     var skipQuestion = function() {
         // get the next question dom element that is answerable
         var nextEl = $(currentQuestion).nextAll("[data-answerable=true]").first()
@@ -28,6 +33,95 @@ $(function() {
             showQuestion($('[data-answerable=true]').first())
         } else {
             showQuestion(nextEl)
+        }
+    }
+
+    // when user is selected, transition between elements
+    var transitionFrom = function(fromEl) {
+        // disable the parent class
+        $(fromEl).parent().addClass('disabled')
+
+        // transition from select colour to select design
+        if ($(fromEl).hasClass('select-colour')) {
+            if (colour == 'tortoise') {
+                $("img#black").hide()
+                $("img#tortoise").fadeIn()
+            }
+
+            $($("#frame-select .four.columns")[1]).removeClass('disabled')
+            $("#beta_order_colour").val(colour)
+            $("#colour-selection").html(colour)
+
+            // transition from select size to shipping details
+        } else if ($(fromEl).hasClass('select-size')) {
+            $("#beta_order_size").val(size)
+            $("#size-selection").html(size)
+
+            // hide all checkout images and only show the selected one
+            $('.checkout-img').hide()
+            $('.checkout-img#' + design + '-' + colour).show()
+
+            // todo: progress to the shipping details form
+            $('#frame-select').fadeOut(function() {
+                $('#order-details').fadeIn();
+            });
+
+            // transition from select design to select size
+        } else if ($(fromEl).hasClass('select-design')) {
+            $($("#frame-select .four.columns")[2]).removeClass('disabled')
+
+            $("#beta_order_frame").val(design)
+            $("#frame-selection").html(design)
+        }
+    }
+
+    // given a list of questions that are able to be answered, update the UI to reflect the server state
+    var updateAnswerables = function(answerables) {
+        // iterate through all the question elements and update their answerable value
+        _($('.question')).forEach(function(el, i) {
+            $(el).attr('data-answerable', _.includes(answerables, i + 1))
+        });
+
+        // hide all the elements with answerable = false
+        $("[data-answerable=false]").hide()
+
+        // if there are no more answerable elements
+        if (_.isEmpty($('[data-answerable=true]'))) {
+            // hide all questions and remove skip button
+            $('.question').hide()
+            $("#questions-complete").removeClass('hidden')
+            $("#skip-questions").addClass('hidden')
+        } else {
+            var nextEl = $(currentQuestion).nextAll("[data-answerable=true]").first()
+            showQuestion(nextEl)
+        }
+    }
+
+    // given a new score and percentage update the UI to reflect the server state
+    var updateScore = function(score, percentage) {
+        $("#score").fadeOut(500, function() {
+            $("#score").html(score + " points").tzAnimate('pulse').fadeIn()
+        })
+        $("#percentage").html(percentage + "% chance")
+    }
+
+    // called when the user finishes typing in the birthday input field (for signup)
+    var birthdayInputFinished = function(input) {
+        var DATE_REGEX = /^\d{1,2}[/]\d{1,2}[/]\d{4}$/
+        var hint = $("#birthday_hint").text()
+        var hintText = "dd/mm/yyyy"
+        var m = moment(input, "DD/MM/YYYY")
+
+        if (DATE_REGEX.test(input)) {
+            if (m.isValid()) {
+                var d = m.format("dddd, MMMM Do YYYY")
+
+                $('#birthday_hint').fadeOut(function() {
+                    $(this).text(d).tzAnimate('fadeIn').show()
+                })
+            }
+        } else if (hint != hintText) {
+            $('#birthday_hint').fadeOut()
         }
     }
 
@@ -47,7 +141,6 @@ $(function() {
     // -----------------------------
     // dom element bindings
     // -----------------------------
-
     $('#new_beta_order').on('input', function() {
         var complete = true;
 
@@ -64,84 +157,22 @@ $(function() {
         }
     })
 
-    var design, colour, size;
-
-    // frame selections
-    $('.select-colour').on('click', function() {
-        if ($(this).parent().hasClass('disabled')) return;
-        colour = $(this).attr('data-colour')
-
-        // disable colour selection and enable design selection
-        $(this).parent().addClass('disabled')
-
-        if (colour == 'tortoise') {
-            $("img#black").hide()
-            $("img#tortoise").fadeIn()
-        }
-
-        $($("#frame-select .four.columns")[1]).removeClass('disabled')
-
-        $("#beta_order_colour").val(colour)
-        $("#colour-selection").html(colour)
-    })
-
-    $('.select-design').on('click', function() {
-        if ($(this).parent().hasClass('disabled')) return;
-        design = $(this).attr('data-design')
-
-        // disable colour selection and enable design selection
-        $(this).parent().addClass('disabled')
-        $($("#frame-select .four.columns")[2]).removeClass('disabled')
-
-        $("#beta_order_frame").val(design)
-        $("#frame-selection").html(design)
-    })
-
-    $('.select-size').on('click', function() {
-        if ($(this).parent().hasClass('disabled')) return;
-        size = $(this).attr('data-size')
-
-        $(this).parent().addClass('disabled')
-
-        $("#beta_order_size").val(size)
-        $("#size-selection").html(size)
-
-        // hide all checkout images and only show the selected one
-        $('.checkout-img').hide()
-        $('.checkout-img#' + design + '-' + colour).show()
-
-        // todo: progress to the shipping details form
-        $('#frame-select').fadeOut(function() {
-            $('#shipping-details').fadeIn();
-        });
-    })
-
     // pulse on mouseover
-    // returns if the parent is disabled
-    $('.select-colour').on('mouseover', function() {
+    $('.select-colour, .select-design, .select-size').on('mouseover', function() {
         if ($(this).parent().hasClass('disabled')) return;
         $(this).tzAnimate('pulse')
     })
 
-    $('.select-design').on('mouseover', function() {
+    // handle click on frame select elements
+    $('.select-colour, .select-design, .select-size').on('click', function() {
         if ($(this).parent().hasClass('disabled')) return;
-        $(this).tzAnimate('pulse')
-    })
 
-    $('.select-size').on('mouseover', function() {
-        if ($(this).parent().hasClass('disabled')) return;
-        $(this).tzAnimate('pulse')
-    })
+        // set size, colour or design depending on which is available
+        size = $(this).attr('data-size') || size
+        colour = $(this).attr('data-colour') || colour
+        design = $(this).attr('data-design') || design
 
-
-    $('.step-back').on('click', function() {
-        switch ($(this).attr('id')) {
-            case 'shipping-back':
-                $("#shipping-details").fadeOut()
-                $("#frame-select").fadeIn()
-                $($("#frame-select .four.columns")[2]).removeClass('disabled')
-                break;
-        }
+        transitionFrom(this)
     })
 
     // pulse the social buttons on mouseover
@@ -165,79 +196,6 @@ $(function() {
         }
     })
 
-    // catch the ajax response from the beta response form (answering questions)
-    $('.new_beta_response').on('ajax:success', function(e, data) {
-        console.log(data)
-        if (data.success) {
-            // update the question state and display correct questionss
-            updateAnswerables(data.answerable_questions)
-
-            // update the score and the percentage chance in the view
-            updateScore(data.score, data.percentage_chance)
-        } else {
-            // todo: handle the error state
-        }
-    }).on('ajax:error', function(e, data) {
-        // todo: handle the error state
-    });
-
-    $('.new_beta_order').on('ajax:success', function(e, data) {
-        console.log(data)
-
-        if (data.success) {
-            // fadeout and then reload the view
-            $("#selected-container").fadeOut(function() {
-                location.reload();
-            })
-        } else {
-            // todo: handle the error state
-            $("#new_beta_order input").removeClass('error');
-
-            _(data.errors).forEach(function(error, key) {
-              $("#beta_order_" + key).addClass('error')
-            });
-
-            $("#submit-btn").tzAnimate('shake');
-        }
-
-    }).on('ajax:error', function(e, data) {
-        // todo: handle the error state
-    });
-
-    var updateAnswerables = function(answerables) {
-        // iterate through all the question elements and update their answerable value
-        _($('.question')).forEach(function(el, i) {
-            $(el).attr('data-answerable', _.includes(answerables, i + 1))
-        });
-
-        // hide all the elements with answerable = false
-        $("[data-answerable=false]").hide()
-
-        // if there are no more answerable elements
-        if (_.isEmpty($('[data-answerable=true]'))) {
-            // hide all questions and remove skip button
-            $('.question').hide()
-            $("#questions-complete").removeClass('hidden')
-            $("#skip-questions").addClass('hidden')
-        } else {
-            var nextEl = $(currentQuestion).nextAll("[data-answerable=true]").first()
-            showQuestion(nextEl)
-        }
-    }
-
-    var updateScore = function(score, percentage) {
-        $("#score").fadeOut(500, function() {
-            $("#score").html(score + " points").tzAnimate('pulse').fadeIn()
-        })
-
-        $("#percentage").html(percentage + "% chance")
-    }
-
-    // -----------------------------
-    // birthday input field
-    // -----------------------------
-    var timeoutPromise;
-
     // prevent any input in the date field which isnt numeric or /
     $('#beta_user_birth_date').on('keypress', function(e) {
         if (e.metaKey) return;
@@ -248,29 +206,48 @@ $(function() {
 
     $('#beta_user_birth_date').on('input', function(e) {
         // timeout that fires when the user has stopped typing for 350ms
-        clearTimeout(timeoutPromise);
-        timeoutPromise = setTimeout(function() {
-            doneTyping($(e.target).val())
+        clearTimeout(birthdayTimeout);
+        birthdayTimeout = setTimeout(function() {
+            birthdayInputFinished($(e.target).val())
         }, 350);
     });
 
-    var doneTyping = function(input) {
-        var DATE_REGEX = /^\d{1,2}[/]\d{1,2}[/]\d{4}$/
-        var hint = $("#birthday_hint").text()
-        var hintText = "dd/mm/yyyy"
-        var m = moment(input, "DD/MM/YYYY")
+    // -----------------------------
+    // ajax response handlers
+    // -----------------------------
 
-        if (DATE_REGEX.test(input)) {
-            if (m.isValid()) {
-                var d = m.format("dddd, MMMM Do YYYY")
-
-                $('#birthday_hint').fadeOut(function() {
-                    $(this).text(d).tzAnimate('fadeIn').show()
-                })
-            }
-        } else if (hint != hintText) {
-            $('#birthday_hint').fadeOut()
+    // creating a new response to a survey question
+    $('.new_beta_response').on('ajax:success', function(e, data) {
+        if (data.success) {
+            updateAnswerables(data.answerable_questions)
+            updateScore(data.score, data.percentage_chance)
+        } else {
+            // todo: handle the error state
         }
-    }
+    }).on('ajax:error', function(e, data) {
+        // todo: handle the error state
+    });
+
+    // creating a new order if the user is selected
+    $('.new_beta_order').on('ajax:success', function(e, data) {
+        console.log(data)
+
+        if (data.success) {
+            // fadeout and then reload the view
+            $("#selected-container").fadeOut(function() {
+                location.reload();
+            })
+        } else {
+            $("#new_beta_order input").removeClass('error');
+            _(data.errors).forEach(function(error, key) {
+                $("#beta_order_" + key).addClass('error')
+            });
+
+            $("#submit-btn").tzAnimate('shake');
+        }
+
+    }).on('ajax:error', function(e, data) {
+        $("#error-messages").html(e)
+    });
 
 });

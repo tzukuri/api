@@ -5,41 +5,44 @@
     <% if @beta_user.order? %>
 
       <div id="order-submitted-container">
-            <div id="selected-header">
-            <h2>Thanks, you're all done!</h2>
-            </div>
-            <p>We hope you're as excited as we are that you'll be one of the first people in the world to own a pair of <span class="bold">unloseable glasses</span>. You'll receive and email from us in the next few days confirming the next steps.</p>
-            <br/><br/>
-            <p>To make sure the beta process goes as smoothly as possible, here's a list of things to check before your new glasses arrive:</p>
-            <br/><br/>
-            <hr style="margin-bottom: 20px;">
+        <h2>Thanks, you're all done!</h2>
 
-            <ul>
-              <li>Make sure you have access to an <span class="bold">iPhone 5 or later</span> running the latest version of iOS (Go to Settings > General > Software Update and make sure it says 'Your software is up to date').</li>
+        <p>We hope you're as excited as we are that you'll be one of the first people in the world to own a pair of <span class="bold">unloseable glasses</span>. You'll receive and email from us in the next few days confirming the next steps.</p>
+        <br/><br/>
 
-              <li>Make sure you have an active Apple ID and you know your password.</li>
+        <p>To make sure the beta process goes as smoothly as possible, here's a list of things to check before your new glasses arrive:</p>
+        <br/><br/>
 
-              <li>Download the <a href="#">Testflight app</a> from the app store. We will use Testflight to distribute the Tzukuri app during our beta testing phase  (you'll receive more information about this later).</li>
+        <hr>
 
-              <li>Don't forget you can still invite your friends to join the beta with this link - <a href="#">tzukuri.com/beta/invite/CEuYsQ</a></li>
+        <ul id="next-steps-list">
+          <li>Make sure you have access to an <span class="bold">iPhone 5 or later</span> running the latest version of iOS (Go to Settings > General > Software Update and make sure it says 'Your software is up to date').</li>
 
-              <li>If you've got any questions about the beta or wish to change any of your details, get in touch at <a href="#">beta@tzukuri.com</a>
-            </ul>
-          </div>
+          <li>Make sure you have an active Apple ID and you know your password.</li>
+
+          <li>Download the <a href="https://itunes.apple.com/au/app/testflight/id899247664?mt=8">Testflight app</a> from the app store. We will use Testflight to distribute the Tzukuri app during our beta testing phase  (you'll receive more information about this later).</li>
+
+          <li>Don't forget you can still invite your friends to join the beta with this link - <span class="blue">tzukuri.com/beta/invite/<%= @beta_user.invite_token %></span></li>
+
+          <li>If you've got any questions about the beta or wish to change any of your details, get in touch at <a href="mailto:beta@tzukuri.com">beta@tzukuri.com</a>
+        </ul>
+
       </div>
 
     <!-- user is selected but order has not been submitted -->
     <% elsif @beta_user.selected %>
 
       <div id="selected-container">
-        <div class="row">
+
           <div id="selected-header">
-            <h2>You're in. </h2>
+            <h2>You're in.</h2>
             <br/><br/>
             <p>You've been selected to participate in the Tzukuri Beta. Choose your frames and enter your shipping details below.</p>
           </div>
 
-          <div id="frame-select">
+          <!-- frame selection -->
+          <div id="frame-select" class="row">
+
             <!-- colour -->
             <div class="four columns">
               <p>i. choose your colour</p>
@@ -85,9 +88,10 @@
             </div>
           </div>
 
-          <div id="shipping-details" class="row hidden">
+          <!-- glasses details + shipping information -->
+          <div id="order-details" class="row hidden">
 
-            <div class="seven columns">
+            <div class="seven columns" id="glasses">
               <div class="row">
                 <%= image_tag 'frames/ive/black-front.png', class: 'checkout-img', id: 'ive-black' %>
                 <%= image_tag 'frames/ive/tortoise-front.png', class: 'checkout-img hidden', id: 'ive-tortoise' %>
@@ -95,23 +99,23 @@
                 <%= image_tag 'frames/ford-beta/tortoise-front.png', class: 'checkout-img hidden', id: 'ford-tortoise' %>
               </div>
               <div class="row">
-                <div class="twelve columns" style="text-align:left;">
-                <dl>
-                    <dt>Frame</dt>
-                    <dd id="frame-selection">Fitzgerald</dd>
-                    <br/>
-                    <dt>Colour</dt>
-                    <dd id="colour-selection">Tortoise</dd>
-                    <br/>
-                    <dt>Size</dt>
-                    <dd id="size-selection">Medium</dd>
-                </dl>
+                <div class="twelve columns" id="glasses-details">
+                  <dl>
+                      <dt>Frame</dt>
+                      <dd id="frame-selection"></dd>
+                      <br/>
+                      <dt>Colour</dt>
+                      <dd id="colour-selection"></dd>
+                      <br/>
+                      <dt>Size</dt>
+                      <dd id="size-selection"></dd>
+                  </dl>
                 </div>
               </div>
               <!-- <a href="#" class="step-back u-pull-left" id="shipping-back"> &larr; back </a> -->
             </div>
 
-            <div class="five columns">
+            <div class="five columns" id="shipping">
               <%= form_for BetaOrder.new, :url => beta_orders_path, :html => {:method => :post}, remote:true do |f| %>
 
                 <%= f.text_field :address1, placeholder: 'address 1', autofocus: true %><br/>
@@ -124,13 +128,12 @@
                 <%= f.hidden_field :colour %>
                 <%= f.hidden_field :size %>
 
+                <p id="error-messages"></p>
+
                 <%= f.submit 'submit', id: 'submit-btn' %>
               <% end %>
             </div>
           </div>
-
-
-        </div>
       </div>
 
     <!-- user has not been selected -->
@@ -244,7 +247,7 @@
 
               <!-- question form -->
               <%= form_for BetaResponse.new, :url => beta_responses_path, :html => {:method => :post}, remote:true do |f| %>
-                <%= f.hidden_field :question_id, value: question.id%>
+                <%= f.hidden_field :beta_question_id, value: question.id%>
                 <% question.response_options.each do |response| %>
                   <%= f.submit response %>
                 <% end %>
@@ -290,11 +293,12 @@
     <h1>T Z U K U R I <span class="blue">[beta]</span></h1>
     <h2>Enter the email address you registered with to continue to the beta dashboard</h2>
     <%= form_for @beta_user, :url => beta_user_session_path(@beta_user) do |f| %>
-    <%= f.text_field :email, placeholder: "email address", autofocus: true, class: "beta-input", autocomplete: 'off' %> <br/>
-    <p id="error-messages"><%= flash[:alert] %></p>
-    <%= f.hidden_field :invite_token, value: @token %><br/>
-    <%= f.submit "continue", class: "cta-button", id:"submit-btn"%>
+      <%= f.text_field :email, placeholder: "email address", autofocus: true, class: "beta-input", autocomplete: 'off' %> <br/>
+      <p id="error-messages"><%= flash[:alert] %></p>
+      <%= f.hidden_field :invite_token, value: @token %><br/>
+      <%= f.submit "continue", id:"submit-btn"%>
     <% end %>
   </div>
+
   <% end %>
 </div>

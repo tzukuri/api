@@ -1,5 +1,4 @@
 body.beta {
-    // main page
     #beta-index {
         padding-top: 120px;
 
@@ -16,20 +15,70 @@ body.beta {
             border-top: 1px solid $tzukuri-light-grey;
         }
 
+        // common form style
+        form {
+            // input styles
+            input {
+                // no blue outline on form fields
+                &:focus {
+                    outline-width: 0;
+                }
+
+                &.error {
+                    border: 1px solid $tzukuri-red;
+                }
+
+                &#submit-btn {
+                    border-radius: 20px;
+                    border: 1px solid $tzukuri-blue;
+                    color: $tzukuri-blue;
+                    background-color: white;
+                    padding: 15px;
+                    width: 200px;
+
+                    @include transition(0.5s);
+
+                    // hidden by default (need to be faded in)
+                    display: none;
+
+                    &:hover {
+                        color: white;
+                        background-color: $tzukuri-blue;
+                    }
+                }
+
+                background-color: $tzukuri-light-grey;
+                border: 1px solid $tzukuri-light-grey;
+                border-radius: 10px;
+                margin-bottom: 15px;
+                width: 70%;
+            }
+
+            #error-messages {
+                color: $tzukuri-red;
+                font-size: 11pt;
+                padding-top: 10px;
+            }
+        }
+
+        // ----------------------
+        // order submitted
+        // ----------------------
         #order-submitted-container {
             text-align: center;
 
-            #selected-header {
+            h2 {
                 margin-bottom: 60px;
-
-                h2 {
-                    font-size: 36pt;
-                    color: $tzukuri-black;
-                    font-weight: 200;
-                }
+                font-size: 36pt;
+                color: $tzukuri-black;
+                font-weight: 200;
             }
 
-            ul {
+            hr {
+                margin-bottom: 20px;
+            }
+
+            #next-steps-list {
                 text-align: left;
 
                 li {
@@ -42,6 +91,9 @@ body.beta {
             }
         }
 
+        // ----------------------
+        // user selected
+        // ----------------------
         #selected-container {
             text-align: center;
 
@@ -52,87 +104,6 @@ body.beta {
                     font-size: 36pt;
                     color: $tzukuri-black;
                     font-weight: 200;
-                }
-            }
-
-            #shipping-details {
-                &.hidden {
-                    display: none;
-                }
-
-                .checkout-img {
-                    width: 95%;
-                    margin-top: -120px;
-                    margin-left:auto;
-                    margin-right:auto
-                }
-
-                .checkout-img.hidden {
-                    display: none;
-                }
-
-                dl {
-                    margin-bottom: 20px;
-                    margin-left: 70px;
-
-                    dt, dd {
-                        display: inline-block;
-                        margin-bottom: 3px;
-                        font-size: 12px;
-                    }
-
-                    dt {
-                        text-transform: uppercase;
-                        font-weight: 600;
-                        text-align: right;
-                    }
-
-                    dd {
-                        text-transform: capitalize;
-                    }
-                }
-
-                form#new_beta_order {
-                    #submit-btn {
-                        border-radius: 20px;
-                        padding: 15px;
-                        background-color: white;
-                        border: 1px solid $tzukuri-blue;
-                        color: $tzukuri-blue;
-                        display: none;
-                        cursor: pointer;
-
-                        @include transition(0.5s);
-
-                        width: 100px;
-
-                        &:hover {
-                            color: white;
-                            background-color: $tzukuri-blue;
-                        }
-                    }
-
-                    input {
-                        &:focus {
-                            outline-width: 0;
-                        }
-
-                        width: 80%;
-                        background-color: $tzukuri-light-grey;
-                        border-radius: 5px;
-                        border: 1px solid $tzukuri-light-grey;
-                        margin-bottom: 15px;
-
-                        &.error {
-                            border: 1px solid $tzukuri-red;
-                        }
-                    }
-
-                    #error-messages {
-                        color: $tzukuri-red;
-                        font-size: 10pt;
-                        padding-top: 10px;
-                    }
                 }
             }
 
@@ -148,6 +119,7 @@ body.beta {
                         opacity: 0.1;
                     }
 
+                    // select design (ford vs. ive)
                     .select-design {
                         cursor: pointer;
 
@@ -156,16 +128,16 @@ body.beta {
                         }
                     }
 
+                    // select size (small vs. large)
                     .select-size {
                         border: 1px solid $tzukuri-blue;
                         border-radius: 20px;
-                        margin-bottom: 20px;
-                        margin-top: 20px;
                         width: 30%;
                         color: $tzukuri-blue;
                         margin-left: auto;
                         margin-right: auto;
                         margin-top: 80px;
+                        margin-bottom: 20px;
                         padding: 10px;
                         cursor: pointer;
 
@@ -177,9 +149,8 @@ body.beta {
                         }
                     }
 
+                    // select colour (black vs. tortoise)
                     .select-colour {
-                        @include transition(0.5s);
-
                         padding: 5px;
                         border-radius: 15px;
                         width: 50%;
@@ -187,6 +158,8 @@ body.beta {
                         margin-right: auto;
                         margin-top: 40px;
                         cursor: pointer;
+
+                        @include transition(0.5s);
 
                         &.active {
                             color: white;
@@ -213,9 +186,53 @@ body.beta {
                     }
                 }
             }
+
+            #order-details {
+                &.hidden {
+                    display: none;
+                }
+
+                .checkout-img {
+                    width: 95%;
+                    margin-top: -120px;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+
+                .checkout-img.hidden {
+                    display: none;
+                }
+
+                #glasses-details {
+                    text-align: left;
+
+                    dl {
+                        margin-bottom: 20px;
+                        margin-left: 70px;
+
+                        dt, dd {
+                            display: inline-block;
+                            margin-bottom: 3px;
+                            font-size: 12px;
+                        }
+
+                        dt {
+                            text-transform: uppercase;
+                            font-weight: 600;
+                            text-align: right;
+                        }
+
+                        dd {
+                            text-transform: capitalize;
+                        }
+                    }
+                }
+            }
         }
 
-        // main container
+        // --------------------------------------
+        // main view (user hasn't been selected)
+        // ---------------------------------------
         #details-container {
             .progress-bar {
                 background-color: $tzukuri-blue;
@@ -346,6 +363,7 @@ body.beta {
                             border-radius: 20px;
                             font-size: 10pt;
                             min-width: 75px;
+                            width: inherit;
 
                             @include transition(0.5s);
 
@@ -416,6 +434,9 @@ body.beta {
             }
         }
 
+        // --------------------------------------
+        // login (user is not authenticated)
+        // ---------------------------------------
         #login-container {
             text-align: center;
             padding: 10px;
@@ -433,39 +454,9 @@ body.beta {
                 margin-bottom: 30px;
             }
 
-            form#new_beta_user {
-                #submit-btn {
-                    border-radius: 20px;
-                    padding: 15px;
-                    background-color: white;
-                    border: 1px solid $tzukuri-blue;
-                    color: $tzukuri-blue;
-                    display: none;
-
-                    &:hover {
-                        color: white;
-                        background-color: $tzukuri-blue;
-                    }
-                }
-
-                .beta-input {
-                    &:focus {
-                        outline-width: 0;
-                    }
-
-                    background-color: $tzukuri-light-grey;
-                    border-radius: 5px;
-                    border: 1px solid $tzukuri-light-grey;
-
-                    &.error {
-                        border: 1px solid $tzukuri-red;
-                    }
-                }
-
-                #error-messages {
-                    color: $tzukuri-red;
-                    font-size: 10pt;
-                    padding-top: 10px;
+            form {
+                input {
+                    width: 30%;
                 }
             }
         }
