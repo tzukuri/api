@@ -78,9 +78,21 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
 
   # mail config
-  config.action_mailer.default_url_options = { host: 'api.tzukuri.com' }
-  config.action_mailer.delivery_method = :sendmail
+  # config.action_mailer.default_url_options = { host: 'api.tzukuri.com' }
+  # config.action_mailer.delivery_method = :sendmail
   # config.action_controller.asset_host = "http://assets.example.com"
+
+  # mailgun action mailer settings
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :authentication => :plain,
+    :address => "smtp.mailgun.org",
+    :port => 587,
+    :domain => "mg.tzukuri.com",
+    :user_name => "postmaster@mg.tzukuri.com",
+    :password => "0002afa5d55522854dd0686912d8ac50"
+  }
+
 
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.

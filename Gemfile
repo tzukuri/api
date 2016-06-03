@@ -28,6 +28,7 @@ gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'mapbox-rails', :git => 'https://github.com/dkniffin/mapbox-rails'
 gem 'animate-rails'
 gem 'lodash-rails'
+gem 'mail'
 # gem 'twitter-typeahead-rails'
 
 #omniauth strategies
