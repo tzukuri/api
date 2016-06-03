@@ -12,7 +12,7 @@ class BetaQuestion < ActiveRecord::Base
 
       # which model of iPhone do you use?
       when 2
-        return ['iPhone 6s', 'iPhone 6', 'iPhone 6s Plus', 'iPhone 6 Plus', 'iPhone 5', 'iPhone 5s', 'iPhone 5se', 'iPhone 5c', 'Other']
+        return ['iPhone 6s', 'iPhone 6', 'iPhone 6s Plus', 'iPhone 6 Plus', 'iPhone 5', 'iPhone 5s', 'iPhone se', 'iPhone 5c', 'Other']
 
       # do you wear prescription glasses?
       when 3
@@ -57,6 +57,9 @@ class BetaQuestion < ActiveRecord::Base
       # how much do you usually spend on a pair of sunglasses?
       when 13
         return ['$99 or less', '$100 - $200', '$200 - $350', '$350 - $500', '$500 or more']
+
+      when 14
+        return ['Sunglass Hut', 'OPSM', 'Specsavers', 'Independent Retailer', 'Online', 'Other']
     end
   end
 

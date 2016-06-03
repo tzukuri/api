@@ -1,0 +1,15 @@
+<div id="beta-forgot" class="container">
+
+<h2>Forgot your beta login link?</h2>
+<p>Enter your email address and we'll send your link to you</p>
+
+<br/><br/>
+
+<%= form_tag "/beta/retrieve", remote:true, id:'beta_user_retrieve'  do %>
+  <%= email_field_tag 'email', nil, placeholder: 'email address', autofocus: true %><br/><br/>
+  <%= submit_tag "submit", id: 'submit-btn' %>
+<% end %>
+
+<p id="email-confirm">If a matching account was found an email was sent to <span id="sent-email" class="bold">sam@tzukuri.com</span> with your login link</p>
+
+</div>

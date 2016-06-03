@@ -7,6 +7,5 @@ class BetaOrder < ActiveRecord::Base
   validates :postcode,      presence: true
   validates :country,       presence: true
   validates :frame,         presence: true
-  validates :colour,        presence: true
   validates :size,          presence: true
 end

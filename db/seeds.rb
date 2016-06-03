@@ -12,9 +12,10 @@ BetaQuestion.create(content: "How many pairs of sunglasses do you own?",        
 BetaQuestion.create(content: "How many pairs of sunglasses have you lost in the past year?",                    point_value: 5 )
 BetaQuestion.create(content: "How often do you misplace your sunglasses around your home?",                     point_value: 5 )
 BetaQuestion.create(content: "How much do you usually spend on a pair of sunglasses?",                          point_value: 5 )
+BetaQuestion.create(content: "Where do you usually buy your glasses?",                                          point_value: 5 )
 
 # seed first beta user (used to invite everyone else)
-BetaUser.create(email: "beta@tzukuri.com", name: "Tzukuri Beta", invite_token:"", birth_date: "26/05/2015", country: "-", city: "-")
+BetaUser.create(email: "beta@tzukuri.com", name: "Tzukuri Beta", invite_token:"", birth_date: "26/05/2015", latitude: "0", longitude: "0")
 
 # populate the database with users for testing
 # i = 0

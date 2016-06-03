@@ -19,9 +19,11 @@ class BetaUser < ActiveRecord::Base
   validates :invite_token,  presence: true,   uniqueness: true, :length => { :is => 6 }
   validates :score,         presence: true
   validates :birth_date,    presence: true
-  validates :city,          presence: true
-  validates :city,          presence: true
+  validates :latitude,          presence: true
+  validates :longitude,          presence: true
   validates_format_of :email,:with => Devise.email_regexp
+
+  attr_accessor :city
 
   # methods
   def referred_by(referrer_token)
@@ -66,6 +68,10 @@ class BetaUser < ActiveRecord::Base
 
   def order?
     !order.nil?
+  end
+
+  def resend_link
+    BetaMailer.send_beta_forgot_link(self).deliver_later
   end
 
   # social methods

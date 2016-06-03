@@ -2,7 +2,7 @@ $(function() {
     if (!$('body').hasClass('beta')) return;
 
     var currentQuestion;
-    var design, colour, size;
+    var design, size;
     var birthdayTimeout;
 
     // -----------------------------
@@ -41,34 +41,22 @@ $(function() {
         // disable the parent class
         $(fromEl).parent().addClass('disabled')
 
-        // transition from select colour to select design
-        if ($(fromEl).hasClass('select-colour')) {
-            if (colour == 'tortoise') {
-                $("img#black").hide()
-                $("img#tortoise").fadeIn()
-            }
-
-            $($("#frame-select .four.columns")[1]).removeClass('disabled')
-            $("#beta_order_colour").val(colour)
-            $("#colour-selection").html(colour)
-
-            // transition from select size to shipping details
-        } else if ($(fromEl).hasClass('select-size')) {
+         if ($(fromEl).hasClass('select-size')) {
             $("#beta_order_size").val(size)
             $("#size-selection").html(size)
 
             // hide all checkout images and only show the selected one
             $('.checkout-img').hide()
-            $('.checkout-img#' + design + '-' + colour).show()
+            $('.checkout-img#' + design + '-black').show()
 
-            // todo: progress to the shipping details form
+            // progress to the shipping details form
             $('#frame-select').fadeOut(function() {
                 $('#order-details').fadeIn();
             });
 
             // transition from select design to select size
         } else if ($(fromEl).hasClass('select-design')) {
-            $($("#frame-select .four.columns")[2]).removeClass('disabled')
+            $($("#frame-select .columns")[1]).removeClass('disabled')
 
             $("#beta_order_frame").val(design)
             $("#frame-selection").html(design)
@@ -94,6 +82,11 @@ $(function() {
         } else {
             var nextEl = $(currentQuestion).nextAll("[data-answerable=true]").first()
             showQuestion(nextEl)
+
+            // if there is one question remaining, hide the skip button
+            if ($('[data-answerable=true]').length == 1) {
+                $("#skip-questions").addClass('hidden')
+            }
         }
     }
 
@@ -157,19 +150,26 @@ $(function() {
         }
     })
 
+    $("#shipping-back").on('click', function() {
+        $('#order-details').fadeOut(function() {
+            $('#frame-select').fadeIn();
+        });
+
+        $($("#frame-select .columns")[0]).removeClass('disabled')
+    })
+
     // pulse on mouseover
-    $('.select-colour, .select-design, .select-size').on('mouseover', function() {
+    $('.select-design, .select-size').on('mouseover', function() {
         if ($(this).parent().hasClass('disabled')) return;
         $(this).tzAnimate('pulse')
     })
 
     // handle click on frame select elements
-    $('.select-colour, .select-design, .select-size').on('click', function() {
+    $('.select-design, .select-size').on('click', function() {
         if ($(this).parent().hasClass('disabled')) return;
 
-        // set size, colour or design depending on which is available
+        // set size or design depending on which is available
         size = $(this).attr('data-size') || size
-        colour = $(this).attr('data-colour') || colour
         design = $(this).attr('data-design') || design
 
         transitionFrom(this)

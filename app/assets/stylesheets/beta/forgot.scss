@@ -1,0 +1,34 @@
+body.beta {
+
+    #beta-forgot {
+        text-align: center;
+        padding-top: 160px;
+
+        h2 {
+            font-size: 32pt;
+            color: $tzukuri-black;
+            font-weight: 200;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 12pt;
+            line-height: 22pt;
+            color: $tzukuri-dark-grey;
+            font-weight: 300;
+        }
+
+        #email {
+            width: 40%;
+        }
+
+        #submit-btn {
+            width: 10%;
+        }
+
+        #email-confirm {
+            color: $tzukuri-green;
+            display: none;
+        }
+    }
+}

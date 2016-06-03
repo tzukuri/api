@@ -415,6 +415,7 @@ DEPENDENCIES
   instagram
   jbuilder (~> 2.0)
   jquery-rails
+  jquery-ui-rails
   koala
   lodash-rails
   mapbox-rails!

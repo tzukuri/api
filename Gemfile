@@ -5,6 +5,7 @@ gem 'pg'
 
 gem 'sass-rails'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'compass-rails'
 gem 'font-awesome-rails'
 gem 'momentjs-rails'
@@ -27,6 +28,7 @@ gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'mapbox-rails', :git => 'https://github.com/dkniffin/mapbox-rails'
 gem 'animate-rails'
 gem 'lodash-rails'
+# gem 'twitter-typeahead-rails'
 
 #omniauth strategies
 gem 'omniauth-twitter'

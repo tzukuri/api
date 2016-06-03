@@ -75,11 +75,11 @@ Rails.application.routes.draw do
     resources  :beta_responses
     resources  :beta_orders
 
-    resources :betareservations do
-      collection do
-        get :csv
-      end
-    end
+    # resources :betareservations do
+    #   collection do
+    #     get :csv
+    #   end
+    # end
 
     resources :purchases do
         collection do
@@ -98,6 +98,9 @@ Rails.application.routes.draw do
         get :csv
       end
     end
+
+    get '/beta/forgot'          => 'beta#forgot',       :as => :beta_user_forgot
+    post '/beta/retrieve'       => 'beta#retrieve',     :as => :beta_user_retrieve
 
     get '/beta/:token'          => 'beta#index',        :as => :beta_user
     get '/beta/invite/:token'   => 'beta#invite',       :as => :beta_user_invite

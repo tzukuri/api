@@ -15,6 +15,6 @@ class BetaOrdersController < ApplicationController
   private
 
   def beta_order_params
-    params.require(:beta_order).permit(:address1, :address2, :state, :postcode, :country, :frame, :colour, :size)
+    params.require(:beta_order).permit(:address1, :address2, :state, :postcode, :country, :frame, :size)
   end
 end

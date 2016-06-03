@@ -29,7 +29,7 @@ class BetaUsers::RegistrationsController < Devise::RegistrationsController
   private
 
   def sign_up_params
-    params.require(:beta_user).permit(:email, :name, :invite_token, :birth_date, :city, :country)
+    params.require(:beta_user).permit(:email, :name, :invite_token, :birth_date, :latitude, :longitude, :city)
   end
 
 end

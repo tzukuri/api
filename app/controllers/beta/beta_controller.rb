@@ -4,7 +4,6 @@ class BetaController < ApplicationController
     @token = params[:token]
 
     if beta_user_signed_in?
-      # the user is signed in, so get the data for their details
       @beta_user = current_beta_user
       @percentage_chance = @beta_user.percentage_chance
       @answerable_questions = @beta_user.answerable_questions
@@ -23,5 +22,16 @@ class BetaController < ApplicationController
     @beta_user = BetaUser.new
   end
 
+  def forgot
+    redirect_to beta_user_path(current_beta_user.invite_token) if beta_user_signed_in?
+  end
+
+  def retrieve
+    beta_user = BetaUser.find_by(email: params[:email])
+
+    beta_user.resend_link if !beta_user.nil?
+
+    render :json => {success: true, email: params[:email]}
+  end
 
 end

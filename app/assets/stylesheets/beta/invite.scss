@@ -1,23 +1,69 @@
 body.beta {
+    // hide jquery ui helper
+    .ui-helper-hidden-accessible {
+        display: none;
+    }
+
+    .ui-autocomplete {
+        position: absolute;
+        top: 110%;
+        left: 0;
+        z-index: 1000;
+        float: left;
+        display: none;
+        width: 300px;
+        padding: 4px 0;
+        margin: 0 0 10px 25px;
+        list-style: none;
+
+        // border-radius: 15px;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        background-color: $tzukuri-light-grey;
+    }
+
+    .loadinggif {
+        background: url("http://www.hsi.com.hk/HSI-Net/pages/images/en/share/ajax-loader.gif") no-repeat;
+        background-position: 95% 15px;
+    }
+
+    .ui-menu-item {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        padding-left: 10px;
+        cursor: pointer;
+
+        @include transition(0.5s);
+
+        &:hover {
+            background-color: $tzukuri-blue;
+            color: white;
+        }
+
+        &:last-of-type {
+            border-bottom-right-radius: 15px;
+            border-bottom-left-radius: 15px;
+        }
+    }
 
     #beta-invite {
         text-align: center;
-        margin-top: 100px;
+        padding-top: 100px;
         font-weight: 200;
 
         #sydney-warning {
-          font-size:10pt;
-          padding:20px;
-          font-weight: 400;
-          color: $tzukuri-dark-grey;
-          line-height: 20px;
+            font-size: 10pt;
+            padding: 20px;
+            font-weight: 400;
+            color: $tzukuri-dark-grey;
+            line-height: 20px;
         }
 
         #beta-blurb {
             text-align: left;
-            line-height:24pt;
+            line-height: 24pt;
             font-weight: 300;
-            font-size:12pt;
+            font-size: 12pt;
             color: $tzukuri-dark-grey;
         }
 
@@ -38,16 +84,16 @@ body.beta {
             color: $tzukuri-red;
             font-size: 10pt;
             font-weight: 400;
-            margin-top:20px;
+            margin-top: 20px;
         }
 
         form#new_beta_user {
-
             #register-btn {
                 background-color: white;
                 border-radius: 20px;
+                border: 1px solid $tzukuri-blue;
                 color: $tzukuri-blue;
-                font-size:12pt;
+                font-size: 12pt;
                 display: none;
 
                 &:hover {
@@ -60,12 +106,13 @@ body.beta {
                 font-size: 10pt;
                 font-weight: 400;
                 color: $tzukuri-dark-grey;
-                margin-bottom:20px;
+                margin-bottom: 20px;
                 display: none;
 
                 &.success {
                     color: $tzukuri-green;
                 }
+
                 &.error {
                     color: $tzukuri-red;
                 }
@@ -80,9 +127,9 @@ body.beta {
                 border-radius: 7px;
                 border: 1px solid $tzukuri-light-grey;
                 margin-bottom: 20px;
-                padding:15px;
-                width:70%;
-                font-size:12pt;
+                padding: 15px;
+                width: 70%;
+                font-size: 12pt;
 
                 &.error {
                     border: 1px solid $tzukuri-red;
