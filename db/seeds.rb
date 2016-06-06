@@ -3,7 +3,6 @@ BetaQuestion.create(content: "Which phone do you mainly use?",                  
 BetaQuestion.create(content: "Which model of iPhone do you use?",                                               point_value: 5, precondition_id: 1)
 BetaQuestion.create(content: "Do you wear prescription glasses?",                                               point_value: 5 )
 BetaQuestion.create(content: "What kind of prescription do you have?",                                          point_value: 5, precondition_id: 3)
-BetaQuestion.create(content: "What is your prescription?",                                                      point_value: 5, precondition_id: 3)
 BetaQuestion.create(content: "How often do you misplace your prescription glasses around the home?",            point_value: 5, precondition_id: 3)
 BetaQuestion.create(content: "Have you lost any pair of prescription glasses in the last year?",                point_value: 5, precondition_id: 3)
 BetaQuestion.create(content: "How much do you usually spend on your prescription frames (excluding lenses)?",   point_value: 5, precondition_id: 3)

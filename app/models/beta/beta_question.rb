@@ -22,43 +22,39 @@ class BetaQuestion < ActiveRecord::Base
       when 4
         return ['Short-sighted (Myopia)', 'Farsighted (Hyperopia)', 'Bifocal']
 
-      # what is your prescription?
-      when 5
-        return ['N/A']
-
       # how often do you misplace your prescription glasses around the home?
-      when 6
+      when 5
         return ['Several times a day', 'Once or twice a week', 'A few times a week', 'Occasionally']
 
       # have you lost any pair of prescription glasses in the last year?
-      when 7
+      when 6
         return ['Yes', 'More than one pair', 'No']
 
       # how much do you usually spend on your prescription frames (excluding lenses)?
-      when 8
+      when 7
         return ['$99 or less', '$100 - $200', '$200 - $350', '$350 - $500', '$500 or more']
 
       # do you wear prescription sunglasses?
-      when 9
+      when 8
         return ['Yes', 'No']
 
       # how many pairs of sunglasses do you own?
-      when 10
+      when 9
         return ['One', 'Two', 'Three', 'Four or more']
 
       # how many pairs of sunglasses have you lost in the past year?
-      when 11
+      when 10
         return ['Zero', 'One', 'Two', 'Three', 'Four or more']
 
       # how often do you misplace your sunglasses around your home?
-      when 12
+      when 11
         return ['Several times a day', 'Once or twice a day', 'A few times a week', 'Rarely']
 
       # how much do you usually spend on a pair of sunglasses?
-      when 13
+      when 12
         return ['$99 or less', '$100 - $200', '$200 - $350', '$350 - $500', '$500 or more']
 
-      when 14
+      when 13
         return ['Sunglass Hut', 'OPSM', 'Specsavers', 'Independent Retailer', 'Online', 'Other']
     end
   end

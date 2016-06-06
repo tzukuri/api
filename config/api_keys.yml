@@ -6,8 +6,8 @@ defaults: &defaults
     api_key: "251631695196822"
     api_secret: "4b2b1f2decd0d192c5f207e0b4d99a98"
   instagram:
-    api_key: "d85c0be9f76c4b719b5cd92efa017143"
-    api_secret: 49cdf0f2c0b2490c9f4fc7aa6f36f39c
+    api_key: "a483fb2107d54d0ba9f9ffa7d09ae1f4"
+    api_secret: db507384f27f48afa8f46b3958d57482
 
 development:
   <<: *defaults
@@ -23,5 +23,5 @@ production:
     api_key: "251607648532560"
     api_secret: "ab77e359d0d26a16ba3b1aef942ffa65"
   instagram:
-    api_key: ""
-    api_secret: ""
+    api_key: "a0a613a5aff243c6838ab4486e57be92"
+    api_secret: "e59c3af03995425589ba4bfabe492851"

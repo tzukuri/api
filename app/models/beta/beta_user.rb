@@ -44,10 +44,10 @@ class BetaUser < ActiveRecord::Base
     return answerable
   end
 
-      # get the rank of the user ordered by their score
-    def rank
-      BetaUser.order(score: :desc).index(self)
-    end
+  # get the user's rank, only take into account users that have not been selected yet
+  def rank
+    BetaUser.where(selected: false).order(score: :desc).index(self)
+  end
 
   def update_score(by_amount)
     self.score += by_amount

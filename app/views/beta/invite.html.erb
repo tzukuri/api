@@ -2,8 +2,19 @@
   <div class="twelve columns" style="padding-bottom: 40px;">
       <h1>T Z U K U R I <span class="blue">[beta]</span></h1>
       <br/>
-      <h2>invited by <%= @invited_by.name %></h2>
+      <% if !@invited_by.nil? %>
+        <h2>invited by <%= @invited_by.name %></h2>
+      <% end %>
   </div>
+
+  <% if @invited_by.nil? %>
+    <!-- if the invite code is invalid -->
+    <p style="line-height: 180%; font-size: 12pt;">
+      This <span class="bold">invite link is invalid and cannot be used</span> to register for the Tzukuri beta, please double check that it has been entered correctly. If you think you're receiving this in error, please send an email to <a href="mailto:beta@tzukuri.com">beta@tzukuri.com</a>.
+    </p>
+    <br/><br/>
+    <a href="http://tzukuri.com">&larr; Go back</a>
+  <% else %>
   <div class="row">
     <div class="six columns">
       <p id="beta-blurb">
@@ -42,4 +53,5 @@
       <% end %>
     </div>
   </div>
+  <% end %>
 </div>
