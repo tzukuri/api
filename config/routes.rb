@@ -19,7 +19,6 @@ Rails.application.routes.draw do
         post    '/beta_users/sign_up'   => 'devise/registrations#new'
     end
 
-
     ActiveAdmin.routes(self)
 
     # -----------------------------
@@ -75,12 +74,6 @@ Rails.application.routes.draw do
     resources  :beta_responses
     resources  :beta_orders
 
-    # resources :betareservations do
-    #   collection do
-    #     get :csv
-    #   end
-    # end
-
     resources :purchases do
         collection do
             get :csv
@@ -99,12 +92,19 @@ Rails.application.routes.draw do
       end
     end
 
+    # beta routes
     get '/beta/forgot'          => 'beta#forgot',       :as => :beta_user_forgot
     post '/beta/retrieve'       => 'beta#retrieve',     :as => :beta_user_retrieve
-
+    get '/beta'                 => 'beta#redirect'
     get '/beta/:token'          => 'beta#index',        :as => :beta_user
     get '/beta/invite/:token'   => 'beta#invite',       :as => :beta_user_invite
+
     get '/dashboard'            => 'dashboard#index',   :as => :dashboard
+
+    # todo: get rid of these
+    # get '/rails/mailers' => "rails/mailers#index"
+    # get '/rails/mailers/*path' => "rails/mailers#preview"
+
     get '*page'                 => 'pages#index'
 
     root 'pages#index', page: 'index'

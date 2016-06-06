@@ -1,0 +1,27 @@
+defaults: &defaults
+  twitter:
+    api_key: "k0gjhoyYg3nPc0ii5hPCUOoq0"
+    api_secret: "KqlVdYdp7iGCrDeM60S3ho3mHi50D3FtsoqfulXjJZGWxUuolR"
+  facebook:
+    api_key: "251631695196822"
+    api_secret: "4b2b1f2decd0d192c5f207e0b4d99a98"
+  instagram:
+    api_key: "d85c0be9f76c4b719b5cd92efa017143"
+    api_secret: 49cdf0f2c0b2490c9f4fc7aa6f36f39c
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  twitter:
+    api_key: "4aqRX08s94UeMVrp5zIBsPfIb"
+    api_secret: "RmXZQQY7cOYLUThalZV8Lfixs0PiVbABoR1DJUjzne8XCq5xFo"
+  facebook:
+    api_key: "251607648532560"
+    api_secret: "ab77e359d0d26a16ba3b1aef942ffa65"
+  instagram:
+    api_key: ""
+    api_secret: ""

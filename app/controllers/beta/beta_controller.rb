@@ -26,12 +26,21 @@ class BetaController < ApplicationController
     redirect_to beta_user_path(current_beta_user.invite_token) if beta_user_signed_in?
   end
 
+  # retrieve a users details and send an email
   def retrieve
     beta_user = BetaUser.find_by(email: params[:email])
 
     beta_user.resend_link if !beta_user.nil?
 
     render :json => {success: true, email: params[:email]}
+  end
+
+  def redirect
+    if beta_user_signed_in?
+      redirect_to beta_user_path current_beta_user.invite_token
+    else
+      redirect_to root_path
+    end
   end
 
 end

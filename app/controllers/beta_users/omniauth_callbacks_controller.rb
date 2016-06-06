@@ -25,5 +25,10 @@ class BetaUsers::OmniauthCallbacksController < Devise::OmniauthCallbacksControll
     redirect_to beta_user_path(@beta_user.invite_token)
   end
 
-
+  def oauth_failure
+    puts '---------------------'
+    puts 'OAUTH FAILURE'
+    puts '---------------------'
+    redirect_to beta_user_path current_beta_user.invite_token
+  end
 end

@@ -175,11 +175,6 @@ $(function() {
         transitionFrom(this)
     })
 
-    // pulse the social buttons on mouseover
-    $(".social-button .content").on("mouseover", function() {
-        $(this).tzAnimate('pulse')
-    })
-
     $("#skip-questions").on("click", function() {
         skipQuestion()
     })

@@ -1,5 +1,5 @@
 class BetaMailer < ActionMailer::Base
-  default from: "beta@tzukuri.com"
+  default :from => "\"Tzukuri Beta\" <beta@tzukuri.com>"
 
   def send_beta_confirmation_email(beta_user)
     @beta_user = beta_user

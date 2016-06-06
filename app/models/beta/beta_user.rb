@@ -19,7 +19,7 @@ class BetaUser < ActiveRecord::Base
   validates :invite_token,  presence: true,   uniqueness: true, :length => { :is => 6 }
   validates :score,         presence: true
   validates :birth_date,    presence: true
-  validates :latitude,          presence: true
+  validates :latitude,      presence: true
   validates :longitude,          presence: true
   validates_format_of :email,:with => Devise.email_regexp
 
@@ -71,7 +71,7 @@ class BetaUser < ActiveRecord::Base
   end
 
   def resend_link
-    BetaMailer.send_beta_forgot_link(self).deliver_later
+    BetaMailer.send_beta_forgot_link(self).deliver_now
   end
 
   # social methods

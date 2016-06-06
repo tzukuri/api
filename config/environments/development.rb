@@ -15,6 +15,7 @@ Rails.application.configure do
 
     # Don't care if the mailer can't send.
     config.action_mailer.raise_delivery_errors = false
+    config.action_mailer.preview_path = "#{Rails.root}/test/mailers/previews"
 
     # Print deprecation notices to the Rails logger.
     config.active_support.deprecation = :log
@@ -50,5 +51,4 @@ Rails.application.configure do
       :user_name => "postmaster@sandbox4b723b4e7353408098aa670d8381cf70.mailgun.org",
       :password => "9b8481483e6d3af26ec609e62a5e5806"
     }
-
 end
