@@ -51,6 +51,13 @@ body.beta {
         padding-top: 100px;
         font-weight: 200;
 
+        p {
+            font-size: 12pt;
+            line-height: 22pt;
+            color: $tzukuri-dark-grey;
+            font-weight: 300;
+        }
+
         #sydney-warning {
             font-size: 10pt;
             padding: 20px;

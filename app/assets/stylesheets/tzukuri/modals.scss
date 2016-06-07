@@ -66,49 +66,60 @@
 
     input {
         width: 50%;
+        border-radius: 15px;
+        padding: 15px;
+        border: none;
+        background-color: $tzukuri-light-grey;
+
+        &:focus {
+            outline-width: 0;
+        }
     }
 
     #subscribe-status {
         display: none;
-        font-size:10pt;
-        margin-top:20px;
+        font-size: 10pt;
+        margin-top: 20px;
+
         &.error {
             color: $tzukuri-red;
         }
+
         &.success {
             color: #30AD63;
         }
     }
 }
 
-#rsvp-modal {
-
-}
+#rsvp-modal {}
 
 #share-modal {
-    padding:60px;
+    padding: 60px;
+
     #share-icons {
         span {
-            padding:20px;
+            padding: 20px;
+
             a {
                 text-decoration: none;
             }
         }
     }
-
 }
 
 #dashboard-empty-device-modal {
     h1 {
-        font-size:21pt;
+        font-size: 21pt;
         color: $tzukuri-red;
     }
+
     p {
-        font-size:14pt;
-        line-height:30px;
-        font-weight:200;
+        font-size: 14pt;
+        line-height: 30px;
+        font-weight: 200;
     }
+
     button {
-        font-size:12pt;
+        font-size: 12pt;
     }
 }

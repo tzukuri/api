@@ -23,8 +23,10 @@
             <!-- subscription modal -->
             <div id="subscription-modal" class="modal-dialog light hidden">
                 <h1>Subscribe to receive the latest updates from Tzukuri</h1>
+                <br/>
                 <%= form_for Email.new, remote: true do |f| %>
-                <%= f.text_field :email, placeholder: 'email address', autofocus: true %><br/>
+                <%= f.text_field :email, placeholder: 'email address', autofocus: true %>
+                <br/><br/>
                 <button>subscribe</button>
                 <% end %>
                 <p id="subscribe-status"></p>
