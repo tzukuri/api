@@ -8,4 +8,5 @@ class BetaOrder < ActiveRecord::Base
   validates :country,       presence: true
   validates :frame,         presence: true
   validates :size,          presence: true
+  validates :phone,         presence: true
 end

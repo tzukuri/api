@@ -102,8 +102,8 @@ Rails.application.routes.draw do
     get '/dashboard'            => 'dashboard#index',   :as => :dashboard
 
     # todo: get rid of these
-    # get '/rails/mailers' => "rails/mailers#index"
-    # get '/rails/mailers/*path' => "rails/mailers#preview"
+    get '/rails/mailers' => "rails/mailers#index"
+    get '/rails/mailers/*path' => "rails/mailers#preview"
 
     get '*page'                 => 'pages#index'
 

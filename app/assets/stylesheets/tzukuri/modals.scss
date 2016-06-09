@@ -1,11 +1,14 @@
 // primary style for the tzukuri modal
+//
+
+::-webkit-scrollbar {
+    display: none;
+}
+
 .tzukuri-modal {
     position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
     z-index: 1050;
+    overflow-y: auto;
 
     @include transition(0.8s);
 
@@ -91,6 +94,36 @@
     }
 }
 
+#beta-modal {
+    color: $tzukuri-dark-grey;
+
+    // color: $tzukuri-light-grey;
+    line-height: 200%;
+    text-align: left;
+    font-weight: 300;
+    padding: 40px;
+
+    h1 {
+        text-align: center;
+        font-size: 36pt;
+        padding-top: 20px;
+        color: $tzukuri-black;
+        font-weight: 100;
+        line-height: 150%;
+    }
+
+    ol {
+        padding-left: 20px;
+        list-style-type: decimal;
+
+        li {
+            .strong {
+                font-weight: bold;
+            }
+        }
+    }
+}
+
 #rsvp-modal {}
 
 #share-modal {
@@ -121,5 +154,21 @@
 
     button {
         font-size: 12pt;
+    }
+}
+
+// let the modal take up the entire screen on mobile devices
+@media only screen and (max-width: 750px) {
+    #beta-modal {
+        background-color: white;
+        width: 100vw;
+        padding: 20px;
+        height: 100%;
+        border-radius: 0;
+        box-shadow: none;
+
+        button {
+            margin-bottom: 20px;
+        }
     }
 }

@@ -32,6 +32,24 @@
                 <p id="subscribe-status"></p>
             </div>
 
+            <!-- beta modal -->
+            <div id="beta-modal" class="modal-dialog light hidden">
+                <h1>T Z U K U R I <span class="blue">[beta]</span></h1>
+                <br/><br/>
+                <p>
+                <span class="bold">Welcome to the Tzukuri beta dashboard</span>. We’ll be selecting 100 testers to help us test our glasses before our launch later this year. To help us make sure that the people we select are passionate about our product we’re going to be <span class="bold">selecting people based on the number of points they acquire</span>. There are three ways to gain points:</p>
+                <br/>
+                <ol>
+                    <li><span class="bold">Answer our survey questions</span> to help us to select a diverse range of people to test with.</li>
+                    <li><span class="bold">Log in with your social media accounts</span> to help us understand our market better.</li>
+                    <li><span class="bold">Invite your friends.</span> We want to give glasses out to groups of people so they can share their experiences with each other.</li>
+                </ol>
+                <br/>
+                <p>If you have any questions, please check out our <a href="/faq#beta">FAQ</a> or send an email to <a href="mailto:beta@tzukuri.com">beta@tzukuri.com</a>
+                <br/><br/>
+                <center><button id="beta-modal-done">done</button></center>
+            </div>
+
             <!-- rsvp modal -->
             <div id="rsvp-modal" class="modal-dialog light hidden">
                 <div id="rsvp-form">
@@ -75,7 +93,6 @@
                 <h2>Tzukuri Beta Details</h2>
                 <p>This is some test content about the Tzukuri beta</p>
             </div>
-
         </div>
 
         <% if controller_name == "pages" || controller_name == "beta" %>

@@ -18,12 +18,22 @@ body.beta {
                 color: $tzukuri-blue;
                 background-color: white;
                 padding: 15px;
-                width: 200px;
+                width: 100px !important;
+                margin-bottom: 20px;
 
                 @include transition(0.5s);
 
-                // hidden by default (need to be faded in)
-                display: none;
+                &.disabled {
+                    color: $tzukuri-light-grey;
+                    border-color: $tzukuri-light-grey;
+                    cursor: auto;
+
+                    &:hover {
+                        color: $tzukuri-light-grey;
+                        border-color: $tzukuri-light-grey;
+                        background-color: white;
+                    }
+                }
 
                 &:hover {
                     color: white;
@@ -37,6 +47,7 @@ body.beta {
             margin-bottom: 15px;
             width: 70%;
             cursor: pointer;
+            -webkit-appearance: none;
         }
 
         #error-messages {
@@ -47,7 +58,7 @@ body.beta {
     }
 
     #beta-index {
-        padding-top: 120px;
+        padding-top: 100px;
 
         #error-messages {
             color: $tzukuri-red;
@@ -57,7 +68,7 @@ body.beta {
 
         p {
             font-size: 12pt;
-            line-height: 22pt;
+            line-height: 150%;
             color: $tzukuri-dark-grey;
             font-weight: 300;
         }
@@ -111,6 +122,11 @@ body.beta {
                     font-size: 36pt;
                     color: $tzukuri-black;
                     font-weight: 200;
+                    line-height: 150%;
+                }
+
+                p {
+                    line-height: 150%;
                 }
             }
 
@@ -154,6 +170,10 @@ body.beta {
                             background: $tzukuri-blue;
                             color: white;
                         }
+                    }
+
+                    .size-exp {
+                        font-size: 10pt;
                     }
 
                     // select colour (black vs. tortoise)
@@ -201,7 +221,7 @@ body.beta {
 
                 .checkout-img {
                     width: 95%;
-                    margin-top: -120px;
+                    margin-top: -100px;
                     margin-left: auto;
                     margin-right: auto;
                 }
@@ -250,6 +270,10 @@ body.beta {
                 margin-bottom: 20px;
 
                 @include transition(0.5s);
+            }
+
+            #need-help {
+                font-weight: 300;
             }
 
             #score-section {
@@ -419,6 +443,7 @@ body.beta {
                         width: 100%;
                         padding: 15px;
                         padding-left: 15px;
+                        margin-bottom: 20px;
                     }
 
                     #link-exp {
@@ -452,6 +477,7 @@ body.beta {
                 font-size: 42pt;
                 font-weight: 100;
                 margin-bottom: 50px;
+                line-height: 150%;
             }
 
             h2 {
@@ -459,13 +485,34 @@ body.beta {
                 font-weight: 300;
                 color: $tzukuri-dark-grey;
                 margin-bottom: 30px;
+                line-height: 150%;
             }
 
             form {
                 input {
-                    width: 30%;
+                    width: 40%;
                 }
             }
         }
+    }
+}
+
+@media only screen and (max-width: 630px) {
+    #login-container form input {
+        width: 90% !important;
+    }
+
+    .step-back {
+        display: none;
+    }
+
+    #invite-friends .invite-container #unique-link {
+        width: 90% !important;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    #login-container h1 {
+        font-size: 32pt !important;
     }
 }

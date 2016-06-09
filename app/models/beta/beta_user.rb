@@ -55,12 +55,11 @@ class BetaUser < ActiveRecord::Base
   end
 
   def percentage_chance
-      # todo: refactor this
-      percentage = (100 - rank.to_f/BetaUser.all.count * 100).round(-1);
+      percentage = (rank.to_f/BetaUser.all.count * 100).round(-1);
 
       # cap percentage at 90
-      if percentage > 90
-        percentage = 90
+      if percentage < 10
+        percentage = 10
       end
 
       return percentage

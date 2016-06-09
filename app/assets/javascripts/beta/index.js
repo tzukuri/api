@@ -3,7 +3,17 @@ $(function() {
 
     var currentQuestion;
     var design, size;
-    var birthdayTimeout;
+
+    var modelSizing = {
+        ive: {
+            small: '48mm',
+            large: '50.5mm'
+        },
+        ford: {
+            small: '49mm',
+            large: '51.5mm'
+        }
+    }
 
     // -----------------------------
     // helper methods
@@ -41,7 +51,7 @@ $(function() {
         // disable the parent class
         $(fromEl).parent().addClass('disabled')
 
-         if ($(fromEl).hasClass('select-size')) {
+        if ($(fromEl).hasClass('select-size')) {
             $("#beta_order_size").val(size)
             $("#size-selection").html(size)
 
@@ -57,6 +67,13 @@ $(function() {
             // transition from select design to select size
         } else if ($(fromEl).hasClass('select-design')) {
             $($("#frame-select .columns")[1]).removeClass('disabled')
+
+            // update the size values
+            $('.select-size#large').html(modelSizing[design].large)
+            $('.select-size#small').html(modelSizing[design].small)
+
+            $('.select-size#large').attr('data-size', modelSizing[design].large)
+            $('.select-size#small').attr('data-size', modelSizing[design].small)
 
             $("#beta_order_frame").val(design)
             $("#frame-selection").html(design)
@@ -98,26 +115,6 @@ $(function() {
         $("#percentage").html(percentage + "% chance")
     }
 
-    // called when the user finishes typing in the birthday input field (for signup)
-    var birthdayInputFinished = function(input) {
-        var DATE_REGEX = /^\d{1,2}[/]\d{1,2}[/]\d{4}$/
-        var hint = $("#birthday_hint").text()
-        var hintText = "dd/mm/yyyy"
-        var m = moment(input, "DD/MM/YYYY")
-
-        if (DATE_REGEX.test(input)) {
-            if (m.isValid()) {
-                var d = m.format("dddd, MMMM Do YYYY")
-
-                $('#birthday_hint').fadeOut(function() {
-                    $(this).text(d).tzAnimate('fadeIn').show()
-                })
-            }
-        } else if (hint != hintText) {
-            $('#birthday_hint').fadeOut()
-        }
-    }
-
     // -----------------------------
     // on page load binding
     // -----------------------------
@@ -128,12 +125,41 @@ $(function() {
             $('#beta_user_email').tzAnimate('shake')
         }
 
+        // if the user is logged in and looking at the details view show the
+        // beta modal if this is the first time
+        if ($('#details-container').length > 0) {
+            if (localStorage.getItem('betaAlreadyVisited') === null) {
+                // show the modal and set
+                localStorage.setItem('betaAlreadyVisited', true)
+
+                // show the modal
+                tzukuri.modal.show({
+                    modal: "#beta-modal",
+                    tint: "light",
+                    dismissable: true
+                });
+            }
+        }
+
         showQuestion($('[data-answerable=true]').first())
     })
 
     // -----------------------------
     // dom element bindings
     // -----------------------------
+
+    $('#need-help').on('click', function() {
+        tzukuri.modal.show({
+            modal: "#beta-modal",
+            tint: "light",
+            dismissable: true
+        });
+    })
+
+    $('#beta-modal-done').on('click', function() {
+        tzukuri.modal.hideAll();
+    })
+
     $('#new_beta_order').on('input', function() {
         var complete = true;
 
@@ -144,9 +170,9 @@ $(function() {
             }
         })
 
-        if (complete && !$("#submit-btn").is(":visible")) {
+        if (complete && $("#submit-btn").hasClass('disabled')) {
             // show the submit button
-            $("#submit-btn").tzAnimate('bounceIn').show();
+            $("#submit-btn").removeClass('disabled').tzAnimate('bounceIn')
         }
     })
 
@@ -159,7 +185,7 @@ $(function() {
     })
 
     // pulse on mouseover
-    $('.select-design, .select-size').on('mouseover', function() {
+    $('.select-design>img, .select-size').on('mouseover', function() {
         if ($(this).parent().hasClass('disabled')) return;
         $(this).tzAnimate('pulse')
     })
@@ -183,29 +209,6 @@ $(function() {
     $("#unique-link").on("click", function() {
         $(this).select()
     })
-
-    // show the continue button to login when the user begins typing
-    $('#beta_user_email').on('input', function(e) {
-        if ($(this).val().length > 0 && !$("#submit-btn").is(":visible")) {
-            $("#submit-btn").tzAnimate('bounceIn').show()
-        }
-    })
-
-    // prevent any input in the date field which isnt numeric or /
-    $('#beta_user_birth_date').on('keypress', function(e) {
-        if (e.metaKey) return;
-        if ((e.which < 48 || e.which > 57) && e.which != 47) {
-            e.preventDefault();
-        }
-    })
-
-    $('#beta_user_birth_date').on('input', function(e) {
-        // timeout that fires when the user has stopped typing for 350ms
-        clearTimeout(birthdayTimeout);
-        birthdayTimeout = setTimeout(function() {
-            birthdayInputFinished($(e.target).val())
-        }, 350);
-    });
 
     // -----------------------------
     // ajax response handlers

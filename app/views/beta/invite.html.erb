@@ -16,23 +16,41 @@
     <a href="http://tzukuri.com">&larr; Go back</a>
   <% else %>
   <div class="row">
-    <div class="six columns">
+    <div class="six columns" id="register-details">
       <p id="beta-blurb">
-        The world’s first unloseable glasses are almost here. Before our public release, we’d like to find and fix any teething issues that come up. We’d like to do so with your help.
-        <br/><br/>
-        We will be selecting up to 250 users to receive and test our glasses between June and July. At the end of the testing period, you will be allowed to keep the glasses. If you’re selected, you’ll be required to answer a few questions and report any issues you have with the product.
-        <br/><br/>
-        By registering, you will be entering preselection for beta testing. There will be different actions you can take to increase your chances. Tzukuri currently only works with iOS devices.
+
+      <span class="para">
+      We are selecting 100 users to experience and test the product for the first time. More information about Tzukuris can be found <a href="#">here</a>.
+      </span>
+
+      <span class="para">
+      If you are selected as a beta tester, you will be an integral part in making sure the product is ready for its public release. To say thank you for participation, you will be allowed to keep the glasses at the end of the 8 week testing period.
+      </span>
+
+      <span class="para">
+      The first beta pairs are expected to be shipped out late July 2016.
+      </span>
+
+      <span class="bold">Beta Requirements</span>
+      <ul id="requirements">
+        <li>iPhone 5 or newer</li>
+        <li>iOS 9.0 or later</li>
+        <li>Australian resident</li>
+        <li>Over 18 years old</li>
+        <li>Respond to weekly email surveys</li>
+        <li>Report any issues that you encounter</li>
+      <ul>
       </p>
     </div>
-    <div class="six columns" id="register-container">
+
+    <div class="six columns" id="register-form">
       <%#= image_tag 'frames/Ive_Tortoise_Sunglasses.png', class: 'beta-hero-image', style: 'width:55%; padding-bottom:20px;' %>
 
       <%= form_for @beta_user, :url => beta_user_registration_path(@beta_user) do |f| %>
       <%= f.text_field :name, placeholder: "name", autofocus: true, autocomplete: 'off', class: "beta-input" %> <br>
-      <%= f.text_field :email, placeholder: "email address", autocomplete: 'off', class: "beta-input" %> <br/>
+      <%= f.email_field :email, placeholder: "email address", autocomplete: 'off', class: "beta-input" %> <br/>
 
-      <%= f.text_field :birth_date, placeholder: "birth date (dd/mm/yyyy)", class: "beta-input", autocomplete: 'off' %>
+      <%= f.text_field :birth_date, placeholder: "birth date", class: "beta-input", autocomplete: 'off' %>
       <p id="birthday_hint">dd/mm/yyyy</p>
 
       <%= f.hidden_field :latitude %>
@@ -40,12 +58,8 @@
 
       <%= f.text_field :city, class: "beta-input", placeholder: "city" %>
 
-
-      <%#= f.text_field :city, placeholder: "city", class: "beta-input", autocomplete: 'off' %>
-      <%#= f.text_field :country, placeholder: "country", class: "beta-input", autocomplete: 'off' %>
-
       <%= f.hidden_field :invite_token, value: @token %><br/>
-      <%= f.submit "register", class: "cta-button", id: "register-btn" %>
+      <%= f.submit "register", class: "disabled", id: "register-btn" %>
       <% end %>
 
       <% if flash[:notice] %>

@@ -6,8 +6,8 @@ body.beta {
 
     .ui-autocomplete {
         position: absolute;
-        top: 110%;
-        left: 0;
+        top: 100%;
+        left: 10;
         z-index: 1000;
         float: left;
         display: none;
@@ -22,16 +22,20 @@ body.beta {
         background-color: $tzukuri-light-grey;
     }
 
-    .loadinggif {
-        background: url("http://www.hsi.com.hk/HSI-Net/pages/images/en/share/ajax-loader.gif") no-repeat;
-        background-position: 95% 15px;
+    .loading-spinner {
+        // todo: replace this with css/locally located gif
+        background: url("/images/loading_spinner.svg") no-repeat;
+        background-position: 95% 12px;
     }
 
     .ui-menu-item {
         padding-top: 15px;
         padding-bottom: 15px;
-        padding-left: 10px;
+
+        padding-left: 20px;
         cursor: pointer;
+        font-size: 10pt;
+        color: $tzukuri-dark-grey;
 
         @include transition(0.5s);
 
@@ -52,10 +56,10 @@ body.beta {
         font-weight: 200;
 
         p {
-            font-size: 12pt;
+            font-size: 13pt !important;
             line-height: 22pt;
             color: $tzukuri-dark-grey;
-            font-weight: 300;
+            font-weight: 400;
         }
 
         #sydney-warning {
@@ -66,17 +70,40 @@ body.beta {
             line-height: 20px;
         }
 
+        #register-details {
+            margin-bottom: 40px;
+        }
+
+        #requirements {
+            color: $tzukuri-dark-grey;
+            display: list-item;
+            padding-left: 30px;
+            font-size: 11pt;
+            text-align: left;
+            font-weight: 300;
+
+            li {
+                line-height: 150%;
+                list-style-type: circle;
+            }
+        }
+
         #beta-blurb {
             text-align: left;
             line-height: 24pt;
             font-weight: 300;
             font-size: 12pt;
             color: $tzukuri-dark-grey;
+
+            .para {
+                margin-bottom: 15px;
+                display: block;
+            }
         }
 
         h1 {
             font-size: 36pt;
-            line-height: 36pt;
+            line-height: 150%;
             font-weight: 100;
         }
 
@@ -97,11 +124,25 @@ body.beta {
         form#new_beta_user {
             #register-btn {
                 background-color: white;
-                border-radius: 20px;
+                border-radius: 15px;
                 border: 1px solid $tzukuri-blue;
                 color: $tzukuri-blue;
                 font-size: 12pt;
-                display: none;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                width: 100px;
+
+                &.disabled {
+                    color: $tzukuri-light-grey;
+                    border-color: $tzukuri-light-grey;
+                    cursor: auto;
+
+                    &:hover {
+                        color: $tzukuri-light-grey;
+                        border-color: $tzukuri-light-grey;
+                        background-color: white;
+                    }
+                }
 
                 &:hover {
                     color: white;
@@ -110,11 +151,14 @@ body.beta {
             }
 
             #birthday_hint {
-                font-size: 10pt;
+                font-size: 10pt !important;
                 font-weight: 400;
                 color: $tzukuri-dark-grey;
-                margin-bottom: 20px;
-                display: none;
+                margin-top: -10px;
+                margin-bottom: 10px;
+
+                // margin-bottom: 20px;
+                // display: none;
 
                 &.success {
                     color: $tzukuri-green;

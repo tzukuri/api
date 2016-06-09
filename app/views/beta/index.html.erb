@@ -35,7 +35,7 @@
       <div id="selected-container">
 
           <div id="selected-header">
-            <h2>You're in.</h2>
+            <h2>Congratulations, you're in.</h2>
             <br/><br/>
             <p>You've been selected to participate in the Tzukuri Beta. Choose your frames and enter your shipping details below.</p>
           </div>
@@ -44,7 +44,7 @@
           <div id="frame-select" class="row">
 
             <!-- design -->
-            <div class="six columns">
+            <div class="six columns" style="margin-bottom: 20px;">
               <p>ii. choose your design</p>
 
               <div class="select-design" data-design="ive">
@@ -62,12 +62,15 @@
             <!-- size -->
             <div class="six columns disabled">
               <p>iii. choose your size</p>
-              <div class="select-size" data-size="small">
-                small
+              <div class="select-size" data-size="48" id="small">
+                48mm
               </div>
-              <div href="#" class="select-size" data-size="large">
-                large
+              <p class="size-exp">this size will fit most people</p>
+
+              <div href="#" class="select-size" data-size="50.5" id="large">
+                50.5mm
               </div>
+              <p class="size-exp">if most glasses are too small for you</p>
             </div>
           </div>
 
@@ -106,13 +109,14 @@
                 <%= f.text_field :state,    placeholder: 'state' %><br/>
                 <%= f.text_field :postcode, placeholder: 'postcode' %><br/>
                 <%= f.text_field :country,  placeholder: 'country' %><br/>
+                <%= f.telephone_field :phone,    placeholder: 'phone number' %><br/>
 
                 <%= f.hidden_field :frame %>
                 <%= f.hidden_field :size %>
 
                 <p id="error-messages"></p>
 
-                <%= f.submit 'submit', id: 'submit-btn' %>
+                <%= f.submit 'submit', id: 'submit-btn', class: 'disabled' %>
               <% end %>
             </div>
           </div>
@@ -126,13 +130,19 @@
         <div class="row">
           <div class="nine columns" id="header-section">
             <h2 id="welcome-sub">
-            Based on your score, there is a <span class="blue bold" id="percentage"><%= @percentage_chance %>% chance</span> that you will be selected for the next round of invites.
+              <% if @percentage_chance > 50 %>
+                Based on your score, you are in the bottom <span class="blue bold" id="percentage"><%= @percentage_chance %>%</span> of people registered for the beta.
+              <% else %>
+                Based on your score, you are in the top <span class="blue bold" id="percentage"><%= @percentage_chance %>%</span> of people registered for the beta.
+              <% end %>
+
             </h2>
             <hr/>
             <div class="progress-bar"></div>
             <div style="margin-bottom: 40px;">
               <p>
-                You can increase your chance of being selected by <span class="bold"> connecting your social media accounts</span>, <span class="bold">answering survey questions</span> or <span class="bold">inviting your friends</span> below. <a href="/faq#beta">Got questions?</a>
+                You can increase your chance of being selected by <span class="bold"> connecting your social media accounts</span>, <span class="bold">answering survey questions</span> or <span class="bold">inviting your friends</span> below. <a href="#" id="need-help">Need help?</a>
+
               </p>
             </div>
           </div>
@@ -157,16 +167,16 @@
             <div class="twelve columns">
               <% if @beta_user.twitter? %>
               <div class="row social-button connected">
-                <i class="fa fa-2x fa-twitter two columns"></i>
-                <div class="eight columns content">
+                <i class="fa fa-2x fa-twitter u-pull-left"></i>
+                <div class="content u-pull-right">
                   connected
                 </div>
               </div>
               <% else %>
               <%= link_to oauth_path(:twitter) do %>
               <div class="row social-button">
-                <i class="fa fa-2x fa-twitter two columns"></i>
-                <div class="eight columns content">
+                <i class="fa fa-2x fa-twitter u-pull-left"></i>
+                <div class="content u-pull-right">
                   connect
                 </div>
               </div>
@@ -177,16 +187,16 @@
             <div class="twelve columns">
               <% if @beta_user.facebook? %>
               <div class="row social-button connected">
-                <i class="fa fa-2x fa-facebook two columns"></i>
-                <div class="eight columns content">
+                <i class="fa fa-2x fa-facebook u-pull-left"></i>
+                <div class="content u-pull-right">
                   connected
                 </div>
               </div>
               <% else %>
               <%= link_to oauth_path(:facebook) do %>
               <div class="row social-button">
-                <i class="fa fa-2x fa-facebook two columns"></i>
-                <div class="eight columns content">
+                <i class="fa fa-2x fa-facebook u-pull-left"></i>
+                <div class="content u-pull-right">
                   connect
                 </div>
               </div>
@@ -197,16 +207,16 @@
             <div class="twelve columns">
               <%if @beta_user.instagram? %>
               <div class="row social-button connected">
-                <i class="fa fa-2x fa-instagram two columns"></i>
-                <div class="eight columns content">
+                <i class="fa fa-2x fa-instagram u-pull-left"></i>
+                <div class="content u-pull-right">
                   connected
                 </div>
               </div>
               <% else %>
               <%= link_to oauth_path(:instagram) do %>
               <div class="row social-button">
-                <i class="fa fa-2x fa-instagram two columns"></i>
-                <div class="eight columns content">
+                <i class="fa fa-2x fa-instagram u-pull-left"></i>
+                <div class="content u-pull-right">
                   connect
                 </div>
               </div>
@@ -275,10 +285,10 @@
     <h1>T Z U K U R I <span class="blue">[beta]</span></h1>
     <h2>Enter the email address you registered with to continue to the beta dashboard</h2>
     <%= form_for @beta_user, :url => beta_user_session_path(@beta_user) do |f| %>
-      <%= f.text_field :email, placeholder: "email address", autofocus: true, class: "beta-input", autocomplete: 'off' %> <br/>
+      <%= f.email_field :email, placeholder: "email address", autofocus: true, class: "beta-input", autocomplete: 'off' %> <br/>
       <p id="error-messages"><%= flash[:alert] %></p>
       <%= f.hidden_field :invite_token, value: @token %><br/>
-      <%= f.submit "continue", id:"submit-btn"%>
+      <%= f.submit "continue", id:"submit-btn", class:"disabled" %>
     <% end %>
   </div>
 
