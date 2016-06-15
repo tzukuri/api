@@ -95,15 +95,16 @@ Rails.application.routes.draw do
     # beta routes
     get '/beta/forgot'          => 'beta#forgot',       :as => :beta_user_forgot
     post '/beta/retrieve'       => 'beta#retrieve',     :as => :beta_user_retrieve
-    get '/beta'                 => 'beta#redirect'
+    get '/beta/redirect'        => 'beta#redirect'
     get '/beta/:token'          => 'beta#index',        :as => :beta_user
     get '/beta/invite/:token'   => 'beta#invite',       :as => :beta_user_invite
+    get '/beta'                 => 'beta#invite'
 
     get '/dashboard'            => 'dashboard#index',   :as => :dashboard
 
     # todo: get rid of these
-    get '/rails/mailers' => "rails/mailers#index"
-    get '/rails/mailers/*path' => "rails/mailers#preview"
+    # get '/rails/mailers' => "rails/mailers#index"
+    # get '/rails/mailers/*path' => "rails/mailers#preview"
 
     get '*page'                 => 'pages#index'
 

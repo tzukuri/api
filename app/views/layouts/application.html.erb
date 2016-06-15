@@ -17,6 +17,15 @@
         <meta property="og:image" content="http://www.tzukuri.com/share_image.jpg">
         <meta property="og:image:secure_url" content="https://newtzu.herokuapp.com/share_image.jpg">
         <meta name="apple-mobile-web-app-capable" content="yes" />
+
+        <!-- crazyegg heatmap tracking -->
+        <script type="text/javascript">
+            setTimeout(function(){var a=document.createElement("script");
+            var b=document.getElementsByTagName("script")[0];
+            a.src=document.location.protocol+"//script.crazyegg.com/pages/scripts/0051/7907.js?"+Math.floor(new Date().getTime()/3600000);
+            a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+        </script>
+
     </head>
     <body class="<%= params[:page] || controller_name %>">
         <div class="tzukuri-modal hidden">
@@ -30,6 +39,31 @@
                 <button>subscribe</button>
                 <% end %>
                 <p id="subscribe-status"></p>
+            </div>
+
+            <!-- beta registration modal -->
+            <div id="beta-register-modal" class="modal-dialog light hidden">
+                <h1>Enter your details below to register for the Tzukuri beta</span></h1>
+
+                <% if !@beta_user.nil? %>
+                <%= form_for @beta_user, :url => beta_user_registration_path(@beta_user) do |f| %>
+                    <%= f.text_field :name, placeholder: "name", autofocus: true, autocomplete: 'off', class: "beta-input" %> <br>
+                    <%= f.email_field :email, placeholder: "email address", autocomplete: 'off', class: "beta-input" %> <br/>
+
+                    <%= f.text_field :birth_date, placeholder: "birth date", class: "beta-input", autocomplete: 'off' %>
+                    <p id="birthday_hint">dd/mm/yyyy</p>
+
+                    <%= f.hidden_field :latitude %>
+                    <%= f.hidden_field :longitude %>
+
+                    <%= f.text_field :city, class: "beta-input", placeholder: "city" %>
+
+                    <%= f.hidden_field :invite_token, value: @token %><br/>
+                    <%= f.submit "register", class: "disabled", id: "register-btn" %>
+                <% end %>
+                <% end %>
+
+                <p id="terms">By registering you agree to our <a href="/beta_legal">beta terms and conditions</a>.</p>
             </div>
 
             <!-- beta modal -->
@@ -85,13 +119,6 @@
                 <p>Set up a pair of glasses with the Tzukuri app to access the dashboard. If you're having trouble, please <a href="/contact">contact us</a>.</p>
                 <br/><br/>
                 <%= link_to "logout", destroy_user_session_path, :method => :delete %>
-            </div>
-
-
-            <!-- beta details modal -->
-            <div id="beta-details-modal" class="modal-dialog light hidden">
-                <h2>Tzukuri Beta Details</h2>
-                <p>This is some test content about the Tzukuri beta</p>
             </div>
         </div>
 

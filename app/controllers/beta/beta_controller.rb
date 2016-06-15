@@ -7,6 +7,7 @@ class BetaController < ApplicationController
       @beta_user = current_beta_user
       @percentage_chance = @beta_user.percentage_chance
       @answerable_questions = @beta_user.answerable_questions
+      @email_hash = Digest::MD5.hexdigest @beta_user.email
     else
       # otherwise create an empty user and show the form
       @beta_user = BetaUser.new

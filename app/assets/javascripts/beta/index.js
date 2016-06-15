@@ -95,24 +95,24 @@ $(function() {
             // hide all questions and remove skip button
             $('.question').hide()
             $("#questions-complete").removeClass('hidden')
-            $("#skip-questions").addClass('hidden')
+            $("#skip").addClass('hidden')
         } else {
             var nextEl = $(currentQuestion).nextAll("[data-answerable=true]").first()
             showQuestion(nextEl)
 
             // if there is one question remaining, hide the skip button
             if ($('[data-answerable=true]').length == 1) {
-                $("#skip-questions").addClass('hidden')
+                $("#skip").addClass('hidden')
             }
         }
     }
 
     // given a new score and percentage update the UI to reflect the server state
     var updateScore = function(score, percentage) {
-        $("#score").fadeOut(500, function() {
-            $("#score").html(score + " points").tzAnimate('pulse').fadeIn()
+        $("#points-amount").fadeOut(500, function() {
+            $("#points-amount").html(score).tzAnimate('pulse').fadeIn()
         })
-        $("#percentage").html(percentage + "% chance")
+        $("#percentage").html(percentage)
     }
 
     // -----------------------------
@@ -160,6 +160,7 @@ $(function() {
         tzukuri.modal.hideAll();
     })
 
+
     $('#new_beta_order').on('input', function() {
         var complete = true;
 
@@ -201,13 +202,27 @@ $(function() {
         transitionFrom(this)
     })
 
-    $("#skip-questions").on("click", function() {
+    $("#skip").on("click", function() {
         skipQuestion()
     })
 
     // automatically select the contents of the input when the unique link is clicked
     $("#unique-link").on("click", function() {
         $(this).select()
+    })
+
+    $('.new_beta_user').on('input propertychange', function() {
+        var complete = true;
+
+        $(this).children('input').each(function() {
+            if ($(this).val() === '') {
+                return complete = false;
+            }
+        })
+
+        if (complete && $('#submit-btn').hasClass('disabled')) {
+            $('#submit-btn').removeClass('disabled').tzAnimate('bounceIn').show();
+        }
     })
 
     // -----------------------------

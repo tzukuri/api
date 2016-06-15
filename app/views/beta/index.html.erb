@@ -124,158 +124,144 @@
 
     <!-- user has not been selected -->
     <% else %>
-      <div id="details-container">
 
-        <!-- user detail header -->
-        <div class="row">
-          <div class="nine columns" id="header-section">
-            <h2 id="welcome-sub">
-              <% if @percentage_chance > 50 %>
-                Based on your score, you are in the bottom <span class="blue bold" id="percentage"><%= @percentage_chance %>%</span> of people registered for the beta.
-              <% else %>
-                Based on your score, you are in the top <span class="blue bold" id="percentage"><%= @percentage_chance %>%</span> of people registered for the beta.
-              <% end %>
+      <div id='details-container'>
 
-            </h2>
-            <hr/>
-            <div class="progress-bar"></div>
-            <div style="margin-bottom: 40px;">
-              <p>
-                You can increase your chance of being selected by <span class="bold"> connecting your social media accounts</span>, <span class="bold">answering survey questions</span> or <span class="bold">inviting your friends</span> below. <a href="#" id="need-help">Need help?</a>
+        <div class="row" id="user-detail-row">
 
-              </p>
+          <div class="two columns" id="avatar-col">
+            <div id="avatar" style="background-image: url('https://www.gravatar.com/avatar/<%= @email_hash %>?s=100&d=mm')">
             </div>
           </div>
-          <div class="three columns">
-            <div id="score-section">
-              <h1 id="score" class="blue"><%= @beta_user.score.to_i %> points</h1>
-              <h2 id="user"><%= @beta_user.name %></h2>
-              <%= link_to "logout", destroy_beta_user_session_path, :method => :delete %>
+
+          <div class="seven columns" id="user-col">
+
+            <div id="user-title">
+              <h1 id="user-name"><%= @beta_user.name %></h1>
+              <%= link_to "logout", destroy_beta_user_session_path, :id => 'logout', :method => :delete %>
             </div>
+
+            <p id="increase-chance">You can increase your chance of being selected by sharing your link with friends and answering questions. Log in to your social media accounts to help earn even more points. <a href="#" id="need-help">Need help?</a></p>
+
+            <div id="invite-link-container">
+              <p>Share this link to earn <span class='bold'>10 points</span> for every sign up</p>
+
+              <span id="link">tzukuri.com/beta/invite/<%= @beta_user.invite_token %></span>
+
+              <p><%= @beta_user.invitees.count %> people have used this link</p>
+            </div>
+          </div>
+
+          <div class="three columns" id="score-col">
+            <div id="score-container">
+              <span id="points-amount"><%= @beta_user.score.to_i %></span>
+              <span id="points-sub">points</span>
+            </div>
+            <p>You are in the <span class="bold">top <span id="percentage"><%= @percentage_chance %></span>%</span> of people.</p>
           </div>
         </div>
+
         <hr>
 
-        <!-- social media section -->
-        <div id="connect-social" class="action-container four columns">
-          <div class="row">
-            <p>Connect social media accounts</p>
-            <p>+20 each</p>
+        <div class="row" id="connect-social-row">
+          <div class="two columns">
+            &nbsp;
           </div>
-          <div class="row">
-            <!-- twitter button -->
-            <div class="twelve columns">
-              <% if @beta_user.twitter? %>
-              <div class="row social-button connected">
-                <i class="fa fa-2x fa-twitter u-pull-left"></i>
-                <div class="content u-pull-right">
-                  connected
+          <div class="ten columns">
+            <p id="social-exp">Every social media account you connect earns you <span class="bold">20 points</span></p>
+            <div class="row">
+
+              <div class="four columns social-col row">
+                <div class="three columns social-icon">
+                  <i class="fa fa-2x fa-instagram"></i>
+                </div>
+                <div class="nine columns">
+                  <% if @beta_user.instagram? %>
+                    <button class="connected">connected</button>
+                  <% else %>
+                    <%= link_to oauth_path(:instagram) do %>
+                        <button>connect</button>
+                    <% end %>
+                  <% end %>
                 </div>
               </div>
-              <% else %>
-              <%= link_to oauth_path(:twitter) do %>
-              <div class="row social-button">
-                <i class="fa fa-2x fa-twitter u-pull-left"></i>
-                <div class="content u-pull-right">
-                  connect
+              <div class="four columns social-col row">
+                <div class="three columns social-icon">
+                  <i class="fa fa-2x fa-twitter"></i>
+                </div>
+                <div class="nine columns">
+                  <% if @beta_user.twitter? %>
+                    <button class="connected">connected</button>
+                  <% else %>
+                    <%= link_to oauth_path(:twitter) do %>
+                        <button>connect</button>
+                    <% end %>
+                  <% end %>
                 </div>
               </div>
-              <% end %>
-              <% end %>
-            </div>
-            <!-- facebook button -->
-            <div class="twelve columns">
-              <% if @beta_user.facebook? %>
-              <div class="row social-button connected">
-                <i class="fa fa-2x fa-facebook u-pull-left"></i>
-                <div class="content u-pull-right">
-                  connected
+              <div class="four columns social-col row">
+                <div class="three columns social-icon">
+                  <i class="fa fa-2x fa-facebook"></i>
+                </div>
+                <div class="nine columns">
+                  <% if @beta_user.facebook? %>
+                    <button class="connected">connected</button>
+                  <% else %>
+                    <%= link_to oauth_path(:facebook) do %>
+                        <button>connect</button>
+                    <% end %>
+                  <% end %>
                 </div>
               </div>
-              <% else %>
-              <%= link_to oauth_path(:facebook) do %>
-              <div class="row social-button">
-                <i class="fa fa-2x fa-facebook u-pull-left"></i>
-                <div class="content u-pull-right">
-                  connect
-                </div>
-              </div>
-              <% end %>
-              <% end %>
-            </div>
-            <!-- instagram button -->
-            <div class="twelve columns">
-              <%if @beta_user.instagram? %>
-              <div class="row social-button connected">
-                <i class="fa fa-2x fa-instagram u-pull-left"></i>
-                <div class="content u-pull-right">
-                  connected
-                </div>
-              </div>
-              <% else %>
-              <%= link_to oauth_path(:instagram) do %>
-              <div class="row social-button">
-                <i class="fa fa-2x fa-instagram u-pull-left"></i>
-                <div class="content u-pull-right">
-                  connect
-                </div>
-              </div>
-              <% end %>
-              <% end %>
             </div>
           </div>
         </div>
 
-        <!-- answer questions -->
-        <div id="answer-questions" class="action-container eight columns">
-          <% BetaQuestion.all.each do |question| %>
-            <div class="question" id="question_<%= question.id %>"
-                  data-answerable='<%= @answerable_questions.include?(question) ? 'true' : 'false' %>'>
-              <!-- question header -->
-              <div class="row">
-                <p class="u-pull-left" id="question-head"><%= question.content %></p>
-                <p class="u-pull-right">+5 per answer</p>
+        <hr style="margin-top: 20px;">
+
+        <div class="row" id="answer-questions-row">
+          <div class="two columns">
+            &nbsp;
+          </div>
+          <div class="ten columns">
+            <div class="row" id="question-header">
+              <div class="ten columns">
+                <p>Earn <span class="bold">5 points</span> by answering this question</p>
               </div>
 
-              <!-- question form -->
-              <%= form_for BetaResponse.new, :url => beta_responses_path, :html => {:method => :post}, remote:true do |f| %>
-                <%= f.hidden_field :beta_question_id, value: question.id%>
-                <% question.response_options.each do |response| %>
-                  <%= f.submit response %>
-                <% end %>
+              <div class="two columns">
+                <p id="skip" class="answer-sub <%= 'hidden' if @answerable_questions.count <= 1%>">skip question</p>
+              </div>
+            </div>
+
+            <div id="question-content">
+              <p id="questions-complete" class="<%= 'hidden' if @answerable_questions.count != 0 %>">Thanks, you've answered all the survey questions &nbsp; 🎉</p>
+
+              <% BetaQuestion.all.each do |question| %>
+
+                <div class="question row" id="question_<%= question.id %>" data-answerable='<%= @answerable_questions.include?(question) ? 'true' : 'false' %>'>
+                  <div class="four columns">
+                    <p id="question-name"><%= question.content %></p>
+                  </div>
+
+                  <div class="eight columns">
+                    <%= form_for BetaResponse.new, :url => beta_responses_path, :html => {:method => :post}, remote:true do |f| %>
+                      <%= f.hidden_field :beta_question_id, value: question.id%>
+                      <% question.response_options.each do |response| %>
+                        <%= f.submit response %>
+                      <% end %>
+                    <% end %>
+                  </div>
+
+                </div>
               <% end %>
             </div>
-          <% end %>
 
-          <br/>
-          <a id="skip-questions" class="<%= 'hidden' if @answerable_questions.count <= 1 %>" href="#">skip question</a>
-          <p id="questions-complete" class="<%= 'hidden' if @answerable_questions.count != 0 %>">Thanks, you've answered all the survey questions &nbsp; 🎉</p>
-        </div>
-
-
-        <!-- invite friends -->
-        <div id="invite-friends" class="action-container eight columns">
-          <div class="row">
-            <p class="u-pull-left">Share this unique link with your friends</p>
-            <p class="u-pull-right">+10 each</p>
-          </div>
-          <div class="row invite-container">
-            <div class="five columns">
-              <input id="unique-link" readonly value="tzukuri.com/beta/invite/<%= @beta_user.invite_token %>">
-            </div>
-            <div class="five columns u-pull-right">
-                <% if @beta_user.invitees.count == 1 %>
-                  <p>1 person has signed up with your invite code.</p>
-                <% else %>
-                  <p><%= @beta_user.invitees.count %> people have signed up with your invite code.</p>
-                <% end %>
-            </div>
           </div>
         </div>
 
-        <!-- bottom separator -->
-        <hr class="twelve columns"/>
       </div>
+
     <% end %>
 
   <% else %>

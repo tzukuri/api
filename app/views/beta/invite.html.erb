@@ -1,71 +1,93 @@
-<div id="beta-invite" class="container" data-error="<%= 'true' if flash[:notice] %>">
-  <div class="twelve columns" style="padding-bottom: 40px;">
-      <h1>T Z U K U R I <span class="blue">[beta]</span></h1>
-      <br/>
-      <% if !@invited_by.nil? %>
-        <h2>invited by <%= @invited_by.name %></h2>
-      <% end %>
-  </div>
+<div id="beta-invite">
 
-  <% if @invited_by.nil? %>
-    <!-- if the invite code is invalid -->
-    <p style="line-height: 180%; font-size: 12pt;">
-      This <span class="bold">invite link is invalid and cannot be used</span> to register for the Tzukuri beta, please double check that it has been entered correctly. If you think you're receiving this in error, please send an email to <a href="mailto:beta@tzukuri.com">beta@tzukuri.com</a>.
-    </p>
-    <br/><br/>
-    <a href="http://tzukuri.com">&larr; Go back</a>
-  <% else %>
-  <div class="row">
-    <div class="six columns" id="register-details">
-      <p id="beta-blurb">
+  <div class="container">
 
-      <span class="para">
-      We are selecting 100 users to experience and test the product for the first time. More information about Tzukuris can be found <a href="#">here</a>.
-      </span>
+    <div class="row" id='beta-hero'>
+      <div class="six columns" id='detail-col'>
+        <h1 id="unloseable-glasses">Unloseable glasses.</h1>
+        <h2 id="almost-here">Almost here.</h2>
+        <p  id="blurb">
+        1 in 2 people lose their glasses every year, contributing to an esimated 76k tonnes of plastic and metal into the environment. Are you one of them?
+        <br/><br/>
+        Register for an opportunity to help us test the world's first unloseable glasses before they're avaliable to the public.
+        </p>
 
-      <span class="para">
-      If you are selected as a beta tester, you will be an integral part in making sure the product is ready for its public release. To say thank you for participation, you will be allowed to keep the glasses at the end of the 8 week testing period.
-      </span>
+        <% if !@invited_by.nil?%>
+        <div id="registration" class="row">
+          <div class="six columns">
+            <button id="register-now">register now</button>
+          </div>
 
-      <span class="para">
-      The first beta pairs are expected to be shipped out late July 2016.
-      </span>
+          <div class="six columns">
+            <% if !flash[:notice].nil? %>
+            <p id="error">
+              <%= flash[:notice].join(', ') %>
+            </p>
+            <% end %>
+          </div>
+        </div>
+        <% end %>
 
-      <span class="bold">Beta Requirements</span>
-      <ul id="requirements">
-        <li>iPhone 5 or newer</li>
-        <li>iOS 9.0 or later</li>
-        <li>Australian resident</li>
-        <li>Over 18 years old</li>
-        <li>Respond to weekly email surveys</li>
-        <li>Report any issues that you encounter</li>
-      <ul>
-      </p>
-    </div>
+        <%= image_tag '10RF_20150921_TZKR (2002).jpg', id: 'glasses-hero' %>
+         <%= image_tag 'beta/screenshot.png', id: 'phone-mobile' %>
+      </div>
 
-    <div class="six columns" id="register-form">
-      <%#= image_tag 'frames/Ive_Tortoise_Sunglasses.png', class: 'beta-hero-image', style: 'width:55%; padding-bottom:20px;' %>
+      <div class="six columns" id='phone-col'>
+        <%= image_tag 'beta/phone-hand-black.png', id: 'hand-phone' %>
 
-      <%= form_for @beta_user, :url => beta_user_registration_path(@beta_user) do |f| %>
-      <%= f.text_field :name, placeholder: "name", autofocus: true, autocomplete: 'off', class: "beta-input" %> <br>
-      <%= f.email_field :email, placeholder: "email address", autocomplete: 'off', class: "beta-input" %> <br/>
-
-      <%= f.text_field :birth_date, placeholder: "birth date", class: "beta-input", autocomplete: 'off' %>
-      <p id="birthday_hint">dd/mm/yyyy</p>
-
-      <%= f.hidden_field :latitude %>
-      <%= f.hidden_field :longitude %>
-
-      <%= f.text_field :city, class: "beta-input", placeholder: "city" %>
-
-      <%= f.hidden_field :invite_token, value: @token %><br/>
-      <%= f.submit "register", class: "disabled", id: "register-btn" %>
-      <% end %>
-
-      <% if flash[:notice] %>
-        <p id="form-error" class="error">There was a problem with the information you provided. Please try again.</p>
-      <% end %>
+        <video id="phone-video" autobuffer controls autoplay >
+          <source type="video/mp4" src= <%= video_path 'beta/tzukuri_beta_recording_baseline.mp4' %>/>
+        </video>
+        <%#= video_tag "tzukuri_beta_recording_5.mp4", id: 'phone-video', :autobuffer => true, :autoplay => true, :type => 'video/mp4', :controls => true %>
+      </div>
     </div>
   </div>
-  <% end %>
+
+  <div class="container">
+
+  <div class="row feature-detail">
+    <h1>Unloseable.</h1>
+    <p>Always leaving your glasses behind? Your iPhone alerts you when you do and it will guide you right back. Lost your glasses in your house? Tzukuri tells you how far away they are and even what room they were last seen in.<br/><a href="#">Learn more about our technology</a>.</p>
+  </div>
+
+  <div class="row glasses-image">
+    <div class="six columns">
+      <%= image_tag 'beta/ford-tort.png' %>
+      <p>Ford | Tortoise Shell</p>
+    </div>
+    <div class="six columns">
+      <%= image_tag 'beta/ford-black.png' %>
+      <p>Ford | Black</p>
+    </div>
+  </div>
+
+  <div class="row feature-detail">
+    <h1>Beautiful.</h1>
+    <p>Our frames are handmade in Sydney, using techniques inspired by the finest Japanese artisans. Japanese precision equipment and high quality acetates make of a pair of glasses unparalleled in beauty and durability. <br/><a href="#">Learn more about our design</a>.</p>
+  </div>
+
+  <div class="row glasses-image">
+    <div class="six columns">
+      <%= image_tag 'beta/ive-tort.png' %>
+      <p>Ive | Tortoise Shell</p>
+    </div>
+    <div class="six columns">
+      <%= image_tag 'beta/ive-black.png' %>
+      <p>Ive | Black</p>
+    </div>
+  </div>
+
+  <div class="row feature-detail" style="padding-bottom: 60px;">
+    <h1>Beta Overview.</h1>
+
+    <ul>
+      <li>If selected, you will receive a pair of glasses, you will be allowed to keep the glasses at the end of the testing period.</li>
+      <li>You will be expected to report any issues you have with the product and respond to weekly email surveys during the test period.</li>
+      <li>You must own an <span class='bold'>iPhone 5 or later</span> running <span class='bold'>iOS 9.0 or later</span>.</li>
+      <li>You must be an <span class='bold'>Australian resident</span> who is <span class='bold'>at least 18 years old</span>.</li>
+    </ul>
+  </div>
+
+  </div>
+
 </div>

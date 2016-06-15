@@ -260,209 +260,190 @@ body.beta {
         // --------------------------------------
         // main view (user hasn't been selected)
         // ---------------------------------------
+
         #details-container {
-            .progress-bar {
-                background-color: $tzukuri-blue;
-                color: white;
-                padding: 2px;
-                font-size: 8pt;
-                width: 100%;
-                margin-bottom: 20px;
-
-                @include transition(0.5s);
+            hr {
+                margin-top: 30px;
+                margin-bottom: 30px;
             }
 
-            #need-help {
-                font-weight: 300;
-            }
-
-            #score-section {
-                text-align: center;
-                font-size: 24pt;
-                font-weight: 300;
-                margin-top: 15px;
-                margin-bottom: 15px;
-
-                #score-sub {
-                    font-size: 16pt;
-                }
-
-                #user {
-                    margin-top: 40px;
-                    font-size: 16pt;
-                    color: $tzukuri-dark-grey;
-                }
-
-                a {
-                    font-size: 12pt;
-                }
-            }
-
-            // header section
-            #header-section {
-                #welcome-header {
-                    font-size: 32pt;
-                    padding-bottom: 20px;
-                }
-
-                #welcome-sub {
-                    font-size: 18pt;
-                    line-height: 26pt;
-                    color: $tzukuri-dark-grey;
+            #user-detail-row {
+                #avatar-col {
                     margin-bottom: 20px;
-                    font-weight: 300;
+
+                    #avatar {
+                        width: 100px;
+                        height: 100px;
+                        background-color: $tzukuri-light-grey;
+                        border-radius: 50%;
+                        background-repeat: no-repeat;
+                        margin-left: auto;
+                        margin-right: auto;
+                    }
+                }
+
+                #user-col {
+                    #user-title {
+                        #user-name {
+                            display: inline;
+                            font-size: 32pt;
+                            font-weight: 200;
+                            text-transform: capitalize;
+                        }
+
+                        #logout {
+                            margin-left: 20px;
+                        }
+
+                        margin-bottom: 20px;
+                    }
+
+                    #increase-chance {
+                        margin-bottom: 20px;
+                    }
+
+                    #invite-link-container {
+                        background-color: $tzukuri-light-grey;
+                        border-radius: 15px;
+                        padding: 15px;
+                        text-align: center;
+                        margin-bottom: 20px;
+
+                        #link {
+                            font-family: "Courier New", Courier, monospace;
+                            color: $tzukuri-blue;
+                            padding-top: 10px;
+                            padding-bottom: 10px;
+                            display: block;
+                        }
+                    }
+                }
+
+                #score-col {
+                    text-align: center;
+
+                    #score-container {
+                        border-radius: 50%;
+                        width: 120px;
+                        height: 120px;
+                        border: 2px solid $tzukuri-blue;
+                        color: $tzukuri-blue;
+                        margin-left: auto;
+                        margin-right: auto;
+                        margin-bottom: 20px;
+                        display: block;
+
+                        #points-amount {
+                            margin-top: 30px;
+                            display: block;
+                            font-size: 32pt;
+                            font-weight: 200;
+                        }
+
+                        #points-sub {
+                            margin-top: 20px;
+                            font-size: 12pt;
+                            font-weight: 200;
+                        }
+                    }
                 }
             }
 
-            // actions
-            .action-container {
-                margin-top: 20px;
-
-                h1 {
-                    font-size: 16pt;
-                    font-weight: 400;
+            #connect-social-row {
+                #social-exp {
+                    margin-bottom: 20px;
                 }
 
-                h2 {
-                    font-size: 12pt;
-                    font-weight: 300;
-                    color: $tzukuri-dark-grey;
+                .social-col {
+                    margin-top: 10px;
+
+                    .social-icon {
+                        text-align: center;
+                        color: $tzukuri-blue;
+                        margin-bottom: 20px;
+                    }
+
+                    button {
+                        border-radius: 10px;
+                        width: 100%;
+
+                        &.connected {
+                            background-color: $tzukuri-blue;
+                            color: white;
+                            cursor: auto;
+                        }
+                    }
                 }
             }
 
-            // connect social media
-            #connect-social {
-                margin-left: 0px;
-                margin-bottom: 20px;
+            #answer-questions-row {
+                margin-bottom: 40px;
 
-                a {
-                    text-decoration: none;
+                #question-header {
+                    margin-bottom: 20px;
+
+                    .answer-sub {
+                        font-size: 10pt;
+                    }
+
+                    #answered {
+                        color: $tzukuri-dark-grey;
+                    }
+
+                    #skip {
+                        color: $tzukuri-blue;
+                        cursor: pointer;
+
+                        &.hidden {
+                            display: none;
+                        }
+                    }
                 }
 
-                .social-button {
+                #question-content {
                     margin-top: 20px;
 
-                    .content {
-                        border: 1px solid $tzukuri-blue;
+                    #questions-complete {
                         text-align: center;
-                        padding: 10px;
-                        border-radius: 15px;
-                        font-size: 10pt;
-                        width: 70%;
 
-                        @include transition(0.5s);
-                    }
-
-                    i {
-                        color: $tzukuri-blue;
-                    }
-
-                    &:hover .content {
-                        background-color: $tzukuri-blue;
-                        cursor: pointer;
-                        color: white;
-
-                        i, a {
-                            color: white;
+                        &.hidden {
+                            display: none;
                         }
                     }
 
-                    &.connected .content {
-                        background-color: $tzukuri-blue;
-                        color: white;
-                    }
-                }
-            }
+                    .question {
+                        display: none;
 
-            // answer questions
-            #answer-questions {
-                .question {
-                    // questions are hidden by default
-                    display: none;
-                    font-weight: 400;
+                        #question-name {
+                            margin-bottom: 20px;
+                        }
 
-                    // form for this question, defined in partials
-                    form {
-                        margin-left: 0px;
-                        margin-top: 10px;
+                        p {
+                            color: $tzukuri-black;
+                        }
 
-                        input {
-                            background-color: white;
-                            border: 1px solid $tzukuri-blue;
-                            color: $tzukuri-blue;
-                            padding: 10px 15px 10px 15px;
-                            border-radius: 20px;
-                            font-size: 10pt;
-                            min-width: 75px;
-                            width: inherit;
+                        form {
+                            input {
+                                text-align: left;
+                                background-color: white;
+                                border: none;
+                                border-radius: 0px;
+                                padding-left: 0px;
+                                padding-top: 0px;
+                                margin-left: 5%;
+                                width: 42%;
+                                font-weight: 100;
+                                border-bottom: 1px solid $tzukuri-blue;
 
-                            @include transition(0.5s);
+                                @include transition(0.5s);
 
-                            &:hover {
-                                background-color: $tzukuri-blue;
-                                color: white;
-                                cursor: pointer;
+                                &:hover {
+                                    color: $tzukuri-blue;
+                                }
                             }
                         }
                     }
                 }
-
-                #skip-questions {
-                    font-size: 10pt;
-
-                    &.hidden {
-                        display: none;
-                    }
-                }
-
-                #questions-complete {
-                    color: $tzukuri-dark-grey;
-                    text-align: center;
-                    padding-top: 10px;
-                    margin-bottom: 30px;
-
-                    &.hidden {
-                        display: none;
-                    }
-                }
-            }
-
-            // invite friends
-            #invite-friends {
-                margin-bottom: 20px;
-
-                .invite-container {
-                    margin-top: 15px;
-                    font-size: 10pt;
-
-                    #unique-link {
-                        border-radius: 15px;
-                        border: none;
-                        color: $tzukuri-blue;
-                        background-color: $tzukuri-light-grey;
-                        width: 100%;
-                        padding: 15px;
-                        padding-left: 15px;
-                        margin-bottom: 20px;
-                    }
-
-                    #link-exp {
-                        // margin-left: 20px;
-                        // margin-top: 5px;
-                        line-height: 0pt !important;
-
-                        // color: $tzukuri-dark-grey;
-
-                    }
-                }
-            }
-
-            #selecting-heading {
-                padding-bottom: 40px;
-                font-size: 14pt;
-                font-weight: 300;
-                color: $tzukuri-dark-grey;
-                line-height: 24pt;
             }
         }
 
@@ -509,6 +490,11 @@ body.beta {
     #invite-friends .invite-container #unique-link {
         width: 90% !important;
     }
+
+    // #avatar-col #avatar {
+    //     margin-left: auto;
+    //     margin-right: auto;
+    // }
 }
 
 @media only screen and (max-width: 320px) {

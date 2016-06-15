@@ -1,197 +1,177 @@
 body.beta {
-    // hide jquery ui helper
-    .ui-helper-hidden-accessible {
-        display: none;
-    }
-
-    .ui-autocomplete {
-        position: absolute;
-        top: 100%;
-        left: 10;
-        z-index: 1000;
-        float: left;
-        display: none;
-        width: 300px;
-        padding: 4px 0;
-        margin: 0 0 10px 25px;
-        list-style: none;
-
-        // border-radius: 15px;
-        border-bottom-left-radius: 15px;
-        border-bottom-right-radius: 15px;
-        background-color: $tzukuri-light-grey;
-    }
-
-    .loading-spinner {
-        // todo: replace this with css/locally located gif
-        background: url("/images/loading_spinner.svg") no-repeat;
-        background-position: 95% 12px;
-    }
-
-    .ui-menu-item {
-        padding-top: 15px;
-        padding-bottom: 15px;
-
-        padding-left: 20px;
-        cursor: pointer;
-        font-size: 10pt;
-        color: $tzukuri-dark-grey;
-
-        @include transition(0.5s);
-
-        &:hover {
-            background-color: $tzukuri-blue;
-            color: white;
-        }
-
-        &:last-of-type {
-            border-bottom-right-radius: 15px;
-            border-bottom-left-radius: 15px;
-        }
-    }
-
     #beta-invite {
-        text-align: center;
         padding-top: 100px;
         font-weight: 200;
 
         p {
-            font-size: 13pt !important;
-            line-height: 22pt;
-            color: $tzukuri-dark-grey;
-            font-weight: 400;
-        }
-
-        #sydney-warning {
-            font-size: 10pt;
-            padding: 20px;
-            font-weight: 400;
-            color: $tzukuri-dark-grey;
-            line-height: 20px;
-        }
-
-        #register-details {
-            margin-bottom: 40px;
-        }
-
-        #requirements {
-            color: $tzukuri-dark-grey;
-            display: list-item;
-            padding-left: 30px;
-            font-size: 11pt;
-            text-align: left;
-            font-weight: 300;
-
-            li {
-                line-height: 150%;
-                list-style-type: circle;
-            }
-        }
-
-        #beta-blurb {
-            text-align: left;
-            line-height: 24pt;
-            font-weight: 300;
-            font-size: 12pt;
-            color: $tzukuri-dark-grey;
-
-            .para {
-                margin-bottom: 15px;
-                display: block;
-            }
+            line-height: 18pt;
+            font-weight: 200;
         }
 
         h1 {
+            font-weight: 200;
             font-size: 36pt;
             line-height: 150%;
-            font-weight: 100;
         }
 
-        h2 {
-            font-size: 12pt;
-            font-weight: 300;
-            color: $tzukuri-dark-grey;
-            margin-bottom: 20px;
-        }
+        .feature-detail {
+            text-align: center;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 40px;
 
-        #form-error {
-            color: $tzukuri-red;
-            font-size: 10pt;
-            font-weight: 400;
-            margin-top: 20px;
-        }
-
-        form#new_beta_user {
-            #register-btn {
-                background-color: white;
-                border-radius: 15px;
-                border: 1px solid $tzukuri-blue;
-                color: $tzukuri-blue;
-                font-size: 12pt;
+            p {
+                line-height: 200%;
+                font-size: 14pt;
                 margin-top: 20px;
-                margin-bottom: 20px;
-                width: 100px;
-
-                &.disabled {
-                    color: $tzukuri-light-grey;
-                    border-color: $tzukuri-light-grey;
-                    cursor: auto;
-
-                    &:hover {
-                        color: $tzukuri-light-grey;
-                        border-color: $tzukuri-light-grey;
-                        background-color: white;
-                    }
-                }
-
-                &:hover {
-                    color: white;
-                    background-color: $tzukuri-blue;
-                }
             }
 
-            #birthday_hint {
-                font-size: 10pt !important;
-                font-weight: 400;
-                color: $tzukuri-dark-grey;
-                margin-top: -10px;
-                margin-bottom: 10px;
+            ul {
+                line-height: 200%;
+                text-align: left;
+                margin-top: 20px;
 
-                // margin-bottom: 20px;
-                // display: none;
-
-                &.success {
-                    color: $tzukuri-green;
-                }
-
-                &.error {
-                    color: $tzukuri-red;
+                li {
+                    list-style-type: circle;
                 }
             }
+        }
 
-            .beta-input {
-                &:focus {
-                    outline-width: 0;
-                }
+        .glasses-image {
+            text-align: center;
 
-                background-color: $tzukuri-light-grey;
-                border-radius: 7px;
-                border: 1px solid $tzukuri-light-grey;
-                margin-bottom: 20px;
-                padding: 15px;
-                width: 70%;
-                font-size: 12pt;
-
-                &.error {
-                    border: 1px solid $tzukuri-red;
-                }
+            img {
+                width: 100%;
             }
 
-            #error-messages {
-                color: $tzukuri-red;
+            p {
                 font-size: 10pt;
-                padding-top: 10px;
+                color: $tzukuri-dark-grey;
+                font-weight: 300;
             }
+        }
+
+        .feature-image {
+            img {
+                width: 100%;
+                margin-top: -50px;
+            }
+        }
+
+        #beta-hero {
+            margin-bottom: 40px;
+
+            #registration {
+                margin-top: 30px;
+
+                #error {
+                    color: $tzukuri-red;
+                    font-size: 10pt;
+                    text-align: left;
+                    vertical-align: middle;
+                    line-height: 150%;
+                    padding-top: 25px;
+                }
+
+                #register-now {
+                    height: auto;
+                    padding: 10px 20px 10px 20px;
+                    font-size: 11pt;
+                    font-weight: 200;
+                    background-color: $tzukuri-blue;
+                    color: white;
+                    border-radius: 30px;
+                }
+            }
+
+            #detail-col {
+                font-size: 36pt;
+
+                #unloseable-glasses {
+                    font-weight: 200;
+                }
+
+                #almost-here {
+                    font-weight: 100;
+                }
+
+                #blurb {
+                    margin-top: 30px;
+                    font-size: 14pt;
+                    line-height: 200%;
+                }
+
+                #glasses-hero {
+                    width: 95%;
+                    margin-top: 40px;
+                }
+
+                // the phone on mobile devices (i.e. with no video)
+                #phone-mobile {
+                    display: none;
+                    width: 80%;
+                    margin: 0 auto;
+                    // margin-top: 40px;
+                }
+            }
+
+            #phone-col {
+                #hand-phone {
+                    width: 130%;
+                    margin-top: 20px;
+                }
+
+                #phone-video {
+                    width: 23vw;
+                    position: absolute;
+                    margin-top: -62%;
+                    margin-left: 16.9%;
+                    max-width: 275px;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 720px) {
+    #phone-col {
+        display: none;
+    }
+
+    #glasses-hero {
+        display: none;
+    }
+
+    #phone-mobile {
+        display: block !important;
+        width: 100%;
+        margin-top: 60px;
+    }
+
+    .six.columns {
+        width: 100%;
+    }
+
+    #registration #register-now {
+        width: 100%;
+    }
+
+    #error {
+        font-size: 12pt !important;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    #glasses-hero {
+        display: none;
+    }
+
+    #beta-hero #detail-col {
+        #unloseable-glasses {
+            // font-size: 26pt;
+            line-height: 100%;
+            padding-bottom: 20px;
         }
     }
 }

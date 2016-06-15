@@ -3,6 +3,38 @@ $(function() {
 
     var birthdayTimeout;
 
+    // var crossFade = (function() {
+    //     var FADE_INTERVAL = 6000;
+    //     var FADE_TIME = 1000;
+
+    //     var c = {}
+
+    //     c.start = function(imageContainer) {
+    //         // change image every FADE_INTERVAL seconds
+    //         setInterval(c.changeImage.bind(null, imageContainer), FADE_INTERVAL)
+    //     }
+
+    //     c.changeImage = function(imageContainer) {
+    //         var top = $(imageContainer).children('.top')
+    //         top.removeClass('top')
+
+    //         // there is a next element, it becomes the new one
+    //         if (top.next().length > 0) {
+    //             setTimeout(function() {
+    //                 top.next().addClass('top')
+    //             }, FADE_TIME)
+
+    //         // otherwise loop back to the start
+    //         } else {
+    //             setTimeout(function() {
+    //                 $(imageContainer).children().first().addClass('top')
+    //             }, FADE_TIME)
+    //         }
+    //     }
+
+    //     return c;
+    // }());
+
     // -----------------------------
     // on page load binding
     // -----------------------------
@@ -15,6 +47,14 @@ $(function() {
 
     $('#new_beta_user').on('input', function() {
         checkSubmit();
+    })
+
+    $('#register-now').on('click', function() {
+        tzukuri.modal.show({
+            modal: "#beta-register-modal",
+            tint: "light",
+            dismissable: true
+        });
     })
 
     $("#beta_user_city").on('input', function() {
@@ -101,7 +141,7 @@ $(function() {
 
                 var label = ''
 
-// typeof metadata_title  !== "undefined" ?  "<title>" + metadata_title + "</title>\n"                             : "" )
+                // typeof metadata_title  !== "undefined" ?  "<title>" + metadata_title + "</title>\n"                             : "" )
 
                 label += typeof feature.properties.name !== 'undefined' ? feature.properties.name + ', ' : ''
                 label += typeof feature.properties.state !== 'undefined' ? feature.properties.state + ', ' : ''
