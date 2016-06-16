@@ -1,0 +1,80 @@
+body.beta_legal main > article {
+    padding-top: 100px;
+    margin-top: 0px;
+
+    .panel {
+        max-width: 800px;
+    }
+
+    .content {
+        h1 {
+            text-align: center;
+            text-transform: none;
+            font-size: 40px;
+            margin-bottom: 40px;
+            font-weight: 200;
+            line-height: 40px;
+
+            &:first-child {
+                margin-top: 0px;
+            }
+        }
+
+        h2 {
+            font-weight: normal;
+            margin-bottom: 10px;
+            margin-top: 44px;
+            font-size: 16px;
+        }
+
+        h2 + p {
+            margin-top: 0px;
+        }
+
+        p {
+            color: #333;
+            font-size: 16px;
+            font-weight: 300;
+            margin-bottom: 24px;
+            line-height: 24px;
+            text-align: justify;
+        }
+
+        #policy-container {
+            margin-top: 45px;
+            &.policy-gap {
+                margin-top:175px;
+            }
+        }
+
+        #policy-changed {
+            background-color: #F5F5F5;
+            opacity: 0.95;
+            text-align:center;
+            padding: 20px;
+            margin-left:-20px;
+            margin-right:-20px;
+            position:fixed;
+            top: 0;
+
+            p {
+                text-align:center;
+            }
+
+            #accept-privacy {
+                background-color: #5AA4E8;
+                color: white;
+            }
+        }
+    }
+}
+
+
+@media only screen and (max-width: $content-width-cutoff) {
+    body.privacy main > article .content {
+        h1 {
+            font-size: 30px;
+            line-height: 30px;
+        }
+    }
+}

@@ -102,7 +102,7 @@ Rails.application.routes.draw do
 
     get '/dashboard'            => 'dashboard#index',   :as => :dashboard
 
-    # todo: get rid of these
+    # mailer preview paths
     # get '/rails/mailers' => "rails/mailers#index"
     # get '/rails/mailers/*path' => "rails/mailers#preview"
 

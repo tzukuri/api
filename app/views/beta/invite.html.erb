@@ -28,17 +28,14 @@
         </div>
         <% end %>
 
-        <%= image_tag '10RF_20150921_TZKR (2002).jpg', id: 'glasses-hero' %>
-         <%= image_tag 'beta/screenshot.png', id: 'phone-mobile' %>
+        <%= image_tag 'beta/10RF_20150921_TZKR (2002).jpg', id: 'glasses-hero' %>
+        <%= image_tag 'beta/screenshot.png', id: 'phone-mobile' %>
       </div>
 
       <div class="six columns" id='phone-col'>
         <%= image_tag 'beta/phone-hand-black.png', id: 'hand-phone' %>
 
-        <video id="phone-video" autobuffer controls autoplay >
-          <source type="video/mp4" src= <%= video_path 'beta/tzukuri_beta_recording_baseline.mp4' %>/>
-        </video>
-        <%#= video_tag "tzukuri_beta_recording_5.mp4", id: 'phone-video', :autobuffer => true, :autoplay => true, :type => 'video/mp4', :controls => true %>
+        <%= video_tag 'tzukuri_beta_recording_baseline.mp4', :id => 'phone-video', :autobuffer => true, :autoplay => true, :controls => true %>
       </div>
     </div>
   </div>

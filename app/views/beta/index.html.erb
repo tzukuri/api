@@ -130,7 +130,7 @@
         <div class="row" id="user-detail-row">
 
           <div class="two columns" id="avatar-col">
-            <div id="avatar" style="background-image: url('https://www.gravatar.com/avatar/<%= @email_hash %>?s=100&d=mm')">
+            <div id="avatar" style="background-image: url('https://www.gravatar.com/avatar/<%= @email_hash %>?s=110&d=mm')">
             </div>
           </div>
 
@@ -146,7 +146,7 @@
             <div id="invite-link-container">
               <p>Share this link to earn <span class='bold'>10 points</span> for every sign up</p>
 
-              <span id="link">tzukuri.com/beta/invite/<%= @beta_user.invite_token %></span>
+              <input id="link" value="tzukuri.com/beta/invite/<%= @beta_user.invite_token %>" disabled>
 
               <p><%= @beta_user.invitees.count %> people have used this link</p>
             </div>

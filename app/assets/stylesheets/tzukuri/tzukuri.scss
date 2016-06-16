@@ -106,7 +106,8 @@ html, body {
 
 a {
     text-decoration: none;
-    color: darken(#6fb1fc, 10%);
+    // color: darken(#6fb1fc, 10%);
+    color: $tzukuri-blue;
 
     &:hover {
         text-decoration: underline;

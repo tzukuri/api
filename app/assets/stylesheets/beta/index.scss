@@ -272,11 +272,14 @@ body.beta {
                     margin-bottom: 20px;
 
                     #avatar {
-                        width: 100px;
-                        height: 100px;
+                        max-width: 100px;
+                        max-height: 100px;
+                        width: 80%;
+                        padding-bottom: 80%;
                         background-color: $tzukuri-light-grey;
                         border-radius: 50%;
                         background-repeat: no-repeat;
+                        background-position: center center;
                         margin-left: auto;
                         margin-right: auto;
                     }
@@ -310,11 +313,15 @@ body.beta {
                         margin-bottom: 20px;
 
                         #link {
-                            font-family: "Courier New", Courier, monospace;
+                            text-align: center;
+                            width: 60%;
+                            margin-top: 20px;
+                            margin-bottom: 20px;
+                            background-color: white;
                             color: $tzukuri-blue;
-                            padding-top: 10px;
-                            padding-bottom: 10px;
-                            display: block;
+                            border-radius: 10px;
+                            padding: 10px 20px 10px 20px;
+                            border: 1px solid $tzukuri-light-grey;
                         }
                     }
                 }
@@ -341,8 +348,8 @@ body.beta {
                         }
 
                         #points-sub {
-                            margin-top: 20px;
-                            font-size: 12pt;
+                            margin-top: 30px;
+                            font-size: 14pt;
                             font-weight: 200;
                         }
                     }
@@ -478,7 +485,7 @@ body.beta {
     }
 }
 
-@media only screen and (max-width: 630px) {
+@media only screen and (max-width: 550px) {
     #login-container form input {
         width: 90% !important;
     }
@@ -491,10 +498,15 @@ body.beta {
         width: 90% !important;
     }
 
-    // #avatar-col #avatar {
-    //     margin-left: auto;
-    //     margin-right: auto;
-    // }
+    #avatar-col #avatar {
+        width: 100px !important;
+        height: 100px !important;
+        padding-bottom: 0px !important;
+    }
+
+    #invite-link-container #link {
+        // font-size: 10pt;
+    }
 }
 
 @media only screen and (max-width: 320px) {
