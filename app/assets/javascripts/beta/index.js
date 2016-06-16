@@ -112,7 +112,14 @@ $(function() {
         $("#points-amount").fadeOut(500, function() {
             $("#points-amount").html(score).tzAnimate('pulse').fadeIn()
         })
-        $("#percentage").html(percentage)
+
+        if (percentage <= 50) {
+            $('#direction').html('top')
+            $("#percentage").html(percentage)
+        } else {
+            $('#direction').html('bottom')
+            $("#percentage").html(100 - percentage)
+        }
     }
 
     // -----------------------------

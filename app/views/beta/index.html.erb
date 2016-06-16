@@ -141,12 +141,12 @@
               <%= link_to "logout", destroy_beta_user_session_path, :id => 'logout', :method => :delete %>
             </div>
 
-            <p id="increase-chance">You can increase your chance of being selected by sharing your link with friends and answering questions. Log in to your social media accounts to help earn even more points. <a href="#" id="need-help">Need help?</a></p>
+            <p id="increase-chance">You can increase your chance of being selected by sharing your link with friends, answering questions and logging into your social media accounts. <a href="#" id="need-help">Need help?</a></p>
 
             <div id="invite-link-container">
               <p>Share this link to earn <span class='bold'>10 points</span> for every sign up</p>
 
-              <input id="link" value="tzukuri.com/beta/invite/<%= @beta_user.invite_token %>" disabled>
+              <input disabled id="link" value="tzukuri.com/beta/invite/<%= @beta_user.invite_token %>">
 
               <p><%= @beta_user.invitees.count %> people have used this link</p>
             </div>
@@ -157,7 +157,13 @@
               <span id="points-amount"><%= @beta_user.score.to_i %></span>
               <span id="points-sub">points</span>
             </div>
-            <p>You are in the <span class="bold">top <span id="percentage"><%= @percentage_chance %></span>%</span> of people.</p>
+
+            <% if @percentage_chance <= 50 %>
+              <p>You are in the <span class="bold"> <span id='direction'>top</span> <span id="percentage"> <%= @percentage_chance %></span>%</span> of people</p>
+            <% else %>
+              <p>You are in the <span class="bold"> <span id='direction'>bottom</span> <span id="percentage"><%= 100 - @percentage_chance %></span>%</span> of people</p>
+            <% end %>
+
           </div>
         </div>
 

@@ -322,6 +322,8 @@ body.beta {
                             border-radius: 10px;
                             padding: 10px 20px 10px 20px;
                             border: 1px solid $tzukuri-light-grey;
+                            -webkit-appearance: none;
+                            opacity: 1 !important;
                         }
                     }
                 }
@@ -367,12 +369,16 @@ body.beta {
                     .social-icon {
                         text-align: center;
                         color: $tzukuri-blue;
-                        margin-bottom: 20px;
+                        padding-top: 2.5px;
                     }
 
                     button {
                         border-radius: 10px;
                         width: 100%;
+                        font-size: 11pt;
+                        padding-top: 8px;
+                        padding-bottom: 8px;
+                        height: auto;
 
                         &.connected {
                             background-color: $tzukuri-blue;

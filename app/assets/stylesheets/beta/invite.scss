@@ -105,14 +105,20 @@ body.beta {
                 #glasses-hero {
                     width: 95%;
                     margin-top: 40px;
+
+                    &.invite {}
+
+                    &.no-invite {
+                        margin-top: 24%;
+                    }
                 }
 
                 // the phone on mobile devices (i.e. with no video)
                 #phone-mobile {
                     display: none;
-                    width: 80%;
+                    width: 70%;
                     margin: 0 auto;
-                    // margin-top: 40px;
+                    padding-top: 50px;
                 }
             }
 
