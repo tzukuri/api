@@ -128,7 +128,7 @@ $(function() {
     }
 
     // tzukuri photon API
-    var PHOTON_API = "http://api.tzukuri.com/photon?q="
+    var PHOTON_API = "https://api.tzukuri.com/photon?q="
     var PHOTON_LIMIT = 3
 
     var cityQuery = function(request, response) {
