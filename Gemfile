@@ -41,6 +41,10 @@ gem 'instagram'
 gem 'koala'
 gem 'fb_graph'
 
+# queue
+gem 'que'
+gem 'que-web'
+
 group :test do
   gem 'minitest-reporters', '1.0.5'
   gem 'mini_backtrace',     '0.1.3'
@@ -50,5 +54,5 @@ end
 group :development do
     gem 'byebug'
     gem 'web-console', '~> 2.0'
-    gem 'spring'
+    #gem 'spring' # until #696 is fixed: https://github.com/celluloid/celluloid/issues/696
 end

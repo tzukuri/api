@@ -1,3 +1,5 @@
+require 'que/web'
+
 Rails.application.routes.draw do
     # -----------------------------
     # devise routes
@@ -20,6 +22,7 @@ Rails.application.routes.draw do
     end
 
     ActiveAdmin.routes(self)
+    mount Que::Web => '/que'
 
     # -----------------------------
     # api namespace routes
