@@ -1,7 +1,7 @@
 class BetaResponsesController < ApplicationController
 
   def create
-    puts beta_response_params
+    puts beta_response_params if Rails.env.development?
     beta_response = BetaResponse.create(beta_response_params.merge(:beta_user_id => current_beta_user.id, :response => params[:commit]))
 
     if !beta_response.valid?

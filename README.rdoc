@@ -1,29 +1,11 @@
-== README
+== Starting Servers
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+= Que
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+    bundle exec que -w 1 -q mailers ./config/environment.rb
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
-touch
+= Rails
+
+    bundle exec rails server -b 0.0.0.0
+
