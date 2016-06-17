@@ -49,7 +49,8 @@ $(function() {
         checkSubmit();
     })
 
-    $('#register-now').on('click', function() {
+    $('.register-now').on('click', function() {
+        console.log('register')
         tzukuri.modal.show({
             modal: "#beta-register-modal",
             tint: "light",

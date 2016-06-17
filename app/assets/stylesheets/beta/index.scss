@@ -396,7 +396,7 @@ body.beta {
                     margin-bottom: 20px;
 
                     .answer-sub {
-                        font-size: 10pt;
+                        font-size: 12pt;
                     }
 
                     #answered {
@@ -406,6 +406,8 @@ body.beta {
                     #skip {
                         color: $tzukuri-blue;
                         cursor: pointer;
+
+
 
                         &.hidden {
                             display: none;

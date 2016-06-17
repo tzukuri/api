@@ -20,7 +20,7 @@
         <% if !@invited_by.nil?%>
         <div id="registration" class="row">
           <div class="six columns">
-            <button id="register-now">register now</button>
+            <button class="register-now">register now</button>
           </div>
 
           <div class="six columns">
@@ -88,6 +88,11 @@
       <li>You must own an <span class='bold'>iPhone 5 or later</span> running <span class='bold'>iOS 9.0 or later</span>.</li>
       <li>You must be an <span class='bold'>Australian resident</span> who is <span class='bold'>at least 18 years old</span>.</li>
     </ul>
+
+    <% if !@invited_by.nil? %>
+      <br/><br/>
+      <button class="register-now">register now</button>
+    <% end %>
   </div>
 
   </div>
