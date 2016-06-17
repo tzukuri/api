@@ -9,7 +9,12 @@
         <p  id="blurb">
         1 in 2 people lose their glasses every year, contributing to an esimated 76k tonnes of plastic and metal into the environment. Are you one of them?
         <br/><br/>
-        Register for an opportunity to help us test the world's first unloseable glasses before they're avaliable to the public.
+
+        <% if @invited_by.nil? %>
+          To be able to register, you'll need to be invited by someone who has already registered for the beta.
+        <% else %>
+          Register for an opportunity to help us test the world's first unloseable glasses before they're avaliable to the public.
+        <% end %>
         </p>
 
         <% if !@invited_by.nil?%>

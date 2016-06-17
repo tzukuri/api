@@ -1,4 +1,5 @@
 <main>
+
     <article id="unloseable">
         <div class="panel">
             <div class="content">
@@ -6,10 +7,25 @@
                 <h2>Sunglasses + iPhone.</h2>
                 <p>Your iPhone alerts you if you leave your Tzukuris behind, and the app shows you where you left them.</p>
                 <p><a href="/technology">Learn more about the technology</a></p>
-                <a href="#" class="share"><%= image_tag 'share.png' %>Share</a>
+
+                <%= image_tag 'beta/10RF_20150921_TZKR (2002).jpg', id: 'glasses-main'%>
+
+                <!-- <a href="#" class="share"><%#= image_tag 'share.png' %>Share</a> -->
             </div>
             <div class="background">
-                <div class="image" style="background-image: url(<%= image_url 'white.jpg' %>)"></div>
+                <div class="image" style="background-image: url(<%= image_url 'beta/screenshot.png' %>)"></div>
+            </div>
+        </div>
+    </article>
+
+        <article id='beta'>
+        <div class="container">
+            <div class="row" id="beta-content">
+                    <h1>T Z U K U R I <span class='blue'>[beta]</span></h1>
+                    <h2>The world's first unloseable glasses are almost here. We're looking for a group of people to help us test the glasses before their release later this year.</h2>
+
+                    <br/><br/>
+                    <a href="/beta">Learn more about the beta program</a>
             </div>
         </div>
     </article>
@@ -23,8 +39,8 @@
             <div class="content">
                 <ul>
                     <li>
-                        <%= image_tag 'frames/atticus/black-front.jpg', class: 'black' %>
-                        <%= image_tag 'frames/atticus/tortoise-front.jpg', class: 'tortoise', style: 'opacity: 0.0' %>
+                        <%= image_tag 'frames/ive/black-front.png', class: 'black' %>
+                        <%= image_tag 'frames/ive/tortoise-front.png', class: 'tortoise', style: 'opacity: 0.0' %>
                     </li>
                 </ul>
                 <menu>
