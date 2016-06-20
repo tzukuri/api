@@ -49,8 +49,15 @@ $(function() {
         checkSubmit();
     })
 
+    $('#eligible').on('click', function() {
+        tzukuri.modal.show({
+            modal: "#beta-eligible-modal",
+            tint: "light",
+            dismissable: true
+        });
+    })
+
     $('.register-now').on('click', function() {
-        console.log('register')
         tzukuri.modal.show({
             modal: "#beta-register-modal",
             tint: "light",

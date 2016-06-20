@@ -98,6 +98,7 @@ Rails.application.routes.draw do
     # beta routes
     get '/beta/forgot'          => 'beta#forgot',       :as => :beta_user_forgot
     post '/beta/retrieve'       => 'beta#retrieve',     :as => :beta_user_retrieve
+    # redirect twitter on failed authentication
     get '/beta/redirect'        => 'beta#redirect'
     get '/beta/:token'          => 'beta#index',        :as => :beta_user
     get '/beta/invite/:token'   => 'beta#invite',       :as => :beta_user_invite
@@ -111,5 +112,6 @@ Rails.application.routes.draw do
 
     get '*page'                 => 'pages#index'
 
-    root 'pages#index', page: 'index'
+    # root 'pages#index', page: 'index'
+    root 'beta#invite'
 end

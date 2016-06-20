@@ -1,5 +1,6 @@
 body.beta {
     #beta-invite {
+        overflow: hidden;
         padding-top: 100px;
         font-weight: 200;
 
@@ -20,7 +21,7 @@ body.beta {
 
         h1 {
             font-weight: 200;
-            font-size: 36pt;
+            font-size: 34pt;
             line-height: 150%;
         }
 
@@ -70,7 +71,8 @@ body.beta {
         }
 
         #beta-hero {
-            margin-bottom: 40px;
+            max-height: 680px;
+            overflow: hidden;
 
             #registration {
                 margin-top: 30px;
@@ -86,7 +88,7 @@ body.beta {
             }
 
             #detail-col {
-                font-size: 36pt;
+                font-size: 34pt;
 
                 #unloseable-glasses {
                     font-weight: 200;
@@ -123,17 +125,21 @@ body.beta {
             }
 
             #phone-col {
+                overflow: hidden;
+
                 #hand-phone {
-                    width: 130%;
+                    width: 150%;
                     margin-top: 20px;
+                    max-width: 765px;
+                    margin-left: -15%;
                 }
 
                 #phone-video {
-                    width: 23vw;
+                    width: 26.2vw;
                     position: absolute;
-                    margin-top: -62%;
-                    margin-left: 16.9%;
-                    max-width: 275px;
+                    margin-top: -69.7%;
+                    margin-left: 12.2%;
+                    max-width: 314px;
                 }
             }
         }
@@ -146,7 +152,7 @@ body.beta {
     }
 
     #glasses-hero {
-        display: none;
+        display: block;
     }
 
     #phone-mobile {
@@ -156,28 +162,75 @@ body.beta {
     }
 
     .six.columns {
+        text-align: center;
         width: 100%;
     }
 
-    #registration #register-now {
-        width: 100%;
+    #registration .register-now {
+        // width: 100%;
+        // font-size: 14pt !important;
+        font-size: 12pt !important;
     }
 
     #error {
         font-size: 12pt !important;
     }
+
+    #beta-invite {
+        #unloseable-glasses, #almost-here {
+            font-size: 32pt !important;
+        }
+        #detail-col #blurb {
+            font-size: 14pt !important;
+        }
+
+    }
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1170px) {
+    #beta-invite {
+        #unloseable-glasses, #almost-here {
+            font-size: 28pt;
+        }
+        #blurb {
+            font-size: 13pt !important;
+        }
+    }
+}
+
+@media only screen and (max-width: 962px) {
+    #beta-invite {
+        #unloseable-glasses, #almost-here {
+            font-size: 24pt;
+        }
+        #blurb {
+            font-size: 11pt !important;
+        }
+    }
+}
+
+
+@media only screen and (max-width: 820px) {
     #glasses-hero {
         display: none;
     }
 
-    #beta-hero #detail-col {
-        #unloseable-glasses {
-            // font-size: 26pt;
-            line-height: 100%;
-            padding-bottom: 20px;
+    .register-now {
+        font-size: 8pt !important;
+    }
+}
+
+@media only screen and (max-width: 495px) {
+    #beta-invite {
+        #unloseable-glasses, #almost-here {
+            font-size: 22pt !important;
+        }
+        #detail-col #blurb {
+            font-size: 12pt !important;
+        }
+
+        .register-now {
+            width: 100%;
         }
     }
 }
