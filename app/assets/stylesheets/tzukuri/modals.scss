@@ -142,6 +142,28 @@
     }
 }
 
+#beta-eligible-modal {
+    font-weight: 200;
+    padding-left: 60px;
+    padding-right: 60px;
+
+    h1 {
+        font-size: 28pt;
+        padding: 30px 60px 30px 60px;
+        line-height: 150%;
+    }
+
+    ul {
+        font-size: 14pt;
+
+        li {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            line-height: 200%;
+        }
+    }
+}
+
 #beta-register-modal {
     padding: 0px;
 
@@ -305,7 +327,7 @@
 
 // let the modal take up the entire screen on mobile devices
 @media only screen and (max-width: 750px) {
-    #beta-modal, #beta-register-modal {
+    #beta-modal, #beta-register-modal, #beta-eligible-modal {
         background-color: white;
         width: 100vw;
         padding: 20px;
