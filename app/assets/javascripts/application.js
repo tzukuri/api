@@ -15,9 +15,7 @@
 //= require jquery_ujs
 //= require jquery-ui/autocomplete
 //= require turbolinks
-//= require mapbox.js
 //= require moment
-//= require moment-timezone
 //= require lodash
 //= require_tree .
 

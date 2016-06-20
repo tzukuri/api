@@ -167,7 +167,6 @@ $(function() {
         tzukuri.modal.hideAll();
     })
 
-
     $('#new_beta_order').on('input', function() {
         var complete = true;
 
@@ -242,7 +241,8 @@ $(function() {
             updateAnswerables(data.answerable_questions)
             updateScore(data.score, data.percentage_chance)
         } else {
-            // todo: handle the error state
+            // skip to the next question
+             skipQuestion();
         }
     }).on('ajax:error', function(e, data) {
         // todo: handle the error state

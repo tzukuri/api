@@ -104,7 +104,7 @@ Rails.application.routes.draw do
     get '/beta/invite/:token'   => 'beta#invite',       :as => :beta_user_invite
     get '/beta'                 => 'beta#invite'
 
-    get '/dashboard'            => 'dashboard#index',   :as => :dashboard
+    # get '/dashboard'            => 'dashboard#index',   :as => :dashboard
 
     # mailer preview paths
     # get '/rails/mailers' => "rails/mailers#index"

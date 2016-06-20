@@ -81,6 +81,10 @@ $(function() {
         }
     })
 
+    $('#beta-eligible-done').on('click', function() {
+        tzukuri.modal.hideAll();
+    })
+
     // prevent any input in the date field which isnt numeric or /
     $('#beta_user_birth_date').on('keypress', function(e) {
         if (e.metaKey) return;

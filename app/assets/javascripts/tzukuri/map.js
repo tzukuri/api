@@ -5,54 +5,54 @@ var ZOOMLEVEL = 16;
 var map = (function () {
   var m = {}
 
-  var glassesMarker = L.icon({
-    iconUrl: '',
-    iconRetinaUrl: '',
-    iconSize: [40, 40]
-  });
+  // var glassesMarker = L.icon({
+  //   iconUrl: '',
+  //   iconRetinaUrl: '',
+  //   iconSize: [40, 40]
+  // });
 
-  m.inject = function(args) {
+  // m.inject = function(args) {
 
-    var e = args.element;
-    var glassesLocation = args.glassesLocation;
-    var mainMap;
+  //   var e = args.element;
+  //   var glassesLocation = args.glassesLocation;
+  //   var mainMap;
 
-    L.mapbox.accessToken = MAPBOX_TOKEN
+  //   L.mapbox.accessToken = MAPBOX_TOKEN
 
-    if (args.glassesLat && args.glassesLon) {
-      mainMap = L.mapbox.map('main-map').setView([args.glassesLat, args.glassesLon], ZOOMLEVEL)
+  //   if (args.glassesLat && args.glassesLon) {
+  //     mainMap = L.mapbox.map('main-map').setView([args.glassesLat, args.glassesLon], ZOOMLEVEL)
 
-      // set the correct marker in the view
-      glassesMarker.options.iconUrl = 'images/markers/Marker_' + args.glassesModel + "_" + args.glassesState + ".png";
-      glassesMarker.options.iconRetinaUrl = 'images/markers/Marker_' + args.glassesModel + "_" + args.glassesState + "@2x.png"
+  //     // set the correct marker in the view
+  //     glassesMarker.options.iconUrl = 'images/markers/Marker_' + args.glassesModel + "_" + args.glassesState + ".png";
+  //     glassesMarker.options.iconRetinaUrl = 'images/markers/Marker_' + args.glassesModel + "_" + args.glassesState + "@2x.png"
 
-      L.marker([args.glassesLat, args.glassesLon], {
-        icon: glassesMarker
-      }).addTo(mainMap)
+  //     L.marker([args.glassesLat, args.glassesLon], {
+  //       icon: glassesMarker
+  //     }).addTo(mainMap)
 
-    } else {
-      mainMap = L.mapbox.map(e).setView([-33.852222, 151.210556], ZOOMLEVEL)
-    }
+  //   } else {
+  //     mainMap = L.mapbox.map(e).setView([-33.852222, 151.210556], ZOOMLEVEL)
+  //   }
 
-    L.mapbox.styleLayer(STYLELAYER).addTo(mainMap);
+  //   L.mapbox.styleLayer(STYLELAYER).addTo(mainMap);
 
-    console.log(args.disableControls)
+  //   console.log(args.disableControls)
 
-    // disable controls on the map
-    if (args.disableControls == "true") {
-      console.log("disabling controls")
-      mainMap.touchZoom.disable();
-      mainMap.dragging.disable();
-      mainMap.doubleClickZoom.disable();
-      mainMap.scrollWheelZoom.disable();
-      mainMap.boxZoom.disable();
-      mainMap.keyboard.disable();
-      $(".leaflet-control-zoom").css("visibility", "hidden");
-    }
+  //   // disable controls on the map
+  //   if (args.disableControls == "true") {
+  //     console.log("disabling controls")
+  //     mainMap.touchZoom.disable();
+  //     mainMap.dragging.disable();
+  //     mainMap.doubleClickZoom.disable();
+  //     mainMap.scrollWheelZoom.disable();
+  //     mainMap.boxZoom.disable();
+  //     mainMap.keyboard.disable();
+  //     $(".leaflet-control-zoom").css("visibility", "hidden");
+  //   }
 
-    // hide attribution
-    $(".leaflet-control-attribution").css("visibility", "hidden");
-  }
+  //   // hide attribution
+  //   $(".leaflet-control-attribution").css("visibility", "hidden");
+  // }
 
   return m;
 }());
