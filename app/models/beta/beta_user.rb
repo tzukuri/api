@@ -70,7 +70,7 @@ class BetaUser < ActiveRecord::Base
   end
 
   def resend_link
-    BetaMailer.send_beta_forgot_link(self).deliver_now
+    BetaMailer.send_beta_forgot_link(self).deliver_later
   end
 
   # social methods
