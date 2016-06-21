@@ -524,7 +524,7 @@ body.beta {
             form {
                 input {
                     &:nth-child(even) {
-                        margin-left: 0px;
+                        margin-left: 0px !important;
                     }
                 }
             }
