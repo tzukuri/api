@@ -220,8 +220,9 @@ $(function() {
     })
 
     // automatically select the contents of the input when the unique link is clicked
-    $("#unique-link").on("click", function() {
-        $(this).select()
+    $("#link").on("click", function() {
+        // for mobile safari
+        this.setSelectionRange(0, this.value.length)
     })
 
     $('.new_beta_user').on('input propertychange', function() {
