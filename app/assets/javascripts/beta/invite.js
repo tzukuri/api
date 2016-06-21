@@ -122,9 +122,15 @@ $(function() {
             }
         })
 
-        if (complete && $('#register-btn').hasClass('disabled')) {
+        if (complete) {
             // show the submit button
-            $("#register-btn").removeClass('disabled').prop('disabled', false).tzAnimate('bounceIn').show();
+            $("#register-btn").removeClass('disabled').prop('disabled', false);
+
+            // only animate in if coming from disabled state
+            if ($('#register-btn').hasClass('disabled')) {
+                $('#register-btn').tzAnimate('bounceIn').show();
+            }
+
         } else {
             $("#register-btn").addClass('disabled').prop('disabled', true);
         }
