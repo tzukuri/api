@@ -361,32 +361,35 @@ body.beta {
 
             #connect-social-row {
                 #social-exp {
-                    margin-bottom: 20px;
+                    margin-bottom: 5px;
                 }
 
                 .social-col {
                     margin-top: 10px;
 
                     .social-icon {
-                        text-align: center;
+                        text-align: left;
                         color: $tzukuri-blue;
-                        padding-top: 2.5px;
                     }
 
                     button {
                         border-radius: 10px;
-                        width: 100%;
+                        width: 70%;
                         font-size: 11pt;
-                        padding-top: 8px;
-                        padding-bottom: 8px;
+                        padding-top: 0px;
+                        padding-bottom: 2px;
                         padding-left: 0px;
                         padding-right:0px;
-                        height: auto;
+                        margin-left: 5p;x
+                        height: 32px;
+                        line-height: 12px;
+                        border-color: #B7CAE7;
 
                         &.connected {
                             background-color: $tzukuri-blue;
                             color: white;
                             cursor: auto;
+                            opacity: 0.7;
                         }
                     }
                 }
