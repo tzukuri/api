@@ -517,6 +517,15 @@ body.beta {
     #invite-link-container #link {
         // font-size: 10pt;
     }
+
+    #question-content .question form input {
+        width: 100% !important;
+        margin-left: 0 !important;
+    }
+
+    .social-icon {
+        margin-bottom: 15px !important;
+    }
 }
 
 @media only screen and (max-width: 960px) {
