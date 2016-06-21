@@ -338,6 +338,7 @@ body.beta {
 
                 #score-col {
                     text-align: center;
+                    margin-top: 90px;
 
                     > p {
                         width: 130px;
@@ -401,10 +402,10 @@ body.beta {
                         border-color: #B7CAE7;
 
                         &.connected {
-                            background-color: $tzukuri-blue;
+                            background-color: #8EB2F1;
+                            border-color: #8EB2F1;
                             color: white;
                             cursor: auto;
-                            opacity: 0.7;
                         }
                     }
                 }
@@ -540,7 +541,7 @@ body.beta {
 
     // align social media icons to the left of their
     // connect buttons
-    #connect-social-row {
+    #connect-social-row .ten .row {
         .social-col {
             text-align: center;
         }
@@ -552,7 +553,7 @@ body.beta {
         }
 
         .social-icon {
-            width: auto;
+            width: 30px;
         }
 
         // button
