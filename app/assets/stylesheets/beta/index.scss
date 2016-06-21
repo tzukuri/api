@@ -293,10 +293,12 @@ body.beta {
                             font-size: 32pt;
                             font-weight: 200;
                             text-transform: capitalize;
+                            vertical-align: middle;
                         }
 
                         #logout {
                             margin-left: 20px;
+                            vertical-align: middle;
                         }
 
                         margin-bottom: 20px;
@@ -308,29 +310,42 @@ body.beta {
 
                     #invite-link-container {
                         background-color: $tzukuri-light-grey;
-                        border-radius: 15px;
-                        padding: 15px;
+                        border-radius: 5px;
+                        padding: 20px 10px 16px 10px;
                         text-align: center;
                         margin-bottom: 20px;
+                        margin-top: 40px;
 
                         #link {
                             text-align: center;
                             width: 60%;
-                            margin-top: 20px;
-                            margin-bottom: 20px;
+                            margin-top: 10px;
+                            margin-bottom: 15px;
                             background-color: white;
                             color: $tzukuri-blue;
                             border-radius: 10px;
-                            padding: 10px 20px 10px 20px;
+                            padding: 10px 15px 10px 15px;
                             border: 1px solid $tzukuri-light-grey;
                             -webkit-appearance: none;
                             opacity: 1 !important;
+
+                            &+ p {
+                                font-size: 13px;
+                            }
                         }
                     }
                 }
 
                 #score-col {
                     text-align: center;
+
+                    > p {
+                        width: 130px;
+                        margin: 0px auto;
+                        color: #aaa;
+                        line-height: 130%;
+                        font-weight: 200;
+                    }
 
                     #score-container {
                         border-radius: 50%;
@@ -374,13 +389,13 @@ body.beta {
 
                     button {
                         border-radius: 10px;
-                        width: 70%;
+                        width: 80%;
                         font-size: 11pt;
                         padding-top: 0px;
                         padding-bottom: 2px;
                         padding-left: 0px;
-                        padding-right:0px;
-                        margin-left: 5p;x
+                        padding-right: 0px;
+                        margin-left: 10px;
                         height: 32px;
                         line-height: 12px;
                         border-color: #B7CAE7;
@@ -498,7 +513,9 @@ body.beta {
     }
 }
 
-@media only screen and (max-width: 550px) {
+// skeleton's cutover point is > 550px (inclusive) so
+// we want to swap at 549px
+@media only screen and (max-width: 549px) {
     #login-container form input {
         width: 90% !important;
     }
@@ -519,6 +536,30 @@ body.beta {
 
     #invite-link-container #link {
         // font-size: 10pt;
+    }
+
+    // align social media icons to the left of their
+    // connect buttons
+    #connect-social-row {
+        .social-col {
+            text-align: center;
+        }
+
+        .columns {
+            float: none;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .social-icon {
+            width: auto;
+        }
+
+        // button
+        .ten {
+            width: 50%;
+            text-align: left;
+        }
     }
 }
 
