@@ -33,7 +33,7 @@ class BetaController < ApplicationController
 
     beta_user.resend_link if !beta_user.nil?
 
-    render :json => {success: true, email: params[:email]}
+    render :json => {success: true}
   end
 
   def redirect

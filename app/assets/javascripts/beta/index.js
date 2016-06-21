@@ -220,8 +220,9 @@ $(function() {
     })
 
     // automatically select the contents of the input when the unique link is clicked
-    $("#unique-link").on("click", function() {
-        $(this).select()
+    $("#link").on("click", function() {
+        // for mobile safari
+        this.setSelectionRange(0, this.value.length)
     })
 
     $('.new_beta_user').on('input propertychange', function() {
@@ -234,7 +235,7 @@ $(function() {
         })
 
         if (complete && $('#submit-btn').hasClass('disabled')) {
-            $('#submit-btn').removeClass('disabled').prop("disabled", false).tzAnimate('bounceIn').show();
+            $('#submit-btn').removeClass('disabled').tzAnimate('bounceIn').show();
         }
     })
 

@@ -20,10 +20,9 @@ class BetaUser < ActiveRecord::Base
   validates :score,         presence: true
   validates :birth_date,    presence: true
   validates :latitude,      presence: true
-  validates :longitude,          presence: true
+  validates :longitude,     presence: true
+  validates :city,          presence: true
   validates_format_of :email,:with => Devise.email_regexp
-
-  attr_accessor :city
 
   # methods
   def referred_by(referrer_token)

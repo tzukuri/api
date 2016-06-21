@@ -146,7 +146,7 @@
             <div id="invite-link-container">
               <p>Share this link to earn <span class='bold'>10 points</span> for every sign up</p>
 
-              <input disabled id="link" value="tzukuri.com/beta/invite/<%= @beta_user.invite_token %>">
+              <input readonly id="link" value="tzukuri.com/beta/invite/<%= @beta_user.invite_token %>">
 
               <p><%= @beta_user.invitees.count %> people have used this link</p>
             </div>

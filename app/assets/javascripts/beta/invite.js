@@ -74,9 +74,11 @@ $(function() {
     })
 
     $("#beta_user_city").on('input', function() {
-        if ($(this).val().length == 0) {
+        // if there is nothing, or if we are making a change after the field has been selected
+        if ($(this).val().length == 0 || selectedCity) {
             $("#beta_user_latitude").val("")
             $("#beta_user_longitude").val("")
+            selectedCity = false
         } else {
             $(this).addClass('loading-spinner')
         }
@@ -109,18 +111,26 @@ $(function() {
         }, 200);
     });
 
+
+
     var checkSubmit = function() {
         var complete = true;
 
         $('#new_beta_user').children("input").each(function(e) {
-            if ($(this).val() === "") {
+            if ($(this).val() == "") {
                 return complete = false;
             }
         })
 
-        if (complete && $('#register-btn').hasClass('disabled')) {
+        if (complete) {
             // show the submit button
-            $("#register-btn").removeClass('disabled').prop('disabled', false).tzAnimate('bounceIn').show();
+            $("#register-btn").removeClass('disabled').prop('disabled', false);
+
+            // only animate in if coming from disabled state
+            if ($('#register-btn').hasClass('disabled')) {
+                $('#register-btn').tzAnimate('bounceIn').show();
+            }
+
         } else {
             $("#register-btn").addClass('disabled').prop('disabled', true);
         }
@@ -181,6 +191,9 @@ $(function() {
         })
     }
 
+    // keep track of whether the user has made a valid city selection or not
+    var selectedCity = false;
+
     var selectCity = function(event, ui) {
         event.preventDefault()
         label = ui.item.label
@@ -193,6 +206,7 @@ $(function() {
         $("#beta_user_latitude").val(coordinates[0])
         $("#beta_user_longitude").val(coordinates[1])
 
+        selectedCity = true;
         checkSubmit();
     }
 
