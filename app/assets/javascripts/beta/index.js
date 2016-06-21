@@ -234,7 +234,7 @@ $(function() {
         })
 
         if (complete && $('#submit-btn').hasClass('disabled')) {
-            $('#submit-btn').removeClass('disabled').prop("disabled", false).tzAnimate('bounceIn').show();
+            $('#submit-btn').removeClass('disabled').tzAnimate('bounceIn').show();
         }
     })
 
