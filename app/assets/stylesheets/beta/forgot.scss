@@ -1,5 +1,4 @@
 body.beta {
-
     #beta-forgot {
         text-align: center;
         padding-top: 160px;
@@ -9,6 +8,7 @@ body.beta {
             color: $tzukuri-black;
             font-weight: 200;
             margin-bottom: 20px;
+            line-height: 150%;
         }
 
         p {
@@ -19,7 +19,8 @@ body.beta {
         }
 
         #email {
-            width: 40%;
+            width: 95%;
+            max-width: 360px;
         }
 
         #submit-btn {

@@ -59,7 +59,7 @@
                     <%= f.text_field :city, class: "beta-input", placeholder: "city" %>
 
                     <%= f.hidden_field :invite_token, value: @token %><br/>
-                    <%= f.submit "register", class: "disabled", id: "register-btn" %>
+                    <%= f.submit "register", class: "disabled", disabled: true, data: {disable_with: "registering..."}, id: "register-btn" %>
                 <% end %>
                 <% end %>
 

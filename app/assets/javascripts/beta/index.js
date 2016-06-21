@@ -135,11 +135,17 @@ $(function() {
         // if the user is logged in and looking at the details view show the
         // beta modal if this is the first time
         if ($('#details-container').length > 0) {
-            if (localStorage.getItem('betaAlreadyVisited') === null) {
-                // show the modal and set
-                localStorage.setItem('betaAlreadyVisited', true)
+            storage = window.localStorage;
 
-                // show the modal
+            if (storage.getItem('betaAlreadyVisited') === null || storage.getItem('betaAlreadyVisited') == false) {
+
+                try {
+                    storage.setItem('betaAlreadyVisited', true);
+                } catch (error) {
+                    // can't set localstorage (probably in private mode)
+                    // console.log(error)
+                }
+
                 tzukuri.modal.show({
                     modal: "#beta-modal",
                     tint: "light",
@@ -148,6 +154,7 @@ $(function() {
             }
         }
 
+        // show the first answerable question
         showQuestion($('[data-answerable=true]').first())
     })
 
@@ -227,7 +234,7 @@ $(function() {
         })
 
         if (complete && $('#submit-btn').hasClass('disabled')) {
-            $('#submit-btn').removeClass('disabled').tzAnimate('bounceIn').show();
+            $('#submit-btn').removeClass('disabled').prop("disabled", false).tzAnimate('bounceIn').show();
         }
     })
 
@@ -242,7 +249,7 @@ $(function() {
             updateScore(data.score, data.percentage_chance)
         } else {
             // skip to the next question
-             skipQuestion();
+            skipQuestion();
         }
     }).on('ajax:error', function(e, data) {
         // todo: handle the error state

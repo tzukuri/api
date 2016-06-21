@@ -43,6 +43,14 @@ $(function() {
         if ($('#beta-invite').attr('data-error')) {
             $('#form-error').tzAnimate('shake')
         }
+
+        // if the video is displayed, play it
+        // if ($('#phone-video').is(':visible')) {
+        //     console.log('video playing')
+        //     $('#phone-video')[0].play()
+        // } else {
+        //     console.log('video not playing')
+        // }
     })
 
     $('#new_beta_user').on('input', function() {
@@ -112,10 +120,11 @@ $(function() {
 
         if (complete && $('#register-btn').hasClass('disabled')) {
             // show the submit button
-            $("#register-btn").removeClass('disabled').tzAnimate('bounceIn').show();
+            $("#register-btn").removeClass('disabled').prop('disabled', false).tzAnimate('bounceIn').show();
+        } else {
+            $("#register-btn").addClass('disabled').prop('disabled', true);
         }
     }
-
 
     // called when the user finishes typing in the birthday input field (for signup)
     var birthdayInputFinished = function(input) {

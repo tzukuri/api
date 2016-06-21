@@ -538,6 +538,7 @@ body.beta {
         // font-size: 10pt;
     }
 
+<<<<<<< HEAD
     // align social media icons to the left of their
     // connect buttons
     #connect-social-row {
@@ -560,6 +561,11 @@ body.beta {
             width: 50%;
             text-align: left;
         }
+    }
+
+    #question-content .question form input {
+        width: 100% !important;
+        margin-left: 0 !important;
     }
 }
 
