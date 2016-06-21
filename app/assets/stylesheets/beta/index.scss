@@ -69,7 +69,6 @@ body.beta {
         p {
             font-size: 12pt;
             line-height: 150%;
-            color: $tzukuri-dark-grey;
             font-weight: 300;
         }
 
@@ -419,6 +418,7 @@ body.beta {
 
                     .answer-sub {
                         font-size: 12pt;
+                        text-align: right;
                     }
 
                     #answered {
@@ -466,15 +466,19 @@ body.beta {
                                 border-radius: 0px;
                                 padding-left: 0px;
                                 padding-top: 0px;
-                                margin-left: 5%;
-                                width: 42%;
+                                width: 45%;
                                 font-weight: 100;
-                                border-bottom: 1px solid $tzukuri-blue;
+                                border-bottom: 1px solid #ddd;
 
                                 @include transition(0.5s);
 
+                                &:nth-child(even) {
+                                    margin-left: 20px;
+                                }
+
                                 &:hover {
                                     color: $tzukuri-blue;
+                                    border-bottom-color: $tzukuri-blue;
                                 }
                             }
                         }
@@ -508,6 +512,20 @@ body.beta {
             form {
                 input {
                     width: 40%;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 565px) {
+    #question-content {
+        .question {
+            form {
+                input {
+                    &:nth-child(even) {
+                        margin-left: 0px;
+                    }
                 }
             }
         }
