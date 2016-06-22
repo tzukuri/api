@@ -18,13 +18,17 @@ body.beta {
             font-weight: 300;
         }
 
-        #email {
-            width: 95%;
-            max-width: 360px;
-        }
+        #beta_user_retrieve {
+            margin-top: 20px;
 
-        #submit-btn {
-            width: 10%;
+            #email {
+                width: 95%;
+                max-width: 360px;
+            }
+
+            #submit-btn {
+                width: 10%;
+            }
         }
 
         #email-confirm {
