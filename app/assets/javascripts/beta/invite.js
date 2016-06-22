@@ -138,10 +138,10 @@ $(function() {
 
     // called when the user finishes typing in the birthday input field (for signup)
     var birthdayInputFinished = function(input) {
-        var DATE_REGEX = /^\d{1,2}[/]\d{1,2}[/]\d{4}$/
+        var DATE_REGEX = /^\d{1,2}[/]\d{1,2}[/]\d{2,4}$/
         var hint = $("#birthday_hint").text()
         var hintText = "dd/mm/yyyy"
-        var m = moment(input, "DD/MM/YYYY")
+        var m = moment(input, 'D/M/YYYY')
 
         if (DATE_REGEX.test(input)) {
             if (m.isValid()) {

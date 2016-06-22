@@ -18,7 +18,7 @@ class BetaUser < ActiveRecord::Base
   validates :email,         presence: true,   uniqueness: true
   validates :invite_token,  presence: true,   uniqueness: true, :length => { :is => 6 }
   validates :score,         presence: true
-  validates :birth_date,    presence: true,   inclusion: {in: 100.years.ago...1.year.ago, message: 'should be valid'}
+  validates :birth_date,    inclusion: {in: 100.years.ago...1.year.ago, message: 'should be valid'}
   validates :latitude,      presence: true
   validates :longitude,     presence: true
   validates :city,          presence: true
