@@ -1,4 +1,5 @@
 class BetaController < ApplicationController
+  http_basic_authenticate_with name: "beta@tzukuri.com", password: "ksV-Pxq-646-feS", only: [:list, :count]
 
   def index
     @token = params[:token]
@@ -42,6 +43,22 @@ class BetaController < ApplicationController
     else
       redirect_to root_path
     end
+  end
+
+  # render CSV of a subset of attributes
+  def list
+      csv_string = CSV.generate do |csv|
+        csv << ['name', 'email', 'score', 'birth_date', 'city']
+        BetaUser.all.each do |betauser|
+          csv << [betauser.name, betauser.email, betauser.score, betauser.birth_date, betauser.city]
+        end
+    end
+
+    render body: csv_string
+  end
+
+  def count
+    render body: BetaUser.count.to_s
   end
 
 end

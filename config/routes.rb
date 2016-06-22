@@ -74,8 +74,8 @@ Rails.application.routes.draw do
     # -----------------------------
     # other web routes
     # -----------------------------
-    resources  :beta_responses
-    resources  :beta_orders
+    resources :beta_responses
+    resources :beta_orders
 
     resources :purchases do
         collection do
@@ -90,10 +90,11 @@ Rails.application.routes.draw do
     end
 
     resources :rsvps do
-      collection do
-        get :csv
-      end
+        collection do
+            get :csv
+        end
     end
+
 
     # beta routes
     get '/beta/forgot'          => 'beta#forgot',       :as => :beta_user_forgot
@@ -104,7 +105,9 @@ Rails.application.routes.draw do
     get '/beta/invite/:token'   => 'beta#invite',       :as => :beta_user_invite
     get '/beta'                 => redirect('/')
 
-    # get '/dashboard'            => 'dashboard#index',   :as => :dashboard
+    # beta user aggregations
+    get '/beta/beta_users/count' => 'beta#count'
+    get '/beta/beta_users/list'  => 'beta#list'
 
     # mailer preview paths
     # get '/rails/mailers' => "rails/mailers#index"
