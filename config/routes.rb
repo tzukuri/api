@@ -102,7 +102,7 @@ Rails.application.routes.draw do
     get '/beta/redirect'        => 'beta#redirect'
     get '/beta/:token'          => 'beta#index',        :as => :beta_user
     get '/beta/invite/:token'   => 'beta#invite',       :as => :beta_user_invite
-    get '/beta'                 => 'beta#invite'
+    get '/beta'                 => redirect('/')
 
     # get '/dashboard'            => 'dashboard#index',   :as => :dashboard
 
