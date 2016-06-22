@@ -24,14 +24,6 @@
           <div class="six columns">
             <button class="register-now">register now</button>
           </div>
-
-          <div class="six columns">
-            <% if !flash[:notice].nil? %>
-            <p id="error">
-              <%= flash[:notice].join(', ') %>
-            </p>
-            <% end %>
-          </div>
         </div>
         <% end %>
 

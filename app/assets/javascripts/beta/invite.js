@@ -219,4 +219,24 @@ $(function() {
         select: selectCity,
         focus: cityFocus
     })
+
+        // creating a new order if the user is selected
+    $('#new_beta_user').on('ajax:success', function(e, data) {
+        console.log(data)
+        if (data.success) {
+            window.location.replace(data.redirectURL)
+        } else {
+            $("#new_beta_user input").removeClass('error');
+
+            _(data.errors).forEach(function(error, key) {
+                $("#beta_user_" + key).addClass('error')
+            });
+
+            // populate the error messages
+            $('#register-errors').html(data.error_messages.join(', '))
+        }
+
+    }).on('ajax:error', function(e, data) {
+        console.log(data)
+    });
 });

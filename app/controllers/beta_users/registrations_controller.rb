@@ -9,21 +9,24 @@ class BetaUsers::RegistrationsController < Devise::RegistrationsController
 
     if resource.persisted?
       if resource.active_for_authentication?
-        set_flash_message :notice, :signed_up
         sign_up(resource_name, resource)
-
-        # set up referral and assign points
         resource.referred_by(sign_up_params[:invite_token])
-        respond_with resource, location: after_sign_up_path_for(resource)
       else
-        set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}"
         expire_data_after_sign_in!
-        respond_with resource, location: after_inactive_sign_up_path_for(resource)
       end
+
+      render :json => {
+        success: true,
+        redirectURL: beta_user_path(resource.invite_token)
+      }
+
+      return
     else
-      # store the error messages in flash and redirect to the invite path
-      flash[:notice] = flash[:notice].to_a.concat resource.errors.full_messages
-      redirect_to beta_user_invite_path(sign_up_params[:invite_token])
+      render :json => {
+        success: false,
+        error_messages: resource.errors.full_messages,
+        errors: resource.errors
+      }
     end
   end
 

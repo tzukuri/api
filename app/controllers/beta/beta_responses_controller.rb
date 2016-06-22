@@ -14,7 +14,7 @@ class BetaResponsesController < ApplicationController
 
        render :json => {
           success: true,
-          beta_respnse: beta_response,
+          beta_response: beta_response,
           score: current_beta_user.score,
           answerable_questions: current_beta_user.answerable_questions.map(&:id),
           percentage_chance: current_beta_user.percentage_chance
