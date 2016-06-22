@@ -11,7 +11,11 @@ class BetaController < ApplicationController
       @email_hash = Digest::MD5.hexdigest @beta_user.email
     else
       # otherwise create an empty user and show the form
-      @beta_user = BetaUser.new
+      if @token == 'invite'
+        redirect_to '/'
+      else
+        @beta_user = BetaUser.new
+      end
     end
   end
 
