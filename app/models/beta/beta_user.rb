@@ -84,8 +84,8 @@ class BetaUser < ActiveRecord::Base
   def twitter_client
     if twitter?
       @twitter_client = Twitter::REST::Client.new do |config|
-        config.consumer_key        = "7EPMTuMvQz6isHz2PfACk5PZ4"
-        config.consumer_secret     = "afywHMEak0vUDANUAX6iLqyoJ94sD9i3ACsDQZ7DfuZOkNRq0K"
+        config.consumer_key        = API_KEYS['twitter']['api_key']
+        config.consumer_secret     = API_KEYS['twitter']['api_secret']
         config.access_token        = twitter.access_token
         config.access_token_secret = twitter.private_token
       end
