@@ -101,8 +101,8 @@ Rails.application.routes.draw do
     post '/beta/retrieve'       => 'beta#retrieve',     :as => :beta_user_retrieve
     # redirect twitter on failed authentication
     get '/beta/redirect'        => 'beta#redirect'
-    get '/beta/invite/:token'   => 'beta#invite',       :as => :beta_user_invite
     get '/beta/:token'          => 'beta#index',        :as => :beta_user
+    get '/beta/invite/:token'   => 'beta#invite',       :as => :beta_user_invite
     get '/beta'                 => redirect('/')
 
     # beta user aggregations
