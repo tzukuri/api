@@ -163,7 +163,9 @@ $(function() {
     var PHOTON_LIMIT = 3
 
     var cityQuery = function(request, response) {
-        $.getJSON(`${PHOTON_API}${request.term}&limit=${PHOTON_LIMIT}`, function(data) {
+        var apiURL = PHOTON_API + request.term + "&limit=" + PHOTON_LIMIT
+
+        $.getJSON(apiURL, function(data) {
             var cities = [];
 
             // extract the features that we need
