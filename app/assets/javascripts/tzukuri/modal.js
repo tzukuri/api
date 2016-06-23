@@ -3,6 +3,7 @@ var dialog = ".modal-dialog"
 
 var modal = (function () {
   var m = {}
+  var inner = null;
 
   /**
    * [show shows a modal]
@@ -15,7 +16,7 @@ var modal = (function () {
 
     // find the modal on the DOM
     var outer = $(container);
-    var inner = $(args.modal);
+    inner = $(args.modal);
 
     if (inner.length) {
       if (tint != "dark" && tint != "light") {
@@ -57,15 +58,12 @@ var modal = (function () {
     $(container).removeClass().addClass("tzukuri-modal hidden");
     $(container).unbind('click');
 
-    $(container).children().each(function(index, modal) {
-      // allow scroll events on body again
-      $('body').css('overflow', 'auto');
+    // allow scroll events on body again
+    $('body').css('overflow', 'auto');
 
-      // hide the dialog
-      // hide the dialog
-      $(modal).addClass("hidden");
-      $(modal).unbind('click');
-    })
+    // hide the dialog
+    inner.addClass("hidden");
+    inner.unbind('click');
   }
 
   return m;
