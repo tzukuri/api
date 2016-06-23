@@ -2,7 +2,9 @@ class BetaUsers::RegistrationsController < Devise::RegistrationsController
 
   def create
     puts sign_up_params
-    build_resource(sign_up_params)
+
+    # build the user resource with params and agent + IP
+    build_resource(sign_up_params.merge(:user_agent => request.user_agent, :ip_address => request.remote_ip))
     resource.save
 
     yield resource if block_given?
