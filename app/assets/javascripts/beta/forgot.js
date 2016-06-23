@@ -8,9 +8,7 @@ $(function() {
         }
     })
 
-    // creating a new response to a survey question
     $('#beta_user_retrieve').on('ajax:success', function(e, data) {
-        console.log(data)
         if (data.success) {
             $("#submit-btn").fadeOut(function() {
                 $("#email-confirm").html('If a matching account was found an email was sent with your login link').fadeIn();
@@ -24,6 +22,7 @@ $(function() {
 
     $('#beta_user_retrieve').on('submit', function(e) {
         $('#submit-btn').hide();
+        $('#email-confirm').show();
     });
 
 });
