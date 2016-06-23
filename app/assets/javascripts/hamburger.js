@@ -1,5 +1,6 @@
-// bind hamburger click
-$(document).on("click", "#hamburger", function() {
-  event.preventDefault()
-  $('header menu').toggleClass('showing')
-})
+$(function() {
+  $('#hamburger').on('click', function(e) {
+    e.preventDefault();
+    $('header menu').toggleClass('showing');
+  })
+});
