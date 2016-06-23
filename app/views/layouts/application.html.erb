@@ -56,7 +56,7 @@
                             <%= f.hidden_field :latitude %>
                             <%= f.hidden_field :longitude %>
 
-                            <%= f.text_field :city, class: "beta-input", placeholder: "city" %>
+                            <%= f.text_field :city, class: "beta-input", placeholder: "city", autocomplete: 'off' %>
 
                             <%= f.hidden_field :invite_token, value: @token %><br/>
                             <%= f.submit "register", class: "disabled", disabled: true, data: {disable_with: "register"}, id: "register-btn" %>
