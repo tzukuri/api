@@ -15,10 +15,10 @@ header#store {
 
     div {
         max-width: 960px;
+        width: 80%;
         margin: 0px auto;
         position: relative;
         @include box-sizing(border-box);
-        padding-left: $horz-padding;
         padding-right: $horz-padding;
     }
 
@@ -50,7 +50,6 @@ header#store {
                 color: #aaa;
                 text-transform: lowercase;
                 display: inline-block;
-                margin-right: 20px;
                 margin-left: 20px;
 
                 &.selected {
