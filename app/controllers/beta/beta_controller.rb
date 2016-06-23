@@ -6,7 +6,9 @@ class BetaController < ApplicationController
 
     if beta_user_signed_in?
       @beta_user = current_beta_user
-      @percentage_chance = @beta_user.percentage_chance
+      @rank = @beta_user.rank
+      @score_diff = 135 - @beta_user.score
+      # @percentage_chance = @beta_user.percentage_chance
       @answerable_questions = @beta_user.answerable_questions
       @email_hash = Digest::MD5.hexdigest @beta_user.email
     else

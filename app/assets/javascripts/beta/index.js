@@ -113,13 +113,21 @@ $(function() {
             $("#points-amount").html(score).tzAnimate('pulse').fadeIn()
         })
 
-        if (percentage <= 50) {
-            $('#direction').html('top')
-            $("#percentage").html(percentage)
+        var scoreDiff = 135 - score;
+
+        if (scoreDiff > 0) {
+            $('#incentive').html('<p><span class="bold">Get <span id="score_diff">' + scoreDiff +'</span> more points</span> to be in the eligible top 100</p>')
         } else {
-            $('#direction').html('bottom')
-            $("#percentage").html(100 - percentage)
+            $('#incentive').html('<p>You\'re in the top 100</p>')
         }
+
+        // if (percentage <= 50) {
+        //     $('#direction').html('top')
+        //     $("#percentage").html(percentage)
+        // } else {
+        //     $('#direction').html('bottom')
+        //     $("#percentage").html(100 - percentage)
+        // }
     }
 
     // -----------------------------
