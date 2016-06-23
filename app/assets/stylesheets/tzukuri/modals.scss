@@ -1,5 +1,4 @@
 // primary style for the tzukuri modal
-//
 
 ::-webkit-scrollbar {
     display: none;
@@ -8,7 +7,9 @@
 .tzukuri-modal {
     position: fixed;
     z-index: 200;
-    overflow-y: auto;
+    height: 100%;
+    width: 100%;
+    display: table;
 
     @include transition(0.8s);
 
@@ -28,6 +29,13 @@
         background-color: rgba(255, 255, 255, 0.95);
     }
 
+    #spacer {
+        display: table-cell;
+        vertical-align: middle;
+        width: 100%;
+        height: 100%;
+    }
+
     .modal-dialog {
         background-color: white;
         width: 50%;
@@ -35,6 +43,9 @@
         padding: 30px;
         text-align: center;
         box-shadow: 0px 0px 20px #ECF0F1;
+        overflow: auto;
+        margin: 0px auto;
+        max-height: 100%;
 
         &.hidden {
             opacity: 0;
@@ -55,6 +66,28 @@
 
         &.clear {
             background-color: transparent;
+        }
+
+        .modal-content {
+            background-color: white;
+            width: 50%;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+
+            &.light {
+                background-color: rgba(255, 255, 255, 0.8);
+                color: $tzukuri-black;
+            }
+
+            &.dark {
+                background-color: rgba(35, 35, 35, 0.8);
+                color: white;
+            }
+
+            &.clear {
+                background-color: transparent;
+            }
         }
     }
 }
@@ -333,8 +366,9 @@
 // let the modal take up the entire screen on mobile devices
 @media only screen and (max-width: 750px) {
     #beta-modal, #beta-register-modal, #beta-eligible-modal {
+        box-sizing: border-box;
         background-color: white;
-        width: 100vw;
+        width: 100%;
         padding: 20px;
         height: 100%;
         border-radius: 0;

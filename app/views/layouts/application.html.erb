@@ -29,112 +29,114 @@
     </head>
     <body class="<%= params[:page] || controller_name %>">
         <div class="tzukuri-modal hidden">
-            <!-- subscription modal -->
-            <div id="subscription-modal" class="modal-dialog light hidden">
-                <h1>Subscribe to receive the latest updates from Tzukuri</h1>
-                <br/>
-                <%= form_for Email.new, remote: true do |f| %>
-                <%= f.text_field :email, placeholder: 'email address', autofocus: true %>
-                <br/><br/>
-                <button>subscribe</button>
-                <% end %>
-                <p id="subscribe-status"></p>
-            </div>
-
-            <!-- beta registration modal -->
-            <div id="beta-register-modal" class="modal-dialog light hidden">
-                <h1>Enter your details below to register for the Tzukuri beta</span></h1>
-
-                <% if !@beta_user.nil? %>
-                    <%= form_for @beta_user, remote: true, url: beta_user_registration_path(@beta_user) do |f| %>
-                        <%= f.text_field :name, placeholder: "name", autofocus: true, autocomplete: 'off', class: "beta-input" %> <br>
-                        <%= f.email_field :email, placeholder: "email address", autocomplete: 'off', class: "beta-input" %> <br/>
-
-                        <%= f.text_field :birth_date, placeholder: "birth date", class: "beta-input", autocomplete: 'off' %>
-                        <p id="birthday_hint">dd/mm/yyyy</p>
-
-                        <%= f.hidden_field :latitude %>
-                        <%= f.hidden_field :longitude %>
-
-                        <%= f.text_field :city, class: "beta-input", placeholder: "city" %>
-
-                        <%= f.hidden_field :invite_token, value: @token %><br/>
-                        <%= f.submit "register", class: "disabled", disabled: true, data: {disable_with: "register"}, id: "register-btn" %>
-
-                        <p id="register-errors"></p>
+            <div id="spacer">
+                <!-- subscription modal -->
+                <div id="subscription-modal" class="modal-dialog light hidden">
+                    <h1>Subscribe to receive the latest updates from Tzukuri</h1>
+                    <br/>
+                    <%= form_for Email.new, remote: true do |f| %>
+                    <%= f.text_field :email, placeholder: 'email address', autofocus: true %>
+                    <br/><br/>
+                    <button>subscribe</button>
                     <% end %>
-                <% end %>
-
-                <p id="terms">By registering you agree to our <a href="/beta_legal" target="_blank">beta terms and conditions</a>.</p>
-            </div>
-
-            <!-- beta eligible modal -->
-            <div id="beta-eligible-modal" class="modal-dialog light hidden">
-                <h1>Tzukuri Beta Overview</h1>
-                <ul>
-                    <li>If selected, you will receive a pair of sunglasses, you will be allowed to keep the sunglasses at the end of the testing period.</li>
-                    <li>You will be expected to report any issues you have with the product and respond to weekly email surveys during the test period.</li>
-                    <li>You must own an <span class='bold'>iPhone 5 or later</span> running <span class='bold'>iOS 9.0 or later</span>.</li>
-                    <li>You must be an <span class='bold'>Australian resident</span> who is <span class='bold'>at least 18 years old</span>.</li>
-                    <li>If you have any more questions, check out our <a href="/faq#beta">FAQ</a> or get in contact at <a href="mailto:beta@tzukuri.com">beta@tzukuri.com</a></li>
-                </ul>
-                <br/><br/>
-                <center><button id="beta-eligible-done">done</button></center>
-            </div>
-
-            <!-- beta modal -->
-            <div id="beta-modal" class="modal-dialog light hidden">
-                <h1>T Z U K U R I <span class="blue">[beta]</span></h1>
-                <br/><br/>
-                <p>
-                <span class="bold">Welcome to the Tzukuri beta dashboard</span>. We’ll be selecting 100 testers to help us test our glasses before our launch later this year. To help us make sure that the people we select are passionate about our product we’re going to be <span class="bold">selecting people based on the number of points they acquire</span>. There are three ways to gain points:</p>
-                <br/>
-                <ol>
-                    <li><span class="bold">Answer our survey questions</span> to help us to select a diverse range of people to test with.</li>
-                    <li><span class="bold">Log in with your social media accounts</span> to help us understand our market better.</li>
-                    <li><span class="bold">Invite your friends.</span> We want to give glasses out to groups of people so they can share their experiences with each other.</li>
-                </ol>
-                <br/>
-                <p>If you have any questions, please check out our <a href="/faq#beta" target="_blank">FAQ</a> or send an email to <a href="mailto:beta@tzukuri.com">beta@tzukuri.com</a>
-                <br/><br/>
-                <center><button id="beta-modal-done">done</button></center>
-            </div>
-
-            <!-- rsvp modal -->
-            <div id="rsvp-modal" class="modal-dialog light hidden">
-                <div id="rsvp-form">
-                    <%= form_for Rsvp.new, remote: true do |f| %>
-                    <p><%= f.text_field :name, placeholder: 'full name' %></p>
-                    <p><%= f.text_field :email, placeholder: 'email address' %></p>
-                    <p><%= f.text_field :inviter, placeholder: 'inviter' %></p>
-                    <button style="display: none">RSVP</button>
-                    <% end %>
-                    <div id="rsvp-confirm">
-                        <p id="rsvp-status">Thanks for your RSVP, we look forward to seeing you!<br/><br/><span id="rsvp-address">Track 8, Carriageworks (245 Wilson Street, Eveleigh) at 3:45 PM</span></p>
-                        <p id="add-calendar">
-                            <a href="Tzukuri_Demo_Event.ics" download>Add to Calendar</a></p>
-                        </div>
-                    </div>
-            </div>
-
-            <!-- share modal -->
-            <div id="share-modal" class="modal-dialog light hidden">
-                <div id="share-icons">
-                    <span><a href="#" class="fa fa-facebook fa-4x" id="share-fb"></a></span>
-                    <span><a href="#" class="fa fa-twitter fa-4x" id="share-twitter"></a></span>
-                    <span><a href="#" class="fa fa-pinterest fa-4x" id="share-pinterest"></a></span>
-                    <span><a href="#" class="fa fa-tumblr fa-4x" id="share-tumblr"></a></span>
-                    <span><a href="#" class="fa fa-envelope-square fa-4x" id="share-email"></a></span>
+                    <p id="subscribe-status"></p>
                 </div>
-            </div>
 
-            <!-- dashboard modal -->
-            <div id="dashboard-empty-device-modal" class="modal-dialog dark hidden">
-                <h1>No glasses connected to this account</h1>
-                <br/><br/>
-                <p>Set up a pair of glasses with the Tzukuri app to access the dashboard. If you're having trouble, please <a href="/contact">contact us</a>.</p>
-                <br/><br/>
-                <%= link_to "logout", destroy_user_session_path, :method => :delete %>
+                <!-- beta registration modal -->
+                <div id="beta-register-modal" class="modal-dialog light hidden">
+                    <h1>Enter your details below to register for the Tzukuri beta</span></h1>
+
+                    <% if !@beta_user.nil? %>
+                        <%= form_for @beta_user, remote: true, url: beta_user_registration_path(@beta_user) do |f| %>
+                            <%= f.text_field :name, placeholder: "name", autofocus: true, autocomplete: 'off', class: "beta-input" %> <br>
+                            <%= f.email_field :email, placeholder: "email address", autocomplete: 'off', class: "beta-input" %> <br/>
+
+                            <%= f.text_field :birth_date, placeholder: "birth date", class: "beta-input", autocomplete: 'off' %>
+                            <p id="birthday_hint">dd/mm/yyyy</p>
+
+                            <%= f.hidden_field :latitude %>
+                            <%= f.hidden_field :longitude %>
+
+                            <%= f.text_field :city, class: "beta-input", placeholder: "city" %>
+
+                            <%= f.hidden_field :invite_token, value: @token %><br/>
+                            <%= f.submit "register", class: "disabled", disabled: true, data: {disable_with: "register"}, id: "register-btn" %>
+
+                            <p id="register-errors"></p>
+                        <% end %>
+                    <% end %>
+
+                    <p id="terms">By registering you agree to our <a href="/beta_legal" target="_blank">beta terms and conditions</a>.</p>
+                </div>
+
+                <!-- beta eligible modal -->
+                <div id="beta-eligible-modal" class="modal-dialog light hidden">
+                    <h1>Tzukuri Beta Overview</h1>
+                    <ul>
+                        <li>If selected, you will receive a pair of sunglasses, you will be allowed to keep the sunglasses at the end of the testing period.</li>
+                        <li>You will be expected to report any issues you have with the product and respond to weekly email surveys during the test period.</li>
+                        <li>You must own an <span class='bold'>iPhone 5 or later</span> running <span class='bold'>iOS 9.0 or later</span>.</li>
+                        <li>You must be an <span class='bold'>Australian resident</span> who is <span class='bold'>at least 18 years old</span>.</li>
+                        <li>If you have any more questions, check out our <a href="/faq#beta">FAQ</a> or get in contact at <a href="mailto:beta@tzukuri.com">beta@tzukuri.com</a></li>
+                    </ul>
+                    <br/><br/>
+                    <center><button id="beta-eligible-done">done</button></center>
+                </div>
+
+                <!-- beta modal -->
+                <div id="beta-modal" class="modal-dialog light hidden">
+                    <h1>T Z U K U R I <span class="blue">[beta]</span></h1>
+                    <br/><br/>
+                    <p>
+                    <span class="bold">Welcome to the Tzukuri beta dashboard</span>. We’ll be selecting 100 testers to help us test our glasses before our launch later this year. To help us make sure that the people we select are passionate about our product we’re going to be <span class="bold">selecting people based on the number of points they acquire</span>. There are three ways to gain points:</p>
+                    <br/>
+                    <ol>
+                        <li><span class="bold">Answer our survey questions</span> to help us to select a diverse range of people to test with.</li>
+                        <li><span class="bold">Log in with your social media accounts</span> to help us understand our market better.</li>
+                        <li><span class="bold">Invite your friends.</span> We want to give glasses out to groups of people so they can share their experiences with each other.</li>
+                    </ol>
+                    <br/>
+                    <p>If you have any questions, please check out our <a href="/faq#beta" target="_blank">FAQ</a> or send an email to <a href="mailto:beta@tzukuri.com">beta@tzukuri.com</a></p>
+                    <br/><br/>
+                    <center><button id="beta-modal-done">done</button></center>
+                </div>
+
+                <!-- rsvp modal -->
+                <div id="rsvp-modal" class="modal-dialog light hidden">
+                    <div id="rsvp-form">
+                        <%= form_for Rsvp.new, remote: true do |f| %>
+                        <p><%= f.text_field :name, placeholder: 'full name' %></p>
+                        <p><%= f.text_field :email, placeholder: 'email address' %></p>
+                        <p><%= f.text_field :inviter, placeholder: 'inviter' %></p>
+                        <button style="display: none">RSVP</button>
+                        <% end %>
+                        <div id="rsvp-confirm">
+                            <p id="rsvp-status">Thanks for your RSVP, we look forward to seeing you!<br/><br/><span id="rsvp-address">Track 8, Carriageworks (245 Wilson Street, Eveleigh) at 3:45 PM</span></p>
+                            <p id="add-calendar">
+                                <a href="Tzukuri_Demo_Event.ics" download>Add to Calendar</a></p>
+                            </div>
+                        </div>
+                </div>
+
+                <!-- share modal -->
+                <div id="share-modal" class="modal-dialog light hidden">
+                    <div id="share-icons">
+                        <span><a href="#" class="fa fa-facebook fa-4x" id="share-fb"></a></span>
+                        <span><a href="#" class="fa fa-twitter fa-4x" id="share-twitter"></a></span>
+                        <span><a href="#" class="fa fa-pinterest fa-4x" id="share-pinterest"></a></span>
+                        <span><a href="#" class="fa fa-tumblr fa-4x" id="share-tumblr"></a></span>
+                        <span><a href="#" class="fa fa-envelope-square fa-4x" id="share-email"></a></span>
+                    </div>
+                </div>
+
+                <!-- dashboard modal -->
+                <div id="dashboard-empty-device-modal" class="modal-dialog dark hidden">
+                    <h1>No glasses connected to this account</h1>
+                    <br/><br/>
+                    <p>Set up a pair of glasses with the Tzukuri app to access the dashboard. If you're having trouble, please <a href="/contact">contact us</a>.</p>
+                    <br/><br/>
+                    <%= link_to "logout", destroy_user_session_path, :method => :delete %>
+                </div>
             </div>
         </div>
 

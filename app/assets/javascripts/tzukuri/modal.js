@@ -28,6 +28,9 @@ var modal = (function () {
       // set the colour of the outer div
       outer.removeClass("hidden")
       inner.removeClass("hidden")
+
+      // prevent scroll events falling through to the body
+      $('body').css('overflow', 'hidden');
     } else {
       console.error("Element: " + args.modal + " could not be found in the DOM")
       return;
@@ -55,6 +58,11 @@ var modal = (function () {
     $(container).unbind('click');
 
     $(container).children().each(function(index, modal) {
+      // allow scroll events on body again
+      $('body').css('overflow', 'auto');
+
+      // hide the dialog
+      // hide the dialog
       $(modal).addClass("hidden");
       $(modal).unbind('click');
     })
