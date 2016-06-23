@@ -15,10 +15,10 @@ header#store {
 
     div {
         max-width: 960px;
+        width: 80%;
         margin: 0px auto;
         position: relative;
         @include box-sizing(border-box);
-        padding-left: $horz-padding;
         padding-right: $horz-padding;
     }
 
@@ -50,7 +50,6 @@ header#store {
                 color: #aaa;
                 text-transform: lowercase;
                 display: inline-block;
-                margin-right: 20px;
                 margin-left: 20px;
 
                 &.selected {
@@ -65,7 +64,7 @@ header#store {
     header#store {
         #hamburger {
             position: absolute;
-            right: 20px;
+            right: 0px;
             top: 12px;
             display: block;
             color: #555;
@@ -79,7 +78,8 @@ header#store {
         menu {
             position: fixed;
             margin-top: 0px;
-            background-color: rgba(230, 230, 230, 0.99);
+            background-color: #f9f9f9;
+            border-left: 1px solid #eee;
             top: $header-height + $header-padding-top + $header-padding-bottom + 1px;
             right: -220px;
             bottom: 0px;
