@@ -160,9 +160,9 @@
 
             <div id="incentive">
             <% if @score_diff > 0 %>
-              <p><span class="bold">Get <span id="score_diff"><%= @score_diff.to_i %></span> more points</span> to be in the eligible top 100</p>
+              <p><span class="bold">+<span id="score_diff"><%= @score_diff.to_i %></span> points required</span><br/>to enter top 100</p>
             <% else %>
-              <p>You're currently in the top 100</p>
+              <p>You're in the top 100</p>
             <% end %>
             </div>
 

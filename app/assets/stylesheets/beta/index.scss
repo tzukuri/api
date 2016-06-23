@@ -328,7 +328,7 @@ body.beta {
                             -webkit-appearance: none;
                             opacity: 1 !important;
 
-                            &+ p {
+                            & + p {
                                 font-size: 13px;
                             }
                         }
@@ -339,12 +339,15 @@ body.beta {
                     text-align: center;
                     margin-top: 90px;
 
-                    > p {
-                        width: 130px;
-                        margin: 0px auto;
-                        color: $tzukuri-dark-grey;
-                        line-height: 130%;
-                        font-weight: 200;
+                    #incentive {
+                        p {
+                            width: 160px;
+                            margin: 0px auto;
+                            color: $tzukuri-dark-grey;
+                            line-height: 150%;
+                            font-weight: 200;
+                            font-size: 13pt !important;
+                        }
                     }
 
                     #score-container {
@@ -555,6 +558,7 @@ body.beta {
 
     #invite-link-container #link {
         // font-size: 10pt;
+
     }
 
     // align social media icons to the left of their
