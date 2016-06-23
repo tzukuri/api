@@ -53,7 +53,7 @@ class BetaController < ApplicationController
   def list
       csv_string = CSV.generate do |csv|
         csv << ['name', 'email', 'score', 'birth_date', 'city']
-        BetaUser.all.each do |betauser|
+        BetaUser.order(created_at: :desc).each do |betauser|
           csv << [betauser.name, betauser.email, betauser.score, betauser.birth_date, betauser.city]
         end
     end
