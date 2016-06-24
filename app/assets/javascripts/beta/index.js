@@ -140,6 +140,12 @@ $(function() {
             $('#beta_user_email').tzAnimate('shake')
         }
 
+        // update the number of days remaining
+        var end = moment([2016, 6, 28])
+        var daysRemaining = moment().diff(end, 'days') * -1
+
+        $('#days-remain').html(daysRemaining + ' days remaining')
+
         // if the user is logged in and looking at the details view show the
         // beta modal if this is the first time
         if ($('#details-container').length > 0) {

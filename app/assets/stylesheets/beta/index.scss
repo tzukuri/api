@@ -337,17 +337,26 @@ body.beta {
 
                 #score-col {
                     text-align: center;
-                    margin-top: 90px;
 
                     #incentive {
                         p {
-                            width: 160px;
                             margin: 0px auto;
-                            color: $tzukuri-dark-grey;
+                            color: $tzukuri-black;
                             line-height: 150%;
-                            font-weight: 200;
-                            font-size: 13pt !important;
+                            font-weight: 300;
+                            font-size: 14pt !important;
                         }
+                    }
+
+                    #remaining-spacer {
+                        margin-top: 15px;
+                        margin-bottom: 15px;
+                    }
+
+                    #days-remain {
+                        margin-top: 20px;
+                        font-weight: 200;
+                        font-size: 14pt;
                     }
 
                     #score-container {
@@ -563,7 +572,7 @@ body.beta {
 
     // align social media icons to the left of their
     // connect buttons
-    #connect-social-row .ten .row {
+    #connect-social-row .nine .row {
         .social-col {
             text-align: center;
         }
@@ -592,6 +601,7 @@ body.beta {
 
     #score-col {
         margin-top: 0px !important;
+        margin-bottom: 40px !important;
     }
 }
 
