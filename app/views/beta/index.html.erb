@@ -244,6 +244,8 @@
           </div>
           <div class="nine columns">
           <hr>
+
+            <% if @answerable_questions.count > 0 %>
             <div class="row" id="question-header">
               <div class="nine columns">
                 <p>Earn <span class="bold">5 points</span> by answering this question</p>
@@ -253,6 +255,7 @@
                 <p id="skip" class="answer-sub <%= 'hidden' if @answerable_questions.count <= 1%>">skip question</p>
               </div>
             </div>
+            <% end %>
 
             <div id="question-content">
               <p id="questions-complete" class="<%= 'hidden' if @answerable_questions.count != 0 %>">Thanks, you've answered all the survey questions &nbsp; 🎉</p>

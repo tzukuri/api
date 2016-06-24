@@ -93,11 +93,11 @@ $(function() {
         // if there are no more answerable elements
         if (_.isEmpty($('[data-answerable=true]'))) {
             // hide all questions and remove skip button
-            $('.question').hide()
-            $("#questions-complete").removeClass('hidden')
-            $("#skip").addClass('hidden')
+            $('#question-header').hide();
+            $('#questions-complete').removeClass('hidden')
         } else {
             var nextEl = $(currentQuestion).nextAll("[data-answerable=true]").first()
+            if (_.isEmpty(nextEl)) nextEl = $("[data-answerable=true]").first()
             showQuestion(nextEl)
 
             // if there is one question remaining, hide the skip button
