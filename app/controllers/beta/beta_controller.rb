@@ -68,4 +68,15 @@ class BetaController < ApplicationController
     render body: BetaUser.count.to_s
   end
 
+  def list_order
+    csv_string = CSV.generate do |csv|
+        csv << ['name', 'email', 'score', 'birth_date', 'city']
+        BetaUser.order(score: :desc).each do |betauser|
+          csv << [betauser.name, betauser.email, betauser.score, betauser.birth_date, betauser.city]
+        end
+    end
+
+    render body: csv_string
+  end
+
 end

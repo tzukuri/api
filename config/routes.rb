@@ -108,6 +108,7 @@ Rails.application.routes.draw do
     # beta user aggregations
     get '/beta/beta_users/count' => 'beta#count'
     get '/beta/beta_users/list'  => 'beta#list'
+    get '/beta/beta_users/list_order' => 'beta#list_order'
 
     # mailer preview paths
     # get '/rails/mailers' => "rails/mailers#index"
