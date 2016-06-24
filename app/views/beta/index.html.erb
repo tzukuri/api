@@ -148,7 +148,12 @@
 
               <input readonly id="link" value="tzukuri.com/beta/invite/<%= @beta_user.invite_token %>">
 
-              <p><%= @beta_user.invitees.count %> people have used this link</p>
+              <% if @invitees == 1 %>
+                <p>1 person has used your invite</p>
+              <% else %>
+                <p><%= @invitees %> people have used your invite</p>
+              <% end %>
+
             </div>
           </div>
 

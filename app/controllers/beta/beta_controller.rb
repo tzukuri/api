@@ -8,6 +8,7 @@ class BetaController < ApplicationController
       @beta_user = current_beta_user
       @rank = @beta_user.rank
       @score_diff = 135 - @beta_user.score
+      @invitees = @beta_user.invitees.count
       # @percentage_chance = @beta_user.percentage_chance
       @answerable_questions = @beta_user.answerable_questions
       @email_hash = Digest::MD5.hexdigest @beta_user.email
