@@ -140,7 +140,7 @@
     display: none;
     width: 300px;
     padding: 4px 0;
-    margin: 0 0 10px 25px;
+    margin: 0 0 0 25px;
     list-style: none;
 
     // border-radius: 15px;
@@ -228,6 +228,11 @@
 
     form#new_beta_user {
         margin-bottom: 20px;
+
+        #beta_user_city.autocomplete-open {
+            border-bottom-right-radius: 0px;
+            border-bottom-left-radius: 0px;
+        }
 
         #register-btn {
             background-color: white;
