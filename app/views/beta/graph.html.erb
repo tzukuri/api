@@ -1,0 +1,39 @@
+<% content_for :javascript_includes do %>
+    <script src="/static/arbor.js"></script>
+    <script src="/static/arbor-tween.js"></script>
+    <script src="/static/arbor-graphics.js"></script>
+    <script src="/static/graph.js"></script>
+    <script>
+        var sys = arbor.ParticleSystem(100, 450, 0.92, true)
+        sys.renderer = Renderer("#graph")
+
+        <% @people.each do |(id, name)| %>
+            sys.addNode('<%= id %>', {label: '<%= name %>'})
+        <% end %>
+
+        <% @connections.each do |(from, to)| %>
+            sys.addEdge('<%= from %>', '<%= to %>', {directed: true})
+        <% end %>
+
+        function resize() {
+            var width = $(window).width();
+            var height = $(window).height() - 60; // header
+            $('#graph').css({width: width + 'px', height: height + 'px'});
+            $('#graph').attr({width: width, height: height});
+            sys.screenSize(width, height);
+            sys.renderer.redraw();
+        }
+
+        $(function() {
+            // size the canvas to the starting screen size
+            resize();
+
+            // resize whenever the window changes size
+            $(window).resize(function() {
+                resize();
+            });
+        });
+    </script>
+<% end %>
+
+<canvas id="graph" width="1000" height="1000" style="width: 1000px; height: 1000px; margin-top: 60px"></canvas>

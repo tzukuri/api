@@ -1,5 +1,7 @@
+require 'set'
+
 class BetaController < ApplicationController
-  http_basic_authenticate_with name: "beta@tzukuri.com", password: "ksV-Pxq-646-feS", only: [:list, :count]
+  http_basic_authenticate_with name: "beta@tzukuri.com", password: "ksV-Pxq-646-feS", only: [:list, :count, :graph]
 
   def index
     @token = params[:token]
@@ -65,6 +67,23 @@ class BetaController < ApplicationController
 
   def count
     render body: BetaUser.count.to_s
+  end
+
+  def graph
+    @people = Set.new
+
+    @connections = BetaReferral.all.collect do |r|
+      next unless r.inviter.present? && r.invitee.present?
+
+      inviter = [r.inviter.id, r.inviter.name.gsub("'", "")]
+      invitee = [r.invitee.id, r.invitee.name.gsub("'", "")]
+
+      @people << inviter
+      @people << invitee
+      [inviter.first, invitee.first]
+    end.compact
+
+    @people = @people.to_a
   end
 
 end
