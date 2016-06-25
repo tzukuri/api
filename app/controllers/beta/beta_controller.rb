@@ -94,7 +94,7 @@ class BetaController < ApplicationController
 
     if params[:root].blank?
       # process all referrals
-      BetaReferral.all.each(&:process_referral)
+      BetaReferral.all.each {|referral| process_referral(referral)}
 
     else
       # fifo walk from the root referrer
