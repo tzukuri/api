@@ -83,8 +83,8 @@ class BetaController < ApplicationController
 
   def process_referral(referral)
     return unless referral.inviter.present? && referral.invitee.present?
-    @people << inviter.graph_representation
-    @people << invitee.graph_representation
+    @people << referral.inviter.graph_representation
+    @people << referral.invitee.graph_representation
     @connections << [referral.inviter.id, referral.invitee.id]
   end
 
