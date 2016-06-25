@@ -93,11 +93,11 @@ $(function() {
         // if there are no more answerable elements
         if (_.isEmpty($('[data-answerable=true]'))) {
             // hide all questions and remove skip button
-            $('.question').hide()
-            $("#questions-complete").removeClass('hidden')
-            $("#skip").addClass('hidden')
+            $('#question-header').hide();
+            $('#questions-complete').removeClass('hidden')
         } else {
             var nextEl = $(currentQuestion).nextAll("[data-answerable=true]").first()
+            if (_.isEmpty(nextEl)) nextEl = $("[data-answerable=true]").first()
             showQuestion(nextEl)
 
             // if there is one question remaining, hide the skip button
@@ -116,7 +116,7 @@ $(function() {
         var scoreDiff = 135 - score;
 
         if (scoreDiff > 0) {
-            $('#incentive').html('<p><span class="bold">Get <span id="score_diff">' + scoreDiff +'</span> more points</span> to be in the eligible top 100</p>')
+            $('#incentive').html('<p><span class="bold">+<span id="score_diff">' + scoreDiff +'</span> points required</span><br/>to enter top 100</p>')
         } else {
             $('#incentive').html('<p>You\'re in the top 100</p>')
         }
@@ -139,6 +139,12 @@ $(function() {
         if ($('#login-container').attr('data-error')) {
             $('#beta_user_email').tzAnimate('shake')
         }
+
+        // update the number of days remaining
+        var end = moment([2016, 6, 28])
+        var daysRemaining = moment().diff(end, 'days') * -1
+
+        $('#days-remain').html(daysRemaining + ' days remaining')
 
         // if the user is logged in and looking at the details view show the
         // beta modal if this is the first time

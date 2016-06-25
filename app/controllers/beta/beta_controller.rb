@@ -10,6 +10,7 @@ class BetaController < ApplicationController
       @beta_user = current_beta_user
       @rank = @beta_user.rank
       @score_diff = 135 - @beta_user.score
+      @invitees = @beta_user.invitees.count
       # @percentage_chance = @beta_user.percentage_chance
       @answerable_questions = @beta_user.answerable_questions
       @email_hash = Digest::MD5.hexdigest @beta_user.email
@@ -67,6 +68,17 @@ class BetaController < ApplicationController
 
   def count
     render body: BetaUser.count.to_s
+  end
+
+  def list_order
+    csv_string = CSV.generate do |csv|
+        csv << ['name', 'email', 'score', 'birth_date', 'city']
+        BetaUser.order(score: :desc).each do |betauser|
+          csv << [betauser.name, betauser.email, betauser.score, betauser.birth_date, betauser.city]
+        end
+    end
+
+    render body: csv_string
   end
 
   def graph

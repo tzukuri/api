@@ -328,7 +328,7 @@ body.beta {
                             -webkit-appearance: none;
                             opacity: 1 !important;
 
-                            &+ p {
+                            & + p {
                                 font-size: 13px;
                             }
                         }
@@ -337,14 +337,26 @@ body.beta {
 
                 #score-col {
                     text-align: center;
-                    margin-top: 90px;
 
-                    > p {
-                        width: 130px;
-                        margin: 0px auto;
-                        color: $tzukuri-dark-grey;
-                        line-height: 130%;
+                    #incentive {
+                        p {
+                            margin: 0px auto;
+                            color: $tzukuri-black;
+                            line-height: 150%;
+                            font-weight: 300;
+                            font-size: 14pt !important;
+                        }
+                    }
+
+                    #remaining-spacer {
+                        margin-top: 15px;
+                        margin-bottom: 15px;
+                    }
+
+                    #days-remain {
+                        margin-top: 20px;
                         font-weight: 200;
+                        font-size: 14pt;
                     }
 
                     #score-container {
@@ -440,6 +452,7 @@ body.beta {
                     margin-top: 20px;
 
                     #questions-complete {
+                        margin-top: 40px;
                         text-align: center;
 
                         &.hidden {
@@ -555,11 +568,12 @@ body.beta {
 
     #invite-link-container #link {
         // font-size: 10pt;
+
     }
 
     // align social media icons to the left of their
     // connect buttons
-    #connect-social-row .ten .row {
+    #connect-social-row .nine .row {
         .social-col {
             text-align: center;
         }
@@ -588,6 +602,7 @@ body.beta {
 
     #score-col {
         margin-top: 0px !important;
+        margin-bottom: 40px !important;
     }
 }
 

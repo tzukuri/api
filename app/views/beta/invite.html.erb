@@ -5,17 +5,15 @@
     <div class="row" id='beta-hero'>
       <div class="six columns" id='detail-col'>
         <h1 id="unloseable-glasses">Unloseable sunglasses.</h1>
-        <h2 id="almost-here">Almost here.</h2>
+        <h2 id="almost-here">For 100 people.</h2>
         <p  id="blurb">
-        Beautifully designed and thoughtfully constructed, we're looking to give 100 people the opportunity to test our glasses before they're available to the public.
-        <!-- 1 in 2 people lose their glasses every year, contributing to an esimated 76k tonnes of plastic and metal into the environment. Are you one of them? -->
+        We’re looking for 100 passionate users to help us refine and test our glasses before they’re available to the public. At the end of the testing period, you will be allowed to keep the glasses.
         <br/><br/>
 
         <% if @invited_by.nil? %>
-          To be able to register, you'll need to be invited by someone who has already registered for the beta.
-          <br/><a href='/beta/forgot'>Forgot your beta login link?</a>
+          To register, you will need to be invited by someone who has already registered for the beta. Registrations close July 28. <a href='/beta/forgot'>Forgot your beta login link?</a>
         <% else %>
-          Register for an opportunity to help us test the world's first unloseable sunglasses before they're available to the public. <a href="#" id="eligible">Find out more.</a>
+          Register to be part of the 6 week program beginning July 28. <a href="#" id='eligible'>Check if you're eligible.</a>
         <% end %>
         </p>
 

@@ -216,10 +216,16 @@ $(function() {
         event.preventDefault()
     }
 
+    var toggleEdges = function() {
+        $('#beta_user_city').toggleClass('autocomplete-open')
+    }
+
     $("#beta_user_city").autocomplete({
         source: cityQuery,
         select: selectCity,
-        focus: cityFocus
+        focus: cityFocus,
+        open: toggleEdges,
+        close: toggleEdges
     })
 
         // creating a new order if the user is selected
