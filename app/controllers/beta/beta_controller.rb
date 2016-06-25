@@ -81,20 +81,32 @@ class BetaController < ApplicationController
     render body: csv_string
   end
 
+  def process_referral(referral)
+    return unless referral.inviter.present? && referral.invitee.present?
+    @people << inviter.graph_representation
+    @people << invitee.graph_representation
+    @connections << [referral.inviter.id, referral.invitee.id]
+  end
+
   def graph
     @people = Set.new
+    @connections = []
 
-    @connections = BetaReferral.all.collect do |r|
-      next unless r.inviter.present? && r.invitee.present?
+    if params[:root].blank?
+      # process all referrals
+      BetaReferral.all.each(&:process_referral)
 
-      inviter = [r.inviter.id, r.inviter.name.gsub("'", "")]
-      invitee = [r.invitee.id, r.invitee.name.gsub("'", "")]
+    else
+      # fifo walk from the root referrer
+      stack = BetaReferral.where(inviter_id: params[:root]).all.to_a
+      until stack.empty?
+        referral = stack.shift
+        process_referral(referral)
+        stack += BetaReferral.where(inviter_id: referral.invitee_id).all.to_a
+      end
+    end
 
-      @people << inviter
-      @people << invitee
-      [inviter.first, invitee.first]
-    end.compact
-
+    @all_people = BetaUser.all.collect {|user| user.graph_representation}
     @people = @people.to_a
   end
 

@@ -120,6 +120,10 @@ class BetaUser < ActiveRecord::Base
     end
   end
 
+  def graph_representation
+    [id, name.gsub("'", "")]
+  end
+
   # private methods
   private
     INVITE_CODE_LENGTH = 6

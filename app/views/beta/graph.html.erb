@@ -4,16 +4,7 @@
     <script src="/static/arbor-graphics.js"></script>
     <script src="/static/graph.js"></script>
     <script>
-        var sys = arbor.ParticleSystem(100, 450, 0.92, true)
-        sys.renderer = Renderer("#graph")
-
-        <% @people.each do |(id, name)| %>
-            sys.addNode('<%= id %>', {label: '<%= name %>'})
-        <% end %>
-
-        <% @connections.each do |(from, to)| %>
-            sys.addEdge('<%= from %>', '<%= to %>', {directed: true})
-        <% end %>
+        var sys = arbor.ParticleSystem(100, 450, 0.92, true);
 
         function resize() {
             var width = $(window).width();
@@ -25,6 +16,21 @@
         }
 
         $(function() {
+            var rootSelect = $('#root');
+            sys.renderer = Renderer("#graph");
+
+            <% @all_people.each do |(id, name)| %>
+                rootSelect.append($('<option value="<%= id %>"><%= name %> - <%= id %></option>'));
+            <% end %>
+
+            <% @people.each do |(id, name)| %>
+                sys.addNode('<%= id %>', {label: '<%= name %>'})
+            <% end %>
+
+            <% @connections.each do |(from, to)| %>
+                sys.addEdge('<%= from %>', '<%= to %>', {directed: true})
+            <% end %>
+
             // size the canvas to the starting screen size
             resize();
 
@@ -32,8 +38,27 @@
             $(window).resize(function() {
                 resize();
             });
+
+            // restrict the set of nodes displayed when a root user is selected
+            $('#root').change(function() {
+                var id = $('#root').val();
+                var path = window.location.pathname;
+
+                if (id != '')
+                    path += '?root=' + id;
+
+                window.location.replace(path);
+            });
         });
     </script>
 <% end %>
 
 <canvas id="graph" width="1000" height="1000" style="width: 1000px; height: 1000px; margin-top: 60px"></canvas>
+
+<div style="position: fixed; top: 80px; left: 20px;">
+    root:
+    <select id="root">
+        <option></option>
+        <option value="">All</option>
+    </select>
+</div>
