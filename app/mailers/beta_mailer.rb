@@ -16,9 +16,10 @@ class BetaMailer < ActionMailer::Base
     mail(to: beta_user.email, subject: "Your Tzukuri Beta dashboard link")
   end
 
-  def send_score_conflict_alert(file_path)
+  def send_score_conflict_alert(file_path, force_update)
     @file_path = file_path
-    mail(to: ['sam@tzukuri.com', 'w@tzukuri.com'], subject: "Alert - Incorrect Beta User Scores")
+    @force_update = force_update
+    mail(to: 'sam@tzukuri.com, w@tzukuri.com', subject: "Alert - Incorrect Beta User Scores")
   end
 
 end
