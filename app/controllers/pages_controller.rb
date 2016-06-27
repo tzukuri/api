@@ -6,7 +6,7 @@ class PagesController < ApplicationController
         begin
             render action: params[:page]
         rescue ActionView::MissingTemplate
-            raise ActionController::RoutingError
+            raise ActionController::RoutingError.new('')
         end
     end
 end
