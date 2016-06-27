@@ -28,7 +28,7 @@ class BetaUser < ActiveRecord::Base
   def referred_by(referrer_token)
     referred_by = BetaUser.find_by(invite_token: referrer_token)
     BetaReferral.create(inviter_id: referred_by.id, invitee_id: self.id)
-    referred_by.update_score(Tzukuri:INVITEE_POINTS)
+    referred_by.update_score(Tzukuri::INVITEE_POINTS)
   end
 
   # return a list of questions that can be answered by the user
