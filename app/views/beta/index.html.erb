@@ -169,7 +169,7 @@
             <p id="increase-chance">To find the most passionate people, the <span class='bold'>top 100 users by points</span> will be selected to receive a pair of glasses for testing. Get more points by completing the tasks below.  <a href="#" id="need-help">Need help?</a></p>
 
             <div id="invite-link-container">
-              <p>Share this link to earn <span class='bold'>10 points</span> for every sign up</p>
+              <p>Share this link to earn <span class='bold'><%= @invitee_points %> points</span> for every sign up</p>
 
               <input readonly id="link" value="tzukuri.com/beta/invite/<%= @beta_user.invite_token %>">
 
@@ -189,7 +189,7 @@
           </div>
           <div class="nine columns">
             <hr>
-            <p id="social-exp">Every social media account you connect earns you <span class="bold">20 points</span></p>
+            <p id="social-exp">Every social media account you connect earns you <span class="bold"><%= @social_points %> points</span></p>
             <div class="row">
 
               <div class="four columns social-col row">
@@ -248,7 +248,7 @@
             <% if @answerable_questions.count > 0 %>
             <div class="row" id="question-header">
               <div class="nine columns">
-                <p>Earn <span class="bold">5 points</span> by answering this question</p>
+                <p>Earn <span class="bold"><%= @response_points %> points</span> by answering this question</p>
               </div>
 
               <div class="three columns">

@@ -11,9 +11,13 @@ class BetaController < ApplicationController
       @rank = @beta_user.rank
       @score_diff = 135 - @beta_user.score
       @invitees = @beta_user.invitees.count
-      # @percentage_chance = @beta_user.percentage_chance
       @answerable_questions = @beta_user.answerable_questions
       @email_hash = Digest::MD5.hexdigest @beta_user.email
+
+      # beta score values
+      @response_points = Tzukuri::RESPONSE_POINTS
+      @social_points = Tzukuri::SOCIAL_POINTS
+      @invitee_points = Tzukuri::INVITEE_POINTS
     else
       # otherwise create an empty user and show the form
       if @token == 'invite'

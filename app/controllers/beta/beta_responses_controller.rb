@@ -9,8 +9,8 @@ class BetaResponsesController < ApplicationController
       return
     else
        # give the user points for this question
-       points = BetaQuestion.find_by(id: beta_response.beta_question_id).point_value
-       current_beta_user.update_score(points)
+       # points = BetaQuestion.find_by(id: beta_response.beta_question_id).point_value
+       current_beta_user.update_score(Tzukuri::RESPONSE_POINTS)
 
        render :json => {
           success: true,
