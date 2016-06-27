@@ -13,11 +13,6 @@ class BetaController < ApplicationController
       @invitees = @beta_user.invitees.count
       @answerable_questions = @beta_user.answerable_questions
       @email_hash = Digest::MD5.hexdigest @beta_user.email
-
-      # beta score values
-      @response_points = Tzukuri::RESPONSE_POINTS
-      @social_points = Tzukuri::SOCIAL_POINTS
-      @invitee_points = Tzukuri::INVITEE_POINTS
     else
       # otherwise create an empty user and show the form
       if @token == 'invite'
