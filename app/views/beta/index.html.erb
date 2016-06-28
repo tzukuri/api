@@ -138,7 +138,7 @@
 
             <div id="incentive">
 
-              <% if @beta_user.score > @threshold %>
+              <% if @beta_user.score >= @threshold %>
                 <p>You're in the top <%= Tzukuri::NUM_THRESHOLD_USERS %></p>
               <% else %>
                 <p><span class="bold">+<span id="score_diff"><%= @threshold - @beta_user.score.to_i %></span> points required</span><br/>to enter top 100</p>
