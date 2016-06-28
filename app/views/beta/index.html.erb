@@ -1,5 +1,5 @@
 <div id="beta-index" class="container" data-response-points="<%= Tzukuri::RESPONSE_POINTS %>" data-score="<%= @beta_user
-.score.to_i %>" data-top-threshold="<%= Tzukuri::TOP_THRESHOLD %>">
+.score.to_i %>" data-top-threshold="<%= @threshold %>" data-threshold-users="<%= Tzukuri::NUM_THRESHOLD_USERS %>">
   <% if beta_user_signed_in? %>
 
     <!-- order has been submitted -->
@@ -137,11 +137,12 @@
             </div>
 
             <div id="incentive">
-            <% if @score_diff > 0 %>
-              <p><span class="bold">+<span id="score_diff"><%= @score_diff.to_i %></span> points required</span><br/>to enter top 100</p>
-            <% else %>
-              <p>You're in the top 100</p>
-            <% end %>
+
+              <% if @beta_user.score > @threshold %>
+                <p>You're in the top <%= Tzukuri::NUM_THRESHOLD_USERS %></p>
+              <% else %>
+                <p><span class="bold">+<span id="score_diff"><%= @threshold - @beta_user.score.to_i %></span> points required</span><br/>to enter top 100</p>
+              <% end %>
             </div>
 
             <hr id="remaining-spacer">
@@ -149,15 +150,6 @@
             <div id="days-remain">
 
             </div>
-
-            <!-- <p>To break into the eligible top 100, you need 100 points</p> -->
-
-            <%# if @percentage_chance <= 50 %>
-              <!-- <p>You are in the <span class="bold"> <span id='direction'>top</span> <span id="percentage"> <%#= @percentage_chance %></span>%</span> of people</p> -->
-            <%# else %>
-              <!-- <p>You are in the <span class="bold"> <span id='direction'>bottom</span> <span id="percentage"><%#= 100 - @percentage_chance %></span>%</span> of people</p> -->
-            <%# end %>
-
           </div>
 
           <div class="nine columns" id="user-col">

@@ -8,6 +8,7 @@ $(function() {
     var score = parseInt($('#beta-index').attr('data-score'))
     var responsePoints = parseInt($('#beta-index').attr('data-response-points'))
     var topThreshold = parseInt($('#beta-index').attr('data-top-threshold'))
+    var numThresholdUsers = parseInt($('#beta-index').attr('data-threshold-users'))
 
     var modelSizing = {
         ive: {
@@ -255,7 +256,7 @@ $(function() {
             if (scoreDiff > 0) {
                 $('#incentive').html('<p><span class="bold">+<span id="score_diff">' + scoreDiff +'</span> points required</span><br/>to enter top 100</p>')
             } else {
-                $('#incentive').html('<p>You\'re in the top 100</p>')
+                $('#incentive').html('<p>You\'re in the top ' + numThresholdUsers + '</p>')
             }
         } else {
             // skip to the next question

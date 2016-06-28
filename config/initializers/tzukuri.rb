@@ -4,6 +4,6 @@ module Tzukuri
   IDENTITY_POINTS = 20
   RESPONSE_POINTS = 5
 
-  # threshold to 'enter the top 100'
-  TOP_THRESHOLD = 135
+  THRESHOLD_SCORE_DEFAULT = 135
+  NUM_THRESHOLD_USERS = 100
 end
