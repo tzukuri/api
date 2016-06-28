@@ -50,13 +50,16 @@ class BetaUser < ActiveRecord::Base
     BetaUser.where(selected: false).order(score: :desc).index(self)
   end
 
-  # spawn a job that updates the user's score
+  # spawn a job that updates the user's score. this is done in a serial queue to prevent
+  # race conditions and guarantee that the score will eventually be consistent
   def update_score
-    UpdateBetaUserScore.enqueue(self.id, self.expected_score)
+    UpdateBetaUserScore.enqueue(self.id)
   end
 
-  def expected_score
-    invitees.count * Tzukuri::INVITEE_POINTS + responses.count * Tzukuri::RESPONSE_POINTS + identities.count * Tzukuri::IDENTITY_POINTS
+  def calculated_score
+    (invitees.count * Tzukuri::INVITEE_POINTS) +
+    (responses.count * Tzukuri::RESPONSE_POINTS) +
+    (identities.count * Tzukuri::IDENTITY_POINTS)
   end
 
   # def percentage_chance
