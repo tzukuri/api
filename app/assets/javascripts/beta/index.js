@@ -4,6 +4,11 @@ $(function() {
     var currentQuestion;
     var design, size;
 
+    // retrieve required attributes from DOM attributes
+    var score = parseInt($('#beta-index').attr('data-score'))
+    var responsePoints = parseInt($('#beta-index').attr('data-response-points'))
+    var topThreshold = parseInt($('#beta-index').attr('data-top-threshold'))
+
     var modelSizing = {
         ive: {
             small: '48mm',
@@ -105,29 +110,6 @@ $(function() {
                 $("#skip").addClass('hidden')
             }
         }
-    }
-
-    // given a new score and percentage update the UI to reflect the server state
-    var updateScore = function(score, percentage) {
-        $("#points-amount").fadeOut(500, function() {
-            $("#points-amount").html(score).tzAnimate('pulse').fadeIn()
-        })
-
-        var scoreDiff = 135 - score;
-
-        if (scoreDiff > 0) {
-            $('#incentive').html('<p><span class="bold">+<span id="score_diff">' + scoreDiff +'</span> points required</span><br/>to enter top 100</p>')
-        } else {
-            $('#incentive').html('<p>You\'re in the top 100</p>')
-        }
-
-        // if (percentage <= 50) {
-        //     $('#direction').html('top')
-        //     $("#percentage").html(percentage)
-        // } else {
-        //     $('#direction').html('bottom')
-        //     $("#percentage").html(100 - percentage)
-        // }
     }
 
     // -----------------------------
@@ -261,7 +243,20 @@ $(function() {
     $('.new_beta_response').on('ajax:success', function(e, data) {
         if (data.success) {
             updateAnswerables(data.answerable_questions)
-            updateScore(data.score, data.percentage_chance)
+
+            score += responsePoints;
+
+            $("#points-amount").fadeOut(500, function() {
+                $("#points-amount").html(score).tzAnimate('pulse').fadeIn()
+            })
+
+            var scoreDiff = topThreshold - score;
+
+            if (scoreDiff > 0) {
+                $('#incentive').html('<p><span class="bold">+<span id="score_diff">' + scoreDiff +'</span> points required</span><br/>to enter top 100</p>')
+            } else {
+                $('#incentive').html('<p>You\'re in the top 100</p>')
+            }
         } else {
             // skip to the next question
             skipQuestion();

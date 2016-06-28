@@ -7,23 +7,20 @@ namespace :tzukuri do
     file_path = 'log/beta/score_conflict_' + Time.now.strftime('%s') + '.csv'
     out_string = ['id', 'email', 'invitees', 'identities', 'responses', 'score', 'expected_score'].join(',') + "\n"
 
-    BetaUser.all.each do |betauser|
-      num_invitees = betauser.invitees.count
-      num_accounts = betauser.identities.count
-      num_responses = betauser.responses.count
-
-      expected_score = (num_invitees * Tzukuri::INVITEE_POINTS) + (num_accounts * Tzukuri::SOCIAL_POINTS) + (num_responses * Tzukuri::RESPONSE_POINTS)
+    BetaUser.all.each do |beta_user|
+      expected_score = beta_user.expected_score
 
       # if there is a conflict with the score
-      if (expected_score != betauser.score)
+      if (expected_score != beta_user.score)
         alert_required = true
-        out_string << [betauser.id, betauser.email, num_invitees, num_accounts, num_responses, betauser.score, expected_score].join(',') + "\n"
+        out_string << [beta_user.id, beta_user.email, beta_user.invitees.count, beta_user.identities.count, beta_user.responses.count, beta_user.score, expected_score].join(',') + "\n"
 
         # we are forcing an update, so update the attributes
         if (force_update)
-          betauser.update_attribute('score', expected_score)
-          puts 'forced update score for ' + betauser.email
+          # queue a score update for this user
+          UpdateBetaUserScore.enqueue(beta_user.id, expected_score)
         end
+
       end
 
     end
@@ -31,12 +28,9 @@ namespace :tzukuri do
     # if there are any conflicts, write them to a file and alert the team
     if (alert_required)
       File.open(file_path, 'a') {|file| file.write(out_string)}
-
       BetaMailer.send_score_conflict_alert(file_path, force_update).deliver_later
 
       puts 'wrote conflicts to ' + file_path
-    else
-      puts 'no conflicts found'
     end
   end
 

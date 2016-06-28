@@ -8,11 +8,9 @@ class BetaController < ApplicationController
 
     if beta_user_signed_in?
       @beta_user = current_beta_user
-      @rank = @beta_user.rank
-      @score_diff = 135 - @beta_user.score
-      @invitees = @beta_user.invitees.count
+      @score_diff = Tzukuri::TOP_THRESHOLD - @beta_user.score
+      @num_invitees = @beta_user.invitees.count
       @answerable_questions = @beta_user.answerable_questions
-      @email_hash = Digest::MD5.hexdigest @beta_user.email
     else
       # otherwise create an empty user and show the form
       if @token == 'invite'
