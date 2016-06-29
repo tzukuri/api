@@ -33,6 +33,10 @@ class BetaUser < ActiveRecord::Base
     referred_by.update_score
   end
 
+  def root?
+    BetaReferral.where(invitee_id: id).empty?
+  end
+
   # return a list of questions that can be answered by the user
   # (does not include those that are disabled or already answered)
   def answerable_questions
