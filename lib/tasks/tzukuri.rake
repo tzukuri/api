@@ -36,6 +36,27 @@ namespace :tzukuri do
     end
   end
 
+  desc "Print some simple stats"
+  task :stats => :environment do
+    all_users = BetaUser.all
+    roots = BetaUser.all.select(&:root?)
+    max_depth = dfs_depth(roots, 1)
+    response_count = BetaResponse.all.count
+    identity_count = BetaIdentity.all.count
 
+    puts "Users: #{all_users.count}"
+    puts "Max depth: #{max_depth}"
+    puts "Responses: #{response_count} (avg. #{response_count.to_f / all_users.count})"
+    puts "Connections: #{identity_count} (avg. #{identity_count.to_f / all_users.count})"
+  end
 
+  def dfs_depth(users, depth)
+    depths = [depth]
+
+    users.each do |user|
+      depths << dfs_depth(user.invitees.to_a, depth + 1)
+    end
+
+    depths.max
+  end
 end
