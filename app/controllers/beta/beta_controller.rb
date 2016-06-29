@@ -3,6 +3,22 @@ require 'set'
 class BetaController < ApplicationController
   http_basic_authenticate_with name: "beta@tzukuri.com", password: "ksV-Pxq-646-feS", only: [:list, :count, :graph]
 
+  def latest_score
+    # look at all the current jobs in the beta_scores queue and extract the ids
+    # current_ids will contain an array of BetaUser id's that are currently queued to be worked on
+    current_ids = Que.execute("select args from que_jobs where queue = 'beta_scores'").map do |x|
+      x[:args].first
+    end
+
+    # render the current score along and a bool that returns true if there are no id's in the current_ids array
+    # that match the current user's id. This indicates to the JS that no more work has to be done for the current
+    # user and updates can stop
+    render json: {
+      score: current_beta_user.score,
+      clean: !current_ids.include?(current_beta_user.id)
+    }
+  end
+
   def index
     @token = params[:token]
 

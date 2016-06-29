@@ -113,6 +113,36 @@ $(function() {
         }
     }
 
+    var updateScoreView = function() {
+        $("#points-amount").fadeOut(500, function() {
+            $("#points-amount").html(score).tzAnimate('pulse').fadeIn()
+        })
+
+        var scoreDiff = topThreshold - score;
+
+        if (scoreDiff > 0) {
+            $('#incentive').html('<p><span class="bold">+<span id="score_diff">' + scoreDiff +'</span> points required</span><br/>to enter top 100</p>')
+        } else {
+            $('#incentive').html('<p>You\'re in the top ' + numThresholdUsers + '</p>')
+        }
+    }
+
+    // start polling
+    var getLatestScore = function() {
+        $.get('/beta_users/latest_score', function(data) {
+            console.log(data)
+
+            if (data.clean) {
+                // there is no updates left in the queue for this user
+                score = data.score
+                updateScoreView();
+            } else {
+                // try again in 2 seconds
+                setTimeout(getLatestScore, 2000)
+            }
+        });
+    }
+
     // -----------------------------
     // on page load binding
     // -----------------------------
@@ -122,12 +152,6 @@ $(function() {
         if ($('#login-container').attr('data-error')) {
             $('#beta_user_email').tzAnimate('shake')
         }
-
-        // update the number of days remaining
-        var end = moment([2016, 6, 28])
-        var daysRemaining = moment().diff(end, 'days') * -1
-
-        $('#days-remain').html(daysRemaining + ' days remaining')
 
         // if the user is logged in and looking at the details view show the
         // beta modal if this is the first time
@@ -149,10 +173,18 @@ $(function() {
                     dismissable: true
                 });
             }
-        }
 
-        // show the first answerable question
-        showQuestion($('[data-answerable=true]').first())
+            // update the number of days remaining
+            var end = moment([2016, 6, 28])
+            var daysRemaining = moment().diff(end, 'days') * -1
+            $('#days-remain').html(daysRemaining + ' days remaining')
+
+            // trigger score updates
+            getLatestScore();
+
+            // show the first answerable question
+            showQuestion($('[data-answerable=true]').first())
+        }
     })
 
     // -----------------------------
@@ -246,18 +278,7 @@ $(function() {
             updateAnswerables(data.answerable_questions)
 
             score += responsePoints;
-
-            $("#points-amount").fadeOut(500, function() {
-                $("#points-amount").html(score).tzAnimate('pulse').fadeIn()
-            })
-
-            var scoreDiff = topThreshold - score;
-
-            if (scoreDiff > 0) {
-                $('#incentive').html('<p><span class="bold">+<span id="score_diff">' + scoreDiff +'</span> points required</span><br/>to enter top 100</p>')
-            } else {
-                $('#incentive').html('<p>You\'re in the top ' + numThresholdUsers + '</p>')
-            }
+            updateScoreView()
         } else {
             // skip to the next question
             skipQuestion();
