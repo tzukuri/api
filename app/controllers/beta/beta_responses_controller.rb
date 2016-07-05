@@ -8,16 +8,12 @@ class BetaResponsesController < ApplicationController
       render :json => {success: false, errors: beta_response.errors}
       return
     else
-       # give the user points for this question
-       points = BetaQuestion.find_by(id: beta_response.beta_question_id).point_value
-       current_beta_user.update_score(points)
+      current_beta_user.update_score
 
        render :json => {
           success: true,
           beta_response: beta_response,
-          score: current_beta_user.score,
-          answerable_questions: current_beta_user.answerable_questions.map(&:id),
-          percentage_chance: current_beta_user.percentage_chance
+          answerable_questions: current_beta_user.answerable_questions.map(&:id)
        }
     end
   end

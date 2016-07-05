@@ -12,9 +12,14 @@ class BetaMailer < ActionMailer::Base
   end
 
   def send_beta_forgot_link(beta_user)
-    puts beta_user.email
     @beta_user = beta_user
     mail(to: beta_user.email, subject: "Your Tzukuri Beta dashboard link")
+  end
+
+  def send_score_conflict_alert(file_path, force_update)
+    @file_path = file_path
+    @force_update = force_update
+    mail(to: 'sam@tzukuri.com, w@tzukuri.com', subject: "Alert - Incorrect Beta User Scores")
   end
 
 end

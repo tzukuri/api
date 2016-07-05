@@ -4,6 +4,12 @@ $(function() {
     var currentQuestion;
     var design, size;
 
+    // retrieve required attributes from DOM attributes
+    var score = parseInt($('#beta-index').attr('data-score'))
+    var responsePoints = parseInt($('#beta-index').attr('data-response-points'))
+    var topThreshold = parseInt($('#beta-index').attr('data-top-threshold'))
+    var numThresholdUsers = parseInt($('#beta-index').attr('data-threshold-users'))
+
     var modelSizing = {
         ive: {
             small: '48mm',
@@ -107,27 +113,34 @@ $(function() {
         }
     }
 
-    // given a new score and percentage update the UI to reflect the server state
-    var updateScore = function(score, percentage) {
+    var updateScoreView = function() {
         $("#points-amount").fadeOut(500, function() {
             $("#points-amount").html(score).tzAnimate('pulse').fadeIn()
         })
 
-        var scoreDiff = 135 - score;
+        var scoreDiff = topThreshold - score;
 
         if (scoreDiff > 0) {
             $('#incentive').html('<p><span class="bold">+<span id="score_diff">' + scoreDiff +'</span> points required</span><br/>to enter top 100</p>')
         } else {
-            $('#incentive').html('<p>You\'re in the top 100</p>')
+            $('#incentive').html('<p>You\'re in the top ' + numThresholdUsers + '</p>')
         }
+    }
 
-        // if (percentage <= 50) {
-        //     $('#direction').html('top')
-        //     $("#percentage").html(percentage)
-        // } else {
-        //     $('#direction').html('bottom')
-        //     $("#percentage").html(100 - percentage)
-        // }
+    // start polling
+    var getLatestScore = function() {
+        $.get('/beta_users/latest_score', function(data) {
+            console.log(data)
+
+            if (data.clean) {
+                // there is no updates left in the queue for this user
+                score = data.score
+                updateScoreView();
+            } else {
+                // try again in 2 seconds
+                setTimeout(getLatestScore, 2000)
+            }
+        });
     }
 
     // -----------------------------
@@ -139,12 +152,6 @@ $(function() {
         if ($('#login-container').attr('data-error')) {
             $('#beta_user_email').tzAnimate('shake')
         }
-
-        // update the number of days remaining
-        var end = moment([2016, 6, 28])
-        var daysRemaining = moment().diff(end, 'days') * -1
-
-        $('#days-remain').html(daysRemaining + ' days remaining')
 
         // if the user is logged in and looking at the details view show the
         // beta modal if this is the first time
@@ -166,10 +173,18 @@ $(function() {
                     dismissable: true
                 });
             }
-        }
 
-        // show the first answerable question
-        showQuestion($('[data-answerable=true]').first())
+            // update the number of days remaining
+            var end = moment([2016, 6, 28])
+            var daysRemaining = moment().diff(end, 'days') * -1
+            $('#days-remain').html(daysRemaining + ' days remaining')
+
+            // trigger score updates
+            getLatestScore();
+
+            // show the first answerable question
+            showQuestion($('[data-answerable=true]').first())
+        }
     })
 
     // -----------------------------
@@ -261,7 +276,7 @@ $(function() {
     $('.new_beta_response').on('ajax:success', function(e, data) {
         if (data.success) {
             updateAnswerables(data.answerable_questions)
-            updateScore(data.score, data.percentage_chance)
+            getLatestScore();
         } else {
             // skip to the next question
             skipQuestion();

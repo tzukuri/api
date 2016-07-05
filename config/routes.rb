@@ -15,6 +15,10 @@ Rails.application.routes.draw do
 
     # devise routes to replace the ones that you usually get from database_authenticatable
     devise_scope :beta_user do
+        authenticate :beta_user do
+            get     '/beta_users/latest_score'  => 'beta#latest_score'
+        end
+
         post    '/beta_users/sign_in'   => 'devise/sessions#create',    :as => :beta_user_session
         get     '/beta_users/sign_in'   => 'devise/sessions#new',       :as => :new_beta_user_session
         delete  '/beta_users/sign_out'  => 'devise/sessions#destroy',   :as => :destroy_beta_user_session

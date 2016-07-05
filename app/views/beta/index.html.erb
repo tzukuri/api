@@ -1,4 +1,5 @@
-<div id="beta-index" class="container">
+<div id="beta-index" class="container" data-response-points="<%= Tzukuri::RESPONSE_POINTS %>" data-score="<%= @beta_user
+.score.to_i %>" data-top-threshold="<%= @threshold %>" data-threshold-users="<%= Tzukuri::NUM_THRESHOLD_USERS %>">
   <% if beta_user_signed_in? %>
 
     <!-- order has been submitted -->
@@ -136,11 +137,12 @@
             </div>
 
             <div id="incentive">
-            <% if @score_diff > 0 %>
-              <p><span class="bold">+<span id="score_diff"><%= @score_diff.to_i %></span> points required</span><br/>to enter top 100</p>
-            <% else %>
-              <p>You're in the top 100</p>
-            <% end %>
+
+              <% if @beta_user.score >= @threshold %>
+                <p>You're in the top <%= Tzukuri::NUM_THRESHOLD_USERS %></p>
+              <% else %>
+                <p><span class="bold">+<span id="score_diff"><%= @threshold - @beta_user.score.to_i %></span> points required</span><br/>to enter top 100</p>
+              <% end %>
             </div>
 
             <hr id="remaining-spacer">
@@ -148,15 +150,6 @@
             <div id="days-remain">
 
             </div>
-
-            <!-- <p>To break into the eligible top 100, you need 100 points</p> -->
-
-            <%# if @percentage_chance <= 50 %>
-              <!-- <p>You are in the <span class="bold"> <span id='direction'>top</span> <span id="percentage"> <%#= @percentage_chance %></span>%</span> of people</p> -->
-            <%# else %>
-              <!-- <p>You are in the <span class="bold"> <span id='direction'>bottom</span> <span id="percentage"><%#= 100 - @percentage_chance %></span>%</span> of people</p> -->
-            <%# end %>
-
           </div>
 
           <div class="nine columns" id="user-col">
@@ -169,14 +162,14 @@
             <p id="increase-chance">To find the most passionate people, the <span class='bold'>top 100 users by points</span> will be selected to receive a pair of glasses for testing. Get more points by completing the tasks below.  <a href="#" id="need-help">Need help?</a></p>
 
             <div id="invite-link-container">
-              <p>Share this link to earn <span class='bold'>10 points</span> for every sign up</p>
+              <p>Share this link to earn <span class='bold'><%= Tzukuri::INVITEE_POINTS %> points</span> for every sign up</p>
 
               <input readonly id="link" value="tzukuri.com/beta/invite/<%= @beta_user.invite_token %>">
 
-              <% if @invitees == 1 %>
+              <% if @num_invitees == 1 %>
                 <p>1 person has used your invite</p>
               <% else %>
-                <p><%= @invitees %> people have used your invite</p>
+                <p><%= @num_invitees %> people have used your invite</p>
               <% end %>
 
             </div>
@@ -189,7 +182,7 @@
           </div>
           <div class="nine columns">
             <hr>
-            <p id="social-exp">Every social media account you connect earns you <span class="bold">20 points</span></p>
+            <p id="social-exp">Every social media account you connect earns you <span class="bold"><%= Tzukuri::IDENTITY_POINTS %> points</span></p>
             <div class="row">
 
               <div class="four columns social-col row">
@@ -248,7 +241,7 @@
             <% if @answerable_questions.count > 0 %>
             <div class="row" id="question-header">
               <div class="nine columns">
-                <p>Earn <span class="bold">5 points</span> by answering this question</p>
+                <p>Earn <span class="bold"><%= Tzukuri::RESPONSE_POINTS %> points</span> by answering this question</p>
               </div>
 
               <div class="three columns">

@@ -28,7 +28,13 @@ class BetaUser < ActiveRecord::Base
   def referred_by(referrer_token)
     referred_by = BetaUser.find_by(invite_token: referrer_token)
     BetaReferral.create(inviter_id: referred_by.id, invitee_id: self.id)
-    referred_by.update_score(10)
+
+    # update the score on the referrer
+    referred_by.update_score
+  end
+
+  def root?
+    BetaReferral.where(invitee_id: id).empty?
   end
 
   # return a list of questions that can be answered by the user
@@ -48,21 +54,28 @@ class BetaUser < ActiveRecord::Base
     BetaUser.where(selected: false).order(score: :desc).index(self)
   end
 
-  def update_score(by_amount)
-    self.score += by_amount
-    self.save!
+  # spawn a job that updates the user's score. this is done in a serial queue to prevent
+  # race conditions and guarantee that the score will eventually be consistent
+  def update_score
+    UpdateBetaUserScore.enqueue(self.id)
   end
 
-  def percentage_chance
-      percentage = (rank.to_f/BetaUser.all.count * 100).round(-1);
-
-      # cap percentage at 90
-      if percentage < 10
-        percentage = 10
-      end
-
-      return percentage
+  def calculated_score
+    (invitees.count * Tzukuri::INVITEE_POINTS) +
+    (responses.count * Tzukuri::RESPONSE_POINTS) +
+    (identities.count * Tzukuri::IDENTITY_POINTS)
   end
+
+  # def percentage_chance
+  #     percentage = (rank.to_f/BetaUser.all.count * 100).round(-1);
+
+  #     # cap percentage at 90
+  #     if percentage < 10
+  #       percentage = 10
+  #     end
+
+  #     return percentage
+  # end
 
   def order?
     !order.nil?

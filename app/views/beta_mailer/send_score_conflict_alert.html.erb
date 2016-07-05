@@ -1,0 +1,10 @@
+<p>Some beta user's scores may be incorrect. The discrepancies have been written to <%= @file_path %></p>
+
+<p>The following parameters were used to calculate the scores</p>
+<p>Invitees: <%= Tzukuri::INVITEE_POINTS %></p>
+<p>Social Media: <%= Tzukuri::SOCIAL_POINTS %></p>
+<p>Question Responses: <%= Tzukuri::RESPONSE_POINTS %></p>
+
+<% if @force_update %>
+  <p>This was a forced update, the discrepancies have probably been resolved. The output file will list all the users that have been updated, their scores should now match the expected score.</p>
+<% end %>
