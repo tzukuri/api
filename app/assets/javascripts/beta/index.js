@@ -276,9 +276,7 @@ $(function() {
     $('.new_beta_response').on('ajax:success', function(e, data) {
         if (data.success) {
             updateAnswerables(data.answerable_questions)
-
-            score += responsePoints;
-            updateScoreView()
+            getLatestScore();
         } else {
             // skip to the next question
             skipQuestion();
