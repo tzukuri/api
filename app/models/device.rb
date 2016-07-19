@@ -3,7 +3,7 @@ class Device < ActiveRecord::Base
     enum state: [:unknown, :connected, :disconnected]
 
     def current_owner
-        ownerships.first.user
+        ownerships.first.try(:user)
     end
 
     def owner?(user)
