@@ -216,6 +216,7 @@ GEM
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     lumberjack (1.0.10)
+    lz4-ruby (0.3.3)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
     memoizable (0.4.2)
@@ -427,6 +428,7 @@ DEPENDENCIES
   jquery-ui-rails
   koala
   lodash-rails
+  lz4-ruby
   mail
   mapbox-rails!
   mini_backtrace (= 0.1.3)
