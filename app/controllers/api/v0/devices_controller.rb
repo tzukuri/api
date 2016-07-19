@@ -2,7 +2,7 @@ class Api::V0::DevicesController < Api::ApiController
     before_action :log_in_with_auth_token
     before_action :load_device, except: :index
     before_action :ensure_owner, except: [:index, :link]
-    before_action :ensure_valid_ts, only: [:location, :latitude, :longitude]
+    before_action :ensure_valid_ts, only: [:location, :connected, :disconnected]
 
     def index
         @devices = @user.devices
