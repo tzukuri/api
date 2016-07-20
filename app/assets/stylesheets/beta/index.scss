@@ -142,11 +142,12 @@ body.beta {
                 button.cta {
                     background-color: $tzukuri-blue;
                     color: white;
-
-                    &:hover {
-                        background-color: white;
-                        color: $tzukuri-blue;
-                    }
+                    text-transform: none;
+                    font-size: 13pt;
+                    padding: 10px;
+                    height: auto;
+                    width: 120px;
+                    border-radius: 25px;
                 }
             }
 

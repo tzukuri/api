@@ -252,10 +252,10 @@ $(function() {
     })
 
     // pulse on mouseover
-    $('.select-design>img, .select-size').on('mouseover', function() {
-        if ($(this).parent().hasClass('disabled')) return;
-        $(this).tzAnimate('pulse')
-    })
+    // $('.select-design>img, .select-size').on('mouseover', function() {
+    //     if ($(this).parent().hasClass('disabled')) return;
+    //     $(this).tzAnimate('pulse')
+    // })
 
     // handle click on frame select elements
     $('.select-design, .select-size').on('click', function() {
@@ -343,14 +343,17 @@ $(function() {
     var orderDetails = {
         frame: '',
         size: '',
-        delivery_method: ''
+        address: {},
+        delivery_method: '',
+        delivery_timeslot: ''
     }
 
+    // i. when user selects a frame
     $('.select-frame button').on('click', function() {
         orderDetails.frame = $(this).attr('data-frame')
 
-        var lg = modelSizing[orderDetails.frame].small
-        var sm = modelSizing[orderDetails.frame].larg
+        var lg = modelSizing[orderDetails.frame].large
+        var sm = modelSizing[orderDetails.frame].small
 
         // update the sizing for the selected frame
         $('.select-size #small').html(sm + "mm").attr('data-size', sm)
@@ -359,8 +362,30 @@ $(function() {
         console.log(orderDetails)
     })
 
+    $('.select-frame button').on('mouseover', function() {
+        $(this).tzAnimate('pulse')
+    })
+
+
+
+    // ii. when user selects a size
     $('.select-size button').on('click', function() {
         orderDetails.size = $(this).attr('data-size')
+
+        console.log(orderDetails)
+    })
+
+    // iii. when user enters their shipping details
+    $('#step-details #shipping button').on('click', function() {
+        var form = $("#new_beta_order")
+        orderDetails.address = $("#new_beta_order").serializeObject()
+        // todo: strip out useless entries
+        console.log(orderDetails)
+    })
+
+    // iv. when user selects their shipping method
+    $('.select-shipping button').on('click', function() {
+        orderDetails.delivery_method = parseInt($(this).attr('data-delivery'))
         console.log(orderDetails)
     })
 

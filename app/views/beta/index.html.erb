@@ -36,6 +36,14 @@
     <div id="selected-container">
       <div id="selected-header">
         <h2>Congratulations, you're in.</h2>
+
+        <div class="row" id="step-header">
+          <div class="three columns">Back</div>
+          <div class="nine columns">
+            <p style="text-align: center">Select your frames and enter your shipping details to receive your glasses.</p>
+          </div>
+        </div>
+
       </div>
 
       <!-- i. select frame -->
@@ -108,25 +116,26 @@
 
                 <p id="error-messages"></p>
 
-                <%= f.submit 'submit', id: 'submit-btn', class: 'disabled' %>
+                # <%= f.submit 'submit', id: 'submit-btn', class: 'disabled' %>
               <% end %>
+              <button class="cta next">continue</button>
             </div>
-        <br/><br/>
-        <button class="prev">previous</button><button class="next">next</button>
+        <!-- <br/><br/> -->
+        <!-- <button class="prev">previous</button><button class="next">next</button> -->
       </div>
 
       <div class="step-container row hidden" id="step-shipping-method">
 
-        <div class="four columns">
-          <button class="cta">ship</button>
+        <div class="select-shipping four columns">
+          <button class="cta" data-delivery="0">ship</button>
         </div>
 
-        <div class="four columns">
-          <button class="cta">hand delivery</button>
+        <div class="select-shipping four columns">
+          <button class="cta" data-delivery="1">hand delivery</button>
         </div>
 
-        <div class="four columns">
-          <button class="cta">meetup</button>
+        <div class="select-shipping four columns">
+          <button class="cta" data-delivery="2">meetup</button>
         </div>
 
         <br/><br/>
