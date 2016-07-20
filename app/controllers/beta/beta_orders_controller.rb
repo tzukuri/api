@@ -1,12 +1,13 @@
 class BetaOrdersController < ApplicationController
   def create
     # create an order by merging params and current user id
-    beta_order = BetaOrder.create(beta_order_params.merge(:beta_user_id => current_beta_user.id))
+    beta_order = BetaOrder.create(beta_order_params.merge(:beta_user_id => current_beta_user.id, :delivery_method => 'shipping'))
 
     if !beta_order.valid?
       render :json => {success: false, errors: beta_order.errors}
       return
     else
+      # todo: check if the delivery method is hand delivery and assign the appropriate timeslot
       render :json => {success: true, beta_order: beta_order}
     end
   end

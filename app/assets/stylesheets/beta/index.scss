@@ -127,147 +127,184 @@ body.beta {
         // ----------------------
         #selected-container {
             text-align: center;
+            height: 85vh;
+            overflow: hidden;
+
+            .step-container {
+                padding: 20px;
+                // background-color: $tzukuri-light-grey;
+                height: 100%;
+
+                &.hidden {
+                    display: none;
+                }
+
+                button.cta {
+                    background-color: $tzukuri-blue;
+                    color: white;
+
+                    &:hover {
+                        background-color: white;
+                        color: $tzukuri-blue;
+                    }
+                }
+            }
 
             #selected-header {
-                margin-bottom: 60px;
-
                 h2 {
                     font-size: 36pt;
                     color: $tzukuri-black;
                     font-weight: 200;
                     line-height: 150%;
                 }
-
-                p {
-                    line-height: 150%;
-                }
             }
 
-            #frame-select {
-                .columns {
-                    border-right: 1px solid $tzukuri-light-grey;
-                    min-height: 400px;
-                    margin-left: 0px;
-
-                    @include transition(0.5s);
-
-                    &.disabled {
-                        opacity: 0.1;
-                    }
-
-                    // select design (ford vs. ive)
-                    .select-design {
-                        cursor: pointer;
-
-                        img {
-                            width: 65%;
-                        }
-                    }
-
-                    // select size (small vs. large)
-                    .select-size {
-                        border: 1px solid $tzukuri-blue;
-                        border-radius: 20px;
-                        width: 30%;
-                        color: $tzukuri-blue;
-                        margin-left: auto;
-                        margin-right: auto;
-                        margin-top: 80px;
-                        margin-bottom: 20px;
-                        padding: 10px;
-                        cursor: pointer;
-
-                        @include transition(0.5s);
-
-                        &:hover {
-                            background: $tzukuri-blue;
-                            color: white;
-                        }
-                    }
-
-                    .size-exp {
-                        font-size: 10pt;
-                    }
-
-                    // select colour (black vs. tortoise)
-                    .select-colour {
-                        padding: 5px;
-                        border-radius: 15px;
-                        width: 50%;
-                        margin-left: auto;
-                        margin-right: auto;
-                        margin-top: 40px;
-                        cursor: pointer;
-
-                        @include transition(0.5s);
-
-                        &.active {
-                            color: white;
-                            background-color: $tzukuri-dark-grey;
-                        }
-
-                        .circle {
-                            width: 60px;
-                            height: 60px;
-                            border-radius: 30px;
-                            margin-top: 10px;
-                            margin-bottom: 10px;
-                            margin-left: auto;
-                            margin-right: auto;
-
-                            &.tort {
-                                background-color: brown;
-                            }
-
-                            &.black {
-                                background-color: $tzukuri-black;
-                            }
-                        }
+            #step-frames {
+                .select-frame {
+                    img {
+                        width: 100%;
                     }
                 }
             }
 
-            #order-details {
-                &.hidden {
-                    display: none;
-                }
+            // #selected-header {
+            //     h2 {
+            //         font-size: 36pt;
+            //         color: $tzukuri-black;
+            //         font-weight: 200;
+            //         line-height: 150%;
+            //     }
 
-                .checkout-img {
-                    width: 95%;
-                    margin-top: -100px;
-                    margin-left: auto;
-                    margin-right: auto;
-                }
+            //     p {
+            //         line-height: 150%;
+            //     }
+            // }
 
-                .checkout-img.hidden {
-                    display: none;
-                }
+            // #step-frames {
+            //     .columns {
+            //         border-right: 1px solid $tzukuri-light-grey;
+            //         min-height: 400px;
+            //         margin-left: 0px;
 
-                #glasses-details {
-                    text-align: left;
+            //         @include transition(0.5s);
 
-                    dl {
-                        margin-bottom: 20px;
-                        margin-left: 70px;
+            //         &.disabled {
+            //             opacity: 0.1;
+            //         }
 
-                        dt, dd {
-                            display: inline-block;
-                            margin-bottom: 3px;
-                            font-size: 12px;
-                        }
+            //         // select design (ford vs. ive)
+            //         .select-design {
+            //             cursor: pointer;
 
-                        dt {
-                            text-transform: uppercase;
-                            font-weight: 600;
-                            text-align: right;
-                        }
+            //             img {
+            //                 width: 65%;
+            //             }
+            //         }
 
-                        dd {
-                            text-transform: capitalize;
-                        }
-                    }
-                }
-            }
+            //         // select size (small vs. large)
+            //         .select-size {
+            //             border: 1px solid $tzukuri-blue;
+            //             border-radius: 20px;
+            //             width: 30%;
+            //             color: $tzukuri-blue;
+            //             margin-left: auto;
+            //             margin-right: auto;
+            //             margin-top: 80px;
+            //             margin-bottom: 20px;
+            //             padding: 10px;
+            //             cursor: pointer;
+
+            //             @include transition(0.5s);
+
+            //             &:hover {
+            //                 background: $tzukuri-blue;
+            //                 color: white;
+            //             }
+            //         }
+
+            //         .size-exp {
+            //             font-size: 10pt;
+            //         }
+
+            //         // select colour (black vs. tortoise)
+            //         .select-colour {
+            //             padding: 5px;
+            //             border-radius: 15px;
+            //             width: 50%;
+            //             margin-left: auto;
+            //             margin-right: auto;
+            //             margin-top: 40px;
+            //             cursor: pointer;
+
+            //             @include transition(0.5s);
+
+            //             &.active {
+            //                 color: white;
+            //                 background-color: $tzukuri-dark-grey;
+            //             }
+
+            //             .circle {
+            //                 width: 60px;
+            //                 height: 60px;
+            //                 border-radius: 30px;
+            //                 margin-top: 10px;
+            //                 margin-bottom: 10px;
+            //                 margin-left: auto;
+            //                 margin-right: auto;
+
+            //                 &.tort {
+            //                     background-color: brown;
+            //                 }
+
+            //                 &.black {
+            //                     background-color: $tzukuri-black;
+            //                 }
+            //             }
+            //         }
+            //     }
+            // }
+
+            // #order-details {
+            //     &.hidden {
+            //         display: none;
+            //     }
+
+            //     .checkout-img {
+            //         width: 95%;
+            //         margin-top: -100px;
+            //         margin-left: auto;
+            //         margin-right: auto;
+            //     }
+
+            //     .checkout-img.hidden {
+            //         display: none;
+            //     }
+
+            //     #glasses-details {
+            //         text-align: left;
+
+            //         dl {
+            //             margin-bottom: 20px;
+            //             margin-left: 70px;
+
+            //             dt, dd {
+            //                 display: inline-block;
+            //                 margin-bottom: 3px;
+            //                 font-size: 12px;
+            //             }
+
+            //             dt {
+            //                 text-transform: uppercase;
+            //                 font-weight: 600;
+            //                 text-align: right;
+            //             }
+
+            //             dd {
+            //                 text-transform: capitalize;
+            //             }
+            //         }
+            //     }
+            // }
         }
 
         // --------------------------------------

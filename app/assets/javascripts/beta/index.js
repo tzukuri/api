@@ -12,12 +12,12 @@ $(function() {
 
     var modelSizing = {
         ive: {
-            small: '48mm',
-            large: '50.5mm'
+            small: '48',
+            large: '50.5'
         },
         ford: {
-            small: '49mm',
-            large: '51.5mm'
+            small: '49',
+            large: '51.5'
         }
     }
 
@@ -66,13 +66,13 @@ $(function() {
             $('.checkout-img#' + design + '-black').show()
 
             // progress to the shipping details form
-            $('#frame-select').fadeOut(function() {
+            $('#step-frames').fadeOut(function() {
                 $('#order-details').fadeIn();
             });
 
             // transition from select design to select size
         } else if ($(fromEl).hasClass('select-design')) {
-            $($("#frame-select .columns")[1]).removeClass('disabled')
+            $($("#step-frames .columns")[1]).removeClass('disabled')
 
             // update the size values
             $('.select-size#large').html(modelSizing[design].large)
@@ -82,7 +82,7 @@ $(function() {
             $('.select-size#small').attr('data-size', modelSizing[design].small)
 
             $("#beta_order_frame").val(design)
-            $("#frame-selection").html(design)
+            $("#step-framesion").html(design)
         }
     }
 
@@ -141,6 +141,31 @@ $(function() {
             }
         });
     }
+
+    var distanceBetweenCoords = function(coords1, coords2) {
+        // using the haversine formula to calculate great-circle distance
+        var p = 0.017453292519943295;    // Math.PI / 180
+        var c = Math.cos;
+        var a = 0.5 - c((coords2.lat - coords1.lat) * p)/2 + c(coords1.lat * p) * c(coords2.lat * p) * (1 - c((coords2.lng - coords1.lng) * p))/2;
+        return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
+    }
+
+    //     var geocodeAddress = function(address) {
+    //     var API_KEY = '0828d5780c7f32be6e3882357f8a2038'
+    //     var syd_coords = {'lat': -33.865, 'lng': 151.209444}
+
+    //     var url = "http://api.opencagedata.com/geocode/v1/json?q=" + address + "&key=" + API_KEY
+
+    //     return $.get(url, function(data) {
+    //         // console.log(data.results)
+    //         console.log(data.results[0].geometry)
+    //         console.log(syd_coords)
+    //         addr_coords = data.results[0].geometry
+
+    //         var d = distanceBetweenCoords(addr_coords, syd_coords)
+    //         console.log(d)
+    //     })
+    // }
 
     // -----------------------------
     // on page load binding
@@ -220,10 +245,10 @@ $(function() {
 
     $("#shipping-back").on('click', function() {
         $('#order-details').fadeOut(function() {
-            $('#frame-select').fadeIn();
+            $('#step-frames').fadeIn();
         });
 
-        $($("#frame-select .columns")[0]).removeClass('disabled')
+        $($("#step-frames .columns")[0]).removeClass('disabled')
     })
 
     // pulse on mouseover
@@ -305,5 +330,58 @@ $(function() {
     }).on('ajax:error', function(e, data) {
         $("#error-messages").html(e)
     });
+
+    // -----------------------------
+    // beta orders functionality
+    // -----------------------------
+    var geocodeAddress = function(address) {
+        var API_KEY = '0828d5780c7f32be6e3882357f8a2038'
+        var url = "http://api.opencagedata.com/geocode/v1/json?q=" + address + "&key=" + API_KEY
+        return $.get(url)
+    }
+
+    var orderDetails = {
+        frame: '',
+        size: '',
+        delivery_method: ''
+    }
+
+    $('.select-frame button').on('click', function() {
+        orderDetails.frame = $(this).attr('data-frame')
+
+        var lg = modelSizing[orderDetails.frame].small
+        var sm = modelSizing[orderDetails.frame].larg
+
+        // update the sizing for the selected frame
+        $('.select-size #small').html(sm + "mm").attr('data-size', sm)
+        $('.select-size #large').html(lg + "mm").attr('data-size', lg)
+
+        console.log(orderDetails)
+    })
+
+    $('.select-size button').on('click', function() {
+        orderDetails.size = $(this).attr('data-size')
+        console.log(orderDetails)
+    })
+
+    var currentStep = 0
+
+    $('.prev').on('click', function() {
+        navigate('back')
+    })
+
+    $('.next').on('click', function() {
+        navigate('forward')
+    })
+
+    // navigate back or forward through the order steps
+    var navigate = function(direction) {
+        // todo: maybe reset the data on successful navigation?
+        var steps = $('.step-container')
+        $(steps[currentStep]).fadeOut(function() {
+            direction == 'forward' ? currentStep++ : currentStep--
+            $(steps[currentStep]).fadeIn()
+        })
+    }
 
 });

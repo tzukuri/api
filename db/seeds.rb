@@ -15,12 +15,3 @@ BetaQuestion.create(content: "Where do you usually buy your glasses?",          
 
 # seed first beta user (used to invite everyone else)
 BetaUser.create(email: "beta@tzukuri.com", name: "Tzukuri Beta", invite_token:"", birth_date: "26/05/2015", latitude: "0", longitude: "0", city: "-")
-
-# populate the database with users for testing
-# i = 0
-# num = 5000
-
-# while i < num do
-#   BetaUser.create(email: "beta" + i.to_s + "@tzukuri.com", name: "NAME", invite_token: "", birth_date: "26/05/2015", country: '-', city: '-', score: rand(0..200))
-#   i += 1
-# end
