@@ -2,6 +2,45 @@ require 'fileutils'
 
 namespace :tzukuri do
 
+  desc ""
+  task :beta_report => :environment do
+    # build up a out_string and write to a .csv file for loading into excel
+    out_string = ['id', 'email', 'num_twitter_followers', 'num_instagram_followers', 'num_responses', 'num_invitees', 'city'].join(',') + "\n"
+
+    # for all users not from tzukuri
+    # BetaUser.where.not("email LIKE ?", "%@tzukuri.com").all.each do |beta_user|
+    BetaUser.all.each do |beta_user|
+      puts "processing " + beta_user.id.to_s
+
+      # use -1 to indicate that no account is associated with this account
+      twitter_followers = -1
+      instagram_followers = -1
+
+      if beta_user.twitter?
+        begin
+          twitter_followers = beta_user.twitter_client.user.followers_count
+        rescue => e
+          puts "error retrieving twitter followers: " + e
+        end
+      end
+
+      if beta_user.instagram?
+        begin
+          instagram_followers = beta_user.instagram_client.user.counts.followed_by
+        rescue => e
+          puts "error retrieving instagram followers: " + e
+        end
+      end
+
+      out_string << [beta_user.id, beta_user.email, twitter_followers, instagram_followers, beta_user.responses.count, beta_user.invitees.count, beta_user.city].join(',') + "\n"
+    end
+
+    FileUtils.mkdir_p('log/beta/reports')
+    file_path = 'log/beta/reports/report_' + Time.now.strftime('%s') + '.csv'
+    File.open(file_path, 'a+') {|file| file.write(out_string)}
+    puts 'wrote report to ' + file_path
+  end
+
   desc "Check each user's score and confirm that it is correct"
   task :validate_beta_scores => :environment do
     alert_required = false
