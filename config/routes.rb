@@ -115,7 +115,8 @@ Rails.application.routes.draw do
     get '/beta/beta_users/list_order' => 'beta#list_order'
     get '/beta/beta_users/graph'  => 'beta#graph'
 
-    get '/diagnostics' => 'diagnostics#index'
+    # diagnostics
+    get '/diagnostics/:diag_token/:date/:file_name' => 'diagnostics#index'
 
     # mailer preview paths
     # get '/rails/mailers' => "rails/mailers#index"
