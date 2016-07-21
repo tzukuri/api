@@ -8,13 +8,13 @@ namespace :tzukuri do
     out_string = ['id', 'email', 'score', 'num_twitter_followers', 'num_instagram_followers', 'num_responses', 'num_invitees', 'total_connected', 'city'].join(',') + "\n"
 
     # for all users not from tzukuri
-    BetaUser.all.each do |beta_user|
-    # BetaUser.where.not("email LIKE ?", "%@tzukuri.com").order('created_at').all.each do |beta_user|
+    BetaUser.where.not("email LIKE ?", "%@tzukuri.com").order('created_at').all.each do |beta_user|
       puts "processing " + beta_user.id.to_s
 
       # use -1 to indicate that no account is associated with this account
       twitter_followers = -1
       instagram_followers = -1
+
       if beta_user.twitter?
         begin
           twitter_followers = beta_user.twitter_client.user.followers_count
