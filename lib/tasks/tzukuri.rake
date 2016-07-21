@@ -5,10 +5,11 @@ namespace :tzukuri do
   desc "Prepare a report for beta user selection"
   task :beta_report => :environment do
     # build up a out_string and write to a .csv file for loading into excel
-    out_string = ['id', 'name', 'email', 'score', 'twitter_handle', 'num_twitter_followers', 'instagram_handle', 'num_instagram_followers', 'num_responses', 'num_invitees', 'total_connected', 'city'].join(',') + "\n"
+    out_string = ['id', 'name', 'email', 'age', 'score', 'twitter_handle', 'num_twitter_followers', 'instagram_handle', 'num_instagram_followers', 'num_responses', 'num_invitees', 'total_connected', 'city'].join(',') + "\n"
 
     # for all users not from tzukuri
-    BetaUser.where.not("email LIKE ?", "%@tzukuri.com").order('created_at').all.each do |beta_user|
+    BetaUser.all.each do |beta_user|
+    # BetaUser.where.not("email LIKE ?", "%@tzukuri.com").order('created_at').all.each do |beta_user|
       puts "processing " + beta_user.id.to_s
 
       # use -1 to indicate that no account is associated with this account
@@ -21,7 +22,7 @@ namespace :tzukuri do
         begin
           t_user = beta_user.twitter_client.user
           twitter_followers = t_user.followers_count
-          twitter_handle = t_user.handle
+          twitter_handle = t_user.screen_name
         rescue => e
           puts "error retrieving twitter followers"
         end
@@ -39,7 +40,7 @@ namespace :tzukuri do
 
       total_connected = total_connected(beta_user, 0)
 
-      out_string << [beta_user.id, beta_user.name, beta_user.email, beta_user.score, twitter_handle, twitter_followers, instagram_handle, instagram_followers, beta_user.responses.count, beta_user.invitees.count, total_connected, beta_user.city.gsub(',', ' -')].join(',') + "\n"
+      out_string << [beta_user.id, beta_user.name, beta_user.email, age(beta_user.birth_date),beta_user.score, twitter_handle, twitter_followers, instagram_handle, instagram_followers, beta_user.responses.count, beta_user.invitees.count, total_connected, beta_user.city.gsub(',', ' -')].join(',') + "\n"
     end
 
     FileUtils.mkdir_p('log/beta/reports')
@@ -98,6 +99,11 @@ namespace :tzukuri do
     puts "Responses: #{response_count} (avg. #{response_count.to_f / all_users.count})"
     puts "Connections: #{identity_count} (avg. #{identity_count.to_f / all_users.count})"
     puts "\nTop inviters:\n#{@inviters[0...15].map {|row| "#{row.last} (#{row.first})" }.join("\n")}"
+  end
+
+  def age(dob)
+    now = Time.now.utc.to_date
+    now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
   end
 
   # returns the total number of invitees as a result of this one
