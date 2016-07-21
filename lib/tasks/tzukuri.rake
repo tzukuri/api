@@ -5,19 +5,24 @@ namespace :tzukuri do
   desc "Prepare a report for beta user selection"
   task :beta_report => :environment do
     # build up a out_string and write to a .csv file for loading into excel
-    out_string = ['id', 'email', 'score', 'num_twitter_followers', 'num_instagram_followers', 'num_responses', 'num_invitees', 'total_connected', 'city'].join(',') + "\n"
+    out_string = ['id', 'name', 'email', 'score', 'twitter_handle', 'num_twitter_followers', 'instagram_handle', 'num_instagram_followers', 'num_responses', 'num_invitees', 'total_connected', 'city'].join(',') + "\n"
 
     # for all users not from tzukuri
-    BetaUser.where.not("email LIKE ?", "%@tzukuri.com").order('created_at').all.each do |beta_user|
+    BetaUser.all.each do |beta_user|
+    # BetaUser.where.not("email LIKE ?", "%@tzukuri.com").order('created_at').all.each do |beta_user|
       puts "processing " + beta_user.id.to_s
 
       # use -1 to indicate that no account is associated with this account
       twitter_followers = -1
+      twitter_handle = ""
       instagram_followers = -1
+      instagram_handle = ""
 
       if beta_user.twitter?
         begin
-          twitter_followers = beta_user.twitter_client.user.followers_count
+          t_user = beta_user.twitter_client.user
+          twitter_followers = t_user.followers_count
+          twitter_handle = t_user.handle
         rescue => e
           puts "error retrieving twitter followers"
         end
@@ -25,7 +30,9 @@ namespace :tzukuri do
 
       if beta_user.instagram?
         begin
-          instagram_followers = beta_user.instagram_client.user.counts.followed_by
+          i_user = beta_user.instagram_client.user
+          instagram_followers = i_user.counts.followed_by
+          instagram_handle = i_user.username
         rescue => e
           puts "error retrieving instagram followers"
         end
@@ -33,7 +40,7 @@ namespace :tzukuri do
 
       total_connected = total_connected(beta_user, 0)
 
-      out_string << [beta_user.id, beta_user.email, beta_user.score, twitter_followers, instagram_followers, beta_user.responses.count, beta_user.invitees.count, total_connected, beta_user.city.gsub(',', ' -')].join(',') + "\n"
+      out_string << [beta_user.id, beta_user.name, beta_user.email, beta_user.score, twitter_handle, twitter_followers, instagram_handle, instagram_followers, beta_user.responses.count, beta_user.invitees.count, total_connected, beta_user.city.gsub(',', ' -')].join(',') + "\n"
     end
 
     FileUtils.mkdir_p('log/beta/reports')
