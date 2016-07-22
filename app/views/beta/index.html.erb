@@ -132,24 +132,9 @@
 
           <div class="three columns" id="score-col">
             <div id="score-container">
-              <span id="points-amount"><%= @beta_user.score.to_i %></span>
-              <span id="points-sub">points</span>
+              <span id="days-remain"></span>
             </div>
-
-            <div id="incentive">
-
-              <% if @beta_user.score >= @threshold %>
-                <p>You're in the top <%= Tzukuri::NUM_THRESHOLD_USERS %></p>
-              <% else %>
-                <p><span class="bold">+<span id="score_diff"><%= @threshold - @beta_user.score.to_i %></span> points required</span><br/>to enter top 100</p>
-              <% end %>
-            </div>
-
-            <hr id="remaining-spacer">
-
-            <div id="days-remain">
-
-            </div>
+            <p id="days-remain-sub">days remaining</p>
           </div>
 
           <div class="nine columns" id="user-col">

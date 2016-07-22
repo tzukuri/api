@@ -354,21 +354,28 @@ body.beta {
                     }
 
                     #days-remain {
-                        margin-top: 20px;
                         font-weight: 200;
-                        font-size: 14pt;
+                        font-size: 42pt;
+                        line-height:42pt;
+                        display: inline-block;
+                        vertical-align: middle;
+                    }
+
+                    #days-remain-sub {
+                        font-size: 16pt;
+                        font-weight: 200;
                     }
 
                     #score-container {
                         border-radius: 50%;
                         width: 120px;
                         height: 120px;
+                        line-height: 120px;
                         border: 2px solid $tzukuri-blue;
                         color: $tzukuri-blue;
                         margin-left: auto;
                         margin-right: auto;
                         margin-bottom: 20px;
-                        display: block;
 
                         #points-amount {
                             margin-top: 30px;
