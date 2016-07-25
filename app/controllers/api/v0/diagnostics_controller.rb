@@ -18,7 +18,7 @@ class Api::V0::DiagnosticsController < Api::ApiController
 
         file = env['rack.input']
         render_error(:invalid_diagnostics) if file.nil?
-        
+
         file_name = params[:file_name]
         render_error(:invalid_diagnostics) if file_name.nil?
 
@@ -27,7 +27,7 @@ class Api::V0::DiagnosticsController < Api::ApiController
             render_error(:invalid_token) if device_id.nil?
             path = Rails.root.join('diagnostics', 'NO_AUTH_TOKEN', device_id, date, file_name)
         else
-            auth_token = AuthToken.find_by_diagnostic_sync_token(token)
+            auth_token = AuthToken.find_by_diagnostics_sync_token(token)
             render_error(:invalid_token) if auth_token.nil? || auth_token.revoked?
             path = Rails.root.join('diagnostics', token, date, file_name)
         end
