@@ -18,7 +18,7 @@ class Api::V0::DiagnosticsController < Api::ApiController
 
         file = env['rack.input']
         render_error(:invalid_diagnostics) if file.nil?
-        
+
         file_name = params[:file_name]
         render_error(:invalid_diagnostics) if file_name.nil?
 

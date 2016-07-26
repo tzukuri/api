@@ -135,7 +135,6 @@ $(function() {
             if (data.clean) {
                 // there is no updates left in the queue for this user
                 score = data.score
-                updateScoreView();
             } else {
                 // try again in 2 seconds
                 setTimeout(getLatestScore, 2000)
@@ -177,10 +176,10 @@ $(function() {
             // update the number of days remaining
             var end = moment([2016, 6, 28])
             var daysRemaining = moment().diff(end, 'days') * -1
-            $('#days-remain').html(daysRemaining + ' days remaining')
+            $('#days-remain').html(daysRemaining)
 
             // trigger score updates
-            getLatestScore();
+            // getLatestScore();
 
             // show the first answerable question
             showQuestion($('[data-answerable=true]').first())
@@ -276,7 +275,7 @@ $(function() {
     $('.new_beta_response').on('ajax:success', function(e, data) {
         if (data.success) {
             updateAnswerables(data.answerable_questions)
-            getLatestScore();
+            // getLatestScore();
         } else {
             // skip to the next question
             skipQuestion();
