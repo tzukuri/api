@@ -2,9 +2,9 @@ class User < ActiveRecord::Base
     devise :database_authenticatable, :recoverable, :rememberable,
            :trackable, :validatable, :lockable
 
-    has_many :ownerships
-    has_many :auth_tokens
-    has_many :quietzones
+    has_many :ownerships, dependent: :destroy
+    has_many :auth_tokens, dependent: :destroy
+    has_many :quietzones, dependent: :destroy
     has_many :active_ownerships,
                 -> { Ownership.active },
                 class_name: 'Ownership'

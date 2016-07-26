@@ -1,7 +1,7 @@
 class AuthToken < ActiveRecord::Base
     belongs_to :user
     belongs_to :app
-    has_many :log_entries
+    has_many :log_entries, dependent: :destroy
 
     scope :active, -> { where revoked: nil }
 
