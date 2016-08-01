@@ -38,9 +38,8 @@
         <h2>Congratulations, you're in.</h2>
 
         <div class="row" id="step-header">
-          <div class="three columns">Back</div>
-          <div class="nine columns">
-            <p style="text-align: center">Select your frames and enter your shipping details to receive your glasses.</p>
+          <div class="twelve columns">
+            <!-- <p style="text-align: center">Select your frames and enter your shipping details to receive your glasses.</p> -->
           </div>
         </div>
 
@@ -74,25 +73,21 @@
         </div>
 
         <br/><br/>
-        <button class="prev">previous</button><button class="next">next</button>
-
+        <button class="prev">previous</button>
       </div>
 
       <!-- iii. enter shipping details -->
       <div class="step-container row hidden" id="step-details">
             <div class="seven columns" id="glasses">
               <div class="row">
-                <%#= image_tag 'frames/ive/black-front.png', class: 'checkout-img', id: 'ive-black' %>
-                <%#= image_tag 'frames/ford-beta/black-front.png', class: 'checkout-img hidden', id: 'ford-black' %>
+                <%= image_tag 'frames/ive/black-front.png', class: 'checkout-img', id: 'ive-black' %>
+                <%= image_tag 'frames/ford-beta/black-front.png', class: 'checkout-img hidden', id: 'ford-black' %>
               </div>
               <div class="row">
                 <div class="twelve columns" id="glasses-details">
                   <dl>
                       <dt>Frame</dt>
                       <dd id="frame-selection"></dd>
-                      <br/>
-                      <dt>Colour</dt>
-                      <dd id="colour-selection">Black</dd>
                       <br/>
                       <dt>Size</dt>
                       <dd id="size-selection"></dd>
@@ -108,37 +103,54 @@
                 <%= f.text_field :address2, placeholder: 'address 2' %><br/>
                 <%= f.text_field :state,    placeholder: 'state' %><br/>
                 <%= f.text_field :postcode, placeholder: 'postcode' %><br/>
-                <%= f.text_field :country,  placeholder: 'country' %><br/>
+                <%= f.text_field :country,  placeholder: 'country', value: 'australia', disabled: true %><br/>
                 <%= f.telephone_field :phone,    placeholder: 'phone number' %><br/>
 
-                <%= f.hidden_field :frame %>
-                <%= f.hidden_field :size %>
-
                 <p id="error-messages"></p>
-
-                # <%= f.submit 'submit', id: 'submit-btn', class: 'disabled' %>
               <% end %>
-              <button class="cta next">continue</button>
+
+              <button id="shipping-continue" class="cta">continue</button>
             </div>
-        <!-- <br/><br/> -->
-        <!-- <button class="prev">previous</button><button class="next">next</button> -->
+            <button class="prev">previous</button>
       </div>
 
       <div class="step-container row hidden" id="step-shipping-method">
 
-        <div class="select-shipping four columns">
+        <div class="select-shipping six columns">
           <button class="cta" data-delivery="0">ship</button>
         </div>
 
-        <div class="select-shipping four columns">
+        <div class="select-shipping six columns">
           <button class="cta" data-delivery="1">hand delivery</button>
         </div>
 
-        <div class="select-shipping four columns">
-          <button class="cta" data-delivery="2">meetup</button>
-        </div>
-
         <br/><br/>
+        <button class="prev">previous</button>
+      </div>
+
+      <div class="step-container row hidden" id="step-timeslot">
+        <div class="row">
+          <div class="five columns">
+            <select id="timeslot-day">
+              <% @available_days.each do |day, timeslots| %>
+                <option><%= day %></option>
+              <% end %>
+            </select>
+          </div>
+          <div class="two columns">
+            at
+          </div>
+          <div class="five columns">
+            <% @available_days.each do |day, timeslots| %>
+              <select class="timeslot-time" style="display: none">
+              <% timeslots.each do |timeslot| %>
+                <option value="<%= timeslot.time %>" data-timeslot-id="<%= timeslot.id %>"><%= timeslot.time %></option>
+              <% end %>
+              </select>
+            <% end %>
+          </div>
+        </div>
+        <button id="timeslot-continue" class="cta">continue</button>
         <button class="prev">previous</button>
       </div>
 

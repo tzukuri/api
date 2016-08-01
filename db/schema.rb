@@ -89,13 +89,10 @@ ActiveRecord::Schema.define(version: 20160805025008) do
   end
 
   create_table "beta_delivery_timeslots", force: :cascade do |t|
-    t.integer  "beta_order_id"
-    t.datetime "timeslot"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "time"
   end
-
-  add_index "beta_delivery_timeslots", ["beta_order_id"], name: "index_beta_delivery_timeslots_on_beta_order_id", using: :btree
 
   create_table "beta_identities", force: :cascade do |t|
     t.integer  "beta_user_id"
@@ -118,11 +115,12 @@ ActiveRecord::Schema.define(version: 20160805025008) do
     t.string   "country"
     t.string   "frame"
     t.string   "size"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.string   "phone"
     t.integer  "delivery_method"
-    t.boolean  "fulfilled",       default: false
+    t.boolean  "fulfilled",                 default: false
+    t.integer  "beta_delivery_timeslot_id"
   end
 
   add_index "beta_orders", ["beta_user_id"], name: "index_beta_orders_on_beta_user_id", using: :btree
@@ -340,7 +338,6 @@ ActiveRecord::Schema.define(version: 20160805025008) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
-  add_foreign_key "beta_delivery_timeslots", "beta_orders"
   add_foreign_key "beta_identities", "beta_users"
   add_foreign_key "beta_orders", "beta_users"
   add_foreign_key "quietzones", "users"

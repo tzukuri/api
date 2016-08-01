@@ -151,6 +151,17 @@ body.beta {
                 }
             }
 
+            .checkout-img {
+                width: 95%;
+                margin-top: -100px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .checkout-img.hidden {
+                display: none;
+            }
+
             #selected-header {
                 h2 {
                     font-size: 36pt;

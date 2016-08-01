@@ -54,6 +54,8 @@ $(function() {
 
     // when user is selected, transition between elements
     var transitionFrom = function(fromEl) {
+        console.log('TRANSITION');
+
         // disable the parent class
         $(fromEl).parent().addClass('disabled')
 
@@ -142,14 +144,6 @@ $(function() {
         });
     }
 
-    var distanceBetweenCoords = function(coords1, coords2) {
-        // using the haversine formula to calculate great-circle distance
-        var p = 0.017453292519943295;    // Math.PI / 180
-        var c = Math.cos;
-        var a = 0.5 - c((coords2.lat - coords1.lat) * p)/2 + c(coords1.lat * p) * c(coords2.lat * p) * (1 - c((coords2.lng - coords1.lng) * p))/2;
-        return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
-    }
-
     //     var geocodeAddress = function(address) {
     //     var API_KEY = '0828d5780c7f32be6e3882357f8a2038'
     //     var syd_coords = {'lat': -33.865, 'lng': 151.209444}
@@ -179,35 +173,39 @@ $(function() {
 
         // if the user is logged in and looking at the details view show the
         // beta modal if this is the first time
-        if ($('#details-container').length > 0) {
-            storage = window.localStorage;
+        if ($('#selected-container').length > 0) {
+            // select the first timeslot
+            $('#timeslot-day :nth-child(1)').prop('selected', true)
+            $('#timeslot-day').change()
 
-            if (storage.getItem('betaAlreadyVisited') === null || storage.getItem('betaAlreadyVisited') == false) {
+            // storage = window.localStorage;
 
-                try {
-                    storage.setItem('betaAlreadyVisited', true);
-                } catch (error) {
-                    // can't set localstorage (probably in private mode)
-                    // console.log(error)
-                }
+            // if (storage.getItem('betaAlreadyVisited') === null || storage.getItem('betaAlreadyVisited') == false) {
 
-                tzukuri.modal.show({
-                    modal: "#beta-modal",
-                    tint: "light",
-                    dismissable: true
-                });
-            }
+            //     try {
+            //         storage.setItem('betaAlreadyVisited', true);
+            //     } catch (error) {
+            //         // can't set localstorage (probably in private mode)
+            //         // console.log(error)
+            //     }
+
+            //     tzukuri.modal.show({
+            //         modal: "#beta-modal",
+            //         tint: "light",
+            //         dismissable: true
+            //     });
+            // }
 
             // update the number of days remaining
-            var end = moment([2016, 6, 28])
-            var daysRemaining = moment().diff(end, 'days') * -1
-            $('#days-remain').html(daysRemaining)
+            // var end = moment([2016, 6, 28])
+            // var daysRemaining = moment().diff(end, 'days') * -1
+            // $('#days-remain').html(daysRemaining)
 
             // trigger score updates
             // getLatestScore();
 
             // show the first answerable question
-            showQuestion($('[data-answerable=true]').first())
+            // showQuestion($('[data-answerable=true]').first())
         }
     })
 
@@ -258,15 +256,15 @@ $(function() {
     // })
 
     // handle click on frame select elements
-    $('.select-design, .select-size').on('click', function() {
-        if ($(this).parent().hasClass('disabled')) return;
+    // $('.select-design, .select-size').on('click', function() {
+    //     if ($(this).parent().hasClass('disabled')) return;
 
-        // set size or design depending on which is available
-        size = $(this).attr('data-size') || size
-        design = $(this).attr('data-design') || design
+    //     // set size or design depending on which is available
+    //     size = $(this).attr('data-size') || size
+    //     design = $(this).attr('data-design') || design
 
-        transitionFrom(this)
-    })
+    //     transitionFrom(this)
+    // })
 
     $("#skip").on("click", function() {
         skipQuestion()
@@ -340,15 +338,47 @@ $(function() {
         return $.get(url)
     }
 
+    var distanceBetweenCoords = function(coords1, coords2) {
+        // using the haversine formula to calculate great-circle distance
+        var p = 0.017453292519943295;    // Math.PI / 180
+        var c = Math.cos;
+        var a = 0.5 - c((coords2.lat - coords1.lat) * p)/2 + c(coords1.lat * p) * c(coords2.lat * p) * (1 - c((coords2.lng - coords1.lng) * p))/2;
+        return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
+    }
+
+    // keep track of information user has entered throughout the process
     var orderDetails = {
         frame: '',
         size: '',
         address: {},
-        delivery_method: '',
-        delivery_timeslot: ''
+        delivery_method: 'ship',
+        delivery_timeslot: '',
+        delivery_timeslot_id : undefined
     }
 
-    // i. when user selects a frame
+    var submitOrderDetails = function() {
+        var data = {
+            frame: orderDetails.frame,
+            size: orderDetails.size,
+            delivery_method: orderDetails.delivery_method,
+            delivery_timeslot_id: parseInt(orderDetails.delivery_timeslot_id),
+            address1: orderDetails.address["beta_order[address1]"],
+            address2: orderDetails.address["beta_order[address2]"],
+            state: orderDetails.address["beta_order[state]"],
+            postcode: orderDetails.address["beta_order[postcode]"],
+            country: 'australia',
+            phone: orderDetails.address["beta_order[phone]"]
+        }
+
+        $.post('/beta_orders', data).done(function(data){
+            console.log(data)
+            location.reload()
+        }).fail(function(xhr, status, error) {
+            // todo: error handling
+        });
+    }
+
+    // 1 - user selects a frame
     $('.select-frame button').on('click', function() {
         orderDetails.frame = $(this).attr('data-frame')
 
@@ -366,29 +396,98 @@ $(function() {
         $(this).tzAnimate('pulse')
     })
 
-
-
-    // ii. when user selects a size
+    // 2 - user selects a size
     $('.select-size button').on('click', function() {
         orderDetails.size = $(this).attr('data-size')
 
+        $("#frame-selection").html(orderDetails.frame)
+        $("#size-selection").html(orderDetails.size + "mm")
+
+        if (orderDetails.frame == "ive") {
+            $("#ive-black").show()
+            $("#ford-black").hide()
+        } else {
+            $("#ive-black").hide()
+            $("#ford-black").show()
+        }
+
         console.log(orderDetails)
     })
 
-    // iii. when user enters their shipping details
-    $('#step-details #shipping button').on('click', function() {
+    // 3 - user enters shipping information
+    $('#shipping-continue').on('click', function() {
         var form = $("#new_beta_order")
         orderDetails.address = $("#new_beta_order").serializeObject()
-        // todo: strip out useless entries
+        console.log(orderDetails.address)
+        console.log(orderDetails)
+
+        // reverse geocode and get a distance
+        address = orderDetails.address["beta_order[address1]"] + ", " + orderDetails.address["beta_order[address2]"] + ", " + orderDetails.address["beta_order[state]"] + ", australia" + ", " + orderDetails.address["beta_order[postcode]"]
+        console.log('geocoding address: ' + address)
+
+        // todo: show some loading spinner
+        geocodeAddress(address).done(function(data, error) {
+            // assume that the first result is the correct one
+            addr_coords = data.results[0].geometry
+            syd_coords = {'lat': -33.865, 'lng': 151.209444}
+
+            var distance = distanceBetweenCoords(addr_coords, syd_coords)
+            console.log("DISTANCE: " + distance)
+
+            // todo: hide some loading spinner
+
+            if (distance > 10) {
+                submitOrderDetails()
+            } else {
+                // navigate to the delivery seleciton page
+                navigate('forward')
+            }
+        })
+
         console.log(orderDetails)
     })
 
-    // iv. when user selects their shipping method
+    // 4 - user selects their shipping method (optional)
     $('.select-shipping button').on('click', function() {
-        orderDetails.delivery_method = parseInt($(this).attr('data-delivery'))
+        var type = parseInt($(this).attr('data-delivery'))
+
+        if (type == 0) {
+            orderDetails.delivery_method = "ship"
+        } else if (type == 1) {
+            orderDetails.delivery_method = "deliver"
+        } else if (type == 2) {
+            orderDetails.delivery_method = "meetup"
+        }
+
+
+        if ($(this).html() == "ship") {
+            submitOrderDetails()
+        } else if ($(this).html() == "hand delivery") {
+            navigate('forward')
+        }
+    })
+
+    // 5 - user selects their timeslot (optional)
+    $('#timeslot-day').on('change', function(event) {
+        var index = $(event.target).prop('selectedIndex');
+
+        // hide all the timeslots and then show the one selected
+        $('.timeslot-time').hide()
+        $($('.timeslot-time')[index]).show()
+    })
+
+    $('.timeslot-time').on('change', function(event) {
+        orderDetails.delivery_timeslot = $(event.target).val()
+        orderDetails.delivery_timeslot_id = $(event.target).find(":selected").attr('data-timeslot-id')
+
         console.log(orderDetails)
     })
 
+    $('#timeslot-continue').on('click', function(event) {
+        submitOrderDetails()
+    })
+
+    // keep track of the progress to through each of the steps
     var currentStep = 0
 
     $('.prev').on('click', function() {
