@@ -23,8 +23,6 @@
 
           <li>Download the <a href="https://itunes.apple.com/au/app/testflight/id899247664?mt=8">Testflight app</a> from the app store. We will use Testflight to distribute the Tzukuri app during our beta testing phase  (you'll receive more information about this later).</li>
 
-          <li>Don't forget you can still invite your friends to join the beta with this link - <span class="blue">tzukuri.com/beta/invite/<%= @beta_user.invite_token %></span></li>
-
           <li>If you've got any questions about the beta or wish to change any of your details, get in touch at <a href="mailto:beta@tzukuri.com">beta@tzukuri.com</a>
         </ul>
 
@@ -50,12 +48,15 @@
 
         <div class="six columns select-frame">
             <%= image_tag 'frames/ive/black-front.png' %>
-            <button class="cta next" data-frame='ive'>Ive</button>
+            <button class="order-btn next" data-frame='ive'>Ive</button>
         </div>
 
         <div class="six columns select-frame">
             <%= image_tag 'frames/ford-beta/black-front.png' %>
-            <button class="cta next" data-frame='ford'>Ford</button>
+            <button class="order-btn next" data-frame='ford'>
+              <span class="btn-title">Ford</span>
+              <!-- <i class="fa fa-check btn-check" style="color: #39CA74; display: none"></i> -->
+            </button>
         </div>
       </div>
 
@@ -63,17 +64,19 @@
       <div class="step-container row hidden" id="step-size">
 
         <div class="select-size six columns">
-          <button class="cta next" data-size="48" id="small">48mm</button>
+          <button class="order-btn next" data-size="48" id="small">48mm</button>
           <p class="size-exp">this size will fit most people</p>
         </div>
 
         <div class="select-size six columns">
-          <button class="cta next" data-size="50.5" id="large">50.5mm</button>
+          <button class="order-btn next" data-size="50.5" id="large">50.5mm</button>
           <p class="size-exp">if most glasses are too small for you</p>
         </div>
 
         <br/><br/>
-        <button class="prev">previous</button>
+        <button class="prev order-btn">
+          <i class="fa fa-chevron-left"></i>
+        </button>
       </div>
 
       <!-- iii. enter shipping details -->
@@ -101,57 +104,127 @@
 
                 <%= f.text_field :address1, placeholder: 'address 1', autofocus: true %><br/>
                 <%= f.text_field :address2, placeholder: 'address 2' %><br/>
-                <%= f.text_field :state,    placeholder: 'state' %><br/>
-                <%= f.text_field :postcode, placeholder: 'postcode' %><br/>
+                <%= select_tag   :state, options_for_select(['ACT', 'NSW', 'NT', 'QLD', 'SA', 'TAS', 'VIC', 'WA' ]) %><br/>
+                <%= f.text_field :postcode, placeholder: 'postcode', maxlength: 4 %><br/>
                 <%= f.text_field :country,  placeholder: 'country', value: 'australia', disabled: true %><br/>
                 <%= f.telephone_field :phone,    placeholder: 'phone number' %><br/>
 
                 <p id="error-messages"></p>
               <% end %>
 
-              <button id="shipping-continue" class="cta">continue</button>
+              <button id="shipping-continue" class="order-btn">continue</button>
+              <div class="loading-spinner"></div>
             </div>
-            <button class="prev">previous</button>
+            <button class="prev order-btn"><i class="fa fa-chevron-left"></i></button>
       </div>
 
+      <!-- 4 - select a shipping method (optional) -->
       <div class="step-container row hidden" id="step-shipping-method">
 
         <div class="select-shipping six columns">
-          <button class="cta" data-delivery="0">ship</button>
+          <button class="order-btn" data-delivery="0">ship</button>
         </div>
 
         <div class="select-shipping six columns">
-          <button class="cta" data-delivery="1">hand delivery</button>
+          <button class="order-btn" data-delivery="1">hand delivery</button>
         </div>
 
         <br/><br/>
-        <button class="prev">previous</button>
+        <button class="prev order-btn hidden"><i class="fa fa-chevron-left"></i></button>
       </div>
 
+      <!-- 5 - select a timeslot (optional) -->
       <div class="step-container row hidden" id="step-timeslot">
         <div class="row">
-          <div class="five columns">
+
             <select id="timeslot-day">
               <% @available_days.each do |day, timeslots| %>
-                <option><%= day %></option>
+                <option><%= day.strftime("%A, %b %d") %></option>
               <% end %>
             </select>
-          </div>
-          <div class="two columns">
+
             at
-          </div>
-          <div class="five columns">
+
             <% @available_days.each do |day, timeslots| %>
               <select class="timeslot-time" style="display: none">
               <% timeslots.each do |timeslot| %>
-                <option value="<%= timeslot.time %>" data-timeslot-id="<%= timeslot.id %>"><%= timeslot.time %></option>
+                <option value="<%= timeslot.time %>" data-timeslot-id="<%= timeslot.id %>"><%= timeslot.time.strftime("%l:%M %p") %></option>
               <% end %>
               </select>
             <% end %>
-          </div>
         </div>
-        <button id="timeslot-continue" class="cta">continue</button>
-        <button class="prev">previous</button>
+
+        <br/><br/>
+        <button class="prev order-btn"><i class="fa fa-chevron-left"></i></button>
+        <button id="timeslot-continue" class="next order-btn">continue</button>
+      </div>
+
+      <!-- 6 - enter payment information -->
+      <div class="step-container row hidden" id="step-payment">
+        <div class="seven columns">
+          <div class="row">
+                <%= image_tag 'frames/ive/black-front.png', class: 'checkout-img', id: 'ive-black' %>
+                <%= image_tag 'frames/ford-beta/black-front.png', class: 'checkout-img hidden', id: 'ford-black' %>
+              </div>
+              <div class="row">
+                <div class="twelve columns" id="glasses-details">
+                  <dl>
+                      <dt>Frame</dt>
+                      <dd id="frame-selection">Ive</dd>
+                      <br/>
+                      <dt>Size</dt>
+                      <dd id="size-selection">48mm</dd>
+                      <br/>
+                      <dt>Shipping To</dt>
+                      <dd id="shipping-to">32 Downes Street, North Epping, NSW, 2121, Australia</dd>
+                      <br/>
+                      <dt>Shipping Method</dt>
+                      <dd id="shipping-method">Australia Post</dd>
+                  </dl>
+                </div>
+              </div>
+        </div>
+        <div class="five columns">
+          <form id="payment-form">
+              <div id="cc">
+                  <p><input type="text" placeholder="full name" id="name"></p>
+                  <p><input type="text" data-stripe="number" placeholder="credit card number"></p>
+                  <p>
+                      <select name="month" style="width: 66px" data-stripe="exp-month">
+                          <option value="1">Jan</option>
+                          <option value="2">Feb</option>
+                          <option value="3">Mar</option>
+                          <option value="4">Apr</option>
+                          <option value="5">May</option>
+                          <option value="6">Jun</option>
+                          <option value="7">Jul</option>
+                          <option value="8">Aug</option>
+                          <option value="9">Sep</option>
+                          <option value="10">Oct</option>
+                          <option value="11">Nov</option>
+                          <option value="12">Dec</option>
+                      </select>
+                      <select name="year" style="width: 65px" data-stripe="exp-year">
+                          <option>2014</option>
+                          <option>2015</option>
+                          <option>2016</option>
+                          <option>2017</option>
+                          <option>2018</option>
+                          <option>2019</option>
+                          <option>2020</option>
+                      </select>
+                      <input type="text" placeholder="CVC" data-stripe="cvc" style="width: 60px">
+                  </p>
+              </div>
+              <div id="submit">
+                <button type="submit" class="order-btn finish">finish</button>
+                <div id="payment-message"></div>
+              </div>
+          </form>
+
+        </div>
+
+        <button class="prev order-btn"><i class="fa fa-chevron-left"></i></button>
       </div>
 
     </div>
@@ -320,3 +393,6 @@
 
   <% end %>
 </div>
+
+<!-- stripe -->
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>

@@ -60,10 +60,29 @@ body.beta {
     #beta-index {
         padding-top: 100px;
 
-        #error-messages {
-            color: $tzukuri-red;
-            font-size: 11pt;
-            padding-top: 10px;
+        #glasses-details {
+            text-align: left;
+
+            dl {
+                margin-bottom: 20px;
+                margin-left: 70px;
+
+                dt, dd {
+                    display: inline-block;
+                    margin-bottom: 3px;
+                    font-size: 12px;
+                }
+
+                dt {
+                    text-transform: uppercase;
+                    font-weight: 600;
+                    text-align: right;
+                }
+
+                dd {
+                    text-transform: capitalize;
+                }
+            }
         }
 
         p {
@@ -76,6 +95,94 @@ body.beta {
             margin-top: 0px;
             margin-bottom: 0px;
             border-top: 1px solid $tzukuri-light-grey;
+        }
+
+        .step-container {
+            .order-btn {
+                border-radius: 5px;
+                background-color: none;
+                font-size: 12pt;
+                height: auto;
+                padding: 5px 35px 5px 35px;
+                text-transform: none;
+
+                &.finish {
+                    color: #39CA74;
+                    border-color: 1px solid #39CA74;
+
+                    &:hover {
+                        color: #fff;
+                        background-color: #39CA74;
+                    }
+                }
+            }
+
+            #error-messages {
+                color: $tzukuri-red;
+                font-size: 10pt;
+                padding-bottom: 10px;
+                padding-left: 30px;
+                padding-right: 30px;
+            }
+
+            .loading-spinner {
+                background: url("/images/loading_spinner.svg") no-repeat;
+                background-position: 50% 12px;
+                height: 40px;
+                display: none;
+            }
+
+        }
+
+        #step-size {
+            .size-exp {
+                font-size: 10pt;
+                color: $tzukuri-dark-grey;
+                margin-top: 15px;
+            }
+
+            #small, #large {
+                margin-top: 60%;
+            }
+        }
+
+        #step-details {
+            #state {
+                background: none;
+                width: 75%;
+                height: 40px;
+                margin-bottom: 10px;
+                -webkit-appearance: none;
+                border: none;
+                background-color: $tzukuri-light-grey;
+                padding-left: 10px;
+                font-size: 12pt;
+            }
+        }
+
+
+        #step-shipping-method {
+            .select-shipping {
+                .order-btn {
+                    margin-top: 60%;
+                }
+            }
+        }
+
+        #step-timeslot {
+            #at {
+                font-size: 14pt;
+                height: 50px;
+                line-height: 50px;
+            }
+
+            #timeslot-day, .timeslot-time {
+                -webkit-appearance: none;
+                font-size: 12pt;
+                padding: 10px 50px 10px 50px;
+                border: 1px solid $tzukuri-blue;
+                color: $tzukuri-blue;
+            }
         }
 
         #finished-container {
@@ -128,7 +235,6 @@ body.beta {
         #selected-container {
             text-align: center;
             height: 85vh;
-            overflow: hidden;
 
             .step-container {
                 padding: 20px;
@@ -153,7 +259,6 @@ body.beta {
 
             .checkout-img {
                 width: 95%;
-                margin-top: -100px;
                 margin-left: auto;
                 margin-right: auto;
             }
@@ -174,7 +279,7 @@ body.beta {
             #step-frames {
                 .select-frame {
                     img {
-                        width: 100%;
+                        width: 90%;
                     }
                 }
             }

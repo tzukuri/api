@@ -356,31 +356,10 @@ $(function() {
         delivery_timeslot_id : undefined
     }
 
-    var submitOrderDetails = function() {
-        var data = {
-            frame: orderDetails.frame,
-            size: orderDetails.size,
-            delivery_method: orderDetails.delivery_method,
-            delivery_timeslot_id: parseInt(orderDetails.delivery_timeslot_id),
-            address1: orderDetails.address["beta_order[address1]"],
-            address2: orderDetails.address["beta_order[address2]"],
-            state: orderDetails.address["beta_order[state]"],
-            postcode: orderDetails.address["beta_order[postcode]"],
-            country: 'australia',
-            phone: orderDetails.address["beta_order[phone]"]
-        }
-
-        $.post('/beta_orders', data).done(function(data){
-            console.log(data)
-            location.reload()
-        }).fail(function(xhr, status, error) {
-            // todo: error handling
-        });
-    }
-
     // 1 - user selects a frame
     $('.select-frame button').on('click', function() {
         orderDetails.frame = $(this).attr('data-frame')
+        console.log($(this).children(".btn-check"))
 
         var lg = modelSizing[orderDetails.frame].large
         var sm = modelSizing[orderDetails.frame].small
@@ -389,12 +368,14 @@ $(function() {
         $('.select-size #small').html(sm + "mm").attr('data-size', sm)
         $('.select-size #large').html(lg + "mm").attr('data-size', lg)
 
+        navigate('forward')
+
         console.log(orderDetails)
     })
 
-    $('.select-frame button').on('mouseover', function() {
-        $(this).tzAnimate('pulse')
-    })
+    // $('.select-frame button').on('mouseover', function() {
+    //     $(this).tzAnimate('pulse')
+    // })
 
     // 2 - user selects a size
     $('.select-size button').on('click', function() {
@@ -411,40 +392,102 @@ $(function() {
             $("#ford-black").show()
         }
 
+        navigate('forward')
+
         console.log(orderDetails)
     })
+
+    var addError = function(element) {
+        $(element).addClass('error')
+        return false
+    }
+
+    var validatesShippingDetails = function(serialisedForm) {
+        var valid = true
+
+        var address1 = serialisedForm["beta_order[address1]"]
+        var address2 = serialisedForm["beta_order[address2]"]
+        var postcode = serialisedForm["beta_order[postcode]"]
+        var state = serialisedForm["beta_order[state]"]
+        var phone = serialisedForm["beta_order[phone]"]
+
+        // remove all error classes
+        $("#new_beta_order input").removeClass('error')
+
+        // check address 1 exists
+        if (address1.length == 0) {
+            valid = addError("#beta_order_address1")
+        }
+
+        // check postcode exists and is a number
+        if (postcode.length != 4 || !/^\d+$/.test(postcode)) {
+            valid = addError("#beta_order_postcode")
+        }
+
+        // check phone exists and is a valid australian phone number
+        if (phone.length == 0) {
+            valid = addError("#beta_order_phone")
+        }
+
+        if (valid) {
+            orderDetails.address = serialisedForm;
+        }
+
+        return valid
+    }
 
     // 3 - user enters shipping information
     $('#shipping-continue').on('click', function() {
         var form = $("#new_beta_order")
-        orderDetails.address = $("#new_beta_order").serializeObject()
-        console.log(orderDetails.address)
-        console.log(orderDetails)
 
-        // reverse geocode and get a distance
-        address = orderDetails.address["beta_order[address1]"] + ", " + orderDetails.address["beta_order[address2]"] + ", " + orderDetails.address["beta_order[state]"] + ", australia" + ", " + orderDetails.address["beta_order[postcode]"]
-        console.log('geocoding address: ' + address)
+        // validate the form and save the data, stop if the form is invalid
+        if (!validatesShippingDetails($("#new_beta_order").serializeObject())) {
+            $("#shipping-continue").tzAnimate('shake')
+            return
+        };
 
-        // todo: show some loading spinner
-        geocodeAddress(address).done(function(data, error) {
-            // assume that the first result is the correct one
+        // replace button with searching icon
+        $("#shipping-continue").hide()
+        $(".loading-spinner").show();
+
+        // geocode address
+        address = orderDetails.address["beta_order[address1]"] + ", " + orderDetails.address["beta_order[address2]"] + ", " + orderDetails.address["state"] + ", australia" + ", " + orderDetails.address["beta_order[postcode]"]
+        console.log(address)
+
+        geocodeAddress(address).done(function(data) {
+            console.log(data)
+
+            if (data.results.length == 0) {
+                // could not find location
+                console.log("could not validate address")
+                $("#error-messages").html("Could not validate this address, check your details are correct and try again.")
+
+                $(".loading-spinner").hide()
+                $("#shipping-continue").show()
+
+                return;
+            }
+
             addr_coords = data.results[0].geometry
             syd_coords = {'lat': -33.865, 'lng': 151.209444}
 
             var distance = distanceBetweenCoords(addr_coords, syd_coords)
             console.log("DISTANCE: " + distance)
 
-            // todo: hide some loading spinner
-
             if (distance > 10) {
-                submitOrderDetails()
+                // todo: navigate to the payment page
+                // submitOrderDetails()
+                navigateToIndex(5)
             } else {
-                // navigate to the delivery seleciton page
+                // navigate to the delivery selection page
                 navigate('forward')
             }
+
+            $(".loading-spinner").hide()
+            $("#shipping-continue").show()
         })
 
-        console.log(orderDetails)
+        return
     })
 
     // 4 - user selects their shipping method (optional)
@@ -459,9 +502,8 @@ $(function() {
             orderDetails.delivery_method = "meetup"
         }
 
-
         if ($(this).html() == "ship") {
-            submitOrderDetails()
+            navigateToIndex(5)
         } else if ($(this).html() == "hand delivery") {
             navigate('forward')
         }
@@ -483,29 +525,131 @@ $(function() {
         console.log(orderDetails)
     })
 
-    $('#timeslot-continue').on('click', function(event) {
-        submitOrderDetails()
+    $('#timeslot-continue').on('click', function() {
+        navigate('forward')
     })
 
-    // keep track of the progress to through each of the steps
-    var currentStep = 0
+    // keep track of the progress to through each of the steps. navigating forward pushes onto the stack and navigating back
+    // pops off the stack. Always starting at the 0th element
+    var navigationStack = [0]
 
     $('.prev').on('click', function() {
         navigate('back')
     })
 
-    $('.next').on('click', function() {
-        navigate('forward')
-    })
+    var navigateToIndex = function(index) {
+        var steps = $('.step-container')
+        var currentStep = navigationStack[navigationStack.length-1]
+
+        if (index > currentStep) {
+            // moving forward so push the new index on the stack
+            navigationStack.push(index)
+        } else {
+            // moving backward so pop the last index off the stack
+            currentStep = navigationStack.pop()
+        }
+
+        $(steps[currentStep]).fadeOut(function() {
+            $(steps[index]).fadeIn()
+        })
+    }
 
     // navigate back or forward through the order steps
     var navigate = function(direction) {
-        // todo: maybe reset the data on successful navigation?
-        var steps = $('.step-container')
-        $(steps[currentStep]).fadeOut(function() {
-            direction == 'forward' ? currentStep++ : currentStep--
-            $(steps[currentStep]).fadeIn()
-        })
+        if (direction == "forward") {
+            navigateToIndex(navigationStack[navigationStack.length-1] + 1)
+        } else if (direction == "back") {
+            navigateToIndex(navigationStack[navigationStack.length-2])
+        }
     }
+
+    // stripe
+    Stripe.setPublishableKey('pk_test_HWxqGZq4R2zTKm5915tgDas4');
+    // <% if Rails.env.development? %>
+    //     Stripe.setPublishableKey('pk_test_HWxqGZq4R2zTKm5915tgDas4');
+    // <% else %>
+    //     Stripe.setPublishableKey('pk_live_VAzrbCZ5hRh2i3tXpoS9GL5I');
+    // <% end %>
+
+    var submitOrderDetails = function() {
+        return {
+            frame: orderDetails.frame,
+            size: orderDetails.size,
+            delivery_method: orderDetails.delivery_method,
+            delivery_timeslot_id: parseInt(orderDetails.delivery_timeslot_id),
+            address1: orderDetails.address["beta_order[address1]"],
+            address2: orderDetails.address["beta_order[address2]"],
+            state: orderDetails.address["state"],
+            postcode: orderDetails.address["beta_order[postcode]"],
+            country: 'australia',
+            phone: orderDetails.address["beta_order[phone]"]
+        }
+
+        // $.post('/beta_orders', data).done(function(data){
+        //     console.log(data)
+        //     location.reload()
+        // }).fail(function(xhr, status, error) {
+        //     // todo: error handling
+        // });
+    }
+
+    function stripeResponseHandler(status, response) {
+        console.log('FROM STRIPE')
+        console.log(status, response)
+
+        if (response.error) {
+            console.log(response.error.message)
+            // $('#payment-message').text(response.error.message);
+            // $('#submit button').prop('disabled', false);
+        } else {
+            var data = submitOrderDetails()
+            data.token = response.id
+
+            $.post('/beta_orders', data).done(function(data) {
+                console.log(data)
+            }).fail(function(xhr, status, error) {
+                // todo: error handling
+            })
+
+            // $('#payment-message').text("Charging your card...");
+
+            // post to beta_orders
+            // $.post('/purchases', {
+            //     email: $('#email').val(),
+            //     name: $('#name').val(),
+            //     address1: $('#address1').val(),
+            //     address2: $('#address2').val(),
+            //     state: $('#state').val(),
+            //     postcode: $('#postcode').val(),
+            //     country: $('#country').val(),
+            //     token: response.id,
+            //     frame: $('#panel').attr('data-frame'),
+            //     colour: $('#panel').attr('data-colour'),
+            //     size: $('#panel').attr('data-size')
+            // }, function(data, status) {
+            //     if (data.success) {
+            //         $('#order-ref').text(data.ref);
+            //         $('#payment-message').text('');
+            //         $('#form').fadeOut();
+            //         $('#complete').fadeIn();
+            //     } else {
+            //         if (data.reason)
+            //             $('#payment-message').text(data.reason);
+            //         else
+            //             $('#payment-message').text('Sorry, an unknown error occurred.');
+            //         $('#submit button').prop('disabled', false);
+            //     }
+            // }, 'json').fail(function() {
+            //     $('#payment-message').text('Sorry, an unknown error occurred. Please try again later.');
+            // });
+        }
+    }
+
+    $('#payment-form').submit(function(event) {
+        $('#submit button').prop('disabled', true);
+        // $('#payment-message').text("Checking your card details...");
+        Stripe.card.createToken($(this), stripeResponseHandler);
+        event.preventDefault();
+    });
 
 });
