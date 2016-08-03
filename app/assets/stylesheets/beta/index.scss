@@ -69,8 +69,8 @@ body.beta {
 
                 dt, dd {
                     display: inline-block;
-                    margin-bottom: 3px;
-                    font-size: 12px;
+                    margin-bottom: 8px;
+                    font-size: 10pt;
                 }
 
                 dt {
@@ -98,6 +98,23 @@ body.beta {
         }
 
         .step-container {
+            margin-top: 15vh;
+
+            .selected-header {
+                margin-bottom: 40px;
+                text-align: center;
+                h2 {
+                    font-size: 30pt;
+                    color: $tzukuri-black;
+                    font-weight: 200;
+                    line-height: 150%;
+                }
+            }
+
+            .checkout-img {
+                // margin-top:-90px;
+            }
+
             .order-btn {
                 border-radius: 5px;
                 background-color: none;
@@ -106,9 +123,14 @@ body.beta {
                 padding: 5px 35px 5px 35px;
                 text-transform: none;
 
+                &.prev {
+                    border: none;
+                    font-size: 11pt;
+                }
+
                 &.finish {
                     color: #39CA74;
-                    border-color: 1px solid #39CA74;
+                    border: 1px solid #39CA74;
 
                     &:hover {
                         color: #fff;
@@ -134,19 +156,46 @@ body.beta {
 
         }
 
+        #step-intro {
+            h2 {
+                font-size: 36pt;
+                font-weight: 200;
+            }
+            p {
+                margin-top: 40px;
+                font-weight: 200;
+                font-size: 14pt;
+                margin-bottom: 40px;
+            }
+        }
+
+        #step-frames {
+            .select-frame {
+                .order-btn {
+                    width: 50%;
+                }
+            }
+        }
+
         #step-size {
             .size-exp {
-                font-size: 10pt;
+                font-size: 11pt;
                 color: $tzukuri-dark-grey;
-                margin-top: 15px;
+                margin-top: 20px;
+                margin-bottom: 40px;
+                font-weight: 300;
             }
 
             #small, #large {
-                margin-top: 60%;
+                width: 40%;
             }
         }
 
         #step-details {
+            .step-content {
+                margin-bottom: 40px;
+            }
+
             #state {
                 background: none;
                 width: 75%;
@@ -162,18 +211,38 @@ body.beta {
 
 
         #step-shipping-method {
-            .select-shipping {
-                .order-btn {
-                    margin-top: 60%;
-                }
+            .select-shipping .order-btn {
+                width: 40%;
             }
+
+            .method-exp {
+                font-size: 11pt;
+                color: $tzukuri-dark-grey;
+                margin-top: 20px;
+                margin-bottom: 40px;
+                font-weight: 300;
+            }
+
         }
 
         #step-timeslot {
-            #at {
-                font-size: 14pt;
-                height: 50px;
-                line-height: 50px;
+
+            p {
+                color: $tzukuri-dark-grey;
+                font-size: 11pt;
+
+                #meet-address, #meet-time {
+                    font-weight: 500;
+                }
+            }
+
+            .step-content {
+                margin-bottom: 40px;
+            }
+
+            #timeslot-continue {
+                padding-top: 7px;
+                padding-bottom: 7px;
             }
 
             #timeslot-day, .timeslot-time {
@@ -182,6 +251,47 @@ body.beta {
                 padding: 10px 50px 10px 50px;
                 border: 1px solid $tzukuri-blue;
                 color: $tzukuri-blue;
+                 @include transition(0.5s);
+
+                &:hover {
+                    color: white;
+                    background-color: $tzukuri-blue;
+                }
+            }
+        }
+
+        #step-payment {
+            .step-content {
+                margin-bottom: 40px;
+            }
+
+            #conf-ive-black, #conf-ford-black {
+                margin-top: -80px;
+            }
+
+            input[type=text], input[type=email] {
+                @include box-sizing(border-box);
+                width: 100%;
+            }
+
+            #payment-message {
+                margin-top: 40px;
+            }
+
+            #cc {
+                margin-top: 20px;
+
+                select {
+                    padding-left: 10px;
+                    @include border-radius(5px);
+                    background-color: $tzukuri-light-grey;
+                    font-size: 12pt;
+                    height: 40px;
+                    outline: none;
+                    border: none;
+                    -webkit-appearance: none;
+                    border-radius: 10px;
+                }
             }
         }
 
@@ -237,7 +347,7 @@ body.beta {
             height: 85vh;
 
             .step-container {
-                padding: 20px;
+                // padding: 20px;
                 // background-color: $tzukuri-light-grey;
                 height: 100%;
 
@@ -267,14 +377,14 @@ body.beta {
                 display: none;
             }
 
-            #selected-header {
-                h2 {
-                    font-size: 36pt;
-                    color: $tzukuri-black;
-                    font-weight: 200;
-                    line-height: 150%;
-                }
-            }
+            // #selected-header {
+            //     h2 {
+            //         font-size: 30pt;
+            //         color: $tzukuri-black;
+            //         font-weight: 200;
+            //         line-height: 150%;
+            //     }
+            // }
 
             #step-frames {
                 .select-frame {

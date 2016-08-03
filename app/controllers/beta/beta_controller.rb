@@ -26,7 +26,7 @@ class BetaController < ApplicationController
       @beta_user = current_beta_user
 
       if @beta_user.selected
-        @available_days = BetaDeliveryTimeslot.all_timeslots
+        @available_days = BetaDeliveryTimeslot.all_available_timeslots
       end
 
       # currently this calculates the threshold every time the user loads the index view

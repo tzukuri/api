@@ -356,6 +356,10 @@ $(function() {
         delivery_timeslot_id : undefined
     }
 
+    $("#step-intro #get-started").on('click', function() {
+        navigate('forward')
+    })
+
     // 1 - user selects a frame
     $('.select-frame button').on('click', function() {
         orderDetails.frame = $(this).attr('data-frame')
@@ -368,9 +372,11 @@ $(function() {
         $('.select-size #small').html(sm + "mm").attr('data-size', sm)
         $('.select-size #large').html(lg + "mm").attr('data-size', lg)
 
-        navigate('forward')
+        // update confirmation details
+        $("#conf-frame").html(orderDetails.frame)
+        $("#frame-selection").html(orderDetails.frame)
 
-        console.log(orderDetails)
+        navigate('forward')
     })
 
     // $('.select-frame button').on('mouseover', function() {
@@ -381,20 +387,18 @@ $(function() {
     $('.select-size button').on('click', function() {
         orderDetails.size = $(this).attr('data-size')
 
-        $("#frame-selection").html(orderDetails.frame)
         $("#size-selection").html(orderDetails.size + "mm")
+        $("#conf-size").html(orderDetails.size + "mm")
 
         if (orderDetails.frame == "ive") {
-            $("#ive-black").show()
-            $("#ford-black").hide()
+            $("#ive-black, #conf-ive-black").show()
+            $("#ford-black, #conf-ford-black").hide()
         } else {
-            $("#ive-black").hide()
-            $("#ford-black").show()
+            $("#ive-black, #conf-ive-black").hide()
+            $("#ford-black, #conf-ford-black").show()
         }
 
         navigate('forward')
-
-        console.log(orderDetails)
     })
 
     var addError = function(element) {
@@ -452,7 +456,12 @@ $(function() {
 
         // geocode address
         address = orderDetails.address["beta_order[address1]"] + ", " + orderDetails.address["beta_order[address2]"] + ", " + orderDetails.address["state"] + ", australia" + ", " + orderDetails.address["beta_order[postcode]"]
-        console.log(address)
+        shortAddress = orderDetails.address["beta_order[address1]"] + ", " + orderDetails.address["beta_order[address2]"]
+
+        // set confirmation address
+        $("#conf-address").html(address);
+        $("#conf-timeslot-header, #conf-timeslot").hide()
+        $("#meet-address").html(shortAddress)
 
         geocodeAddress(address).done(function(data) {
             console.log(data)
@@ -474,10 +483,11 @@ $(function() {
             var distance = distanceBetweenCoords(addr_coords, syd_coords)
             console.log("DISTANCE: " + distance)
 
+            // todo: if there are no timeslots left, automatically navigate to the shipping page
             if (distance > 10) {
                 // todo: navigate to the payment page
                 // submitOrderDetails()
-                navigateToIndex(5)
+                navigateToIndex(6)
             } else {
                 // navigate to the delivery selection page
                 navigate('forward')
@@ -502,11 +512,24 @@ $(function() {
             orderDetails.delivery_method = "meetup"
         }
 
-        if ($(this).html() == "ship") {
-            navigateToIndex(5)
-        } else if ($(this).html() == "hand delivery") {
+        // set confirmation address
+        $("#conf-timeslot-header, #conf-timeslot").hide()
+
+        if ($(this).html() == "Australia Post") {
+            navigateToIndex(6)
+        } else if ($(this).html() == "Personal Delivery") {
             navigate('forward')
         }
+
+        // set the confirmation text
+        var timeslot = $($('.timeslot-time')[0]).val()
+
+        $("#conf-shipping").html($(this).html())
+        $("#meet-time").html(moment(timeslot).format("h A [on] dddd MMMM D"))
+
+        // automatically select the first timeslot
+        orderDetails.delivery_timeslot =  timeslot
+        orderDetails.delivery_timeslot_id = $($('.timeslot-time')[0]).find(":selected").attr('data-timeslot-id')
     })
 
     // 5 - user selects their timeslot (optional)
@@ -516,16 +539,30 @@ $(function() {
         // hide all the timeslots and then show the one selected
         $('.timeslot-time').hide()
         $($('.timeslot-time')[index]).show()
+
+        $("#meet-time").html(moment($($('.timeslot-time')[index]).find(":selected").val()).format("h A [on] dddd MMMM D"))
+
+        orderDetails.delivery_timeslot = $($('.timeslot-time')[index]).find(":selected").val()
+        orderDetails.delivery_timeslot_id = $($('.timeslot-time')[index]).find(":selected").attr('data-timeslot-id')
     })
 
     $('.timeslot-time').on('change', function(event) {
         orderDetails.delivery_timeslot = $(event.target).val()
         orderDetails.delivery_timeslot_id = $(event.target).find(":selected").attr('data-timeslot-id')
 
+        // update the meeting time text
+        $("#meet-time").html(moment($(event.target).val()).format("h A [on] dddd MMMM D"))
+
         console.log(orderDetails)
     })
 
     $('#timeslot-continue').on('click', function() {
+
+        var formattedTime = moment(orderDetails.delivery_timeslot).format("dddd MMM D [@] h A")
+
+        $("#conf-timeslot").html(formattedTime)
+        $("#conf-timeslot-header, #conf-timeslot").show()
+
         navigate('forward')
     })
 
@@ -584,13 +621,6 @@ $(function() {
             country: 'australia',
             phone: orderDetails.address["beta_order[phone]"]
         }
-
-        // $.post('/beta_orders', data).done(function(data){
-        //     console.log(data)
-        //     location.reload()
-        // }).fail(function(xhr, status, error) {
-        //     // todo: error handling
-        // });
     }
 
     function stripeResponseHandler(status, response) {
@@ -598,20 +628,39 @@ $(function() {
         console.log(status, response)
 
         if (response.error) {
-            console.log(response.error.message)
-            // $('#payment-message').text(response.error.message);
-            // $('#submit button').prop('disabled', false);
+            // console.log(response.error.message)
+            $('#payment-message').text(response.error.message);
+            $('#submit button').prop('disabled', false);
+            $('#submit button').tzAnimate('shake')
         } else {
             var data = submitOrderDetails()
             data.token = response.id
 
+            $('#payment-message').text("Charging your card...");
+
             $.post('/beta_orders', data).done(function(data) {
                 console.log(data)
-            }).fail(function(xhr, status, error) {
-                // todo: error handling
-            })
 
-            // $('#payment-message').text("Charging your card...");
+                if (data.success) {
+                    location.reload()
+                    $('#payment-message').text("");
+                } else {
+                    if (data.reason) {
+                        $('#payment-message').text(data.reason);
+                    } else {
+                        $('#payment-message').text("Sorry, an unknown error occurred.");
+                    }
+
+                    $('#submit button').tzAnimate('shake')
+                }
+
+                $('#submit button').prop('disabled', false);
+
+            }).fail(function() {
+                $('#payment-message').text("Sorry, an unknown error occurred. Please try again later.");
+                $('#submit button').prop('disabled', false);
+                $('#submit button').tzAnimate('shake')
+            })
 
             // post to beta_orders
             // $.post('/purchases', {
@@ -645,11 +694,15 @@ $(function() {
         }
     }
 
-    $('#payment-form').submit(function(event) {
+    $("#payment-form").on('submit', function(event) {
         $('#submit button').prop('disabled', true);
-        // $('#payment-message').text("Checking your card details...");
+        $('#payment-message').text("Checking your card details...");
         Stripe.card.createToken($(this), stripeResponseHandler);
         event.preventDefault();
-    });
+    })
+
+    $("#delivery-more").on('click', function(event) {
+        // show the delivery information modal
+    })
 
 });
