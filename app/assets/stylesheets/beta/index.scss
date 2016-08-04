@@ -57,62 +57,40 @@ body.beta {
         }
     }
 
-    #beta-index {
-        padding-top: 100px;
+    // ----------------------
+    // beta ordering styles
+    // ----------------------
+    #beta-index #selected-container {
+        // main container styles
+        .step-container {
+            margin-top: 5vh;
+            height: 100%;
+            text-align: center;
 
-        #glasses-details {
-            text-align: left;
+            &.hidden {
+                display: none;
+            }
 
-            dl {
-                margin-bottom: 20px;
-                margin-left: 70px;
+            .checkout-img {
+                width: 95%;
+                margin-left: auto;
+                margin-right: auto;
 
-                dt, dd {
-                    display: inline-block;
-                    margin-bottom: 8px;
-                    font-size: 10pt;
-                }
-
-                dt {
-                    text-transform: uppercase;
-                    font-weight: 600;
-                    text-align: right;
-                }
-
-                dd {
-                    text-transform: capitalize;
+                &.hidden {
+                    display: none;
                 }
             }
-        }
-
-        p {
-            font-size: 12pt;
-            line-height: 150%;
-            font-weight: 300;
-        }
-
-        hr {
-            margin-top: 0px;
-            margin-bottom: 0px;
-            border-top: 1px solid $tzukuri-light-grey;
-        }
-
-        .step-container {
-            margin-top: 15vh;
 
             .selected-header {
                 margin-bottom: 40px;
                 text-align: center;
+
                 h2 {
                     font-size: 30pt;
                     color: $tzukuri-black;
                     font-weight: 200;
                     line-height: 150%;
                 }
-            }
-
-            .checkout-img {
-                // margin-top:-90px;
             }
 
             .order-btn {
@@ -139,44 +117,64 @@ body.beta {
                 }
             }
 
-            #error-messages {
-                color: $tzukuri-red;
-                font-size: 10pt;
-                padding-bottom: 10px;
-                padding-left: 30px;
-                padding-right: 30px;
-            }
+            .glasses-details {
+                text-align: left;
 
-            .loading-spinner {
-                background: url("/images/loading_spinner.svg") no-repeat;
-                background-position: 50% 12px;
-                height: 40px;
-                display: none;
-            }
+                dl {
+                    margin-bottom: 20px;
+                    margin-left: 70px;
 
+                    dt, dd {
+                        display: inline-block;
+                        margin-bottom: 8px;
+                        font-size: 10pt;
+                    }
+
+                    dt {
+                        text-transform: uppercase;
+                        font-weight: 600;
+                        text-align: right;
+                    }
+
+                    dd {
+                        text-transform: capitalize;
+                    }
+                }
+            }
         }
 
+        // 0 - introduction
         #step-intro {
             h2 {
-                font-size: 36pt;
+                font-size: 34pt;
                 font-weight: 200;
+                line-height: 180%;
             }
+
             p {
                 margin-top: 40px;
                 font-weight: 200;
                 font-size: 14pt;
                 margin-bottom: 40px;
+                line-height: 200%;
             }
         }
 
+        // 1 - select frames
         #step-frames {
             .select-frame {
+                .frame-img {
+                    margin-top: -50px;
+                    width: 90%;
+                }
+
                 .order-btn {
                     width: 50%;
                 }
             }
         }
 
+        // 2 - select frame size
         #step-size {
             .size-exp {
                 font-size: 11pt;
@@ -191,25 +189,48 @@ body.beta {
             }
         }
 
+        // 3 - enter shipping details
         #step-details {
             .step-content {
                 margin-bottom: 40px;
             }
 
-            #state {
-                background: none;
-                width: 75%;
-                height: 40px;
-                margin-bottom: 10px;
-                -webkit-appearance: none;
-                border: none;
-                background-color: $tzukuri-light-grey;
-                padding-left: 10px;
-                font-size: 12pt;
+            #shipping {
+                form input {
+                    width: 90%;
+                }
+
+                #state {
+                    background: none;
+                    width: 95%;
+                    height: 40px;
+                    margin-bottom: 10px;
+                    -webkit-appearance: none;
+                    border: none;
+                    border-radius: 10px;
+                    background-color: $tzukuri-light-grey;
+                    padding-left: 10px;
+                    font-size: 12pt;
+                }
+
+                #error-messages {
+                    color: $tzukuri-red;
+                    font-size: 10pt;
+                    padding-bottom: 10px;
+                    padding-left: 30px;
+                    padding-right: 30px;
+                }
+
+                .loading-spinner {
+                    background: url("/images/loading_spinner.svg") no-repeat;
+                    background-position: 50% 12px;
+                    height: 40px;
+                    display: none;
+                }
             }
         }
 
-
+        // 4 - select a shipping method
         #step-shipping-method {
             .select-shipping .order-btn {
                 width: 40%;
@@ -222,11 +243,10 @@ body.beta {
                 margin-bottom: 40px;
                 font-weight: 300;
             }
-
         }
 
+        // 5 - select a timeslot
         #step-timeslot {
-
             p {
                 color: $tzukuri-dark-grey;
                 font-size: 11pt;
@@ -238,6 +258,7 @@ body.beta {
 
             .step-content {
                 margin-bottom: 40px;
+                margin-top: 40px;
             }
 
             #timeslot-continue {
@@ -251,7 +272,8 @@ body.beta {
                 padding: 10px 50px 10px 50px;
                 border: 1px solid $tzukuri-blue;
                 color: $tzukuri-blue;
-                 @include transition(0.5s);
+
+                @include transition(0.5s);
 
                 &:hover {
                     color: white;
@@ -260,6 +282,7 @@ body.beta {
             }
         }
 
+        // 6 - enter payment information
         #step-payment {
             .step-content {
                 margin-bottom: 40px;
@@ -271,6 +294,7 @@ body.beta {
 
             input[type=text], input[type=email] {
                 @include box-sizing(border-box);
+
                 width: 100%;
             }
 
@@ -283,7 +307,9 @@ body.beta {
 
                 select {
                     padding-left: 10px;
+
                     @include border-radius(5px);
+
                     background-color: $tzukuri-light-grey;
                     font-size: 12pt;
                     height: 40px;
@@ -294,250 +320,52 @@ body.beta {
                 }
             }
         }
+    }
 
-        #finished-container {
-            margin-top: 20vh;
-            text-align: center;
+    // ----------------------
+    // main view when the beta has concluded
+    // ----------------------
+    #beta-index #finished-container {
+        margin-top: 20vh;
+        text-align: center;
 
-            h1 {
-                font-size: 32pt;
-                font-weight: 200;
-            }
-            p {
-                font-size: 16pt;
-                font-weight: 200;
-            }
+        h1 {
+            font-size: 32pt;
+            font-weight: 200;
         }
 
-        // ----------------------
-        // order submitted
-        // ----------------------
-        #order-submitted-container {
-            text-align: center;
+        p {
+            font-size: 16pt;
+            font-weight: 200;
+        }
+    }
 
-            h2 {
-                margin-bottom: 60px;
-                font-size: 36pt;
-                color: $tzukuri-black;
-                font-weight: 200;
-            }
+    // ----------------------
+    // order submitted container
+    // ----------------------
+    #beta-index #order-submitted-container {
 
-            hr {
-                margin-bottom: 20px;
-            }
+    }
 
-            #next-steps-list {
-                text-align: left;
+    // old styles
+    #beta-index {
+        padding-top: 100px;
 
-                li {
-                    font-weight: 300;
-                    list-style-type: circle;
-                    margin-bottom: 10px;
-                    line-height: 22pt;
-                    color: $tzukuri-dark-grey;
-                }
-            }
+        p {
+            font-size: 12pt;
+            line-height: 150%;
+            font-weight: 300;
         }
 
-        // ----------------------
-        // user selected
-        // ----------------------
-        #selected-container {
-            text-align: center;
-            height: 85vh;
-
-            .step-container {
-                // padding: 20px;
-                // background-color: $tzukuri-light-grey;
-                height: 100%;
-
-                &.hidden {
-                    display: none;
-                }
-
-                button.cta {
-                    background-color: $tzukuri-blue;
-                    color: white;
-                    text-transform: none;
-                    font-size: 13pt;
-                    padding: 10px;
-                    height: auto;
-                    width: 120px;
-                    border-radius: 25px;
-                }
-            }
-
-            .checkout-img {
-                width: 95%;
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .checkout-img.hidden {
-                display: none;
-            }
-
-            // #selected-header {
-            //     h2 {
-            //         font-size: 30pt;
-            //         color: $tzukuri-black;
-            //         font-weight: 200;
-            //         line-height: 150%;
-            //     }
-            // }
-
-            #step-frames {
-                .select-frame {
-                    img {
-                        width: 90%;
-                    }
-                }
-            }
-
-            // #selected-header {
-            //     h2 {
-            //         font-size: 36pt;
-            //         color: $tzukuri-black;
-            //         font-weight: 200;
-            //         line-height: 150%;
-            //     }
-
-            //     p {
-            //         line-height: 150%;
-            //     }
-            // }
-
-            // #step-frames {
-            //     .columns {
-            //         border-right: 1px solid $tzukuri-light-grey;
-            //         min-height: 400px;
-            //         margin-left: 0px;
-
-            //         @include transition(0.5s);
-
-            //         &.disabled {
-            //             opacity: 0.1;
-            //         }
-
-            //         // select design (ford vs. ive)
-            //         .select-design {
-            //             cursor: pointer;
-
-            //             img {
-            //                 width: 65%;
-            //             }
-            //         }
-
-            //         // select size (small vs. large)
-            //         .select-size {
-            //             border: 1px solid $tzukuri-blue;
-            //             border-radius: 20px;
-            //             width: 30%;
-            //             color: $tzukuri-blue;
-            //             margin-left: auto;
-            //             margin-right: auto;
-            //             margin-top: 80px;
-            //             margin-bottom: 20px;
-            //             padding: 10px;
-            //             cursor: pointer;
-
-            //             @include transition(0.5s);
-
-            //             &:hover {
-            //                 background: $tzukuri-blue;
-            //                 color: white;
-            //             }
-            //         }
-
-            //         .size-exp {
-            //             font-size: 10pt;
-            //         }
-
-            //         // select colour (black vs. tortoise)
-            //         .select-colour {
-            //             padding: 5px;
-            //             border-radius: 15px;
-            //             width: 50%;
-            //             margin-left: auto;
-            //             margin-right: auto;
-            //             margin-top: 40px;
-            //             cursor: pointer;
-
-            //             @include transition(0.5s);
-
-            //             &.active {
-            //                 color: white;
-            //                 background-color: $tzukuri-dark-grey;
-            //             }
-
-            //             .circle {
-            //                 width: 60px;
-            //                 height: 60px;
-            //                 border-radius: 30px;
-            //                 margin-top: 10px;
-            //                 margin-bottom: 10px;
-            //                 margin-left: auto;
-            //                 margin-right: auto;
-
-            //                 &.tort {
-            //                     background-color: brown;
-            //                 }
-
-            //                 &.black {
-            //                     background-color: $tzukuri-black;
-            //                 }
-            //             }
-            //         }
-            //     }
-            // }
-
-            // #order-details {
-            //     &.hidden {
-            //         display: none;
-            //     }
-
-            //     .checkout-img {
-            //         width: 95%;
-            //         margin-top: -100px;
-            //         margin-left: auto;
-            //         margin-right: auto;
-            //     }
-
-            //     .checkout-img.hidden {
-            //         display: none;
-            //     }
-
-            //     #glasses-details {
-            //         text-align: left;
-
-            //         dl {
-            //             margin-bottom: 20px;
-            //             margin-left: 70px;
-
-            //             dt, dd {
-            //                 display: inline-block;
-            //                 margin-bottom: 3px;
-            //                 font-size: 12px;
-            //             }
-
-            //             dt {
-            //                 text-transform: uppercase;
-            //                 font-weight: 600;
-            //                 text-align: right;
-            //             }
-
-            //             dd {
-            //                 text-transform: capitalize;
-            //             }
-            //         }
-            //     }
-            // }
+        hr {
+            margin-top: 0px;
+            margin-bottom: 0px;
+            border-top: 1px solid $tzukuri-light-grey;
         }
 
         // --------------------------------------
         // main view (user hasn't been selected)
         // ---------------------------------------
-
         #details-container {
             hr {
                 margin-top: 30px;
@@ -634,7 +462,7 @@ body.beta {
                     #days-remain {
                         font-weight: 200;
                         font-size: 42pt;
-                        line-height:42pt;
+                        line-height: 42pt;
                         display: inline-block;
                         vertical-align: middle;
                     }
@@ -889,6 +717,66 @@ body.beta {
         margin-top: 0px !important;
         margin-bottom: 40px !important;
     }
+
+    // beta ordering styles
+    body.beta #beta-index #selected-container {
+        .step-container {
+            margin-top: 0px;
+
+            .order-btn {
+                width: 85% !important;
+            }
+
+            .glasses-details {
+                dl {
+                    margin-left: 20px;
+                }
+            }
+        }
+
+        #step-frames {
+            .select-frame {
+                margin-bottom: 60px;
+            }
+        }
+
+        #step-size {}
+
+        #step-details {
+            #glasses {
+                .checkout-img {
+                    margin-top: -60px;
+                }
+            }
+
+            #shipping form {
+                input {
+                    width: 90%;
+                }
+
+                select {
+                    width: 96%;
+                }
+            }
+        }
+
+        #step-shipping-method {}
+
+        #step-timeslot {
+            #timeslot-day {
+                padding-left: 26%;
+                width: 85%;
+            }
+
+            .timeslot-time {
+                padding-left: 32%;
+                width: 85%;
+                margin-bottom: 20px;
+            }
+        }
+
+        #step-payment {}
+    }
 }
 
 @media only screen and (max-width: 960px) {
@@ -914,5 +802,18 @@ body.beta {
 @media only screen and (max-width: 320px) {
     #login-container h1 {
         font-size: 32pt !important;
+    }
+
+    // beta ordering
+    body.beta #beta-index #selected-container {
+        #step-intro {
+            h2 {
+                font-size: 30pt;
+            }
+
+            p {
+                font-size: 12pt;
+            }
+        }
     }
 }

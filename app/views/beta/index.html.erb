@@ -46,15 +46,14 @@
         </div>
         <div class="row">
           <div class="six columns select-frame">
-              <%= image_tag 'frames/ive/black-front.png', style: "margin-top: -80px;"%>
+              <%= image_tag 'frames/ive/black-front.png', class: "frame-img"%>
               <button class="order-btn next" data-frame='ive'>Ive</button>
           </div>
 
           <div class="six columns select-frame">
-              <%= image_tag 'frames/ford-beta/black-front.png', style: "margin-top: -80px;"%>
+              <%= image_tag 'frames/ford-beta/black-front.png', class: "frame-img"%>
               <button class="order-btn next" data-frame='ford'>
                 <span class="btn-title">Ford</span>
-                <!-- <i class="fa fa-check btn-check" style="color: #39CA74; display: none"></i> -->
               </button>
           </div>
         </div>
@@ -95,7 +94,7 @@
               <%= image_tag 'frames/ford-beta/black-front.png', class: 'checkout-img hidden', id: 'ford-black' %>
             </div>
             <div class="row">
-              <div class="twelve columns" id="glasses-details">
+              <div class="twelve columns glasses-details">
                 <dl>
                   <dt>Frame</dt>
                   <dd id="frame-selection"></dd>
@@ -154,8 +153,7 @@
           <h2>Choose a delivery time</h2>
         </div>
 
-        <p>We will meet you at <span id="meet-address">32 Downes Street, North Epping</span> at <span id="meet-time">12 PM on Thursday August 8</span>. <br/> Please expect a call from us a few minutes beforehand.</p>
-        <br/><br/>
+        <p>We will meet you at <span id="meet-address"></span> at <span id="meet-time"></span>. <br/> Please expect a call from us a few minutes beforehand.</p>
 
         <div class="row step-content">
           <select id="timeslot-day">
@@ -191,7 +189,7 @@
               <%= image_tag 'frames/ford-beta/black-front.png', class: 'checkout-img hidden', id: 'conf-ford-black' %>
             </div>
             <div class="row">
-              <div class="twelve columns" id="glasses-details">
+              <div class="twelve columns glasses-details">
                 <dl>
                   <dt>Frame</dt>
                   <dd id="conf-frame">Ive</dd>
@@ -211,7 +209,7 @@
               </div>
             </div>
           </div>
-          <div class="five columns" style="margin-top: 80px;">
+          <div class="five columns" style="margin-top: 40px;">
             <p>You will be charged a <span class="bold">$99 AUD</span> fully-refundable deposit. <a href="#" id="delivery-more">Learn more.</a></p>
             <br/>
             <form id="payment-form">
