@@ -23,28 +23,11 @@
             </a>
           </div>
         <% end %>
-
-<!--         <p>To make sure the beta process goes as smoothly as possible, here's a list of things to check before your new glasses arrive:</p>
-        <br/><br/> -->
-
-        <!-- <hr> -->
-
-<!--         <ul id="next-steps-list">
-          <li>Make sure you have access to an <span class="bold">iPhone 5 or later</span> running the latest version of iOS (Go to Settings > General > Software Update and make sure it says 'Your software is up to date').</li>
-
-          <li>Make sure you have an active Apple ID and you know your password.</li>
-
-          <li>Download the <a href="https://itunes.apple.com/au/app/testflight/id899247664?mt=8">Testflight app</a> from the app store. We will use Testflight to distribute the Tzukuri app during our beta testing phase  (you'll receive more information about this later).</li>
-
-          <li>If you've got any questions about the beta or wish to change any of your details, get in touch at <a href="mailto:beta@tzukuri.com">beta@tzukuri.com</a>
-        </ul> -->
-
       </div>
 
     <!-- user is selected but order has not been submitted -->
     <% elsif @beta_user.selected %>
-
-    <div id="selected-container">
+      <div id="selected-container">
       <!-- 0 - intro -->
       <div class="step-container" id="step-intro">
         <h2>Congratulations, you're in.</h2>
@@ -280,7 +263,8 @@
         <br/><br/>
         If you have any questions, please get in touch at <a href="mailto:beta@tzukuri.com">beta@tzukuri.com</a>.
       </div>
-<!--       <div id='details-container'>
+
+      <!--       <div id='details-container'>
 
         <div class="row" id="user-detail-row">
 
@@ -294,22 +278,22 @@
           <div class="nine columns" id="user-col">
 
             <div id="user-title">
-              <h1 id="user-name"><%= @beta_user.name %></h1>
-              <%= link_to "logout", destroy_beta_user_session_path, :id => 'logout', :method => :delete %>
+              <h1 id="user-name"><%#= @beta_user.name %></h1>
+              <%#= link_to "logout", destroy_beta_user_session_path, :id => 'logout', :method => :delete %>
             </div>
 
             <p id="increase-chance">To find the most passionate people, the <span class='bold'>top 100 users by points</span> will be selected to receive a pair of glasses for testing. Get more points by completing the tasks below.  <a href="#" id="need-help">Need help?</a></p>
 
             <div id="invite-link-container">
-              <p>Share this link to earn <span class='bold'><%= Tzukuri::INVITEE_POINTS %> points</span> for every sign up</p>
+              <p>Share this link to earn <span class='bold'><%#= Tzukuri::INVITEE_POINTS %> points</span> for every sign up</p>
 
-              <input readonly id="link" value="tzukuri.com/beta/invite/<%= @beta_user.invite_token %>">
+              <input readonly id="link" value="tzukuri.com/beta/invite/<%#= @beta_user.invite_token %>">
 
-              <% if @num_invitees == 1 %>
+              <#% if @num_invitees == 1 %>
                 <p>1 person has used your invite</p>
-              <% else %>
-                <p><%= @num_invitees %> people have used your invite</p>
-              <% end %>
+              <#% else %>
+                <p><%#= @num_invitees %> people have used your invite</p>
+              <%# end %>
 
             </div>
           </div>
@@ -321,7 +305,7 @@
           </div>
           <div class="nine columns">
             <hr>
-            <p id="social-exp">Every social media account you connect earns you <span class="bold"><%= Tzukuri::IDENTITY_POINTS %> points</span></p>
+            <p id="social-exp">Every social media account you connect earns you <span class="bold"><%#= Tzukuri::IDENTITY_POINTS %> points</span></p>
             <div class="row">
 
               <div class="four columns social-col row">
@@ -329,13 +313,13 @@
                   <i class="fa fa-2x fa-instagram"></i>
                 </div>
                 <div class="ten columns">
-                  <% if @beta_user.instagram? %>
+                  <%# if @beta_user.instagram? %>
                     <button class="connected">connected</button>
-                  <% else %>
-                    <%= link_to oauth_path(:instagram) do %>
+                  <%# else %>
+                    <%#= link_to oauth_path(:instagram) do %>
                         <button>connect</button>
-                    <% end %>
-                  <% end %>
+                    <%# end %>
+                  <%# end %>
                 </div>
               </div>
               <div class="four columns social-col row">
@@ -343,13 +327,13 @@
                   <i class="fa fa-2x fa-twitter"></i>
                 </div>
                 <div class="ten columns">
-                  <% if @beta_user.twitter? %>
+                  <%# if @beta_user.twitter? %>
                     <button class="connected">connected</button>
-                  <% else %>
-                    <%= link_to oauth_path(:twitter) do %>
+                  <%# else %>
+                    <%#= link_to oauth_path(:twitter) do %>
                         <button>connect</button>
-                    <% end %>
-                  <% end %>
+                    <%# end %>
+                  <%# end %>
                 </div>
               </div>
               <div class="four columns social-col row">
@@ -357,13 +341,13 @@
                   <i class="fa fa-2x fa-facebook"></i>
                 </div>
                 <div class="ten columns">
-                  <% if @beta_user.facebook? %>
+                  <%# if @beta_user.facebook? %>
                     <button class="connected">connected</button>
-                  <% else %>
-                    <%= link_to oauth_path(:facebook) do %>
+                  <%# else %>
+                    <%#= link_to oauth_path(:facebook) do %>
                         <button>connect</button>
-                    <% end %>
-                  <% end %>
+                    <%# end %>
+                  <%# end %>
                 </div>
               </div>
             </div>
@@ -377,61 +361,61 @@
           <div class="nine columns">
           <hr>
 
-            <% if @answerable_questions.count > 0 %>
+            <%# if @answerable_questions.count > 0 %>
             <div class="row" id="question-header">
               <div class="nine columns">
-                <p>Earn <span class="bold"><%= Tzukuri::RESPONSE_POINTS %> points</span> by answering this question</p>
+                <p>Earn <span class="bold"><%#= Tzukuri::RESPONSE_POINTS %> points</span> by answering this question</p>
               </div>
 
               <div class="three columns">
-                <p id="skip" class="answer-sub <%= 'hidden' if @answerable_questions.count <= 1%>">skip question</p>
+                <p id="skip" class="answer-sub <%#= 'hidden' if @answerable_questions.count <= 1%>">skip question</p>
               </div>
             </div>
-            <% end %>
+            <%# end %>
 
             <div id="question-content">
-              <p id="questions-complete" class="<%= 'hidden' if @answerable_questions.count != 0 %>">Thanks, you've answered all the survey questions &nbsp; 🎉</p>
+              <p id="questions-complete" class="<%#= 'hidden' if @answerable_questions.count != 0 %>">Thanks, you've answered all the survey questions &nbsp; 🎉</p>
 
-              <% BetaQuestion.all.each do |question| %>
+              <%# BetaQuestion.all.each do |question| %>
 
-                <div class="question row" id="question_<%= question.id %>" data-answerable='<%= @answerable_questions.include?(question) ? 'true' : 'false' %>'>
+                <div class="question row" id="question_<%#= question.id %>" data-answerable='<%#= @answerable_questions.include?(question) ? 'true' : 'false' %>'>
                   <div class="four columns">
-                    <p id="question-name"><%= question.content %></p>
+                    <p id="question-name"><%#= question.content %></p>
                   </div>
 
                   <div class="eight columns">
-                    <%= form_for BetaResponse.new, :url => beta_responses_path, :html => {:method => :post}, remote:true do |f| %>
-                      <%= f.hidden_field :beta_question_id, value: question.id%>
-                      <% question.response_options.each do |response| %>
-                        <%= f.submit response %>
-                      <% end %>
-                    <% end %>
+                    <%#= form_for BetaResponse.new, :url => beta_responses_path, :html => {:method => :post}, remote:true do |f| %>
+                      <%#= f.hidden_field :beta_question_id, value: question.id%>
+                      <%# question.response_options.each do |response| %>
+                        <%#= f.submit response %>
+                      <%# end %>
+                    <%# end %>
                   </div>
 
                 </div>
-              <% end %>
+              <%# end %>
             </div>
 
           </div>
         </div>
       </div>
- -->
+      -->
+
     <% end %>
 
+  <!-- login -->
   <% else %>
-
-  <!-- login container -->
-  <div id="login-container" data-error="<%= 'true' if flash[:alert] %>">
-    <h1>T Z U K U R I <span class="blue">[beta]</span></h1>
-    <h2>Enter the email address you registered with to continue to the beta dashboard</h2>
-    <%= form_for @beta_user, :url => beta_user_session_path(@beta_user) do |f| %>
-      <%= f.email_field :email, placeholder: "email address", autofocus: true, class: "beta-input", autocomplete: 'off' %> <br/>
-      <p id="error-messages"><%= flash[:alert] %></p>
-      <%= f.hidden_field :invite_token, value: @token %><br/>
-      <%= f.submit "continue", id:"submit-btn", class:"disabled" %>
-    <% end %>
-  </div>
-
+      <!-- login container -->
+      <div id="login-container" data-error="<%= 'true' if flash[:alert] %>">
+        <h1>T Z U K U R I <span class="blue">[beta]</span></h1>
+        <h2>Enter the email address you registered with to continue to the beta dashboard</h2>
+        <%= form_for @beta_user, :url => beta_user_session_path(@beta_user) do |f| %>
+          <%= f.email_field :email, placeholder: "email address", autofocus: true, class: "beta-input", autocomplete: 'off' %> <br/>
+          <p id="error-messages"><%= flash[:alert] %></p>
+          <%= f.hidden_field :invite_token, value: @token %><br/>
+          <%= f.submit "continue", id:"submit-btn", class:"disabled" %>
+        <% end %>
+      </div>
   <% end %>
 </div>
 
