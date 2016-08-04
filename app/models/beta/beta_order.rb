@@ -15,6 +15,11 @@ class BetaOrder < ActiveRecord::Base
 
   enum delivery_method: [ :ship, :deliver, :meetup ]
 
+  def full_address
+    address = address1.titleize + ", " + address2.titleize + ", " + state.upcase + ", " + country.titleize + ", " + postcode
+    return address
+  end
+
   def delivery_timeslot?
     !delivery_timeslot.nil?
   end

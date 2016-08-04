@@ -462,6 +462,7 @@ $(function() {
         $("#conf-address").html(address);
         $("#conf-timeslot-header, #conf-timeslot").hide()
         $("#meet-address").html(shortAddress)
+        $("#conf-shipping").html("Australia Post")
 
         geocodeAddress(address).done(function(data) {
             console.log(data)
@@ -499,6 +500,13 @@ $(function() {
 
         return
     })
+
+    // enable enter key to submit the form
+    $('#new_beta_order').on("keypress", function(e) {
+        if (e.keyCode == 13) {
+            $("#shipping-continue").click()
+        }
+    });
 
     // 4 - user selects their shipping method (optional)
     $('.select-shipping button').on('click', function() {
@@ -602,11 +610,7 @@ $(function() {
 
     // stripe
     Stripe.setPublishableKey('pk_test_HWxqGZq4R2zTKm5915tgDas4');
-    // <% if Rails.env.development? %>
-    //     Stripe.setPublishableKey('pk_test_HWxqGZq4R2zTKm5915tgDas4');
-    // <% else %>
-    //     Stripe.setPublishableKey('pk_live_VAzrbCZ5hRh2i3tXpoS9GL5I');
-    // <% end %>
+    // Stripe.setPublishableKey('pk_live_VAzrbCZ5hRh2i3tXpoS9GL5I');
 
     var submitOrderDetails = function() {
         return {
@@ -661,36 +665,6 @@ $(function() {
                 $('#submit button').prop('disabled', false);
                 $('#submit button').tzAnimate('shake')
             })
-
-            // post to beta_orders
-            // $.post('/purchases', {
-            //     email: $('#email').val(),
-            //     name: $('#name').val(),
-            //     address1: $('#address1').val(),
-            //     address2: $('#address2').val(),
-            //     state: $('#state').val(),
-            //     postcode: $('#postcode').val(),
-            //     country: $('#country').val(),
-            //     token: response.id,
-            //     frame: $('#panel').attr('data-frame'),
-            //     colour: $('#panel').attr('data-colour'),
-            //     size: $('#panel').attr('data-size')
-            // }, function(data, status) {
-            //     if (data.success) {
-            //         $('#order-ref').text(data.ref);
-            //         $('#payment-message').text('');
-            //         $('#form').fadeOut();
-            //         $('#complete').fadeIn();
-            //     } else {
-            //         if (data.reason)
-            //             $('#payment-message').text(data.reason);
-            //         else
-            //             $('#payment-message').text('Sorry, an unknown error occurred.');
-            //         $('#submit button').prop('disabled', false);
-            //     }
-            // }, 'json').fail(function() {
-            //     $('#payment-message').text('Sorry, an unknown error occurred. Please try again later.');
-            // });
         }
     }
 
@@ -704,5 +678,4 @@ $(function() {
     $("#delivery-more").on('click', function(event) {
         // show the delivery information modal
     })
-
 });

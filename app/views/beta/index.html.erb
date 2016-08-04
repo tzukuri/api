@@ -8,15 +8,28 @@
       <div id="order-submitted-container">
         <h2>Thanks, you're all done!</h2>
 
-        <p>We hope you're as excited as we are that you'll be one of the first people in the world to own a pair of <span class="bold">unloseable glasses</span>. You'll receive and email from us in the next few days confirming the next steps.</p>
-        <br/><br/>
+        <p>Welcome to the Tzukuri Beta program. We hope you're as excited as we are that you'll be one of the first in the world to own a pair of unloseable sunglasses. You'll receive an email from us in the next few days when your glasses are shipped. If you have any questions please get in touch at <a href="mailto:beta@tzukuri.com">beta@tzukuri.com</a>.</p>
 
-        <p>To make sure the beta process goes as smoothly as possible, here's a list of things to check before your new glasses arrive:</p>
-        <br/><br/>
+        <% if !@beta_order.beta_delivery_timeslot.nil? %>
+          <div id="personal-delivery" data-time="<%= @beta_order.beta_delivery_timeslot.time %>" data-address="<%= @beta_order.full_address %>">
+            <hr/>
+            <h3>Personal Delivery Details</h3>
+            <p class="delivery-detail"><%= @beta_order.address1 %>, <%= @beta_order.address2 %></p>
+            <p class="delivery-detail"><%= @beta_order.beta_delivery_timeslot.time.strftime("%A, %B %d at %l:%M %p") %></p>
+            <p>Please expect to receive a call from one of our team members at your delivery time.</p>
+            <a id="delivery-calendar" href="#">
+              <i class="fa fa-calendar"></i><br/>
+              Add to calendar
+            </a>
+          </div>
+        <% end %>
 
-        <hr>
+<!--         <p>To make sure the beta process goes as smoothly as possible, here's a list of things to check before your new glasses arrive:</p>
+        <br/><br/> -->
 
-        <ul id="next-steps-list">
+        <!-- <hr> -->
+
+<!--         <ul id="next-steps-list">
           <li>Make sure you have access to an <span class="bold">iPhone 5 or later</span> running the latest version of iOS (Go to Settings > General > Software Update and make sure it says 'Your software is up to date').</li>
 
           <li>Make sure you have an active Apple ID and you know your password.</li>
@@ -24,7 +37,7 @@
           <li>Download the <a href="https://itunes.apple.com/au/app/testflight/id899247664?mt=8">Testflight app</a> from the app store. We will use Testflight to distribute the Tzukuri app during our beta testing phase  (you'll receive more information about this later).</li>
 
           <li>If you've got any questions about the beta or wish to change any of your details, get in touch at <a href="mailto:beta@tzukuri.com">beta@tzukuri.com</a>
-        </ul>
+        </ul> -->
 
       </div>
 
