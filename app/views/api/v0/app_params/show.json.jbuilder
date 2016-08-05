@@ -69,6 +69,11 @@ json.params do
 
         json.unreachable_message                        t('app_params.alerts.unreachable_message')
         json.unknown_error_message                      t('app_params.alerts.unknown_error_message')
+
+        json.qz_create_fail_title                       t('app_params.alerts.qz_create_fail_title')
+        json.qz_update_fail_title                       t('app_params.alerts.qz_update_fail_title')
+        json.qz_duplicate_name                          t('app_params.alerts.qz_duplicate_name')
+        json.qz_overlapping_region                      t('app_params.alerts.qz_overlapping_region')
     end
 
     json.notifications do

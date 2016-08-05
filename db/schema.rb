@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160621052859) do
+ActiveRecord::Schema.define(version: 20160805025008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -264,11 +264,12 @@ ActiveRecord::Schema.define(version: 20160621052859) do
     t.float    "latitude"
     t.float    "longitude"
     t.integer  "radius"
-    t.time     "starttime"
-    t.time     "endtime"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "starttime"
+    t.integer  "endtime"
+    t.boolean  "always_active"
   end
 
   add_index "quietzones", ["user_id"], name: "index_quietzones_on_user_id", using: :btree

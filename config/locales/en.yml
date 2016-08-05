@@ -128,6 +128,10 @@ en:
             unreachable_message: "Could not connect to the Tzukuri server. Please check you have network connectivity."
             unknown_error_message: "An unknown error occurred. Please try again, or contact us if you'd like help."
             invalid_registration_message: "These errors prevented registration:"
+            qz_create_fail_title: "This Quiet Zone could not be created"
+            qz_update_fail_title: "This Quiet Zone could not be updated"
+            qz_duplicate_name: "Another quiet zone with the same name already exists. Please rename this zone before saving."
+            qz_overlapping_region: "The area covered overlaps another quiet zone. Move the location of the zone, or change the radius covered."
         notifications:
             bluetooth_unavailable: "Bluetooth is disabled. Please enable Bluetooth to use Tzukuri."
             left_behind: "You've left your glasses behind"
