@@ -17,10 +17,10 @@
             <p class="delivery-detail"><%= @beta_order.address1 %>, <%= @beta_order.address2 %></p>
             <p class="delivery-detail"><%= @beta_order.beta_delivery_timeslot.time.strftime("%A, %B %d at %l:%M %p") %></p>
             <p>Please expect to receive a call from one of our team members at your delivery time.</p>
-            <a id="delivery-calendar" href="#">
+<!--             <a id="delivery-calendar" href="#">
               <i class="fa fa-calendar"></i><br/>
               Add to calendar
-            </a>
+            </a> -->
           </div>
         <% end %>
       </div>
@@ -33,6 +33,37 @@
         <h2>Congratulations, you're in.</h2>
         <p>Welcome to the Tzukuri beta program. We hope you're as excited as we are that you'll be one of the first in the world to own a pair of unloseable sunglasses. Let's get started 😎</p>
         <button id="get-started" class="order-btn next">Get started &nbsp;&nbsp;<i class="fa fa-chevron-right"></i></button>
+      </div>
+
+      <div class="step-container hidden" id="step-accept">
+        <div class="selected-header">
+          <h2>Your Role and Personal Delivery</h2>
+          <div class="row">
+            <div class="six columns" id="expectations">
+              <p>Your Role</p>
+              <ul>
+                <li>Respond to our weekly surveys.</li>
+                <li>Report any bugs that you encounter through our app.</li>
+                <li>Report any general feedback or feature requests that you have.</li>
+                <li>We may contact you at any time by email if we feel you could help us with any other questions.</li>
+              </ul>
+            </div>
+            <div class="six columns" id="delivery">
+              <p style="font-weight: 500; font-size: 14pt; line-height: 200%; margin-bottom: 10px;">Personal Delivery & Setup</p>
+              <p>To help you get set up, we're offering a <span class="bold">personal delivery service</span> at no extra cost to any address within <span class="bold">10 km of the Sydney CBD</span>. You'll be able to meet with one of the Tzukuri team members, try on all our different pairs and we'll walk you through the setup process.</p>
+            </div>
+          </div>
+
+            <button class="order-btn next" data-frame='ford'>
+                Accept and continue &nbsp;&nbsp;<i class="fa fa-chevron-right"></i>
+            </button>
+            <br/>
+            <button class="prev order-btn">
+              <i class="fa fa-chevron-left"></i>&nbsp;&nbsp;back
+            </button>
+
+        </div>
+
       </div>
 
       <!-- 1 - select frame -->
@@ -53,6 +84,11 @@
               </button>
           </div>
         </div>
+
+        <br/><br/>
+        <button class="prev order-btn">
+           <i class="fa fa-chevron-left"></i>&nbsp;&nbsp;back
+        </button>
       </div>
 
       <!-- 2 - select size -->
@@ -80,7 +116,7 @@
       <!-- 3 - enter shipping details -->
       <div class="step-container hidden" id="step-details">
         <div class="selected-header">
-          <h2>Enter your shipping details</h2>
+          <h2>Enter your delivery details</h2>
         </div>
 
         <div class="row step-content">
@@ -124,16 +160,16 @@
       <!-- 4 - select a shipping method (optional) -->
       <div class="step-container hidden" id="step-shipping-method">
         <div class="selected-header">
-          <h2>Choose a shipping method</h2>
+          <h2>Choose a delivery method</h2>
         </div>
 
         <div class="row step-content">
           <div class="select-shipping">
-            <button class="order-btn" data-delivery="0">Australia Post</button>
-            <p class="method-exp">Your glasses will be sent to your shipping address using Australia Post.</p>
+            <button class="order-btn" data-delivery="0">Standard Shipping</button>
+            <p class="method-exp">Your glasses will be sent to your delivery address with a courier.</p>
           </div>
           <div class="select-shipping">
-            <button class="order-btn" data-delivery="1">Personal Delivery</button>
+            <button class="order-btn" data-delivery="1">Personal Delivery & Setup</button>
             <p class="method-exp">One of the members of the Tzukuri team will personally deliver your glasses and help you get set up.</p>
           </div>
         </div>
@@ -250,7 +286,6 @@
         <button class="prev order-btn">
           <i class="fa fa-chevron-left"></i>&nbsp;&nbsp;back
         </button>
-
       </div>
 
     <!-- user has not been selected -->

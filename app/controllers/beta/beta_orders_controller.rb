@@ -31,6 +31,7 @@ class BetaOrdersController < ApplicationController
       beta_order.update_attribute('charge_id', charge.id)
       beta_order.update_attribute('customer_id', customer.id)
 
+      BetaMailer.send_beta_order_email(current_beta_user).deliver_later
       render :json => {success: true, beta_order: beta_order}
 
     rescue Stripe::CardError => e

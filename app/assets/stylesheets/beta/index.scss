@@ -153,10 +153,47 @@ body.beta {
 
             p {
                 margin-top: 40px;
-                font-weight: 300;
-                font-size: 14pt;
+                font-weight: 200;
+                font-size: 15pt;
                 margin-bottom: 40px;
                 line-height: 200%;
+            }
+        }
+
+        #step-accept {
+            #expectations {
+                text-align: left;
+                margin-top: 40px;
+
+                ul {
+                    margin-left: 20px;
+                    list-style-type: disc;
+                    line-height: 200%;
+                    font-weight: 300;
+                    font-size: 12pt;
+                }
+
+                p {
+                    margin-bottom: 10px;
+                    line-height: 200%;
+                    font-weight: 500;
+                    font-size: 14pt;
+                }
+            }
+
+            #delivery {
+                text-align: left;
+                margin-top: 40px;
+                font-weight: 200;
+                font-size: 12pt;
+
+                p {
+                    line-height: 200%;
+                }
+            }
+
+            button {
+                margin-top: 40px;
             }
         }
 

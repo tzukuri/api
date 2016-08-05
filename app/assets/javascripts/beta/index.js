@@ -379,6 +379,10 @@ $(function() {
         navigate('forward')
     })
 
+    $('#step-accept .next').on('click', function() {
+        navigate('forward')
+    })
+
     // $('.select-frame button').on('mouseover', function() {
     //     $(this).tzAnimate('pulse')
     // })
@@ -462,7 +466,7 @@ $(function() {
         $("#conf-address").html(address);
         $("#conf-timeslot-header, #conf-timeslot").hide()
         $("#meet-address").html(shortAddress)
-        $("#conf-shipping").html("Australia Post")
+        $("#conf-shipping").html("Standard Shipping")
 
         geocodeAddress(address).done(function(data) {
             console.log(data)
@@ -488,7 +492,7 @@ $(function() {
             if (distance > 10) {
                 // todo: navigate to the payment page
                 // submitOrderDetails()
-                navigateToIndex(6)
+                navigateToIndex(7)
             } else {
                 // navigate to the delivery selection page
                 navigate('forward')
@@ -523,9 +527,9 @@ $(function() {
         // set confirmation address
         $("#conf-timeslot-header, #conf-timeslot").hide()
 
-        if ($(this).html() == "Australia Post") {
-            navigateToIndex(6)
-        } else if ($(this).html() == "Personal Delivery") {
+        if ($(this).attr('data-delivery') == "0") {
+            navigateToIndex(7)
+        } else if ($(this).attr('data-delivery') == "1") {
             navigate('forward')
         }
 
