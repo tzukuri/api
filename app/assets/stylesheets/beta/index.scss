@@ -78,6 +78,20 @@ body.beta {
             border-top: 1px solid $tzukuri-light-grey;
         }
 
+        #finished-container {
+            margin-top: 20vh;
+            text-align: center;
+
+            h1 {
+                font-size: 32pt;
+                font-weight: 200;
+            }
+            p {
+                font-size: 16pt;
+                font-weight: 200;
+            }
+        }
+
         // ----------------------
         // order submitted
         // ----------------------
