@@ -1,4 +1,5 @@
 class AuthToken < ActiveRecord::Base
+    belongs_to :api_device
     belongs_to :user
     belongs_to :app
     has_many :log_entries, dependent: :destroy
