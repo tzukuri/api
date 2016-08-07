@@ -1,0 +1,7 @@
+<h1>Devices</h1>
+
+<ul>
+    <% @auth_tokens.each do |token| %>
+        <li><a href="/diagnostics/<%= token.diagnostics_sync_token %>"><%= token.user.name %> - <%= token.api_device.name %></a></li>
+    <% end %>
+</ul>

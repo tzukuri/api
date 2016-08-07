@@ -1,0 +1,7 @@
+<h1><%= @auth_token.user.name %> - <%= @auth_token.api_device.name %> / <%= params[:date] %></h1>
+
+<ul>
+    <% @files.each do |name| %>
+        <li><a href="/diagnostics/<%= params[:token] %>/<%= params[:date] %>/<%= name %>"><%= name %></a></li>
+    <% end %>
+</ul>

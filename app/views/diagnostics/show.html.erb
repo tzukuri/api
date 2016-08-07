@@ -1,0 +1,34 @@
+<h1><%= @auth_token.user.name %> - <%= @auth_token.api_device.name %> / <%= params[:date] %> / <%= params[:file] %></h1>
+
+<% @blocks.each_with_index do |block, i| %>
+    <h2>Block <%= i %></h2>
+    <table>
+        <tr>
+            <th>timestamp</th>
+            <th>delta</th>
+            <th>type</th>
+            <th>value</th>
+        </tr>
+        <% block.entries.each_with_index do |entry, i| %>
+            <tr>
+                <td><%= entry.time.strftime("%H:%M:%S") %></td>
+                <td><%= entry.raw_ts if i > 0 %></td>
+                <td><%= entry.type %></td>
+                <td>
+                    <% if entry.printable_value? %>
+                        <%= entry.value %>
+                    <% end %>
+                    <% if entry.varint_value? %>
+                        <%= entry.varint_value %>
+                    <% end %>
+                    <% if entry.float_value? %>
+                        <%= entry.float_value %>
+                    <% end %>
+                    <% if entry.type == 'userActivityData' %>
+                        <%= entry.user_activity_value.time.strftime('%H:%M:%S') %> <%= entry.user_activity_value.type_name %> (confidence: <%= entry.user_activity_value.confidence_name %>)
+                    <% end %>
+                </td>
+            </tr>
+        <% end %>
+    </table>
+<% end %>

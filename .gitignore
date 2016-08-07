@@ -12,7 +12,7 @@
 !/log/.keep
 /tmp
 .DS_Store
-diagnostics
+/diagnostics/*
 public/assets
 deploy.sh
 .idea/
