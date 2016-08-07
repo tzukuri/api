@@ -10,7 +10,7 @@ class BetaMailer < ActionMailer::Base
     @beta_user = beta_user
     @beta_order = beta_user.order
 
-    mail(to:beta_user.email, subject: "Your Tzukuri Beta Order Confirmation")
+    mail(to:beta_user.email, subject: "Your Tzukuri Beta Order")
   end
 
   def send_beta_acceptance_email(beta_user)

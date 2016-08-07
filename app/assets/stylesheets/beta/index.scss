@@ -153,8 +153,8 @@ body.beta {
 
             p {
                 margin-top: 40px;
-                font-weight: 200;
-                font-size: 15pt;
+                font-weight: 300;
+                font-size: 12pt;
                 margin-bottom: 40px;
                 line-height: 200%;
             }
@@ -321,12 +321,27 @@ body.beta {
 
         // 6 - enter payment information
         #step-payment {
-            .step-content {
-                margin-bottom: 40px;
+            .checkout-img {
+                width: 50%;
+            }
+
+            .glasses-details {
+                dl {
+                    text-align: center;
+                    margin-left: 0px;
+                }
+            }
+
+            #place-order {
+                margin-top: 20px;
             }
 
             #conf-ive-black, #conf-ford-black {
                 margin-top: -80px;
+            }
+
+            dl {
+                margin-left: 220px;
             }
 
             input[type=text], input[type=email] {
@@ -847,7 +862,11 @@ body.beta {
             }
         }
 
-        #step-payment {}
+        #step-payment {
+            .checkout-img {
+                width: 100%;
+            }
+        }
     }
 }
 

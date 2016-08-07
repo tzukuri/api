@@ -8,7 +8,7 @@
       <div id="order-submitted-container">
         <h2>Thanks, you're all done!</h2>
 
-        <p>Welcome to the Tzukuri Beta program. We hope you're as excited as we are that you'll be one of the first in the world to own a pair of unloseable sunglasses. You'll receive an email from us in the next few days when your glasses are shipped. If you have any questions please get in touch at <a href="mailto:beta@tzukuri.com">beta@tzukuri.com</a>.</p>
+        <p>Welcome to the Tzukuri Beta program. We hope you're as excited as we are that you'll be one of the first in the world to own a pair of unlosable sunglasses. You'll receive an email from us in the next few days when your glasses are shipped. If you have any questions please get in touch at <a href="mailto:beta@tzukuri.com">beta@tzukuri.com</a>.</p>
 
         <% if !@beta_order.beta_delivery_timeslot.nil? %>
           <div id="personal-delivery" data-time="<%= @beta_order.beta_delivery_timeslot.time %>" data-address="<%= @beta_order.full_address %>">
@@ -31,7 +31,7 @@
       <!-- 0 - intro -->
       <div class="step-container" id="step-intro">
         <h2>Congratulations, you're in.</h2>
-        <p>Welcome to the Tzukuri beta program. We hope you're as excited as we are that you'll be one of the first in the world to own a pair of unloseable sunglasses. Let's get started 😎</p>
+        <p>Welcome to the Tzukuri beta program. We hope you're as excited as we are that you'll be one of the first in the world to own a pair of unlosable sunglasses. Let's get started 😎</p>
         <button id="get-started" class="order-btn next">Get started &nbsp;&nbsp;<i class="fa fa-chevron-right"></i></button>
       </div>
 
@@ -139,12 +139,12 @@
           </div>
           <div class="five columns" id="shipping">
             <%= form_for BetaOrder.new, :url => beta_orders_path, :html => {:method => :post}, remote:true do |f| %>
-            <%= f.text_field :address1, placeholder: 'address 1', autofocus: true %><br/>
-            <%= f.text_field :address2, placeholder: 'address 2' %><br/>
+            <%= f.text_field :address1, placeholder: 'Street name, number, etc.', autofocus: true %><br/>
+            <%= f.text_field :address2, placeholder: 'City, suburb, etc.' %><br/>
             <%= select_tag   :state, options_for_select(['ACT', 'NSW', 'NT', 'QLD', 'SA', 'TAS', 'VIC', 'WA' ]) %><br/>
-            <%= f.text_field :postcode, placeholder: 'postcode', maxlength: 4 %><br/>
+            <%= f.text_field :postcode, placeholder: 'Postcode', maxlength: 4 %><br/>
             <%= f.text_field :country,  placeholder: 'country', value: 'Australia', disabled: true %><br/>
-            <%= f.telephone_field :phone,    placeholder: 'phone number' %><br/>
+            <%= f.telephone_field :phone,    placeholder: 'Mobile number' %><br/>
             <p id="error-messages"></p>
             <% end %>
             <button id="shipping-continue" class="order-btn">continue&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></button>
@@ -211,11 +211,11 @@
       <!-- 6 - enter payment information -->
       <div class="step-container hidden" id="step-payment">
         <div class="selected-header">
-          <h2>Enter payment information</h2>
+          <h2>Review your order</h2>
         </div>
 
         <div class="row step-content">
-          <div class="seven columns">
+          <div class="twelve columns">
             <div class="row">
               <%= image_tag 'frames/ive/black-front.png', class: 'checkout-img', id: 'conf-ive-black' %>
               <%= image_tag 'frames/ford-beta/black-front.png', class: 'checkout-img hidden', id: 'conf-ford-black' %>
@@ -240,11 +240,14 @@
                 </dl>
               </div>
             </div>
+            <button class="order-btn finish" id="place-order">place order</button>
+            <p id="payment-message"></p>
           </div>
-          <div class="five columns" style="margin-top: 40px;">
-            <p>You will be charged a <span class="bold">$99 AUD</span> fully-refundable deposit. <a href="#" id="delivery-more">Learn more.</a></p>
-            <br/>
-            <form id="payment-form">
+          <!-- <div class="five columns" style="margin-top: 40px;"> -->
+              <!-- <button class="order-btn finish">place order</button> -->
+<!--             <p>You will be charged a <span class="bold">$99 AUD</span> fully-refundable deposit. <a href="#" id="delivery-more">Learn more.</a></p>
+            <br/> -->
+<!--             <form id="payment-form">
               <div id="cc">
                 <p><input type="text" data-stripe="number" placeholder="credit card number"></p>
                 <p>
@@ -279,8 +282,8 @@
                 <button type="submit" class="order-btn finish">finish</button>
                 <div id="payment-message"></div>
               </div>
-            </form>
-          </div>
+            </form> -->
+          <!-- </div> -->
         </div>
 
         <button class="prev order-btn">

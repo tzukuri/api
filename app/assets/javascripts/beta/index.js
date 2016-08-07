@@ -578,6 +578,32 @@ $(function() {
         navigate('forward')
     })
 
+    // 6 -
+    $("#place-order").on('click', function() {
+        var data = submitOrderDetails()
+
+        $('#payment-message').text("Submitting your order...");
+
+        $.post('/beta_orders', data).done(function(data) {
+                console.log(data)
+
+                if (data.success) {
+                    location.reload()
+                    $('#payment-message').text("");
+                } else {
+                    $('#payment-message').text("Sorry, an unknown error occurred.");
+                    $('#submit button').tzAnimate('shake')
+                }
+
+                $('#submit button').prop('disabled', false);
+
+            }).fail(function() {
+                $('#payment-message').text("Sorry, an unknown error occurred. Please try again later.");
+                $('#submit button').prop('disabled', false);
+                $('#submit button').tzAnimate('shake')
+            })
+    })
+
     // keep track of the progress to through each of the steps. navigating forward pushes onto the stack and navigating back
     // pops off the stack. Always starting at the 0th element
     var navigationStack = [0]

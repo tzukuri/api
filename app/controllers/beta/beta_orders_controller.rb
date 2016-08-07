@@ -14,32 +14,9 @@ class BetaOrdersController < ApplicationController
           beta_order.update_attribute('beta_delivery_timeslot_id', params[:delivery_timeslot_id])
       end
 
-      customer = Stripe::Customer.create(
-        card: params[:token],
-        description: current_beta_user.name,
-        email: current_beta_user.email
-      )
-
-      charge = Stripe::Charge.create(
-        amount: 9999,
-        currency: 'aud',
-        customer: customer.id,
-        description: 'Tzukuri Beta Delivery Fee'
-      )
-
-      # update the order with the charge/customer ids
-      beta_order.update_attribute('charge_id', charge.id)
-      beta_order.update_attribute('customer_id', customer.id)
-
       BetaMailer.send_beta_order_email(current_beta_user).deliver_later
+
       render :json => {success: true, beta_order: beta_order}
-
-    rescue Stripe::CardError => e
-      # card failed to charge so destroy the order
-      p "destroying order"
-      beta_order.destroy()
-
-      render json: {success: false, reason: e.json_body[:error][:message]}
     end
   end
 
