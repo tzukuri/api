@@ -8,7 +8,7 @@ module Tzukuri
         end
 
         def time
-            epoch = Time.new(2001, 1, 1).to_i
+            epoch = Time.new(2001,1,1,0,0,0,0).to_i
             Time.at(epoch + (@ts / 1000))
         end
 
@@ -47,7 +47,7 @@ module Tzukuri
         end
 
         def time
-            epoch = Time.new(2001, 1, 1).to_i # NSDate epoch
+            epoch = Time.new(2001,1,1,0,0,0,0).to_i # NSDate epoch
             Time.at(epoch + (@ts / 1000))
         end
 

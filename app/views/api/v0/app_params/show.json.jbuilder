@@ -166,6 +166,6 @@ json.params do
         json.glasses_params_sync                        24.hours.to_i
         json.device_sync                                24.hours.to_i
         json.location_sync                              15.minutes.to_i
-        json.diagnostics_sync                           12.hours.to_i
+        json.diagnostics_sync                           4.hours.to_i
     end
 end

@@ -10,6 +10,7 @@ class DiagnosticsController < ApplicationController
         @auth_token = AuthToken.find_by_diagnostics_sync_token(params[:token])
         path = Rails.root.join('diagnostics', params[:token])
         @dates = Dir.entries(path) - ['.', '..']
+        @dates.sort!
     end
 
     def files
