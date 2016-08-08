@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160805025008) do
+ActiveRecord::Schema.define(version: 20160808005048) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -121,8 +121,6 @@ ActiveRecord::Schema.define(version: 20160805025008) do
     t.integer  "delivery_method"
     t.boolean  "fulfilled",                 default: false
     t.integer  "beta_delivery_timeslot_id"
-    t.string   "charge_id"
-    t.string   "customer_id"
   end
 
   add_index "beta_orders", ["beta_user_id"], name: "index_beta_orders_on_beta_user_id", using: :btree

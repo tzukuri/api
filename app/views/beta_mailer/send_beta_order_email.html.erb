@@ -20,24 +20,23 @@
         <tr style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; margin: 0; padding: 0;">
           <td style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; margin: 0; padding: 0;">
             <h1 style="text-align: center; font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 38px; line-height: 1.2em; color: #111111; font-weight: 200; margin: 20px 0 10px; padding: 0;" align="center">T Z U K U R I <span class="blue" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; color: #4B75BF; margin: 0; padding: 0;">[beta]</span></h1>
-            <h2 style="text-align: center; font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 28px; line-height: 1.2em; color: #111111; font-weight: 200; margin: 40px 0 10px; padding: 0;" align="center">Your Tzukuri Beta Order</h2>
+            <h2 style="text-align: center; font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 28px; line-height: 1.2em; color: #111111; font-weight: 200; margin: 40px 0 10px; padding: 0;" align="center">Your Order Details</h2>
 
             <br style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; margin: 0; padding: 0;" />
 
             <center>
-            <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0;">This is just a confirmation to say that we've received your order for the following:</p>
+            <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0;">This is just a confirmation to say that we have received your beta order. Your glasses details are below:</p>
               </center>
 
           <center>
-            <% if @beta_order.frame == "ford" %>
-              <%= image_tag 'frames/ford-beta/black-front.png', style: "margin-top: -100px; width: 300px;"%>
-            <% else %>
-              <%= image_tag 'frames/ive/black-front.png', style: "margin-top: -100px; width: 300px;"%>
-            <% end %>
-
             <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0;">
-              <strong>FRAME:</strong> <%= @beta_order.frame.titleize %> |
+              <strong>FRAME:</strong> <%= @beta_order.frame.titleize %><br/>
               <strong>SIZE:</strong> <%= @beta_order.size %>mm
+            </p>
+
+          <hr style="border: 0.5px solid #F0F0F0; margin-top: 20px; margin-bottom:20px;">
+
+            <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0;">To distribute the Tzukuri app during the beta period we will be using <a href="https://itunes.apple.com/au/app/testflight/id899247664?mt=8">Apple's TestFlight</a>. You should receive an email in the next few days with a TestFlight invitation that will prompt you to download the free app.
             </p>
           </center>
 
@@ -68,7 +67,7 @@
             <br style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; margin: 0; padding: 0;" />
 
            <center>
-            <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0;">Thanks for your interest in the Tzukuri Beta program. If you have any questions, please get in touch with us at <a href="mailto:beta@tzukuri.com" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; color: #348eda; margin: 0; padding: 0;">beta@tzukuri.com</a>.</p>
+            <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0;">Thanks for joining the Tzukuri Beta program. If you have any questions, please get in touch with us at <a href="mailto:beta@tzukuri.com" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; color: #348eda; margin: 0; padding: 0;">beta@tzukuri.com</a>.</p>
               </center>
           </td>
         </tr>

@@ -356,11 +356,25 @@ $(function() {
         delivery_timeslot_id : undefined
     }
 
+    // prevent multiple clicks from firing events more than once while
+    // the parent .step-container is animating
+    $('.next, .prev').on('click', function(event) {
+        if ($(this).closest(".step-container").is(":animated")) {
+            event.stopImmediatePropagation()
+        };
+    })
+
+    // 0 - get started
     $("#step-intro #get-started").on('click', function() {
         navigate('forward')
     })
 
-    // 1 - user selects a frame
+    // 1 - accept and continue
+    $('#step-accept .next').on('click', function() {
+        navigate('forward')
+    })
+
+    // 2 - user selects a frame
     $('.select-frame button').on('click', function() {
         orderDetails.frame = $(this).attr('data-frame')
         console.log($(this).children(".btn-check"))
@@ -379,15 +393,7 @@ $(function() {
         navigate('forward')
     })
 
-    $('#step-accept .next').on('click', function() {
-        navigate('forward')
-    })
-
-    // $('.select-frame button').on('mouseover', function() {
-    //     $(this).tzAnimate('pulse')
-    // })
-
-    // 2 - user selects a size
+    // 3 - user selects a size
     $('.select-size button').on('click', function() {
         orderDetails.size = $(this).attr('data-size')
 
@@ -417,7 +423,9 @@ $(function() {
         var address2 = serialisedForm["beta_order[address2]"]
         var postcode = serialisedForm["beta_order[postcode]"]
         var state = serialisedForm["beta_order[state]"]
-        var phone = serialisedForm["beta_order[phone]"]
+        var phone = serialisedForm["beta_order[phone]"].replace(" ", "")
+
+        var ausPhoneNumbers = /^\({0,1}((0|\+61)(2|4|3|7|8)){0,1}\){0,1}(\ |-){0,1}[0-9]{2}(\ |-){0,1}[0-9]{2}(\ |-){0,1}[0-9]{1}(\ |-){0,1}[0-9]{3}$/;
 
         // remove all error classes
         $("#new_beta_order input").removeClass('error')
@@ -433,7 +441,7 @@ $(function() {
         }
 
         // check phone exists and is a valid australian phone number
-        if (phone.length == 0) {
+        if (phone.length == 0 || !ausPhoneNumbers.test(phone)) {
             valid = addError("#beta_order_phone")
         }
 
@@ -444,7 +452,7 @@ $(function() {
         return valid
     }
 
-    // 3 - user enters shipping information
+    // 4 - user enters shipping information
     $('#shipping-continue').on('click', function() {
         var form = $("#new_beta_order")
 
@@ -473,7 +481,6 @@ $(function() {
 
             if (data.results.length == 0) {
                 // could not find location
-                console.log("could not validate address")
                 $("#error-messages").html("Could not validate this address, check your details are correct and try again.")
 
                 $(".loading-spinner").hide()
@@ -488,18 +495,22 @@ $(function() {
             var distance = distanceBetweenCoords(addr_coords, syd_coords)
             console.log("DISTANCE: " + distance)
 
-            // todo: if there are no timeslots left, automatically navigate to the shipping page
-            if (distance > 10) {
-                // todo: navigate to the payment page
-                // submitOrderDetails()
+            var availableDays = $("#selected-container").attr('data-available-days')
+
+            // if there are no timeslots remaining or they are too far away
+            // immediately navigate to the review page
+            if (availableDays == 0 || distance > 10) {
                 navigateToIndex(7)
             } else {
-                // navigate to the delivery selection page
                 navigate('forward')
             }
 
             $(".loading-spinner").hide()
             $("#shipping-continue").show()
+        }).fail(function() {
+                $("#error-messages").html("An error occurred validating this address. Please try again.")
+                $(".loading-spinner").hide()
+                $("#shipping-continue").show()
         })
 
         return
@@ -512,7 +523,7 @@ $(function() {
         }
     });
 
-    // 4 - user selects their shipping method (optional)
+    // 5 - user selects their shipping method (optional)
     $('.select-shipping button').on('click', function() {
         var type = parseInt($(this).attr('data-delivery'))
 
@@ -544,7 +555,7 @@ $(function() {
         orderDetails.delivery_timeslot_id = $($('.timeslot-time')[0]).find(":selected").attr('data-timeslot-id')
     })
 
-    // 5 - user selects their timeslot (optional)
+    // 6 - user selects their timeslot (optional)
     $('#timeslot-day').on('change', function(event) {
         var index = $(event.target).prop('selectedIndex');
 
@@ -578,7 +589,7 @@ $(function() {
         navigate('forward')
     })
 
-    // 6 -
+    // 7 - review and place order
     $("#place-order").on('click', function() {
         var data = submitOrderDetails()
 

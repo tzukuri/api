@@ -88,7 +88,6 @@ class BetaController < ApplicationController
     end
   end
 
-  # render CSV of a subset of attributes
   def list
       csv_string = CSV.generate do |csv|
         csv << ['name', 'email', 'score', 'birth_date', 'city']

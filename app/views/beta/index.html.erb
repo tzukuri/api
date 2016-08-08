@@ -27,7 +27,7 @@
 
     <!-- user is selected but order has not been submitted -->
     <% elsif @beta_user.selected %>
-      <div id="selected-container">
+      <div id="selected-container" data-available-days="<%= @available_days.count %>">
       <!-- 0 - intro -->
       <div class="step-container" id="step-intro">
         <h2>Congratulations, you're in.</h2>
@@ -43,8 +43,9 @@
               <p>Your Role</p>
               <ul>
                 <li>Respond to our weekly surveys.</li>
-                <li>Report any bugs that you encounter through our app.</li>
+                <li>Report any bugs that you encounter.</li>
                 <li>Report any general feedback or feature requests that you have.</li>
+                <li>Always keep up to date with the latest version of the app.</li>
                 <li>We may contact you at any time by email if we feel you could help us with any other questions.</li>
               </ul>
             </div>
@@ -54,7 +55,7 @@
             </div>
           </div>
 
-            <button class="order-btn next" data-frame='ford'>
+            <button class="order-btn next">
                 Accept and continue &nbsp;&nbsp;<i class="fa fa-chevron-right"></i>
             </button>
             <br/>
@@ -147,7 +148,7 @@
             <%= f.telephone_field :phone,    placeholder: 'Mobile number' %><br/>
             <p id="error-messages"></p>
             <% end %>
-            <button id="shipping-continue" class="order-btn">continue&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></button>
+            <button id="shipping-continue" class="order-btn next">continue&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></button>
             <div class="loading-spinner"></div>
           </div>
         </div>
@@ -165,11 +166,11 @@
 
         <div class="row step-content">
           <div class="select-shipping">
-            <button class="order-btn" data-delivery="0">Standard Shipping</button>
+            <button class="order-btn next" data-delivery="0">Standard Shipping</button>
             <p class="method-exp">Your glasses will be sent to your delivery address with a courier.</p>
           </div>
           <div class="select-shipping">
-            <button class="order-btn" data-delivery="1">Personal Delivery & Setup</button>
+            <button class="order-btn next" data-delivery="1">Personal Delivery & Setup</button>
             <p class="method-exp">One of the members of the Tzukuri team will personally deliver your glasses and help you get set up.</p>
           </div>
         </div>
