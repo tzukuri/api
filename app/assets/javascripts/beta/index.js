@@ -334,7 +334,7 @@ $(function() {
     // -----------------------------
     var geocodeAddress = function(address) {
         var API_KEY = '0828d5780c7f32be6e3882357f8a2038'
-        var url = "http://api.opencagedata.com/geocode/v1/json?q=" + address + "&key=" + API_KEY
+        var url = "https://api.opencagedata.com/geocode/v1/json?q=" + address + "&key=" + API_KEY
         return $.get(url)
     }
 
