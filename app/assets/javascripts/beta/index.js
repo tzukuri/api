@@ -465,6 +465,7 @@ $(function() {
         // replace button with searching icon
         $("#shipping-continue").hide()
         $(".loading-spinner").show();
+        $("#error-messages").html("")
 
         // geocode address
         address = orderDetails.address["beta_order[address1]"] + ", " + orderDetails.address["beta_order[address2]"] + ", " + orderDetails.address["state"] + ", australia" + ", " + orderDetails.address["beta_order[postcode]"]
@@ -474,7 +475,7 @@ $(function() {
         $("#conf-address").html(address);
         $("#conf-timeslot-header, #conf-timeslot").hide()
         $("#meet-address").html(shortAddress)
-        $("#conf-shipping").html("Standard Shipping")
+        $("#conf-shipping").html("Standard Delivery")
 
         geocodeAddress(address).done(function(data) {
             console.log(data)
@@ -499,18 +500,24 @@ $(function() {
 
             // if there are no timeslots remaining or they are too far away
             // immediately navigate to the review page
-            if (availableDays == 0 || distance > 10) {
-                navigateToIndex(7)
-            } else {
-                navigate('forward')
-            }
+            // if (availableDays == 0 || distance > 10) {
+            //     navigateToIndex(7)
+            // } else {
+            //     navigate('forward')
+            // }
+
+            // navigate to the timeslot selection for now
+            // todo: remove this when we invite the rest of the users
+            navigateToIndex(6)
+            orderDetails.delivery_method = "deliver"
+            $("#conf-shipping").html("Personal Delivery")
 
             $(".loading-spinner").hide()
             $("#shipping-continue").show()
         }).fail(function() {
-                $("#error-messages").html("An error occurred validating this address. Please try again.")
-                $(".loading-spinner").hide()
-                $("#shipping-continue").show()
+            $("#error-messages").html("An error occurred validating this address. Please try again.")
+            $(".loading-spinner").hide()
+            $("#shipping-continue").show()
         })
 
         return
@@ -531,8 +538,6 @@ $(function() {
             orderDetails.delivery_method = "ship"
         } else if (type == 1) {
             orderDetails.delivery_method = "deliver"
-        } else if (type == 2) {
-            orderDetails.delivery_method = "meetup"
         }
 
         // set confirmation address
