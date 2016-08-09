@@ -52,7 +52,7 @@ module Tzukuri
         end
 
         def printable_value?
-            @type.in?(%w{stateMachine notificationScheduled notificationCancelled notificationDisplayed notificationTapped notificationCleared glassesLost scheduleTriggered glassesLowBattery appEnvironment})
+            @type.in?(%w{stateMachine notificationScheduled notificationCancelled notificationDisplayed notificationTapped notificationCleared glassesLost scheduleTriggered glassesLowBattery appEnvironment requestError requestFailure lowPowerState})
         end
 
         def varint_value?
