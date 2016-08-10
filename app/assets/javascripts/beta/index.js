@@ -553,7 +553,7 @@ $(function() {
         var timeslot = $($('.timeslot-time')[0]).val()
 
         $("#conf-shipping").html($(this).html())
-        $("#meet-time").html(moment(timeslot).format("h A [on] dddd MMMM D"))
+        $("#meet-time").html(moment(timeslot).format("h:mm A [on] dddd MMMM D"))
 
         // automatically select the first timeslot
         orderDetails.delivery_timeslot =  timeslot
@@ -568,7 +568,7 @@ $(function() {
         $('.timeslot-time').hide()
         $($('.timeslot-time')[index]).show()
 
-        $("#meet-time").html(moment($($('.timeslot-time')[index]).find(":selected").val()).format("h A [on] dddd MMMM D"))
+        $("#meet-time").html(moment($($('.timeslot-time')[index]).find(":selected").val()).format("h:mm A [on] dddd MMMM D"))
 
         orderDetails.delivery_timeslot = $($('.timeslot-time')[index]).find(":selected").val()
         orderDetails.delivery_timeslot_id = $($('.timeslot-time')[index]).find(":selected").attr('data-timeslot-id')
@@ -579,7 +579,7 @@ $(function() {
         orderDetails.delivery_timeslot_id = $(event.target).find(":selected").attr('data-timeslot-id')
 
         // update the meeting time text
-        $("#meet-time").html(moment($(event.target).val()).format("h A [on] dddd MMMM D"))
+        $("#meet-time").html(moment($(event.target).val()).format("h:mm A [on] dddd MMMM D"))
 
         console.log(orderDetails)
     })
