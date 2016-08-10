@@ -145,6 +145,13 @@ body.beta {
 
         // 0 - introduction
         #step-intro {
+            #disclaimer {
+                margin-top:20px;
+                margin-bottom: 20px;
+                font-size: 10pt;
+                color: $tzukuri-dark-grey;
+            }
+
             h2 {
                 font-size: 34pt;
                 font-weight: 200;
@@ -209,6 +216,12 @@ body.beta {
                     width: 50%;
                 }
             }
+
+            p {
+                margin-top: 40px;
+                font-size: 10pt;
+                color: $tzukuri-dark-grey;
+            }
         }
 
         // 2 - select frame size
@@ -229,7 +242,18 @@ body.beta {
         // 3 - enter shipping details
         #step-details {
             .step-content {
-                margin-bottom: 40px;
+                margin-bottom: 10px;
+            }
+
+            .selected-header {
+                margin-bottom: 10px;
+            }
+
+            #try-on {
+                width: 75%;
+                margin: 0 auto;
+                margin-bottom: 30px;
+                color: $tzukuri-dark-grey;
             }
 
             #shipping {
@@ -416,7 +440,7 @@ body.beta {
 
         p {
             line-height: 200%;
-            width: 60%;
+            width: 70%;
             margin: 0 auto;
         }
 
@@ -840,6 +864,10 @@ body.beta {
         #step-frames {
             .select-frame {
                 margin-bottom: 60px;
+            }
+
+            p {
+                margin-top:-20px;
             }
         }
 
