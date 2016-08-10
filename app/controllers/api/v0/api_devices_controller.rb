@@ -7,7 +7,7 @@ class Api::V0::ApiDevicesController < Api::ApiController
 
         @api_device.update!(params.permit(
             :launch_language, :preferred_language,
-            :locale, :name, :os, :type
+            :locale, :name, :os, :device_type
         ))
 
         token_changes = {}
