@@ -8,7 +8,7 @@
       <div id="order-submitted-container">
         <h2>Thanks, you're all done!</h2>
 
-        <p>Welcome to the Tzukuri Beta program. We hope you're as excited as we are that you'll be one of the first in the world to own a pair of unlosable sunglasses. You'll receive an email from us in the next few days when your glasses are shipped. If you have any questions please get in touch at <a href="mailto:beta@tzukuri.com">beta@tzukuri.com</a>.</p>
+        <p id="welcome">Welcome to the Tzukuri Beta program. We hope you're as excited as we are that you'll be one of the first in the world to own a pair of unlosable sunglasses. You'll receive an email from us in the next few days when your glasses are shipped. If you have any questions please get in touch at <a href="mailto:beta@tzukuri.com">beta@tzukuri.com</a>.</p>
 
         <% if !@beta_order.beta_delivery_timeslot.nil? %>
           <div id="personal-delivery" data-time="<%= @beta_order.beta_delivery_timeslot.time %>" data-address="<%= @beta_order.full_address %>">
@@ -16,7 +16,7 @@
             <h3>Personal Delivery Details</h3>
             <p class="delivery-detail"><%= @beta_order.address1 %>, <%= @beta_order.address2 %></p>
             <p class="delivery-detail"><%= @beta_order.beta_delivery_timeslot.time.strftime("%A, %B %d at %l:%M %p") %></p>
-            <p>Please expect to receive a call from one of our team members at your delivery time.</p>
+            <p id="expect-call">Please expect to receive a call from one of our team members at your delivery time.</p>
 <!--             <a id="delivery-calendar" href="#">
               <i class="fa fa-calendar"></i><br/>
               Add to calendar

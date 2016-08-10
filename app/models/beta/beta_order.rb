@@ -15,6 +15,8 @@ class BetaOrder < ActiveRecord::Base
 
   enum delivery_method: [ :ship, :deliver, :meetup ]
 
+  after_create      :send_confirmation_email
+
   def full_address
     address = address1.titleize + ", " + address2.titleize + ", " + state.upcase + ", " + country.titleize + ", " + postcode
     return address
@@ -22,6 +24,10 @@ class BetaOrder < ActiveRecord::Base
 
   def delivery_timeslot?
     !delivery_timeslot.nil?
+  end
+
+  def send_confirmation_email
+    BetaMailer.send_beta_order_email(self.beta_user).deliver_later
   end
 
 end

@@ -4,20 +4,17 @@ class BetaOrdersController < ApplicationController
 
   def create
     begin
-      beta_order = BetaOrder.create(beta_order_params)
+      # if the user is getting personal delivery create an order with delivery timeslot
+      if params[:delivery_timeslot_id].present?
+        beta_order = BetaOrder.create(beta_order_params.merge(beta_delivery_timeslot_id: params[:delivery_timeslot_id]))
+      else
+        beta_order = BetaOrder.create(beta_order_params)
+      end
 
-      # todo: handle invalid beta order if charge is successful
       if !beta_order.valid?
         render :json => {success: false, errors: beta_order.errors}
         return
       end
-
-      # set up the delivery timeslot as well
-      if beta_order.delivery_method == "deliver"
-          beta_order.update_attribute('beta_delivery_timeslot_id', params[:delivery_timeslot_id])
-      end
-
-      BetaMailer.send_beta_order_email(current_beta_user).deliver_later
 
       render :json => {success: true, beta_order: beta_order}
     end
