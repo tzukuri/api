@@ -8,119 +8,288 @@
       <div id="order-submitted-container">
         <h2>Thanks, you're all done!</h2>
 
-        <p>We hope you're as excited as we are that you'll be one of the first people in the world to own a pair of <span class="bold">unloseable glasses</span>. You'll receive and email from us in the next few days confirming the next steps.</p>
-        <br/><br/>
+        <p id="welcome">Welcome to the Tzukuri Beta program. We hope you're as excited as we are that you'll be one of the first in the world to own a pair of unlosable sunglasses. You'll receive an email from us in the next few days when your glasses are shipped. If you have any questions please get in touch at <a href="mailto:beta@tzukuri.com">beta@tzukuri.com</a>.</p>
 
-        <p>To make sure the beta process goes as smoothly as possible, here's a list of things to check before your new glasses arrive:</p>
-        <br/><br/>
-
-        <hr>
-
-        <ul id="next-steps-list">
-          <li>Make sure you have access to an <span class="bold">iPhone 5 or later</span> running the latest version of iOS (Go to Settings > General > Software Update and make sure it says 'Your software is up to date').</li>
-
-          <li>Make sure you have an active Apple ID and you know your password.</li>
-
-          <li>Download the <a href="https://itunes.apple.com/au/app/testflight/id899247664?mt=8">Testflight app</a> from the app store. We will use Testflight to distribute the Tzukuri app during our beta testing phase  (you'll receive more information about this later).</li>
-
-          <li>Don't forget you can still invite your friends to join the beta with this link - <span class="blue">tzukuri.com/beta/invite/<%= @beta_user.invite_token %></span></li>
-
-          <li>If you've got any questions about the beta or wish to change any of your details, get in touch at <a href="mailto:beta@tzukuri.com">beta@tzukuri.com</a>
-        </ul>
-
+        <% if !@beta_order.beta_delivery_timeslot.nil? %>
+          <div id="personal-delivery" data-time="<%= @beta_order.beta_delivery_timeslot.time %>" data-address="<%= @beta_order.full_address %>">
+            <hr/>
+            <h3>Personal Delivery Details</h3>
+            <p class="delivery-detail"><%= @beta_order.address1 %>, <%= @beta_order.address2 %></p>
+            <p class="delivery-detail"><%= @beta_order.beta_delivery_timeslot.time.strftime("%A, %B %d at %l:%M %p") %></p>
+            <p id="expect-call">Please expect to receive a call from one of our team members at your delivery time.</p>
+<!--             <a id="delivery-calendar" href="#">
+              <i class="fa fa-calendar"></i><br/>
+              Add to calendar
+            </a> -->
+          </div>
+        <% end %>
       </div>
 
     <!-- user is selected but order has not been submitted -->
     <% elsif @beta_user.selected %>
+      <div id="selected-container" data-available-days="<%= @available_days.count %>">
+      <!-- 0 - intro -->
+      <div class="step-container" id="step-intro">
+        <h2>Congratulations, you're in.</h2>
+        <p>Welcome to the Tzukuri beta program. We hope you're as excited as we are that you'll be one of the first in the world to own a pair of unlosable sunglasses. Let's get started 😎</p>
+        <button id="get-started" class="order-btn next">Get started &nbsp;&nbsp;<i class="fa fa-chevron-right"></i></button>
+      </div>
 
-      <div id="selected-container">
-
-          <div id="selected-header">
-            <h2>Congratulations, you're in.</h2>
-            <br/><br/>
-            <p>You've been selected to participate in the Tzukuri Beta. Choose your frames and enter your shipping details below.</p>
-          </div>
-
-          <!-- frame selection -->
-          <div id="frame-select" class="row">
-
-            <!-- design -->
-            <div class="six columns" style="margin-bottom: 20px;">
-              <p>i. choose your design</p>
-
-              <div class="select-design" data-design="ive">
-                <%= image_tag 'frames/ive/black-front.png', id: 'black' %>
-                <p>Ive</p>
-              </div>
-
-              <div class="select-design" data-design="ford">
-                <%= image_tag 'frames/ford-beta/black-front.png', id: 'black' %>
-                <p>Ford</p>
-              </div>
-
+      <div class="step-container hidden" id="step-accept">
+        <div class="selected-header">
+          <h2>Your Role and Personal Delivery</h2>
+          <div class="row">
+            <div class="six columns" id="expectations">
+              <p>Your Role</p>
+              <ul>
+                <li>Respond to our weekly surveys.</li>
+                <li>Report any bugs that you encounter.</li>
+                <li>Report any general feedback or feature requests that you have.</li>
+                <li>Always keep up to date with the latest version of the app.</li>
+                <li>We may contact you at any time by email if we feel you could help us with any other questions.</li>
+              </ul>
             </div>
-
-            <!-- size -->
-            <div class="six columns disabled">
-              <p>ii. choose your size</p>
-              <div class="select-size" data-size="48" id="small">
-                48mm
-              </div>
-              <p class="size-exp">this size will fit most people</p>
-
-              <div href="#" class="select-size" data-size="50.5" id="large">
-                50.5mm
-              </div>
-              <p class="size-exp">if most glasses are too small for you</p>
+            <div class="six columns" id="delivery">
+              <p style="font-weight: 500; font-size: 14pt; line-height: 200%; margin-bottom: 10px;">Personal Delivery & Setup</p>
+              <p>To help you get set up, we're offering a <span class="bold">personal delivery service</span> at no extra cost to any address within <span class="bold">10 km of the Sydney CBD</span>. You'll be able to meet with one of the Tzukuri team members, try on all our different pairs and we'll walk you through the setup process.</p>
             </div>
           </div>
 
-          <!-- glasses details + shipping information -->
-          <div id="order-details" class="row hidden">
+            <button class="order-btn next">
+                Accept and continue &nbsp;&nbsp;<i class="fa fa-chevron-right"></i>
+            </button>
+            <br/>
+            <button class="prev order-btn">
+              <i class="fa fa-chevron-left"></i>&nbsp;&nbsp;back
+            </button>
 
-            <div class="seven columns" id="glasses">
-              <div class="row">
-                <%= image_tag 'frames/ive/black-front.png', class: 'checkout-img', id: 'ive-black' %>
-                <%= image_tag 'frames/ford-beta/black-front.png', class: 'checkout-img hidden', id: 'ford-black' %>
-              </div>
-              <div class="row">
-                <div class="twelve columns" id="glasses-details">
-                  <dl>
-                      <dt>Frame</dt>
-                      <dd id="frame-selection"></dd>
-                      <br/>
-                      <dt>Colour</dt>
-                      <dd id="colour-selection">Black</dd>
-                      <br/>
-                      <dt>Size</dt>
-                      <dd id="size-selection"></dd>
-                  </dl>
-                </div>
-              </div>
+        </div>
 
-              <br/><br/>
-              <a href="#" class="step-back u-pull-left" id="shipping-back"> &larr; back </a>
+      </div>
+
+      <!-- 1 - select frame -->
+      <div class="step-container hidden" id="step-frames">
+        <div class="selected-header">
+          <h2>Choose your frames</h2>
+        </div>
+        <div class="row">
+          <div class="six columns select-frame">
+              <%= image_tag 'frames/ive/black-front.png', class: "frame-img"%>
+              <button class="order-btn next" data-frame='ive'>Ive</button>
+          </div>
+
+          <div class="six columns select-frame">
+              <%= image_tag 'frames/ford-beta/black-front.png', class: "frame-img"%>
+              <button class="order-btn next" data-frame='ford'>
+                <span class="btn-title">Ford</span>
+              </button>
+          </div>
+        </div>
+
+        <br/><br/>
+        <button class="prev order-btn">
+           <i class="fa fa-chevron-left"></i>&nbsp;&nbsp;back
+        </button>
+      </div>
+
+      <!-- 2 - select size -->
+      <div class="step-container hidden" id="step-size">
+        <div class="selected-header">
+          <h2>Choose your size</h2>
+        </div>
+
+        <div class="row step-content">
+          <div class="select-size">
+            <button class="order-btn next" data-size="48" id="small">48mm</button>
+            <p class="size-exp">This size will fit most people.</p>
+          </div>
+          <div class="select-size">
+            <button class="order-btn next" data-size="50.5" id="large">50.5mm</button>
+            <p class="size-exp">Choose this size if most glasses are too small for you.</p>
+          </div>
+        </div>
+
+        <button class="prev order-btn">
+          <i class="fa fa-chevron-left"></i>&nbsp;&nbsp;back
+        </button>
+      </div>
+
+      <!-- 3 - enter shipping details -->
+      <div class="step-container hidden" id="step-details">
+        <div class="selected-header">
+          <h2>Enter your delivery details</h2>
+        </div>
+
+        <div class="row step-content">
+          <div class="seven columns" id="glasses">
+            <div class="row">
+              <%= image_tag 'frames/ive/black-front.png', class: 'checkout-img', id: 'ive-black' %>
+              <%= image_tag 'frames/ford-beta/black-front.png', class: 'checkout-img hidden', id: 'ford-black' %>
             </div>
-
-            <div class="five columns" id="shipping">
-              <%= form_for BetaOrder.new, :url => beta_orders_path, :html => {:method => :post}, remote:true do |f| %>
-
-                <%= f.text_field :address1, placeholder: 'address 1', autofocus: true %><br/>
-                <%= f.text_field :address2, placeholder: 'address 2' %><br/>
-                <%= f.text_field :state,    placeholder: 'state' %><br/>
-                <%= f.text_field :postcode, placeholder: 'postcode' %><br/>
-                <%= f.text_field :country,  placeholder: 'country' %><br/>
-                <%= f.telephone_field :phone,    placeholder: 'phone number' %><br/>
-
-                <%= f.hidden_field :frame %>
-                <%= f.hidden_field :size %>
-
-                <p id="error-messages"></p>
-
-                <%= f.submit 'submit', id: 'submit-btn', class: 'disabled' %>
-              <% end %>
+            <div class="row">
+              <div class="twelve columns glasses-details">
+                <dl>
+                  <dt>Frame</dt>
+                  <dd id="frame-selection"></dd>
+                  <br/>
+                  <dt>Size</dt>
+                  <dd id="size-selection"></dd>
+                </dl>
+              </div>
             </div>
           </div>
+          <div class="five columns" id="shipping">
+            <%= form_for BetaOrder.new, :url => beta_orders_path, :html => {:method => :post}, remote:true do |f| %>
+            <%= f.text_field :address1, placeholder: 'Street name, number, etc.', autofocus: true %><br/>
+            <%= f.text_field :address2, placeholder: 'City, suburb, etc.' %><br/>
+            <%= select_tag   :state, options_for_select(['NSW', 'ACT', 'NT', 'QLD', 'SA', 'TAS', 'VIC', 'WA' ]) %><br/>
+            <%= f.text_field :postcode, placeholder: 'Postcode', maxlength: 4 %><br/>
+            <%= f.text_field :country,  placeholder: 'country', value: 'Australia', disabled: true %><br/>
+            <%= f.telephone_field :phone,    placeholder: 'Mobile number' %><br/>
+            <p id="error-messages"></p>
+            <% end %>
+            <button id="shipping-continue" class="order-btn next">continue&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></button>
+            <div class="loading-spinner"></div>
+          </div>
+        </div>
+
+        <button class="prev order-btn">
+          <i class="fa fa-chevron-left"></i>&nbsp;&nbsp;back
+        </button>
+      </div>
+
+      <!-- 4 - select a shipping method (optional) -->
+      <div class="step-container hidden" id="step-shipping-method">
+        <div class="selected-header">
+          <h2>Choose a delivery method</h2>
+        </div>
+
+        <div class="row step-content">
+          <div class="select-shipping">
+            <button class="order-btn next" data-delivery="0">Standard Shipping</button>
+            <p class="method-exp">Your glasses will be sent to your delivery address with a courier.</p>
+          </div>
+          <div class="select-shipping">
+            <button class="order-btn next" data-delivery="1">Personal Delivery & Setup</button>
+            <p class="method-exp">One of the members of the Tzukuri team will personally deliver your glasses and help you get set up.</p>
+          </div>
+        </div>
+
+        <button class="prev order-btn">
+          <i class="fa fa-chevron-left"></i>&nbsp;&nbsp;back
+        </button>
+      </div>
+
+      <!-- 5 - select a timeslot (optional) -->
+      <div class="step-container hidden" id="step-timeslot">
+        <div class="selected-header">
+          <h2>Choose a delivery time</h2>
+        </div>
+
+        <p>We will meet you at <span id="meet-address"></span> at <span id="meet-time"></span>. <br/> Please expect a call from us a few minutes beforehand.</p>
+
+        <div class="row step-content">
+          <select id="timeslot-day">
+            <% @available_days.each do |day, timeslots| %>
+            <option><%= day.strftime("%A, %b %d") %></option>
+            <% end %>
+          </select>
+          <% @available_days.each do |day, timeslots| %>
+          <select class="timeslot-time" style="display: none">
+            <% timeslots.each do |timeslot| %>
+            <option value="<%= timeslot.time %>" data-timeslot-id="<%= timeslot.id %>"><%= timeslot.time.strftime("%l:%M %p") %></option>
+            <% end %>
+          </select>
+          <% end %>
+          <button id="timeslot-continue" class="next order-btn">continue&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></button>
+        </div>
+
+        <button class="prev order-btn">
+          <i class="fa fa-chevron-left"></i>&nbsp;&nbsp;back
+        </button>
+      </div>
+
+      <!-- 6 - enter payment information -->
+      <div class="step-container hidden" id="step-payment">
+        <div class="selected-header">
+          <h2>Review your order</h2>
+        </div>
+
+        <div class="row step-content">
+          <div class="twelve columns">
+            <div class="row">
+              <%= image_tag 'frames/ive/black-front.png', class: 'checkout-img', id: 'conf-ive-black' %>
+              <%= image_tag 'frames/ford-beta/black-front.png', class: 'checkout-img hidden', id: 'conf-ford-black' %>
+            </div>
+            <div class="row">
+              <div class="twelve columns glasses-details">
+                <dl>
+                  <dt>Frame</dt>
+                  <dd id="conf-frame">Ive</dd>
+                  <br/>
+                  <dt>Size</dt>
+                  <dd id="conf-size">48mm</dd>
+                  <br/>
+                  <dt>Ship To</dt>
+                  <dd id="conf-address">32 Downes Street, North Epping, NSW, 2121, Australia</dd>
+                  <br/>
+                  <dt>Delivery</dt>
+                  <dd id="conf-shipping">Australia Post</dd>
+                  <br/>
+                  <dt style="display: none" id="conf-timeslot-header">Time</dt>
+                  <dd style="display: none" id="conf-timeslot">1:00PM Wednesday August 9</dd>
+                </dl>
+              </div>
+            </div>
+            <button class="order-btn finish" id="place-order">place order</button>
+            <p id="payment-message"></p>
+          </div>
+          <!-- <div class="five columns" style="margin-top: 40px;"> -->
+              <!-- <button class="order-btn finish">place order</button> -->
+<!--             <p>You will be charged a <span class="bold">$99 AUD</span> fully-refundable deposit. <a href="#" id="delivery-more">Learn more.</a></p>
+            <br/> -->
+<!--             <form id="payment-form">
+              <div id="cc">
+                <p><input type="text" data-stripe="number" placeholder="credit card number"></p>
+                <p>
+                  <select name="month" style="width: 32%" data-stripe="exp-month">
+                    <option value="1">Jan (01)</option>
+                    <option value="2">Feb (02)</option>
+                    <option value="3">Mar (03)</option>
+                    <option value="4">Apr (04)</option>
+                    <option value="5">May (05)</option>
+                    <option value="6">Jun (06)</option>
+                    <option value="7">Jul (07)</option>
+                    <option value="8">Aug (08)</option>
+                    <option value="9">Sep (09)</option>
+                    <option value="10">Oct (10)</option>
+                    <option value="11">Nov (11)</option>
+                    <option value="12">Dec (12)</option>
+                  </select>
+                  <select name="year" style="width: 32%" data-stripe="exp-year">
+                    <option>2016</option>
+                    <option>2017</option>
+                    <option>2018</option>
+                    <option>2019</option>
+                    <option>2020</option>
+                    <option>2021</option>
+                    <option>2022</option>
+                  </select>
+                  <input type="text" placeholder="CVC" data-stripe="cvc" style="width: 32%">
+                </p>
+              </div>
+              <br/>
+              <div id="submit">
+                <button type="submit" class="order-btn finish">finish</button>
+                <div id="payment-message"></div>
+              </div>
+            </form> -->
+          <!-- </div> -->
+        </div>
+
+        <button class="prev order-btn">
+          <i class="fa fa-chevron-left"></i>&nbsp;&nbsp;back
+        </button>
       </div>
 
     <!-- user has not been selected -->
@@ -133,7 +302,8 @@
         <br/><br/>
         If you have any questions, please get in touch at <a href="mailto:beta@tzukuri.com">beta@tzukuri.com</a>.
       </div>
-<!--       <div id='details-container'>
+
+      <!--       <div id='details-container'>
 
         <div class="row" id="user-detail-row">
 
@@ -147,22 +317,22 @@
           <div class="nine columns" id="user-col">
 
             <div id="user-title">
-              <h1 id="user-name"><%= @beta_user.name %></h1>
-              <%= link_to "logout", destroy_beta_user_session_path, :id => 'logout', :method => :delete %>
+              <h1 id="user-name"><%#= @beta_user.name %></h1>
+              <%#= link_to "logout", destroy_beta_user_session_path, :id => 'logout', :method => :delete %>
             </div>
 
             <p id="increase-chance">To find the most passionate people, the <span class='bold'>top 100 users by points</span> will be selected to receive a pair of glasses for testing. Get more points by completing the tasks below.  <a href="#" id="need-help">Need help?</a></p>
 
             <div id="invite-link-container">
-              <p>Share this link to earn <span class='bold'><%= Tzukuri::INVITEE_POINTS %> points</span> for every sign up</p>
+              <p>Share this link to earn <span class='bold'><%#= Tzukuri::INVITEE_POINTS %> points</span> for every sign up</p>
 
-              <input readonly id="link" value="tzukuri.com/beta/invite/<%= @beta_user.invite_token %>">
+              <input readonly id="link" value="tzukuri.com/beta/invite/<%#= @beta_user.invite_token %>">
 
-              <% if @num_invitees == 1 %>
+              <#% if @num_invitees == 1 %>
                 <p>1 person has used your invite</p>
-              <% else %>
-                <p><%= @num_invitees %> people have used your invite</p>
-              <% end %>
+              <#% else %>
+                <p><%#= @num_invitees %> people have used your invite</p>
+              <%# end %>
 
             </div>
           </div>
@@ -174,7 +344,7 @@
           </div>
           <div class="nine columns">
             <hr>
-            <p id="social-exp">Every social media account you connect earns you <span class="bold"><%= Tzukuri::IDENTITY_POINTS %> points</span></p>
+            <p id="social-exp">Every social media account you connect earns you <span class="bold"><%#= Tzukuri::IDENTITY_POINTS %> points</span></p>
             <div class="row">
 
               <div class="four columns social-col row">
@@ -182,13 +352,13 @@
                   <i class="fa fa-2x fa-instagram"></i>
                 </div>
                 <div class="ten columns">
-                  <% if @beta_user.instagram? %>
+                  <%# if @beta_user.instagram? %>
                     <button class="connected">connected</button>
-                  <% else %>
-                    <%= link_to oauth_path(:instagram) do %>
+                  <%# else %>
+                    <%#= link_to oauth_path(:instagram) do %>
                         <button>connect</button>
-                    <% end %>
-                  <% end %>
+                    <%# end %>
+                  <%# end %>
                 </div>
               </div>
               <div class="four columns social-col row">
@@ -196,13 +366,13 @@
                   <i class="fa fa-2x fa-twitter"></i>
                 </div>
                 <div class="ten columns">
-                  <% if @beta_user.twitter? %>
+                  <%# if @beta_user.twitter? %>
                     <button class="connected">connected</button>
-                  <% else %>
-                    <%= link_to oauth_path(:twitter) do %>
+                  <%# else %>
+                    <%#= link_to oauth_path(:twitter) do %>
                         <button>connect</button>
-                    <% end %>
-                  <% end %>
+                    <%# end %>
+                  <%# end %>
                 </div>
               </div>
               <div class="four columns social-col row">
@@ -210,13 +380,13 @@
                   <i class="fa fa-2x fa-facebook"></i>
                 </div>
                 <div class="ten columns">
-                  <% if @beta_user.facebook? %>
+                  <%# if @beta_user.facebook? %>
                     <button class="connected">connected</button>
-                  <% else %>
-                    <%= link_to oauth_path(:facebook) do %>
+                  <%# else %>
+                    <%#= link_to oauth_path(:facebook) do %>
                         <button>connect</button>
-                    <% end %>
-                  <% end %>
+                    <%# end %>
+                  <%# end %>
                 </div>
               </div>
             </div>
@@ -230,60 +400,63 @@
           <div class="nine columns">
           <hr>
 
-            <% if @answerable_questions.count > 0 %>
+            <%# if @answerable_questions.count > 0 %>
             <div class="row" id="question-header">
               <div class="nine columns">
-                <p>Earn <span class="bold"><%= Tzukuri::RESPONSE_POINTS %> points</span> by answering this question</p>
+                <p>Earn <span class="bold"><%#= Tzukuri::RESPONSE_POINTS %> points</span> by answering this question</p>
               </div>
 
               <div class="three columns">
-                <p id="skip" class="answer-sub <%= 'hidden' if @answerable_questions.count <= 1%>">skip question</p>
+                <p id="skip" class="answer-sub <%#= 'hidden' if @answerable_questions.count <= 1%>">skip question</p>
               </div>
             </div>
-            <% end %>
+            <%# end %>
 
             <div id="question-content">
-              <p id="questions-complete" class="<%= 'hidden' if @answerable_questions.count != 0 %>">Thanks, you've answered all the survey questions &nbsp; 🎉</p>
+              <p id="questions-complete" class="<%#= 'hidden' if @answerable_questions.count != 0 %>">Thanks, you've answered all the survey questions &nbsp; 🎉</p>
 
-              <% BetaQuestion.all.each do |question| %>
+              <%# BetaQuestion.all.each do |question| %>
 
-                <div class="question row" id="question_<%= question.id %>" data-answerable='<%= @answerable_questions.include?(question) ? 'true' : 'false' %>'>
+                <div class="question row" id="question_<%#= question.id %>" data-answerable='<%#= @answerable_questions.include?(question) ? 'true' : 'false' %>'>
                   <div class="four columns">
-                    <p id="question-name"><%= question.content %></p>
+                    <p id="question-name"><%#= question.content %></p>
                   </div>
 
                   <div class="eight columns">
-                    <%= form_for BetaResponse.new, :url => beta_responses_path, :html => {:method => :post}, remote:true do |f| %>
-                      <%= f.hidden_field :beta_question_id, value: question.id%>
-                      <% question.response_options.each do |response| %>
-                        <%= f.submit response %>
-                      <% end %>
-                    <% end %>
+                    <%#= form_for BetaResponse.new, :url => beta_responses_path, :html => {:method => :post}, remote:true do |f| %>
+                      <%#= f.hidden_field :beta_question_id, value: question.id%>
+                      <%# question.response_options.each do |response| %>
+                        <%#= f.submit response %>
+                      <%# end %>
+                    <%# end %>
                   </div>
 
                 </div>
-              <% end %>
+              <%# end %>
             </div>
 
           </div>
         </div>
       </div>
- -->
+      -->
+
     <% end %>
 
+  <!-- login -->
   <% else %>
-
-  <!-- login container -->
-  <div id="login-container" data-error="<%= 'true' if flash[:alert] %>">
-    <h1>T Z U K U R I <span class="blue">[beta]</span></h1>
-    <h2>Enter the email address you registered with to continue to the beta dashboard</h2>
-    <%= form_for @beta_user, :url => beta_user_session_path(@beta_user) do |f| %>
-      <%= f.email_field :email, placeholder: "email address", autofocus: true, class: "beta-input", autocomplete: 'off' %> <br/>
-      <p id="error-messages"><%= flash[:alert] %></p>
-      <%= f.hidden_field :invite_token, value: @token %><br/>
-      <%= f.submit "continue", id:"submit-btn", class:"disabled" %>
-    <% end %>
-  </div>
-
+      <!-- login container -->
+      <div id="login-container" data-error="<%= 'true' if flash[:alert] %>">
+        <h1>T Z U K U R I <span class="blue">[beta]</span></h1>
+        <h2>Enter the email address you registered with to continue to the beta dashboard</h2>
+        <%= form_for @beta_user, :url => beta_user_session_path(@beta_user) do |f| %>
+          <%= f.email_field :email, placeholder: "email address", autofocus: true, class: "beta-input", autocomplete: 'off' %> <br/>
+          <p id="error-messages"><%= flash[:alert] %></p>
+          <%= f.hidden_field :invite_token, value: @token %><br/>
+          <%= f.submit "continue", id:"submit-btn", class:"disabled" %>
+        <% end %>
+      </div>
   <% end %>
 </div>
+
+<!-- stripe -->
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>

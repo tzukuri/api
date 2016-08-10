@@ -6,6 +6,13 @@ class BetaMailer < ActionMailer::Base
     mail(to: beta_user.email, subject:"Thanks for registering for the Tzukuri Beta")
   end
 
+  def send_beta_order_email(beta_user)
+    @beta_user = beta_user
+    @beta_order = beta_user.order
+
+    mail(to:beta_user.email, subject: "Your Tzukuri Beta Order")
+  end
+
   def send_beta_acceptance_email(beta_user)
     @beta_user = beta_user
     mail(to: beta_user.email, subject: "You've been selected to participate in the Tzukuri Beta")

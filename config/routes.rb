@@ -103,7 +103,8 @@ Rails.application.routes.draw do
     # beta routes
     get '/beta/forgot'          => 'beta#forgot',       :as => :beta_user_forgot
     post '/beta/retrieve'       => 'beta#retrieve',     :as => :beta_user_retrieve
-    # redirect twitter on failed authentication
+
+   # redirect twitter on failed authentication
     get '/beta/redirect'        => 'beta#redirect'
     get '/beta/:token'          => 'beta#index',        :as => :beta_user
     get '/beta/invite/:token'   => 'beta#invite',       :as => :beta_user_invite
@@ -114,6 +115,10 @@ Rails.application.routes.draw do
     get '/beta/beta_users/list'  => 'beta#list'
     get '/beta/beta_users/list_order' => 'beta#list_order'
     get '/beta/beta_users/graph'  => 'beta#graph'
+
+    # beta orders
+    get '/beta/beta_orders/all' => 'beta_orders#all'
+    get '/beta/beta_orders/:date' => 'beta_orders#date'
 
     # diagnostics
     get '/diagnostics/' => 'diagnostics#index'

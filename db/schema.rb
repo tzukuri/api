@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160805025008) do
-
+ActiveRecord::Schema.define(version: 20160808005048) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -89,6 +88,12 @@ ActiveRecord::Schema.define(version: 20160805025008) do
     t.string   "diagnostics_sync_token"
   end
 
+  create_table "beta_delivery_timeslots", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "time"
+  end
+
   create_table "beta_identities", force: :cascade do |t|
     t.integer  "beta_user_id"
     t.string   "provider"
@@ -110,9 +115,12 @@ ActiveRecord::Schema.define(version: 20160805025008) do
     t.string   "country"
     t.string   "frame"
     t.string   "size"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.string   "phone"
+    t.integer  "delivery_method"
+    t.boolean  "fulfilled",                 default: false
+    t.integer  "beta_delivery_timeslot_id"
   end
 
   add_index "beta_orders", ["beta_user_id"], name: "index_beta_orders_on_beta_user_id", using: :btree
