@@ -142,7 +142,7 @@
             <%= form_for BetaOrder.new, :url => beta_orders_path, :html => {:method => :post}, remote:true do |f| %>
             <%= f.text_field :address1, placeholder: 'Street name, number, etc.', autofocus: true %><br/>
             <%= f.text_field :address2, placeholder: 'City, suburb, etc.' %><br/>
-            <%= select_tag   :state, options_for_select(['ACT', 'NSW', 'NT', 'QLD', 'SA', 'TAS', 'VIC', 'WA' ]) %><br/>
+            <%= select_tag   :state, options_for_select(['NSW', 'ACT', 'NT', 'QLD', 'SA', 'TAS', 'VIC', 'WA' ]) %><br/>
             <%= f.text_field :postcode, placeholder: 'Postcode', maxlength: 4 %><br/>
             <%= f.text_field :country,  placeholder: 'country', value: 'Australia', disabled: true %><br/>
             <%= f.telephone_field :phone,    placeholder: 'Mobile number' %><br/>
