@@ -510,7 +510,7 @@ $(function() {
             // todo: remove this when we invite the rest of the users
             navigateToIndex(6)
             orderDetails.delivery_method = "deliver"
-            $("#conf-shipping").html("Personal Delivery")
+            $("#conf-shipping").html("Personal Try On")
 
             $(".loading-spinner").hide()
             $("#shipping-continue").show()
