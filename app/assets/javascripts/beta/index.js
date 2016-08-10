@@ -586,7 +586,7 @@ $(function() {
 
     $('#timeslot-continue').on('click', function() {
 
-        var formattedTime = moment(orderDetails.delivery_timeslot).format("dddd MMM D [@] h A")
+        var formattedTime = moment(orderDetails.delivery_timeslot).format("dddd MMM D [@] h:mm A")
 
         $("#conf-timeslot").html(formattedTime)
         $("#conf-timeslot-header, #conf-timeslot").show()
