@@ -126,6 +126,8 @@ Rails.application.routes.draw do
     get '/diagnostics/:token/:date' => 'diagnostics#files'
     get '/diagnostics/:token/:date/:file' => 'diagnostics#show'
 
+    get '/dashboard'            => 'dashboard#index',   :as => :dashboard
+
     # mailer preview paths
     # get '/rails/mailers' => "rails/mailers#index"
     # get '/rails/mailers/*path' => "rails/mailers#preview"

@@ -1,40 +1,32 @@
 <div id="login-container">
 
-  <h1 id="tzukuri-head">change your password</h1>
+  <h1 id="tzukuri-head">T Z U K U R I</h1>
+  <p id="subhead">Enter your new password to reset it</p>
 
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+
   <%= f.hidden_field :reset_password_token %>
 
   <div class="field">
-    <%#= f.label :password, "New password" %>
-<!--     <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %> -->
-    <%= f.password_field :password, autofocus: true, autocomplete: "off", placeholder: "new password" %>
+    <%# if @minimum_password_length %>
+      <!-- <em>(<%#= @minimum_password_length %> characters minimum)</em><br /> -->
+    <%# end %>
+    <%= f.password_field :password, autofocus: true, autocomplete: "off", placeholder: "New password" %>
   </div>
 
   <div class="field">
-<!--     <%= f.label :password_confirmation, "Confirm new password" %><br /> -->
-    <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "confirm new password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Confirm new password" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "change my password", id: "change_password" %>
+    <div id="flash-messages">
+      <%= devise_error_messages! %>
+    </div>
+
+  <div id="actions" data-error="<%= devise_error_messages!.size > 0 %>">
+    <%= f.submit "Reset Password", id: "change_password" %>
   </div>
 <% end %>
 
 <br/><br/>
 <%= render "devise/shared/links" %>
 </div>
-
-<div id="main-map" class="blur"></div>
-
-<!-- JAVASCRIPT -->
-<script>
-  // inject the map into the view
-  tzukuri.map.inject({
-    element: 'main-map',
-    disableControls: true
-  })
-</script>

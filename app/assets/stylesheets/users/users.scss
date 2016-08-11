@@ -1,0 +1,77 @@
+// global styles for user logins
+body.sessions, body.passwords, body.unlocks {
+    // use default system fonts
+    font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande";
+    background-color: #FDFDFD;
+
+    *:focus {
+        outline: none;
+    }
+
+    #login-container {
+        width: 50%;
+        margin: 0 auto;
+        margin-top: 15vh;
+        text-align:center;
+
+        #tzukuri-head {
+            font-size: 50pt;
+            font-weight: 100;
+            color: $tzukuri-black;
+        }
+
+        #subhead {
+            font-size: 12pt;
+            color: $tzukuri-dark-grey;
+            margin-bottom: 40px;
+            margin-top: 20px;
+        }
+
+        form {
+            input {
+                width: 60%;
+                border-radius: 5px;
+                border: 1px solid #f1f1f1;
+                margin: 0px;
+                padding: 13px;
+
+                &[type="submit"] {
+                    border: 1px solid $tzukuri-blue;
+                    color: $tzukuri-blue;
+                    background-color: #FDFDFD;
+                    min-width: 20%;
+                    width: auto;
+                    cursor: pointer;
+                    @include transition(0.5s);
+
+                    &:hover {
+                        background-color: $tzukuri-blue;
+                        color:white;
+                    }
+                }
+            }
+
+        }
+
+        #flash-messages {
+            margin-top: 30px;
+            margin-bottom: 30px;
+            font-size: 10pt;
+            color: $tzukuri-red;
+        }
+
+        a {
+            font-size: 10pt;
+            text-decoration: none;
+            line-height: 200%;
+        }
+
+    }
+
+}
+
+@media only screen and (max-width: 549px) {
+    #login-container {
+        width: 90% !important;
+    }
+}

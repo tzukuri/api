@@ -1,30 +1,22 @@
 <div id="login-container">
 
-  <h1 id="tzukuri-head">send unlock instructions?</h1>
+  <h1 id="tzukuri-head">T Z U K U R I</h1>
+  <p id="subhead">Enter your email address to unlock your account</p>
 
     <%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
       <div class="field">
-        <%= f.email_field :email, autofocus: true, placeholder: "email address" %>
+        <%= f.email_field :email, autofocus: true, placeholder: "Email Address" %>
       </div>
 
-      <div class="actions">
-        <%= f.submit "Resend unlock instructions", id: "send_unlock"%>
+      <div id="flash-messages">
+        <%= devise_error_messages! %>
+      </div>
+
+      <div id="actions" data-error="<%= devise_error_messages!.size > 0 %>">
+        <%= f.submit "Unlock Account", id: "send_unlock"%>
       </div>
     <% end %>
 
     <br/><br/>
     <%= render "devise/shared/links" %>
-
 </div>
-
-
-<div id="main-map" class="blur"></div>
-
-<!-- JAVASCRIPT -->
-<script>
-  // initialise a simple map
-  tzukuri.map.inject({
-    element: 'main-map',
-    disableControls: true
-  })
-</script>

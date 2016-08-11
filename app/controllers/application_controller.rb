@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
         # redirect to dashboard after use login
         when :user, User
           dashboard_path
+          # todo: display a view that says your password has been reset
         when :beta_user, BetaUser
           request.referrer
       end

@@ -1,33 +1,25 @@
 <div id="login-container">
 
   <h1 id="tzukuri-head">T Z U K U R I</h1>
+  <p id="subhead">Log in to continue to your dashboard</p>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field">
-      <%= f.email_field :email, placeholder: "email address" %>
+      <%= f.email_field :email, placeholder: "Email Address" %>
     </div>
     <div class="field">
-      <%= f.password_field :password, placeholder: "password", autocomplete: "off" %>
+      <%= f.password_field :password, placeholder: "Password", autocomplete: "off" %>
     </div>
 
-    <%= flash[:alert] %>
+    <div id="flash-messages">
+      <%= flash[:alert] %>
+    </div>
 
-    <div class="actions">
-      <%= f.submit "sign in", id: "sign_in" %>
+    <div id="actions" data-error="<%= !flash[:alert].nil? %>">
+      <%= f.submit "Log In", id: "sign_in" %>
     </div>
   <% end %>
 
   <br/><br/>
   <%= render "devise/shared/links" %>
 </div>
-
-<div id="main-map" class="blur"></div>
-
-<!-- JAVASCRIPT -->
-<script>
-  // initialise a simple map
-  tzukuri.map.inject({
-    element: 'main-map',
-    disableControls: true
-  })
-</script>
