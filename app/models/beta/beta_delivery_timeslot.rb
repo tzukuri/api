@@ -27,8 +27,8 @@ class BetaDeliveryTimeslot < ActiveRecord::Base
     beta_orders.size > 0
   end
 
-  # return true if there are less than three orders referencing it
+  # return true if there are no orders referencing it
   def available?
-    beta_orders.size < 3
+    beta_orders.size == 0
   end
 end
