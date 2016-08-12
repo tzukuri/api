@@ -10,11 +10,11 @@
 
         <p id="welcome">
           <% if !@beta_order.beta_delivery_timeslot_id.nil? %>
-            Your scheduled personal try on details are below.
+            Your scheduled personal fitting details are below.
           <% else %>
             You'll receive an email from us when your glasses have shipped.
           <% end %>
-          We hope you never lose your glasses again.
+          You should never lose your glasses again.
           <br/>
           If you've got any questions, please get in touch at <a href="mailto:beta@tzukuri.com">beta@tzukuri.com</a>
         </p>
@@ -22,10 +22,10 @@
         <% if !@beta_order.beta_delivery_timeslot.nil? %>
           <div id="personal-delivery" data-time="<%= @beta_order.beta_delivery_timeslot.time %>" data-address="<%= @beta_order.full_address %>">
             <hr/>
-            <h3>Personal Try On Details</h3>
+            <h3>Personal Fitting Details</h3>
             <p class="delivery-detail"><%= @beta_order.address1 %>, <%= @beta_order.address2 %></p>
             <p class="delivery-detail"><%= @beta_order.beta_delivery_timeslot.time.strftime("%A, %B %d at %l:%M %p") %></p>
-            <p id="expect-call">Please expect to receive a call from one of our team members at your delivery time.</p>
+            <p id="expect-call">Please expect to receive a call from one of our team members prior to your delivery time.</p>
 <!--             <a id="delivery-calendar" href="#">
               <i class="fa fa-calendar"></i><br/>
               Add to calendar
@@ -48,21 +48,22 @@
 
       <div class="step-container hidden" id="step-accept">
         <div class="selected-header">
-          <h2>Your Role and Personal Try On</h2>
+          <h2>Personal Fitting and Your Role</h2>
           <div class="row">
+            <div class="six columns" id="delivery">
+              <p style="font-weight: 500; font-size: 14pt; line-height: 200%; margin-bottom: 10px;">Personal Fitting</p>
+              <p>To help you get started, we’re offering a personal fitting service to any address within 10km of the Sydney CBD. A Tzukuri team member will help you try on and select the pair you like, and assist with the set up of the app.</p>
+            </div>
             <div class="six columns" id="expectations">
               <p>Your Role</p>
               <ul>
                 <li>Respond to our weekly surveys.</li>
                 <li>Report any bugs that you encounter.</li>
                 <li>Report any general feedback or feature requests that you have.</li>
+                <li>Send in results of tasks you will be asked to complete.</li>
                 <li>Always keep up to date with the latest version of the app.</li>
                 <li>We may contact you at any time by email if we feel you could help us with any other questions.</li>
               </ul>
-            </div>
-            <div class="six columns" id="delivery">
-              <p style="font-weight: 500; font-size: 14pt; line-height: 200%; margin-bottom: 10px;">Personal Try On</p>
-              <p>To help you get started, we’re offering a personal try on service to any address within 10km of the Sydney CBD. A Tzukuri team member will help you try on and select the pair you like, and assist with the set up of the app.</p>
             </div>
           </div>
 
@@ -96,7 +97,7 @@
               </button>
           </div>
         </div>
-        <p>Don’t worry if you pick the wrong one, you can change your choice on the day.</p>
+        <p>Don’t worry if you pick the wrong one, you can finalise your choice at your Personal Fitting.</p>
 
         <br/><br/>
         <button class="prev order-btn">
@@ -129,11 +130,11 @@
       <!-- 3 - enter shipping details -->
       <div class="step-container hidden" id="step-details">
         <div class="selected-header">
-          <h2>Schedule Personal Try On</h2>
+          <h2>Schedule Personal Fitting</h2>
         </div>
 
         <div class="row">
-        <p id="try-on">Our personal try on service means we’ll bring you all our glasses for you to try on - you can pick the pair you like then and there. We can meet you at home, work or a cafe as long as it’s within a 10km radius of the Sydney CBD. We expect personal try on to take between 15-25 minutes.</p>
+        <p id="try-on">Our Personal Fitting Service is important. We come to you with our entire range so you can select the perfect pair.  We can meet you at home, work or a cafe so long as it’s within a 10km radius of the Sydney CBD.  We expect the Personal Fitting to take between 15-25 minutes.</p>
         </div>
 
         <div class="row step-content">
@@ -187,7 +188,7 @@
             <p class="method-exp">Your glasses will be sent to your delivery address with a courier.</p>
           </div>
           <div class="select-shipping">
-            <button class="order-btn next" data-delivery="1">Personal Try On</button>
+            <button class="order-btn next" data-delivery="1">Personal Fitting</button>
             <p class="method-exp">One of the members of the Tzukuri team will personally deliver your glasses and help you get set up.</p>
           </div>
         </div>
@@ -200,7 +201,7 @@
       <!-- 5 - select a timeslot (optional) -->
       <div class="step-container hidden" id="step-timeslot">
         <div class="selected-header">
-          <h2>Schedule Personal Try On</h2>
+          <h2>Schedule Personal Fitting</h2>
         </div>
 
         <p>We will meet you at <span id="meet-address"></span> at <span id="meet-time"></span>. <br/> Please expect a call from us a few minutes beforehand.</p>

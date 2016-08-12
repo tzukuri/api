@@ -329,6 +329,9 @@ body.beta {
 
             #timeslot-day, .timeslot-time {
                 -webkit-appearance: none;
+                background: url("/images/feedback_button.png") no-repeat;
+                background-size: 15px;
+                background-position: 90%;
                 font-size: 12pt;
                 padding: 10px 50px 10px 50px;
                 border: 1px solid $tzukuri-blue;
@@ -338,6 +341,9 @@ body.beta {
                 @include transition(0.5s);
 
                 &:hover {
+                    background: url("/images/feedback_button_white.png") no-repeat;
+                    background-size: 15px;
+                    background-position: 90%;
                     color: white;
                     background-color: $tzukuri-blue;
                 }

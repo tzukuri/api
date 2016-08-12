@@ -15,7 +15,7 @@ class BetaMailer < ActionMailer::Base
 
   def send_beta_acceptance_email(beta_user)
     @beta_user = beta_user
-    mail(to: beta_user.email, subject: "You've been selected to participate in the Tzukuri Beta")
+    mail(to: beta_user.email, subject: "You're in")
   end
 
   def send_beta_forgot_link(beta_user)
