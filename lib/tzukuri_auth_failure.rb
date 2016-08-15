@@ -7,6 +7,8 @@ class TzukuriAuthFailure < Devise::FailureApp
       request.referrer
     elsif warden_options[:scope] == :user
       new_user_session_path
+    elsif warden_options[:scope] == :admin_user
+      new_admin_user_session_path
     end
   end
 
