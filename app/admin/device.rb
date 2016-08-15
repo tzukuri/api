@@ -16,22 +16,4 @@ ActiveAdmin.register Device do
     filter :mac_address
     filter :frame
     filter :shipped
-
-    form do |f|
-        f.inputs "Device Details" do
-            f.input :mac_address
-            f.input :frame
-            f.input :size
-            f.input :colour
-            f.input :frame_manufacture_ts, as: :datepicker
-            f.input :board_manufacture_ts, as: :datepicker
-            f.input :board_revision
-            f.input :frame_revision
-            f.input :firmware_version
-            f.input :charge_qc_pass_ts, as: :datepicker
-            f.input :rf_qc_pass_ts, as: :datepicker
-            f.input :shipped, as: :datepicker
-        end
-        f.actions
-    end
 end
