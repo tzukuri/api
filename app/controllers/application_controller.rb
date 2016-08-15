@@ -7,7 +7,8 @@ class ApplicationController < ActionController::Base
     def after_sign_out_path_for(resource_or_scope)
       case resource_or_scope
         when :user, User
-          dashboard_path
+          request.referrer
+          # dashboard_path
         when :beta_user, BetaUser
           request.referrer
       end
@@ -18,7 +19,8 @@ class ApplicationController < ActionController::Base
       case resource_or_scope
         # redirect to dashboard after use login
         when :user, User
-          dashboard_path
+          request.referrer
+          # dashboard_path
         when :beta_user, BetaUser
           request.referrer
       end
