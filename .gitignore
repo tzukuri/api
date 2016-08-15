@@ -13,6 +13,7 @@
 /tmp
 .DS_Store
 /diagnostics/*
+/feedback/*
 public/assets
 deploy.sh
 .idea/
