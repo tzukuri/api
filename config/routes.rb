@@ -66,6 +66,10 @@ Rails.application.routes.draw do
                 post ':id/disconnected', action: 'disconnected'
             end
 
+            namespace :feedbacks do
+                post '', action: 'create'
+            end
+
             resources :quietzones do
               resources :rooms do
                 resources :recordings

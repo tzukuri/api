@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
     devise :database_authenticatable, :recoverable, :rememberable,
            :trackable, :validatable, :lockable
 
+    has_many :feedbacks, dependent: :destroy
     has_many :ownerships, dependent: :destroy
     has_many :auth_tokens, dependent: :destroy
     has_many :quietzones, dependent: :destroy

@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160808005048) do
+ActiveRecord::Schema.define(version: 20160815002537) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -221,6 +222,20 @@ ActiveRecord::Schema.define(version: 20160808005048) do
     t.datetime "updated_at"
   end
 
+  create_table "feedbacks", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "topic"
+    t.text     "content"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
+  end
+
+  add_index "feedbacks", ["user_id"], name: "index_feedbacks_on_user_id", using: :btree
+
   create_table "log_entries", force: :cascade do |t|
     t.integer  "auth_token_id"
     t.datetime "created_at"
@@ -340,6 +355,7 @@ ActiveRecord::Schema.define(version: 20160808005048) do
 
   add_foreign_key "beta_identities", "beta_users"
   add_foreign_key "beta_orders", "beta_users"
+  add_foreign_key "feedbacks", "users"
   add_foreign_key "quietzones", "users"
   add_foreign_key "recordings", "devices"
   add_foreign_key "recordings", "rooms", on_delete: :cascade
