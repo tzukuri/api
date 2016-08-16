@@ -10,10 +10,9 @@ ActiveAdmin.register BetaOrder do
         column :email do |order|
             auto_link order.beta_user.email
         end
-        column :address1
-        column :address2
-        column :state
-        column :postcode
+        column :address do |order|
+            order.full_address
+        end
         column :frame
         column :size
         column :phone
@@ -21,7 +20,7 @@ ActiveAdmin.register BetaOrder do
         column :fulfilled
         column :timeslot do |order|
             if (order.beta_delivery_timeslot.present?)
-              auto_link order.beta_delivery_timeslot.time
+              order.beta_delivery_timeslot.time.strftime("%a %d-%m-%Y %H:%M %P")
             else
                 "N/A"
             end

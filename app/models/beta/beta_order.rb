@@ -30,4 +30,33 @@ class BetaOrder < ActiveRecord::Base
     BetaMailer.send_beta_order_email(self.beta_user).deliver_later
   end
 
+  def self.all_next_week
+    today = Date.today
+    endDay = today + 7.days
+
+    orders = []
+
+    BetaOrder.all.each do |order|
+      next if !order.beta_delivery_timeslot.present?
+      orders.push(order) if (today..endDay).cover?(order.beta_delivery_timeslot.time)
+    end
+
+    return orders
+  end
+
+  def self.all_next_month
+    today = Date.today
+    endDay = today + 1.month
+
+    orders = []
+
+    BetaOrder.all.each do |order|
+      next if !order.beta_delivery_timeslot.present?
+      orders.push(order) if (today..endDay).cover?(order.beta_delivery_timeslot.time)
+    end
+
+    return orders
+
+  end
+
 end
