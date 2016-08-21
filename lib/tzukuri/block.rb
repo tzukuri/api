@@ -45,7 +45,7 @@ module Tzukuri
             data_io = StringIO.new(data)
             prev_ts = 0
             until data_io.eof?
-                entry = Entry.new(data_io, prev_ts)
+                entry = Tzukuri::Entry.new(data_io, prev_ts)
                 @entries << entry
                 prev_ts = entry.ts
             end

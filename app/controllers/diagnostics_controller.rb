@@ -26,7 +26,14 @@ class DiagnosticsController < ApplicationController
         bytes = IO.binread(path)
         io = StringIO.new(bytes)
         @blocks = []
-        @blocks << Tzukuri::Block.new(io) until io.eof?
+
+        until io.eof?
+            begin
+                @blocks << Tzukuri::Block.new(io)
+            rescue
+                # ignore invalid blocks
+            end
+        end
     end
 
 end
