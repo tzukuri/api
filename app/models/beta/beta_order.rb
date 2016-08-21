@@ -30,4 +30,27 @@ class BetaOrder < ActiveRecord::Base
     BetaMailer.send_beta_order_email(self.beta_user).deliver_later
   end
 
+  # returns all orders with a delivery time in the next 7 days
+  def self.all_next_week
+    BetaOrder.joins(:beta_delivery_timeslot).order('beta_delivery_timeslots.time asc').where('beta_delivery_timeslots.time BETWEEN ? AND ?', Date.today.beginning_of_day, (Date.today + 7.days).end_of_day)
+  end
+
+  # returns all orders with a delivery time within the next month
+  def self.all_next_month
+    BetaOrder.joins(:beta_delivery_timeslot).order('beta_delivery_timeslots.time asc').where('beta_delivery_timeslots.time BETWEEN ? AND ?', Date.today.beginning_of_day, (Date.today + 1.month).end_of_day)
+  end
+
+  def self.all_for_week_beginning(date)
+    if date.is_a?(String)
+      start = Date.parse(date.to_s)
+      BetaOrder.joins(:beta_delivery_timeslot).order('beta_delivery_timeslots.time asc').where('beta_delivery_timeslots.time BETWEEN ? AND ?', start.beginning_of_day, (start + 1.week).end_of_day)
+    end
+  end
+
+  def self.all_for_month_beginning(date)
+    if date.is_a?(String)
+      start = Date.parse(date.to_s)
+      BetaOrder.joins(:beta_delivery_timeslot).order('beta_delivery_timeslots.time asc').where('beta_delivery_timeslots.time BETWEEN ? AND ?', start.beginning_of_day, (start + 1.month).end_of_day)
+    end
+  end
 end

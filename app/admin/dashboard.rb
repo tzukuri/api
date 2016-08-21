@@ -1,32 +1,54 @@
 ActiveAdmin.register_page "Dashboard" do
     menu priority: 1, label: proc{ I18n.t("active_admin.dashboard") }
 
+    # all orders for the coming week
+    next_week = BetaOrder.all_next_week
+    next_week_ive_s = next_week.where(frame: 'ive', size: '48')
+    next_week_ive_l = next_week.where(frame: 'ive', size: '50.5')
+    next_week_ford_s = next_week.where(frame: 'ford', size: '49')
+    next_week_ford_l = next_week.where(frame: 'ford', size: '51.5')
+
+    # all orders for the coming month
+    next_month = BetaOrder.all_next_month
+    next_month_ive_s = next_month.where(frame: 'ive', size: '48')
+    next_month_ive_l = next_month.where(frame: 'ive', size: '50.5')
+    next_month_ford_s = next_month.where(frame: 'ford', size: '49')
+    next_month_ford_l = next_month.where(frame: 'ford', size: '51.5')
+
     content title: proc{ I18n.t("active_admin.dashboard") } do
-        div class: "blank_slate_container", id: "dashboard_default_message" do
-            span class: "blank_slate" do
-                span I18n.t("active_admin.dashboard_welcome.welcome")
-                small I18n.t("active_admin.dashboard_welcome.call_to_action")
+        columns do
+            column do
+                panel "Upcoming Personal Fittings (#{Date.today.strftime("%d-%m")} to #{(Date.today + 7.days).strftime("%d-%m")})" do
+                    text_node %{<strong>Total:</strong> #{next_week.count} | <strong>Ive (48mm):</strong> #{next_week_ive_s.count} | <strong>Ive (50.5mm):</strong> #{next_week_ive_l.count} | <strong>Ford (49mm):</strong> #{next_week_ford_s.count} | <strong>Ford (51.5mm):</strong> #{next_week_ford_l.count}}.html_safe
+                    table_for next_week.each do
+                        column("ID") {|order| link_to order.id}
+                        column("Name")   {|order| order.beta_user.name.titleize}
+                        column("Email")   {|order| order.beta_user.email}
+                        column("Frame")   {|order| order.frame.titleize }
+                        column("Size")   {|order| order.size + "mm" }
+                        column("Address")   {|order| order.full_address }
+                        column("Phone")   {|order| order.phone }
+                        column("Delivery Method")   {|order| order.delivery_method.titleize }
+                        column("Time")   {|order| order.beta_delivery_timeslot.time.strftime("%a %d-%m-%Y %H:%M %P") if order.beta_delivery_timeslot.present? }
+                    end
+                end
+
+                panel "Upcoming Personal Fittings (#{Date.today.strftime("%d-%m")} to #{(Date.today + 1.month).strftime("%d-%m")})" do
+                    text_node %{<strong>Total:</strong> #{next_month.count} | <strong>Ive (48mm):</strong> #{next_month_ive_s.count} | <strong>Ive (50.5mm):</strong> #{next_month_ive_l.count} | <strong>Ford (49mm):</strong> #{next_month_ford_s.count} | <strong>Ford (51.5mm):</strong> #{next_month_ford_l.count}}.html_safe
+                    table_for next_month.each do
+                        column("ID") {|order| link_to order.id}
+                        column("Name")   {|order| order.beta_user.name.titleize}
+                        column("Email")   {|order| order.beta_user.email}
+                        column("Frame")   {|order| order.frame.titleize }
+                        column("Size")   {|order| order.size + "mm" }
+                        column("Address")   {|order| order.full_address }
+                        column("Phone")   {|order| order.phone }
+                        column("Delivery Method")   {|order| order.delivery_method.titleize }
+                        column("Time")   {|order| order.beta_delivery_timeslot.time.strftime("%a %d-%m-%Y %H:%M %P") if order.beta_delivery_timeslot.present? }
+                    end
+                end
+
             end
         end
-
-        # Here is an example of a simple dashboard with columns and panels.
-        #
-        # columns do
-        #   column do
-        #     panel "Recent Posts" do
-        #       ul do
-        #         Post.recent(5).map do |post|
-        #           li link_to(post.title, admin_post_path(post))
-        #         end
-        #       end
-        #     end
-        #   end
-
-        #   column do
-        #     panel "Info" do
-        #       para "Welcome to ActiveAdmin."
-        #     end
-        #   end
-        # end
-    end # content
+    end
 end
