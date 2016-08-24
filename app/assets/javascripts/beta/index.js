@@ -508,12 +508,20 @@ $(function() {
 
             // navigate to the timeslot selection for now
             // todo: remove this when we invite the rest of the users
-            navigateToIndex(6)
-            orderDetails.delivery_method = "deliver"
-            $("#conf-shipping").html("Personal Fitting")
+            // navigateToIndex(6)
+
+            if (distance > 15) {
+                $("#error-messages").html("Please enter an address within 15km of the Sydney CBD")
+                $("#shipping-continue").tzAnimate('shake')
+            }  else {
+                navigateToIndex(6)
+                orderDetails.delivery_method = "deliver"
+                $("#conf-shipping").html("Personal Fitting")
+            }
 
             $(".loading-spinner").hide()
             $("#shipping-continue").show()
+
         }).fail(function() {
             $("#error-messages").html("An error occurred validating this address. Please try again.")
             $(".loading-spinner").hide()
