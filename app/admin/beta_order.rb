@@ -21,7 +21,7 @@ ActiveAdmin.register BetaOrder do
         column :delivery_method
         column :fulfilled
         column :delivery_time do |order|
-            order.delivery_time.to_time.strftime("%a %d-%m-%Y %l:%M %P")
+            order.delivery_time.to_time.strftime("%a %d-%m-%Y %l:%M %P") if order.delivery_time.present?
         end
         actions
     end
