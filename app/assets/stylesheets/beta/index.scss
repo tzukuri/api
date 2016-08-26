@@ -82,7 +82,7 @@ body.beta {
             }
 
             .selected-header {
-                margin-bottom: 40px;
+                // margin-bottom: 40px;
                 text-align: center;
 
                 h2 {
@@ -104,6 +104,7 @@ body.beta {
                 &.prev {
                     border: none;
                     font-size: 11pt;
+                    margin-bottom: 20px;
                 }
 
                 &.finish {
@@ -121,7 +122,7 @@ body.beta {
                 text-align: left;
 
                 dl {
-                    margin-bottom: 20px;
+                    // margin-bottom: 20px;
                     margin-left: 70px;
 
                     dt, dd {
@@ -226,6 +227,11 @@ body.beta {
 
         // 2 - select frame size
         #step-size {
+
+            .step-content {
+                margin-top: 40px;
+            }
+
             .size-exp {
                 font-size: 11pt;
                 color: $tzukuri-dark-grey;
@@ -317,6 +323,17 @@ body.beta {
                 }
             }
 
+            #booking-time {
+                margin-top: 10px;
+                margin-bottom: 20px;
+                font-size: 14pt;
+                color: #232323;
+
+                #date {
+                    font-weight: 500;
+                }
+            }
+
             .step-content {
                 margin-bottom: 40px;
                 margin-top: 40px;
@@ -365,6 +382,7 @@ body.beta {
 
             #place-order {
                 margin-top: 20px;
+                margin-bottom: 10px;
             }
 
             #conf-ive-black, #conf-ford-black {
@@ -382,7 +400,13 @@ body.beta {
             }
 
             #payment-message {
-                margin-top: 40px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                font-size: 12pt;
+
+                &.error {
+                    color: $tzukuri-red;
+                }
             }
 
             #cc {

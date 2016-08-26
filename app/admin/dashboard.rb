@@ -29,7 +29,7 @@ ActiveAdmin.register_page "Dashboard" do
                         column("Address")   {|order| order.full_address }
                         column("Phone")   {|order| order.phone }
                         column("Delivery Method")   {|order| order.delivery_method.titleize }
-                        column("Time")   {|order| order.beta_delivery_timeslot.time.strftime("%a %d-%m-%Y %H:%M %P") if order.beta_delivery_timeslot.present? }
+                        column("Time")   {|order| order.delivery_time.to_time.strftime("%a %d-%m-%Y %H:%M %P") if order.delivery_time.present? }
                     end
                 end
 
@@ -44,7 +44,7 @@ ActiveAdmin.register_page "Dashboard" do
                         column("Address")   {|order| order.full_address }
                         column("Phone")   {|order| order.phone }
                         column("Delivery Method")   {|order| order.delivery_method.titleize }
-                        column("Time")   {|order| order.beta_delivery_timeslot.time.strftime("%a %d-%m-%Y %H:%M %P") if order.beta_delivery_timeslot.present? }
+                        column("Time")   {|order| order.delivery_time.to_time.strftime("%a %d-%m-%Y %H:%M %P") if order.delivery_time.present? }
                     end
                 end
 

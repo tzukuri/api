@@ -1,3 +1,7 @@
+<% content_for :javascript_includes do %>
+    <script src="/static/booking.min.js"></script>
+<% end %>
+
 <div id="beta-index" class="container" data-response-points="<%= Tzukuri::RESPONSE_POINTS %>" data-score="<%= @beta_user
 .score.to_i %>" data-top-threshold="<%= @threshold %>" data-threshold-users="<%= Tzukuri::NUM_THRESHOLD_USERS %>">
   <% if beta_user_signed_in? %>
@@ -9,7 +13,7 @@
         <h2>Thanks, you're all done.</h2>
 
         <p id="welcome">
-          <% if !@beta_order.beta_delivery_timeslot_id.nil? %>
+          <% if !@beta_order.delivery_time.nil? %>
             Your scheduled personal fitting details are below.
           <% else %>
             You'll receive an email from us when your glasses have shipped.
@@ -19,12 +23,12 @@
           If you've got any questions, please get in touch at <a href="mailto:beta@tzukuri.com">beta@tzukuri.com</a>
         </p>
 
-        <% if !@beta_order.beta_delivery_timeslot.nil? %>
-          <div id="personal-delivery" data-time="<%= @beta_order.beta_delivery_timeslot.time %>" data-address="<%= @beta_order.full_address %>">
+        <% if !@beta_order.delivery_time.nil? %>
+          <div id="personal-delivery" data-time="<%= @beta_order.delivery_time %>" data-address="<%= @beta_order.full_address %>">
             <hr/>
             <h3>Personal Fitting Details</h3>
             <p class="delivery-detail"><%= @beta_order.address1 %>, <%= @beta_order.address2 %></p>
-            <p class="delivery-detail"><%= @beta_order.beta_delivery_timeslot.time.strftime("%A, %B %d at %l:%M %p") %></p>
+            <p class="delivery-detail"><%= @beta_order.delivery_time.to_time.strftime("%A, %B %d at %l:%M %p") %></p>
             <p id="expect-call">Please expect to receive a call from one of our team members prior to your delivery time.</p>
 <!--             <a id="delivery-calendar" href="#">
               <i class="fa fa-calendar"></i><br/>
@@ -36,7 +40,7 @@
 
     <!-- user is selected but order has not been submitted -->
     <% elsif @beta_user.selected %>
-      <div id="selected-container" data-available-days="<%= @available_days.count %>">
+      <div id="selected-container">
       <!-- 0 - intro -->
       <div class="step-container" id="step-intro">
         <h2>Congratulations, you're in.</h2>
@@ -201,26 +205,13 @@
       <!-- 5 - select a timeslot (optional) -->
       <div class="step-container hidden" id="step-timeslot">
         <div class="selected-header">
-          <h2>Schedule Personal Fitting</h2>
+          <h2>Schedule a Personal Fitting</h2>
         </div>
 
-        <p>We will meet you at <span id="meet-address"></span> at <span id="meet-time"></span>. <br/> Please expect a call from us a few minutes beforehand.</p>
+        <p id="booking-time"><span id="date"></span><span id="time">Choose an available time from the list below</span></p>
+        <button id="timeslot-continue" class="next order-btn" style="display: none">continue&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></button>
 
-        <div class="row step-content">
-          <select id="timeslot-day">
-            <% @available_days.each do |day, timeslots| %>
-            <option><%= day.strftime("%A, %b %d") %></option>
-            <% end %>
-          </select>
-          <% @available_days.each do |day, timeslots| %>
-          <select class="timeslot-time" style="display: none">
-            <% timeslots.each do |timeslot| %>
-            <option value="<%= timeslot.time %>" data-timeslot-id="<%= timeslot.id %>"><%= timeslot.time.strftime("%l:%M %p") %></option>
-            <% end %>
-          </select>
-          <% end %>
-          <button id="timeslot-continue" class="next order-btn">continue&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></button>
-        </div>
+        <div id="bookingjs"></div>
 
         <button class="prev order-btn">
           <i class="fa fa-chevron-left"></i>&nbsp;&nbsp;back
@@ -248,7 +239,7 @@
                   <dt>Size</dt>
                   <dd id="conf-size">48mm</dd>
                   <br/>
-                  <dt>Ship To</dt>
+                  <dt>Deliver To</dt>
                   <dd id="conf-address">32 Downes Street, North Epping, NSW, 2121, Australia</dd>
                   <br/>
                   <dt>Delivery</dt>
@@ -475,6 +466,3 @@
       </div>
   <% end %>
 </div>
-
-<!-- stripe -->
-<script type="text/javascript" src="https://js.stripe.com/v2/"></script>

@@ -5,8 +5,53 @@ class BetaOrdersController < ApplicationController
   def create
     begin
       # if the user is getting personal delivery create an order with delivery timeslot
-      if params[:delivery_timeslot_id].present?
-        beta_order = BetaOrder.create(beta_order_params.merge(beta_delivery_timeslot_id: params[:delivery_timeslot_id]))
+      if params[:timeslot_start].present? && params[:timeslot_end].present?
+        # create an order with timeslot_start
+        start_time = params[:timeslot_start]
+        end_time = params[:timeslot_end]
+
+        beta_order = BetaOrder.create(beta_order_params.merge(delivery_time: start_time))
+
+        # send a booking request to TimeKit
+        event = {
+          start: start_time.to_time.iso8601,
+          end: end_time.to_time.iso8601,
+          what: 'Tzukuri Personal Fitting - ' + current_beta_user.name,
+          where: beta_order.full_address,
+          calendar_id: '348c52b6-ae68-40d3-9781-2ea308505f04',
+          description: ''
+        }
+
+        customer = {
+          name: current_beta_user.name,
+          email: current_beta_user.email,
+          phone: beta_order.phone,
+          voip: '',
+          # fixme: assuming that everyone is in Sydney for now
+          timezone: 'Australia/Sydney'
+        }
+
+        # don't notify the customer by email, we'll send our own confirmation
+        notify = {
+          enabled: false
+        }
+
+        # create a new timekit instance, all bookings all go into the beta@tzukuri.com calendar
+        # eventually, we'll probably want to change this and have a seperate email for handling bookings
+        timekit = Tzukuri::Timekit.new("beta@tzukuri.com", 'XAuyu7wMLLjSlF6pltBJR4x8d4W3tN7W')
+
+        begin
+          response = timekit.create_booking(event, customer, notify)
+
+          # update the beta order with the Timekit booking id
+          booking = JSON.parse(response.body)
+          beta_order.update_attribute('booking_id', booking["data"]["id"])
+        rescue => e
+          # if there was an error creating the booking, destroy the order and return an error
+          beta_order.destroy
+          render :json => {success: false, errors: ["An error ocurred creating your booking. Please try again."]}
+          return
+        end
       else
         beta_order = BetaOrder.create(beta_order_params)
       end
@@ -16,49 +61,9 @@ class BetaOrdersController < ApplicationController
         return
       end
 
+      beta_order.send_confirmation_email
       render :json => {success: true, beta_order: beta_order}
     end
-  end
-
-  # get all orders
-  def all
-    csv_string = CSV.generate do |csv|
-        csv << ['order_id', 'name', 'email', 'address1', 'address2', 'state', 'postcode', 'country', 'frame', 'size', 'phone', 'fulfilled', 'timeslot']
-
-        BetaOrder.order(created_at: :desc).each do |beta_order|
-          beta_user = beta_order.beta_user
-
-          if !beta_order.beta_delivery_timeslot.nil?
-            delivery_timeslot = beta_order.beta_delivery_timeslot.time
-          else
-            delivery_timeslot = 'nil'
-          end
-
-          csv << [beta_order.id, beta_user.name, beta_user.email, beta_order.address1, beta_order.address2, beta_order.state, beta_order.postcode, beta_order.country, beta_order.frame, beta_order.size, beta_order.phone, beta_order.fulfilled, delivery_timeslot]
-        end
-    end
-
-    render body:csv_string
-  end
-
-  # get orders for a given delivery date (personal delivery only)
-  # date format = mm-dd-yyyy
-  def date
-    date = params[:date]
-    day = Date.parse(date)
-
-    csv_string = CSV.generate do |csv|
-      csv << ['order_id', 'name', 'email', 'address1', 'address2', 'state', 'postcode', 'country', 'frame', 'size', 'phone', 'fulfilled', 'timeslot']
-
-      BetaDeliveryTimeslot.where("time BETWEEN ? AND ?", day.beginning_of_day, day.end_of_day).order("time ASC").each do |timeslot|
-        timeslot.beta_orders.each do |beta_order|
-          beta_user = beta_order.beta_user
-          csv << [beta_order.id, beta_user.name, beta_user.email, beta_order.address1, beta_order.address2, beta_order.state, beta_order.postcode, beta_order.country, beta_order.frame, beta_order.size, beta_order.phone, beta_order.fulfilled, timeslot.time]
-        end
-      end
-    end
-
-    render body:csv_string
   end
 
   private

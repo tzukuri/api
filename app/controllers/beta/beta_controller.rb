@@ -25,9 +25,9 @@ class BetaController < ApplicationController
     if beta_user_signed_in?
       @beta_user = current_beta_user
 
-      if @beta_user.selected
-        @available_days = BetaDeliveryTimeslot.all_available_timeslots
-      end
+      # if @beta_user.selected
+      #   @available_days = BetaDeliveryTimeslot.all_available_timeslots
+      # end
 
       if @beta_user.order?
         @beta_order = @beta_user.order

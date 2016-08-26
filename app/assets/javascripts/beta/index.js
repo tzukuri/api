@@ -173,10 +173,10 @@ $(function() {
 
         // if the user is logged in and looking at the details view show the
         // beta modal if this is the first time
-        if ($('#selected-container').length > 0) {
+        // if ($('#selected-container').length > 0) {
             // select the first timeslot
-            $('#timeslot-day :nth-child(1)').prop('selected', true)
-            $('#timeslot-day').change()
+            // $('#timeslot-day :nth-child(1)').prop('selected', true)
+            // $('#timeslot-day').change()
 
             // storage = window.localStorage;
 
@@ -206,7 +206,7 @@ $(function() {
 
             // show the first answerable question
             // showQuestion($('[data-answerable=true]').first())
-        }
+        // }
     })
 
     // -----------------------------
@@ -248,23 +248,6 @@ $(function() {
 
         $($("#step-frames .columns")[0]).removeClass('disabled')
     })
-
-    // pulse on mouseover
-    // $('.select-design>img, .select-size').on('mouseover', function() {
-    //     if ($(this).parent().hasClass('disabled')) return;
-    //     $(this).tzAnimate('pulse')
-    // })
-
-    // handle click on frame select elements
-    // $('.select-design, .select-size').on('click', function() {
-    //     if ($(this).parent().hasClass('disabled')) return;
-
-    //     // set size or design depending on which is available
-    //     size = $(this).attr('data-size') || size
-    //     design = $(this).attr('data-design') || design
-
-    //     transitionFrom(this)
-    // })
 
     $("#skip").on("click", function() {
         skipQuestion()
@@ -352,8 +335,7 @@ $(function() {
         size: '',
         address: {},
         delivery_method: 'ship',
-        delivery_timeslot: '',
-        delivery_timeslot_id : undefined
+        timeslot: {}
     }
 
     // prevent multiple clicks from firing events more than once while
@@ -594,7 +576,7 @@ $(function() {
 
     $('#timeslot-continue').on('click', function() {
 
-        var formattedTime = moment(orderDetails.delivery_timeslot).format("dddd MMM D [@] h:mm A")
+        var formattedTime = moment(orderDetails.timeslot.start).format("dddd MMM D [@] h:mm A")
 
         $("#conf-timeslot").html(formattedTime)
         $("#conf-timeslot-header, #conf-timeslot").show()
@@ -607,25 +589,25 @@ $(function() {
         var data = submitOrderDetails()
 
         $('#payment-message').text("Submitting your order...");
+        $("#place-order").hide();
 
         $.post('/beta_orders', data).done(function(data) {
-                console.log(data)
+            if (data.success) {
+                location.reload()
+                $('#payment-message').text("");
+            } else {
+                $('#payment-message').text("Sorry, an unknown error occurred.");
+                    $('#submit button').prop('disabled', false);
+                    $("#place-order").show()
+                    $('#place-order').tzAnimate('shake')
+            }
 
-                if (data.success) {
-                    location.reload()
-                    $('#payment-message').text("");
-                } else {
-                    $('#payment-message').text("Sorry, an unknown error occurred.");
-                    $('#submit button').tzAnimate('shake')
-                }
-
-                $('#submit button').prop('disabled', false);
-
-            }).fail(function() {
-                $('#payment-message').text("Sorry, an unknown error occurred. Please try again later.");
-                $('#submit button').prop('disabled', false);
-                $('#submit button').tzAnimate('shake')
-            })
+        }).fail(function() {
+            $('#payment-message').text("Sorry, an unknown error occurred.");
+            $('#submit button').prop('disabled', false);
+            $("#place-order").show()
+            $('#place-order').tzAnimate('shake')
+        })
     })
 
     // keep track of the progress to through each of the steps. navigating forward pushes onto the stack and navigating back
@@ -650,7 +632,51 @@ $(function() {
 
         $(steps[currentStep]).fadeOut(function() {
             $(steps[index]).fadeIn()
-        })
+
+            // whenever the select time view is transitioned to, reload the booking.js UI
+            if (index == 6) {
+                var widget = new TimekitBooking()
+                var timeslot = {}
+                var config = {
+                  email:    'beta@tzukuri.com',
+                  apiToken: 'XAuyu7wMLLjSlF6pltBJR4x8d4W3tN7W',
+                  calendar: '348c52b6-ae68-40d3-9781-2ea308505f04',
+
+                  //optional
+                  targetEl: '#bookingjs',
+                  name: 'Tzukuri',
+                  showCredits: false,
+
+                  fullCalendar: {
+                    defaultView: 'basicWeek',
+                    eventClick: function(event) {
+                        orderDetails.timeslot.start = event.start
+                        orderDetails.timeslot.end = event.end
+
+                        // update the view
+                        $("#booking-time #date").html(orderDetails.timeslot.start.format("dddd, MMMM D"))
+                        $("#booking-time #time").html(orderDetails.timeslot.start.format(" [at] h:mm a"))
+                        $("#timeslot-continue").fadeIn()
+                    }
+                  },
+
+                  timekitFindTime: {
+                    future: '2 weeks',
+                    length: '30 minutes',
+                    start: 'tomorrow',
+                    emails: ['beta@tzukuri.com', 'd@tzukuri.com', 'a@tzukuri.com'],
+                    filters: {
+                        and: [
+                            { "exclude_weekend": {}},
+                            { "specific_time": {"start": 10, "end": 16}}
+                        ]
+                    }
+                  }
+                };
+
+                widget.init(config);
+            }
+        });
     }
 
     // navigate back or forward through the order steps
@@ -662,16 +688,13 @@ $(function() {
         }
     }
 
-    // stripe
-    Stripe.setPublishableKey('pk_test_HWxqGZq4R2zTKm5915tgDas4');
-    // Stripe.setPublishableKey('pk_live_VAzrbCZ5hRh2i3tXpoS9GL5I');
-
     var submitOrderDetails = function() {
         return {
             frame: orderDetails.frame,
             size: orderDetails.size,
             delivery_method: orderDetails.delivery_method,
-            delivery_timeslot_id: parseInt(orderDetails.delivery_timeslot_id),
+            timeslot_start: orderDetails.timeslot.start.toISOString(),
+            timeslot_end: orderDetails.timeslot.end.toISOString(),
             address1: orderDetails.address["beta_order[address1]"],
             address2: orderDetails.address["beta_order[address2]"],
             state: orderDetails.address["state"],
@@ -680,56 +703,4 @@ $(function() {
             phone: orderDetails.address["beta_order[phone]"]
         }
     }
-
-    function stripeResponseHandler(status, response) {
-        console.log('FROM STRIPE')
-        console.log(status, response)
-
-        if (response.error) {
-            // console.log(response.error.message)
-            $('#payment-message').text(response.error.message);
-            $('#submit button').prop('disabled', false);
-            $('#submit button').tzAnimate('shake')
-        } else {
-            var data = submitOrderDetails()
-            data.token = response.id
-
-            $('#payment-message').text("Charging your card...");
-
-            $.post('/beta_orders', data).done(function(data) {
-                console.log(data)
-
-                if (data.success) {
-                    location.reload()
-                    $('#payment-message').text("");
-                } else {
-                    if (data.reason) {
-                        $('#payment-message').text(data.reason);
-                    } else {
-                        $('#payment-message').text("Sorry, an unknown error occurred.");
-                    }
-
-                    $('#submit button').tzAnimate('shake')
-                }
-
-                $('#submit button').prop('disabled', false);
-
-            }).fail(function() {
-                $('#payment-message').text("Sorry, an unknown error occurred. Please try again later.");
-                $('#submit button').prop('disabled', false);
-                $('#submit button').tzAnimate('shake')
-            })
-        }
-    }
-
-    $("#payment-form").on('submit', function(event) {
-        $('#submit button').prop('disabled', true);
-        $('#payment-message').text("Checking your card details...");
-        Stripe.card.createToken($(this), stripeResponseHandler);
-        event.preventDefault();
-    })
-
-    $("#delivery-more").on('click', function(event) {
-        // show the delivery information modal
-    })
 });
