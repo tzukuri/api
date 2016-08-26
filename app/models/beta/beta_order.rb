@@ -36,7 +36,7 @@ class BetaOrder < ActiveRecord::Base
         what: 'Tzukuri Personal Fitting - ' + beta_user.name,
         where: full_address,
         calendar_id: '348c52b6-ae68-40d3-9781-2ea308505f04',
-        description: ''
+        description: "Frame - #{frame}, Size - #{size}, Phone - #{phone}"
       }
 
       customer = {
