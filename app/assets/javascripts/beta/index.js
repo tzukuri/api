@@ -671,6 +671,10 @@ $(function() {
                             { "specific_time": {"start": 10, "end": 16}}
                         ]
                     }
+                  },
+
+                  localization: {
+                      timeDateFormat: '24h-dmy-mon',
                   }
                 };
 
