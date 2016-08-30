@@ -375,7 +375,7 @@ $(function() {
 
               timekitFindTime: {
                 future: '2 weeks',
-                length: '30 minutes',
+                length: '1 hour',
                 start: 'tomorrow',
                 emails: ['beta@tzukuri.com', 'd@tzukuri.com', 'a@tzukuri.com'],
                 filters: {
