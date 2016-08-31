@@ -24,7 +24,7 @@ ActiveAdmin.register_page "Dashboard" do
                     text_node %{<strong>Total:</strong> #{next_week.count} | <strong>Ive (48mm):</strong> #{next_week_ive_s.count} | <strong>Ive (50.5mm):</strong> #{next_week_ive_l.count} | <strong>Ford (49mm):</strong> #{next_week_ford_s.count} | <strong>Ford (51.5mm):</strong> #{next_week_ford_l.count}}.html_safe
                     table_for next_week.each do
                         column("ID") {|order| link_to order.id}
-                        column("Name")   {|order| order.shipping_name.titleize}
+                        column("Name")   {|order| order.shipping_name}
                         column("Email")   {|order| order.beta_user.email}
                         column("Frame")   {|order| order.frame.titleize }
                         column("Size")   {|order| order.size + "mm" }
