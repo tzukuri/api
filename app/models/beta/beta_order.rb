@@ -9,7 +9,8 @@ class BetaOrder < ActiveRecord::Base
   validates :frame,           presence: true
   validates :size,            presence: true
   validates :phone,           presence: true
-  validates :delivery_method,  presence: true
+  validates :delivery_method, presence: true
+  validates :shipping_name,   presence: true
 
   enum delivery_method: [ :ship, :deliver, :meetup ]
 
@@ -33,14 +34,14 @@ class BetaOrder < ActiveRecord::Base
       event = {
         start: start_time.to_time.iso8601,
         end: end_time.to_time.iso8601,
-        what: 'Tzukuri Personal Fitting - ' + beta_user.name,
+        what: 'Tzukuri Personal Fitting - ' + shipping_name,
         where: full_address,
         calendar_id: '348c52b6-ae68-40d3-9781-2ea308505f04',
         description: "Frame - #{frame}, Size - #{size}, Phone - #{phone}"
       }
 
       customer = {
-        name: beta_user.name,
+        name: shipping_name,
         email: beta_user.email,
         phone: phone,
         voip: '',

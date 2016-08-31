@@ -613,6 +613,7 @@ $(function() {
             frame: orderDetails.frame,
             size: orderDetails.size,
             delivery_method: orderDetails.delivery_method,
+            shipping_name: orderDetails.address["beta_order[shipping_name]"],
             address1: orderDetails.address["beta_order[address1]"],
             address2: orderDetails.address["beta_order[address2]"],
             state: orderDetails.address["state"],
@@ -645,6 +646,7 @@ $(function() {
     var validatesShippingDetails = function(serialisedForm) {
         var valid = true
 
+        var name = serialisedForm["beta_order[shipping_name]"]
         var address1 = serialisedForm["beta_order[address1]"]
         var address2 = serialisedForm["beta_order[address2]"]
         var postcode = serialisedForm["beta_order[postcode]"]
@@ -655,6 +657,10 @@ $(function() {
 
         // remove all error classes
         $("#new_beta_order input").removeClass('error')
+
+        if (name.length == 0) {
+            valid = addError("#beta_order_shipping_name")
+        }
 
         // check address 1 exists
         if (address1.length == 0) {

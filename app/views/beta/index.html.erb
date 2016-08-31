@@ -13,14 +13,16 @@
         <h2>Thanks, you're all done.</h2>
 
         <p id="welcome">
+
+          You've joined the Tzukuri beta program, you should receive a confirmation email shortly.
+
           <% if !@beta_order.delivery_time.nil? %>
             Your scheduled personal fitting details are below.
           <% else %>
             You'll receive an email from us when your glasses have shipped.
           <% end %>
-          You should never lose your glasses again.
-          <br/>
-          If you've got any questions, please get in touch at <a href="mailto:beta@tzukuri.com">beta@tzukuri.com</a>
+          <br/><br/>
+          If you've got any questions, please get in touch at <a href="mailto:beta@tzukuri.com">beta@tzukuri.com</a>.
         </p>
 
         <% if !@beta_order.delivery_time.nil? %>
@@ -29,11 +31,7 @@
             <h3>Personal Fitting Details</h3>
             <p class="delivery-detail"><%= @beta_order.address1 %>, <%= @beta_order.address2 %></p>
             <p class="delivery-detail"><%= @beta_order.delivery_time.to_time.strftime("%A, %B %d at %l:%M %p") %></p>
-            <p id="expect-call">Please expect to receive a call from one of our team members prior to your delivery time.</p>
-<!--             <a id="delivery-calendar" href="#">
-              <i class="fa fa-calendar"></i><br/>
-              Add to calendar
-            </a> -->
+            <p id="expect-call">Please expect to receive a call from one of our team members at your delivery time.</p>
           </div>
         <% end %>
       </div>
@@ -44,8 +42,8 @@
       <!-- 0 - intro -->
       <div class="step-container" id="step-intro">
         <h2>Congratulations, you're in.</h2>
-        <p>Welcome to the Tzukuri beta program. We hope you're as excited as we are that you'll be one of the first in the world to own a pair of unlosable sunglasses. Let's get started 😎</p>
-        <button id="get-started" class="order-btn next">Get started &nbsp;&nbsp;<i class="fa fa-chevron-right"></i></button>
+        <p>Welcome to the Tzukuri beta program. We hope you're as excited as we are that you'll be one of the first in the world to own a pair of unlosable sunglasses 😎.</p>
+        <button id="get-started" class="order-btn next">Get started  &nbsp;&nbsp;<i class="fa fa-chevron-right"></i></button>
 
         <p id="disclaimer">By continuing you agree that you have an <span class="bold">iPhone 5 or later</span> running the <span class="bold">latest version of iOS.</span></p>
       </div>
@@ -163,7 +161,8 @@
           </div>
           <div class="five columns" id="shipping">
             <%= form_for BetaOrder.new, :url => beta_orders_path, :html => {:method => :post}, remote:true do |f| %>
-            <%= f.text_field :address1, placeholder: 'Street name, number, etc.', autofocus: true %><br/>
+            <%= f.text_field :shipping_name, placeholder: 'Full name', autofocus: true %><br/>
+            <%= f.text_field :address1, placeholder: 'Street name, number, etc.' %><br/>
             <%= f.text_field :address2, placeholder: 'City, suburb, etc.' %><br/>
             <%= select_tag   :state, options_for_select(['NSW', 'ACT', 'NT', 'QLD', 'SA', 'TAS', 'VIC', 'WA' ]) %><br/>
             <%= f.text_field :postcode, placeholder: 'Postcode', maxlength: 4 %><br/>

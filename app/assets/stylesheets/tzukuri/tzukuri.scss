@@ -55,7 +55,7 @@ input {
 
 /* typography */
 html, body {
-    font-family: HelveticaNeueLT, Helvetica, sans-serif;
+    font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande";
     height: 100%;
 }
 
@@ -123,6 +123,7 @@ main > article {
 
         // h1
         > h1 {
+            font-family: HelveticaNeueLT, Helvetica, sans-serif;
             font-size: $h1-size;
             line-height: $h1-size;
             font-weight: 600;

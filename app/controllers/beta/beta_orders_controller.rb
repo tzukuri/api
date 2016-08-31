@@ -28,7 +28,7 @@ class BetaOrdersController < ApplicationController
   private
 
   def beta_order_params
-    params.permit(:address1, :address2, :state, :postcode, :country, :frame, :size, :phone, :delivery_method).merge(beta_user_id: current_beta_user.id)
+    params.permit(:shipping_name, :address1, :address2, :state, :postcode, :country, :frame, :size, :phone, :delivery_method).merge(beta_user_id: current_beta_user.id)
   end
 
 end
