@@ -1,23 +1,23 @@
 ActiveAdmin.register_page "Dashboard" do
     menu priority: 1, label: proc{ I18n.t("active_admin.dashboard") }
 
-    # all orders for the coming week
-    next_week = BetaOrder.all_next_week
-    next_week_ive_s = next_week.where(frame: 'ive', size: '48')
-    next_week_ive_l = next_week.where(frame: 'ive', size: '50.5')
-    next_week_ford_s = next_week.where(frame: 'ford', size: '49')
-    next_week_ford_l = next_week.where(frame: 'ford', size: '51.5')
-
-    # all orders for the coming month
-    next_month = BetaOrder.all_next_month
-    next_month_ive_s = next_month.where(frame: 'ive', size: '48')
-    next_month_ive_l = next_month.where(frame: 'ive', size: '50.5')
-    next_month_ford_s = next_month.where(frame: 'ford', size: '49')
-    next_month_ford_l = next_month.where(frame: 'ford', size: '51.5')
-
-    outstanding_deliveries = BetaOrder.where(delivery_method: 'ship', fulfilled: false)
-
     content title: proc{ I18n.t("active_admin.dashboard") } do
+    # all orders for the coming week
+        next_week = BetaOrder.all_next_week
+        next_week_ive_s = next_week.where(frame: 'ive', size: '48')
+        next_week_ive_l = next_week.where(frame: 'ive', size: '50.5')
+        next_week_ford_s = next_week.where(frame: 'ford', size: '49')
+        next_week_ford_l = next_week.where(frame: 'ford', size: '51.5')
+
+        # all orders for the coming month
+        next_month = BetaOrder.all_next_month
+        next_month_ive_s = next_month.where(frame: 'ive', size: '48')
+        next_month_ive_l = next_month.where(frame: 'ive', size: '50.5')
+        next_month_ford_s = next_month.where(frame: 'ford', size: '49')
+        next_month_ford_l = next_month.where(frame: 'ford', size: '51.5')
+
+        outstanding_deliveries = BetaOrder.where(delivery_method: 'ship', fulfilled: false)
+
         columns do
             column do
                 panel "Upcoming Personal Fittings (#{Date.today.strftime("%d-%m")} to #{(Date.today + 7.days).strftime("%d-%m")})" do
