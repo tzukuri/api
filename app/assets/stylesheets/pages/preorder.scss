@@ -1,4 +1,9 @@
 body.preorder {
+
+    #preorder {
+        margin-top: 10vh;
+    }
+
     // common form style
     form {
         // input styles
@@ -60,7 +65,7 @@ body.preorder {
     // ----------------------
     // beta ordering styles
     // ----------------------
-    #beta-index #selected-container {
+    #preorder #selected-container {
         // main container styles
         .step-container {
             margin-top: 5vh;
@@ -413,6 +418,20 @@ body.preorder {
                 }
             }
 
+            #remainder {
+                font-size: 10pt;
+                margin-top: 20px;
+                color: $tzukuri-dark-grey;
+            }
+
+            #total {
+                line-height: 150%;
+
+                .bold {
+                    font-weight: 600;
+                }
+            }
+
             #cc {
                 margin-top: 20px;
 
@@ -445,7 +464,7 @@ body.preorder {
     // ----------------------
     // main view when the beta has concluded
     // ----------------------
-    #beta-index #finished-container {
+    #selected #finished-container {
         margin-top: 20vh;
         text-align: center;
 
@@ -456,14 +475,14 @@ body.preorder {
 
         p {
             font-size: 16pt;
-            font-weight: 200;
+            color: $tzukuri-dark-grey;
         }
     }
 
     // ----------------------
     // order submitted container
     // ----------------------
-    #beta-index #order-submitted-container {
+    #selected #order-submitted-container {
         text-align: center;
         margin-top: 5vh;
 
@@ -514,316 +533,6 @@ body.preorder {
             }
             font-size: 10pt;
             text-decoration: none;
-        }
-    }
-
-    // old styles
-    #beta-index {
-        padding-top: 70px;
-
-        p {
-            font-size: 12pt;
-            line-height: 150%;
-            font-weight: 300;
-        }
-
-        hr {
-            margin-top: 0px;
-            margin-bottom: 0px;
-            border-top: 1px solid $tzukuri-light-grey;
-        }
-
-        // --------------------------------------
-        // main view (user hasn't been selected)
-        // ---------------------------------------
-        #details-container {
-            hr {
-                margin-top: 30px;
-                margin-bottom: 30px;
-            }
-
-            #user-detail-row {
-                #avatar-col {
-                    margin-bottom: 20px;
-
-                    #avatar {
-                        max-width: 100px;
-                        max-height: 100px;
-                        width: 80%;
-                        padding-bottom: 80%;
-                        background-color: $tzukuri-light-grey;
-                        border-radius: 50%;
-                        background-repeat: no-repeat;
-                        background-position: center center;
-                        background-size: 110% auto;
-                        margin-left: auto;
-                        margin-right: auto;
-                    }
-                }
-
-                #user-col {
-                    #user-title {
-                        #user-name {
-                            display: inline;
-                            font-size: 32pt;
-                            font-weight: 200;
-                            text-transform: capitalize;
-                            vertical-align: middle;
-                        }
-
-                        #logout {
-                            margin-left: 20px;
-                            vertical-align: middle;
-                        }
-
-                        margin-bottom: 20px;
-                    }
-
-                    #increase-chance {
-                        margin-bottom: 20px;
-                    }
-
-                    #invite-link-container {
-                        background-color: $tzukuri-light-grey;
-                        border-radius: 5px;
-                        padding: 20px 10px 16px 10px;
-                        text-align: center;
-                        margin-bottom: 20px;
-                        margin-top: 40px;
-
-                        #link {
-                            text-align: center;
-                            width: 60%;
-                            margin-top: 10px;
-                            margin-bottom: 15px;
-                            background-color: white;
-                            color: $tzukuri-blue;
-                            border-radius: 10px;
-                            padding: 10px 15px 10px 15px;
-                            border: 1px solid $tzukuri-light-grey;
-                            -webkit-appearance: none;
-                            opacity: 1 !important;
-
-                            & + p {
-                                font-size: 13px;
-                            }
-                        }
-                    }
-                }
-
-                #score-col {
-                    text-align: center;
-
-                    #incentive {
-                        p {
-                            margin: 0px auto;
-                            color: $tzukuri-black;
-                            line-height: 150%;
-                            font-weight: 300;
-                            font-size: 14pt !important;
-                        }
-                    }
-
-                    #remaining-spacer {
-                        margin-top: 15px;
-                        margin-bottom: 15px;
-                    }
-
-                    #days-remain {
-                        font-weight: 200;
-                        font-size: 42pt;
-                        line-height: 42pt;
-                        display: inline-block;
-                        vertical-align: middle;
-                    }
-
-                    #days-remain-sub {
-                        font-size: 16pt;
-                        font-weight: 200;
-                    }
-
-                    #score-container {
-                        border-radius: 50%;
-                        width: 120px;
-                        height: 120px;
-                        line-height: 120px;
-                        border: 2px solid $tzukuri-blue;
-                        color: $tzukuri-blue;
-                        margin-left: auto;
-                        margin-right: auto;
-                        margin-bottom: 20px;
-
-                        #points-amount {
-                            margin-top: 30px;
-                            display: block;
-                            font-size: 32pt;
-                            font-weight: 200;
-                        }
-
-                        #points-sub {
-                            margin-top: 30px;
-                            font-size: 14pt;
-                            font-weight: 200;
-                        }
-                    }
-                }
-            }
-
-            #connect-social-row {
-                #social-exp {
-                    margin-bottom: 5px;
-                }
-
-                .social-col {
-                    margin-top: 10px;
-
-                    .social-icon {
-                        text-align: left;
-                        color: $tzukuri-blue;
-                    }
-
-                    button {
-                        border-radius: 10px;
-                        width: 80%;
-                        font-size: 11pt;
-                        padding-top: 0px;
-                        padding-bottom: 2px;
-                        padding-left: 0px;
-                        padding-right: 0px;
-                        margin-left: 10px;
-                        height: 32px;
-                        line-height: 12px;
-                        border-color: #B7CAE7;
-
-                        &.connected {
-                            background-color: #8EB2F1;
-                            border-color: #8EB2F1;
-                            color: white;
-                            cursor: auto;
-                        }
-                    }
-                }
-            }
-
-            #answer-questions-row {
-                margin-bottom: 40px;
-
-                #question-header {
-                    margin-bottom: 20px;
-
-                    .answer-sub {
-                        font-size: 12pt;
-                        text-align: right;
-                    }
-
-                    #answered {
-                        color: $tzukuri-dark-grey;
-                    }
-
-                    #skip {
-                        color: $tzukuri-blue;
-                        cursor: pointer;
-                        font-size: 11pt;
-
-                        &.hidden {
-                            display: none;
-                        }
-                    }
-                }
-
-                #question-content {
-                    margin-top: 20px;
-
-                    #questions-complete {
-                        margin-top: 40px;
-                        text-align: center;
-
-                        &.hidden {
-                            display: none;
-                        }
-                    }
-
-                    .question {
-                        display: none;
-
-                        #question-name {
-                            margin-bottom: 20px;
-                        }
-
-                        p {
-                            color: $tzukuri-black;
-                        }
-
-                        form {
-                            input {
-                                text-align: left;
-                                background-color: white;
-                                border: none;
-                                border-radius: 0px;
-                                padding-left: 0px;
-                                padding-top: 0px;
-                                width: 45%;
-                                font-weight: 100;
-                                border-bottom: 1px solid #ddd;
-
-                                @include transition(0.5s);
-
-                                &:nth-child(even) {
-                                    margin-left: 20px;
-                                }
-
-                                &:hover {
-                                    color: $tzukuri-blue;
-                                    border-bottom-color: $tzukuri-blue;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // --------------------------------------
-        // login (user is not authenticated)
-        // ---------------------------------------
-        #login-container {
-            text-align: center;
-            padding: 10px;
-
-            h1 {
-                font-size: 42pt;
-                font-weight: 100;
-                margin-bottom: 50px;
-                line-height: 150%;
-            }
-
-            h2 {
-                font-size: 12pt;
-                font-weight: 300;
-                color: $tzukuri-dark-grey;
-                margin-bottom: 30px;
-                line-height: 150%;
-            }
-
-            form {
-                input {
-                    width: 40%;
-                }
-            }
-        }
-    }
-}
-
-@media only screen and (max-width: 565px) {
-    #question-content {
-        .question {
-            form {
-                input {
-                    &:nth-child(even) {
-                        margin-left: 0px !important;
-                    }
-                }
-            }
         }
     }
 }
@@ -889,7 +598,7 @@ body.preorder {
     }
 
     // beta ordering styles
-    body.beta #beta-index #selected-container {
+    body.beta #preorder #selected-container {
         .step-container {
             margin-top: 0px;
 
@@ -956,7 +665,7 @@ body.preorder {
         }
     }
 
-    #beta-index #order-submitted-container {
+    #preorder #order-submitted-container {
         p {
             width: 100% !important;
         }
@@ -989,7 +698,7 @@ body.preorder {
     }
 
     // beta ordering
-    body.beta #beta-index #selected-container {
+    body.beta #preorder #selected-container {
         #step-intro {
             h2 {
                 font-size: 30pt;

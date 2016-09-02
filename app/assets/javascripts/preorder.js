@@ -10,6 +10,17 @@ $(function() {
         timeslot: {}
     }
 
+    var modelSizing = {
+        ive: {
+            small: '48',
+            large: '50.5'
+        },
+        ford: {
+            small: '49',
+            large: '51.5'
+        }
+    }
+
     // keep track of the progress to through each of the steps. navigating forward pushes onto the stack and navigating back
     // pops off the stack. Always starting at the 0th element
     var navigationStack = [0]
@@ -153,7 +164,6 @@ $(function() {
         return
     })
 
-
     $('.prev').on('click', function() {
         navigate('back')
     })
@@ -289,22 +299,19 @@ $(function() {
                 if (data.success) {
                     console.log('success')
                     location.reload()
-                    // $('#order-ref').text(data.ref);
-                    // $('#payment-message').text('');
-                    // $('#form').fadeOut();
-                    // $('#complete').fadeIn();
                 } else {
                     if (data.reason)
                         $('#payment-message').text(data.reason);
                     else
                         $('#payment-message').text('Sorry, an unknown error occurred.');
-                    $('#submit button').prop('disabled', false);
+                        $('#submit button').prop('disabled', false);
                 }
             }, 'json').fail(function() {
                 $('#payment-message').text('Sorry, an unknown error occurred. Please try again later.');
             });
         }
     }
+
     $('#payment-form').submit(function(event) {
         $("#submit button").prop('disabled', true);
         $('#payment-message').text("Checking your card details...");
