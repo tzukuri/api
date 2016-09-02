@@ -10,17 +10,6 @@ $(function() {
         timeslot: {}
     }
 
-    var modelSizing = {
-        ive: {
-            small: '48',
-            large: '50.5'
-        },
-        ford: {
-            small: '49',
-            large: '51.5'
-        }
-    }
-
     // keep track of the progress to through each of the steps. navigating forward pushes onto the stack and navigating back
     // pops off the stack. Always starting at the 0th element
     var navigationStack = [0]
@@ -31,8 +20,8 @@ $(function() {
         acceptAndContinue: function() {},
         selectFrame: function() {},
         selectSize: function() {
-            var lg = modelSizing[orderDetails.frame].large
-            var sm = modelSizing[orderDetails.frame].small
+            var lg = tzukuri.models[orderDetails.frame].sizing.large
+            var sm = tzukuri.models[orderDetails.frame].sizing.small
 
             // update the sizing for the selected frame
             $('.select-size #small').html(sm + "mm").attr('data-size', sm)

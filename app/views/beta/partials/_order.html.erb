@@ -1,0 +1,200 @@
+<div id="selected-container">
+  <!-- 0 - intro -->
+  <div class="step-container" id="step-intro">
+    <h2>Congratulations, you're in.</h2>
+    <p>Welcome to the Tzukuri beta program. We hope you're as excited as we are that you'll be one of the first in the world to own a pair of unlosable sunglasses 😎.</p>
+    <button id="get-started" class="order-btn next">Get started  &nbsp;&nbsp;<i class="fa fa-chevron-right"></i></button>
+    <p id="disclaimer">By continuing you agree that you have an <span class="bold">iPhone 5 or later</span> running the <span class="bold">latest version of iOS.</span></p>
+  </div>
+  <div class="step-container hidden" id="step-accept">
+    <div class="selected-header">
+      <h2>Personal Fitting and Your Role</h2>
+      <div class="row">
+        <div class="six columns" id="delivery">
+          <p style="font-weight: 500; font-size: 14pt; line-height: 200%; margin-bottom: 10px;">Personal Fitting</p>
+          <p>To help you get started, we’re offering a personal fitting service to any address within 15km of the Sydney CBD. A Tzukuri team member will help you try on and select the pair you like, and assist with the set up of the app.</p>
+          <br/>
+          <p>If you're not within 15km, your glasses will be shipped to you.</p>
+        </div>
+        <div class="six columns" id="expectations">
+          <p>Your Role</p>
+          <ul>
+            <li>Respond to our weekly surveys.</li>
+            <li>Report any bugs that you encounter.</li>
+            <li>Report any general feedback or feature requests that you have.</li>
+            <li>Send in results of tasks you will be asked to complete.</li>
+            <li>Always keep up to date with the latest version of the app.</li>
+            <li>We may contact you at any time by email if we feel you could help us with any other questions.</li>
+          </ul>
+        </div>
+      </div>
+      <button class="order-btn next">
+      Accept and continue &nbsp;&nbsp;<i class="fa fa-chevron-right"></i>
+      </button>
+      <br/>
+      <button class="prev order-btn">
+      <i class="fa fa-chevron-left"></i>&nbsp;&nbsp;back
+      </button>
+    </div>
+  </div>
+  <!-- 1 - select frame -->
+  <div class="step-container hidden" id="step-frames">
+    <div class="selected-header">
+      <h2>Choose your frames</h2>
+    </div>
+    <div class="row">
+      <div class="six columns select-frame">
+        <%= image_tag 'frames/ive/black-front.png', class: "frame-img"%>
+        <button class="order-btn next" data-frame='ive'>Ive</button>
+      </div>
+      <div class="six columns select-frame">
+        <%= image_tag 'frames/ford-beta/black-front.png', class: "frame-img"%>
+        <button class="order-btn next" data-frame='ford'>
+        <span class="btn-title">Ford</span>
+        </button>
+      </div>
+    </div>
+    <p>Don’t worry if you pick the wrong one, you can finalise your choice at your Personal Fitting.</p>
+    <br/><br/>
+    <button class="prev order-btn">
+    <i class="fa fa-chevron-left"></i>&nbsp;&nbsp;back
+    </button>
+  </div>
+  <!-- 2 - select size -->
+  <div class="step-container hidden" id="step-size">
+    <div class="selected-header">
+      <h2>Choose your size</h2>
+    </div>
+    <div class="row step-content">
+      <div class="select-size">
+        <button class="order-btn next" data-size="48" id="small">48mm</button>
+        <p class="size-exp">This size will fit most people.</p>
+      </div>
+      <div class="select-size">
+        <button class="order-btn next" data-size="50.5" id="large">50.5mm</button>
+        <p class="size-exp">Choose this size if most glasses are too small for you.</p>
+      </div>
+    </div>
+    <button class="prev order-btn">
+    <i class="fa fa-chevron-left"></i>&nbsp;&nbsp;back
+    </button>
+  </div>
+  <!-- 3 - enter shipping details -->
+  <div class="step-container hidden" id="step-details">
+    <div class="selected-header">
+      <h2>Enter delivery details</h2>
+    </div>
+    <div class="row">
+      <p id="try-on">If your address is within 15km of the Sydney CBD you'll be eligible for Personal Fitting.</p>
+    </div>
+    <div class="row step-content">
+      <div class="seven columns" id="glasses">
+        <div class="row">
+          <%= image_tag 'frames/ive/black-front.png', class: 'checkout-img', id: 'ive-black' %>
+          <%= image_tag 'frames/ford-beta/black-front.png', class: 'checkout-img hidden', id: 'ford-black' %>
+        </div>
+        <div class="row">
+          <div class="twelve columns glasses-details">
+            <dl>
+              <dt>Frame</dt>
+              <dd id="frame-selection"></dd>
+              <br/>
+              <dt>Size</dt>
+              <dd id="size-selection"></dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+      <div class="five columns" id="shipping">
+        <%= form_for BetaOrder.new, :url => beta_orders_path, :html => {:method => :post}, remote:true do |f| %>
+        <%= f.text_field :shipping_name, placeholder: 'Full name', autofocus: true %><br/>
+        <%= f.text_field :address1, placeholder: 'Street name, number, etc.' %><br/>
+        <%= f.text_field :address2, placeholder: 'City, suburb, etc.' %><br/>
+        <%= select_tag   :state, options_for_select(['NSW', 'ACT', 'NT', 'QLD', 'SA', 'TAS', 'VIC', 'WA' ]) %><br/>
+        <%= f.text_field :postcode, placeholder: 'Postcode', maxlength: 4 %><br/>
+        <%= f.text_field :country,  placeholder: 'country', value: 'Australia', disabled: true %><br/>
+        <%= f.telephone_field :phone,    placeholder: 'Mobile number' %><br/>
+        <p id="error-messages"></p>
+        <% end %>
+        <button id="shipping-continue" class="order-btn next">continue&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></button>
+        <div class="loading-spinner"></div>
+      </div>
+    </div>
+    <button class="prev order-btn">
+    <i class="fa fa-chevron-left"></i>&nbsp;&nbsp;back
+    </button>
+    <br/><br/>
+  </div>
+  <!-- 4 - select a shipping method (optional) -->
+  <div class="step-container hidden" id="step-shipping-method">
+    <div class="selected-header">
+      <h2>Choose a delivery method</h2>
+    </div>
+    <div class="row step-content">
+      <div class="select-shipping">
+        <button class="order-btn next" data-delivery="0">Standard Shipping</button>
+        <p class="method-exp">Your glasses will be sent to your delivery address with a courier.</p>
+      </div>
+      <div class="select-shipping">
+        <button class="order-btn next" data-delivery="1">Personal Fitting</button>
+        <p class="method-exp">A member of the Tzukuri team will personally deliver your glasses and help you get set up.</p>
+      </div>
+    </div>
+    <button class="prev order-btn">
+    <i class="fa fa-chevron-left"></i>&nbsp;&nbsp;back
+    </button>
+  </div>
+  <!-- 5 - select a timeslot (optional) -->
+  <div class="step-container hidden" id="step-timeslot">
+    <div class="selected-header">
+      <h2>Schedule a Personal Fitting</h2>
+    </div>
+    <p id="booking-time"><span id="date"></span><span id="time">Choose an available time from the list below</span></p>
+    <button id="timeslot-continue" class="next order-btn" style="display: none">continue&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></button>
+    <div id="bookingjs"></div>
+    <button class="prev order-btn">
+    <i class="fa fa-chevron-left"></i>&nbsp;&nbsp;back
+    </button>
+  </div>
+  <!-- 6 - enter payment information -->
+  <div class="step-container hidden" id="step-payment">
+    <div class="selected-header">
+      <h2>Review your order</h2>
+    </div>
+    <div class="row step-content">
+      <div class="twelve columns">
+        <div class="row">
+          <%= image_tag 'frames/ive/black-front.png', class: 'checkout-img', id: 'conf-ive-black' %>
+          <%= image_tag 'frames/ford-beta/black-front.png', class: 'checkout-img hidden', id: 'conf-ford-black' %>
+        </div>
+        <div class="row">
+          <div class="twelve columns glasses-details">
+            <dl>
+              <dt>Frame</dt>
+              <dd id="conf-frame"></dd>
+              <br/>
+              <dt>Size</dt>
+              <dd id="conf-size"></dd>
+              <br/>
+              <dt>Deliver To</dt>
+              <dd id="conf-address"></dd>
+              <br/>
+              <dt>Delivery</dt>
+              <dd id="conf-shipping"></dd>
+              <br/>
+              <dt style="display: none" id="conf-timeslot-header">Time</dt>
+              <dd style="display: none" id="conf-timeslot">1:00PM Wednesday August 9</dd>
+            </dl>
+          </div>
+        </div>
+        <button class="order-btn finish" id="place-order">place order</button>
+        <p id="payment-message"></p>
+      </div>
+      <!-- <div class="five columns" style="margin-top: 40px;"> -->
+      <!-- <button class="order-btn finish">place order</button> -->
+    </div>
+    <button class="prev order-btn">
+    <i class="fa fa-chevron-left"></i>&nbsp;&nbsp;back
+    </button>
+  </div>
+</div>

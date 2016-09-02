@@ -1,516 +1,63 @@
 body.beta {
-    // common form style
-    form {
-        // input styles
-        input {
-            // no blue outline on form fields
-            &:focus {
-                outline-width: 0;
-            }
-
-            &.error {
-                border: 1px solid $tzukuri-red;
-            }
-
-            &#submit-btn {
-                border-radius: 20px;
-                border: 1px solid $tzukuri-blue;
-                color: $tzukuri-blue;
-                background-color: white;
-                padding: 15px;
-                width: 100px !important;
-                margin-bottom: 20px;
-
-                @include transition(0.5s);
-
-                &.disabled {
-                    color: $tzukuri-light-grey;
-                    border-color: $tzukuri-light-grey;
-                    cursor: auto;
-
-                    &:hover {
-                        color: $tzukuri-light-grey;
-                        border-color: $tzukuri-light-grey;
-                        background-color: white;
-                    }
-                }
-
-                &:hover {
-                    color: white;
-                    background-color: $tzukuri-blue;
-                }
-            }
-
-            background-color: $tzukuri-light-grey;
-            border: 1px solid $tzukuri-light-grey;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            width: 70%;
-            cursor: pointer;
-            -webkit-appearance: none;
-        }
-
-        #error-messages {
-            color: $tzukuri-red;
-            font-size: 11pt;
-            padding-top: 10px;
-        }
-    }
-
-    // ----------------------
-    // beta ordering styles
-    // ----------------------
-    #beta-index #selected-container {
-        // main container styles
-        .step-container {
-            margin-top: 5vh;
-            height: 100%;
-            text-align: center;
-
-            &.hidden {
-                display: none;
-            }
-
-            .checkout-img {
-                width: 95%;
-                margin-left: auto;
-                margin-right: auto;
-
-                &.hidden {
-                    display: none;
-                }
-            }
-
-            .selected-header {
-                // margin-bottom: 40px;
-                text-align: center;
-
-                h2 {
-                    font-size: 30pt;
-                    color: $tzukuri-black;
-                    font-weight: 200;
-                    line-height: 150%;
-                }
-            }
-
-            .order-btn {
-                border-radius: 5px;
-                background-color: none;
-                font-size: 12pt;
-                height: auto;
-                padding: 5px 35px 5px 35px;
-                text-transform: none;
-
-                &.prev {
-                    border: none;
-                    font-size: 11pt;
-                    margin-bottom: 20px;
-                }
-
-                &.finish {
-                    color: #39CA74;
-                    border: 1px solid #39CA74;
-
-                    &:hover {
-                        color: #fff;
-                        background-color: #39CA74;
-                    }
-                }
-            }
-
-            .glasses-details {
-                text-align: left;
-
-                dl {
-                    // margin-bottom: 20px;
-                    margin-left: 70px;
-
-                    dt, dd {
-                        display: inline-block;
-                        margin-bottom: 8px;
-                        font-size: 10pt;
-                    }
-
-                    dt {
-                        text-transform: uppercase;
-                        font-weight: 600;
-                        text-align: right;
-                    }
-
-                    dd {
-                        text-transform: capitalize;
-                    }
-                }
-            }
-        }
-
-        // 0 - introduction
-        #step-intro {
-            #disclaimer {
-                margin-top:20px;
-                margin-bottom: 20px;
-                font-size: 10pt;
-                color: $tzukuri-dark-grey;
-            }
-
-            h2 {
-                font-size: 34pt;
-                font-weight: 200;
-                line-height: 180%;
-            }
-
-            p {
-                margin-top: 20px;
-                font-weight: 300;
-                font-size: 12pt;
-                margin-bottom: 40px;
-                line-height: 200%;
-            }
-        }
-
-        #step-accept {
-            #expectations {
-                text-align: left;
-                margin-top: 40px;
-
-                ul {
-                    margin-left: 20px;
-                    list-style-type: disc;
-                    line-height: 200%;
-                    font-weight: 300;
-                    font-size: 12pt;
-                }
-
-                p {
-                    margin-bottom: 10px;
-                    line-height: 200%;
-                    font-weight: 500;
-                    font-size: 14pt;
-                }
-            }
-
-            #delivery {
-                text-align: left;
-                margin-top: 40px;
-                font-weight: 200;
-                font-size: 12pt;
-
-                p {
-                    line-height: 200%;
-                }
-            }
-
-            button {
-                margin-top: 40px;
-            }
-        }
-
-        // 1 - select frames
-        #step-frames {
-            .select-frame {
-                .frame-img {
-                    margin-top: -50px;
-                    width: 90%;
-                }
-
-                .order-btn {
-                    width: 50%;
-                }
-            }
-
-            p {
-                margin-top: 40px;
-                font-size: 10pt;
-                color: $tzukuri-dark-grey;
-            }
-        }
-
-        // 2 - select frame size
-        #step-size {
-
-            .step-content {
-                margin-top: 40px;
-            }
-
-            .size-exp {
-                font-size: 11pt;
-                color: $tzukuri-dark-grey;
-                margin-top: 20px;
-                margin-bottom: 40px;
-                font-weight: 300;
-            }
-
-            #small, #large {
-                width: 40%;
-            }
-        }
-
-        // 3 - enter shipping details
-        #step-details {
-            .step-content {
-                margin-bottom: 10px;
-            }
-
-            .selected-header {
-                margin-bottom: 10px;
-            }
-
-            #try-on {
-                width: 75%;
-                margin: 0 auto;
-                margin-bottom: 30px;
-                color: $tzukuri-dark-grey;
-            }
-
-            #shipping {
-                form input {
-                    width: 90%;
-                }
-
-                #state {
-                    background: none;
-                    width: 95%;
-                    height: 40px;
-                    margin-bottom: 10px;
-                    -webkit-appearance: none;
-                    border: none;
-                    border-radius: 10px;
-                    background-color: $tzukuri-light-grey;
-                    padding-left: 10px;
-                    font-size: 12pt;
-                }
-
-                #error-messages {
-                    color: $tzukuri-red;
-                    font-size: 10pt;
-                    padding-bottom: 10px;
-                    padding-left: 30px;
-                    padding-right: 30px;
-                }
-
-                .loading-spinner {
-                    background: url("/images/loading_spinner.svg") no-repeat;
-                    background-position: 50% 12px;
-                    height: 40px;
-                    display: none;
-                }
-            }
-        }
-
-        // 4 - select a shipping method
-        #step-shipping-method {
-            .select-shipping .order-btn {
-                width: 40%;
-            }
-
-            .step-content {
-                margin-top: 40px;
-            }
-
-            .method-exp {
-                font-size: 11pt;
-                color: $tzukuri-dark-grey;
-                margin-top: 20px;
-                margin-bottom: 40px;
-                font-weight: 300;
-            }
-        }
-
-        // 5 - select a timeslot
-        #step-timeslot {
-            p {
-                color: $tzukuri-dark-grey;
-                font-size: 11pt;
-
-                #meet-address, #meet-time {
-                    font-weight: 500;
-                }
-            }
-
-            #booking-time {
-                margin-top: 10px;
-                margin-bottom: 20px;
-                font-size: 14pt;
-                color: #232323;
-
-                #date {
-                    font-weight: 500;
-                }
-            }
-
-            .step-content {
-                margin-bottom: 40px;
-                margin-top: 40px;
-            }
-
-            #timeslot-continue {
-                padding-top: 7px;
-                padding-bottom: 7px;
-            }
-
-            #timeslot-day, .timeslot-time {
-                -webkit-appearance: none;
-                background: url("/images/feedback_button.png") no-repeat;
-                background-size: 15px;
-                background-position: 90%;
-                font-size: 12pt;
-                padding: 10px 50px 10px 50px;
-                border: 1px solid $tzukuri-blue;
-                color: $tzukuri-blue;
-                background-color: white;
-
-                @include transition(0.5s);
-
-                &:hover {
-                    background: url("/images/feedback_button_white.png") no-repeat;
-                    background-size: 15px;
-                    background-position: 90%;
-                    color: white;
-                    background-color: $tzukuri-blue;
-                }
-            }
-        }
-
-        // 6 - enter payment information
-        #step-payment {
-            .checkout-img {
-                width: 50%;
-            }
-
-            .glasses-details {
-                dl {
-                    text-align: center;
-                    margin-left: 0px;
-                }
-            }
-
-            #place-order {
-                margin-top: 20px;
-                margin-bottom: 10px;
-            }
-
-            #conf-ive-black, #conf-ford-black {
-                margin-top: -80px;
-            }
-
-            dl {
-                margin-left: 220px;
-            }
-
-            input[type=text], input[type=email] {
-                @include box-sizing(border-box);
-
-                width: 100%;
-            }
-
-            #payment-message {
-                margin-top: 10px;
-                margin-bottom: 10px;
-                font-size: 12pt;
-
-                &.error {
-                    color: $tzukuri-red;
-                }
-            }
-
-            #cc {
-                margin-top: 20px;
-
-                select {
-                    padding-left: 10px;
-
-                    @include border-radius(5px);
-
-                    background-color: $tzukuri-light-grey;
-                    font-size: 12pt;
-                    height: 40px;
-                    outline: none;
-                    border: none;
-                    -webkit-appearance: none;
-                    border-radius: 10px;
-                }
-            }
-        }
-    }
-
-    // ----------------------
-    // main view when the beta has concluded
-    // ----------------------
-    #beta-index #finished-container {
-        margin-top: 20vh;
-        text-align: center;
-
-        h1 {
-            font-size: 32pt;
-            font-weight: 200;
-        }
-
-        p {
-            font-size: 16pt;
-            font-weight: 200;
-        }
-    }
-
-    // ----------------------
-    // order submitted container
-    // ----------------------
-    #beta-index #order-submitted-container {
-        text-align: center;
-        margin-top: 5vh;
-
-        h2 {
-            font-size: 30pt;
-            color: $tzukuri-black;
-            font-weight: 200;
-            line-height: 150%;
-        }
-
-        h3 {
-            font-size: 12pt;
-            font-weight: 500;
-            margin-top: 30px;
-            margin-bottom: 10px;
-        }
-
-        p {
-            line-height: 200%;
-            width: 70%;
-            margin: 0 auto;
-        }
-
-        #personal-delivery p {
-            font-size: 10pt;
-            line-height: 200%;
-
-            &#expect-call {
-                margin-top: 10px;
-            }
-        }
-
-        #welcome {
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-
-
-        .delivery-detail {
-            font-size: 10pt;
-            margin: 0;
-            margin: 0 auto;
-        }
-
-        #delivery-calendar {
-            i {
-                margin-bottom: 10px;
-            }
-            font-size: 10pt;
-            text-decoration: none;
-        }
-    }
-
-    // old styles
     #beta-index {
         padding-top: 70px;
+
+        form {
+            // input styles
+            input {
+                // no blue outline on form fields
+                &:focus {
+                    outline-width: 0;
+                }
+
+                &.error {
+                    border: 1px solid $tzukuri-red;
+                }
+
+                &#submit-btn {
+                    border-radius: 20px;
+                    border: 1px solid $tzukuri-blue;
+                    color: $tzukuri-blue;
+                    background-color: white;
+                    padding: 15px;
+                    width: 100px !important;
+                    margin-bottom: 20px;
+
+                    @include transition(0.5s);
+
+                    &.disabled {
+                        color: $tzukuri-light-grey;
+                        border-color: $tzukuri-light-grey;
+                        cursor: auto;
+
+                        &:hover {
+                            color: $tzukuri-light-grey;
+                            border-color: $tzukuri-light-grey;
+                            background-color: white;
+                        }
+                    }
+
+                    &:hover {
+                        color: white;
+                        background-color: $tzukuri-blue;
+                    }
+                }
+
+                background-color: $tzukuri-light-grey;
+                border: 1px solid $tzukuri-light-grey;
+                border-radius: 10px;
+                margin-bottom: 15px;
+                width: 70%;
+                cursor: pointer;
+                -webkit-appearance: none;
+            }
+
+            #error-messages {
+                color: $tzukuri-red;
+                font-size: 11pt;
+                padding-top: 10px;
+            }
+        }
 
         p {
             font-size: 12pt;
@@ -524,9 +71,62 @@ body.beta {
             border-top: 1px solid $tzukuri-light-grey;
         }
 
-        // --------------------------------------
-        // main view (user hasn't been selected)
-        // ---------------------------------------
+        // order confirmation
+        #order-submitted-container {
+            text-align: center;
+            margin-top: 5vh;
+
+            h2 {
+                font-size: 30pt;
+                color: $tzukuri-black;
+                font-weight: 200;
+                line-height: 150%;
+            }
+
+            h3 {
+                font-size: 12pt;
+                font-weight: 500;
+                margin-top: 30px;
+                margin-bottom: 10px;
+            }
+
+            p {
+                line-height: 200%;
+                width: 70%;
+                margin: 0 auto;
+            }
+
+            #personal-delivery p {
+                font-size: 10pt;
+                line-height: 200%;
+
+                &#expect-call {
+                    margin-top: 10px;
+                }
+            }
+
+            #welcome {
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+
+            .delivery-detail {
+                font-size: 10pt;
+                margin: 0;
+                margin: 0 auto;
+            }
+
+            #delivery-calendar {
+                i {
+                    margin-bottom: 10px;
+                }
+
+                font-size: 10pt;
+                text-decoration: none;
+            }
+        }
+
+        // dashboard
         #details-container {
             hr {
                 margin-top: 30px;
@@ -774,9 +374,395 @@ body.beta {
             }
         }
 
-        // --------------------------------------
-        // login (user is not authenticated)
-        // ---------------------------------------
+        // ordering
+        #selected-container {
+            .step-container {
+                margin-top: 5vh;
+                height: 100%;
+                text-align: center;
+
+                &.hidden {
+                    display: none;
+                }
+
+                .checkout-img {
+                    width: 95%;
+                    margin-left: auto;
+                    margin-right: auto;
+
+                    &.hidden {
+                        display: none;
+                    }
+                }
+
+                .selected-header {
+                    // margin-bottom: 40px;
+                    text-align: center;
+
+                    h2 {
+                        font-size: 30pt;
+                        color: $tzukuri-black;
+                        font-weight: 200;
+                        line-height: 150%;
+                    }
+                }
+
+                .order-btn {
+                    border-radius: 5px;
+                    background-color: none;
+                    font-size: 12pt;
+                    height: auto;
+                    padding: 5px 35px 5px 35px;
+                    text-transform: none;
+
+                    &.prev {
+                        border: none;
+                        font-size: 11pt;
+                        margin-bottom: 20px;
+                    }
+
+                    &.finish {
+                        color: #39CA74;
+                        border: 1px solid #39CA74;
+
+                        &:hover {
+                            color: #fff;
+                            background-color: #39CA74;
+                        }
+                    }
+                }
+
+                .glasses-details {
+                    text-align: left;
+
+                    dl {
+                        // margin-bottom: 20px;
+                        margin-left: 70px;
+
+                        dt, dd {
+                            display: inline-block;
+                            margin-bottom: 8px;
+                            font-size: 10pt;
+                        }
+
+                        dt {
+                            text-transform: uppercase;
+                            font-weight: 600;
+                            text-align: right;
+                        }
+
+                        dd {
+                            text-transform: capitalize;
+                        }
+                    }
+                }
+            }
+
+            // 0 - introduction
+            #step-intro {
+                #disclaimer {
+                    margin-top: 20px;
+                    margin-bottom: 20px;
+                    font-size: 10pt;
+                    color: $tzukuri-dark-grey;
+                }
+
+                h2 {
+                    font-size: 34pt;
+                    font-weight: 200;
+                    line-height: 180%;
+                }
+
+                p {
+                    margin-top: 20px;
+                    font-weight: 300;
+                    font-size: 12pt;
+                    margin-bottom: 40px;
+                    line-height: 200%;
+                }
+            }
+
+            #step-accept {
+                #expectations {
+                    text-align: left;
+                    margin-top: 40px;
+
+                    ul {
+                        margin-left: 20px;
+                        list-style-type: disc;
+                        line-height: 200%;
+                        font-weight: 300;
+                        font-size: 12pt;
+                    }
+
+                    p {
+                        margin-bottom: 10px;
+                        line-height: 200%;
+                        font-weight: 500;
+                        font-size: 14pt;
+                    }
+                }
+
+                #delivery {
+                    text-align: left;
+                    margin-top: 40px;
+                    font-weight: 200;
+                    font-size: 12pt;
+
+                    p {
+                        line-height: 200%;
+                    }
+                }
+
+                button {
+                    margin-top: 40px;
+                }
+            }
+
+            // 1 - select frames
+            #step-frames {
+                .select-frame {
+                    .frame-img {
+                        margin-top: -50px;
+                        width: 90%;
+                    }
+
+                    .order-btn {
+                        width: 50%;
+                    }
+                }
+
+                p {
+                    margin-top: 40px;
+                    font-size: 10pt;
+                    color: $tzukuri-dark-grey;
+                }
+            }
+
+            // 2 - select frame size
+            #step-size {
+                .step-content {
+                    margin-top: 40px;
+                }
+
+                .size-exp {
+                    font-size: 11pt;
+                    color: $tzukuri-dark-grey;
+                    margin-top: 20px;
+                    margin-bottom: 40px;
+                    font-weight: 300;
+                }
+
+                #small, #large {
+                    width: 40%;
+                }
+            }
+
+            // 3 - enter shipping details
+            #step-details {
+                .step-content {
+                    margin-bottom: 10px;
+                }
+
+                .selected-header {
+                    margin-bottom: 10px;
+                }
+
+                #try-on {
+                    width: 75%;
+                    margin: 0 auto;
+                    margin-bottom: 30px;
+                    color: $tzukuri-dark-grey;
+                }
+
+                #shipping {
+                    form input {
+                        width: 90%;
+                    }
+
+                    #state {
+                        background: none;
+                        width: 95%;
+                        height: 40px;
+                        margin-bottom: 10px;
+                        -webkit-appearance: none;
+                        border: none;
+                        border-radius: 10px;
+                        background-color: $tzukuri-light-grey;
+                        padding-left: 10px;
+                        font-size: 12pt;
+                    }
+
+                    #error-messages {
+                        color: $tzukuri-red;
+                        font-size: 10pt;
+                        padding-bottom: 10px;
+                        padding-left: 30px;
+                        padding-right: 30px;
+                    }
+
+                    .loading-spinner {
+                        background: url("/images/loading_spinner.svg") no-repeat;
+                        background-position: 50% 12px;
+                        height: 40px;
+                        display: none;
+                    }
+                }
+            }
+
+            // 4 - select a shipping method
+            #step-shipping-method {
+                .select-shipping .order-btn {
+                    width: 40%;
+                }
+
+                .step-content {
+                    margin-top: 40px;
+                }
+
+                .method-exp {
+                    font-size: 11pt;
+                    color: $tzukuri-dark-grey;
+                    margin-top: 20px;
+                    margin-bottom: 40px;
+                    font-weight: 300;
+                }
+            }
+
+            // 5 - select a timeslot
+            #step-timeslot {
+                p {
+                    color: $tzukuri-dark-grey;
+                    font-size: 11pt;
+
+                    #meet-address, #meet-time {
+                        font-weight: 500;
+                    }
+                }
+
+                #booking-time {
+                    margin-top: 10px;
+                    margin-bottom: 20px;
+                    font-size: 14pt;
+                    color: #232323;
+
+                    #date {
+                        font-weight: 500;
+                    }
+                }
+
+                .step-content {
+                    margin-bottom: 40px;
+                    margin-top: 40px;
+                }
+
+                #timeslot-continue {
+                    padding-top: 7px;
+                    padding-bottom: 7px;
+                }
+
+                #timeslot-day, .timeslot-time {
+                    -webkit-appearance: none;
+                    background: url("/images/feedback_button.png") no-repeat;
+                    background-size: 15px;
+                    background-position: 90%;
+                    font-size: 12pt;
+                    padding: 10px 50px 10px 50px;
+                    border: 1px solid $tzukuri-blue;
+                    color: $tzukuri-blue;
+                    background-color: white;
+
+                    @include transition(0.5s);
+
+                    &:hover {
+                        background: url("/images/feedback_button_white.png") no-repeat;
+                        background-size: 15px;
+                        background-position: 90%;
+                        color: white;
+                        background-color: $tzukuri-blue;
+                    }
+                }
+            }
+
+            // 6 - enter payment information
+            #step-payment {
+                .checkout-img {
+                    width: 50%;
+                }
+
+                .glasses-details {
+                    dl {
+                        text-align: center;
+                        margin-left: 0px;
+                    }
+                }
+
+                #place-order {
+                    margin-top: 20px;
+                    margin-bottom: 10px;
+                }
+
+                #conf-ive-black, #conf-ford-black {
+                    margin-top: -80px;
+                }
+
+                dl {
+                    margin-left: 220px;
+                }
+
+                input[type=text], input[type=email] {
+                    @include box-sizing(border-box);
+
+                    width: 100%;
+                }
+
+                #payment-message {
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                    font-size: 12pt;
+
+                    &.error {
+                        color: $tzukuri-red;
+                    }
+                }
+
+                #cc {
+                    margin-top: 20px;
+
+                    select {
+                        padding-left: 10px;
+
+                        @include border-radius(5px);
+
+                        background-color: $tzukuri-light-grey;
+                        font-size: 12pt;
+                        height: 40px;
+                        outline: none;
+                        border: none;
+                        -webkit-appearance: none;
+                        border-radius: 10px;
+                    }
+                }
+            }
+        }
+
+        // beta finished
+        #finished-container {
+            margin-top: 20vh;
+            text-align: center;
+
+            h1 {
+                font-size: 32pt;
+                font-weight: 200;
+            }
+
+            p {
+                font-size: 16pt;
+                font-weight: 200;
+            }
+        }
+
+        // login
         #login-container {
             text-align: center;
             padding: 10px;
@@ -805,6 +791,7 @@ body.beta {
     }
 }
 
+// media queries
 @media only screen and (max-width: 565px) {
     #question-content {
         .question {
@@ -901,7 +888,7 @@ body.beta {
             }
 
             p {
-                margin-top:-20px;
+                margin-top: -20px;
             }
         }
 

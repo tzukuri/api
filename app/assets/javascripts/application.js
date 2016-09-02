@@ -16,4 +16,5 @@
 //= require jquery-ui/autocomplete
 //= require moment
 //= require lodash
+//= require_tree ../../../vendor/assets/javascripts
 //= require_tree .

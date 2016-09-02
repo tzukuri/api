@@ -25,10 +25,6 @@ class BetaController < ApplicationController
     if beta_user_signed_in?
       @beta_user = current_beta_user
 
-      # if @beta_user.selected
-      #   @available_days = BetaDeliveryTimeslot.all_available_timeslots
-      # end
-
       if @beta_user.order?
         @beta_order = @beta_user.order
       end
@@ -36,25 +32,25 @@ class BetaController < ApplicationController
       # currently this calculates the threshold every time the user loads the index view
       # this is something that probably won't change all that often so calculating it on each page load
       # might be a waste. Leaving for the time being for simplicity.
-      # threshold_user = BetaUser.where("email NOT LIKE ? AND selected=false", "%@tzukuri.com%").order(score: :desc)[Tzukuri::NUM_THRESHOLD_USERS]
+    #   threshold_user = BetaUser.where("email NOT LIKE ? AND selected=false", "%@tzukuri.com%").order(score: :desc)[Tzukuri::NUM_THRESHOLD_USERS]
 
-      # if the user does not exist, use a default threshold
-      # if threshold_user.nil?
-      #   @threshold = Tzukuri::THRESHOLD_SCORE_DEFAULT
-      # else
-      #   @threshold = threshold_user.score.to_i
-      # end
+    #   # if the user does not exist, use a default threshold
+    #   if threshold_user.nil?
+    #     @threshold = Tzukuri::THRESHOLD_SCORE_DEFAULT
+    #   else
+    #     @threshold = threshold_user.score.to_i
+    #   end
 
-      # @score_diff = @threshold - @beta_user.score
-      # @num_invitees = @beta_user.invitees.count
-      # @answerable_questions = @beta_user.answerable_questions
-    else
-      # otherwise create an empty user and show the form
-      if @token == 'invite'
-        redirect_to '/'
-      else
-        @beta_user = BetaUser.new
-      end
+    #   @score_diff = @threshold - @beta_user.score
+    #   @num_invitees = @beta_user.invitees.count
+    #   @answerable_questions = @beta_user.answerable_questions
+    # else
+    #   # otherwise create an empty user and show the form
+    #   if @token == 'invite'
+    #     redirect_to '/'
+    #   else
+    #     @beta_user = BetaUser.new
+    #   end
     end
   end
 

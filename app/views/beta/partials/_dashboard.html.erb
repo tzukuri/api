@@ -1,0 +1,122 @@
+<div id='details-container' data-response-points="<%= Tzukuri::RESPONSE_POINTS %>" data-score="<%= @beta_user
+.score.to_i %>" data-top-threshold="<%= @threshold %>" data-threshold-users="<%= Tzukuri::NUM_THRESHOLD_USERS %>">
+
+  <div class="row" id="user-detail-row">
+    <div class="three columns" id="score-col">
+      <div id="score-container">
+        <span id="days-remain"></span>
+      </div>
+      <p id="days-remain-sub">days remaining</p>
+    </div>
+
+    <div class="nine columns" id="user-col">
+      <div id="user-title">
+        <h1 id="user-name"><%= @beta_user.name %></h1>
+        <%= link_to "logout", destroy_beta_user_session_path, :id => 'logout', :method => :delete %>
+      </div>
+      <p id="increase-chance">To find the most passionate people, the <span class='bold'>top 100 users by points</span> will be selected to receive a pair of glasses for testing. Get more points by completing the tasks below.  <a href="#" id="need-help">Need help?</a></p>
+      <div id="invite-link-container">
+        <p>Share this link to earn <span class='bold'><%= Tzukuri::INVITEE_POINTS %> points</span> for every sign up</p>
+        <input readonly id="link" value="tzukuri.com/beta/invite/<%= @beta_user.invite_token %>">
+        <% if @num_invitees == 1 %>
+          <p>1 person has used your invite</p>
+        <% else %>
+          <p><%= @num_invitees %> people have used your invite</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" id="connect-social-row">
+    <div class="three columns">
+      &nbsp;
+    </div>
+
+    <div class="nine columns">
+      <hr>
+      <p id="social-exp">Every social media account you connect earns you <span class="bold"><%= Tzukuri::IDENTITY_POINTS %> points</span></p>
+      <div class="row">
+        <div class="four columns social-col row">
+          <div class="two columns social-icon">
+            <i class="fa fa-2x fa-instagram"></i>
+          </div>
+          <div class="ten columns">
+            <% if @beta_user.instagram? %>
+              <button class="connected">connected</button>
+            <% else %>
+              <%= link_to oauth_path(:instagram) do %>
+                <button>connect</button>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="four columns social-col row">
+          <div class="two columns social-icon">
+            <i class="fa fa-2x fa-twitter"></i>
+          </div>
+          <div class="ten columns">
+            <% if @beta_user.twitter? %>
+              <button class="connected">connected</button>
+            <% else %>
+              <%= link_to oauth_path(:twitter) do %>
+                <button>connect</button>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="four columns social-col row">
+          <div class="two columns social-icon">
+            <i class="fa fa-2x fa-facebook"></i>
+          </div>
+          <div class="ten columns">
+            <% if @beta_user.facebook? %>
+            <button class="connected">connected</button>
+            <% else %>
+            <%= link_to oauth_path(:facebook) do %>
+            <button>connect</button>
+            <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" id="answer-questions-row">
+    <div class="three columns">
+      &nbsp;
+    </div>
+
+    <div class="nine columns">
+      <hr>
+      <% if @answerable_questions.count > 0 %>
+      <div class="row" id="question-header">
+        <div class="nine columns">
+          <p>Earn <span class="bold"><%= Tzukuri::RESPONSE_POINTS %> points</span> by answering this question</p>
+        </div>
+        <div class="three columns">
+          <p id="skip" class="answer-sub <%= 'hidden' if @answerable_questions.count <= 1%>">skip question</p>
+        </div>
+      </div>
+      <% end %>
+      <div id="question-content">
+        <p id="questions-complete" class="<%= 'hidden' if @answerable_questions.count != 0 %>">Thanks, you've answered all the survey questions &nbsp; 🎉</p>
+        <% BetaQuestion.all.each do |question| %>
+          <div class="question row" id="question_<%= question.id %>" data-answerable='<%= @answerable_questions.include?(question) ? 'true' : 'false' %>'>
+            <div class="four columns">
+              <p id="question-name"><%= question.content %></p>
+            </div>
+            <div class="eight columns">
+              <%= form_for BetaResponse.new, :url => beta_responses_path, :html => {:method => :post}, remote:true do |f| %>
+                <%= f.hidden_field :beta_question_id, value: question.id%>
+                  <% question.response_options.each do |response| %>
+                    <%= f.submit response %>
+                  <% end %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
