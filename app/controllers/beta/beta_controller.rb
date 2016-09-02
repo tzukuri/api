@@ -44,13 +44,13 @@ class BetaController < ApplicationController
     #   @score_diff = @threshold - @beta_user.score
     #   @num_invitees = @beta_user.invitees.count
     #   @answerable_questions = @beta_user.answerable_questions
-    # else
-    #   # otherwise create an empty user and show the form
-    #   if @token == 'invite'
-    #     redirect_to '/'
-    #   else
-    #     @beta_user = BetaUser.new
-    #   end
+    else
+      # otherwise create an empty user and show the form
+      if @token == 'invite'
+        redirect_to '/'
+      else
+        @beta_user = BetaUser.new
+      end
     end
   end
 
