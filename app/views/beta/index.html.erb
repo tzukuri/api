@@ -23,7 +23,7 @@
             <hr/>
             <h3>Personal Fitting Details</h3>
             <p class="delivery-detail"><%= @beta_order.address1 %>, <%= @beta_order.address2 %></p>
-            <p class="delivery-detail"><%= @beta_order.delivery_time.to_time.strftime("%A, %B %d at %l:%M %p") %></p>
+            <p class="delivery-detail"><%= @beta_order.delivery_time.in_time_zone('Australia/Sydney').strftime('%A, %B %d at %l:%M %p') %></p>
             <p id="expect-call">Please expect to receive a call from one of our team members at your delivery time.</p>
           </div>
         <% end %>

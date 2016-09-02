@@ -48,7 +48,7 @@
             </p>
             <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0;">
               <strong>ADDRESS:</strong> <%= @beta_order.full_address %><br/>
-              <strong>TIME:</strong> <%= @beta_order.delivery_time.to_time.strftime("%A, %B %d at %l:%M %p") %>
+              <strong>TIME:</strong> <%= @beta_order.delivery_time.in_time_zone('Australia/Sydney').strftime('%A, %B %d at %l:%M %p') %>
             </p>
 
             <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0;">
