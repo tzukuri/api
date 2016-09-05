@@ -195,7 +195,8 @@ $(function() {
             if (distance < 15) {
                 navigateToIndex(6)
             } else {
-                $("#error-messages").html("Please enter an address within 15km of the Sydney CBD.")
+                navigateToIndex(7)
+                // $("#error-messages").html("Please enter an address within 15km of the Sydney CBD.")
             }
 
 
