@@ -33,6 +33,10 @@ $(function() {
             $('.select-size #large').html(lg + "mm").attr('data-size', lg)
         },
         shippingDetails: function() {
+
+            // reset the timeslot
+            orderDetails.timeslot = {}
+
             if (orderDetails.frame == "ive") {
                 $("#ive-black, #conf-ive-black").show()
                 $("#ford-black, #conf-ford-black").hide()
@@ -193,10 +197,11 @@ $(function() {
             // }
 
             if (distance < 15) {
+                orderDetails.delivery_method = "deliver"
                 navigateToIndex(6)
             } else {
+                orderDetails.delivery_method = "ship"
                 navigateToIndex(7)
-                // $("#error-messages").html("Please enter an address within 15km of the Sydney CBD.")
             }
 
 
