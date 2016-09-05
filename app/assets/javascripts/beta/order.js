@@ -81,7 +81,7 @@ $(function() {
               },
 
               timekitFindTime: {
-                future: '2 weeks',
+                future: '4 weeks',
                 length: '1 hour',
                 start: 'tomorrow',
                 emails: ['beta@tzukuri.com', 'd@tzukuri.com', 'a@tzukuri.com'],
@@ -186,11 +186,18 @@ $(function() {
 
             // if there are no timeslots remaining or they are too far away
             // immediately navigate to the review page
-            if (distance > 15) {
-                navigateToIndex(7)
+            // if (distance > 15) {
+            //     navigateToIndex(7)
+            // } else {
+            //     navigate('forward')
+            // }
+
+            if (distance < 15) {
+                navigateToIndex(6)
             } else {
-                navigate('forward')
+                $("#error-messages").html("Please enter an address within 15km of the Sydney CBD.")
             }
+
 
             $(".loading-spinner").hide()
             $("#shipping-continue").show()
