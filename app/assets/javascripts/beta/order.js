@@ -68,7 +68,7 @@ $(function() {
               showCredits: false,
 
               fullCalendar: {
-                defaultView: 'basicWeek',
+                defaultView: 'agendaWeek',
                 eventClick: function(event) {
                     orderDetails.timeslot.start = event.start
                     orderDetails.timeslot.end = event.end
@@ -282,8 +282,12 @@ $(function() {
         }
 
         $(steps[currentStep]).fadeOut(function() {
-            $(steps[index]).fadeIn()
-        });
+            $(steps[index]).fadeIn(function() {
+                // wait until the timeslot view has rendered before initialising
+                // this is a bit of a hack that prevents some strange bug where the navigation buttons don't work
+                if (index == 6) didShowStep.timeslotSelect()
+            })
+        })
 
         // call one of the step callbacks
         switch(index) {
@@ -304,9 +308,6 @@ $(function() {
                 break;
             case 5:
                 didShowStep.deliveryMethod()
-                break;
-            case 6:
-                didShowStep.timeslotSelect()
                 break;
             case 7:
                 didShowStep.orderReview()
