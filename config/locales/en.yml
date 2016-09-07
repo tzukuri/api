@@ -113,9 +113,9 @@ en:
             motion_activity_warning_dismiss_button: "OK"
             motion_activity_warning_help_button: "Help"
         alerts:
-            sleep_fail_title: "Unable to enter Aeroplane mode"
-            sleep_fail_message: "An error occurred while putting your glasses into Aeroplane mode. Please ensure they're connected and try again."
-            sleep_title: "Are you sure you want to turn on Aeroplane mode?"
+            sleep_fail_title: "Unable to put your glasses to sleep"
+            sleep_fail_message: "An error occurred while putting your glasses to sleep. Please ensure they're connected and try again."
+            sleep_title: "Are you sure you want to put your glasses to sleep?"
             sleep_message: "Your glasses will turn off and you will need your charger to turn them on again."
             unlink_title: "Are you sure you want to unlink your glasses?"
             unlink_message: "This will unlink your glasses from this phone and your Tzukuri account."
