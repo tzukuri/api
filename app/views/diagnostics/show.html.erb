@@ -11,7 +11,7 @@
         </tr>
         <% block.entries.each_with_index do |entry, i| %>
             <tr>
-                <td><%= entry.time.strftime("%H:%M:%S") %></td>
+                <td><%= entry.time.in_time_zone('Australia/Sydney').strftime('%d/%m/%y %l:%M:%S %p') %></td>
                 <td><%= entry.raw_ts if i > 0 %></td>
                 <td><%= entry.type %></td>
                 <td>

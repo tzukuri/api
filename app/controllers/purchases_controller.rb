@@ -21,8 +21,8 @@ class PurchasesController < ApplicationController
 
         begin
             charge = Stripe::Charge.create(
-                amount: 10000,
-                currency: 'usd',
+                amount: 9500,
+                currency: 'aud',
                 customer: customer.id,
                 description: "Tzukuri - #{params[:frame].titleize}, #{params[:colour].titleize}, #{params[:size].titleize} - #{params[:name]}"
             )
@@ -30,6 +30,7 @@ class PurchasesController < ApplicationController
             purchase = Purchase.create(
                 name: params[:name],
                 email: params[:email],
+                phone: params[:phone],
                 address1: params[:address1],
                 address2: params[:address2],
                 state: params[:state],
@@ -41,6 +42,9 @@ class PurchasesController < ApplicationController
                 customer_id: customer.id,
                 charge_id: charge.id
             )
+
+            # send confirmation email
+            BetaMailer.send_purchase_confirmation_email(purchase).deliver_later
 
             render json: {success: true, ref: "#{params[:frame].downcase[0..3]}#{purchase.id}"}
         rescue Stripe::CardError => e

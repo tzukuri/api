@@ -13,17 +13,15 @@ ActiveAdmin.register BetaOrder do
         column :address do |order|
             order.full_address
         end
-        column :frame
+        column :frame do |order|
+            order.frame.titleize
+        end
         column :size
         column :phone
         column :delivery_method
         column :fulfilled
-        column :timeslot do |order|
-            if (order.beta_delivery_timeslot.present?)
-              order.beta_delivery_timeslot.time.strftime("%a %d-%m-%Y %H:%M %P")
-            else
-                "N/A"
-            end
+        column :delivery_time do |order|
+            order.delivery_time.in_time_zone('Australia/Sydney').strftime("%a %d-%m-%Y %l:%M %P") if order.delivery_time.present?
         end
         actions
     end
@@ -39,9 +37,7 @@ ActiveAdmin.register BetaOrder do
             f.input :frame
             f.input :size
             f.input :delivery_method
-            f.input :beta_delivery_timeslot do |timeslot|
-                auto_link timeslot.time
-            end
+            f.input :delivery_time
             f.input :fulfilled
         end
         f.actions

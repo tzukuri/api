@@ -1,7 +1,9 @@
+// loaded from their respective files
 var tzukuri = (function () {
   return {
     modal: modal,
-    map: map
+    map: map,
+    models: models
   }
 }())
 

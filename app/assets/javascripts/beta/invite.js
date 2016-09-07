@@ -3,37 +3,6 @@ $(function() {
 
     var birthdayTimeout;
 
-    // var crossFade = (function() {
-    //     var FADE_INTERVAL = 6000;
-    //     var FADE_TIME = 1000;
-
-    //     var c = {}
-
-    //     c.start = function(imageContainer) {
-    //         // change image every FADE_INTERVAL seconds
-    //         setInterval(c.changeImage.bind(null, imageContainer), FADE_INTERVAL)
-    //     }
-
-    //     c.changeImage = function(imageContainer) {
-    //         var top = $(imageContainer).children('.top')
-    //         top.removeClass('top')
-
-    //         // there is a next element, it becomes the new one
-    //         if (top.next().length > 0) {
-    //             setTimeout(function() {
-    //                 top.next().addClass('top')
-    //             }, FADE_TIME)
-
-    //         // otherwise loop back to the start
-    //         } else {
-    //             setTimeout(function() {
-    //                 $(imageContainer).children().first().addClass('top')
-    //             }, FADE_TIME)
-    //         }
-    //     }
-
-    //     return c;
-    // }());
 
     // -----------------------------
     // on page load binding
@@ -43,14 +12,6 @@ $(function() {
         if ($('#beta-invite').attr('data-error')) {
             $('#form-error').tzAnimate('shake')
         }
-
-        // if the video is displayed, play it
-        // if ($('#phone-video').is(':visible')) {
-        //     console.log('video playing')
-        //     $('#phone-video')[0].play()
-        // } else {
-        //     console.log('video not playing')
-        // }
     })
 
     $('#new_beta_user').on('input', function() {

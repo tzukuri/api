@@ -1,0 +1,186 @@
+<div id="preorder" class="container">
+      <div id="selected-container">
+      <!-- 1 - select frame -->
+      <div class="step-container" id="step-frames">
+        <div class="selected-header">
+          <h2>Choose your frames</h2>
+        </div>
+        <div class="row">
+          <div class="six columns select-frame">
+              <%= image_tag 'frames/ive/black-front.png', class: "frame-img"%>
+              <button class="order-btn next" data-frame='ive'>Ive</button>
+          </div>
+
+          <div class="six columns select-frame">
+              <%= image_tag 'frames/ford-beta/black-front.png', class: "frame-img"%>
+              <button class="order-btn next" data-frame='ford'>
+                <span class="btn-title">Ford</span>
+              </button>
+          </div>
+        </div>
+        <br/><br/>
+      </div>
+
+      <!-- 2 - select size -->
+      <div class="step-container hidden" id="step-size">
+        <div class="selected-header">
+          <h2>Choose your size</h2>
+        </div>
+
+        <div class="row step-content">
+          <div class="select-size">
+            <button class="order-btn next" data-size="48" id="small">48mm</button>
+            <p class="size-exp">This size will fit most people.</p>
+          </div>
+          <div class="select-size">
+            <button class="order-btn next" data-size="50.5" id="large">50.5mm</button>
+            <p class="size-exp">Choose this size if most glasses are too small for you.</p>
+          </div>
+        </div>
+
+        <button class="prev order-btn">
+          <i class="fa fa-chevron-left"></i>&nbsp;&nbsp;back
+        </button>
+      </div>
+
+      <!-- 3 - enter shipping details -->
+      <div class="step-container hidden" id="step-details">
+        <div class="selected-header">
+          <h2>Enter delivery details</h2>
+        </div>
+
+        <div class="row step-content">
+          <div class="seven columns" id="glasses">
+            <div class="row">
+              <%= image_tag 'frames/ive/black-front.png', class: 'checkout-img', id: 'ive-black' %>
+              <%= image_tag 'frames/ford-beta/black-front.png', class: 'checkout-img hidden', id: 'ford-black' %>
+            </div>
+            <div class="row">
+              <div class="twelve columns glasses-details">
+                <dl>
+                  <dt>Frame</dt>
+                  <dd id="frame-selection"></dd>
+                  <br/>
+                  <dt>Size</dt>
+                  <dd id="size-selection"></dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+          <div class="five columns" id="shipping">
+            <%= form_for Purchase.new, :url => beta_orders_path, :html => {:method => :post}, remote:true do |f| %>
+            <p>Contact Details</p>
+            <%= f.text_field :name, placeholder: 'Full name', autofocus: true %><br/>
+            <%= f.text_field :email, placeholder: 'Email Address' %><br/>
+            <%= f.telephone_field :phone,    placeholder: 'Mobile number' %><br/>
+
+            <p>Shipping Details</p>
+            <%= f.text_field :address1, placeholder: 'Street name, number, etc.' %><br/>
+            <%= f.text_field :address2, placeholder: 'City, suburb, etc.' %><br/>
+            <%= select_tag   :state, options_for_select(['NSW', 'ACT', 'NT', 'QLD', 'SA', 'TAS', 'VIC', 'WA' ]) %><br/>
+            <%= f.text_field :postcode, placeholder: 'Postcode', maxlength: 4 %><br/>
+            <%= f.text_field :country,  placeholder: 'country', value: 'Australia', disabled: true %><br/>
+            <p id="error-messages"></p>
+            <% end %>
+            <button id="shipping-continue" class="order-btn next">continue&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></button>
+            <div class="loading-spinner"></div>
+          </div>
+        </div>
+        <br/><br/>
+        <button class="prev order-btn">
+          <i class="fa fa-chevron-left"></i>&nbsp;&nbsp;back
+        </button>
+        <br/><br/>
+      </div>
+
+      <!-- 6 - enter payment information -->
+      <div class="step-container hidden" id="step-payment">
+        <div class="selected-header">
+          <h2>Review and Pay</h2>
+        </div>
+
+        <div class="row step-content">
+          <div class="seven columns">
+            <div class="row">
+              <%= image_tag 'frames/ive/black-front.png', class: 'checkout-img', id: 'conf-ive-black' %>
+              <%= image_tag 'frames/ford-beta/black-front.png', class: 'checkout-img hidden', id: 'conf-ford-black' %>
+            </div>
+            <div class="row">
+              <div class="twelve columns glasses-details">
+                <dl>
+                  <dt>Frame</dt>
+                  <dd id="conf-frame"></dd>
+                  <br/>
+                  <dt>Size</dt>
+                  <dd id="conf-size"></dd>
+                  <br/>
+                  <dt>Deliver To</dt>
+                  <dd id="conf-address"></dd>
+                  <br/>
+                </dl>
+              </div>
+            </div>
+          </div>
+          <div class="five columns" style="margin-top: 40px;">
+            <p id="total">Total price <span class="bold">$425 AUD</span>. You will be charged a <span class="bold">$95 AUD</span> fully-refundable deposit.</p>
+            <br/>
+            <form id="payment-form">
+              <div id="cc">
+                <p><input type="text" data-stripe="number" placeholder="credit card number"></p>
+                <p>
+                  <select name="month" style="width: 32%" data-stripe="exp-month">
+                    <option value="1">Jan (01)</option>
+                    <option value="2">Feb (02)</option>
+                    <option value="3">Mar (03)</option>
+                    <option value="4">Apr (04)</option>
+                    <option value="5">May (05)</option>
+                    <option value="6">Jun (06)</option>
+                    <option value="7">Jul (07)</option>
+                    <option value="8">Aug (08)</option>
+                    <option value="9">Sep (09)</option>
+                    <option value="10">Oct (10)</option>
+                    <option value="11">Nov (11)</option>
+                    <option value="12">Dec (12)</option>
+                  </select>
+                  <select name="year" style="width: 32%" data-stripe="exp-year">
+                    <option>2016</option>
+                    <option>2017</option>
+                    <option>2018</option>
+                    <option>2019</option>
+                    <option>2020</option>
+                    <option>2021</option>
+                    <option>2022</option>
+                    <option>2023</option>
+                    <option>2024</option>
+                    <option>2025</option>
+                    <option>2026</option>
+                  </select>
+                  <input type="text" placeholder="CVC" data-stripe="cvc" style="width: 32%">
+                </p>
+              </div>
+              <br/>
+              <div id="submit">
+                <button type="submit" class="order-btn finish">Pay $95</button>
+                <div id="payment-message"></div>
+                <p id="remainder">The remaining $330 will be charged upon shipping.</p>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <button class="prev order-btn">
+          <i class="fa fa-chevron-left"></i>&nbsp;&nbsp;back
+        </button>
+      </div>
+</div>
+
+<!-- stripe -->
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script>
+    // set the stripe keys
+    <% if Rails.env.development? %>
+        Stripe.setPublishableKey('pk_test_HWxqGZq4R2zTKm5915tgDas4');
+    <% else %>
+        Stripe.setPublishableKey('pk_live_VAzrbCZ5hRh2i3tXpoS9GL5I');
+    <% end %>
+</script>

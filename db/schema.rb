@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160815002537) do
+ActiveRecord::Schema.define(version: 20160901064218) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,12 +116,14 @@ ActiveRecord::Schema.define(version: 20160815002537) do
     t.string   "country"
     t.string   "frame"
     t.string   "size"
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "phone"
     t.integer  "delivery_method"
-    t.boolean  "fulfilled",                 default: false
-    t.integer  "beta_delivery_timeslot_id"
+    t.boolean  "fulfilled",       default: false
+    t.string   "delivery_time"
+    t.string   "booking_id"
+    t.string   "shipping_name"
   end
 
   add_index "beta_orders", ["beta_user_id"], name: "index_beta_orders_on_beta_user_id", using: :btree
@@ -269,6 +271,7 @@ ActiveRecord::Schema.define(version: 20160815002537) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "charge_id"
+    t.string   "phone"
   end
 
   create_table "que_jobs", id: false, force: :cascade do |t|

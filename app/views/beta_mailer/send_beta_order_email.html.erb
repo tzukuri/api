@@ -25,7 +25,7 @@
             <br style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; margin: 0; padding: 0;" />
 
             <center>
-            <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0;">This is just a confirmation to say that we have received your beta order. Your glasses details are below:</p>
+            <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0;">We have received your order, your details are below:</p>
               </center>
 
           <center>
@@ -48,11 +48,10 @@
             </p>
             <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0;">
               <strong>ADDRESS:</strong> <%= @beta_order.full_address %><br/>
-              <strong>TIME:</strong> <%= @beta_order.beta_delivery_timeslot.time.strftime("%A, %B %d at %l:%M %p") %>
+              <strong>TIME:</strong> <%= @beta_order.delivery_time.in_time_zone('Australia/Sydney').strftime('%A, %B %d at %l:%M %p') %>
             </p>
 
-            <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0;">
-            Please expect a call from one of the Tzukuri team members at this time.
+            <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0;">We'll arrive at the beginning of your allotted hour, we expect that your personal fitting should take no more than 25 minutes.
             </p>
 
           <% else %>
