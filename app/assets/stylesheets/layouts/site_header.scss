@@ -45,16 +45,20 @@ header#store {
             display: inline-block;
 
             a {
-                font-size: 12px;
-                letter-spacing: 1px;
-                color: #aaa;
-                text-transform: lowercase;
+                font-size: 10pt;
+                letter-spacing: normal;
+                color: $tzukuri-dark-grey;
+                font-weight: 200;
                 display: inline-block;
                 margin-left: 20px;
 
                 &.selected {
                     color: #777;
                 }
+            }
+
+            #subscribe {
+                color: $tzukuri-blue;
             }
         }
     }
