@@ -144,10 +144,8 @@
             </div>
         </div>
 
-        <% if controller_name == "pages" || controller_name == "beta" %>
+        <% if controller_name == "pages" %>
             <%= render 'layouts/site_header' %>
-        <% elsif controller_name == "dashboard" %>
-            <%= render 'layouts/dashboard_header' %>
         <% end %>
 
         <%= yield %>

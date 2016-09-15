@@ -68,13 +68,3 @@ body.privacy main > article {
         }
     }
 }
-
-
-@media only screen and (max-width: $content-width-cutoff) {
-    body.privacy main > article .content {
-        h1 {
-            font-size: 30px;
-            line-height: 30px;
-        }
-    }
-}

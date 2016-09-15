@@ -11,13 +11,13 @@ body.beta {
                 }
 
                 &.error {
-                    border: 1px solid $tzukuri-red;
+                    border: 1px solid $tz-error;
                 }
 
                 &#submit-btn {
                     border-radius: 20px;
-                    border: 1px solid $tzukuri-blue;
-                    color: $tzukuri-blue;
+                    border: 1px solid $tz-active;
+                    color: $tz-active;
                     background-color: white;
                     padding: 15px;
                     width: 100px !important;
@@ -26,25 +26,25 @@ body.beta {
                     @include transition(0.5s);
 
                     &.disabled {
-                        color: $tzukuri-light-grey;
-                        border-color: $tzukuri-light-grey;
+                        color: $tz-inactive;
+                        border-color: $tz-inactive;
                         cursor: auto;
 
                         &:hover {
-                            color: $tzukuri-light-grey;
-                            border-color: $tzukuri-light-grey;
+                            color: $tz-inactive;
+                            border-color: $tz-inactive;
                             background-color: white;
                         }
                     }
 
                     &:hover {
                         color: white;
-                        background-color: $tzukuri-blue;
+                        background-color: $tz-active;
                     }
                 }
 
-                background-color: $tzukuri-light-grey;
-                border: 1px solid $tzukuri-light-grey;
+                background-color: $tz-inactive;
+                border: 1px solid $tz-inactive;
                 border-radius: 10px;
                 margin-bottom: 15px;
                 width: 70%;
@@ -53,7 +53,7 @@ body.beta {
             }
 
             #error-messages {
-                color: $tzukuri-red;
+                color: $tz-error;
                 font-size: 11pt;
                 padding-top: 10px;
             }
@@ -68,7 +68,7 @@ body.beta {
         hr {
             margin-top: 0px;
             margin-bottom: 0px;
-            border-top: 1px solid $tzukuri-light-grey;
+            border-top: 1px solid $tz-inactive;
         }
 
         // order confirmation
@@ -78,7 +78,7 @@ body.beta {
 
             h2 {
                 font-size: 30pt;
-                color: $tzukuri-black;
+                color: $tz-title;
                 font-weight: 200;
                 line-height: 150%;
             }
@@ -142,7 +142,7 @@ body.beta {
                         max-height: 100px;
                         width: 80%;
                         padding-bottom: 80%;
-                        background-color: $tzukuri-light-grey;
+                        background-color: $tz-inactive;
                         border-radius: 50%;
                         background-repeat: no-repeat;
                         background-position: center center;
@@ -175,7 +175,7 @@ body.beta {
                     }
 
                     #invite-link-container {
-                        background-color: $tzukuri-light-grey;
+                        background-color: $tz-inactive;
                         border-radius: 5px;
                         padding: 20px 10px 16px 10px;
                         text-align: center;
@@ -188,10 +188,10 @@ body.beta {
                             margin-top: 10px;
                             margin-bottom: 15px;
                             background-color: white;
-                            color: $tzukuri-blue;
+                            color: $tz-active;
                             border-radius: 10px;
                             padding: 10px 15px 10px 15px;
-                            border: 1px solid $tzukuri-light-grey;
+                            border: 1px solid $tz-inactive;
                             -webkit-appearance: none;
                             opacity: 1 !important;
 
@@ -208,7 +208,7 @@ body.beta {
                     #incentive {
                         p {
                             margin: 0px auto;
-                            color: $tzukuri-black;
+                            color: $tz-content;
                             line-height: 150%;
                             font-weight: 300;
                             font-size: 14pt !important;
@@ -238,8 +238,8 @@ body.beta {
                         width: 120px;
                         height: 120px;
                         line-height: 120px;
-                        border: 2px solid $tzukuri-blue;
-                        color: $tzukuri-blue;
+                        border: 2px solid $tz-active;
+                        color: $tz-active;
                         margin-left: auto;
                         margin-right: auto;
                         margin-bottom: 20px;
@@ -270,7 +270,7 @@ body.beta {
 
                     .social-icon {
                         text-align: left;
-                        color: $tzukuri-blue;
+                        color: $tz-active;
                     }
 
                     button {
@@ -308,11 +308,11 @@ body.beta {
                     }
 
                     #answered {
-                        color: $tzukuri-dark-grey;
+                        color: $tz-content;
                     }
 
                     #skip {
-                        color: $tzukuri-blue;
+                        color: $tz-active;
                         cursor: pointer;
                         font-size: 11pt;
 
@@ -342,7 +342,7 @@ body.beta {
                         }
 
                         p {
-                            color: $tzukuri-black;
+                            color: $tz-content;
                         }
 
                         form {
@@ -364,8 +364,8 @@ body.beta {
                                 }
 
                                 &:hover {
-                                    color: $tzukuri-blue;
-                                    border-bottom-color: $tzukuri-blue;
+                                    color: $tz-active;
+                                    border-bottom-color: $tz-active;
                                 }
                             }
                         }
@@ -396,39 +396,13 @@ body.beta {
                 }
 
                 .selected-header {
-                    // margin-bottom: 40px;
                     text-align: center;
 
                     h2 {
                         font-size: 30pt;
-                        color: $tzukuri-black;
+                        color: $tz-title;
                         font-weight: 200;
                         line-height: 150%;
-                    }
-                }
-
-                .order-btn {
-                    border-radius: 5px;
-                    background-color: none;
-                    font-size: 12pt;
-                    height: auto;
-                    padding: 5px 35px 5px 35px;
-                    text-transform: none;
-
-                    &.prev {
-                        border: none;
-                        font-size: 11pt;
-                        margin-bottom: 20px;
-                    }
-
-                    &.finish {
-                        color: #39CA74;
-                        border: 1px solid #39CA74;
-
-                        &:hover {
-                            color: #fff;
-                            background-color: #39CA74;
-                        }
                     }
                 }
 
@@ -464,7 +438,7 @@ body.beta {
                     margin-top: 20px;
                     margin-bottom: 20px;
                     font-size: 10pt;
-                    color: $tzukuri-dark-grey;
+                    color: $tz-content;
                 }
 
                 h2 {
@@ -523,7 +497,8 @@ body.beta {
             #step-frames {
                 .select-frame {
                     .frame-img {
-                        margin-top: -50px;
+                        margin-top: 50px;
+                        margin-bottom: 20px;
                         width: 90%;
                     }
 
@@ -535,7 +510,7 @@ body.beta {
                 p {
                     margin-top: 40px;
                     font-size: 10pt;
-                    color: $tzukuri-dark-grey;
+                    color: $tz-content;
                 }
             }
 
@@ -547,7 +522,7 @@ body.beta {
 
                 .size-exp {
                     font-size: 11pt;
-                    color: $tzukuri-dark-grey;
+                    color: $tz-content;
                     margin-top: 20px;
                     margin-bottom: 40px;
                     font-weight: 300;
@@ -572,7 +547,7 @@ body.beta {
                     width: 75%;
                     margin: 0 auto;
                     margin-bottom: 30px;
-                    color: $tzukuri-dark-grey;
+                    color: $tz-content;
                 }
 
                 #shipping {
@@ -588,13 +563,13 @@ body.beta {
                         -webkit-appearance: none;
                         border: none;
                         border-radius: 10px;
-                        background-color: $tzukuri-light-grey;
+                        background-color: $tz-inactive;
                         padding-left: 10px;
                         font-size: 12pt;
                     }
 
                     #error-messages {
-                        color: $tzukuri-red;
+                        color: $tz-error;
                         font-size: 10pt;
                         padding-bottom: 10px;
                         padding-left: 30px;
@@ -622,7 +597,7 @@ body.beta {
 
                 .method-exp {
                     font-size: 11pt;
-                    color: $tzukuri-dark-grey;
+                    color: $tz-content;
                     margin-top: 20px;
                     margin-bottom: 40px;
                     font-weight: 300;
@@ -632,7 +607,7 @@ body.beta {
             // 5 - select a timeslot
             #step-timeslot {
                 p {
-                    color: $tzukuri-dark-grey;
+                    color: $tz-content;
                     font-size: 11pt;
 
                     #meet-address, #meet-time {
@@ -668,8 +643,8 @@ body.beta {
                     background-position: 90%;
                     font-size: 12pt;
                     padding: 10px 50px 10px 50px;
-                    border: 1px solid $tzukuri-blue;
-                    color: $tzukuri-blue;
+                    border: 1px solid $tz-active;
+                    color: $tz-active;
                     background-color: white;
 
                     @include transition(0.5s);
@@ -679,7 +654,7 @@ body.beta {
                         background-size: 15px;
                         background-position: 90%;
                         color: white;
-                        background-color: $tzukuri-blue;
+                        background-color: $tz-active;
                     }
                 }
             }
@@ -703,7 +678,8 @@ body.beta {
                 }
 
                 #conf-ive-black, #conf-ford-black {
-                    margin-top: -80px;
+                    margin-top: 40px;
+                    margin-bottom: 20px;
                 }
 
                 dl {
@@ -722,7 +698,7 @@ body.beta {
                     font-size: 12pt;
 
                     &.error {
-                        color: $tzukuri-red;
+                        color: $tz-error;
                     }
                 }
 
@@ -734,7 +710,7 @@ body.beta {
 
                         @include border-radius(5px);
 
-                        background-color: $tzukuri-light-grey;
+                        background-color: $tz-inactive;
                         font-size: 12pt;
                         height: 40px;
                         outline: none;
@@ -777,7 +753,7 @@ body.beta {
             h2 {
                 font-size: 12pt;
                 font-weight: 300;
-                color: $tzukuri-dark-grey;
+                color: $tz-content;
                 margin-bottom: 30px;
                 line-height: 150%;
             }

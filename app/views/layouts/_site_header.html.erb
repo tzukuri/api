@@ -1,18 +1,14 @@
-<header id="store">
-  <div>
-    <h1><a href="/"><%= image_tag 'logo.png', height: 25, alt: 'Tzukuri' %></a></h1>
-    <span class="pe-7f-check" style="color: white; opacity: 0.0"></span>
+<header class="u-full-width">
+  <div class="container">
+    <a id="tzukuri" href="/">TZUKURI</a>
     <a id="hamburger" class="fa fa-bars"></a>
-    <menu>
-      <nav>
-<!--         <a href="" class="<%#= 'selected' if params[:page] == 'design' %>">Design</a>
-        <a href="" class="<%#= 'selected' if params[:page] == 'technology' %>">Technology</a>
-        <a href="" class="<%#= 'selected' if params[:page] == 'manufacturing' %>">Manufacturing</a>
-        <a href="" class="<%#= 'selected' if params[:page] == 'personalfitting' %>">Personal Fitting</a>
-        <a href="" class="<%#= 'selected' if params[:page] == 'story' %>">Our Story</a> -->
-        <a href="" id="subscribe">Subscribe</a>
-      </nav>
-      <!-- <button id="show-subscribe">Subscribe</button> -->
-    </menu>
+    <nav id="primary-nav">
+      <a href="/design" class="<%= 'selected' if params[:page] == 'design' %>">design</a>
+      <a href="/technology" class="<%= 'selected' if params[:page] == 'technology' %>">technology</a>
+      <a href="/craft"  class="<%= 'selected' if params[:page] == 'craft' %>">craft</a>
+      <a href="/fitting" class="<%= 'selected' if params[:page] == 'fitting' %>">personal fitting</a>
+      <a href="/story" class="<%= 'selected' if params[:page] == 'story' %>">our story</a>
+      <button>reserve</button>
+    </nav>
   </div>
 </header>

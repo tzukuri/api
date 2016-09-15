@@ -13,7 +13,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui/autocomplete
 //= require moment
 //= require lodash
 //= require_tree ../../../vendor/assets/javascripts

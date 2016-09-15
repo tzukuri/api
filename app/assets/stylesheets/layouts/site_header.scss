@@ -1,110 +1,100 @@
-header#store {
-    position:fixed;
-    left: 0px;
-    right: 0px;
-    top: 0px;
-
-    padding-top: $header-padding-top;
-    padding-bottom: $header-padding-bottom;
-    line-height: $header-height;
-    height: $header-height;
+header {
+    border-bottom: 1px solid $tz-inactive;
+    text-align: center;
+    background-color: $white;
+    opacity: 0.95;
+    position: fixed;
+    top: 0;
     z-index: 10;
 
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-    background: rgba(255, 255, 255, 0.97255);
-
-    div {
-        max-width: 960px;
-        width: 80%;
-        margin: 0px auto;
-        position: relative;
-        @include box-sizing(border-box);
-        padding-right: $horz-padding;
+    .container {
+        padding-top: 10px;
+        padding-bottom: 5px;
     }
 
-    h1 {
-        line-height: $header-height;
+    #tzukuri {
+        @include font-size(30px);
 
-        > a {
-            height: 25px;
-            display: inline-block;
-            vertical-align: middle;
-        }
+        font-weight: 100;
+        letter-spacing: 12px;
+        color: $tz-title;
+        margin-top: 25px;
+        padding-bottom: 5px;
     }
 
     #hamburger {
         display: none;
     }
 
-    menu {
-        float: right;
-        margin-top: -$header-height;
+    nav {
+        padding-bottom: 5px;
 
-        nav {
-            text-align: middle;
-            display: inline-block;
+        a, button {
+            margin-left: 20px;
+        }
 
-            a {
-                font-size: 10pt;
-                letter-spacing: normal;
-                color: $tzukuri-dark-grey;
-                font-weight: 200;
-                display: inline-block;
-                margin-left: 20px;
+        a {
+            @include font-size(13px);
 
-                &.selected {
-                    color: #777;
-                }
-            }
+            letter-spacing: 0.5px;
+            color: $tz-content;
+            margin-bottom: 5px;
 
-            #subscribe {
-                color: $tzukuri-blue;
+            &.selected, &:hover {
+                color: $tz-title;
+                border-bottom: 1px solid $tz-title;
             }
         }
     }
 }
 
-@media only screen and (max-width: $menu-width-cutoff) {
-    header#store {
+@media only screen and (max-width: $tabletPortrait) {
+    header {
+        text-align: left;
+
+        h1 {
+            float: left;
+        }
+
         #hamburger {
-            position: absolute;
-            right: 0px;
-            top: 12px;
             display: block;
-            color: #555;
-            font-size: 16px;
+            float: right;
+            margin-top: 20px;
+            font-size: 13pt;
 
             &:hover {
                 text-decoration: none;
             }
         }
 
-        menu {
-            position: fixed;
-            margin-top: 0px;
-            background-color: #f9f9f9;
-            border-left: 1px solid #eee;
-            top: $header-height + $header-padding-top + $header-padding-bottom + 1px;
-            right: -220px;
-            bottom: 0px;
-            width: 200px;
-            padding: 20px 10px;
-            @include single-transition(right, 0.5s);
+        nav {
+            @include transition(.5s ease-in-out);
 
-            &.showing {
-                right: 0px;
-            }
+            padding-bottom: 0px;
+            max-height: 0px;
+            visibility: hidden;
+            overflow: hidden;
+            width: 100%;
 
-            nav a {
-                font-size: 16px;
-                display: block;
+            &.shown {
+                max-height: 300px;
+                visibility: visible;
             }
 
             button {
-                margin-left: 50px;
-                margin-top: 40px;
+                width: 70%;
+                margin: auto;
+                display: block;
+                margin-bottom: 20px;
+            }
+
+            a {
+                border-top: 1px solid $tz-inactive;
+                display: block;
+                line-height: 250%;
+                font-size: 13pt;
+                margin-left: 0px;
             }
         }
     }
 }
-

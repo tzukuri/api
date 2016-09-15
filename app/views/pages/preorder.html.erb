@@ -1,59 +1,81 @@
-<div id="preorder" class="container">
-      <div id="selected-container">
-      <!-- 1 - select frame -->
-      <div class="step-container" id="step-frames">
-        <div class="selected-header">
-          <h2>Choose your frames</h2>
-        </div>
-        <div class="row">
-          <div class="six columns select-frame">
-              <%= image_tag 'frames/ive/black-front.png', class: "frame-img"%>
-              <button class="order-btn next" data-frame='ive'>Ive</button>
-          </div>
+<div class="container" id="preorder-nav">
+  <a href="#" id="type" class="current">type</a>
+  <a href="#" id="frame">frame</a>
+  <a href="#" id="size">size</a>
+  <a href="#" id="delivery">delivery</a>
+  <a href="#" id="payment">payment</a>
+</div>
 
-          <div class="six columns select-frame">
-              <%= image_tag 'frames/ford-beta/black-front.png', class: "frame-img"%>
-              <button class="order-btn next" data-frame='ford'>
-                <span class="btn-title">Ford</span>
-              </button>
+<div id="preorder" class="container">
+      <!-- 1 - select type -->
+      <div class="step-container" id="step-type">
+        <h1>Choose your type</h1>
+        <div class="row">
+          <div class="five columns" data-type="optical">
+              <div class="select-type">
+                <%= image_tag 'frames/ford/ford_black_optical.jpg' %>
+                <p>optical</p>
+              </div>
+              <p class="price"><span class="bold">Pre-order for $<span class="pr">125</span> AUD</span><br/>$550 AUD total</p>
+          </div>
+          <div class="two columns">&nbsp;</div>
+          <div class="five columns" data-type="sun">
+              <div class="select-type">
+                <%= image_tag 'frames/ive/ive_black_sun.jpg' %>
+                <p>sun</p>
+              </div>
+              <p class="price"><span class="bold">Pre-order for $99 AUD</span><br/>$425 AUD total</p>
           </div>
         </div>
-        <br/><br/>
+      </div>
+
+      <!-- 2 - select frame -->
+      <div class="step-container hidden" id="step-frames">
+        <h1>Choose your frames</h1>
+        <div class="row">
+          <div class="five columns select-frame" data-frame="ford">
+              <%= image_tag 'frames/ford/ford_black_sun.jpg', class: 'sun' %>
+              <%= image_tag 'frames/ford/ford_black_optical.jpg', class: 'optical' %>
+              <p>Ford</p>
+          </div>
+          <div class="two columns">&nbsp;</div>
+          <div class="five columns select-frame" data-frame="ive">
+              <%= image_tag 'frames/ive/ive_black_sun.jpg', class: 'sun' %>
+              <%= image_tag 'frames/ive/ive_black_optical.jpg', class: 'optical' %>
+              <p>Ive</p>
+          </div>
+        </div>
       </div>
 
       <!-- 2 - select size -->
       <div class="step-container hidden" id="step-size">
-        <div class="selected-header">
-          <h2>Choose your size</h2>
-        </div>
-
-        <div class="row step-content">
-          <div class="select-size">
-            <button class="order-btn next" data-size="48" id="small">48mm</button>
-            <p class="size-exp">This size will fit most people.</p>
+        <h1>Choose your size</h1>
+        <div class="row">
+          <div class="five columns">
+            <div class="select-size" data-size="" id="small">
+              <p>Small</p>
+            </div>
+            <p class="size-exp">This size fits most people.</p>
           </div>
-          <div class="select-size">
-            <button class="order-btn next" data-size="50.5" id="large">50.5mm</button>
+          <div class="two columns">&nbsp;</div>
+          <div class="five columns">
+            <div class="select-size" data-size="" id="large">
+              <p>Large</p>
+            </div>
             <p class="size-exp">Choose this size if most glasses are too small for you.</p>
           </div>
         </div>
-
-        <button class="prev order-btn">
-          <i class="fa fa-chevron-left"></i>&nbsp;&nbsp;back
-        </button>
       </div>
 
       <!-- 3 - enter shipping details -->
       <div class="step-container hidden" id="step-details">
-        <div class="selected-header">
-          <h2>Enter delivery details</h2>
-        </div>
+        <h1>Enter delivery details</h1>
 
         <div class="row step-content">
-          <div class="seven columns" id="glasses">
+          <div class="six columns" id="glasses">
             <div class="row">
-              <%= image_tag 'frames/ive/black-front.png', class: 'checkout-img', id: 'ive-black' %>
-              <%= image_tag 'frames/ford-beta/black-front.png', class: 'checkout-img hidden', id: 'ford-black' %>
+              <%= image_tag 'frames/ive/ive_black_optical.jpg', class: 'checkout-img', id: 'ive-black' %>
+              <%= image_tag 'frames/ford/ford_black_optical.jpg', class: 'checkout-img hidden', id: 'ford-black' %>
             </div>
             <div class="row">
               <div class="twelve columns glasses-details">
@@ -63,10 +85,14 @@
                   <br/>
                   <dt>Size</dt>
                   <dd id="size-selection"></dd>
+                  <br/>
+                  <dt>Lens</dt>
+                  <dd id="lens-selection">Optical</dd>
                 </dl>
               </div>
             </div>
           </div>
+          <div class="one column">&nbsp;</div>
           <div class="five columns" id="shipping">
             <%= form_for Purchase.new, :url => beta_orders_path, :html => {:method => :post}, remote:true do |f| %>
             <p>Contact Details</p>
@@ -86,24 +112,17 @@
             <div class="loading-spinner"></div>
           </div>
         </div>
-        <br/><br/>
-        <button class="prev order-btn">
-          <i class="fa fa-chevron-left"></i>&nbsp;&nbsp;back
-        </button>
-        <br/><br/>
       </div>
 
       <!-- 6 - enter payment information -->
       <div class="step-container hidden" id="step-payment">
-        <div class="selected-header">
-          <h2>Review and Pay</h2>
-        </div>
+        <h1>Review and pay</h1>
 
         <div class="row step-content">
-          <div class="seven columns">
+          <div class="six columns">
             <div class="row">
-              <%= image_tag 'frames/ive/black-front.png', class: 'checkout-img', id: 'conf-ive-black' %>
-              <%= image_tag 'frames/ford-beta/black-front.png', class: 'checkout-img hidden', id: 'conf-ford-black' %>
+              <%= image_tag 'frames/ive/ive_black_optical.jpg', class: 'checkout-img', id: 'conf-ive-black' %>
+              <%= image_tag 'frames/ford/ford_black_optical.jpg', class: 'checkout-img hidden', id: 'conf-ford-black' %>
             </div>
             <div class="row">
               <div class="twelve columns glasses-details">
@@ -121,6 +140,7 @@
               </div>
             </div>
           </div>
+          <div class="one column">&nbsp;</div>
           <div class="five columns" style="margin-top: 40px;">
             <p id="total">Total price <span class="bold">$425 AUD</span>. You will be charged a <span class="bold">$95 AUD</span> fully-refundable deposit.</p>
             <br/>
@@ -167,11 +187,35 @@
             </form>
           </div>
         </div>
-
-        <button class="prev order-btn">
-          <i class="fa fa-chevron-left"></i>&nbsp;&nbsp;back
-        </button>
       </div>
+</div>
+
+<div class="u-full-width" id="in-the-box">
+  <div class="container">
+    <div class="row">
+      <div class="three columns">
+        <h1>In The Box</h1>
+      </div>
+      <div class="three columns">
+        <p>Unloseable Glasses</p>
+        <p>MicroUSB Cable</p>
+        <p>Charging Puck</p>
+        <p>Microfibre Cloth</p>
+      </div>
+      <div class="six columns">
+        <%= image_tag 'Tzukuri3048_2.png' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" id="tech-specs">
+  <div class="row">
+    <div class="three columns">
+      <h1>Tech Specs</h1>
+    </div>
+    <div class="nine columns">&nbsp;</div>
+  </div>
 </div>
 
 <!-- stripe -->

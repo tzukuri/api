@@ -1,0 +1,32 @@
+// set a rem font size with a pixel fallback
+@mixin font-size($size) {
+  @if unitless($size) {
+    $size: $size * 1px;
+  }
+
+  font-size: $size;
+  font-size: ($size / $base-font-size) * 1rem;
+}
+
+// transitions
+@mixin transition($args...) {
+    -webkit-transition: $args;
+    -moz-transition: $args;
+    -ms-transition: $args;
+    -o-transition: $args;
+    transition: $args;
+}
+
+// repond to media queries
+$smartphone: 480px;
+$tabletPortrait: 767px;
+$tabletLandscape: 1024px;
+$desktop: 1174px;
+$largeScreen: 1400px;
+
+// cross-browser border radius
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+  background-clip: padding-box;  /* stops bg color from leaking outside the border: */
+}

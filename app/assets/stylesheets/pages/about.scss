@@ -53,11 +53,3 @@ body.about {
         background-color: #f7f7f7;
     }
 }
-
-@media only screen and (max-width: $content-width-cutoff) {
-    body.about {
-        #overview {
-            padding-top: 40px;
-        }
-    }
-}

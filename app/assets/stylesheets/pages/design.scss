@@ -1,192 +1,32 @@
 body.design {
-    #share-panel {
-        div a {
-            color: #333;
-        }
-    }
-    #whichpair {
-        padding-top: 160px;
+    padding-top: 160px;
 
-        div {
-            > h1 {
-                text-align: center;
-            }
-
-            > p {
-                max-width: 650px;
-                margin-right: auto;
-                margin-left: auto;
-                text-align: center;
-            }
-        }
-
-        section {
-            display: block;
-            margin-top: 150px;
-
-            &#design-atticus {
-                margin-top: 60px;
-            }
-
-            span img {
-                width: 960px;
-                height: 436px;
-                z-index: 0;
-            }
-
-            h1, h2, p {
-                padding-left: 120px;
-            }
-
-            h1 {
-                font-weight: 600;
-                font-size: 22px;
-                text-transform: uppercase;
-                margin-bottom: 5px;
-            }
-
-
-            h2, p {
-                font-weight: 300;
-            }
-
-            h2 {
-                margin-bottom: 10px;
-                font-size: 13px;
-            }
-
-            p {
-                font-size: 11px;
-                width: 280px;
-                line-height: 14px;
-
-                .share {
-                  position: relative;
-                  top: -$share-height;
-                  left: 680px;
-                }
-            }
-        }
+    #design-intro {
+        background-color: $tz-background-alt;
     }
 
-    #sizes {
-        background-color: #ebebea;
-
-        .image {
-            width: 45%;
-        }
-
-        p {
-            width: 420px;
-        }
-
-        .share {
-            position: absolute;
-            left: 160px;
-            bottom: -70px;
-        }
-    }
-
-    #colours {
-        padding-bottom: 0px;
-
-        h1 {
+    #ive, #ford {
+        .lens-type {
             text-align: center;
-        }
+            margin-top: 30px;
 
-        p {
-            max-width: 650px;
-            margin-right: auto;
-            margin-left: auto;
-            text-align: center;
-        }
-    }
+            i {
+                color: $tz-content;
+                padding-bottom: 5px;
 
-    #two-up {
-        padding-top: 0px;
-        height: 550px;
-
-        .background .image {
-            background-position: center center;
-        }
-    }
-}
-
-
-@media only screen and (max-width: $content-width-cutoff) {
-    html.design {
-        #two-up {
-            height: 250px;
-
-            .background .image {
-                height: 250px;
-            }
-        }
-
-        #sizes {
-            text-align: center;
-
-            h2 {
-                max-width: 300px;
-                margin: 12px auto 0px auto;
-            }
-
-            p {
-                width: auto;
-                text-align: center;
-            }
-
-            .background {
-                display: block;
-                position: static;
-                text-align: center;
-
-                .image {
-                    display: inline-block;
-                    position: static;
-                    width: 280px;
-                    height: 260px;
-                    margin-right: -20px;
-                }
-            }
-        }
-
-        #whichpair {
-            padding-top: $mobile-panel-padding;
-
-            section {
-                &#design-atticus {
-                    margin-top: 150px;
+                &:hover {
+                    cursor: pointer;
                 }
 
-                span {
-                    display: block;
-                    text-align: center;
-
-                    img {
-                        width: 280px;
-                        height: 127px;
-                    }
-                }
-
-                h1, h2, p {
-                    padding-left: 20px;
-                }
-
-                h1 {
-                    padding-top: 20px;
-                }
-
-                p {
-                    width: 260px;
-                }
-
-                p .share {
-                    top: 30px;
-                    left: 50%;
-                    margin-left: -35px;
+                &.selected {
+                    color: $eerie-black !important;
                 }
             }
         }
     }
+
+    #ive-sun-toggle, #ford-sun-toggle {
+        color: $tz-sun !important;
+    }
+
 }

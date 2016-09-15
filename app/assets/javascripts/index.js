@@ -2,44 +2,48 @@ $(function() {
     if (!$('body').hasClass('index'))
         return;
 
-    // fadeout the scroll indicator once the user scrolls
-    $(window).scroll(function() {
-        $("#scroll-indicator").fadeOut()
+    // reference to the crossfader object
+    var screenshotFade;
+    var textFade;
+
+    $(document).on("tzukuri.page.load", function() {
+        // fade in the main view, set a small timeout to give the page time to render
+        // fixme: remove the timeout
+        $('#hero').removeClass('hidden')
+        $('#scroll-indicator').removeClass('hidden')
+
+        // setup a crossfader for the screenshots and text
+        screenshotFade = tzukuri.crossfade('#screenshot-container', 'img')
+        textFade = tzukuri.crossfade('#feature-container', '.app-feature')
+
+        // start the crossfaders
+        screenshotFade.start()
+        textFade.start()
     });
 
-    // $('#youtube-thumb').click(function() {
-    //     $('#youtube-thumb').hide();
-    //     $('#youtube-video div').html(
-    //         '<iframe width="100%" height="100%"' +
-    //         'src="//www.youtube.com/embed/Rw78E8hJ-UY?rel=0&controls=2&showinfo=0&modestbranding=1&autoplay=1"' +
-    //         'frameborder="0" allowfullscreen></iframe>');
-    //     $('#youtube-video').show();
-    // })
+    $(window).scroll(function(event) {
+        $('#scroll-indicator').addClass('hidden')
+    });
 
-    // var currentFrames = 'front';
-    // $('#frames menu div').click(function(event) {
-    //     var option = $(this);
-    //     var newFrames = option.attr('data-image');
+    // watch for the start of the crossfade animation
+    $('#screenshot-container').on('tzukuri.crossfade.fadeStart', function(event, fromIndex, toIndex) {
+        $($('#app-nav i')[fromIndex]).removeClass('current')
+        $($('#app-nav i')[toIndex]).addClass('current')
+    })
 
-    //     $('#frames ul img.' + currentFrames).css('opacity', 0);
-    //     $('#frames ul img.' + newFrames).css('opacity', 1);
-    //     currentFrames = newFrames;
+    $('#app-prev').on('click', function(event) {
+        event.preventDefault()
 
-    //     $('#frames menu div').removeClass('selected');
-    //     option.addClass('selected');
-    //     event.preventDefault();
-    // });
+        // force the crossfaders to navigate
+        screenshotFade.previous()
+        textFade.previous()
+    })
 
-    // countdown(
-    //     // number of milliseconds since Unix epoch UTC. required since new Date() returns local time.
-    //     // js date measures months from 0, so 8 == September. hours adjusted for EST summer time (UTC -4)
-    //     Date.UTC(2014, 9, 15, 17),
-    //     function(ts) {
-    //         $('#countdown-days').text(ts.days);
-    //         $('#countdown-hours').text(ts.hours);
-    //         $('#countdown-minutes').text(ts.minutes);
-    //         $('#countdown-seconds').text(ts.seconds);
-    //     },
-    //     countdown.DEFAULTS // trigger callback roughly once per second
-    // );
+    $('#app-next').on('click', function(event) {
+        event.preventDefault()
+
+        // force the crossfaders to navigate
+        screenshotFade.next()
+        textFade.next()
+    })
 });

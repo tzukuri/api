@@ -1,9 +1,16 @@
 // loaded from their respective files
 var tzukuri = (function () {
   return {
+    // contains API for interacting with tzukuri modals
     modal: modal,
+    // fixme: currently broken, but should implement an API that gives us access to a map
     map: map,
-    models: models
+    // contains all the sizing details, etc. for each model of tzukuri
+    models: models,
+    // contains all the pricing information for different models
+    pricing: pricing,
+    // takes a container containing images and slowly fades between them
+    crossfade: crossfade
   }
 }())
 
