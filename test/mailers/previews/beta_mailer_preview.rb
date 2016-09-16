@@ -20,4 +20,8 @@ class BetaMailerPreview < ActionMailer::Preview
   def send_beta_order_email
     BetaMailer.send_beta_order_email(BetaUser.first)
   end
+
+  def send_interest_confirmation
+    BetaMailer.send_interest_confirmation(Interest.first)
+  end
 end

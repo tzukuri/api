@@ -4,7 +4,7 @@
 
     <%= form_tag "/beta/retrieve", remote:true, id:'beta_user_retrieve'  do %>
         <%= email_field_tag 'email', nil, placeholder: 'email address', autofocus: true %><br/>
-        <%= submit_tag "submit", id: 'submit-btn' %>
+        <%= submit_tag "submit", class: 'cta-button' %>
     <% end %>
 
     <p id="email-confirm">processing...</p>

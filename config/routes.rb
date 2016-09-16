@@ -84,6 +84,7 @@ Rails.application.routes.draw do
     # -----------------------------
     resources :beta_responses
     resources :beta_orders
+    resources :interests
 
     resources :purchases do
         collection do
@@ -127,8 +128,8 @@ Rails.application.routes.draw do
     get '/diagnostics/:token/:date/:file' => 'diagnostics#show'
 
     # mailer preview paths
-    # get '/rails/mailers' => "rails/mailers#index"
-    # get '/rails/mailers/*path' => "rails/mailers#preview"
+    get '/rails/mailers' => "rails/mailers#index"
+    get '/rails/mailers/*path' => "rails/mailers#preview"
 
     get '*page'                 => 'pages#index'
 

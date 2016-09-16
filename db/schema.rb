@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160901064218) do
+ActiveRecord::Schema.define(version: 20160915060840) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -237,6 +237,15 @@ ActiveRecord::Schema.define(version: 20160901064218) do
   end
 
   add_index "feedbacks", ["user_id"], name: "index_feedbacks_on_user_id", using: :btree
+
+  create_table "interests", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "city"
+    t.string   "country"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "log_entries", force: :cascade do |t|
     t.integer  "auth_token_id"
