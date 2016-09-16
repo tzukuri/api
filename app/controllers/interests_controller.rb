@@ -4,10 +4,11 @@ class InterestsController < ApplicationController
     interest = Interest.create(interest_params)
 
     if !interest.valid?
-      render json: {success: false, errors: interest.errors}
+      render json: {success: false, errors: interest.errors, full_errors: interest.errors.full_messages}
       return
     end
 
+    BetaMailer.send_interest_confirmation(interest).deliver_later
     render json: {success: true, interest: interest}
   end
 

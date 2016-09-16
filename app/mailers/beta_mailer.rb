@@ -1,5 +1,5 @@
 class BetaMailer < ActionMailer::Base
-  default :from => "\"Tzukuri Beta\" <beta@tzukuri.com>"
+  default :from => "\"Tzukuri\" <beta@tzukuri.com>"
 
   def send_beta_confirmation_email(beta_user)
     @beta_user = beta_user
@@ -9,6 +9,11 @@ class BetaMailer < ActionMailer::Base
   def send_purchase_confirmation_email(purchase)
     @purchase = purchase
     mail(to: purchase.email, subject:"Your Tzukuri Pre-order")
+  end
+
+  def send_interest_confirmation(interest)
+    @interest = interest
+    mail(to: interest.email, subject: "Thanks for registering your interest in Tzukuri")
   end
 
   def send_beta_order_email(beta_user)

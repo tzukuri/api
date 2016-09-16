@@ -207,6 +207,19 @@
             font-size: 12pt;
             padding: 0;
             padding-left: 15px;
+
+            &.error {
+                border: 1px solid $tzukuri-red;
+            }
+        }
+
+        #interest-submit {
+            margin-bottom: 0px;
+        }
+
+        #errors {
+            font-size: 10pt;
+            color: $tzukuri-red;
         }
 
         select {
