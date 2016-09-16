@@ -14,6 +14,21 @@ $(function() {
         }
     })
 
+    $("#register").on('click', function() {
+        tzukuri.modal.show({
+            modal: "#register-interest-modal",
+            tint: "light",
+            dismissable: true
+        })
+    })
+
+    $('#new_interest').on('ajax:success', function(e, data) {
+        console.log(data)
+        tzukuri.modal.hideAll()
+    }).on('ajax:error', function(e, data) {
+        console.log(data)
+    });
+
     $('#new_beta_user').on('input', function() {
         checkSubmit();
     })

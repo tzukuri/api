@@ -84,6 +84,7 @@ Rails.application.routes.draw do
     # -----------------------------
     resources :beta_responses
     resources :beta_orders
+    resources :interests
 
     resources :purchases do
         collection do

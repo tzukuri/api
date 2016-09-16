@@ -43,6 +43,20 @@
                     <p id="subscribe-status"></p>
                 </div>
 
+                <div id="register-interest-modal" class="modal-dialog light hidden">
+                    <h1>Register your interest</h1>
+                    <p>Enter your details below to register your interest in Tzukuri. We'll let you know as soon as the glasses are available to the public.</p>
+                    <%= form_for Interest.new, remote: true do |f| %>
+                        <%= f.text_field :name, placeholder: 'Full Name', autofocus: true %>
+                        <%= f.text_field :email, placeholder: 'Email Address'%>
+                        <%= f.text_field :city, placeholder: 'City' %>
+                        <%= f.country_select :country,  priority_countries: ["AU", "GB", "US", "CN"],placeholder: 'Country' %>
+
+                        <%= f.submit "register interest" %>
+                    <% end %>
+                </div>
+
+
                 <!-- beta registration modal -->
                 <div id="beta-register-modal" class="modal-dialog light hidden">
                     <h1>Enter your details below to register for the Tzukuri beta</span></h1>

@@ -220,7 +220,7 @@ button, .button {
     font-size: 12px;
     font-weight: 400;
     color: $tzukuri-blue;
-    text-transform: lowercase;
+    // text-transform: lowercase;
     box-sizing: border-box;
     background-color: transparent;
 
@@ -242,7 +242,7 @@ button, .button {
 }
 
 .cta-button {
-    padding: 15px;
+    // padding: 15px;
     background-color: $tzukuri-blue;
     color: white;
     border-radius: 5px;

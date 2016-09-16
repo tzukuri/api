@@ -3,23 +3,18 @@
   <div class="container">
 
     <div class="row" id='beta-hero'>
-      <div class="six columns" id='detail-col'>
-        <h1 id="unloseable-glasses">Unloseable sunglasses.</h1>
-        <h2 id="almost-here">For 100 people.</h2>
-        <p  id="blurb">
-        We’re looking for 100 passionate users to help us refine and test our glasses before they’re available to the public. At the end of the testing period, you'll be allowed to keep the glasses.
-        <br/><br/>
-          Registrations are now closed, you'll receive an email in the coming days if you've been selected. <a href="/beta/forgot">Forgot your beta login link?</a>
-        </p>
-
-        <%= image_tag 'beta/10RF_20150921_TZKR (2002).jpg', :id => 'glasses-hero', :class => @invited_by.nil? ? "no-invite" : "invite" %>
-        <%= image_tag 'beta/screenshot_2.png', id: 'phone-mobile' %>
-      </div>
-
       <div class="six columns" id='phone-col'>
-        <%= image_tag 'beta/phone-hand-pink_2.png', id: 'hand-phone' %>
-
-        <%= video_tag 'tzukuri_beta_recording_baseline.mp4', :id => 'phone-video', :autobuffer => true, :autoplay => true %>
+      image
+      </div>
+      <div class="six columns" id='detail-col'>
+        <h1 id="unloseable-glasses">Unloseable glasses</h1>
+        <h2 id="almost-here">Coming soon</h2>
+        <p  id="blurb">
+        The world's first unloseable glasses are coming soon. Register your interest to be the first to know when they're available.</p>
+        <button id="register" class="cta-button" style="font-size: 12pt">Register your interest ></button>
+        <p id="registrations">
+          Beta registrations are now closed. <a href="/beta/forgot">Forgot your beta login link?</a>
+        </p>
       </div>
     </div>
   </div>
