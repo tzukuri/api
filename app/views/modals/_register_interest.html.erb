@@ -1,0 +1,17 @@
+<div id="register-interest-modal" class="modal-dialog light hidden">
+    <i class="fa fa-times modal-close"></i>
+    <h1 class="bold">Register your interest</h1>
+    <p>Enter your details below to register your interest in Tzukuri. We'll let you know as soon as they're available.</p>
+    <%= form_for Interest.new, remote: true do |f| %>
+        <label for="interest_name">Full Name</label>
+        <%= f.text_field :name, placeholder: 'John Smith', autofocus: true %>
+        <label for="interest_email">Email Address</label>
+        <%= f.text_field :email, placeholder: 'example@tzukuri.com'%>
+        <label for="interest_city">City</label>
+        <%= f.text_field :city, placeholder: 'Sydney' %>
+        <label for="interest_country">Country</label>
+        <%= f.country_select :country,  priority_countries: ["AU", "GB", "US", "CN"],placeholder: 'Country' %>
+        <%= f.submit "register interest", id: "interest-submit" %>
+    <% end %>
+    <p id="errors"></p>
+</div>

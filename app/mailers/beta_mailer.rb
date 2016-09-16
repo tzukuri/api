@@ -6,16 +6,6 @@ class BetaMailer < ActionMailer::Base
     mail(to: beta_user.email, subject:"Thanks for registering for the Tzukuri Beta")
   end
 
-  def send_purchase_confirmation_email(purchase)
-    @purchase = purchase
-    mail(to: purchase.email, subject:"Your Tzukuri Pre-order")
-  end
-
-  def send_interest_confirmation(interest)
-    @interest = interest
-    mail(to: interest.email, subject: "Thanks for registering your interest in Tzukuri")
-  end
-
   def send_beta_order_email(beta_user)
     @beta_user = beta_user
     @beta_order = beta_user.order

@@ -1,23 +1,25 @@
 <div id="selected-container">
+
   <!-- 0 - intro -->
   <div class="step-container" id="step-intro">
-    <h2>Congratulations, you're in.</h2>
+    <h1 class="h-lg">Congratulations, you're in.</h1>
     <p>Welcome to the Tzukuri beta program. We hope you're as excited as we are that you'll be one of the first in the world to own a pair of unlosable sunglasses 😎.</p>
     <button id="get-started" class="order-btn next">Get started  &nbsp;&nbsp;<i class="fa fa-chevron-right"></i></button>
     <p id="disclaimer">By continuing you agree that you have an <span class="bold">iPhone 5 or later</span> running the <span class="bold">latest version of iOS.</span></p>
   </div>
+
   <div class="step-container hidden" id="step-accept">
     <div class="selected-header">
-      <h2>Personal Fitting and Your Role</h2>
+      <h1 class="h-lg">Personal Fitting and Your Role</h1>
+    </div>
       <div class="row">
         <div class="six columns" id="delivery">
-          <p style="font-weight: 500; font-size: 14pt; line-height: 200%; margin-bottom: 10px;">Personal Fitting</p>
+          <h2 class="bold">Personal Fitting</h2>
           <p>To help you get started, we’re offering a personal fitting service to any address within 15km of the Sydney CBD. A Tzukuri team member will help you try on and select the pair you like, and assist with the set up of the app.</p>
           <br/>
-          <!-- <p>If you're not within 15km, your glasses will be shipped to you.</p> -->
         </div>
         <div class="six columns" id="expectations">
-          <p>Your Role</p>
+          <h2 class="bold">Your Role</h2>
           <ul>
             <li>Respond to our weekly surveys.</li>
             <li>Report any bugs that you encounter.</li>
@@ -28,15 +30,16 @@
           </ul>
         </div>
       </div>
+
       <button class="order-btn next">
-      Accept and continue &nbsp;&nbsp;<i class="fa fa-chevron-right"></i>
+        Accept and continue &nbsp;&nbsp;<i class="fa fa-chevron-right"></i>
       </button>
-      <br/>
-      <button class="prev order-btn">
-      <i class="fa fa-chevron-left"></i>&nbsp;&nbsp;back
+
+      <button class="prev order-btn sm-btn">
+        <i class="fa fa-chevron-left"></i>&nbsp;&nbsp;back
       </button>
-    </div>
   </div>
+
   <!-- 1 - select frame -->
   <div class="step-container hidden" id="step-frames">
     <div class="selected-header">
@@ -55,11 +58,11 @@
       </div>
     </div>
     <p>Don’t worry if you pick the wrong one, you can finalise your choice at your Personal Fitting.</p>
-    <br/><br/>
-    <button class="prev order-btn">
-    <i class="fa fa-chevron-left"></i>&nbsp;&nbsp;back
+    <button class="prev order-btn sm-btn">
+      <i class="fa fa-chevron-left"></i>&nbsp;&nbsp;back
     </button>
   </div>
+
   <!-- 2 - select size -->
   <div class="step-container hidden" id="step-size">
     <div class="selected-header">
@@ -75,8 +78,8 @@
         <p class="size-exp">Choose this size if most glasses are too small for you.</p>
       </div>
     </div>
-    <button class="prev order-btn">
-    <i class="fa fa-chevron-left"></i>&nbsp;&nbsp;back
+    <button class="prev order-btn sm-btn">
+      <i class="fa fa-chevron-left"></i>&nbsp;&nbsp;back
     </button>
   </div>
   <!-- 3 - enter shipping details -->
@@ -107,24 +110,39 @@
       </div>
       <div class="five columns" id="shipping">
         <%= form_for BetaOrder.new, :url => beta_orders_path, :html => {:method => :post}, remote:true do |f| %>
-        <%= f.text_field :shipping_name, placeholder: 'Full name', autofocus: true %><br/>
-        <%= f.text_field :address1, placeholder: 'Street name, number, etc.' %><br/>
-        <%= f.text_field :address2, placeholder: 'City, suburb, etc.' %><br/>
-        <%= select_tag   :state, options_for_select(['NSW', 'ACT', 'NT', 'QLD', 'SA', 'TAS', 'VIC', 'WA' ]) %><br/>
-        <%= f.text_field :postcode, placeholder: 'Postcode', maxlength: 4 %><br/>
-        <%= f.text_field :country,  placeholder: 'country', value: 'Australia', disabled: true %><br/>
-        <%= f.telephone_field :phone,    placeholder: 'Mobile number' %><br/>
-        <p id="error-messages"></p>
+          <label for="">Full Name</label>
+          <%= f.text_field :shipping_name, placeholder: 'John Smith', autofocus: true %>
+
+          <label for="">Address 1</label>
+          <%= f.text_field :address1, placeholder: 'Street name, number, etc.' %>
+
+          <label for="">Address 2</label>
+          <%= f.text_field :address2, placeholder: 'City, suburb, etc.' %>
+
+          <label for="">State</label>
+          <%= select_tag   :state, options_for_select(['NSW', 'ACT', 'NT', 'QLD', 'SA', 'TAS', 'VIC', 'WA' ]) %>
+
+          <label for="">Postcode</label>
+          <%= f.text_field :postcode, placeholder: '2000', maxlength: 4 %>
+
+          <label for="">Country</label>
+          <%= f.text_field :country,  placeholder: 'country', value: 'Australia', disabled: true %>
+
+          <label for="">Mobile Number</label>
+          <%= f.telephone_field :phone, placeholder: '04xx xxx xxx' %>
+
+          <p id="error-messages"></p>
         <% end %>
         <button id="shipping-continue" class="order-btn next">continue&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></button>
         <div class="loading-spinner"></div>
       </div>
     </div>
-    <button class="prev order-btn">
-    <i class="fa fa-chevron-left"></i>&nbsp;&nbsp;back
+    <button class="prev order-btn sm-btn">
+      <i class="fa fa-chevron-left"></i>&nbsp;&nbsp;back
     </button>
     <br/><br/>
   </div>
+
   <!-- 4 - select a shipping method (optional) -->
   <div class="step-container hidden" id="step-shipping-method">
     <div class="selected-header">
@@ -140,22 +158,24 @@
         <p class="method-exp">A member of the Tzukuri team will personally deliver your glasses and help you get set up.</p>
       </div>
     </div>
-    <button class="prev order-btn">
+    <button class="prev order-btn sm-btn">
     <i class="fa fa-chevron-left"></i>&nbsp;&nbsp;back
     </button>
   </div>
+
   <!-- 5 - select a timeslot (optional) -->
   <div class="step-container hidden" id="step-timeslot">
     <div class="selected-header">
       <h2>Schedule a Personal Fitting</h2>
     </div>
-    <p id="booking-time"><span id="date"></span><span id="time">Choose an available time from the list below</span></p>
+    <h2 id="booking-time"><span id="date"></span><span id="time">Choose an available time from the list below</span></h2>
     <button id="timeslot-continue" class="next order-btn" style="display: none">continue&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></button>
     <div id="bookingjs"></div>
-    <button class="prev order-btn">
+    <button class="prev order-btn sm-btn">
     <i class="fa fa-chevron-left"></i>&nbsp;&nbsp;back
     </button>
   </div>
+
   <!-- 6 - enter payment information -->
   <div class="step-container hidden" id="step-payment">
     <div class="selected-header">
@@ -193,7 +213,7 @@
       <!-- <div class="five columns" style="margin-top: 40px;"> -->
       <!-- <button class="order-btn finish">place order</button> -->
     </div>
-    <button class="prev order-btn">
+    <button class="prev order-btn sm-btn">
     <i class="fa fa-chevron-left"></i>&nbsp;&nbsp;back
     </button>
   </div>

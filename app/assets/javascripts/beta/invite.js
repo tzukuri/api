@@ -22,42 +22,6 @@ $(function() {
         })
     })
 
-    $('#new_interest').submit(function() {
-        $('#new_interest input').removeClass('error')
-        $("#interest-submit").hide()
-    })
-
-    $('#new_interest').on('ajax:success', function(e, data) {
-            if (data.success) {
-
-                $("#errors").html("Thanks for registering! We'll be in touch soon.")
-
-                setTimeout(function() {
-                    tzukuri.modal.hideAll()
-
-                    $("#new_interest")[0].reset()
-                    $("#errors").html("")
-                    $("#interest-submit").show()
-                }, 1800)
-            } else {
-                $("#interest-submit").show()
-
-                var errors = data.errors
-                var fullErrors = data.full_errors
-
-                // add error classes
-                for (var key in errors) {
-                    $('#new_interest input#interest_' + key).addClass('error')
-                }
-
-                $("#errors").html(data.full_errors.join(', '))
-
-                $("#interest-submit").tzAnimate('shake')
-            }
-    }).on('ajax:error', function(e, data) {
-        $("#errors").html('An error has occurred, please try again.')
-    });
-
     $("#close").on('click', function() {
         tzukuri.modal.hideAll()
     })
@@ -96,7 +60,9 @@ $(function() {
     // show the continue button to login when the user begins typing
     $('#beta_user_email').on('input', function(e) {
         if ($(this).val().length > 0 && $('#submit-btn').hasClass('disabled')) {
-            $("#submit-btn").removeClass('disabled').tzAnimate('bounceIn')
+            $("#submit-btn").removeClass('disabled')
+        } else {
+            $("#submit-btn").addClass('disabled')
         }
     })
 
@@ -134,12 +100,6 @@ $(function() {
         if (complete) {
             // show the submit button
             $("#register-btn").removeClass('disabled').prop('disabled', false);
-
-            // only animate in if coming from disabled state
-            if ($('#register-btn').hasClass('disabled')) {
-                $('#register-btn').tzAnimate('bounceIn').show();
-            }
-
         } else {
             $("#register-btn").addClass('disabled').prop('disabled', true);
         }
@@ -229,13 +189,13 @@ $(function() {
         $('#beta_user_city').toggleClass('autocomplete-open')
     }
 
-    $("#beta_user_city").autocomplete({
-        source: cityQuery,
-        select: selectCity,
-        focus: cityFocus,
-        open: toggleEdges,
-        close: toggleEdges
-    })
+    // $("#beta_user_city").autocomplete({
+    //     source: cityQuery,
+    //     select: selectCity,
+    //     focus: cityFocus,
+    //     open: toggleEdges,
+    //     close: toggleEdges
+    // })
 
         // creating a new order if the user is selected
     $('#new_beta_user').on('ajax:success', function(e, data) {

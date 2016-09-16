@@ -1,0 +1,19 @@
+<!-- beta registration modal -->
+<div id="beta-register-modal" class="modal-dialog light hidden">
+<h1>Enter your details below to register for the Tzukuri beta</span></h1>
+    <% if !@beta_user.nil? %>
+    <%= form_for @beta_user, remote: true, url: beta_user_registration_path(@beta_user) do |f| %>
+    <%= f.text_field :name, placeholder: "name", autofocus: true, autocomplete: 'off', class: "beta-input" %> <br>
+    <%= f.email_field :email, placeholder: "email address", autocomplete: 'off', class: "beta-input" %> <br/>
+    <%= f.text_field :birth_date, placeholder: "birth date", class: "beta-input", autocomplete: 'off' %>
+<p id="birthday_hint">dd/mm/yyyy</p>
+    <%= f.hidden_field :latitude %>
+    <%= f.hidden_field :longitude %>
+    <%= f.text_field :city, class: "beta-input", placeholder: "city", autocomplete: 'off' %>
+    <%= f.hidden_field :invite_token, value: @token %><br/>
+    <%= f.submit "register", class: "disabled", disabled: true, data: {disable_with: "register"}, id: "register-btn" %>
+    <p id="register-errors"></p>
+    <% end %>
+    <% end %>
+<p id="terms">By registering you agree to our <a href="/beta_legal" target="_blank">beta terms and conditions</a>.</p>
+</div>

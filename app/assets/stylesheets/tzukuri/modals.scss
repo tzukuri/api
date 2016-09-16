@@ -47,6 +47,11 @@
         margin: -20px auto 0px auto;
         max-height: 100vh;
 
+        .modal-close {
+            color: $tz-active;
+            float: right;
+        }
+
         &.hidden {
             opacity: 0;
             display: none;
@@ -177,68 +182,22 @@
 
 #register-interest-modal {
     h1 {
-        font-size: 24pt;
-        font-weight: 200;
+        padding-bottom: 10px;
     }
 
     p {
-        font-size:12pt;
-        color: $tzukuri-dark-grey;
-        line-height: 150%;
-        padding-top: 20px;
         width: 70%;
         margin: 0 auto;
     }
 
     form {
-        input, select {
-            display: block;
-            min-height: 40px;
-            width: 70%;
-            margin: 0 auto;
-            margin-top: 30px;
-            margin-bottom: 30px;
-            border-radius: 10px;
-            background-color: $tzukuri-light-grey;
-            border: 1px solid $tzukuri-light-grey;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            font-size: 12pt;
-            padding: 0;
-            padding-left: 15px;
-
-            &.error {
-                border: 1px solid $tzukuri-red;
-            }
-        }
-
         #interest-submit {
             margin-bottom: 0px;
         }
 
         #errors {
             font-size: 10pt;
-            color: $tzukuri-red;
-        }
-
-        select {
-            width: 73%;
-        }
-
-        input[type=submit] {
-            background-color: $tzukuri-blue;
-            color: white;
-            border-radius: 5px;
-            width: 40%;
-            cursor: pointer;
-            padding: 0;
-
-            &:hover {
-                color: $tzukuri-blue;
-                border: 1px solid $tzukuri-blue;
-                background-color: transparent;
-            }
+            color: $tz-error;
         }
     }
 }

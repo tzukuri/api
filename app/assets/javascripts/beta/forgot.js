@@ -4,7 +4,7 @@ $(function() {
     // show the continue button to login when the user begins typing
     $('#email').on('input', function(e) {
         if ($(this).val().length > 0 && !$("#submit-btn").is(":visible")) {
-            $("#submit-btn").tzAnimate('bounceIn').show()
+            $("#submit-btn").removeClass('disabled')
         }
     })
 

@@ -1,10 +1,9 @@
 body.index {
-    margin-top: 105px;
-
     #hero {
         @include transition(opacity 2s ease-in-out);
 
         min-height: 90vh;
+        margin-top: 30px;
 
         &.hidden {
             opacity: 0;
@@ -137,6 +136,8 @@ body.index {
     }
 
     #craft {
+        margin-top: 40px;
+
         .content {
             margin-top: 10%;
         }
@@ -161,8 +162,6 @@ body.index {
 
 @media only screen and (max-width: 720px) {
     body.index {
-        margin-top: 80px;
-
         .index-panel {
             margin-bottom: 20px;
         }
