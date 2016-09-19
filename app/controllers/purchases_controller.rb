@@ -44,7 +44,7 @@ class PurchasesController < ApplicationController
             )
 
             # send confirmation email
-            BetaMailer.send_purchase_confirmation_email(purchase).deliver_later
+            StoreMailer.purchase_confirmation(purchase).deliver_later
 
             render json: {success: true, ref: "#{params[:frame].downcase[0..3]}#{purchase.id}"}
         rescue Stripe::CardError => e

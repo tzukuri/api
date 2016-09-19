@@ -68,3 +68,8 @@ var modal = (function () {
 
   return m;
 }());
+
+// close the modal
+$(".modal-close").on('click', function() {
+    modal.hideAll()
+})

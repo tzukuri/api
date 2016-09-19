@@ -1,0 +1,19 @@
+<div id="register-interest-modal" class="modal-dialog light hidden">
+    <i class="fa fa-times modal-close"></i>
+    <h1 class="bold">Join Waiting List</h1>
+    <p>We'll let you know when they're available.</p>
+    <%= form_for Interest.new, remote: true do |f| %>
+        <label for="interest_name">Full Name</label>
+        <%= f.text_field :name, placeholder: 'John Smith', autofocus: true %>
+        <label for="interest_email">Email Address</label>
+        <%= f.text_field :email, placeholder: 'example@tzukuri.com'%>
+        <label for="interest_city">City</label>
+        <%= f.text_field :city, placeholder: 'Sydney' %>
+        <label for="interest_country">Country</label>
+        <%= f.country_select :country,  priority_countries: ["AU", "GB", "US", "CN"],placeholder: 'Country' %>
+         <%= button_tag(type: 'submit', id: 'interest-submit') do %>
+            register
+        <% end %>
+        <p id="messages"></p>
+    <% end %>
+</div>

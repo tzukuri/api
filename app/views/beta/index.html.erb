@@ -47,12 +47,13 @@
   <% else %>
       <!-- the user isn't logged in so show the login form -->
       <div id="login-container" data-error="<%= 'true' if flash[:alert] %>">
-        <h1>T Z U K U R I <span class="blue">[beta]</span></h1>
-        <h2>Enter the email address you registered with</h2>
+        <h1 class="h-lg">T Z U K U R I <span class="tz-active">[beta]</span></h1>
+        <h2 class="h-sm">Enter the email address you registered with</h2>
         <%= form_for @beta_user, :url => beta_user_session_path(@beta_user) do |f| %>
-          <%= f.email_field :email, placeholder: "email address", autofocus: true, class: "beta-input", autocomplete: 'off' %> <br/>
-          <p id="error-messages"><%= flash[:alert] %></p>
-          <%= f.hidden_field :invite_token, value: @token %><br/>
+          <label for="beta_user_email">Email Address</label>
+          <%= f.email_field :email, placeholder: "example@tzukuri.com", autofocus: true, class: "beta-input", autocomplete: 'off' %>
+          <p class="messages error"><%= flash[:alert] %></p>
+          <%= f.hidden_field :invite_token, value: @token %>
           <%= f.submit "continue", id:"submit-btn", class:"disabled" %>
         <% end %></div>
   <% end %>

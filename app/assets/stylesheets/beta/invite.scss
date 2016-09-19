@@ -9,7 +9,7 @@ body.beta {
             padding: 10px 20px 10px 20px;
             font-size: 11pt;
             font-weight: 200;
-            background-color: $tzukuri-blue;
+            background-color: $tz-active;
             color: white;
             border-radius: 30px;
         }
@@ -59,7 +59,7 @@ body.beta {
 
             p {
                 font-size: 10pt;
-                color: $tzukuri-dark-grey;
+                color: $tz-content;
                 font-weight: 300;
             }
         }
@@ -79,7 +79,7 @@ body.beta {
                 margin-top: 30px;
 
                 #error {
-                    color: $tzukuri-red;
+                    color: $tz-error;
                     font-size: 10pt;
                     text-align: left;
                     vertical-align: middle;
@@ -90,11 +90,19 @@ body.beta {
 
             #detail-col {
                 font-size: 34pt;
+                margin-top: 5%;
 
                 #unloseable-glasses {
                     font-weight: 200;
                     line-height: 100%;
                     margin-bottom: 15px;
+                }
+
+                #register {
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    height: auto;
+                    margin-top: 20px;
                 }
 
                 #almost-here {
@@ -105,6 +113,12 @@ body.beta {
                     margin-top: 30px;
                     font-size: 14pt;
                     line-height: 200%;
+                }
+
+                #registrations {
+                    margin-top: 40px;
+                    font-size: 10pt;
+                    line-height: 150%;
                 }
 
                 #glasses-hero {

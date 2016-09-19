@@ -84,6 +84,7 @@ Rails.application.routes.draw do
     # -----------------------------
     resources :beta_responses
     resources :beta_orders
+    resources :interests
 
     resources :purchases do
         collection do
@@ -109,7 +110,7 @@ Rails.application.routes.draw do
     post '/beta/retrieve'       => 'beta#retrieve',     :as => :beta_user_retrieve
 
    # redirect twitter on failed authentication
-    get '/beta/redirect'        => 'beta#redirect'
+    get '/beta/redirect'        => 'beta#redirect',      :as => :beta_user_redirect
     get '/beta/:token'          => 'beta#index',        :as => :beta_user
     get '/beta/invite/:token'   => 'beta#invite',       :as => :beta_user_invite
     get '/beta'                 => redirect('/')
@@ -132,6 +133,5 @@ Rails.application.routes.draw do
 
     get '*page'                 => 'pages#index'
 
-    # root 'pages#index', page: 'index'
-    root 'beta#invite'
+    root 'pages#index', page: 'index'
 end

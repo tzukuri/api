@@ -5,7 +5,7 @@ body.beta {
 
         h2 {
             font-size: 32pt;
-            color: $tzukuri-black;
+            color: $tz-title;
             font-weight: 200;
             margin-bottom: 20px;
             line-height: 150%;
@@ -14,7 +14,7 @@ body.beta {
         p {
             font-size: 12pt;
             line-height: 22pt;
-            color: $tzukuri-dark-grey;
+            color: $tz-content;
             font-weight: 300;
         }
 
@@ -32,7 +32,7 @@ body.beta {
         }
 
         #email-confirm {
-            color: $tzukuri-green;
+            color: $tz-success;
             display: none;
         }
     }

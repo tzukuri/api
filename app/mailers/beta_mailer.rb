@@ -1,14 +1,9 @@
 class BetaMailer < ActionMailer::Base
-  default :from => "\"Tzukuri Beta\" <beta@tzukuri.com>"
+  default :from => "\"Tzukuri\" <beta@tzukuri.com>"
 
   def send_beta_confirmation_email(beta_user)
     @beta_user = beta_user
     mail(to: beta_user.email, subject:"Thanks for registering for the Tzukuri Beta")
-  end
-
-  def send_purchase_confirmation_email(purchase)
-    @purchase = purchase
-    mail(to: purchase.email, subject:"Your Tzukuri Pre-order")
   end
 
   def send_beta_order_email(beta_user)

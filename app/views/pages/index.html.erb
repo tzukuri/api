@@ -1,121 +1,163 @@
-<main>
+<!-- hero -->
+<div class="container panel hidden" id="hero">
+    <div class="six columns" id="hero-image">
+        <%= image_tag 'glasses_hero.jpeg' %>
+    </div>
+    <div class="six columns" id="hero-content">
+        <h1><span class="bold">unlosable glasses</span><span class="spacer">|</span>Made in Sydney</h1>
+        <p>1 in 2 people lose a pair of glasses every year, contributing 90,000 tonnes of waste into the environment. Are you one of them?</p>
+        <button id="register-interest" class="md-btn">join waitlist</button>
+    </div>
+</div>
 
-    <article id="unloseable">
-        <div class="panel">
-            <div class="content">
-                <h1>Unloseable.</h1>
-                <h2>Sunglasses + iPhone.</h2>
-                <p>Your iPhone alerts you if you leave your Tzukuris behind, and the app shows you where you left them.</p>
-                <p><a href="/technology">Learn more about the technology</a></p>
+<!--
+<div id="scroll-indicator" class="hidden">
+    <i class="fa fa-2x fa-chevron-down"></i>
+</div>
+-->
 
-                <%= image_tag 'beta/10RF_20150921_TZKR (2002).jpg', id: 'glasses-main'%>
+<!-- bluetooth -->
+<!--
+<div class="u-full-width panel" id="bluetooth">
+    <div class="container" style="text-align: center">
+        <%#= image_tag 'beacon.png' %>
+        <h1 style="padding-top: 30px;"><span class="bold">bluetooth beacon</span><span class="spacer">|</span>World's Smallest</h1>
+        <p style="margin: 0 auto;">A Tzukuri designed Bluetooth Low Energy beacon is sealed invisibly inside each pair of glasses. The beacon connects with the Tzukuri app on your iPhone and lasts up to 30 days on a single charge.</p>
+    </div>
+</div>
+-->
 
-                <!-- <a href="#" class="share"><%#= image_tag 'share.png' %>Share</a> -->
-            </div>
-            <div class="background">
-                <div class="image" style="background-image: url(<%= image_url 'beta/screenshot.png' %>)"></div>
-            </div>
+<!-- design -->
+<!-- <div class="container panel" id="design">
+    <div class="row" id="sun-row">
+        <div class="five columns frame-container">
+            <%#= image_tag 'frames/ford/ford_black_sun.jpg', class: 'left' %>
+            <h3 class="design-title">Ford</h3>
+            <p class="design-detail">Matte Black | Sun</p>
         </div>
-    </article>
-
-        <article id='beta'>
-        <div class="container">
-            <div class="row" id="beta-content">
-                    <h1>T Z U K U R I <span class='blue'>[beta]</span></h1>
-                    <h2>The world's first unloseable glasses are almost here. We're looking for a group of people to help us test the glasses before their release later this year.</h2>
-
-                    <br/><br/>
-                    <a href="/beta">Learn more about the beta program</a>
-            </div>
+        <div class="two columns">&nbsp;</div>
+        <div class="five columns frame-container">
+            <%#= image_tag 'frames/ive/ive_black_sun.jpg', class: 'right' %>
+            <h3 class="design-title">Ive</h3>
+            <p class="design-detail">Matte Black | Sun</p>
         </div>
-    </article>
+    </div>
+    <div class="row" id="design-content">
+        <h2><span class="bold">design</span><span class="spacer">|</span>Pair of Beauties</h2>
+        <p>Tzukuri is available in 2 beautiful designs, 2 sizes and is available in both sun and optical.</p>
+        <a href="/design">Learn more about our designs</a>
+    </div>
+    <div class="row" id="optical-row">
+        <div class="five columns frame-container">
+            <%#= image_tag 'frames/ford/ford_black_optical.jpg', class: 'left' %>
+            <h3 class="design-title">Ford</h3>
+            <p class="design-detail">Matte Black | Optical</p>
+        </div>
+        <div class="two columns">&nbsp;</div>
+        <div class="five columns frame-container">
+            <%#= image_tag 'frames/ive/ive_black_optical.jpg', class: 'right' %>
+            <h3 class="design-title">Ive</h3>
+            <p class="design-detail">Matte Black | Optical</p>
+        </div>
+    </div>
+</div>
+-->
 
-    <article id="fashion">
-        <div class="background"><div class="image" style="background-image: url(<%= image_url 'fashion.jpg' %>)"></div></div>
-    </article>
-
-    <article id="frames">
-        <div class="panel">
-            <div class="content">
-                <ul>
-                    <li>
-                        <%= image_tag 'frames/ive/black-front.png', class: 'black' %>
-                        <%= image_tag 'frames/ive/tortoise-front.png', class: 'tortoise', style: 'opacity: 0.0' %>
-                    </li>
-                </ul>
-                <menu>
-                <div data-image="black" class ='selected'>
-                    <div></div>
-                    <p>Black</p>
+<!-- app -->
+<!--
+<div class="u-full-width panel" id="app">
+    <div class="container">
+        <div class="row">
+            <div class="one column">
+                <a href="" id="app-prev">
+                    <i class="fa fa-2x fa-chevron-left"></i>
+                </a>
+            </div>
+            <div class="four columns" id="screenshot-container">
+                <%#= image_tag 'screenshots/notification.png', class:'app-screenshot' %>
+                <%#= image_tag 'screenshots/main.png', class:'app-screenshot' %>
+                <%#= image_tag 'screenshots/ranging.png', class:'app-screenshot' %>
+            </div>
+            <div class="six columns" id="feature-container">
+                <div class="app-feature">
+                    <h2><span class="bold">unloseable</span><span class="spacer">|</span>Notifications</h2>
+                    <p>The Tzukuri app notifies you when you leave your glasses behind, so you won’t forget them.</p>
+                    <a href="/technology">Learn more about the technology</a>
                 </div>
-                <div data-image="tortoise">
-                    <div></div>
-                    <p>Tortoise</p>
+                <div class="app-feature">
+                    <h2><span class="bold">unloseable</span><span class="spacer">|</span>Last seen location</h2>
+                    <p>Tzukuri saves the last time and place you had your glasses, so you know where you left it.</p>
+                    <a href="/technology">Learn more about the technology</a>
                 </div>
-                </menu>
-                <p><a href="#" class="share"><%= image_tag 'share.png' %>Share</a></p>
+                <div class="app-feature">
+                    <h2><span class="bold">unloseable</span><span class="spacer">|</span>Find</h2>
+                    <p>We all misplace our glasses around the home. Tzukuri shows you how far away you are to help you find them.</p>
+                    <a href="/technology">Learn more about the technology</a>
+                </div>
+            </div>
+            <div class="one column">
+                <a href="" id="app-next">
+                    <i class="fa fa-2x fa-chevron-right"></i>
+                </a>
             </div>
         </div>
-    </article>
 
-    <article id="design">
-        <div class="panel">
-            <div class="content">
-                <h1>Inspired by heroes.</h1>
-                <h1>Designed with science.</h1>
-                <p>By analysing the visual field of the human eye, we designed frames to suit the broadest range of face shapes. The result is two beautiful designs in two colours, refined geometrically so you can find the perfect pair.</p>
-                <p><a href="/design">Learn more about the design.</a></p>
-            </div>
+        <div class="row" id="app-nav">
+            <i class="fa fa-circle current"></i>
+            <i class="fa fa-circle"></i>
+            <i class="fa fa-circle"></i>
         </div>
-    </article>
+    </div>
+</div>
+-->
 
-    <article id="craftsmanship">
-        <div class="background">
-            <div class="image" style="background-image: url(<%= image_url 'frames.jpg' %>)"></div>
+<!-- craft -->
+<!--
+<div class="container panel" id="craft">
+    <div class="row">
+        <div class="six columns">
+            <%#= image_tag 'vf1_lc_smtc.jpeg', style: 'width: 100%' %>
         </div>
-        <div class="panel">
-            <div class="content">
-                <h1>Handmade in Sydney.</h1>
-                <h2>Lenses produced by Carl Zeiss Vision.</h2>
-                <p>Our frames are handmade in Sydney, using techniques inspired by the finest Japanese artisans. Japanese precision equipment and high quality acetates make of a pair of glasses unparalleled in beauty and durability.</p>
-                <p><a href="/craftsmanship">Learn more about the craftsmanship.</a></p>
-                <dl>
-                    <span id="craftsmanship-weeks">
-                        <dd>3</dd>
-                        <dt>weeks to make</dt>
-                    </span>
-                    <span id="craftsmanship-qc">
-                        <dd>8</dd>
-                        <dt>quality control checks</dt>
-                    </span>
-                    <span id="craftsmanship-processes">
-                        <dd>110</dd>
-                        <dt>production processes</dt>
-                    </span>
-                </dl>
-            </div>
+        <div class="six columns content">
+            <h1><span class="bold">a new craft</span><span class="spacer">|</span>10x precision</h1>
+            <p>To seal electronics inside glasses required redesigning every step of the eyewear manufacturing process. We developed a precision, 37 stage process that produces the most precise acetate frames in the world.</p>
+            <a href="/craft">Learn more about our manufacturing process</a>
         </div>
-    </article>
+    </div>
+</div>
+-->
 
-    <article id="environment">
-        <div class="panel">
-            <div class="content">
-                <h1>For the environment.</h1>
-                <p>With 1 in 2 people losing a pair of sunglasses in the first year, Tzukuri is starting a fight against 26 kilotonnes of plastic waste.</p>
-                <p><i class="fa fa-globe"></i></p>
-                <dl>
-                    <div>
-                        <span>
-                            <dd>98<span>%</span></dd>
-                            <dt>renewable<br>materials</dt>
-                        </span>
-                        <span>
-                            <dd>98<span>%</span></dd>
-                            <dt>recyclable<br>packaging</dt>
-                        </span>
-                    </div>
-                </dl>
+<!-- lenses -->
+<!--
+<div class="container panel" id="lenses">
+    <div class="row">
+        <div class="six columns content">
+            <h1><span class="bold">lenses</span><span class="spacer">|</span>Polarised</h1>
+            <p>Every pair comes with polarised lenses as standard, offering 100% UVA/UVB protection and glare reduction for the best visual clarity, protection and comfort.</p>
+            <a href="/design">Learn more about our designs</a>
+        </div>
+        <div class="six columns">
+            <%#= image_tag 'lenses_2.jpg', style: 'width: 100%' %>
+        </div>
+    </div>
+</div>
+-->
+
+<!-- personal fitting -->
+<!--
+<div class="u-full-width panel" id="personal-fitting">
+    <div class="container">
+        <div class="row">
+            <div class="five columns">
+                <%#= image_tag 'Tzukuri3144.JPG' %>
+            </div>
+            <div class="one column">&nbsp;</div>
+            <div class="six columns" id="pf-content">
+            <h2><span class="bold">personal fitting</span><span class="spacer">|</span>Try them on</h2>
+            <p>Want to try them on? Reserve yours to schedule a complimentary Personal Fitting if you're within 15km of the Sydney CBD.</p>
+            <a href="/fitting">Learn more about our Personal Fitting service</a>
             </div>
         </div>
-    </article>
-</main>
+    </div>
+</div>
+-->

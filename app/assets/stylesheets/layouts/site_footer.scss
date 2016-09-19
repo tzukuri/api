@@ -1,18 +1,16 @@
 footer {
-    text-align: center;
-    color: $tzukuri-black;
-    background-color:transparent;
-    padding: 30px;
-    font-family: 'Helvetica';
-    font-weight: 200;
-    font-size: 10pt;
+    @include font-size(13px);
 
-    opacity:1;
+    text-align: center;
+    color: $tz-content;
+    padding: 30px;
 
     span {
         margin-left: 20px;
 
         a {
+            @include font-size(13px);
+
             margin-left: 20px;
         }
     }

@@ -14,6 +14,18 @@ $(function() {
         }
     })
 
+    $("#register").on('click', function() {
+        tzukuri.modal.show({
+            modal: "#register-interest-modal",
+            tint: "light",
+            dismissable: true
+        })
+    })
+
+    $("#close").on('click', function() {
+        tzukuri.modal.hideAll()
+    })
+
     $('#new_beta_user').on('input', function() {
         checkSubmit();
     })
@@ -48,7 +60,9 @@ $(function() {
     // show the continue button to login when the user begins typing
     $('#beta_user_email').on('input', function(e) {
         if ($(this).val().length > 0 && $('#submit-btn').hasClass('disabled')) {
-            $("#submit-btn").removeClass('disabled').tzAnimate('bounceIn')
+            $("#submit-btn").removeClass('disabled')
+        } else {
+            $("#submit-btn").addClass('disabled')
         }
     })
 
@@ -86,12 +100,6 @@ $(function() {
         if (complete) {
             // show the submit button
             $("#register-btn").removeClass('disabled').prop('disabled', false);
-
-            // only animate in if coming from disabled state
-            if ($('#register-btn').hasClass('disabled')) {
-                $('#register-btn').tzAnimate('bounceIn').show();
-            }
-
         } else {
             $("#register-btn").addClass('disabled').prop('disabled', true);
         }
@@ -181,13 +189,13 @@ $(function() {
         $('#beta_user_city').toggleClass('autocomplete-open')
     }
 
-    $("#beta_user_city").autocomplete({
-        source: cityQuery,
-        select: selectCity,
-        focus: cityFocus,
-        open: toggleEdges,
-        close: toggleEdges
-    })
+    // $("#beta_user_city").autocomplete({
+    //     source: cityQuery,
+    //     select: selectCity,
+    //     focus: cityFocus,
+    //     open: toggleEdges,
+    //     close: toggleEdges
+    // })
 
         // creating a new order if the user is selected
     $('#new_beta_user').on('ajax:success', function(e, data) {
