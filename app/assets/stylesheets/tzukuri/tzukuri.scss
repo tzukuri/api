@@ -135,7 +135,7 @@ form {
     input, select {
         @include font-size(16px);
 
-        @include border-radius($tz-border-radius);
+        @include border-radius(7px);
 
         @include appearance(none);
 
@@ -164,9 +164,10 @@ form {
     }
 
     // buttons should not have a set width
-    input[type=submit] {
-        margin-top: 30px;
+    input[type=submit], button {
         width: auto;
+        display: block;
+        margin: 30px auto 20px auto;
     }
 
     .messages {
@@ -205,8 +206,28 @@ ul {
 }
 
 // colour classes
-.tz-active-colour {
+.tz-active {
     color: $tz-active;
+}
+
+.tz-error {
+    color: $tz-error;
+}
+
+// loading spinner
+.loading-spinner {
+    background: url("/images/loading_spinner.svg") no-repeat;
+    background-position: 95%;
+    height: 40px;
+    color: white;
+}
+
+// browser focus outline
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
 }
 
 @media only screen and (max-width: 720px) {

@@ -8,7 +8,7 @@ class InterestsController < ApplicationController
       return
     end
 
-    StoreMailer.interest_confirmation(interest).deliver_later
+    # StoreMailer.interest_confirmation(interest).deliver_later
     render json: {success: true, interest: interest}
   end
 

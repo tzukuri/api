@@ -47,7 +47,7 @@
   <% else %>
       <!-- the user isn't logged in so show the login form -->
       <div id="login-container" data-error="<%= 'true' if flash[:alert] %>">
-        <h1 class="h-lg">T Z U K U R I <span class="tz-active-colour">[beta]</span></h1>
+        <h1 class="h-lg">T Z U K U R I <span class="tz-active">[beta]</span></h1>
         <h2 class="h-sm">Enter the email address you registered with</h2>
         <%= form_for @beta_user, :url => beta_user_session_path(@beta_user) do |f| %>
           <label for="beta_user_email">Email Address</label>

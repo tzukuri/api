@@ -14,13 +14,13 @@ $(function() {
     $('#new_interest').on('ajax:success', function(e, data) {
             if (data.success) {
 
-                $("#errors").html("Thanks for registering! We'll be in touch soon.")
+                $("#messages").removeClass('tz-error').html("Thanks for registering! We'll be in touch soon.")
 
                 setTimeout(function() {
                     tzukuri.modal.hideAll()
 
                     $("#new_interest")[0].reset()
-                    $("#errors").html("")
+                    $("#messages").html("")
                     $("#interest-submit").show()
                 }, 1800)
             } else {
@@ -34,7 +34,7 @@ $(function() {
                     $('#new_interest input#interest_' + key).addClass('error')
                 }
 
-                $("#errors").html(data.full_errors.join(', '))
+                $("#messages").addClass('tz-error').html(data.full_errors.join(', '))
 
                 $("#interest-submit").tzAnimate('shake')
             }

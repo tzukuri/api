@@ -191,13 +191,9 @@
     }
 
     form {
-        #interest-submit {
-            margin-bottom: 0px;
-        }
-
-        #errors {
-            font-size: 10pt;
-            color: $tz-error;
+        #messages {
+            text-align: center;
+            font-size: 12pt;
         }
     }
 }
