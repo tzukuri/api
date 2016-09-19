@@ -235,6 +235,7 @@ button:focus {
         input, select {
             width: 100%;
         }
+
         label {
             margin-left: 5%;
         }
@@ -242,5 +243,15 @@ button:focus {
 
     button, input[type=submit] {
         width: 100%;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    h1 {
+        @include font-size(23px);
+    }
+
+    p {
+       @include font-size(15px);
     }
 }
