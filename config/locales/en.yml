@@ -50,7 +50,7 @@ en:
             # quiet zone cells
             quiet_zone_title: "Add a quiet zone"
             quiet_zone_header: "Quiet Zones"
-            quiet_zone_footer: "In quiet zones you will not recieve notifications if you are out of range of your glasses. If you leave a quiet zone and your glasses are disconnected, you will recieve a notification."
+            quiet_zone_footer: "In quiet zones you will not receive notifications if you are out of range of your glasses. If you leave a quiet zone and your glasses are disconnected, you will receive a notification."
 
         map:
             pin_title: "Tzukuri"
