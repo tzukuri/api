@@ -24,7 +24,7 @@ $(function() {
             frame: 1,
             size: 2,
             delivery: 3,
-            peyment: 4
+            payment: 4
         },
         stepCallbacks: {
             // callbacks for each step
@@ -69,14 +69,13 @@ $(function() {
         },
 
         setCurrentStep: function(step) {
-            var step = Object.keys(this.steps)[step]
+            var stepName = Object.keys(this.steps)[step]
 
             this.navElement.find('.current').removeClass('current')
-            this.navElement.find('#' + step).addClass('current')
+            this.navElement.find('#' + stepName).addClass('current')
 
-            $(this.stepContainer[this.currentStep()]).fadeOut(function(step) {
-                $(this.stepContainer[step]).fadeIn()
-            })
+            $(this.stepContainer[this.currentStep()]).fadeOut()
+            $(this.stepContainer[step]).fadeIn()
 
             if (step > this.currentStep()) {
                 this.stack.push(step)
@@ -87,7 +86,7 @@ $(function() {
             // todo: update the order details in the navigation bar
 
             // call the callback for this step
-            this.stepCallbacks[step]()
+            this.stepCallbacks[stepName]()
         }
     }
 
