@@ -13,6 +13,8 @@ $(function() {
 
     $('#new_interest').on('ajax:success', function(e, data) {
             if (data.success) {
+                // track a registered lead on facebook pixel
+                fbq('track', 'Lead');
 
                 $("#messages").removeClass('tz-error').html("Thanks for registering! We'll be in touch soon.")
 
