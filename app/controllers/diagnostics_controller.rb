@@ -1,4 +1,5 @@
 class DiagnosticsController < ApplicationController
+    http_basic_authenticate_with name: "beta@tzukuri.com", password: "ksV-Pxq-646-feS"
 
     def index
         path = Rails.root.join('diagnostics')
@@ -35,5 +36,5 @@ class DiagnosticsController < ApplicationController
             end
         end
     end
-
+    
 end
