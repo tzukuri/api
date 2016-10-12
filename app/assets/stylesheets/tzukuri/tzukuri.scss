@@ -4,6 +4,7 @@ $lavender-grey: #C1CBCC;
 $dim-grey: #686868;
 $white: #FFFFFF;
 $eerie-black: #1A1D1A;
+$shadow-green: #97BAB3;
 
 // tzukuri colours
 $tz-active: $myrtle-green;
@@ -130,28 +131,37 @@ button, input[type=submit] {
 // forms
 form {
     text-align: left;
-    margin-top: 20px;
 
     input, select {
         @include font-size(16px);
 
-        @include border-radius(7px);
+        @include border-radius(15px);
 
         @include appearance(none);
 
         // prevent padding from affecting width/height
         box-sizing: border-box;
-        display: block;
+        display: inline-block;
         min-height: 40px;
         background-color: $tz-inactive;
         border: 1px solid $tz-inactive;
         margin: 0 auto;
-        width: 70%;
+        width: 100%;
         padding-left: 20px;
         margin-bottom: 15px;
 
         &.error {
             border: 1px solid $tz-error;
+        }
+    }
+
+    .section-head {
+        padding-bottom: 15px;
+        color: $tz-title;
+
+        // don't apply the top padding to the first element (so that it aligns with the top correctly)
+        &:not(:first-of-type) {
+            padding-top: 15px;
         }
     }
 
@@ -161,6 +171,7 @@ form {
         margin-left: 18%;
         line-height: 200%;
         color: $tz-content;
+        display: block;
     }
 
     // buttons should not have a set width
@@ -252,6 +263,92 @@ button:focus {
     }
 
     p {
-       @include font-size(15px);
+        @include font-size(15px);
     }
+}
+
+/** APPLE PAY STYLES */
+.apple-pay-button-with-text {
+    display: inline-flex;
+    justify-content: center;
+    font-size: 12px;
+    border-radius: 5px;
+    padding: 0px;
+    box-sizing: border-box;
+    min-width: 200px;
+    min-height: 32px;
+    max-height: 64px;
+    cursor: pointer;
+}
+
+.apple-pay-button-black-with-text {
+    background-color: $tz-active;
+    color: white;
+}
+
+.apple-pay-button-with-text.apple-pay-button-black-with-text > .logo {
+    background-image: -webkit-named-image(apple-pay-logo-white);
+    background-color: $tz-active;
+}
+
+.apple-pay-button-with-text > .text {
+    font-family: -apple-system;
+    font-size: 1em;
+    font-weight: 300;
+    align-self: center;
+    margin-right: 2px;
+}
+
+.apple-pay-button-with-text > .logo {
+    width: 35px;
+    background-size: 100% 60%;
+    background-repeat: no-repeat;
+    background-position: 0 50%;
+    margin-left: 2px;
+    border: none;
+}
+
+
+/** spinners */
+.loader {
+  margin: 30px auto;
+  font-size: 10px;
+  position: relative;
+  text-indent: -9999em;
+  border-top: 0.5em solid $tz-background-alt;
+  border-right: 0.5em solid $tz-background-alt;
+  border-bottom: 0.5em solid $tz-background-alt;
+  border-left: 0.5em solid $tz-active;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: load8 1.1s infinite linear;
+  animation: load8 1.1s infinite linear;
+}
+
+.loader, .loader:after {
+  border-radius: 50%;
+  width: 3em;
+  height: 3em;
+}
+
+@-webkit-keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }

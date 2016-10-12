@@ -1,10 +1,7 @@
 var pricing = {
-  preorder: {
-    optical: 155,
-    sun: 95
-  },
-  total: {
-    sun: 425,
-    optical: 425
+  deposit: 85,
+  totals: {
+    prescription: 585,
+    nonprescription: 485
   }
 }
