@@ -30,6 +30,7 @@ gem 'lodash-rails'
 gem 'mail'
 gem 'lz4-ruby'
 gem 'country_select'
+gem 'thin'
 
 #omniauth strategies
 gem 'omniauth-twitter'

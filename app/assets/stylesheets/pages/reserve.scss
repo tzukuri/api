@@ -1,0 +1,259 @@
+body.reserve {
+    #reserve-nav {
+        text-align: center;
+        margin-top: 40px;
+
+        a {
+            color: $shadow-green;
+            text-decoration: none;
+            font-weight: 300;
+            margin-right: 25px;
+            padding-left: 5px;
+            padding-right: 5px;
+            padding-bottom: 5px;
+            cursor: default;
+
+            &:last-of-type {
+              // don't add margin to the last element (so it appears centered)
+              margin-right: 0px;
+            }
+
+            &.current {
+                border-bottom: 0.5px solid $eerie-black;
+                color: $eerie-black;
+            }
+
+            &.complete {
+                color: $tz-active;
+                cursor: pointer;
+            }
+        }
+    }
+
+    #reserve {
+        margin-top: 40px;
+        margin-bottom: 80px;
+
+        form {
+            label {
+                margin-left: 5%;
+            }
+        }
+
+        .glasses-details {
+            text-align: left;
+            padding-top: 30px;
+
+            p, a {
+              @include font-size(14px);
+              padding-top: 20px;
+              padding-bottom: 20px;
+            }
+
+            dl {
+                @include font-size(14px);
+                font-weight: 300;
+                color: $tz-content;
+                line-height: 150%;
+
+                dt, dd {
+                    display: inline-block;
+                }
+
+                dt {
+                    text-align: right;
+                    font-weight: 600;
+                }
+
+                dd {
+                    text-transform: capitalize;
+                }
+            }
+        }
+
+        .step-container {
+            min-height: 60vh;
+            text-align: center;
+
+            #error-messages {
+                @include font-size(14px);
+                display: none;
+                color: $tz-error;
+                text-align: center;
+                padding-top: 10px;
+                padding-bottom: 20px;
+            }
+
+            #contact-prescription {
+              display: none;
+            }
+
+            &.hidden {
+                display: none;
+            }
+
+            img {
+                width: 100%;
+                cursor: pointer;
+            }
+
+            h1 {
+                @include font-size(32px);
+                font-weight: 200;
+                padding-bottom: 50px;
+                margin: 0 auto;
+                line-height: 150%;
+            }
+
+            p {
+                &.pricing {
+                    @include font-size(14px);
+                    padding-top: 40px;
+                    color: $tz-content;
+                }
+
+                &.select-title {
+                    @include font-size(20px);
+                    font-weight: 300;
+                    line-height: 150%;
+                    padding-top: 20px;
+                    color: $tz-active;
+                }
+            }
+        }
+
+        .select-type, .select-frame, .select-size {
+            cursor: pointer;
+        }
+
+        #step-type {
+            .price {
+                padding-top: 30px;
+                font-size: 12pt;
+            }
+        }
+
+        #step-frames {}
+
+        #step-size {
+            .size-exp {
+                font-size: 10pt;
+            }
+        }
+
+        #step-checkout {
+            #apple-pay {
+                display: none;
+
+                .apple-pay-button-with-text {
+                    height: 50px;
+                    margin-bottom: 20px;
+                }
+
+                a {
+                    font-size: 10pt;
+                }
+
+                .pricing {
+                    padding-top: 20px;
+                }
+            }
+
+            #regular-pay {
+                .pricing {
+                    padding-top: 0px;
+                    text-align: center;
+                }
+            }
+
+            #thank-you {
+              display: none;
+
+              hr {
+                display: none;
+                margin-top: 0px;
+                margin-bottom: 30px;
+              }
+            }
+        }
+    }
+
+    #in-the-box, #specifications {
+      padding-top: 40px;
+      padding-bottom: 40px;
+      text-align: left;
+
+      h1 {
+        @include font-size(34px);
+        font-weight: 200;
+      }
+    }
+
+    #in-the-box {
+        background-color: $tz-background-alt;
+    }
+}
+
+@media only screen and (max-width: 720px) {
+  body.reserve {
+
+    #reserve-nav {
+      margin-top: 20px;
+
+      a {
+        @include font-size(14px);
+        margin-right: 15px;
+      }
+    }
+
+    #reserve {
+      margin-top: 20px;
+      margin-bottom: 20px;
+
+      .glasses-details {
+        text-align: center;
+      }
+
+      #step-checkout {
+        #thank-you hr {
+          display: block;
+        }
+      }
+
+      .step-container {
+
+        h1 {
+          @include font-size(22px);
+          padding-bottom: 30px;
+        }
+
+        p, a {
+          @include font-size(14px)
+        }
+
+        img {
+          width: 70%;
+        }
+        .select-utility, .select-frame, .select-lens {
+          margin-bottom: 20px;
+
+          .select-title {
+            @include font-size(18px)
+          }
+        }
+
+        p.pricing {
+          padding-top: 0px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  body.reserve {
+    #reserve-nav a {
+      margin-right: 0px;
+    }
+  }
+}
