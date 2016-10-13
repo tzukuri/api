@@ -5,9 +5,9 @@
   <a href="#" id="checkout">checkout</a>
 </div>
 
-<div id="reserve" class="container">
+<div id="reserve" class="container" data-discount="<%= @discount %>" data-code="<%= @code %>">
 
-  <div class="step-container" id="step-utility">
+  <div class="step-container hidden" id="step-utility">
     <h1>choose between optical and sun</h1>
     <div class="row">
       <div class="five columns">
@@ -24,10 +24,10 @@
           </div>
       </div>
     </div>
-    <p class="pricing">From <span id="low"></span> AUD with an <span id="deposit"></span> AUD deposit</p>
+    <p class="pricing">reserve either for <span id="deposit"></span> AUD</p>
   </div>
 
-  <div class="step-container" id="step-frame">
+  <div class="step-container hidden" id="step-frame">
     <h1>choose your frames</h1>
     <div class="row">
       <div class="five columns select-frame" data-frame="ford">
@@ -42,34 +42,42 @@
           <p class="select-title">ive</p>
       </div>
     </div>
-    <p class="pricing">From <span id="low"></span> AUD with an <span id="deposit"></span> AUD deposit</p>
+    <p class="pricing">reserve either for <span id="deposit"></span> AUD</p>
   </div>
 
-  <div class="step-container" id="step-lenses">
+  <div class="step-container hidden" id="step-lenses">
     <h1>choose your lenses</h1>
-    <div class="row">
-      <div class="five columns select-lens" data-lens="prescription">
-          <%= image_tag 'frames/ford/ford_black_sun.jpg', class: 'ford sun' %>
-          <%= image_tag 'frames/ford/ford_black_optical.jpg', class: 'ford optical' %>
-          <%= image_tag 'frames/ive/ive_black_optical.jpg', class: 'ive optical' %>
-          <%= image_tag 'frames/ive/ive_black_sun.jpg', class: 'ive sun' %>
+    <div class="row" id="lens-type">
+      <div class="six columns select-lens" data-lens="prescription">
+          <%= image_tag 'prescription.png', style: 'width: 40%;' %>
           <p class="select-title">prescription</p>
-          <p class="pricing"> <span id="prescription"></span> AUD / <span id="deposit"></span> AUD deposit</p>
+          <p class="pricing">final payment of <span id="prescription"></span> AUD <br/>single vision only</p>
       </div>
-      <div class="two columns">&nbsp;</div>
-      <div class="five columns select-lens" data-lens="non-prescription">
-          <%= image_tag 'frames/ford/ford_black_sun.jpg', class: 'ford sun' %>
-          <%= image_tag 'frames/ford/ford_black_optical.jpg', class: 'ford optical' %>
-          <%= image_tag 'frames/ive/ive_black_optical.jpg', class: 'ive optical' %>
-          <%= image_tag 'frames/ive/ive_black_sun.jpg', class: 'ive sun' %>
+      <div class="six columns select-lens" data-lens="non-prescription">
+          <%= image_tag 'non_prescription.png', style: 'width: 40%;' %>
           <p class="select-title">non-prescription</p>
-          <p class="pricing"> <span id="non-prescription"></span> AUD / <span id="deposit"></span> AUD deposit</p>
+          <p class="pricing">final payment of <span id="non-prescription"></span> AUD</p>
       </div>
     </div>
 
+    <div class="row" id="lens-size">
+        <div class="six columns select-size" data-size="49">
+          <%= image_tag 'frames/ford/ford_black_optical.jpg', class: 'optical', style: 'width: 73%' %>
+          <%= image_tag 'frames/ford/ford_black_sun.jpg', class: 'sun', style: 'width: 73%' %>
+          <p class="select-title">49mm</p>
+          <p class="pricing">this size will fit most people</p>
+        </div>
+
+        <div class="six columns select-size" data-size="51.5">
+          <%= image_tag 'frames/ford/ford_black_optical.jpg', class: 'optical', style: 'width: 80%' %>
+          <%= image_tag 'frames/ford/ford_black_sun.jpg', class: 'sun', style: 'width: 80%' %>
+          <p class="select-title">51.5mm</p>
+          <p class="pricing">choose this size if most glasses are too small</p>
+        </div>
+    </div>
   </div>
 
-  <div class="step-container" id="step-checkout">
+  <div class="step-container hidden" id="step-checkout">
         <h1>complete your reservation</h1>
 
         <div class="row step-content">
@@ -100,7 +108,7 @@
                   <dd id="total-selection"></dd>
                 </dl>
 
-                <p>Includes complimentary shipping and <a href="">Personal Setup</a>. <span id="contact-prescription">We will contact you to obtain your prescription before your glasses are ready to ship.</span></p>
+                <p>Includes complimentary shipping and Personal Setup. <span id="contact-prescription">We will contact you to obtain your prescription before your glasses are ready to ship.</span></p>
 
               </div>
             </div>

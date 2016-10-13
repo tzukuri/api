@@ -30,7 +30,6 @@ gem 'lodash-rails'
 gem 'mail'
 gem 'lz4-ruby'
 gem 'country_select'
-gem 'thin'
 gem 'nokogiri', '~> 1.6.7.2'
 
 #omniauth strategies

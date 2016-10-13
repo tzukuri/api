@@ -31,6 +31,13 @@ $largeScreen: 1400px;
   background-clip: padding-box;  /* stops bg color from leaking outside the border: */
 }
 
+@mixin sticky {
+  position: -webkit-sticky;
+  position: -moz-sticky;
+  position: sticky;
+  top: 0;
+}
+
 @mixin appearance($appearance) {
   -webkit-appearance: $appearance;
   -moz-appearance: $appearance;

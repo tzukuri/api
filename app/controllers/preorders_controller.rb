@@ -4,8 +4,8 @@ class PreordersController < ApplicationController
     def create
         # todo: remove this
         # returning successful for now (not charging cards yet)
-        render json: {success: true, ref: ""}
-        return
+        # render json: {success: true, ref: ""}
+        # return
 
         begin
             customer = Stripe::Customer.create(
@@ -38,6 +38,6 @@ class PreordersController < ApplicationController
     private
 
     def preorder_params
-        params.permit(:name, :email, :phone, {address_lines: []}, :country, :state, :postal_code, :utility, :frame, :size, :lens, :customer_id, :charge_id, :token)
+        params.permit(:name, :email, :phone, {address_lines: []}, :country, :state, :postal_code, :utility, :frame, :size, :lens, :customer_id, :charge_id, :token, :code)
     end
 end

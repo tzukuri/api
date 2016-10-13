@@ -28,9 +28,20 @@ $(function() {
                 element: $('#step-lenses'),
                 navElement: $('#reserve-nav #lens'),
                 callback: function() {
-                    // show the right frames (depending on frame and utility)
-                    $('.select-lens img').hide()
-                    $('.select-lens img.' + navigation.order.frame + '.' + navigation.order.utility).show()
+                  // if we've selected ive, there is only one size
+                  if (navigation.order.frame == "ive") {
+                    navigation.order.size = tzukuri.models.ive.sizing.small;
+                  } else {
+                    navigation.order.size = ""
+                  }
+
+                  // make sure prescription is always shown first
+                  $("#lens-type").show()
+                  $("#lens-size").hide()
+
+                  // show the correct size selection images
+                  $('.select-size img').hide()
+                  $('.select-size .' + navigation.order.utility).show()
                 }
             },
             checkout: {
@@ -45,15 +56,15 @@ $(function() {
                     $('#utility-selection').html(navigation.order.utility)
                     $('#frame-selection').html(navigation.order.frame)
                     $('#lens-selection').html(navigation.order.lens)
-                    $('#size-selection').html(tzukuri.models[navigation.order.frame].sizing.small + "mm")
+                    $('#size-selection').html(navigation.order.size + "mm")
 
                     if (navigation.order.lens == "prescription") {
-                        $('#total-selection').html(tzukuri.pricing.totals.prescription + " AUD")
-                        $('.remainder').html(tzukuri.pricing.totals.prescription - tzukuri.pricing.deposit)
+                        $('#total-selection').html(tzukuri.pricing.totals.prescription - navigation.discount + " AUD")
+                        $('.remainder').html(tzukuri.pricing.totals.prescription - tzukuri.pricing.deposit - navigation.discount)
                         $("#contact-prescription").show()
                     } else {
-                        $('#total-selection').html(tzukuri.pricing.totals.nonprescription + " AUD")
-                        $('.remainder').html(tzukuri.pricing.totals.nonprescription - tzukuri.pricing.deposit)
+                        $('#total-selection').html(tzukuri.pricing.totals.nonprescription - navigation.discount + " AUD")
+                        $('.remainder').html(tzukuri.pricing.totals.nonprescription - tzukuri.pricing.deposit - navigation.discount)
                         $("#contact-prescription").hide()
                     }
 
@@ -63,6 +74,7 @@ $(function() {
         },
 
         stack: [],
+        discount: 0,
 
         // the (main) container with all the step divs
         stepContainer: $('.step-container'),
@@ -141,21 +153,28 @@ $(function() {
             this.setCurrentStep(this.steps.utility)
 
             // set the pricing details
-            $('.pricing #low').html(tzukuri.pricing.totals.nonprescription)
             $('.pricing #deposit').html(tzukuri.pricing.deposit)
-            $('.pricing #prescription').html(tzukuri.pricing.totals.prescription)
-            $('.pricing #non-prescription').html(tzukuri.pricing.totals.nonprescription)
+            $('.pricing #prescription').html(tzukuri.pricing.totals.prescription - tzukuri.pricing.deposit - navigation.discount)
+            $('.pricing #non-prescription').html(tzukuri.pricing.totals.nonprescription - tzukuri.pricing.deposit - navigation.discount)
         }
     }
 
     $(document).ready(function() {
+        if ($("#reserve").attr('data-discount') === 'true') {
+          navigation.discount = 100;
+        }
+
         navigation.init()
         Stripe.applePay.checkAvailability(handleApplePayAvailable)
+
+        //  polyfill for position:sticky
+        $('#glasses').Stickyfill();
     });
 
     // given a token and a preorder, create a preorder and a charge on the API
     function createPayment(token, preorder) {
-        preorder.token = token.id;
+        preorder.token = token.id
+        preorder.code = $('#reserve').attr('data-code')
 
         // create a preorder
         return $.post('/preorders', preorder, function(data, status) {
@@ -196,7 +215,26 @@ $(function() {
     // user selects a lens (prescription vs. non-prescription)
     $('.select-lens').on('click', function() {
         var lens = $(this).attr('data-lens');
-        navigation.setSelectionForStep(lens, navigation.steps.lens);
+
+        if (navigation.order.frame == "ford") {
+          // store the lens on the order but don't navigate
+          navigation.order.lens = lens;
+
+          // fade in the size selection
+          $("#lens-type").fadeOut(function() {
+            $("#lens-size").fadeIn()
+          })
+        } else {
+          navigation.setSelectionForStep(lens, navigation.steps.lens);
+        }
+    })
+
+    $('.select-size').on('click', function() {
+      var size = $(this).attr('data-size');
+      navigation.order.size = size;
+
+      // proceed to checkout by setting the lens data on the nav
+      navigation.setSelectionForStep(navigation.order.lens, navigation.steps.lens)
     })
 
 
@@ -296,14 +334,14 @@ $(function() {
     });
 
     // prevent multiple clicks from firing events more than once while step-container is animating
-    $('.select-utility, .select-frame, .select-lens').on('click', function(event) {
+    $('.select-utility, .select-frame, .select-lens, .select-size').on('click', function(event) {
         if ($(this).closest(".step-container").is(":animated")) {
             event.stopImmediatePropagation()
         };
     })
 
     // pulse the images on mouse over
-    $('.select-utility, .select-frame, .select-lens').on('mouseover', function() {
+    $('.select-utility img, .select-frame img, .select-lens img, .select-size img').on('mouseenter', function() {
         $(this).tzAnimate('pulse')
     })
 

@@ -120,61 +120,63 @@ body.reserve {
                     color: $tz-active;
                 }
             }
-        }
 
-        .select-type, .select-frame, .select-size {
-            cursor: pointer;
-        }
+            &#step-utility {}
+            &#step-frame {}
+            &#step-lenses {
 
-        #step-type {
-            .price {
-                padding-top: 30px;
-                font-size: 12pt;
+              #lens-type{}
+
+              #lens-size{
+                display: none;
+              }
+
             }
-        }
 
-        #step-frames {}
+            &#step-checkout {
+              #apple-pay {
+                  display: none;
 
-        #step-size {
-            .size-exp {
-                font-size: 10pt;
-            }
-        }
+                  .apple-pay-button-with-text {
+                      height: 50px;
+                      margin-bottom: 20px;
+                  }
 
-        #step-checkout {
-            #apple-pay {
+                  a {
+                      font-size: 10pt;
+                  }
+
+                  .pricing {
+                      padding-top: 20px;
+                  }
+              }
+
+              #regular-pay {
+                  .pricing {
+                      padding-top: 0px;
+                      text-align: center;
+                  }
+              }
+
+              #thank-you {
                 display: none;
 
-                .apple-pay-button-with-text {
-                    height: 50px;
-                    margin-bottom: 20px;
+                hr {
+                  display: none;
+                  margin-top: 0px;
+                  margin-bottom: 30px;
                 }
+              }
 
-                a {
-                    font-size: 10pt;
-                }
-
-                .pricing {
-                    padding-top: 20px;
-                }
-            }
-
-            #regular-pay {
-                .pricing {
-                    padding-top: 0px;
-                    text-align: center;
-                }
-            }
-
-            #thank-you {
-              display: none;
-
-              hr {
-                display: none;
-                margin-top: 0px;
-                margin-bottom: 30px;
+              #glasses {
+                @include sticky;
+                top: 100px;
               }
             }
+        }
+
+        .select-type, .select-frame, .select-size, .select-lens {
+            cursor: pointer;
         }
     }
 
@@ -214,13 +216,17 @@ body.reserve {
         text-align: center;
       }
 
-      #step-checkout {
-        #thank-you hr {
-          display: block;
-        }
-      }
-
       .step-container {
+
+        &#step-checkout {
+          #glasses {
+            position: inherit;
+          }
+
+          #thank-you hr {
+            display: block;
+          }
+        }
 
         h1 {
           @include font-size(22px);
@@ -234,7 +240,7 @@ body.reserve {
         img {
           width: 70%;
         }
-        .select-utility, .select-frame, .select-lens {
+        .select-utility, .select-frame, .select-lens, .select-size {
           margin-bottom: 20px;
 
           .select-title {
