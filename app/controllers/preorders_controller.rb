@@ -4,8 +4,8 @@ class PreordersController < ApplicationController
     def create
         # todo: remove this
         # returning successful for now (not charging cards yet)
-        # render json: {success: true, ref: ""}
-        # return
+        render json: {success: true, ref: ""}
+        return
 
         begin
             customer = Stripe::Customer.create(

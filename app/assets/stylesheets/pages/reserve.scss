@@ -72,7 +72,7 @@ body.reserve {
         }
 
         .step-container {
-            min-height: 60vh;
+            // min-height: 60vh;
             text-align: center;
 
             #error-messages {
@@ -180,19 +180,33 @@ body.reserve {
         }
     }
 
-    #in-the-box, #specifications {
+    #specifications {
       padding-top: 40px;
       padding-bottom: 40px;
-      text-align: left;
+      background-color: $tz-background-alt;
 
-      h1 {
-        @include font-size(34px);
-        font-weight: 200;
+      article {
+        margin-top: 20px;
+
+        h2 {
+          @include font-size(20px);
+          padding-top: 10px;
+          padding-bottom: 10px;
+        }
+
+        ul {
+          margin-left: 20px;
+        }
+
+        p {
+          padding-bottom: 20px;
+        }
+
+        li, p {
+            @include font-size(12px);
+            line-height: 200%;
+        }
       }
-    }
-
-    #in-the-box {
-        background-color: $tz-background-alt;
     }
 }
 

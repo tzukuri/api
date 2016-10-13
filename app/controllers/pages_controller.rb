@@ -4,8 +4,12 @@ class PagesController < ApplicationController
         @page_title = params[:page].titleize unless params[:page] == 'index'
 
         # if the store should apply a $100 discount (only used on reservation)
-        @discount = params[:code] == "😎"
         @code = params[:code]
+        @discount = 0
+        
+        if !@code.nil?
+          @discount = Tzukuri::DISCOUNTS[@code.to_sym] || 0
+        end
 
         begin
             render action: params[:page]

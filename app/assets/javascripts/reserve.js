@@ -160,9 +160,8 @@ $(function() {
     }
 
     $(document).ready(function() {
-        if ($("#reserve").attr('data-discount') === 'true') {
-          navigation.discount = 100;
-        }
+        // set a discount (if the server accepted a code)
+        navigation.discount = parseInt($("#reserve").attr('data-discount'))
 
         navigation.init()
         Stripe.applePay.checkAvailability(handleApplePayAvailable)
