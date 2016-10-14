@@ -4,9 +4,9 @@ class StoreMailer < ActionMailer::Base
   default :from => "\"Tzukuri\" <hello@tzukuri.com>"
 
   # send an email confirming a purchase
-  def purchase_confirmation(purchase)
-    @purchase = purchase
-    mail(to: purchase.email, subject: "Thanks for your purchase")
+  def preorder_confirmation(preorder)
+    @preorder = preorder
+    mail(to: preorder.email, subject: "Thanks for your purchase")
   end
 
   # send an email confirming an interest registration

@@ -24,6 +24,7 @@ class PreordersController < ApplicationController
             preorder = Preorder.create(preorder_params.except(:token).merge(customer_id: customer.id, charge_id: charge.id))
 
             if preorder.valid?
+                StoreMailer.preorder_confirmation(preorder).deliver_later
                 render json: {success: true, ref: "#{preorder_params[:frame].downcase[0..3]}#{preorder.id}"}
             else
                 render json: {success: false, errors: preorder.errors, full_errors: preorder.errors.full_messages}

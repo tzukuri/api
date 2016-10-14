@@ -24,7 +24,7 @@
           </div>
       </div>
     </div>
-    <p class="pricing">reserve either for <span id="deposit"></span> AUD</p>
+    <p class="pricing">Reserve for an <span id="deposit"></span> AUD deposit</p>
   </div>
 
   <div class="step-container hidden" id="step-frame">
@@ -42,21 +42,21 @@
           <p class="select-title">ive</p>
       </div>
     </div>
-    <p class="pricing">reserve either for <span id="deposit"></span> AUD</p>
+    <p class="pricing">Reserve for an <span id="deposit"></span> AUD deposit</p>
   </div>
 
   <div class="step-container hidden" id="step-lenses">
     <h1>choose your lenses</h1>
     <div class="row" id="lens-type">
       <div class="six columns select-lens" data-lens="prescription">
-          <%= image_tag 'prescription.png', style: 'width: 40%;' %>
+          <%= image_tag 'prescription.png', style: 'width: 35%;' %>
           <p class="select-title">prescription</p>
-          <p class="pricing">final payment of <span id="prescription"></span> AUD <br/>single vision only</p>
+          <p class="pricing">Final payment of <span id="prescription"></span> AUD <br/>Single vision only. We will contact you to obtain your prescription.</p>
       </div>
       <div class="six columns select-lens" data-lens="non-prescription">
-          <%= image_tag 'non_prescription.png', style: 'width: 40%;' %>
+          <%= image_tag 'non_prescription.png', style: 'width: 35%;' %>
           <p class="select-title">non-prescription</p>
-          <p class="pricing">final payment of <span id="non-prescription"></span> AUD</p>
+          <p class="pricing">Final payment of <span id="non-prescription"></span> AUD</p>
       </div>
     </div>
 
@@ -65,14 +65,14 @@
           <%= image_tag 'frames/ford/ford_black_optical.jpg', class: 'optical', style: 'width: 73%' %>
           <%= image_tag 'frames/ford/ford_black_sun.jpg', class: 'sun', style: 'width: 73%' %>
           <p class="select-title">49mm</p>
-          <p class="pricing">this size will fit most people</p>
+          <p class="pricing">This size will fit most people</p>
         </div>
 
         <div class="six columns select-size" data-size="51.5">
           <%= image_tag 'frames/ford/ford_black_optical.jpg', class: 'optical', style: 'width: 80%' %>
           <%= image_tag 'frames/ford/ford_black_sun.jpg', class: 'sun', style: 'width: 80%' %>
           <p class="select-title">51.5mm</p>
-          <p class="pricing">choose this size if most glasses are too small</p>
+          <p class="pricing">Choose this size if most glasses are too small</p>
         </div>
     </div>
   </div>
@@ -229,11 +229,34 @@
 
 </div>
 
-<!-- <div class="u-full-width" id="in-the-box">
+<div class="u-full-width" id="in-the-box">
   <div class="container">
-    <h1>In the Box</h1>
+    <h1>What's Included</h1>
+    <div class="row">
+      <div class="four columns">
+        <%= image_tag 'glasses.png', id: 'unlosable' %>
+      </div>
+      <div class="four columns">
+        <%= image_tag 'microfibre.png', id: 'cloth' %>
+      </div>
+      <div class="four columns">
+        <%= image_tag "dock_cable.png", id: 'charge' %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="four columns">
+        <p>Unlosable Glasses</p>
+      </div>
+      <div class="four columns">
+        <p>Microfibre Cloth</p>
+      </div>
+      <div class="four columns">
+        <p>Charger & Cable</p>
+      </div>
+    </div>
   </div>
-</div> -->
+</div>
 
 <div class="u-full-width" id="specifications">
   <div class="container">
@@ -244,10 +267,11 @@
       <article>
         <h2>What's included</h2>
         <ul>
-          <li>Unlosable Glasses</li>
+          <li>Unlosable glasses</li>
           <li>Charging cable</li>
           <li>Charging dock</li>
           <li>Microfibre cleaning cloth</li>
+          <li>Documentation</li>
         </ul>
       </article>
 
@@ -275,8 +299,8 @@
         <h2>Materials</h2>
         <ul>
           <li>Frames: High quality, precision-milled cellulose acetate</li>
-          <li>Sun Lenses: Polarised, hand cut from Carl Zeiss vision</li>
-          <li>Optical Lenses: Hand cut from Carl Zeiss vision</li>
+          <li>Sun Lenses: Polarised, hand cut, 100% UV protection, polycarbonate, impact resistant</li>
+          <li>Optical Lenses: Hand cut, polycarbonate, impact resistant</li>
         </ul>
       </article>
     </div>

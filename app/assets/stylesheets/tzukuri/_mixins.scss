@@ -17,6 +17,14 @@
     transition: $args;
 }
 
+@mixin transform($args ...) {
+  -webkit-transform: $args;
+  -moz-transform: $args;
+  -ms-transform: $args;
+  -o-transform: $args;
+  transform: $args;
+}
+
 // repond to media queries
 $smartphone: 480px;
 $tabletPortrait: 767px;

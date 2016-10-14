@@ -30,10 +30,14 @@ class Preorder < ActiveRecord::Base
     }
 
     def amount_remaining
+      total - Tzukuri::PRICING[:deposit]
+    end
+
+    def total
       if lens == "prescription"
-        total = Tzukuri::PRICING[:prescription] - Tzukuri::PRICING[:deposit]
+        total = Tzukuri::PRICING[:prescription]
       elsif lens == "non-prescription"
-        total = Tzukuri::PRICING[:non_prescription] - Tzukuri::PRICING[:deposit]
+        total = Tzukuri::PRICING[:non_prescription]
       end
 
       if code.present?
@@ -41,5 +45,13 @@ class Preorder < ActiveRecord::Base
       end
 
       return total
+    end
+
+    def formatted_address
+      address_lines.push(state, country, postal_code).join(", ")
+    end
+
+    def formatted_item
+      [utility.titleize, frame.titleize, size + "mm", lens.titleize].join(", ")
     end
 end
