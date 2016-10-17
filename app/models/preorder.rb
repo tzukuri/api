@@ -3,9 +3,6 @@ class Preorder < ActiveRecord::Base
 
     validates :name, presence: true
     validates :phone, presence: true
-    validates :customer_id, presence: true
-    validates :charge_id, presence: true
-
     validates :email, presence: true
     validates_format_of :email,:with => Devise::email_regexp
 
@@ -53,5 +50,9 @@ class Preorder < ActiveRecord::Base
 
     def formatted_item
       [utility.titleize, frame.titleize, size + "mm", lens.titleize].join(", ")
+    end
+
+    def send_confirmation
+      StoreMailer.preorder_confirmation(self).deliver_later
     end
 end

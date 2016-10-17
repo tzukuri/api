@@ -1,39 +1,66 @@
 class PreordersController < ApplicationController
-    EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
+    # create a new preorder and charge the customer's card
     def create
-        # todo: remove this
-        # returning successful for now (not charging cards yet)
-        render json: {success: true, ref: ""}
-        return
 
-        begin
+        #  remove this when ready for deployment
+        render json : {success: true}
+        return;
+
+        preorder = Preorder.create(preorder_params.except(:token))
+
+        if preorder.valid?
+
+          begin
             customer = Stripe::Customer.create(
-                card: preorder_params[:token],
-                description: preorder_params[:name],
-                email: preorder_params[:email]
+              card: preorder_params[:token],
+              description: preorder_params[:name],
+              email: preorder_params[:email],
+              metadata: {
+                preorder_discount: preorder.code,
+                preorder_remain: preorder.amount_remaining
+              }
             )
 
             charge = Stripe::Charge.create(
-                amount: 8500,
-                currency: 'aud',
-                customer: customer.id,
-                description: "Tzukuri - #{preorder_params[:frame].titleize}, #{preorder_params[:size].titleize}, #{preorder_params[:utility]}, #{preorder_params[:lens]}} - #{preorder_params[:name]}"
+              amount: 8500,
+              currency: 'aud',
+              customer: customer.id,
+              description: "[PREORDER] - #{preorder_params[:frame].titleize}, #{preorder_params[:size].titleize}, #{preorder_params[:utility].titleize}, #{preorder_params[:lens].titleize}"
             )
 
-            preorder = Preorder.create(preorder_params.except(:token).merge(customer_id: customer.id, charge_id: charge.id))
+            # update the preorder with charge.id and customer.id
+            preorder.update_attributes({
+                customer_id: customer.id,
+                charge_id: charge.id
+            })
 
-            if preorder.valid?
-                StoreMailer.preorder_confirmation(preorder).deliver_later
-                render json: {success: true, ref: "#{preorder_params[:frame].downcase[0..3]}#{preorder.id}"}
-            else
-                render json: {success: false, errors: preorder.errors, full_errors: preorder.errors.full_messages}
-            end
+            preorder.send_confirmation
 
-        rescue Stripe::CardError => e
-            render json: {success: false, reason: e.json_body[:error][:message]}
+            render json: {
+              success: true,
+              preorder: preorder
+            }
+
+          rescue Stripe::CardError => error
+            preorder.destroy
+
+            render json: {
+              success: false,
+              errors: error.json_body[:error][:message]
+            }
+
+          end
+
+        else
+
+          render json: {
+            success: false,
+            errors: preorder.errors,
+            full_errors: preorder.errors.full_messages
+          }
+
         end
-
     end
 
     private

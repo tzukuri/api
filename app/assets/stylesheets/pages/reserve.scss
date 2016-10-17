@@ -119,7 +119,7 @@ body.reserve {
 
             &#step-utility {}
             &#step-frame {}
-            &#step-lenses {
+            &#step-lens {
 
               #lens-type{}
 
@@ -242,7 +242,7 @@ body.reserve {
     }
 }
 
-@media only screen and (max-width: 720px) {
+@media only screen and (max-width: 550px) {
   body.reserve {
 
     #reserve-nav {

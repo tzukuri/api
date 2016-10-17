@@ -1,197 +1,276 @@
 $(function() {
     if (!$('body').hasClass('reserve')) return;
 
-    var navigation = {
-        // step.callback is called just before that step is shown (use to setup the view correctly)
-        steps: {
-            utility: {
-                name: 'utility',
-                index: 0,
-                element: $('#step-utility'),
-                navElement: $('#reserve-nav #utility'),
-                callback: function() {}
-            },
-            frame: {
-                name: 'frame',
-                index: 1,
-                element: $('#step-frame'),
-                navElement: $('#reserve-nav #frame'),
-                callback: function() {
-                    // show the right frames (depending on utility)
-                    $('.select-frame img').hide()
-                    $('.select-frame .' + navigation.order.utility).show()
-                }
-            },
-            lens: {
-                name: 'lens',
-                index: 2,
-                element: $('#step-lenses'),
-                navElement: $('#reserve-nav #lens'),
-                callback: function() {
-                  // if we've selected ive, there is only one size
-                  if (navigation.order.frame == "ive") {
-                    navigation.order.size = tzukuri.models.ive.sizing.small;
-                  } else {
-                    navigation.order.size = ""
-                  }
+    /**
+    The preorderEngine maintains the order state as well as passing order details
+    to the API. It also handles updating the DOM where the updates are directly related to the
+    state of the engine (updating the nav, showing/hiding glasses, etc.). Other bindings and UI
+    updates that are not directly related to the order state should be made outside of this module.
 
-                  // make sure prescription is always shown first
-                  $("#lens-type").show()
-                  $("#lens-size").hide()
+    To add a new step:
+    1. create a new .select-step in HTML and populate the markup (e.g. select-size)
+    2. add a nav element with the corresponding name (e.g. <a id="size">)
+    3. add a callback to _displayCallbacks with the corresponding name (e.g. .size: function() {})
+    4. For now add a new binding to catch click events (will change soon)
 
-                  // show the correct size selection images
-                  $('.select-size img').hide()
-                  $('.select-size .' + navigation.order.utility).show()
-                }
-            },
-            checkout: {
-                name: 'checkout',
-                index: 3,
-                element: $('#step-checkout'),
-                navElement: $('#reserve-nav #checkout'),
-                callback: function() {
-                    $('#checkout-images img').hide()
-                    $('#checkout-images img.' + navigation.order.frame + '.' + navigation.order.utility).show()
+    TODO: Refactor slightly to move .select-[stepName] bindings into preorderEngine. This means that
+    preorderEngine will be decoupled from the rest of the view code (therefore easier to transplant).
+    */
+    var preorderEngine = (function() {
 
-                    $('#utility-selection').html(navigation.order.utility)
-                    $('#frame-selection').html(navigation.order.frame)
-                    $('#lens-selection').html(navigation.order.lens)
-                    $('#size-selection').html(navigation.order.size + "mm")
+      // an object that represents a step
+      function Step(name, index, element, navElement, callback) {
+        this.name = name;
+        this.index = index;
+        this.element = element;
+        this.navElement = navElement;
+        this.willDisplay = callback;
 
-                    if (navigation.order.lens == "prescription") {
-                        $('#total-selection').html(tzukuri.pricing.totals.prescription - navigation.discount + " AUD")
-                        $('.remainder').html(tzukuri.pricing.totals.prescription - tzukuri.pricing.deposit - navigation.discount)
-                        $("#contact-prescription").show()
-                    } else {
-                        $('#total-selection').html(tzukuri.pricing.totals.nonprescription - navigation.discount + " AUD")
-                        $('.remainder').html(tzukuri.pricing.totals.nonprescription - tzukuri.pricing.deposit - navigation.discount)
-                        $("#contact-prescription").hide()
-                    }
-
-
-                }
-            }
-        },
-
-        stack: [],
-        discount: 0,
-
-        // the (main) container with all the step divs
-        stepContainer: $('.step-container'),
-
-        // object that keeps track of the order
-        order: {
-            utility: '',
-            frame: '',
-            size: '',
-            lens: ''
-        },
-
-        currentStep: function() {
-            return this.stack[this.stack.length - 1]
-        },
-
-        setCurrentStep: function(nextStep) {
-            // todo: refactor this method (too long)
-            var currentStep = this.currentStep()
-
-            // if we don't have a current step just fade this one in and push on the stack (probably the first time running)
-            if (currentStep == null) {
-                nextStep.element.fadeIn()
-                nextStep.navElement.addClass('current')
-
-                this.stack.push(nextStep)
-            } else {
-                // fade out the current step and fade in the next step
-                currentStep.element.fadeOut(function() {
-                    nextStep.element.fadeIn()
-                })
-
-                // if we moving forward, add to the stack
-                if (nextStep.index > currentStep.index) {
-                    this.stack.push(nextStep)
-
-                    currentStep.navElement.addClass('complete').removeClass('current')
-                    nextStep.navElement.addClass('current')
-                } else {
-                    // 1. find the index of the step in the stack
-                    var i = _.findIndex(this.stack, function(s) {
-                        return s == nextStep
-                    })
-
-                    // 2. get the removed steps
-                    var removed = this.stack.splice(i + 1, this.stack.length)
-
-                    // 3. update the navigation bar
-                    _.forEach(removed, function(removedStep) {
-                        removedStep.navElement.removeClass('complete current').html(removedStep.name)
-                    });
-
-                    // 4. set the navigation bar current state
-                    nextStep.navElement.removeClass('complete').addClass('current')
-                }
-            }
-
-            nextStep.callback()
-        },
-
-        setSelectionForStep: function(selection, step) {
-            // store the selection in the order object and update the nav element
-            this.order[step.name] = selection
-            step.navElement.html(selection)
-
-            // progress to the next step
-            var newStep = this.steps[Object.keys(this.steps)[step.index + 1]]
-            this.setCurrentStep(newStep)
-        },
-
-        init: function() {
-            // hide all the containers
-            this.stepContainer.hide()
-
-            // set utility as the first step
-            this.setCurrentStep(this.steps.utility)
-
-            // set the pricing details
-            $('.pricing #deposit').html(tzukuri.pricing.deposit)
-            $('.pricing #prescription').html(tzukuri.pricing.totals.prescription - tzukuri.pricing.deposit - navigation.discount)
-            $('.pricing #non-prescription').html(tzukuri.pricing.totals.nonprescription - tzukuri.pricing.deposit - navigation.discount)
+        this.complete = function(complete) {
+          if (complete) {
+            this.navElement.addClass('complete').html(_order[this.name])
+          } else {
+            this.navElement.removeClass('complete').html(this.name)
+          }
         }
-    }
+        this.current = function(current) {
+          if (current) {
+            this.navElement.addClass('current').html(this.name)
+          } else {
+            this.navElement.removeClass('current')
+          }
+        }
+      }
+
+      // callbacks for step.willDisplay. The name of the function should correspond to the name of the step.
+      var _displayCallbacks = {
+        utility: function() {},
+        frame: function() {
+          // show the right frames (depending on utility)
+          $('.select-frame img').hide()
+          $('.select-frame .' + _order['utility']).show()
+        },
+        lens: function() {
+          var size = _order['frame'] == 'ive' ? tzukuri.models.ive.sizing.small : ''
+          _order['size'] = size
+
+          // make sure prescription is always shown first
+          $("#lens-type").show()
+          $("#lens-size").hide()
+
+          // show the correct size selection images
+          $('.select-size img').hide()
+          $('.select-size .' + _order['utility']).show()
+        },
+        checkout: function() {
+          $('#checkout-images img').hide()
+          $('#checkout-images img.' + _order['frame'] + '.' + _order['utility']).show()
+
+          $('#utility-selection').html(_order['utility'])
+          $('#frame-selection').html(_order['frame'])
+          $('#lens-selection').html(_order['frame'])
+          $('#size-selection').html(_order['size'] + "mm")
+
+          if (_order['lens'] == "prescription") {
+              $('#total-selection').html(tzukuri.pricing.totals.prescription - _discount + " AUD")
+              $('.remainder').html(tzukuri.pricing.totals.prescription - tzukuri.pricing.deposit - _discount)
+              $("#contact-prescription").show()
+          } else {
+              $('#total-selection').html(tzukuri.pricing.totals.nonprescription - _discount + " AUD")
+              $('.remainder').html(tzukuri.pricing.totals.nonprescription - tzukuri.pricing.deposit - _discount)
+              $("#contact-prescription").hide()
+          }
+        }
+      }
+
+      var _steps = (function() {
+        var _steps = []
+        var _currentStep;
+
+        function _addStep(step) {
+          _steps.push(step)
+        }
+
+        function _getCurrentStep() {
+          return _currentStep
+        }
+
+        function _setCurrentStep(step) {
+          _currentStep = step
+        }
+
+        function _each(callback) {
+          _.forEach(_steps, callback)
+        }
+
+        function _next() {
+          var i = _currentStep == null ? -1 : _currentStep.index
+          return _steps[i + 1]
+        }
+
+        function _stepWithName(name) {
+          return _.find(_steps, function(step) {
+            return step.name == name;
+          })
+        }
+
+        return {
+          addStep: _addStep,
+          each: _each,
+          currentStep: _getCurrentStep,
+          setCurrentStep: _setCurrentStep,
+          stepWithName: _stepWithName,
+          next: _next
+        }
+      })()
+
+      var _container
+      var _nav
+      var _discount = 0
+      var _order = {}
+
+      function _setOrderValues(values) {
+        return _.merge(_order, values)
+      }
+
+      function _getOrderValue(key) {
+        return _order[key]
+      }
+
+      function _setCurrentStep(next) {
+        if (_steps.currentStep() == null) {
+          // if we don't have a current step set this one
+          next.willDisplay()
+          next.element.fadeIn()
+          next.navElement.addClass('current')
+        } else {
+          // fade between the two steps
+          _steps.currentStep().element.fadeOut(function() {
+            // tell the next step that it's about to be displayed
+            next.willDisplay()
+            next.element.fadeIn()
+          })
+
+          // update the navigation
+          _steps.each(function(step, i) {
+            if (i == next.index) return;
+            step.current(false)
+            // step is only complete if index < the index we're about to display
+            var complete = i < next.index ? true : false
+            step.complete(complete)
+          })
+
+          next.current(true)
+          next.complete(false)
+
+        }
+
+        _steps.setCurrentStep(next)
+      }
+
+      function _setSelectionForStep(stepName, selection) {
+        var step = _steps.stepWithName(stepName)
+
+        _order[step.name] = selection;
+        _setCurrentStep(_steps.next())
+      }
+
+      function _buildStepForNavEl(navEl, i) {
+          var navEl = $(navEl)
+          var name = navEl.attr('id')
+          var el = _container.find('#step-' + name)
+
+          return new Step(name, i, el, $(navEl), _displayCallbacks[name])
+      }
+
+      function _setPricing() {
+        $('.pricing #deposit').html(tzukuri.pricing.deposit)
+        $('.pricing #prescription').html(tzukuri.pricing.totals.prescription - tzukuri.pricing.deposit - _discount)
+        $('.pricing #non-prescription').html(tzukuri.pricing.totals.nonprescription - tzukuri.pricing.deposit - _discount)
+      }
+
+      function _handleApplePayAvailable(available) {
+        if (available) {
+            $('#apple-pay').show()
+            $("#regular-pay").hide()
+        } else {
+            $('#regular-pay').show()
+            $('#apple-pay').hide()
+        }
+      }
+
+      function _createPayment(token, code) {
+        _order['token'] = token.id
+        _order['code'] = code
+        return $.post('/preorders', _order)
+      }
+
+      function _navigateBack(stepName) {
+        var step = _steps.stepWithName(stepName);
+        _setCurrentStep(step)
+      }
+
+      function _init(container, nav){
+        // store the container and navigation objects
+        _container = container
+        _nav = nav
+
+        // parse and store the discount
+        _discount = parseInt(container.attr('data-discount'))
+
+        // check for apple pay available
+        Stripe.applePay.checkAvailability(_handleApplePayAvailable)
+
+        // create steps for each of the elements in the navigation
+        _.forEach(_nav.children(), function(step, i) {
+          var step = _buildStepForNavEl(step, i)
+          _steps.addStep(step)
+        })
+
+        // set pricing details
+        _setPricing()
+
+        // set the current step to the first one in the nav
+        _setCurrentStep(_steps.next())
+      }
+
+      // PUBLIC API
+      return {
+        init: _init,
+        setSelectionForStep: _setSelectionForStep,
+        setCurrentStep: _setCurrentStep,
+        setOrderValues: _setOrderValues,
+        getOrderValue: _getOrderValue,
+        createPayment: _createPayment,
+        navigateBack: _navigateBack
+      }
+    })();
 
     $(document).ready(function() {
-        // set a discount (if the server accepted a code)
-        navigation.discount = parseInt($("#reserve").attr('data-discount'))
-
-        navigation.init()
-        Stripe.applePay.checkAvailability(handleApplePayAvailable)
-
-        //  polyfill for position:sticky
+        preorderEngine.init($('#reserve'), $('#reserve-nav'))
+        // polyfill for position:sticky
         $('#glasses').Stickyfill();
     });
 
-    // given a token and a preorder, create a preorder and a charge on the API
-    function createPayment(token, preorder) {
-        preorder.token = token.id
-        preorder.code = $('#reserve').attr('data-code')
+    function handlePayment(token) {
+        var code = $('#reserve').attr('data-code')
 
-        // create a preorder
-        return $.post('/preorders', preorder, function(data, status) {
-            showFormSpinner(false)
-            if (data.success) {
-                // show a success screen
-                $("#apple-pay, #regular-pay").fadeOut()
-                $("#thank-you").fadeIn()
-                $("#step-checkout h1").html("thanks for your reservation")
-                $("#reserve-nav").fadeOut()
-            } else {
-                // there was an error creating the preorder/charging the card
-                setFormError(data.reason)
-            }
+        preorderEngine.createPayment(token, code).done(function(data, status) {
+          showFormSpinner(false)
+          if (data.success) {
+              // show a success screen
+              $("#apple-pay, #regular-pay").fadeOut()
+              $("#thank-you").fadeIn()
+              $("#step-checkout h1").html("thanks for your reservation")
+              $("#reserve-nav").fadeOut()
+          } else {
+              // there was an error creating the preorder/charging the card
+              setFormError(data.errors)
+          }
         }).fail(function() {
-            // there was an error connecting to the server (timeout, etc.)
-            setFormError("There was an error submitting your order, please try again. If this continues please contact Tzukuri support.")
-            showFormSpinner(false)
+          // there was an error connecting to the server (timeout, etc.)
+          setFormError("There was an error submitting your order, please try again. If this continues please contact Tzukuri support.")
+          showFormSpinner(false)
         })
     }
 
@@ -202,40 +281,42 @@ $(function() {
     // user selects a utility (optical vs. sun)
     $('.select-utility').on('click', function() {
         var utility = $(this).attr('data-utility');
-        navigation.setSelectionForStep(utility, navigation.steps.utility);
+        preorderEngine.setSelectionForStep('utility', utility)
     })
 
     // user selects a frame (ive vs. ford)
     $('.select-frame').on('click', function() {
         var frame = $(this).attr('data-frame');
-        navigation.setSelectionForStep(frame, navigation.steps.frame);
+        preorderEngine.setSelectionForStep('frame', frame)
     })
 
     // user selects a lens (prescription vs. non-prescription)
     $('.select-lens').on('click', function() {
         var lens = $(this).attr('data-lens');
 
-        if (navigation.order.frame == "ford") {
-          // store the lens on the order but don't navigate
-          navigation.order.lens = lens;
+        if (preorderEngine.getOrderValue('frame') == 'ford') {
+          preorderEngine.setOrderValues({
+            lens: lens
+          })
 
           // fade in the size selection
           $("#lens-type").fadeOut(function() {
             $("#lens-size").fadeIn()
           })
         } else {
-          navigation.setSelectionForStep(lens, navigation.steps.lens);
+          preorderEngine.setSelectionForStep('lens', lens);
         }
     })
 
     $('.select-size').on('click', function() {
       var size = $(this).attr('data-size');
-      navigation.order.size = size;
+      preorderEngine.setOrderValues({
+        size: size
+      })
 
       // proceed to checkout by setting the lens data on the nav
-      navigation.setSelectionForStep(navigation.order.lens, navigation.steps.lens)
+      preorderEngine.setSelectionForStep('lens', preorderEngine.getOrderValue('lens'))
     })
-
 
     // apple pay submission
     $('.apple-pay-button-with-text').on('click', function(event) {
@@ -252,24 +333,22 @@ $(function() {
         }
 
         var applePay = Stripe.applePay.buildSession(paymentRequest, function(result, completion) {
-            console.log(result, completion)
-
             var shippingContact = result.shippingContact
 
             // contact details
-            navigation.order.name = shippingContact.givenName + " " + shippingContact.familyName
-            navigation.order.email = shippingContact.emailAddress
-            navigation.order.phone = shippingContact.phoneNumber
+            preorderEngine.setOrderValues({
+              name: shippingContact.givenName + " " + shippingContact.familyName,
+              email: shippingContact.emailAddress,
+              phone: shippingContact.phoneNumber,
 
-            // shipping details
-            navigation.order.address_lines = shippingContact.addressLines
-            navigation.order.address_lines.push(shippingContact.locality)
-            navigation.order.country = shippingContact.country
-            navigation.order.state = shippingContact.administrativeArea
-            navigation.order.postal_code = shippingContact.postalCode
+              address_lines: shippingContact.addressLines.push(shippingContact.locality),
+              country: shippingContact.country,
+              state: shippingContact.administrativeArea,
+              postal_code: shippingContact.postal_code
+            })
 
             // create a payment and inform apple pay session when it is complete
-            createPayment(result.token, navigation.order).done(function(e) {
+            handlePayment(result.token).done(function(e) {
                 if (e.success) {
                     completion(ApplePaySession.STATUS_SUCCESS)
                 } else {
@@ -301,24 +380,19 @@ $(function() {
         showFormSpinner(true)
 
         Stripe.card.createToken($(this), function(status, token) {
-            console.log(status)
             if (token.error) {
-                // todo: display an error (there was an error processing the card)
                 setFormError(token.error.message)
                 showFormSpinner(false)
             } else {
-                createPayment(token, navigation.order)
+                handlePayment(token)
             }
         });
     });
 
-
     // user clicks on a link in the preorder navigation
     $('#reserve-nav a').on('click', function() {
         if (!$(this).hasClass('complete')) return;
-
-        var nextStep = navigation.steps[$(this).attr('id')]
-        navigation.setCurrentStep(nextStep);
+        preorderEngine.navigateBack($(this).attr('id'))
     })
 
     // -------------------
@@ -369,17 +443,6 @@ $(function() {
       $(showEl).show()
 
       $('#reserve-submit').prop('disabled', showFormSpinner)
-    }
-
-    // display apple pay as default if it is available
-    var handleApplePayAvailable = function(available) {
-        if (available) {
-            $('#apple-pay').show()
-            $("#regular-pay").hide()
-        } else {
-            $('#regular-pay').show()
-            $('#apple-pay').hide()
-        }
     }
 
     // add the error state to a form input
@@ -472,16 +535,16 @@ $(function() {
         }
 
         if (valid) {
-            // todo: store the order details in the navigation object
-            navigation.order.name = name
-            navigation.order.email = email
-            navigation.order.phone = phone
-
-            // shipping details
-            navigation.order.address_lines = [address1, address2]
-            navigation.order.country = country
-            navigation.order.state = state
-            navigation.order.postal_code = postcode
+            // store the order details in the navigation object
+            preorderEngine.setOrderValues({
+              name: name,
+              email: email,
+              phone: phone,
+              address_lines: [address1, address2],
+              country: country,
+              state: state,
+              postal_code: postcode
+            })
         }
 
         return valid
