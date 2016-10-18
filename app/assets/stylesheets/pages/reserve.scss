@@ -4,6 +4,8 @@ body.reserve {
         margin-top: 40px;
 
         a {
+            @include transition(border-color 0.5s ease-in-out);
+
             color: $shadow-green;
             text-decoration: none;
             margin-right: 25px;
@@ -11,6 +13,8 @@ body.reserve {
             padding-right: 5px;
             padding-bottom: 5px;
             cursor: default;
+            border-bottom: 0.5px solid rgba(0, 0, 0, 0);
+
 
             &:last-of-type {
               // don't add margin to the last element (so it appears centered)
@@ -18,7 +22,7 @@ body.reserve {
             }
 
             &.current {
-                border-bottom: 0.5px solid $eerie-black;
+                border-color: $eerie-black;
                 color: $eerie-black;
             }
 
@@ -71,6 +75,8 @@ body.reserve {
 
         .step-container {
             text-align: center;
+            display: block;
+            @include animation(fadeIn 1.5s ease-in-out);
 
             #error-messages {
                 @include font-size(14px);

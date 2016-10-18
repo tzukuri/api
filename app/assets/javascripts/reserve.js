@@ -2,7 +2,7 @@ $(function() {
     if (!$('body').hasClass('reserve')) return;
 
     /**
-    The preorderEngine maintains the order state as well as passing order details
+    the preorderEngine maintains the order state as well as passing order details
     to the API. It also handles updating the DOM where the updates are directly related to the
     state of the engine (updating the nav, showing/hiding glasses, etc.). Other bindings and UI
     updates that are not directly related to the order state should be made outside of this module.
@@ -10,21 +10,38 @@ $(function() {
     To add a new step:
     1. create a new .select-step in HTML and populate the markup (e.g. select-size)
     2. add a nav element with the corresponding name (e.g. <a id="size">)
-    3. add a callback to _displayCallbacks with the corresponding name (e.g. .size: function() {})
-    4. For now add a new binding to catch click events (will change soon)
-
-    TODO: Refactor slightly to move .select-[stepName] bindings into preorderEngine. This means that
-    preorderEngine will be decoupled from the rest of the view code (therefore easier to transplant).
+    3. add a handler to _willShow (if any operations should be carried out before showing the step)
+    4. add a handler to _didComplete (if any operations should be carried out before hiding the step)
     */
     var preorderEngine = (function() {
+      function Step(name, index, element, navElement, willDisplay, didComplete) {
+        this.name = name
+        this.index = index
+        this.element = element
+        this.navElement = navElement
+        // willDisplay & didComplete are optional, check if they exist before calling them
+        this.willDisplay = willDisplay
+        this.didComplete = didComplete
 
-      // an object that represents a step
-      function Step(name, index, element, navElement, callback) {
-        this.name = name;
-        this.index = index;
-        this.element = element;
-        this.navElement = navElement;
-        this.willDisplay = callback;
+        // store a reference to this step on the element
+        this.element.data('orderStep', this)
+
+        /**
+        when users click on the element for this step, set the selection. Provide a handler in
+        _didComplete to override and provide custom functionality
+        */
+        $('.select-' + name).on('click', function(e) {
+          var step = $(this.closest('.step-container')).data('orderStep')
+
+          var selection = $(this).attr('data-' + step.name);
+          _order[step.name] = selection;
+
+          if (step.didComplete != undefined) {
+            step.didComplete()
+          } else {
+            _navigateForward()
+          }
+        })
 
         this.complete = function(complete) {
           if (complete) {
@@ -42,9 +59,8 @@ $(function() {
         }
       }
 
-      // callbacks for step.willDisplay. The name of the function should correspond to the name of the step.
-      var _displayCallbacks = {
-        utility: function() {},
+      // handlers for step.willDisplay
+      var _willShow = {
         frame: function() {
           // show the right frames (depending on utility)
           $('.select-frame img').hide()
@@ -68,7 +84,7 @@ $(function() {
 
           $('#utility-selection').html(_order['utility'])
           $('#frame-selection').html(_order['frame'])
-          $('#lens-selection').html(_order['frame'])
+          $('#lens-selection').html(_order['lens'])
           $('#size-selection').html(_order['size'] + "mm")
 
           if (_order['lens'] == "prescription") {
@@ -79,6 +95,17 @@ $(function() {
               $('#total-selection').html(tzukuri.pricing.totals.nonprescription - _discount + " AUD")
               $('.remainder').html(tzukuri.pricing.totals.nonprescription - tzukuri.pricing.deposit - _discount)
               $("#contact-prescription").hide()
+          }
+        }
+      }
+
+      // handlers for step.didComplete
+      var _didComplete = {
+        lens: function() {
+          if (_order['frame'] == 'ford') {
+            $("#lens-type").fadeOut(function() {$("#lens-size").fadeIn()})
+          } else {
+            _navigateForward()
           }
         }
       }
@@ -133,23 +160,18 @@ $(function() {
         return _.merge(_order, values)
       }
 
-      function _getOrderValue(key) {
-        return _order[key]
-      }
-
       function _setCurrentStep(next) {
         if (_steps.currentStep() == null) {
           // if we don't have a current step set this one
-          next.willDisplay()
-          next.element.fadeIn()
+          if (next.willDisplay != undefined) next.willDisplay()
+          next.element.removeClass('hidden')
           next.navElement.addClass('current')
         } else {
           // fade between the two steps
-          _steps.currentStep().element.fadeOut(function() {
-            // tell the next step that it's about to be displayed
-            next.willDisplay()
-            next.element.fadeIn()
-          })
+          if (next.willDisplay != undefined) next.willDisplay()
+
+          _steps.currentStep().element.addClass('hidden')
+          next.element.removeClass('hidden')
 
           // update the navigation
           _steps.each(function(step, i) {
@@ -168,19 +190,12 @@ $(function() {
         _steps.setCurrentStep(next)
       }
 
-      function _setSelectionForStep(stepName, selection) {
-        var step = _steps.stepWithName(stepName)
-
-        _order[step.name] = selection;
-        _setCurrentStep(_steps.next())
-      }
-
       function _buildStepForNavEl(navEl, i) {
           var navEl = $(navEl)
           var name = navEl.attr('id')
           var el = _container.find('#step-' + name)
 
-          return new Step(name, i, el, $(navEl), _displayCallbacks[name])
+          return new Step(name, i, el, $(navEl), _willShow[name], _didComplete[name])
       }
 
       function _setPricing() {
@@ -210,6 +225,10 @@ $(function() {
         _setCurrentStep(step)
       }
 
+      function _navigateForward() {
+        _setCurrentStep(_steps.next())
+      }
+
       function _init(container, nav){
         // store the container and navigation objects
         _container = container
@@ -230,24 +249,22 @@ $(function() {
         // set pricing details
         _setPricing()
 
-        // set the current step to the first one in the nav
-        _setCurrentStep(_steps.next())
+        _navigateForward()
       }
 
       // PUBLIC API
       return {
         init: _init,
-        setSelectionForStep: _setSelectionForStep,
-        setCurrentStep: _setCurrentStep,
         setOrderValues: _setOrderValues,
-        getOrderValue: _getOrderValue,
         createPayment: _createPayment,
-        navigateBack: _navigateBack
+        navigateBack: _navigateBack,
+        navigateForward: _navigateForward
       }
     })();
 
     $(document).ready(function() {
         preorderEngine.init($('#reserve'), $('#reserve-nav'))
+
         // polyfill for position:sticky
         $('#glasses').Stickyfill();
     });
@@ -275,47 +292,16 @@ $(function() {
     }
 
     // -------------------
-    // step bindings
+    // bindings
     // -------------------
 
-    // user selects a utility (optical vs. sun)
-    $('.select-utility').on('click', function() {
-        var utility = $(this).attr('data-utility');
-        preorderEngine.setSelectionForStep('utility', utility)
-    })
-
-    // user selects a frame (ive vs. ford)
-    $('.select-frame').on('click', function() {
-        var frame = $(this).attr('data-frame');
-        preorderEngine.setSelectionForStep('frame', frame)
-    })
-
-    // user selects a lens (prescription vs. non-prescription)
-    $('.select-lens').on('click', function() {
-        var lens = $(this).attr('data-lens');
-
-        if (preorderEngine.getOrderValue('frame') == 'ford') {
-          preorderEngine.setOrderValues({
-            lens: lens
-          })
-
-          // fade in the size selection
-          $("#lens-type").fadeOut(function() {
-            $("#lens-size").fadeIn()
-          })
-        } else {
-          preorderEngine.setSelectionForStep('lens', lens);
-        }
-    })
-
+    // fixme: bit of a hack for the time being, need to be able to support sub-step choices properly
     $('.select-size').on('click', function() {
       var size = $(this).attr('data-size');
       preorderEngine.setOrderValues({
         size: size
       })
-
-      // proceed to checkout by setting the lens data on the nav
-      preorderEngine.setSelectionForStep('lens', preorderEngine.getOrderValue('lens'))
+      preorderEngine.navigateForward()
     })
 
     // apple pay submission
@@ -352,7 +338,6 @@ $(function() {
                 if (e.success) {
                     completion(ApplePaySession.STATUS_SUCCESS)
                 } else {
-                    // todo: show an error message
                     completion(ApplePaySession.STATUS_FAILURE)
                 }
             }).fail(function() {
@@ -394,10 +379,6 @@ $(function() {
         if (!$(this).hasClass('complete')) return;
         preorderEngine.navigateBack($(this).attr('id'))
     })
-
-    // -------------------
-    // helper bindings
-    // -------------------
 
     // simulate a submit click on enter press
     $('#new_preorder').on("keypress", function(e) {
