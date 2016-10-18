@@ -18,52 +18,53 @@
       <div class="content" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; display: block; max-width: 600px; margin: 0 auto; padding: 0;">
       <table style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; width: 100%; margin: 0; padding: 0;">
         <tr style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; margin: 0; padding: 0;">
-          <td style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; margin: 0; padding: 0;">
+          <td style="text-align: center; font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; margin: 0; padding: 0;">
 
 
             <h1 style="text-align: center; font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 38px; line-height: 1.2em; color: #111111; font-weight: 200; margin: 20px 0 10px; padding: 0;" align="center">T Z U K U R I</h1>
 
             <div style="margin-left: -20px; margin-right: -20px; padding-left: 50px; padding-right: 50px; padding-top: 20px; padding-bottom: 30px;">
               <h2 style="font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 24px; line-height: 1.2em; color: #111111; font-weight: 200; margin: 10px 0 20px; padding: 0; font-size:22px;">Thanks for your reservation</h2>
-              <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0; color: #686868">We have reserved your place in line. You will receive another email from us when your glasses are ready to ship.</p>
+              <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0; color: #686868">We have reserved your place in line. You will receive another email from us when your card has been charged and your glasses are ready to ship.</p>
             </div>
 
-          <div style="background-color: #C1CBCC; margin-left: -20px; margin-right: -20px; padding-left: 50px; padding-right: 50px; padding-top: 20px; padding-bottom: 30px;">
-          <h2 style="font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 24px; line-height: 1.2em; color: #111111; font-weight: 200; margin: 10px 0 20px; padding: 0; font-size:22px;">Reservation Details</h2>
+            <%= image_tag "frames/#{@preorder.frame}/#{@preorder.frame}_black_#{@preorder.utility}.jpg", style: 'width: 50%; padding-bottom: 40px;' %>
 
-            <table width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse: collapse; position: relative">
+          <div style="text-align: left; background-color: #C1CBCC; margin-left: -20px; margin-right: -20px; padding-left: 50px; padding-right: 50px; padding-top: 20px; padding-bottom: 30px;">
+          <h2 style="font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 24px; line-height: 1.2em; color: #111111; font-weight: 200; margin: 10px 0 20px; padding: 0; font-size:22px;">Reservation Details</h2>
+            <table width="100%" style="color: #686868; font-weight: 400; font-size: 10pt;">
               <tr>
-                <td align="left" class="contribution-table-label" style="border-collapse: collapse; color: #686868; font-size: 14px; padding: 7px 0 0; width: 50%; font-weight:bold">Purchase Date</td>
-                <td align="left" class="contribution-table-value" style="border-collapse: collapse; color: #686868; font-size: 14px; padding: 7px 0 0; white-space: pre"><%= Date.today.strftime("%A, %d/%m/%Y") %></td>
+                <td width="30%" style="font-weight: 500">Purchase Date</td>
+                <td width="70%"><%= Date.today.strftime("%A, %d/%m/%Y") %></td>
               </tr>
               <tr>
-                <td align="left" class="contribution-table-label" style="border-collapse: collapse; color: #686868; font-size: 14px; padding: 7px 0 0; width: 190px; font-weight:bold">Shipping Address</td>
-                <td align="left" class="contribution-table-value" style="border-collapse: collapse; color: #686868; font-size: 14px; padding: 7px 0 0; white-space: pre"><%= @preorder.formatted_address %></td>
+                <td width="30%" style="font-weight: 500">Shipping Address</td>
+                <td width="70%"><%= @preorder.formatted_address %></td>
               </tr>
               <tr>
-                <td align="left" class="contribution-table-label" style="border-collapse: collapse; color: #686868; font-size: 14px; padding: 7px 0 0; width: 190px; font-weight:bold">Item</td>
-                <td align="left" class="contribution-table-value" style="border-collapse: collapse; color: #686868; font-size: 14px; padding: 7px 0 0; white-space: pre"><%= @preorder.formatted_item %></td>
+                <td width="30%" style="font-weight: 500">Item</td>
+                <td width="70%"><%= @preorder.formatted_item %></td>
               </tr>
               <tr>
-                <td align="left" class="contribution-table-label" style="border-collapse: collapse; color: #686868; font-size: 14px; padding: 7px 0 0; width: 190px; font-weight: bold">Order ID</td>
-                <td align="left" class="contribution-table-value" style="border-collapse: collapse; color: #686868; font-size: 14px; padding: 7px 0 0; white-space: pre"><%= @preorder.id %></td>
+                <td width="30%" style="font-weight: 500">Order ID</td>
+                <td width="70%"><%= @preorder.id %></td>
               </tr>
               <tr>
-                <td align="left" class="contribution-table-label" style="border-collapse: collapse; color: #686868; font-size: 14px; padding: 7px 0 0; width: 190px; font-weight: bold">Total</td>
-                <td align="left" class="contribution-table-value" style="border-collapse: collapse; color: #686868; font-size: 14px; padding: 7px 0 0; white-space: pre"><%= @preorder.total %> AUD</td>
+                <td width="30%" style="font-weight: 500">Total</td>
+                <td width="70%"><%= @preorder.total %> AUD</td>
               </tr>
               <tr>
-                <td align="left" class="contribution-table-label" style="border-collapse: collapse; color: #686868; font-size: 14px; padding: 7px 0 0; width: 190px; font-weight: bold">Deposit taken</td>
-                <td align="left" class="contribution-table-value" style="border-collapse: collapse; color: #686868; font-size: 14px; padding: 7px 0 0; white-space: pre">85 AUD</td>
+                <td width="30%" style="font-weight: 500">Deposit taken</td>
+                <td width="70%">85 AUD</td>
               </tr>
               <tr>
-                <td align="left" class="contribution-table-label" style="border-collapse: collapse; color: #686868; font-size: 14px; padding: 7px 0 0; width: 190px; font-weight: bold">Remaining</td>
-                <td align="left" class="contribution-table-value" style="border-collapse: collapse; color: #686868; font-size: 14px; padding: 7px 0 0; white-space: pre"><%= @preorder.amount_remaining %> AUD</td>
+                <td width="30%" style="font-weight: 500">Remaining</td>
+                <td width="70%"><%= @preorder.amount_remaining %> AUD</td>
               </tr>
             </table>
           </div>
 
-          <div style="margin-left: -20px; margin-right: -20px; padding-left: 50px; padding-right: 50px; padding-top: 20px; padding-bottom: 20px;">
+          <div style="text-align: left; margin-left: -20px; margin-right: -20px; padding-left: 50px; padding-right: 50px; padding-top: 20px; padding-bottom: 20px;">
             <h2 style="font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 24px; line-height: 1.2em; color: #111111; font-weight: 200; margin: 10px 0 20px; padding: 0; font-size:22px;">Prescription</h2>
             <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0; color: #686868">
               We will get in touch before your glasses are ready to ship to get your prescription. Please keep in mind that we can only fulfill single vision prescriptions at this time.
@@ -73,7 +74,7 @@
           <hr style="border: 0.5px solid #C1CBCC; margin-bottom:40px; opacity: 0.2">
 
            <center>
-            <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 12px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0; color: #686868">Thanks for shopping with us, if you have any questions, please get in touch at <a href="mailto:hello@tzukuri.com" style="color: #2C7567; text-decoration: none">hello@tzukuri.com</a>.</p>
+            <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 12px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0; color: #686868">Thanks for shopping with us, if you have any questions, please get in touch by replying to this email.</a>.</p>
             <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 12px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0; color: #686868">&copy; Tzukuri Pty. Ltd., 6 Lenthall Street, Kensington, 2033, NSW, Australia</p>
               </center>
           </td>
@@ -90,7 +91,7 @@
 
 
 <style type="text/css">
-img { max-width: 600px !important; width: auto !important; }
+img { max-width: 600px !important; width: 80%; margin: 0 auto}
 body { -webkit-font-smoothing: antialiased !important; height: 100% !important; -webkit-text-size-adjust: none !important; width: 100% !important; }
 </style>
 </body>

@@ -2,11 +2,6 @@ class PreordersController < ApplicationController
 
     # create a new preorder and charge the customer's card
     def create
-
-        #  remove this when ready for deployment
-        render json : {success: true}
-        return;
-
         preorder = Preorder.create(preorder_params.except(:token))
 
         if preorder.valid?

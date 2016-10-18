@@ -276,10 +276,12 @@ $(function() {
           showFormSpinner(false)
           if (data.success) {
               // show a success screen
+               $("html, body").animate({ scrollTop: 0 }, "slow");
               $("#apple-pay, #regular-pay").fadeOut()
               $("#thank-you").fadeIn()
               $("#step-checkout h1").html("thanks for your reservation")
               $("#reserve-nav").fadeOut()
+
           } else {
               // there was an error creating the preorder/charging the card
               setFormError(data.errors)

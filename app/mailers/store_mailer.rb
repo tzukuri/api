@@ -6,7 +6,7 @@ class StoreMailer < ActionMailer::Base
   # send an email confirming a purchase
   def preorder_confirmation(preorder)
     @preorder = preorder
-    mail(to: preorder.email, subject: "Thanks for your purchase")
+    mail(to: preorder.email, subject: "Thanks for your reservation")
   end
 
   # send an email confirming an interest registration
