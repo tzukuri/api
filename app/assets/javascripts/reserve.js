@@ -165,7 +165,6 @@ $(function() {
           // if we don't have a current step set this one
           if (next.willDisplay != undefined) next.willDisplay()
           next.element.removeClass('hidden')
-          next.navElement.addClass('current')
         } else {
           // fade between the two steps
           if (next.willDisplay != undefined) next.willDisplay()
@@ -181,13 +180,23 @@ $(function() {
             var complete = i < next.index ? true : false
             step.complete(complete)
           })
-
-          next.current(true)
-          next.complete(false)
-
         }
+        next.current(true)
+        next.complete(false)
+
+        // scroll the indicator to the next nav element
+        _moveNavIndicator(next.navElement)
 
         _steps.setCurrentStep(next)
+      }
+
+      function _moveNavIndicator(toEl) {
+        var width = toEl.width()
+        var leftOffset = toEl.offset().left
+
+        _nav.find('#nav-indicator').offset({
+          left: leftOffset
+        }).css('width', width + 'px')
       }
 
       function _buildStepForNavEl(navEl, i) {
@@ -200,8 +209,8 @@ $(function() {
 
       function _setPricing() {
         $('.pricing #deposit').html(tzukuri.pricing.deposit)
-        $('.pricing #prescription').html(tzukuri.pricing.totals.prescription - tzukuri.pricing.deposit - _discount)
-        $('.pricing #non-prescription').html(tzukuri.pricing.totals.nonprescription - tzukuri.pricing.deposit - _discount)
+        $('.pricing #prescription').html(tzukuri.pricing.totals.prescription - _discount)
+        $('.pricing #non-prescription').html(tzukuri.pricing.totals.nonprescription - _discount)
       }
 
       function _handleApplePayAvailable(available) {
@@ -241,7 +250,7 @@ $(function() {
         Stripe.applePay.checkAvailability(_handleApplePayAvailable)
 
         // create steps for each of the elements in the navigation
-        _.forEach(_nav.children(), function(step, i) {
+        _.forEach(_nav.find('a'), function(step, i) {
           var step = _buildStepForNavEl(step, i)
           _steps.addStep(step)
         })
@@ -250,6 +259,10 @@ $(function() {
         _setPricing()
 
         _navigateForward()
+
+        $(window).on('resize', function() {
+          _moveNavIndicator(_steps.currentStep().navElement)
+        })
       }
 
       // PUBLIC API

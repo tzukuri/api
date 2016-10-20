@@ -1,8 +1,11 @@
 <div class="container" id="reserve-nav">
-  <a href="#" id="utility">utility</a>
-  <a href="#" id="frame">frame</a>
-  <a href="#" id="lens">lens</a>
-  <a href="#" id="checkout">checkout</a>
+  <ul id="nav-list">
+    <li><a href="#" id="utility">utility</a></li>
+    <li><a href="#" id="frame">frame</a></li>
+    <li><a href="#" id="lens">lens</a></li>
+    <li><a href="#" id="checkout">checkout</a></li>
+    <hr id="nav-indicator">
+  </ul>
 </div>
 
 <div id="reserve" class="container" data-discount="<%= @discount %>" data-code="<%= @code %>">
@@ -24,7 +27,7 @@
           </div>
       </div>
     </div>
-    <p class="pricing">Reserve for an <span id="deposit"></span> AUD deposit</p>
+    <p class="pricing">Starting from <span id="non-prescription"></span> AUD with <span id="deposit"></span> AUD deposit</p>
   </div>
 
   <div class="step-container hidden" id="step-frame">
@@ -42,7 +45,7 @@
           <p class="select-title">ive</p>
       </div>
     </div>
-    <p class="pricing">Reserve for an <span id="deposit"></span> AUD deposit</p>
+    <p class="pricing">Starting from <span id="non-prescription"></span> AUD with <span id="deposit"></span> AUD deposit</p>
   </div>
 
   <div class="step-container hidden" id="step-lens">
@@ -51,12 +54,12 @@
       <div class="six columns select-lens" data-lens="prescription">
           <%= image_tag 'prescription.png', style: 'width: 35%;' %>
           <p class="select-title">prescription</p>
-          <p class="pricing">Final payment of <span id="prescription"></span> AUD <br/>Single vision only. We will contact you to obtain your prescription.</p>
+          <p class="pricing"><span id="prescription"></span> AUD Total <br/>Single vision only. We will contact you to obtain your prescription.</p>
       </div>
       <div class="six columns select-lens" data-lens="non-prescription">
           <%= image_tag 'non_prescription.png', style: 'width: 35%;' %>
           <p class="select-title">non-prescription</p>
-          <p class="pricing">Final payment of <span id="non-prescription"></span> AUD</p>
+          <p class="pricing"><span id="non-prescription"></span> AUD Total</p>
       </div>
     </div>
 

@@ -1,36 +1,39 @@
 body.reserve {
+
     #reserve-nav {
-        text-align: center;
-        margin-top: 40px;
+      margin-top: 40px;
+      text-align: center;
 
-        a {
-            @include transition(border-color 0.5s ease-in-out);
+      #nav-list {
+          padding: 0;
+          text-align: center;
 
-            color: $shadow-green;
-            text-decoration: none;
-            margin-right: 25px;
-            padding-left: 5px;
-            padding-right: 5px;
-            padding-bottom: 5px;
-            cursor: default;
-            border-bottom: 0.5px solid rgba(0, 0, 0, 0);
+          #nav-indicator {
+            margin: 0;
+            width: 0px;
+            border: 0.5px solid $eerie-black;
+            transition: 1s ease;
+          }
 
+          li {
+            display: inline-block;
+            margin: 0 10px 0 10px;
+            padding: 5px 0 5px 0;
 
-            &:last-of-type {
-              // don't add margin to the last element (so it appears centered)
-              margin-right: 0px;
-            }
+            a {
+              text-decoration: none;
+              color: $shadow-green;
 
-            &.current {
-                border-color: $eerie-black;
+              &.current {
                 color: $eerie-black;
-            }
+              }
 
-            &.complete {
+              &.complete {
                 color: $tz-active;
-                cursor: pointer;
+              }
             }
-        }
+          }
+      }
     }
 
     #reserve {
@@ -261,7 +264,6 @@ body.reserve {
 
       a {
         @include font-size(14px);
-        margin-right: 15px;
       }
     }
 
@@ -322,8 +324,8 @@ body.reserve {
 
 @media only screen and (max-width: 350px) {
   body.reserve {
-    #reserve-nav a {
-      margin-right: 0px;
+    #reserve-nav #nav-list li {
+      margin: 0 5px 0 5px;
     }
   }
 }
