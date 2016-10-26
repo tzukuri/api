@@ -1,7 +1,7 @@
 ActiveAdmin.register_page "Dashboard" do
-    menu priority: 1, label: proc{ I18n.t("active_admin.dashboard") }
-
-    content title: proc{ I18n.t("active_admin.dashboard") } do
+    menu label: "General", parent: 'Dashboards'
+    
+    content title: "General"  do
     # all orders for the coming week
         next_week = BetaOrder.all_next_week
         next_week_ive_s = next_week.where(frame: 'ive', size: '48')

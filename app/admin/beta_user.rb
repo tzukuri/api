@@ -1,6 +1,7 @@
 ActiveAdmin.register BetaUser do
-    permit_params :email, :name, :invite_token, :score, :selected, :birth_date, :city
+    menu parent: 'Beta'
 
+    permit_params :email, :name, :invite_token, :score, :selected, :birth_date, :city
 
     index do
       selectable_column

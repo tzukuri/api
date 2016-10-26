@@ -2,6 +2,20 @@ require 'fileutils'
 
 namespace :tzukuri do
 
+  namespace :diagnostics do
+
+    desc ""
+    task :ui => :environment do
+
+      diagnostics = Tzukuri::Diagnostics.new
+
+      diagnostics.parallel_scan_all
+
+      # entries = diagnostics.entries_for_token_date('SDse3APBVQLDyFbbYvsx', '2016-10-04')
+    end
+
+  end
+
   desc "Prepare a report for beta user selection"
   task :beta_report => :environment do
     # build up a out_string and write to a .csv file for loading into excel

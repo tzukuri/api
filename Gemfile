@@ -31,6 +31,8 @@ gem 'mail'
 gem 'lz4-ruby'
 gem 'country_select'
 gem 'nokogiri', '~> 1.6.7.2'
+gem 'parallel'
+gem 'ruby-progressbar'
 
 #omniauth strategies
 gem 'omniauth-twitter'

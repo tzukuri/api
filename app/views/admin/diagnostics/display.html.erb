@@ -1,0 +1,67 @@
+
+<!-- file overview -->
+<div>
+  <h3>File Overview</h3>
+  <ul>
+    <li><strong>Total Entries:</strong> <%= @num_entries %></li>
+    <li><strong>Time Period:</strong> <%= @file_data[:start_time].in_time_zone('Australia/Sydney').strftime('%l:%M %p') %> - <%= @file_data[:end_time].in_time_zone('Australia/Sydney').strftime('%l:%M %p') %></li>
+  </ul>
+</div>
+
+<!-- block navigation -->
+<div>
+  <h3>Block Navigation</h3>
+
+  <ul style="padding-left: 0px;">
+  <% @file_data[:blocks].each_with_index do |block, index| %>
+    <li style="display: inline-block; margin: 5px 5px 5px 5px">
+      <a href="#block-<%= index %>">Block <%= index %></a>
+      [<%= block.entries.first.time.in_time_zone('Australia/Sydney').strftime('%l:%M %p') %> - <%= block.entries.last.time.in_time_zone('Australia/Sydney').strftime('%l:%M %p') %>]
+    </li>
+  <% end %>
+  </ul>
+</div>
+
+<!-- block tables -->
+<% @file_data[:blocks].each_with_index do |block, index| %>
+
+  <h2 id="block-<%= index %>">Block <%= index %></h2>
+
+  <table class="index_table index">
+    <!-- table header -->
+    <thead>
+      <tr>
+        <th class="col">Timestamp</th>
+        <th class="col">Delta</th>
+        <th class="col">Type</th>
+        <th class="col">Value</th>
+      </tr>
+    </thead>
+
+    <!-- table body -->
+    <tbody>
+      <% block.entries.each_with_index do |entry, index| %>
+        <tr>
+          <td><%= entry.time.in_time_zone('Australia/Sydney').strftime('%l:%M:%S %p') %></td>
+          <td><%= entry.raw_ts if index > 0 %></td>
+          <td><%= entry.type %></td>
+          <td>
+              <% if entry.printable_value? %>
+                  <%= entry.value %>
+              <% end %>
+              <% if entry.varint_value? %>
+                  <%= entry.varint_value %>
+              <% end %>
+              <% if entry.float_value? %>
+                  <%= entry.float_value %>
+              <% end %>
+              <% if entry.type == 'userActivityData' %>
+                  <%= entry.user_activity_value.time.strftime('%H:%M:%S') %> <%= entry.user_activity_value.type_name %> (confidence: <%= entry.user_activity_value.confidence_name %>)
+              <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<% end %>
