@@ -1,4 +1,6 @@
 ActiveAdmin.register BetaOrder do
+    menu parent: 'Beta'
+
     permit_params :address1, :address2, :state, :postcode, :frame, :size, :phone, :delivery_method, :fulfilled
 
     index do

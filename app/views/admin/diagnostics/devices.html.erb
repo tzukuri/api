@@ -1,0 +1,29 @@
+<h3> Total Tokens: <%= @auth_tokens.count %> </h3>
+
+<table class="index_table index">
+  <!-- table header -->
+  <thead>
+    <tr>
+      <th class="col">Name</th>
+      <th class="col">Device Name</th>
+      <th class="col">Device Type</th>
+      <th class="col">OS Version</th>
+      <th class="col">Sync Token</th>
+      <th class="col"></th>
+    </tr>
+  </thead>
+
+  <!-- table body -->
+  <tbody>
+    <% @auth_tokens.each do |token| %>
+      <tr>
+        <td><%= token.user.name %></td>
+        <td><%= token.api_device.name %></td>
+        <td><%= token.api_device.device_type %></td>
+        <td><%= token.api_device.os %></td>
+        <td><%= token.diagnostics_sync_token %></td>
+        <td><a href="diagnostics/<%= token.diagnostics_sync_token %>">Show &rarr;</a></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

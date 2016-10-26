@@ -1,4 +1,6 @@
 ActiveAdmin.register User do
+    menu parent: 'API'
+
     permit_params :email, :password, :password_confirmation, :name
 
     index do

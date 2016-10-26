@@ -1,0 +1,23 @@
+<table class="index_table index">
+  <!-- table header -->
+  <thead>
+    <tr>
+      <th class="col">Date</th>
+      <th class="col">Day</th>
+      <th class="col"># Files</th>
+      <th class="col"></th>
+    </tr>
+  </thead>
+
+  <!-- table body -->
+  <tbody>
+    <% @dates.each do |date| %>
+      <tr>
+        <td><%= Date.parse(date).strftime('%d/%m/%Y') %></td>
+        <td><%= Date.parse(date).strftime('%A') %></td>
+        <td><%= @file_count[date] %></td>
+        <td><a a href="<%= @auth_token.diagnostics_sync_token %>/<%= date %>">Show &rarr;</a></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

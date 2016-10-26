@@ -1,4 +1,7 @@
 ActiveAdmin.register Ownership do
+
+    menu parent: 'API'
+
     permit_params :user_id, :device_id, :revoked, :reason
 
     index do
