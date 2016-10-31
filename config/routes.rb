@@ -29,7 +29,8 @@ Rails.application.routes.draw do
     get '/admin/diagnostics' => 'admin/diagnostics#devices'
     get '/admin/diagnostics/:token' => 'admin/diagnostics#dates'
     get '/admin/diagnostics/:token/:date' => 'admin/diagnostics#files'
-    get '/admin/diagnostics/:token/:date/:file' => 'admin/diagnostics#display'
+    # get '/admin/diagnostics/:token/:date/:file' => 'admin/diagnostics#display'
+    post '/admin/diagnostics/expand' => 'admin/diagnostics#expand'
 
     ActiveAdmin.routes(self)
     mount Que::Web => '/que'
