@@ -31,63 +31,34 @@ ActiveAdmin.register_page "Diagnostics" do
 
     # list all the files for a given date
     def files
-        # @auth_token = AuthToken.find_by_diagnostics_sync_token(params[:token])
-        # path = Rails.root.join('diagnostics', params[:token], params[:date])
-        # @files = Dir.entries(path) - ['.', '..', '.DS_Store']
-        # @files.sort!
-        #
-        # @all_files = {}
-        #
-        # @files.each do |file|
-        #   file_path = Rails.root.join('diagnostics', params[:token], params[:date], file)
-        #   @all_files[file] = read_file(file_path)
-        # end
-
         diagnostics = Tzukuri::Diagnostics.new
 
         @auth_token = AuthToken.find_by_diagnostics_sync_token(params[:token])
-        @entries = diagnostics.entries_for_token_date(params[:token], params[:date])
+
+        if params[:showAll]
+          @data = diagnostics.entries_for_token_date(params[:token], params[:date], [], ['appDidBecomeActive', 'notificationDisplayed', 'bleDisconnected'])
+        else
+          # only show the state machine diagnostics by default
+          @data = diagnostics.entries_for_token_date(params[:token], params[:date],
+            # whitelist entry types
+            ['stateMachine', 'appEnvironment', 'notificationDisplayed', 'notificationScheduled', 'appDidBecomeActive', 'bleDisconnected', 'bleConnected'],
+            # aggregate entry types (count)
+            ['appDidBecomeActive', 'notificationDisplayed', 'bleDisconnected']
+          )
+        end
 
         @page_title = "#{@auth_token.api_device.name} / #{params[:date]}"
     end
 
-    # display the contents of a file
-    def display
-        @auth_token = AuthToken.find_by_diagnostics_sync_token(params[:token])
-        path = Rails.root.join('diagnostics', params[:token], params[:date], params[:file])
+    def expand
+      # puts params
 
-        @file_data = read_file(path)
+      diagnostics = Tzukuri::Diagnostics.new
 
-        @page_title = "#{@auth_token.api_device.name} / #{params[:date]} / #{params[:file]}"
+      entries = diagnostics.entries_for_period(params[:token], params[:date], params[:start_index], params[:end_index])
+
+      render json: {success: true, count: entries.count, entries: entries}
     end
 
-    private
-
-    # read a file and return the blocks of as well as some aggregate data about that file
-    def read_file(file_path)
-      bytes = IO.binread(file_path)
-      io = StringIO.new(bytes)
-
-      data = {
-        :blocks => [],
-        :num_entries => 0,
-        :start_time => '',
-        :end_time => ''
-      }
-
-      until io.eof?
-        begin
-          block = Tzukuri::Block.new(io)
-          data[:blocks] << block
-          data[:num_entries] += block.entries.count
-        rescue
-        end
-      end
-
-      data[:start_time] = data[:blocks].first.entries.first.time
-      data[:end_time] = data[:blocks].last.entries.last.time
-
-      return data
-    end
   end
 end

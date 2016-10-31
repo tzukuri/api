@@ -1,37 +1,203 @@
-<table class="index_table index">
-  <!-- table header -->
-  <thead>
-    <tr>
-      <th>Index</th>
-      <th class="col">Timestamp</th>
-      <th class="col">Delta</th>
-      <th class="col">Type</th>
-      <th class="col">Value</th>
-    </tr>
-  </thead>
+<div class="container" id="diagnostic-timeline" data-token="<%= params[:token] %>" data-date="<%= params[:date] %>">
+  <h2><%= @data[:aggregates][:start_time].in_time_zone('Australia/Sydney').strftime('%A, %B %e %Y') %></h2>
+  <p><%= @data[:aggregates][:start_time].in_time_zone('Australia/Sydney').strftime('%l:%M %p') %> - <%= @data[:aggregates][:end_time].in_time_zone('Australia/Sydney').strftime('%l:%M %p') %></p>
+  <!-- aggregate statistics -->
+  <div class="row">
+    <div class="three columns" style="text-align: center; border: 1px solid #686868; border-radius: 5px; margin-bottom: 40px;">
+      <h2 style="color: #686868; margin-bottom: 0px"><%= @data[:aggregates]["bleDisconnected"] || 0 %></h2>
+      <h3 style="color: #686868">Disconnect Events</h3>
+    </div>
+    <div class="three columns" style="text-align: center; border: 1px solid #686868; border-radius: 5px;">
+      <h2 style="color: #686868; margin-bottom: 0px"><%= @data[:aggregates]["notificationDisplayed"] || 0%></h2>
+      <h3 style="color: #686868">Notifications Displayed</h3>
+    </div>
+    <div class="three columns" style="text-align: center; border: 1px solid #686868; border-radius: 5px;">
+      <h2 style="color: #686868; margin-bottom: 0px"><%= @data[:aggregates][:total_entries] || 0 %></h2>
+      <h3 style="color: #686868">Total Entries</h3>
+    </div>
+    <div class="three columns" style="text-align: center; border: 1px solid #686868; border-radius: 5px;">
+      <h2 style="color: #686868; margin-bottom: 0px"><%= @data[:aggregates]["appDidBecomeActive"] || 0%></h2>
+      <h3 style="color: #686868">App Opens</h3>
+    </div>
+  </div>
 
-  <!-- table body -->
-  <tbody>
-    <% @entries.each_with_index do |entry, index| %>
-      <tr>
-        <td><%= entry.time.in_time_zone('Australia/Sydney').strftime('%l:%M:%S %p') %></td>
-        <td><%= entry.raw_ts if index > 0 %></td>
-        <td><%= entry.type %></td>
-        <td>
-            <% if entry.printable_value? %>
-                <%= entry.value %>
-            <% end %>
-            <% if entry.varint_value? %>
-                <%= entry.varint_value %>
-            <% end %>
-            <% if entry.float_value? %>
-                <%= entry.float_value %>
-            <% end %>
-            <% if entry.type == 'userActivityData' %>
-                <%= entry.user_activity_value.time.strftime('%H:%M:%S') %> <%= entry.user_activity_value.type_name %> (confidence: <%= entry.user_activity_value.confidence_name %>)
-            <% end %>
-        </td>
-      </tr>
+  <!-- start of file row -->
+  <div class="row">
+    <div class="two columns" style="text-align: right; padding-right: 20px; border-right: 2px solid #9b59b6;">
+      <p class="head">TIME</p>
+      <h3><%= @data[:aggregates][:start_time].in_time_zone('Australia/Sydney').strftime('%l:%M %p') %></h3>
+    </div>
+
+    <div class="ten columns">
+      <p class="head" style="color: #9b59b6">BEGIN</p>
+      <h3>Diagnostics Start</h3>
+    </div>
+  </div>
+
+  <% @data[:items].each_with_index do |item, index| %>
+    <!-- add a row that allows users to zoom into this data -->
+    <% if item[:preceding] > 0 %>
+      <div class="row">
+        <div class="two columns" style="border-right: 2px solid #347468; border-style: dotted; text-align: right; padding-right: 10px;">
+          <a href="#" style="text-decoration: none" class="expand" data-start="<%= @data[:items][index - 1][:index] %>" data-end="<%= item[:index] %>">+ <%= item[:preceding] %> entries</a>
+        </div>
+        <div class="eight columns">&nbsp;</div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+
+    <!-- add a row for a state machine entry -->
+    <% if item[:entry].value.class.name == "Tzukuri::StateMachineValue" %>
+      <div class="row state-machine entry-<%= item[:index] %>">
+        <div class="two columns time-col <%= item[:entry].type %>" style="text-align: right; padding-right: 20px; margin-bottom: 0px;">
+          <p class="head">TIME</p>
+          <h3><%= item[:entry].time.in_time_zone('Australia/Sydney').strftime('%l:%M:%S %p') %></h3>
+          <!-- <p><%#= entry.time.in_time_zone('Australia/Sydney').strftime('%H:%M:%S') %></p> -->
+        </div>
+
+        <div class="two columns">
+          <p class="head" style="color: #16a085"><%= item[:entry].type.upcase %></p>
+          <h3><%= item[:entry].value.machine %></h3>
+        </div>
+
+        <div class="five columns">
+          <p class="head" style="color: #16a085">TRANSITION</p>
+          <h3><%= item[:entry].value.from %> > <%= item[:entry].value.to %></h3>
+        </div>
+
+        <div class="three columns">
+          <p class="head" style="color: #16a085">DETAIL</p>
+          <p>Event: <%= item[:entry].value.event.titleize %></p>
+        </div>
+      </div>
+
+    <!-- add a generic row for any other entry -->
+    <% else %>
+    <div class="row app-environment entry-<%= item[:index] %>">
+      <div class="two columns time-col <%= item[:entry].type %>" style="text-align: right; padding-right: 20px; margin-bottom: 0px;">
+        <p class="head <%= item[:entry].type %>">TIME</p>
+        <h3><%= item[:entry].time.in_time_zone('Australia/Sydney').strftime('%l:%M:%S %p') %></h3>
+      </div>
+
+      <div class="ten columns">
+        <p class="head <%= item[:entry].type %>"><%= item[:entry].type.upcase %></p>
+        <h3><%= item[:entry].value %></h3>
+      </div>
+    </div>
+    <% end %>
+  <% end %>
+
+  <!-- end of file row -->
+  <div class="row">
+    <div class="two columns" style="text-align: right; padding-right: 20px; border-right: 2px solid #9b59b6;">
+      <p class="head">TIME</p>
+      <h3><%= @data[:aggregates][:end_time].in_time_zone('Australia/Sydney').strftime('%l:%M %p') %></h3>
+    </div>
+
+    <div class="ten columns">
+      <p class="head" style="color: #9b59b6">END</p>
+      <h3>Diagnostics Finish</h3>
+    </div>
+  </div>
+</div>
+
+<!-- templates -->
+<template id="comment-template">
+  <div class="row app-environment">
+    <div class="two columns time-col <%#= item[:entry].type %>" style="text-align: right; padding-right: 20px; margin-bottom: 0px; border-color: #2980b9">
+      <p class="head <%#= item[:entry].type %>">TIME</p>
+      <h3 id="entry-time"><%#= item[:entry].time.in_time_zone('Australia/Sydney').strftime('%l:%M %p') %></h3>
+    </div>
+
+    <div class="ten columns">
+      <p id="entry-type" class="head <%#= item[:entry].type %>" style="text-transform: uppercase; color: #2980b9"></p>
+      <h3 id="entry-value"><%#= item[:entry].value %></h3>
+    </div>
+  </div>
+</template>
+
+<!-- todo: javascript -->
+<script>
+  $('.expand').on('click', function(e) {
+    e.preventDefault()
+    var start = $(this).attr('data-start')
+    var end = $(this).attr('data-end')
+    var token = $('#diagnostic-timeline').attr('data-token')
+    var date = $('#diagnostic-timeline').attr('data-date')
+    var button = $(this)
+
+    // make an GET request to retrieve all entries between these two times (not including)
+    $.post("/admin/diagnostics/expand", {start_index: start, end_index: end, token: token, date: date}, function(data) {
+      var entries = data.entries
+      console.log(entries)
+
+      // pull out the elements we want to insert new rows between
+      var startEl = $('.entry-' + start)
+      var template = $("#comment-template").html().trim()
+
+      $.each(entries.reverse(), function(index, entry) {
+        var inst = $(template).clone()
+
+        $(inst).find("#entry-type").html(entry.type)
+        $(inst).find("#entry-value").html(entry.value)
+        $(inst).find("#entry-time").html(entry.time)
+
+        $(inst).insertAfter(startEl)
+      })
+
+      // remove the button and it's parent row
+      button.parent().parent().remove()
+    });
+  })
+</script>
+
+<style>
+#diagnostic-timeline h3 {
+  color: #1a1d1a;
+  font-size: 11pt;
+  margin-bottom: 10px;
+}
+
+#diagnostic-timeline .head {
+  font-size: 7pt;
+  color: #1a1d1a;
+}
+
+#diagnostic-timeline .head.notificationDisplayed {
+  color: #e74c3c;
+}
+
+#diagnostic-timeline .head.appEnvironment {
+  color: #9b59b6;
+}
+
+#diagnostic-timeline .row .time-col {
+  border-right: 2px solid #9b59b6;
+}
+
+#diagnostic-timeline .row .time-col.stateMachine {
+  border-color: #16a085;
+}
+
+#diagnostic-timeline .row .time-col.notificationDisplayed {
+  border-color: #e74c3c;
+}
+
+#diagnostic-timeline .row.state-machine {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+#diagnostic-timeline .row.state-machine .columns {
+  margin-bottom: 0px;
+}
+
+#diagnostic-timeline .row.app-environment {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+/* override the active admin column style to prevent line breaking */
+#diagnostic-timeline .columns, .column {
+     clear: none;
+}
+</style>
