@@ -20,7 +20,7 @@
                 <td><%= entry.type %></td>
                 <td>
                     <% if entry.printable_value? %>
-                        <%= entry.value %>
+                        <%= entry.value.to_s.force_encoding("UTF-8") %>
                     <% end %>
                     <% if entry.varint_value? %>
                         <%= entry.varint_value %>
