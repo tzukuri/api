@@ -1,4 +1,8 @@
-<h1><%= @auth_token.user.name %> - <%= @auth_token.api_device.name %> / <%= params[:date] %> / <%= params[:file] %></h1>
+<% if @auth_token %>
+  <h1><%= @auth_token.user.name %> - <%= @auth_token.api_device.name %> / <%= params[:date] %> / <%= params[:file] %></h1>
+<% else %>
+  <h1>NO AUTH TOKEN - <%= params[:token] %> / <%= params[:date] %> / <%= params[:file] %></h1>
+<% end %>
 
 <% @blocks.each_with_index do |block, i| %>
     <h2>Block <%= i %></h2>
