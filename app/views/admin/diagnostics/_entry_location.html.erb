@@ -1,7 +1,7 @@
 <div class="row location" id="<%= @entry.time.hour if defined? @entry %>">
   <div class="two columns time-col <%= @entry.type if defined? @entry %>">
     <p class="head">TIME</p>
-    <h3 class="entry-time"><%= @entry.time.strftime('%l:%M:%S %p') if defined? @entry %></h3>
+    <h3 class="entry-time"><%= @entry.syd_time.strftime('%l:%M:%S %p') if defined? @entry %></h3>
   </div>
 
   <div class="four columns">
