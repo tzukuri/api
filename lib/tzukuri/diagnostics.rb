@@ -1,5 +1,3 @@
-require 'lz4-ruby'
-
 module Tzukuri
   # ruby unpack format strings http://apidock.com/ruby/String/unpack
   LITTLE_ENDIAN_INT_32 = 'l<'
@@ -118,7 +116,7 @@ module Tzukuri
   class Entry
       TYPE_NAMES = %w{appLaunched appFailedToGetAPNSToken appReceivedUnknownRemoteNotification appReceivedRemoteNotification appWillResignActive appDidEnterBackground appWillEnterForeground appDidBecomeActive appWillTerminate settingsDeviceDetailsAppear settingsAppear settingsSetNotifyOnDisconnect settingsSetNotifyOnBluetoothUnavailable settingsSetSynchroniseAccount settingsPressHelp settingsPressWebsiteLink settingsPressLegal settingsPressSleep settingsPressUnlink settingsPressLogout settingsPerformingSleep settingsPerformingUnlink settingsPerformingLogout settingsAccountDetailsAppear settingsPressToggleSynchroniseAccount settingsPressAddQuietZone settingsPressExistingQuietZone bleConnected bleReconnected bleDisconnected bleFailedToConnect bleReadPinOK bleReadBattery bleReadRSSI glassesLoc glassesUnlinkSuccessful glassesUnlinkFailed glassesTickDistance glassesHQDistance glassesLowBattery glassesLost locationServicesWarningShown locationServicesWarningShowSettings locationServicesWarningDismiss motionActivityWarningShown motionActivityWarningShowSettings motionActivityWarningDismiss notificationsWarningShown notificationsWarningShowSettings notificationsWarningDismiss userLoc userQuietZone userLogoutSuccessful userLogoutFailed userDidVisit userActivityData userPedometerData notificationScheduled notificationDisplayed notificationCancelled notificationTapped notificationCleared notificationsAvailable rootActive rootInactive expandedDetails collapsedDetails requestedDirections tappedMapPin activeViewActive activeViewInactive bluetoothAvailable bluetoothUnavailable locationAvailable locationUnavailable notificationsUnavailable sensorsAvailable sensorsUnavailable taskComplete missingUploadSessionPath appEnvironment lowPowerState stateMachine requestFailure requestError requestErrorUnavailable distanceRangingStarted distanceRangingStopped distanceRangingMeasurements quietZoneList quietZoneRead quietZoneCreate quietZoneUpdate quietZoneDelete roomList roomRead roomCreate roomUpdate roomDelete quietZoneActiveTimeEnded quietZoneActiveTimeStarted setupDidVistRoot setupDidVistEnableBLE setupDidVisitPower setupDidVisitPIN setupDidVisitLogin setupDidVisitRegister setupDidVisitLinking setupDidVisitPermissions setupDidVisitSuccess betaDidPressFeedback scheduleTriggered syncAppParams syncDevice}
 
-      attr_accessor :ts, :raw_ts, :type, :value
+      attr_accessor :ts, :raw_ts, :type, :value, :time
 
       def initialize(io, prev_ts)
           # we don't need to check io.eof? here as the Block.init loop won't
@@ -126,6 +124,7 @@ module Tzukuri
           # it will succeed at least once
           @raw_ts = VarInt.parse(io)
           @ts = @raw_ts + prev_ts
+          @time = time.in_time_zone('Australia/Sydney')
 
           @raw_type = io.read(1)
           if @raw_type.nil?
@@ -152,10 +151,15 @@ module Tzukuri
       def as_json(options={})
         {
           class: @value.class.name,
-          time: time.in_time_zone('Australia/Sydney').strftime('%l:%M:%S %p'),
+          time: time.strftime('%l:%M:%S %p'),
           type: @type,
           value: @value
         }
+      end
+
+      def to_partial_path
+        # the partial for each entry should be determined by the value type
+        @value.to_partial_path
       end
   end
 
@@ -204,7 +208,7 @@ module Tzukuri
       # entries will contain a filtered list of entry hashes (once the filters have been applied)
       # aggregates will provide counts for certain events
       data = {
-        items: [],
+        timeline_items: [],
         aggregates: {}
       }
 
@@ -215,7 +219,7 @@ module Tzukuri
       end
 
       # sort all entries
-      # all_entries.sort_by { |entry| entry.ts }
+      all_entries.sort_by! { |entry| entry.ts }
 
       # build all the aggregate values that are required
       data[:aggregates] = build_aggregates(all_entries, aggregate)
@@ -223,14 +227,15 @@ module Tzukuri
       # filter all_entries by the whitelist
       if whitelist.empty?
         # just push all the entries into data with no preceding counts
-        data[:items] = all_entries.map.with_index{ |entry, index| {entry: entry, preceding: 0, index: index}}
+        data[:timelime_items] = all_entries.map.with_index{ |entry, index| TimelineItem.new(entry, 0, index)}
       else
         # we have a whitelist, so filter the entries and count how many in between
         preceding_count = 0
 
         all_entries.each_with_index { |entry, index|
           if whitelist.include? entry.type
-            data[:items].push({entry: entry, preceding: preceding_count, index: index})
+            data[:timeline_items].push(TimelineItem.new(entry, preceding_count, index))
+            # data[:items].push({entry: entry, preceding: preceding_count, index: index})
             preceding_count = 0
           else
             preceding_count += 1
@@ -257,13 +262,30 @@ module Tzukuri
       aggregated[:total_entries] = entries.count
 
       entries.each { |entry|
-        # if we are aggregating on this entry, +1 to the count if it exists otherwise create it
         aggregated[entry.type] = (aggregated[entry.type] || 0) + 1 if aggregate.include? entry.type
       }
 
       return aggregated
     end
 
+  end
+
+  class TimelineItem
+    attr_accessor :entry, :preceding, :index
+
+    def initialize(entry, preceding, index)
+      @entry = entry
+      @preceding = preceding
+      @index = index
+    end
+
+    def preceding?
+      return @preceding > 0
+    end
+
+    def to_partial_path
+      @entry.to_partial_path
+    end
   end
 
   # ============================
@@ -314,6 +336,10 @@ module Tzukuri
     def as_json(options={})
       {}
     end
+
+    def to_partial_path
+      "entry_generic"
+    end
   end
 
   class StateMachineValue < EntryValue
@@ -339,6 +365,10 @@ module Tzukuri
         to: @to
       }
     end
+
+    def to_partial_path
+      "entry_state_machine"
+    end
   end
 
   class StringValue < EntryValue
@@ -360,6 +390,10 @@ module Tzukuri
     def initialize(data)
       super(data)
       @data = VarInt.parse(StringIO.new(data))
+    end
+
+    def to_i
+      @data.to_i
     end
 
     def to_s
@@ -431,13 +465,16 @@ module Tzukuri
     end
 
     def as_json(options={})
-      "[#{latitude}, #{longitude}] | accuracy: #{accuracy} | ts: #{timestamp.in_time_zone('Australia/Sydney').strftime('%l:%M:%S %p')}"
-      # {
-      #   latitude: @latitude,
-      #   longitude: @longitude,
-      #   accuracy: @accuracy,
-      #   ts: @ts
-      # }
+      {
+        latitude: @latitude,
+        longitude: @longitude,
+        accuracy: @accuracy,
+        ts: timestamp.in_time_zone('Australia/Sydney').strftime('%l:%M:%S %p')
+      }
+    end
+
+    def to_partial_path
+      "entry_location"
     end
   end
 

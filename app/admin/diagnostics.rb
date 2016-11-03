@@ -35,9 +35,10 @@ ActiveAdmin.register_page "Diagnostics" do
 
         @auth_token = AuthToken.find_by_diagnostics_sync_token(params[:token])
 
-        if params[:showAll]
-          @data = diagnostics.entries_for_token_date(params[:token], params[:date], [], ['appDidBecomeActive', 'notificationDisplayed', 'bleDisconnected'])
-        else
+        # disabling this for the time being until partial rendering is fixed
+        # if params[:showAll]
+        #   @data = diagnostics.entries_for_token_date(params[:token], params[:date], [], ['appDidBecomeActive', 'notificationDisplayed', 'bleDisconnected'])
+        # else
           # only show the state machine diagnostics by default
           @data = diagnostics.entries_for_token_date(params[:token], params[:date],
             # whitelist entry types
@@ -45,6 +46,18 @@ ActiveAdmin.register_page "Diagnostics" do
             # aggregate entry types (count)
             ['appDidBecomeActive', 'notificationDisplayed', 'bleDisconnected']
           )
+        # end
+
+        # start_time and end_time
+        start_time = @data[:aggregates][:start_time].in_time_zone('Australia/Sydney')
+        end_time = @data[:aggregates][:end_time].in_time_zone('Australia/Sydney')
+        time = start_time
+
+        @hours = []
+
+        while time.hour != end_time.hour || time.day != end_time.day
+          @hours << time.hour
+          time = time.in(1.hour)
         end
 
         @page_title = "#{@auth_token.api_device.name} / #{params[:date]}"
