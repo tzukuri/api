@@ -155,7 +155,7 @@ module Tzukuri
       def as_json(options={})
         {
           class: @value.class.name,
-          time: time.strftime('%l:%M:%S %p'),
+          time: @syd_time.strftime('%l:%M:%S %p'),
           type: @type,
           value: @value
         }
@@ -510,11 +510,7 @@ module Tzukuri
       end
 
       def as_json(options={})
-        {
-          confidence: @confidence,
-          type: @type,
-          ts: @ts
-        }
+        self.to_s
       end
   end
 end
