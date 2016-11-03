@@ -1,0 +1,13 @@
+<div id="<%= @entry.time.hour if defined? @entry %>" class="row generic <%= @entry.type if defined? @entry %>">
+
+  <div class="two columns time-col">
+    <p class="head <%= @entry.type if defined? @entry %>">TIME</p>
+    <h3 class="entry-time"><%= @entry.time.strftime('%l:%M:%S %p') if defined? @entry %></h3>
+  </div>
+
+  <div class="ten columns">
+    <p class="head entry-type"><%= @entry.type.upcase if defined? @entry %></p>
+    <h3 class="entry-value wordwrap"><%= @entry.value if defined? @entry %></h3>
+  </div>
+
+</div>

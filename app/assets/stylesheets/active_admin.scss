@@ -4,5 +4,12 @@
 // `app/assets/stylesheets/active_admin/mixins/_variables.css.scss` in the
 // Active Admin source.
 
+// active admin
 @import "active_admin/mixins";
 @import "active_admin/base";
+
+// vendor assets
+@import "skeleton";
+
+// diagnostics custom sass
+@import "admin/diagnostics";
