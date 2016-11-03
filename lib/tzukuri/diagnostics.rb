@@ -31,6 +31,8 @@ module Tzukuri
     end
   end
 
+  # represents a diagnostics file, handles opening and reading the file as well
+  # as construction blocks, entries, etc.
   class DiagnosticFile
     attr_accessor :file_path, :entries
 
@@ -63,6 +65,7 @@ module Tzukuri
     end
   end
 
+  # represents a block of entries within a diagnostics file
   class Block
       INT_LENGTH = 4
       HEADER = 'TZUD'
@@ -113,6 +116,7 @@ module Tzukuri
       end
   end
 
+  # represents a single entry within a block, the actual entry data is contained within .value
   class Entry
       TYPE_NAMES = %w{appLaunched appFailedToGetAPNSToken appReceivedUnknownRemoteNotification appReceivedRemoteNotification appWillResignActive appDidEnterBackground appWillEnterForeground appDidBecomeActive appWillTerminate settingsDeviceDetailsAppear settingsAppear settingsSetNotifyOnDisconnect settingsSetNotifyOnBluetoothUnavailable settingsSetSynchroniseAccount settingsPressHelp settingsPressWebsiteLink settingsPressLegal settingsPressSleep settingsPressUnlink settingsPressLogout settingsPerformingSleep settingsPerformingUnlink settingsPerformingLogout settingsAccountDetailsAppear settingsPressToggleSynchroniseAccount settingsPressAddQuietZone settingsPressExistingQuietZone bleConnected bleReconnected bleDisconnected bleFailedToConnect bleReadPinOK bleReadBattery bleReadRSSI glassesLoc glassesUnlinkSuccessful glassesUnlinkFailed glassesTickDistance glassesHQDistance glassesLowBattery glassesLost locationServicesWarningShown locationServicesWarningShowSettings locationServicesWarningDismiss motionActivityWarningShown motionActivityWarningShowSettings motionActivityWarningDismiss notificationsWarningShown notificationsWarningShowSettings notificationsWarningDismiss userLoc userQuietZone userLogoutSuccessful userLogoutFailed userDidVisit userActivityData userPedometerData notificationScheduled notificationDisplayed notificationCancelled notificationTapped notificationCleared notificationsAvailable rootActive rootInactive expandedDetails collapsedDetails requestedDirections tappedMapPin activeViewActive activeViewInactive bluetoothAvailable bluetoothUnavailable locationAvailable locationUnavailable notificationsUnavailable sensorsAvailable sensorsUnavailable taskComplete missingUploadSessionPath appEnvironment lowPowerState stateMachine requestFailure requestError requestErrorUnavailable distanceRangingStarted distanceRangingStopped distanceRangingMeasurements quietZoneList quietZoneRead quietZoneCreate quietZoneUpdate quietZoneDelete roomList roomRead roomCreate roomUpdate roomDelete quietZoneActiveTimeEnded quietZoneActiveTimeStarted setupDidVistRoot setupDidVistEnableBLE setupDidVisitPower setupDidVisitPIN setupDidVisitLogin setupDidVisitRegister setupDidVisitLinking setupDidVisitPermissions setupDidVisitSuccess betaDidPressFeedback scheduleTriggered syncAppParams syncDevice}
 
@@ -163,14 +167,11 @@ module Tzukuri
       end
   end
 
+  # standard interface to interact with the diagnostics
   class Diagnostics
-    # set up the diagnostics environment (don't load any files yet)
-    def initialize
-      @diagnostics_path = Rails.root.join('diagnostics')
-    end
-
+    # TODO: finish handling performant scanning
     def parallel_scan_all
-      files = Dir[ File.join(@diagnostics_path, '**', '*') ].reject { |p| File.directory? p }
+      files = Dir[ File.join(Rails.root.join('diagnostics'), '**', '*') ].reject { |p| File.directory? p }
 
       Parallel.each(files, progress: 'parallel') { |file|
         diag = DiagnosticFile.new(file)
@@ -181,17 +182,11 @@ module Tzukuri
       # }
     end
 
-    def entries_for_period(token, date, start_index, end_index)
-      entries = []
+    # return all the entries between two indexes in a given token and date combination
+    def self.entries_between_index(token, date, start_index, end_index)
       filtered_entries = []
 
-      # read out all the entries from every diagnostic file for this day
-      paths(token, date).each do |file|
-        diagnostic_file = DiagnosticFile.new(file)
-        entries.concat(diagnostic_file.entries)
-      end
-
-      entries.each_with_index do |entry, index|
+      entries(token, date).each_with_index do |entry, index|
         if index > end_index.to_i
           return filtered_entries
         elsif index > start_index.to_i && index < end_index.to_i
@@ -200,26 +195,15 @@ module Tzukuri
       end
     end
 
-    # retrieve all the entries for a token on a given date
-    # if both a blacklist and a whitelist is provided, it will use the whitelist and ignore the blacklist
-    def entries_for_token_date(token, date, whitelist=[], aggregate=[])
-      all_entries = []
-
-      # entries will contain a filtered list of entry hashes (once the filters have been applied)
-      # aggregates will provide counts for certain events
+    # return all the entries for a given token and date combination
+    # as well as some aggregate counts for certain events
+    def self.entries_for_token_date(token, date, whitelist=[], aggregate=[])
       data = {
         timeline_items: [],
         aggregates: {}
       }
 
-      # read out all the entries from every diagnostic file for this day
-      paths(token, date).each do |file|
-        diagnostic_file = DiagnosticFile.new(file)
-        all_entries.concat(diagnostic_file.entries)
-      end
-
-      # sort all entries
-      all_entries.sort_by! { |entry| entry.ts }
+      all_entries = entries(token, date)
 
       # build all the aggregate values that are required
       data[:aggregates] = build_aggregates(all_entries, aggregate)
@@ -246,15 +230,40 @@ module Tzukuri
       return data
     end
 
-    def paths(token, date)
-      return Dir[File.join(@diagnostics_path, token, date, '*')]
+    # return all the blocks for a given file
+    def self.blocks_for_file(bytes)
+      io = StringIO.new(bytes)
+      blocks = []
+
+      until io.eof?
+          begin
+              blocks << Block.new(io)
+          rescue
+              # ignore invalid blocks
+          end
+      end
+
+      return blocks
     end
 
     private
 
-    # given a list of entries and a list of diagnostic keys to aggregate over, build an aggregate hash
-    # all aggregate hashes will contain start_time, end_time and total_entries
-    def build_aggregates(entries, aggregate)
+    def self.entries(token, date)
+      entries = []
+
+      # read out all the entries from every diagnostic file for this day
+      Dir[File.join(Rails.root.join('diagnostics'), token, date, '*')].each do |file|
+        diagnostic_file = DiagnosticFile.new(file)
+        entries.concat(diagnostic_file.entries)
+      end
+
+      # make sure that entries are in order of their timestamps
+      entries.sort_by! { |entry| entry.ts }
+
+      return entries
+    end
+
+    def self.build_aggregates(entries, aggregate)
       aggregated = {}
       # set the basic aggregates
       aggregated[:start_time] = entries.first.time
@@ -267,9 +276,10 @@ module Tzukuri
 
       return aggregated
     end
-
   end
 
+  # TimelineItems are used in the diagnostics UI to give more context
+  # to an entry (how many entries before it and it's index in the timeline)
   class TimelineItem
     attr_accessor :entry, :preceding, :index
 
@@ -288,12 +298,9 @@ module Tzukuri
     end
   end
 
-  # ============================
-  # ====== entries  ============
-  # ============================
-
-  # TODO: more documentation about how this works
-
+  # each entry value should have a base class of EntryValue that defines a standard way to interact with an entry
+  # EntryValues can then be decorated with any decoding functionality or output functionality (json, strings, partial paths, etc.)
+  # EntryValues can easily be created through ValueFactory.build which will decide what type an entry should be and then pass decoding off to the relevant subclass
   class ValueFactory
     # arrays that describe which type should be created, anything not in an array will return as an EntryValue
     STRINGS = %w{notificationScheduled notificationCancelled notificationDisplayed notificationTapped notificationCleared glassesLost scheduleTriggered glassesLowBattery appEnvironment requestError requestFailure lowPowerState appFailedToGetAPNSToken}
@@ -319,6 +326,8 @@ module Tzukuri
     end
 
   end
+
+  # ------ entry values ------
 
   class EntryValue
     def initialize(data)
@@ -508,5 +517,4 @@ module Tzukuri
         }
       end
   end
-
 end

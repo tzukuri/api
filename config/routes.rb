@@ -29,7 +29,6 @@ Rails.application.routes.draw do
     get '/admin/diagnostics' => 'admin/diagnostics#devices'
     get '/admin/diagnostics/:token' => 'admin/diagnostics#dates'
     get '/admin/diagnostics/:token/:date' => 'admin/diagnostics#files'
-    # get '/admin/diagnostics/:token/:date/:file' => 'admin/diagnostics#display'
     post '/admin/diagnostics/expand' => 'admin/diagnostics#expand'
 
     ActiveAdmin.routes(self)
@@ -113,10 +112,10 @@ Rails.application.routes.draw do
     get '/beta/beta_users/list_order' => 'beta#list_order'
     get '/beta/beta_users/graph'  => 'beta#graph'
 
-    # get '/diagnostics/' => 'diagnostics#index'
-    # get '/diagnostics/:token' => 'diagnostics#dates'
-    # get '/diagnostics/:token/:date' => 'diagnostics#files'
-    # get '/diagnostics/:token/:date/:file' => 'diagnostics#show'
+    get '/diagnostics/' => 'diagnostics#index'
+    get '/diagnostics/:token' => 'diagnostics#dates'
+    get '/diagnostics/:token/:date' => 'diagnostics#files'
+    get '/diagnostics/:token/:date/:file' => 'diagnostics#show'
 
     # mailer preview paths
     # get '/mailers' => "rails/mailers#index"

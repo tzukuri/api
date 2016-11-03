@@ -18,20 +18,7 @@
                 <td><%= entry.time.in_time_zone('Australia/Sydney').strftime('%d/%m/%y %l:%M:%S %p') %></td>
                 <td><%= entry.raw_ts if i > 0 %></td>
                 <td><%= entry.type %></td>
-                <td>
-                    <% if entry.printable_value? %>
-                        <%= entry.value.to_s.force_encoding("UTF-8") %>
-                    <% end %>
-                    <% if entry.varint_value? %>
-                        <%= entry.varint_value %>
-                    <% end %>
-                    <% if entry.float_value? %>
-                        <%= entry.float_value %>
-                    <% end %>
-                    <% if entry.type == 'userActivityData' %>
-                        <%= entry.user_activity_value.time.strftime('%H:%M:%S') %> <%= entry.user_activity_value.type_name %> (confidence: <%= entry.user_activity_value.confidence_name %>)
-                    <% end %>
-                </td>
+                <td><%= entry.value %></td>
             </tr>
         <% end %>
     </table>

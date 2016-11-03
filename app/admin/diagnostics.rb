@@ -31,24 +31,15 @@ ActiveAdmin.register_page "Diagnostics" do
 
     # list all the files for a given date
     def files
-        diagnostics = Tzukuri::Diagnostics.new
-
         @auth_token = AuthToken.find_by_diagnostics_sync_token(params[:token])
 
-        # disabling this for the time being until partial rendering is fixed
-        # if params[:showAll]
-        #   @data = diagnostics.entries_for_token_date(params[:token], params[:date], [], ['appDidBecomeActive', 'notificationDisplayed', 'bleDisconnected'])
-        # else
-          # only show the state machine diagnostics by default
-          @data = diagnostics.entries_for_token_date(params[:token], params[:date],
+        @data = Tzukuri::Diagnostics.entries_for_token_date(params[:token], params[:date],
             # whitelist entry types
             ['stateMachine', 'appEnvironment', 'notificationDisplayed', 'notificationScheduled', 'appDidBecomeActive', 'bleDisconnected', 'bleConnected'],
             # aggregate entry types (count)
             ['appDidBecomeActive', 'notificationDisplayed', 'bleDisconnected']
-          )
-        # end
+        )
 
-        # start_time and end_time
         start_time = @data[:aggregates][:start_time].in_time_zone('Australia/Sydney')
         end_time = @data[:aggregates][:end_time].in_time_zone('Australia/Sydney')
         time = start_time
@@ -64,12 +55,7 @@ ActiveAdmin.register_page "Diagnostics" do
     end
 
     def expand
-      # puts params
-
-      diagnostics = Tzukuri::Diagnostics.new
-
-      entries = diagnostics.entries_for_period(params[:token], params[:date], params[:start_index], params[:end_index])
-
+      entries = Tzukuri::Diagnostics.entries_between_index(params[:token], params[:date], params[:start_index], params[:end_index])
       render json: {success: true, count: entries.count, entries: entries}
     end
 

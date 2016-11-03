@@ -51,16 +51,7 @@ class DiagnosticsController < ApplicationController
           bytes = IO.binread(no_auth_path)
         end
 
-        io = StringIO.new(bytes)
-        @blocks = []
-
-        until io.eof?
-            begin
-                @blocks << Tzukuri::Block.new(io)
-            rescue
-                # ignore invalid blocks
-            end
-        end
+        @blocks = Tzukuri::Diagnostics.blocks_for_file(bytes)
     end
 
     private
