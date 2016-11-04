@@ -28,7 +28,7 @@ ActiveAdmin.register User do
       # glasses row
       h2 "Glasses"
 
-      if @quiet_zones.count == 0
+      if @all_glasses.count == 0
         div :class => 'row empty' do
           h2 "This user has no Glasses"
         end
