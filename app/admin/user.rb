@@ -73,7 +73,15 @@ ActiveAdmin.register User do
     end
 
     def format_location(location, empty="Unknown")
-      location.blank? ? empty : "#{location["name"]}, #{location["city"]}, #{location["country"]}"
+      return empty if location.blank?
+
+      # build a formatted address
+      formatted_address = ""
+      formatted_address << location["name"] + ", " if !location["name"].blank?
+      formatted_address << location["housenumber"] + ", " if !location["housenumber"].blank?
+      formatted_address << location["street"] + ", " if !location["street"].blank?
+      formatted_address << location["state"] + ", " if !location["state"].blank?
+      formatted_address << location["country"] if !location["country"].blank?
     end
 
     def reverse_geocode(latitude, longitude)
