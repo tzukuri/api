@@ -171,8 +171,8 @@ ActiveAdmin.register User do
                   dd format_location(location)
                   dt "COORD"
                   dd format_coords(glasses.latitude, glasses.longitude)
-                  dt "TIME"
-                  dd format_time(glasses.coords_set_time)
+                  dt "COORD SET"
+                  dd format_time(glasses.coords_set_time) + " (#{time_ago_in_words(glasses.coords_set_time)} ago)"
                 end
               end
 
@@ -223,7 +223,7 @@ ActiveAdmin.register User do
                 dl do
                   dt "VERSION"
                   dd "--"
-                  dt "TIME"
+                  dt "CREATED"
                   dd format_time(token.api_device.created_at)
                   dt "DIAG TOKEN"
                   dd format_link(token.diagnostics_sync_token, "/admin/diagnostics/#{token.diagnostics_sync_token}")
