@@ -19,6 +19,33 @@ ActiveAdmin.register User do
     filter :sign_in_count
     filter :created_at
 
+    # /admin/users/:device_id/unlink
+    # unlink glasses with a given id
+    member_action :unlink, :method => :post do
+      glasses = Device.find(params[:id])
+      user = glasses.current_owner
+      glasses.unlink_from!(user: user, reason: 'ADMIN')
+
+      redirect_to request.referer
+    end
+
+    # /admin/users/:token_id/revoke
+    # revoke a token with a given id
+    member_action :revoke, :method => :post do
+      token = AuthToken.find(params[:id])
+      token.revoke!(reason: 'ADMIN')
+
+      redirect_to request.referer
+    end
+
+    # /admin/users/:user_id/reset_password
+    # send a password reset email to a user
+    member_action :reset_password, :method => :post do
+      User.find(params[:id]).send_reset_password_instructions
+
+      redirect_to request.referer
+    end
+
   show do
     @all_glasses = user.devices
     @auth_tokens = user.active_auth_tokens
@@ -84,8 +111,7 @@ ActiveAdmin.register User do
           end
 
           div :class => 'two columns' do
-            a "Reset Password", href: '/users/password/edit'
-            a "Unlock Account" if user.access_locked?
+            link_to "Reset Password","/admin/users/#{user.id}/reset_password", method: :post, data: {confirm: "Are you sure you want to send an email prompting this user to reset their password?"}
           end
         end
       end
@@ -107,7 +133,7 @@ ActiveAdmin.register User do
           div :class => 'user-card glasses' do
             div :class => 'row card-head' do
               div :class => 'one columns' do
-                image_tag("/images/frames/#{glasses.design}/#{glasses.design}_#{glasses.colour}_#{glasses.optical ? 'optical' : 'sun'}.jpg", style: 'width: 100%')
+                image_tag("/images/frames/#{glasses.design.downcase}/#{glasses.design.downcase}_#{glasses.colour.downcase}_#{glasses.optical ? 'optical' : 'sun'}.jpg", style: 'width: 100%')
               end
 
               div :class => 'nine columns' do
@@ -143,7 +169,7 @@ ActiveAdmin.register User do
               end
 
               div :class => 'two columns action-col' do
-                a "Unlink Glasses", class: 'unlink-glasses', "data-glasses" => glasses.id
+                link_to "Unlink Glasses","/admin/users/#{glasses.id}/unlink", method: :post, data: {confirm: "Are you sure you want to unlink these Glasses?"}
               end
             end
           end
@@ -197,7 +223,7 @@ ActiveAdmin.register User do
               end
 
               div :class => 'two columns action-col' do
-                a "Revoke Tokens", class: 'revoke-token', "data-token" => token.token
+                link_to "Revoke Tokens","/admin/users/#{token.id}/revoke", method: :post, data: {confirm: "Are you sure you want to revoke the Auth Token for this device?"}
               end
             end
           end
