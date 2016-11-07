@@ -32,6 +32,7 @@ ActiveAdmin.register_page "Diagnostics" do
     # list all the files for a given date
     def files
         @auth_token = AuthToken.find_by_diagnostics_sync_token(params[:token])
+        @user = @auth_token.user
 
         @data = Tzukuri::Diagnostics.entries_for_token_date(params[:token], params[:date],
             # whitelist entry types

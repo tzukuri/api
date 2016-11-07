@@ -1,44 +1,56 @@
 .user-detail {
+  dl {
+    width: 100%;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+  }
+  dt {
+    float: left;
+    width: 25%;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 5px;
+    color: #686868;
+  }
+
+  dd {
+    float: left;
+    width: 75%;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 5px;
+    color: #1a1d1a;
+  }
+
+  hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-color: #F5F7F7;
+  }
+
+  .row .columns {
+    margin-bottom: 0px;
+  }
 
   .user-card {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 
-    dl {
-      width: 100%;
-      overflow: hidden;
-      padding: 0;
-      margin: 0;
-    }
-    dt {
-      float: left;
-      width: 25%;
-      padding: 0;
-      margin: 0;
-      margin-bottom: 5px;
-      color: #686868;
-    }
-
-    dd {
-      float: left;
-      width: 75%;
-      padding: 0;
-      margin: 0;
-      margin-bottom: 5px;
-      color: #1a1d1a;
-
+    .action-col {
+      text-align: right;
     }
 
     .row {
       padding-left: 20px;
-      padding-top: 20px;
+      padding-top: 15px;
       padding-bottom: 10px;
       padding-right: 20px;
     }
 
     .card-head {
       background-color: #F5F7F7;
-      border-top-right-radius: 5px;
-      border-top-left-radius: 5px;
+      border-top-right-radius: 10px;
+      border-top-left-radius: 10px;
       margin-bottom: 0px;
 
       h3 {
@@ -65,8 +77,8 @@
 
     .card-body {
       border: 1px solid #F5F7F7;
-      border-bottom-right-radius: 5px;
-      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 10px;
+      border-bottom-left-radius: 10px;
     }
   }
 
