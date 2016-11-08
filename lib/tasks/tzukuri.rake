@@ -1,6 +1,26 @@
 require 'fileutils'
 
 namespace :tzukuri do
+  desc "Aggregate battery readings for a user"
+  task :battery_aggregate => :environment do
+    sync_token = ENV['sync_token']
+    return if sync_token.blank?
+
+    out_string = ""
+
+    Tzukuri::Diagnostics.analyse(
+      by_entry: true,
+      sync_tokens: [sync_token]
+    ) { |entry|
+      out_string << "#{entry.time}, #{entry.value.to_i}\n" if entry.type == "bleReadBattery"
+    }
+
+    FileUtils.mkdir_p('log/battery')
+    file_path = 'log/battery/report_' + Time.now.strftime('%s') + '_' + sync_token + '.csv'
+    File.open(file_path, 'a+') {|file| file.write(out_string)}
+    puts 'wrote report to ' + file_path
+  end
+
   desc "Prepare a report for beta user selection"
   task :beta_report => :environment do
     # build up a out_string and write to a .csv file for loading into excel
@@ -98,6 +118,8 @@ namespace :tzukuri do
     puts "Connections: #{identity_count} (avg. #{identity_count.to_f / all_users.count})"
     puts "\nTop inviters:\n#{@inviters[0...15].map {|row| "#{row.last} (#{row.first})" }.join("\n")}"
   end
+
+
 
   def age(dob)
     now = Time.now.utc.to_date

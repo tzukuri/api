@@ -169,30 +169,51 @@ module Tzukuri
 
   # standard interface to interact with the diagnostics
   class Diagnostics
-    # TODO: finish handling performant scanning
-    def parallel_scan_all
-      files = Dir[ File.join(Rails.root.join('diagnostics'), '**', '*') ].reject { |p| File.directory? p }
 
-      Parallel.each(files, progress: 'parallel') { |file|
-        diag = DiagnosticFile.new(file)
-      }
+    def self.analyse(scan_all: false, by_entry: false, sync_tokens: [], dates: [])
+      # get all diagnostic files
+      file_paths = Dir[ File.join(Rails.root.join('diagnostics'), '**', '*') ].reject {|path| File.directory? path}
 
-      # Parallel.map(files, progress: 'parallel', in_processes: 4) { |file|
-      #   diag = DiagnosticFile.new(file)
-      # }
+      # LOGGING
+      puts "-- ANALYSING DIAGNOSTICS --"
+      puts "Tokens: #{sync_tokens.join(',')}" if sync_tokens.count > 0
+      puts "Dates: #{dates.join(',')}" if dates.count > 0
+
+      # filter any paths that don't match sync tokens or dates
+      if !scan_all
+        file_paths.reject! {|path| !sync_tokens.any? {|token| path.include? token} } if sync_tokens.count > 0
+        file_paths.reject! {|path| !dates.any? {|date| path.include? date} } if dates.count > 0
+      end
+
+      progress_bar = ProgressBar.create(:format => '%a |%b>>%i| %p%% %t', :starting_at => 0, :total => file_paths.count)
+
+      file_paths.each do |file_path|
+        if by_entry
+          DiagnosticFile.new(file_path).entries.each_with_index do |entry, index|
+            yield entry, index
+          end
+        else
+          yield DiagnosticFile.new(file_path)
+        end
+        progress_bar.increment
+      end
     end
 
     # return all the entries between two indexes in a given token and date combination
     def self.entries_between_index(token, date, start_index, end_index)
       filtered_entries = []
 
-      entries(token, date).each_with_index do |entry, index|
-        if index > end_index.to_i
-          return filtered_entries
-        elsif index > start_index.to_i && index < end_index.to_i
-          filtered_entries.push(entry)
-        end
-      end
+      analyse(
+        by_entry: true,
+        sync_tokens: [token],
+        dates: [date]
+      ) { |entry, index|
+          if index > end_index.to_i
+            return filtered_entries
+          elsif index > start_index.to_i && index < end_index.to_i
+            filtered_entries << entry
+          end
+      }
     end
 
     # return all the entries for a given token and date combination
@@ -200,32 +221,42 @@ module Tzukuri
     def self.entries_for_token_date(token, date, whitelist=[], aggregate=[])
       data = {
         timeline_items: [],
-        aggregates: {}
+        aggregates: {
+          total_entries: 0,
+          start_time: nil,
+          end_time:nil
+        }
       }
+      entry_count = 0
+      preceding_count = 0
+      all_entries = []
 
-      all_entries = entries(token, date)
+      analyse(
+        by_entry: true,
+        sync_tokens: [token],
+        dates: [date]
+      ) { |entry, index|
+        all_entries << entry
 
-      # build all the aggregate values that are required
-      data[:aggregates] = build_aggregates(all_entries, aggregate)
-
-      # filter all_entries by the whitelist
-      if whitelist.empty?
-        # just push all the entries into data with no preceding counts
-        data[:timelime_items] = all_entries.map.with_index{ |entry, index| TimelineItem.new(entry, 0, index)}
-      else
-        # we have a whitelist, so filter the entries and count how many in between
-        preceding_count = 0
-
-        all_entries.each_with_index { |entry, index|
+        if whitelist.blank?
+          data[:timeline_items] << TimelineItem.new(entry, 0, index)
+        else
+          all_entries << entry
           if whitelist.include? entry.type
-            data[:timeline_items].push(TimelineItem.new(entry, preceding_count, index))
-            # data[:items].push({entry: entry, preceding: preceding_count, index: index})
+            data[:timeline_items] << TimelineItem.new(entry, preceding_count, index)
             preceding_count = 0
           else
             preceding_count += 1
           end
-        }
-      end
+        end
+
+        # update the custom aggregates
+        data[:aggregates][entry.type] = (data[:aggregates][entry.type] || 0) + 1 if aggregate.include? entry.type
+      }
+
+      data[:aggregates][:start_time] = all_entries.first.time
+      data[:aggregates][:end_time] = all_entries.last.time
+      data[:aggregates][:total_entries] = all_entries.count
 
       return data
     end
@@ -244,37 +275,6 @@ module Tzukuri
       end
 
       return blocks
-    end
-
-    private
-
-    def self.entries(token, date)
-      entries = []
-
-      # read out all the entries from every diagnostic file for this day
-      Dir[File.join(Rails.root.join('diagnostics'), token, date, '*')].each do |file|
-        diagnostic_file = DiagnosticFile.new(file)
-        entries.concat(diagnostic_file.entries)
-      end
-
-      # make sure that entries are in order of their timestamps
-      entries.sort_by! { |entry| entry.ts }
-
-      return entries
-    end
-
-    def self.build_aggregates(entries, aggregate)
-      aggregated = {}
-      # set the basic aggregates
-      aggregated[:start_time] = entries.first.time
-      aggregated[:end_time] = entries.last.time
-      aggregated[:total_entries] = entries.count
-
-      entries.each { |entry|
-        aggregated[entry.type] = (aggregated[entry.type] || 0) + 1 if aggregate.include? entry.type
-      }
-
-      return aggregated
     end
   end
 
