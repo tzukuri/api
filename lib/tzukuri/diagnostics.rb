@@ -34,11 +34,13 @@ module Tzukuri
   # represents a diagnostics file, handles opening and reading the file as well
   # as construction blocks, entries, etc.
   class DiagnosticFile
-    attr_accessor :file_path, :entries
+    attr_accessor :file_path, :entries, :sync_token
 
     def initialize(path)
       @file_path = path
       @entries = []
+      # extract the sync token
+      @sync_token = File.expand_path("../..", @file_path).split('/').last
 
       blocks_from_file(@file_path).each do |block|
         @entries.concat(block.entries)
@@ -128,7 +130,6 @@ module Tzukuri
           # it will succeed at least once
           @raw_ts = VarInt.parse(io)
           @ts = @raw_ts + prev_ts
-          @syd_time = time.in_time_zone('Australia/Sydney')
 
           @raw_type = io.read(1)
           if @raw_type.nil?
@@ -155,7 +156,7 @@ module Tzukuri
       def as_json(options={})
         {
           class: @value.class.name,
-          time: @syd_time.strftime('%l:%M:%S %p'),
+          time: time.in_time_zone('Australia/Sydney').strftime('%l:%M:%S %p'),
           type: @type,
           value: @value
         }
@@ -167,33 +168,27 @@ module Tzukuri
       end
   end
 
-  # standard interface to interact with the diagnostics
   class Diagnostics
-
-    def self.analyse(scan_all: false, by_entry: false, sync_tokens: [], dates: [])
+    # handles retrieving filtering files and then handing either the file or the entry off to a block
+    def self.analyse(sync_tokens: [], dates: [])
       # get all diagnostic files
       file_paths = Dir[ File.join(Rails.root.join('diagnostics'), '**', '*') ].reject {|path| File.directory? path}
 
       # LOGGING
       puts "-- ANALYSING DIAGNOSTICS --"
-      puts "Tokens: #{sync_tokens.join(',')}" if sync_tokens.count > 0
-      puts "Dates: #{dates.join(',')}" if dates.count > 0
+      puts "Tokens: #{sync_tokens.join(', ')}" if sync_tokens.count > 0
+      puts "Dates: #{dates.join(', ')}" if dates.count > 0
 
       # filter any paths that don't match sync tokens or dates
-      if !scan_all
-        file_paths.reject! {|path| !sync_tokens.any? {|token| path.include? token} } if sync_tokens.count > 0
-        file_paths.reject! {|path| !dates.any? {|date| path.include? date} } if dates.count > 0
-      end
+      file_paths.reject! {|path| !sync_tokens.any? {|token| path.include? token} } if sync_tokens.count > 0
+      file_paths.reject! {|path| !dates.any? {|date| path.include? date} } if dates.count > 0
 
       progress_bar = ProgressBar.create(:format => '%a |%b>>%i| %p%% %t', :starting_at => 0, :total => file_paths.count)
 
       file_paths.each do |file_path|
-        if by_entry
-          DiagnosticFile.new(file_path).entries.each_with_index do |entry, index|
-            yield entry, index
-          end
-        else
-          yield DiagnosticFile.new(file_path)
+        file = DiagnosticFile.new(file_path)
+        file.entries.each_with_index do |entry, index|
+          yield entry, index, file.sync_token
         end
         progress_bar.increment
       end
@@ -219,6 +214,9 @@ module Tzukuri
     # return all the entries for a given token and date combination
     # as well as some aggregate counts for certain events
     def self.entries_for_token_date(token, date, whitelist=[], aggregate=[])
+      entry_count = 0
+      preceding_count = 0
+      all_entries = []
       data = {
         timeline_items: [],
         aggregates: {
@@ -227,9 +225,6 @@ module Tzukuri
           end_time:nil
         }
       }
-      entry_count = 0
-      preceding_count = 0
-      all_entries = []
 
       analyse(
         by_entry: true,
@@ -241,7 +236,6 @@ module Tzukuri
         if whitelist.blank?
           data[:timeline_items] << TimelineItem.new(entry, 0, index)
         else
-          all_entries << entry
           if whitelist.include? entry.type
             data[:timeline_items] << TimelineItem.new(entry, preceding_count, index)
             preceding_count = 0
@@ -279,7 +273,7 @@ module Tzukuri
   end
 
   # TimelineItems are used in the diagnostics UI to give more context
-  # to an entry (how many entries before it and it's index in the timeline)
+  # to an entry (how many entries before it and its index in the timeline)
   class TimelineItem
     attr_accessor :entry, :preceding, :index
 
