@@ -1,4 +1,8 @@
 require 'fileutils'
+require 'action_view'
+require 'action_view/helpers'
+
+include ActionView::Helpers::DateHelper
 
 namespace :tzukuri do
 
@@ -116,6 +120,19 @@ namespace :tzukuri do
       end
 
       write_report(out_str, 'when_notifications', "report_#{Time.now.strftime('%s')}.csv")
+    end
+
+    desc "How long since each user's glasses have connected?"
+    task :last_seen => :environment do
+      out_str = "user, device, coords, state\n"
+      User.all.each do |user|
+        user.devices.each do |device|
+          # " (#{time_ago_in_words(glasses.coords_set_time)} ago)"
+          out_str << "#{user.name}, #{device.pin}, #{time_ago_in_words(device.coords_set_time)}, #{time_ago_in_words(device.state_set_time)}"
+        end
+      end
+
+      write_report(out_str, 'last_seen', "report_#{Time.now.strftime('%s')}.csv")
     end
 
     private
