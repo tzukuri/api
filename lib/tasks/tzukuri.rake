@@ -129,7 +129,7 @@ namespace :tzukuri do
         user.devices.each do |device|
           coords = device.coords_set_time.blank? ? 'Unknown' : time_ago_in_words(device.coords_set_time)
           state = device.state_set_time.blank? ? 'Unknown' : time_ago_in_words(device.state_set_time)
-          out_str << "#{user.name}, #{device.pin}, #{coords}, #{state}"
+          out_str << "#{user.name}, #{device.pin}, #{coords}, #{state}\n"
         end
       end
 
