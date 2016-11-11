@@ -170,16 +170,21 @@ module Tzukuri
 
   class Diagnostics
     # handles retrieving filtering files and then handing either the file or the entry off to a block
-    def self.analyse(sync_tokens: [], dates: [])
+    def self.analyse(sync_tokens: [], dates: [], entry_types: [], filter_tz: false)
       # get all diagnostic files
       file_paths = Dir[ File.join(Rails.root.join('diagnostics'), '**', '*') ].reject {|path| File.directory? path}
+
+      # get the sync tokens for all tzukuri users (so we can filter them out)
+      tz_sync_tokens = AuthToken.where("email like ?", "%@tzukuri.com").map(&:diagnostics_sync_token)
 
       # LOGGING
       puts "-- ANALYSING DIAGNOSTICS --"
       puts "Tokens: #{sync_tokens.join(', ')}" if sync_tokens.count > 0
+      puts "Removed #{tz_sync_tokens.count} Tzukuri Tokens"
       puts "Dates: #{dates.join(', ')}" if dates.count > 0
 
       # filter any paths that don't match sync tokens or dates
+      file_paths.reject! {|path| tz_sync_tokens.any? {|token| path.include? token}} if filter_tz
       file_paths.reject! {|path| !sync_tokens.any? {|token| path.include? token} } if sync_tokens.count > 0
       file_paths.reject! {|path| !dates.any? {|date| path.include? date} } if dates.count > 0
 
@@ -187,8 +192,9 @@ module Tzukuri
 
       file_paths.each do |file_path|
         file = DiagnosticFile.new(file_path)
+
         file.entries.each_with_index do |entry, index|
-          yield entry, index, file.sync_token
+          yield entry, index, file.sync_token if entry_types.include?(entry.type) || entry_types.count == 0
         end
         progress_bar.increment
       end
@@ -199,7 +205,6 @@ module Tzukuri
       filtered_entries = []
 
       analyse(
-        by_entry: true,
         sync_tokens: [token],
         dates: [date]
       ) { |entry, index|
@@ -227,7 +232,6 @@ module Tzukuri
       }
 
       analyse(
-        by_entry: true,
         sync_tokens: [token],
         dates: [date]
       ) { |entry, index|
