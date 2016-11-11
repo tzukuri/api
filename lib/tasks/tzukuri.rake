@@ -127,8 +127,9 @@ namespace :tzukuri do
       out_str = "user, device, coords, state\n"
       User.all.each do |user|
         user.devices.each do |device|
-          # " (#{time_ago_in_words(glasses.coords_set_time)} ago)"
-          out_str << "#{user.name}, #{device.pin}, #{time_ago_in_words(device.coords_set_time)}, #{time_ago_in_words(device.state_set_time)}"
+          coords = device.coords_set_time.blank? ? 'Unknown' : time_ago_in_words(device.coords_set_time)
+          state = device.state_set_time.blank? ? 'Unknown' : time_ago_in_words(device.state_set_time)
+          out_str << "#{user.name}, #{device.pin}, #{coords}, #{state}"
         end
       end
 
