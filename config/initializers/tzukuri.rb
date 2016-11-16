@@ -15,8 +15,8 @@ module Tzukuri
 
   # model pricing
   PRICING = {
-    :prescription => 585,
-    :non_prescription => 485,
+    :prescription => 725,
+    :non_prescription => 725,
     :deposit => 85
   }
 end

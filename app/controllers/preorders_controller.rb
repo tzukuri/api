@@ -18,8 +18,8 @@ class PreordersController < ApplicationController
             )
 
             charge = Stripe::Charge.create(
-              amount: 8500,
-              currency: 'aud',
+              amount: 100,
+              currency: 'usd',
               customer: customer.id,
               description: "[PREORDER] - #{preorder_params[:frame].titleize}, #{preorder_params[:size].titleize}, #{preorder_params[:utility].titleize}, #{preorder_params[:lens].titleize}"
             )
