@@ -27,7 +27,7 @@
           </div>
       </div>
     </div>
-    <p class="pricing"><span id="non-prescription"></span> USD deposit</p>
+    <p class="pricing">Both available for a <span id="non-prescription"></span> USD deposit</p>
   </div>
 
   <div class="step-container hidden" id="step-frame">
@@ -45,7 +45,7 @@
           <p class="select-title">ive</p>
       </div>
     </div>
-    <p class="pricing"><span id="non-prescription"></span> USD deposit</p>
+    <p class="pricing">Both available for a <span id="non-prescription"></span> USD deposit</p>
   </div>
 
   <div class="step-container hidden" id="step-lens">
@@ -54,12 +54,12 @@
       <div class="six columns select-lens" data-lens="prescription">
           <%= image_tag 'prescription.png', style: 'width: 35%;' %>
           <p class="select-title">prescription</p>
-          <p class="pricing"><span id="prescription"></span> USD Total <br/>Single vision only. We will contact you to obtain your prescription.</p>
+          <p class="pricing"><!--<span id="prescription"></span> USD Total --> Single vision only. We will contact you to obtain your prescription.</p>
       </div>
       <div class="six columns select-lens" data-lens="non-prescription">
           <%= image_tag 'non_prescription.png', style: 'width: 35%;' %>
           <p class="select-title">non-prescription</p>
-          <p class="pricing"><span id="non-prescription"></span> USD Total</p>
+          <!-- <p class="pricing"><span id="non-prescription"></span> USD Total</p> -->
       </div>
     </div>
 
@@ -127,7 +127,7 @@
               </div>
               <p><a href="" id="ignore-apple-pay">Don't want to use Apple Pay?</a></p>
 
-              <p class="pricing">You will be charged <span id="deposit"></span> USD.</p>
+              <p class="pricing">You will be charged <span id="prescription"></span> USD</p>
 
             </div>
 
@@ -209,7 +209,7 @@
                 </div>
 
                 <button id="reserve-submit" type="submit" class="order-btn">
-                  <span id="reserve-for">reserve for 85 USD</span>
+                  <span id="reserve-for">reserve for 725 USD</span>
                 </button>
 
                 <div id="submit-spinner" class="loader" style="display:none"></div>
@@ -293,8 +293,8 @@
     <div class="four columns">
       <!-- care -->
       <article>
-        <h2>Care</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pulvinar fringilla mi in sodales. Sed lacinia turpis non quam blandit, ac semper tortor auctor. Ut at lacus ut metus mattis molestie. Quisque lectus velit, egestas vel laoreet ut, euismod vitae eros.</p>
+        <!-- <h2>Care</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pulvinar fringilla mi in sodales. Sed lacinia turpis non quam blandit, ac semper tortor auctor. Ut at lacus ut metus mattis molestie. Quisque lectus velit, egestas vel laoreet ut, euismod vitae eros.</p> -->
       </article>
 
       <!-- materials -->
@@ -306,8 +306,7 @@
           <li>Optical Lenses: Hand cut, polycarbonate, impact resistant</li>
         </ul>
       </article>
-    </div>
-    <div class="four columns">
+
       <!-- environmental requirements -->
       <article>
         <h2>Environmental Requirements</h2>
@@ -316,6 +315,9 @@
           <li>Maximum operating altitude: 9,144 m</li>
         </ul>
       </article>
+    </div>
+    <div class="four columns">
+
 
       <!-- syncing and notifications -->
       <article>

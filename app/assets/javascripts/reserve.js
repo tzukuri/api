@@ -88,11 +88,11 @@ $(function() {
           $('#size-selection').html(_order['size'] + "mm")
 
           if (_order['lens'] == "prescription") {
-              $('#total-selection').html(tzukuri.pricing.totals.prescription - _discount + " AUD")
+              $('#total-selection').html(tzukuri.pricing.totals.prescription - _discount + " USD")
               $('.remainder').html(tzukuri.pricing.totals.prescription - tzukuri.pricing.deposit - _discount)
               $("#contact-prescription").show()
           } else {
-              $('#total-selection').html(tzukuri.pricing.totals.nonprescription - _discount + " AUD")
+              $('#total-selection').html(tzukuri.pricing.totals.nonprescription - _discount + " USD")
               $('.remainder').html(tzukuri.pricing.totals.nonprescription - tzukuri.pricing.deposit - _discount)
               $("#contact-prescription").hide()
           }
@@ -325,10 +325,10 @@ $(function() {
         // create an apple pay session request and then redirect to a stripe charge
         var paymentRequest = {
             countryCode: 'AU',
-            currencyCode: 'AUD',
+            currencyCode: 'USD',
             total: {
                 label: 'Tzukuri Pty. Ltd.',
-                amount: tzukuri.pricing.deposit
+                amount: tzukuri.pricing.nonprescription
             },
             requiredShippingContactFields: ['postalAddress', 'phone', 'email', 'name']
         }
