@@ -385,7 +385,7 @@ module Tzukuri
     end
 
     def to_s
-      @data
+      @data.force_encoding('utf-8')
     end
 
     def as_json(options={})
