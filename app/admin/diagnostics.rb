@@ -26,13 +26,14 @@ ActiveAdmin.register_page "Diagnostics" do
         @file_count[date] = files.count
       end
 
-      @page_title = "#{@auth_token.api_device.name}"
+      @sync_token = @auth_token.blank? ? params[:token] : @auth_token.diagnostics_sync_token
+      @page_title = "#{@auth_token.api_device.name}" unless @auth_token.blank?
     end
 
     # list all the files for a given date
     def files
         @auth_token = AuthToken.find_by_diagnostics_sync_token(params[:token])
-        @user = @auth_token.user
+        @user = @auth_token.user unless @auth_token.blank?
 
         @data = Tzukuri::Diagnostics.entries_for_token_date(params[:token], params[:date],
             # whitelist entry types
@@ -52,7 +53,7 @@ ActiveAdmin.register_page "Diagnostics" do
           time = time.in(1.hour)
         end
 
-        @page_title = "#{@auth_token.api_device.name} / #{params[:date]}"
+        @page_title = "#{@auth_token.api_device.name} / #{params[:date]}" unless @auth_token.blank?
     end
 
     def expand

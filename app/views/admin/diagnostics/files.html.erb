@@ -4,7 +4,11 @@
   <div id="aggregates">
     <h2><%= @data[:aggregates][:start_time].in_time_zone('Australia/Sydney').strftime('%A, %B %e %Y') %></h2>
     <p><%= @data[:aggregates][:start_time].in_time_zone('Australia/Sydney').strftime('%l:%M %p') %> - <%= @data[:aggregates][:end_time].in_time_zone('Australia/Sydney').strftime('%l:%M %p') %></p>
-    <a href="/admin/users/<%= @user.id %>">Go to user &rarr;</a>
+
+    <% unless @user.blank? %>
+      <a href="/admin/users/<%= @user.id %>">Go to user &rarr;</a>
+    <% end %>
+
     <br/><br/>
 
     <div class="row">

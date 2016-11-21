@@ -16,7 +16,7 @@
         <td><%= Date.parse(date).strftime('%d/%m/%Y') %></td>
         <td><%= Date.parse(date).strftime('%A') %></td>
         <td><%= @file_count[date] %></td>
-        <td><a a href="<%= @auth_token.diagnostics_sync_token %>/<%= date %>">Show &rarr;</a></td>
+        <td><a a href="<%= @sync_token %>/<%= date %>">Show &rarr;</a></td>
       </tr>
     <% end %>
   </tbody>
