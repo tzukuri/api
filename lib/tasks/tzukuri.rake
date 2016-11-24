@@ -1,6 +1,163 @@
 require 'fileutils'
+require 'action_view'
+require 'action_view/helpers'
+
+include ActionView::Helpers::DateHelper
 
 namespace :tzukuri do
+
+  namespace :diag do
+    desc "How long does the battery last on a user's glasses?"
+    task :battery_readings => :environment do
+      sync_tokens, dates = parse_args(ENV)
+      abort("exiting, requires token -- sync_token=[sync_token]") if sync_tokens.blank?
+
+      out_str = "time, value\n"
+
+      Tzukuri::Diagnostics.analyse(
+        sync_tokens: [sync_token]
+      ) { |entry|
+        out_string << "#{entry.time}, #{entry.value.to_i}\n" if entry.type == "bleReadBattery"
+      }
+
+      write_report(out_str, 'battery_readings', "report_#{Time.now.strftime('%s')}_#{sync_token}.csv")
+    end
+
+    desc "How many times per day do user's open the app?"
+    task :app_opens => :environment do
+      sync_tokens, dates = parse_args(ENV)
+      data = {}
+
+      Tzukuri::Diagnostics.analyse(
+        sync_tokens: sync_tokens,
+        dates: dates,
+        entry_types: ['appDidBecomeActive'],
+        filter_tz: true
+      ) { |entry, index, sync_token|
+          data[entry.time.to_date] = (data[entry.time.to_date] || 0) + 1
+      }
+
+      # sort the hash in order of the dates
+      data = data.sort_by {|k,v| k}.to_h
+
+      out_str = "date, num_opens\n"
+      (data.keys.first..data.keys.last).each do |date|
+        out_str << "#{date}, #{data[date] || 0}\n"
+      end
+
+      write_report(out_str, 'app_opens', "report_#{Time.now.strftime('%s')}.csv")
+    end
+
+    desc "How often do users interact with notifications?"
+    task :notifications_tapped => :environment do
+      sync_tokens, dates = parse_args(ENV)
+      data = {}
+
+      Tzukuri::Diagnostics.analyse(
+        sync_tokens: sync_tokens,
+        dates: dates,
+        entry_types: ['notificationScheduled', 'notificationDisplayed', 'notificationTapped'],
+        filter_tz: true
+      ) { |entry, index, sync_token|
+        data[sync_token] = {sent: 0, tapped: 0, scheduled: 0} if data[sync_token].blank?
+        data[sync_token][:scheduled] += 1 if entry.type == "notificationScheduled"
+        data[sync_token][:sent] += 1 if entry.type == "notificationDisplayed"
+        data[sync_token][:tapped] += 1 if entry.type == "notificationTapped"
+      }
+
+      out_str = "sync_token, scheduled, sent, tapped\n"
+      data.each_pair do |token, value|
+        out_str << "#{token}, #{value[:scheduled]}, #{value[:sent]}, #{value[:tapped]}\n"
+      end
+
+      write_report(out_str, 'notifications_tapped', "report_#{Time.now.strftime('%s')}.csv")
+    end
+
+    desc "How many times per day are people using locate?"
+    task :ranging_begin => :environment do
+      sync_tokens, dates = parse_args(ENV)
+      data = {}
+
+      Tzukuri::Diagnostics.analyse(
+        sync_tokens: sync_tokens,
+        dates: dates,
+        entry_types: ['distanceRangingStarted'],
+        filter_tz: true
+      ) { |entry, index, sync_token|
+        date = entry.time.to_date
+        data[date] = (data[date] || 0) + 1
+      }
+
+      # sort the hash in order of the dates
+      data = data.sort_by {|k,v| k}.to_h
+
+      out_str = "date, locate_count\n"
+      (data.keys.first..data.keys.last).each do |date|
+        out_str << "#{date}, #{data[date] || 0}\n"
+      end
+
+      write_report(out_str, 'ranging_begin', "report_#{Time.now.strftime('%s')}.csv")
+    end
+
+    desc "What time of day are users recieving notifications?"
+    task :when_notifications => :environment do
+      sync_tokens, dates = parse_args(ENV)
+      data = {}
+
+      Tzukuri::Diagnostics.analyse(
+        sync_tokens: sync_tokens,
+        dates: dates,
+        entry_types: ['notificationDisplayed'],
+        filter_tz: true
+      ) { |entry, index, sync_token|
+        data[entry.time.hour] = (data[entry.time.hour] || 0) + 1
+      }
+
+      out_str = "hour, notification_count\n"
+
+      data.each_pair do |hour, value|
+        out_str << "#{Time.parse("#{hour}:00").in_time_zone('Australia/Sydney')}, #{value}\n"
+      end
+
+      write_report(out_str, 'when_notifications', "report_#{Time.now.strftime('%s')}.csv")
+    end
+
+    desc "How long since each user's glasses have connected?"
+    task :last_seen => :environment do
+      out_str = "user, device, coords, state\n"
+      User.all.each do |user|
+        user.devices.each do |device|
+          coords = device.coords_set_time.blank? ? 'Unknown' : time_ago_in_words(device.coords_set_time)
+          state = device.state_set_time.blank? ? 'Unknown' : time_ago_in_words(device.state_set_time)
+          out_str << "#{user.name}, #{device.pin}, #{coords}, #{state}\n"
+        end
+      end
+
+      write_report(out_str, 'last_seen', "report_#{Time.now.strftime('%s')}.csv")
+    end
+
+    private
+
+    def parse_args(env)
+      sync_tokens = env['sync_tokens']
+      dates = env['dates']
+
+      sync_tokens = sync_tokens.blank? ? [] : sync_tokens.split(',')
+      dates = dates.blank? ? [] : dates.split(',')
+
+      return sync_tokens, dates
+    end
+
+    def write_report(out_string, dir, file_name)
+      base = 'log/diag'
+      file_path = File.join(base, dir, file_name)
+
+      # create the directory if it doesn't exist
+      FileUtils.mkdir_p(File.join(base,dir))
+      File.open(file_path, 'a+') {|file| file.write(out_string)}
+      puts "wrote report to -- #{file_path}"
+    end
+  end
 
   desc "Prepare a report for beta user selection"
   task :beta_report => :environment do

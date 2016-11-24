@@ -1,4 +1,6 @@
 ActiveAdmin.register Feedback do
+    menu parent: 'beta'
+
     permit_params :topic, :content, :attachment_file_name
 
     index do

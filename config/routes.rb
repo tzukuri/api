@@ -25,6 +25,12 @@ Rails.application.routes.draw do
         post    '/beta_users/sign_up'   => 'devise/registrations#new'
     end
 
+    # diagnostics
+    get '/admin/diagnostics' => 'admin/diagnostics#devices'
+    get '/admin/diagnostics/:token' => 'admin/diagnostics#dates'
+    get '/admin/diagnostics/:token/:date' => 'admin/diagnostics#files'
+    post '/admin/diagnostics/expand' => 'admin/diagnostics#expand'
+
     ActiveAdmin.routes(self)
     mount Que::Web => '/que'
 
@@ -85,25 +91,10 @@ Rails.application.routes.draw do
     resources :beta_responses
     resources :beta_orders
     resources :interests
-
-    resources :purchases do
-        collection do
-            get :csv
-        end
-    end
-
-    resources :emails do
-        collection do
-            get :csv
-        end
-    end
-
-    resources :rsvps do
-        collection do
-            get :csv
-        end
-    end
-
+    resources :preorders
+    resources :purchases
+    resources :emails
+    resources :rsvps
 
     # beta routes
     get '/beta/forgot'          => 'beta#forgot',       :as => :beta_user_forgot
@@ -121,15 +112,14 @@ Rails.application.routes.draw do
     get '/beta/beta_users/list_order' => 'beta#list_order'
     get '/beta/beta_users/graph'  => 'beta#graph'
 
-    # diagnostics
     get '/diagnostics/' => 'diagnostics#index'
     get '/diagnostics/:token' => 'diagnostics#dates'
     get '/diagnostics/:token/:date' => 'diagnostics#files'
     get '/diagnostics/:token/:date/:file' => 'diagnostics#show'
 
     # mailer preview paths
-    # get '/rails/mailers' => "rails/mailers#index"
-    # get '/rails/mailers/*path' => "rails/mailers#preview"
+    # get '/mailers' => "rails/mailers#index"
+    # get 'mailers/*path' => "rails/mailers#preview"
 
     get '*page'                 => 'pages#index'
 

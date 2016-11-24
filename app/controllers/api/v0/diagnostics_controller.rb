@@ -28,8 +28,16 @@ class Api::V0::DiagnosticsController < Api::ApiController
             path = Rails.root.join('diagnostics', 'NO_AUTH_TOKEN', device_id, date, file_name)
         else
             auth_token = AuthToken.find_by_diagnostics_sync_token(token)
-            render_error(:invalid_token) if auth_token.nil? || auth_token.revoked?
-            path = Rails.root.join('diagnostics', token, date, file_name)
+
+            # if there is no auth token for this sync token, just add it to NO_AUTH_TOKEN for the time being
+            if auth_token.nil? || auth_token.revoked?
+              path = Rails.root.join('diagnostics', 'NO_AUTH_TOKEN', params[:device_id], date, file_name)
+            else
+              path = Rails.root.join('diagnostics', token, date, file_name)
+            end
+
+            # render_error(:invalid_token) if auth_token.nil? || auth_token.revoked?
+            # path = Rails.root.join('diagnostics', token, date, file_name)
         end
 
         FileUtils.mkdir_p(File.dirname(path))

@@ -1,0 +1,21 @@
+<div class="row location" id="<%= @entry.time.hour if defined? @entry %>">
+  <div class="two columns time-col <%= @entry.type if defined? @entry %>">
+    <p class="head">TIME</p>
+    <h3 class="entry-time"><%= @entry.time.in_time_zone('Australia/Sydney').strftime('%l:%M:%S %p') if defined? @entry %></h3>
+  </div>
+
+  <div class="four columns">
+    <p class="head">LOCATION COORDINATE</p>
+    <h3 class="wordwrap entry-location"></h3>
+  </div>
+
+  <div class="two columns">
+    <p class="head">ACCURACY</p>
+    <h3 class="entry-accuracy"></h3>
+  </div>
+
+  <div class="four columns">
+    <p class="head">TIMESTAMP</p>
+    <p class="entry-timestamp"></p>
+  </div>
+</div>

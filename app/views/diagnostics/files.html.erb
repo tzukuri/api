@@ -1,4 +1,8 @@
-<h1><%= @auth_token.user.name %> - <%= @auth_token.api_device.name %> / <%= params[:date] %></h1>
+<% if @auth_token %>
+  <h1><%= @auth_token.user.name %> - <%= @auth_token.api_device.name %> / <%= params[:date] %></h1>
+<% else %>
+  <h1>NO AUTH TOKEN - <%= params[:token] %> / <%= params[:date] %></h1>
+<% end %>
 
 <ul>
     <% @files.each do |name| %>

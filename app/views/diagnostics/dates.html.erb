@@ -1,4 +1,8 @@
-<h1><%= @auth_token.user.name %> - <%= @auth_token.api_device.name %></h1>
+<% if @auth_token %>
+  <h1><%= @auth_token.user.name %> - <%= @auth_token.api_device.name %></h1>
+<% else %>
+  <h1>NO AUTH TOKEN - <%= params[:token] %></h1>
+<% end %>
 
 <ul>
     <% @dates.each do |date| %>

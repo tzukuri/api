@@ -31,7 +31,24 @@ class Device < ActiveRecord::Base
         ownership.revoke!(reason: reason)
     end
 
+    def coords_set_time
+      epoch_time(coords_set_at)
+    end
+
+    def state_set_time
+      epoch_time(state_set_at)
+    end
+
     def name
         "#{id} (#{serial}, #{design}, #{colour})"
+    end
+
+    private
+
+    def epoch_time(ts)
+      return if ts.nil?
+      
+      epoch = Time.new(2001,1,1,0,0,0,0).to_i # NSDate epoch
+      Time.at(epoch + ts).in_time_zone('Australia/Sydney')
     end
 end

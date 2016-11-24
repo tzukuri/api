@@ -10,14 +10,18 @@ class ApplicationController < ActionController::Base
       case resource_or_scope
         when :beta_user, BetaUser
           beta_user_redirect_path
+        when :admin_user, AdminUser
+          admin_root_path
       end
     end
 
     # override sign in paths
     def after_sign_in_path_for(resource_or_scope)
       case resource_or_scope
-        when :beta_User, BetaUser
+        when :beta_user, BetaUser
           beta_user_redirect_path
+        when :admin_user, AdminUser
+          admin_dashboard_path
       end
     end
 end

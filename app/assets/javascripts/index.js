@@ -8,6 +8,13 @@ $(function() {
 
     $('#new_interest').submit(function() {
         $('#new_interest input').removeClass('error')
+
+        if ($('#interest_email').val() == 'friends@tzukuri.com') {
+          console.log('SHOWING RESERVATION')
+          // window.location('reserve')
+          window.location.href = "reserve";
+        }
+
         $("#interest-submit").hide()
     })
 

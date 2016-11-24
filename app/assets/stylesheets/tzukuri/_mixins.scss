@@ -17,6 +17,22 @@
     transition: $args;
 }
 
+@mixin transform($args ...) {
+  -webkit-transform: $args;
+  -moz-transform: $args;
+  -ms-transform: $args;
+  -o-transform: $args;
+  transform: $args;
+}
+
+@mixin animation($args ...) {
+  -webkit-animation: $args;
+  -moz-animation: $args;
+  -ms-animation: $args;
+  -o-animation: $args;
+  animation: $args;
+}
+
 // repond to media queries
 $smartphone: 480px;
 $tabletPortrait: 767px;
@@ -29,6 +45,13 @@ $largeScreen: 1400px;
   -webkit-border-radius: $radius;
   border-radius: $radius;
   background-clip: padding-box;  /* stops bg color from leaking outside the border: */
+}
+
+@mixin sticky {
+  position: -webkit-sticky;
+  position: -moz-sticky;
+  position: sticky;
+  top: 0;
 }
 
 @mixin appearance($appearance) {
