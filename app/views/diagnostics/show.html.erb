@@ -24,6 +24,9 @@
                     <% if entry.float_value? %>
                         <%= entry.float_value %>
                     <% end %>
+                    <%if entry.type == 'distanceRangingMeasurements' %>
+                        channel: <%= entry.channel_rssi_measurement_value.map(&:to_s).join(', rssi: ') %>
+                    <% end %>
                     <% if entry.type == 'userActivityData' %>
                         <%= entry.user_activity_value.time.strftime('%H:%M:%S') %> <%= entry.user_activity_value.type_name %> (confidence: <%= entry.user_activity_value.confidence_name %>)
                     <% end %>
