@@ -1,5 +1,7 @@
 class Device < ActiveRecord::Base
     has_many :ownerships, -> { Ownership.active }
+    belongs_to :device_batch
+
     enum state: [:unknown, :connected, :disconnected]
 
     def current_owner
@@ -43,11 +45,16 @@ class Device < ActiveRecord::Base
         "#{id} (#{serial}, #{design}, #{colour})"
     end
 
+    # returns true if the device has a id, mac, pin, serial, design, colour, size, optical? and hardware_revision
+    def complete?
+      !id.blank? && !mac_address.blank? && !pin.blank? && !design.blank? && !colour.blank? && !hardware_revision.blank?
+    end
+
     private
 
     def epoch_time(ts)
       return if ts.nil?
-      
+
       epoch = Time.new(2001,1,1,0,0,0,0).to_i # NSDate epoch
       Time.at(epoch + ts).in_time_zone('Australia/Sydney')
     end

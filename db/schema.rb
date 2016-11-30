@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161013041349) do
+ActiveRecord::Schema.define(version: 20161124234107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -187,6 +187,11 @@ ActiveRecord::Schema.define(version: 20161013041349) do
     t.string   "model"
   end
 
+  create_table "device_batches", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "devices", force: :cascade do |t|
     t.string   "mac_address"
     t.string   "design"
@@ -213,8 +218,10 @@ ActiveRecord::Schema.define(version: 20161013041349) do
     t.integer  "coords_set_at"
     t.integer  "state_set_at"
     t.boolean  "optical"
+    t.integer  "device_batch_id"
   end
 
+  add_index "devices", ["device_batch_id"], name: "index_devices_on_device_batch_id", using: :btree
   add_index "devices", ["serial"], name: "index_devices_on_serial", unique: true, using: :btree
 
   create_table "emails", force: :cascade do |t|

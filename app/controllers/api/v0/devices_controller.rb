@@ -1,7 +1,7 @@
 class Api::V0::DevicesController < Api::ApiController
-    before_action :log_in_with_auth_token
-    before_action :load_device, except: :index
-    before_action :ensure_owner, except: [:index, :link]
+    before_action :log_in_with_auth_token, except: :update
+    before_action :load_device, except: [:index, :update]
+    before_action :ensure_owner, except: [:index, :link, :update]
     before_action :ensure_valid_ts, only: [:location, :connected, :disconnected]
 
     def index
@@ -71,6 +71,18 @@ class Api::V0::DevicesController < Api::ApiController
         )
 
         render_success
+    end
+
+    def update
+      @device = Device.find(params[:id])
+
+      detail = params.require(:device).permit(:design, :colour, :size, :pin)
+
+      render_error if detail[:design].blank? || detail[:colour].blank? || detail[:size].blank? || detail[:pin].blank?
+
+      @device.update_attributes(detail)
+
+      render_success
     end
 
     private

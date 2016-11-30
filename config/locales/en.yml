@@ -19,6 +19,10 @@ en:
     invalid_diagnostics: ""
     invalid_coords: ""
     invalid_timestamp: ""
+
+    # batch errors
+    empty_batch: "Batches must contain at least one device"
+
     app_params:
         settings:
 

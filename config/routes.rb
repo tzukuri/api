@@ -39,6 +39,12 @@ Rails.application.routes.draw do
     # -----------------------------
     namespace :api do
         namespace :v0 do
+            namespace :device_batches do
+              get '', action: 'index'
+              get ':id', action: 'show'
+              post '', action: 'create'
+            end
+
             namespace :app_params do
                 get '', action: 'show'
             end
@@ -65,6 +71,7 @@ Rails.application.routes.draw do
             namespace :devices do
                 get '', action: 'index'
                 get ':id', action: 'show'
+                post ':id', action: 'update'
                 post ':id/link', action: 'link'
                 post ':id/unlink', action: 'unlink'
                 post ':id/location', action: 'location'
