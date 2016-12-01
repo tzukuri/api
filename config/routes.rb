@@ -42,7 +42,6 @@ Rails.application.routes.draw do
             namespace :device_batches do
               get '', action: 'index'
               get ':id', action: 'show'
-              post '', action: 'create'
             end
 
             namespace :app_params do

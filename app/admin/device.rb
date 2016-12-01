@@ -8,6 +8,13 @@ ActiveAdmin.register Device do
     index do
         selectable_column
         id_column
+        column :device_batch_id do |device|
+          if !device.device_batch.nil?
+            link_to device.device_batch_id, admin_device_batch_path(device.device_batch) unless device.device_batch_id.blank?
+          else
+            "N/A"
+          end
+        end
         column :mac_address
         column :design
         column :size
@@ -18,8 +25,4 @@ ActiveAdmin.register Device do
         column :optical
         actions
     end
-
-    # filter :mac_address
-    # filter :frame
-    # filter :shipped
 end
