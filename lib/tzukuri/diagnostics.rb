@@ -193,12 +193,17 @@ module Tzukuri
 
       progress_bar = ProgressBar.create(:format => '%a |%b>>%i| %p%% %t', :starting_at => 0, :total => file_paths.count)
 
+      # keep track of the entry index regardless of the file it comes from
+      total_index = 0
+
       file_paths.each do |file_path|
         file = DiagnosticFile.new(file_path)
 
-        file.entries.each_with_index do |entry, index|
-          yield entry, index, file.sync_token if entry_types.include?(entry.type) || entry_types.count == 0
+        file.entries.each do |entry|
+          total_index += 1
+          yield entry, total_index, file.sync_token if entry_types.include?(entry.type) || entry_types.count == 0
         end
+
         progress_bar.increment
       end
     end
