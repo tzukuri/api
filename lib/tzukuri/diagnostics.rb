@@ -188,6 +188,9 @@ module Tzukuri
       file_paths.reject! {|path| !sync_tokens.any? {|token| path.include? token} } if sync_tokens.count > 0
       file_paths.reject! {|path| !dates.any? {|date| path.include? date} } if dates.count > 0
 
+      # sort the file paths to ensure we read them in the correct order
+      file_paths.sort!
+
       progress_bar = ProgressBar.create(:format => '%a |%b>>%i| %p%% %t', :starting_at => 0, :total => file_paths.count)
 
       file_paths.each do |file_path|
