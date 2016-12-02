@@ -2,6 +2,8 @@ class Device < ActiveRecord::Base
     has_many :ownerships, -> { Ownership.active }
     belongs_to :device_batch
 
+    validates_uniqueness_of :pin, :mac_address
+
     enum state: [:unknown, :connected, :disconnected]
 
     def current_owner
