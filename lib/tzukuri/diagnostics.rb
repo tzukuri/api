@@ -535,10 +535,11 @@ module Tzukuri
     end
 
     def as_json(options={})
-      {
-        channel: @channel,
-        rssi: @rssi
-      }
+      "channel: #{channel}, rssi: #{rssi}"
+      # {
+      #   channel: @channel,
+      #   rssi: @rssi
+      # }
     end
   end
 end
