@@ -3,13 +3,19 @@
   <!-- aggregate values -->
   <div id="aggregates">
     <h2><%= @data[:aggregates][:start_time].in_time_zone('Australia/Sydney').strftime('%A, %B %e %Y') %></h2>
-    <p><%= @data[:aggregates][:start_time].in_time_zone('Australia/Sydney').strftime('%l:%M %p') %> - <%= @data[:aggregates][:end_time].in_time_zone('Australia/Sydney').strftime('%l:%M %p') %></p>
-
+    <p>
     <% unless @user.blank? %>
-      <a href="/admin/users/<%= @user.id %>">Go to user &rarr;</a>
+      <%= link_to @user.name, "/admin/users/#{@user.id}" %>
     <% end %>
+    &nbsp;|&nbsp;
+    <%= @auth_token.api_device.name %>
+    &nbsp;|&nbsp;
+    <%= @data[:aggregates][:start_time].in_time_zone('Australia/Sydney').strftime('%d/%m/%y %l:%M %p') %> - <%= @data[:aggregates][:end_time].in_time_zone('Australia/Sydney').strftime('%d/%m/%y %l:%M %p')%> AEST
+    </p>
 
-    <br/><br/>
+    <% if !@filter_types.blank? %>
+      <p><span style="font-weight: bold">Filtered by:</span> <%= @filter_types.join(', ') %></p>
+    <% end %>
 
     <div class="row">
       <div class="three columns summary-block">
@@ -31,11 +37,22 @@
     </div>
   </div>
 
+  <hr/>
+
 
   <div id="navigation">
-    <p>Jump to hour:</p>
+    <p style="font-weight: bold">Jump to hour:</p>
     <% @hours.each do |hour| %>
       <a href="#<%= hour %>"><%= hour %>:00</a> |
+    <% end %>
+
+    <br/><br/>
+
+    <p style="font-weight: bold">Filter entries:</p>
+
+    <%= form_tag(request.original_url, :method => :get) do %>
+      <%= select_tag(:filter, options_for_select(@type_names)) %>
+      <%= submit_tag "Filter Entries" %>
     <% end %>
   </div>
 

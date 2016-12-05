@@ -35,9 +35,16 @@ ActiveAdmin.register_page "Diagnostics" do
         @auth_token = AuthToken.find_by_diagnostics_sync_token(params[:token])
         @user = @auth_token.user unless @auth_token.blank?
 
-        @data = Tzukuri::Diagnostics.entries_for_token_date(params[:token], params[:date],
-            # whitelist entry types
-            ['stateMachine', 'appEnvironment', 'notificationDisplayed', 'notificationScheduled', 'appDidBecomeActive', 'bleDisconnected', 'bleConnected'],
+        @type_names = %w{appLaunched appFailedToGetAPNSToken appReceivedUnknownRemoteNotification appReceivedRemoteNotification appWillResignActive appDidEnterBackground appWillEnterForeground appDidBecomeActive appWillTerminate settingsDeviceDetailsAppear settingsAppear settingsSetNotifyOnDisconnect settingsSetNotifyOnBluetoothUnavailable settingsSetSynchroniseAccount settingsPressHelp settingsPressWebsiteLink settingsPressLegal settingsPressSleep settingsPressUnlink settingsPressLogout settingsPerformingSleep settingsPerformingUnlink settingsPerformingLogout settingsAccountDetailsAppear settingsPressToggleSynchroniseAccount settingsPressAddQuietZone settingsPressExistingQuietZone bleConnected bleReconnected bleDisconnected bleFailedToConnect bleReadPinOK bleReadBattery bleReadRSSI glassesLoc glassesUnlinkSuccessful glassesUnlinkFailed glassesTickDistance glassesHQDistance glassesLowBattery glassesLost locationServicesWarningShown locationServicesWarningShowSettings locationServicesWarningDismiss motionActivityWarningShown motionActivityWarningShowSettings motionActivityWarningDismiss notificationsWarningShown notificationsWarningShowSettings notificationsWarningDismiss userLoc userQuietZone userLogoutSuccessful userLogoutFailed userDidVisit userActivityData userPedometerData notificationScheduled notificationDisplayed notificationCancelled notificationTapped notificationCleared notificationsAvailable rootActive rootInactive expandedDetails collapsedDetails requestedDirections tappedMapPin activeViewActive activeViewInactive bluetoothAvailable bluetoothUnavailable locationAvailable locationUnavailable notificationsUnavailable sensorsAvailable sensorsUnavailable taskComplete missingUploadSessionPath appEnvironment lowPowerState stateMachine requestFailure requestError requestErrorUnavailable distanceRangingStarted distanceRangingStopped distanceRangingMeasurements quietZoneList quietZoneRead quietZoneCreate quietZoneUpdate quietZoneDelete roomList roomRead roomCreate roomUpdate roomDelete quietZoneActiveTimeEnded quietZoneActiveTimeStarted setupDidVistRoot setupDidVistEnableBLE setupDidVisitPower setupDidVisitPIN setupDidVisitLogin setupDidVisitRegister setupDidVisitLinking setupDidVisitPermissions setupDidVisitSuccess betaDidPressFeedback scheduleTriggered syncAppParams syncDevice lowMemory missingConnection locError uploadFailed calibrateStart calibrateStop channelAssessment}
+
+        # extract filter types from params (if provided)
+        @filter_types = params[:filter].split(',') if !params[:filter].blank?
+        default_types = ['stateMachine', 'appEnvironment', 'notificationDisplayed', 'notificationScheduled', 'appDidBecomeActive', 'bleDisconnected', 'bleConnected']
+
+        # user filter types if they exist, otherwise just show default
+        whitelist = @filter_types.blank? ? default_types : @filter_types
+
+        @data = Tzukuri::Diagnostics.entries_for_token_date(params[:token], params[:date], whitelist,
             # aggregate entry types (count)
             ['appDidBecomeActive', 'notificationDisplayed', 'bleDisconnected']
         )
