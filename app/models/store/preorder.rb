@@ -3,6 +3,7 @@ class Preorder < ActiveRecord::Base
 
     belongs_to :coupon
     belongs_to :charge
+    belongs_to :gift
 
     validates_presence_of :name
     validates_presence_of :phone
@@ -11,6 +12,9 @@ class Preorder < ActiveRecord::Base
 
     # each charge ID should only have one preorder
     validates_uniqueness_of :charge_id, :allow_nil => true
+
+    # ensure only the charge or the gift ID is set
+    validate :charge_or_gift
 
     validates :utility, inclusion: {
       in: ['optical', 'sun'],
@@ -32,24 +36,6 @@ class Preorder < ActiveRecord::Base
       message: "%{value} is not a valid lens type"
     }
 
-    def amount_remaining
-      total - Tzukuri::PRICING[:deposit]
-    end
-
-    def total
-      if lens == "prescription"
-        total = Tzukuri::PRICING[:prescription]
-      elsif lens == "non-prescription"
-        total = Tzukuri::PRICING[:non_prescription]
-      end
-
-      if code.present?
-        total -= Tzukuri::DISCOUNTS[code.to_sym] || 0
-      end
-
-      return total
-    end
-
     def formatted_address
       address_lines.push(state, country, postal_code).join(", ")
     end
@@ -61,4 +47,21 @@ class Preorder < ActiveRecord::Base
     def send_confirmation
       StoreMailer.preorder_confirmation(self).deliver_later
     end
+
+    def gift?
+      !gift.nil?
+    end
+
+    def charge?
+      !charge.nil?
+    end
+
+    private
+
+    def charge_or_gift
+      unless charge_id.blank? || gift_id.blank?
+        errors.add(:base, "Specify a charge or gift, not both")
+      end
+    end
+
 end
