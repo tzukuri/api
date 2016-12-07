@@ -88,12 +88,10 @@ $(function() {
           $('#size-selection').html(_order['size'] + "mm")
 
           if (_order['lens'] == "prescription") {
-              $('#total-selection').html(tzukuri.pricing.totals.prescription - _discount + " USD")
-              $('.remainder').html(tzukuri.pricing.totals.prescription - tzukuri.pricing.deposit - _discount)
+              $('#total-selection').html(tzukuri.pricing.total + " AUD")
               $("#contact-prescription").show()
           } else {
-              $('#total-selection').html(tzukuri.pricing.totals.nonprescription - _discount + " USD")
-              $('.remainder').html(tzukuri.pricing.totals.nonprescription - tzukuri.pricing.deposit - _discount)
+              $('#total-selection').html(tzukuri.pricing.total + " AUD")
               $("#contact-prescription").hide()
           }
         }
@@ -153,7 +151,6 @@ $(function() {
 
       var _container
       var _nav
-      var _discount = 0
       var _order = {}
 
       function _setOrderValues(values) {
@@ -209,8 +206,8 @@ $(function() {
 
       function _setPricing() {
         $('.pricing #deposit').html(tzukuri.pricing.deposit)
-        $('.pricing #prescription').html(tzukuri.pricing.totals.prescription - _discount)
-        $('.pricing #non-prescription').html(tzukuri.pricing.totals.nonprescription - _discount)
+        $('.pricing #prescription').html(tzukuri.pricing.total)
+        $('.pricing #non-prescription').html(tzukuri.pricing.total)
       }
 
       function _handleApplePayAvailable(available) {
@@ -225,7 +222,6 @@ $(function() {
 
       function _createPayment(token, code) {
         _order['token'] = token.id
-        _order['code'] = code
         return $.post('/preorders', _order)
       }
 
@@ -243,11 +239,8 @@ $(function() {
         _container = container
         _nav = nav
 
-        // parse and store the discount
-        _discount = parseInt(container.attr('data-discount'))
-
         // check for apple pay available
-        Stripe.applePay.checkAvailability(_handleApplePayAvailable)
+        // Stripe.applePay.checkAvailability(_handleApplePayAvailable)
 
         // create steps for each of the elements in the navigation
         _.forEach(_nav.find('a'), function(step, i) {
@@ -283,9 +276,7 @@ $(function() {
     });
 
     function handlePayment(token) {
-        var code = $('#reserve').attr('data-code')
-
-        preorderEngine.createPayment(token, code).done(function(data, status) {
+        preorderEngine.createPayment(token).done(function(data, status) {
           showFormSpinner(false)
           if (data.success) {
               // show a success screen
@@ -345,7 +336,7 @@ $(function() {
               address_lines: shippingContact.addressLines.push(shippingContact.locality),
               country: shippingContact.country,
               state: shippingContact.administrativeArea,
-              postal_code: shippingContact.postal_code
+              postal_code: shippingContact.postal_code,
             })
 
             // create a payment and inform apple pay session when it is complete
@@ -401,6 +392,43 @@ $(function() {
             $("#reserve-submit").click()
         }
     });
+
+    // timer that keeps track of when user is typing
+    var coupon_timer;
+    var last_amount = tzukuri.pricing.total;
+
+    $("#preorder_coupon").on("input", function() {
+      // wait until finished typing and then submit a request to check if the coupon code exists
+      clearTimeout(coupon_timer)
+      coupon_timer = setTimeout(function() {
+        // make a request to the API to check whether or not this coupon is legit
+        var coupon = $("#preorder_coupon").val()
+        var data = {"coupon": coupon}
+
+        $.post('/coupons', data).done(function(data) {
+          // TODO: handle a value that means we don't have to charge the customer's card
+          var final_amount = tzukuri.pricing.total
+
+          if (data.exists) {
+            final_amount -= (data.coupon.discount / 100)
+          } else if (coupon.length > 0) {
+            $("#preorder_coupon").tzAnimate('shake')
+          }
+
+          if (final_amount == last_amount) return
+
+          // update the values and pulse to bring focus
+          $("#total-selection").html(final_amount + " AUD")
+          $("#reserve-for").html("reserve for " + final_amount + " AUD")
+
+          $("#reserve-submit").tzAnimate('pulse')
+          $("#total-selection").tzAnimate('pulse')
+
+          last_amount = final_amount
+        })
+
+      }, 300)
+    })
 
     // prevent multiple clicks from firing events more than once while step-container is animating
     $('.select-utility, .select-frame, .select-lens, .select-size').on('click', function(event) {
@@ -482,7 +510,7 @@ $(function() {
         return valid;
     }
 
-    // validat ethe user's shipping details
+    // validate the user's shipping details
     var validateShipping = function(form) {
         var valid = true
         var serialised = form.serializeObject()
@@ -500,6 +528,8 @@ $(function() {
         var postcode = serialised["preorder[postal_code]"]
         var state = serialised["preorder[state]"]
         var country = $('#preorder_country').val()
+
+        var coupon = serialised["preorder[coupon]"]
 
         var ausPhoneNumbers = /^\({0,1}((0|\+61)(2|4|3|7|8)){0,1}\){0,1}(\ |-){0,1}[0-9]{2}(\ |-){0,1}[0-9]{2}(\ |-){0,1}[0-9]{1}(\ |-){0,1}[0-9]{3}$/;
 
@@ -539,7 +569,8 @@ $(function() {
               address_lines: [address1, address2],
               country: country,
               state: state,
-              postal_code: postcode
+              postal_code: postcode,
+              coupon: coupon
             })
         }
 

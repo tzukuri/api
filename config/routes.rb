@@ -102,6 +102,9 @@ Rails.application.routes.draw do
     resources :emails
     resources :rsvps
 
+    # coupons
+    post '/coupons'             => 'coupons#validate'
+
     # beta routes
     get '/beta/forgot'          => 'beta#forgot',       :as => :beta_user_forgot
     post '/beta/retrieve'       => 'beta#retrieve',     :as => :beta_user_retrieve

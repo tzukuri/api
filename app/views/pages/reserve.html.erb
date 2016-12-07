@@ -8,7 +8,7 @@
   </ul>
 </div>
 
-<div id="reserve" class="container" data-discount="<%= @discount %>" data-code="<%= @code %>">
+<div id="reserve" class="container">
 
   <div class="step-container hidden" id="step-utility">
     <h1>choose between optical and sun</h1>
@@ -120,7 +120,7 @@
           <div class="five columns" id="shipping">
 
             <!-- the user has apple pay enabled -->
-            <div id="apple-pay">
+            <!-- <div id="apple-pay">
               <div class="apple-pay-button-with-text apple-pay-button-black-with-text">
                 <span class="text">Buy with</span>
                 <span class="logo"></span>
@@ -129,7 +129,7 @@
 
               <p class="pricing">You will be charged <span id="prescription"></span> AUD</p>
 
-            </div>
+            </div> -->
 
             <!-- the user does not have apple pay enabled, so show the regular payment -->
             <div id="regular-pay">
@@ -164,6 +164,9 @@
 
               <%= label :purchase, :country, "Country" %>
               <%= f.text_field :country,  placeholder: 'country', value: 'Australia', disabled: true %>
+
+              <%= label :purchase, :coupon, "Discount Code" %>
+              <%= f.text_field :coupon, placeholder: 'Discount code' %>
 
               <% end %>
 
@@ -215,8 +218,6 @@
                 <div id="submit-spinner" class="loader" style="display:none"></div>
 
                 <p id="error-messages"></p>
-
-                <!-- <p class="pricing">The remaining <span class="remainder"></span> AUD will be charged when your glasses are ready to ship.</p> -->
             </div>
 
             <!-- the user has completed their registration -->

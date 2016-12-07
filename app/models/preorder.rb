@@ -1,9 +1,11 @@
 class Preorder < ActiveRecord::Base
     attr_accessor :address1, :address2
 
-    validates :name, presence: true
-    validates :phone, presence: true
-    validates :email, presence: true
+    belongs_to :coupon
+
+    validates_presence_of :name
+    validates_presence_of :phone
+    validates_presence_of :email
     validates_format_of :email,:with => Devise::email_regexp
 
     validates :utility, inclusion: {
