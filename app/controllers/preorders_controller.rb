@@ -55,11 +55,9 @@ class PreordersController < ApplicationController
             description: "[PREORDER] - #{preorder_params[:frame].titleize}, #{preorder_params[:size].titleize}, #{preorder_params[:utility].titleize}, #{preorder_params[:lens].titleize}"
           )
 
-          # update the preorder with charge.id and customer.id
-          preorder.update_attributes({
-              customer_id: customer.id,
-              charge_id: charge.id
-          })
+          tzu_charge = Charge.create(customer_id: customer.id, charge_id: charge.id, amount: @final_amount)
+
+          preorder.update_attributes(charge_id: tzu_charge.id)
 
           preorder.send_confirmation
 

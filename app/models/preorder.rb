@@ -2,11 +2,15 @@ class Preorder < ActiveRecord::Base
     attr_accessor :address1, :address2
 
     belongs_to :coupon
+    belongs_to :charge
 
     validates_presence_of :name
     validates_presence_of :phone
     validates_presence_of :email
     validates_format_of :email,:with => Devise::email_regexp
+
+    # each charge ID should only have one preorder
+    validates_uniqueness_of :charge_id, :allow_nil => true
 
     validates :utility, inclusion: {
       in: ['optical', 'sun'],
