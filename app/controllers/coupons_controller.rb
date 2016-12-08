@@ -1,9 +1,9 @@
 class CouponsController < ApplicationController
 
   def validate
-    @coupon = Coupon.get(params[:coupon])
+    @token = Coupon.get(params[:coupon]) || Gift.get(params[:coupon])
 
-    if @coupon.nil?
+    if @token.nil?
       render json: {
         exists: false
       }
@@ -12,7 +12,8 @@ class CouponsController < ApplicationController
 
     render json: {
       exists: true,
-      coupon: @coupon
+      type: @token.class.name.upcase,
+      token: @token
     }
   end
 

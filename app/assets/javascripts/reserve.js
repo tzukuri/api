@@ -264,7 +264,8 @@ $(function() {
         setOrderValues: _setOrderValues,
         createPayment: _createPayment,
         navigateBack: _navigateBack,
-        navigateForward: _navigateForward
+        navigateForward: _navigateForward,
+        order: _order
       }
     })();
 
@@ -406,25 +407,21 @@ $(function() {
         var data = {"coupon": coupon}
 
         $.post('/coupons', data).done(function(data) {
-          // TODO: handle a value that means we don't have to charge the customer's card
-          var final_amount = tzukuri.pricing.total
+          // handle a value that means we don't have to charge the customer's card
 
-          if (data.exists) {
-            final_amount -= (data.coupon.discount / 100)
-          } else if (coupon.length > 0) {
+          if (data.type == "GIFT") {
+            handleGift(data.token)
+          } else if (data.type == "COUPON") {
+            handleCoupon(data.token)
+          } else {
             $("#preorder_coupon").tzAnimate('shake')
+            updatePrice(tzukuri.pricing.total)
+
+            $("#gift-redeem").fadeOut(function() {
+              $("#payment-form, #total-price").fadeIn()
+            })
           }
 
-          if (final_amount == last_amount) return
-
-          // update the values and pulse to bring focus
-          $("#total-selection").html(final_amount + " AUD")
-          $("#reserve-for").html("reserve for " + final_amount + " AUD")
-
-          $("#reserve-submit").tzAnimate('pulse')
-          $("#total-selection").tzAnimate('pulse')
-
-          last_amount = final_amount
         })
 
       }, 300)
@@ -451,9 +448,66 @@ $(function() {
         })
     })
 
+    $("#gift-redeem").on('click', function(event) {
+      console.log('redeeming gift card')
+
+      var shippingValid = validateShipping($('#new_preorder'))
+
+      if (!shippingValid) {
+          // one or more form fields are invalid
+          setFormError("Some fields are missing or invalid.")
+          return
+      };
+
+      showFormSpinner(true)
+
+      $.post('/preorders', preorderEngine.order).done(function(data) {
+
+        showFormSpinner(false)
+
+        // todo: navigate forward
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+         $("#apple-pay, #regular-pay").fadeOut()
+         $("#thank-you").fadeIn()
+         $("#step-checkout h1").html("thanks for your reservation")
+         $("#reserve-nav").fadeOut()
+
+        console.log("SUBMITTED ORDER")
+        console.log(data)
+      })
+    })
+
     // -------------------
     // helper methods
     // -------------------
+
+    var handleGift = function(gift) {
+      // replace payment information form with just a submit button
+      $("#payment-form, #total-price").fadeOut(function() {
+        $("#gift-redeem").fadeIn()
+      })
+    }
+
+    var handleCoupon = function(coupon) {
+      var final_amount = tzukuri.pricing.total
+      final_amount -= (coupon.discount / 100)
+
+      if (final_amount == last_amount) return
+
+      updatePrice(final_amount)
+    }
+
+    // update the amount we say we are going to charge on the final view
+    var updatePrice = function(amount) {
+      // update the values and pulse to bring focus
+      $("#total-selection").html(amount + " AUD")
+      $("#reserve-for").html("reserve for " + amount + " AUD")
+
+      $("#reserve-submit").tzAnimate('pulse')
+      $("#total-selection").tzAnimate('pulse')
+
+      last_amount = amount
+    }
 
     // show a spinner in the submit button to indicate network activity
     var showFormSpinner = function(showFormSpinner) {
@@ -483,7 +537,7 @@ $(function() {
         }
 
         $('#error-messages').html(message).show()
-        $('#reserve-submit').tzAnimate('shake')
+        $('#reserve-submit, #gift-redeem').tzAnimate('shake')
     }
 
     // validate the user's payment details

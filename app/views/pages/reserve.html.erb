@@ -107,8 +107,10 @@
                   <dt>Size:</dt>
                   <dd id="size-selection"></dd>
                   <br/>
-                  <dt>Total:</dt>
-                  <dd id="total-selection"></dd>
+                  <div id="total-price">
+                    <dt>Total:</dt>
+                    <dd id="total-selection"></dd>
+                  </div>
                 </dl>
 
                 <p>Includes complimentary shipping and Personal Setup. <span id="contact-prescription">We will contact you to obtain your prescription before your glasses are ready to ship.</span></p>
@@ -171,7 +173,7 @@
               <% end %>
 
               <form id="payment-form">
-              <p class="section-head" style="padding-top: 15px;">Payment information</p>
+                <p class="section-head" style="padding-top: 15px;">Payment information</p>
 
                 <div id="cc">
                     <label for="">Credit Card Number</label>
@@ -214,10 +216,15 @@
                 <button id="reserve-submit" type="submit" class="order-btn">
                   <span id="reserve-for">reserve for 485 AUD</span>
                 </button>
+              </form>
 
-                <div id="submit-spinner" class="loader" style="display:none"></div>
+              <button id="gift-redeem" class="order-btn" style="display: none; margin: 30px auto 20px auto;">
+                <span>redeem gift code</span>
+              </button>
 
-                <p id="error-messages"></p>
+              <div id="submit-spinner" class="loader" style="display:none"></div>
+
+              <p id="error-messages"></p>
             </div>
 
             <!-- the user has completed their registration -->
