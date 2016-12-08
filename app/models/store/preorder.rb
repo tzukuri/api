@@ -1,6 +1,6 @@
 class Preorder < ActiveRecord::Base
     attr_accessor :address1, :address2
-
+    
     belongs_to :coupon
     belongs_to :charge
     belongs_to :gift

@@ -1,4 +1,6 @@
 class Gift < ActiveRecord::Base
+  attr_accessor :coupon
+
   belongs_to :charge
   has_one :preorder
 
@@ -16,6 +18,10 @@ class Gift < ActiveRecord::Base
 
   def redeemed?
     !preorder.nil?
+  end
+
+  def send_confirmation
+    # todo: send a confirmation email to the person who purchased the gift to give to their friend
   end
 
   private

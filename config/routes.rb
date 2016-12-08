@@ -101,6 +101,7 @@ Rails.application.routes.draw do
     resources :purchases
     resources :emails
     resources :rsvps
+    resources :gifts
 
     # coupons
     post '/coupons'             => 'coupons#validate'

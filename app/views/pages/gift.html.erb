@@ -1,0 +1,244 @@
+<div class="container" id="gift-nav">
+  <ul id="nav-list">
+    <li><a href="#" id="welcome">gifting</a></li>
+    <li><a href="#" id="checkout">checkout</a></li>
+    <hr id="nav-indicator">
+  </ul>
+</div>
+
+<div id="gift" class="container">
+  <div class="step-container hidden" id="step-welcome">
+    <h1>give the gift of Tzukuri</h1>
+    <%= image_tag 'giftcard.png', class: '', style: 'width: 30%; margin-bottom: 50px' %>
+    <div class="row">
+        <p>Want to buy a pair of Tzukuris for someone else? <br/>Purchase a gift card for 485 AUD that they can redeem for any pair of Tzukuris.</p>
+        <button id="welcome-continue" style="margin: 30px auto 20px auto;">continue &nbsp; &rarr;</button>
+    </div>
+  </div>
+
+  <div class="step-container hidden" id="step-checkout">
+        <h1>purchase your gift card</h1>
+
+        <div class="row step-content">
+          <div class="six columns" id="glasses">
+            <div class="row" id="checkout-images">
+              <%= image_tag 'giftcard.png', class: 'ive sun' %>
+            </div>
+            <div class="row">
+              <div class="twelve columns glasses-details">
+                <dl>
+                  <div id="total-price">
+                    <dt>Total:</dt>
+                    <dd id="total-selection"></dd>
+                  </div>
+                </dl>
+
+                <p>We will send you an email with your gift code. You can then forward to email to your friend, or print it out and give it to them in person.</p>
+
+              </div>
+            </div>
+          </div>
+          <div class="one column" style="height: 1px;">&nbsp;</div>
+          <div class="five columns" id="shipping">
+
+            <!-- the user has apple pay enabled -->
+            <!-- <div id="apple-pay">
+              <div class="apple-pay-button-with-text apple-pay-button-black-with-text">
+                <span class="text">Buy with</span>
+                <span class="logo"></span>
+              </div>
+              <p><a href="" id="ignore-apple-pay">Don't want to use Apple Pay?</a></p>
+
+              <p class="pricing">You will be charged <span id="prescription"></span> AUD</p>
+
+            </div> -->
+
+            <!-- the user does not have apple pay enabled, so show the regular payment -->
+            <div id="regular-pay">
+              <%= form_for Gift.new, :html => {:method => :post}, remote:true do |f| %>
+
+              <!-- contact details -->
+              <p class="section-head">Contact information</p>
+
+              <%= label :gift, :purchased_by, "Your Email Address" %>
+              <%= f.text_field :purchased_by, placeholder: 'john@tzukuri.com' %>
+
+              <%= label :gift, :coupon, "Deposit Token (Optional)" %>
+              <%= f.text_field :coupon, placeholder: 'Deposit token' %>
+
+              <% end %>
+
+              <form id="payment-form">
+                <p class="section-head" style="padding-top: 15px;">Payment information</p>
+
+                <div id="cc">
+                    <label for="">Credit Card Number</label>
+                    <input id="payment_ccNumber" name="number" type="text" data-stripe="number" placeholder="4000 0566 5566 5556">
+
+                    <label ford="">Expiry Date</label>
+                    <select name="month" style="width: 49%" data-stripe="exp-month">
+                      <option value="1">Jan (01)</option>
+                      <option value="2">Feb (02)</option>
+                      <option value="3">Mar (03)</option>
+                      <option value="4">Apr (04)</option>
+                      <option value="5">May (05)</option>
+                      <option value="6">Jun (06)</option>
+                      <option value="7">Jul (07)</option>
+                      <option value="8">Aug (08)</option>
+                      <option value="9">Sep (09)</option>
+                      <option value="10">Oct (10)</option>
+                      <option value="11">Nov (11)</option>
+                      <option value="12">Dec (12)</option>
+                    </select>
+
+                    <select name="year" style="width: 49%" data-stripe="exp-year">
+                      <option>2016</option>
+                      <option>2017</option>
+                      <option>2018</option>
+                      <option>2019</option>
+                      <option>2020</option>
+                      <option>2021</option>
+                      <option>2022</option>
+                      <option>2023</option>
+                      <option>2024</option>
+                      <option>2025</option>
+                      <option>2026</option>
+                    </select>
+
+                    <label for="">Security Code</label>
+                    <input id="payment_cvv" name="CVV" type="text" placeholder="Security code" data-stripe="CVV">
+                </div>
+
+                <button id="reserve-submit" type="submit" class="order-btn">
+                  <span id="reserve-for">order for 485 AUD</span>
+                </button>
+              </form>
+
+              <div id="submit-spinner" class="loader" style="display:none"></div>
+
+              <p id="error-messages"></p>
+            </div>
+
+            <!-- the user has completed their registration -->
+            <div id="thank-you">
+              <hr>
+              <p>Thanks for buying a pair of Tzukuris for a friend. You will receive an email shortly with their gift code. <br/><br/> If you have any questions please get in touch at <a href="mailto:hello@tzukuri.com">hello@tzukuri.com</a>.</p>
+            </div>
+
+          </div>
+        </div>
+  </div>
+</div>
+
+<div class="u-full-width" id="in-the-box">
+  <div class="container">
+    <h1>What's Included</h1>
+    <div class="row">
+      <div class="four columns">
+        <%= image_tag 'glasses.png', id: 'unlosable' %>
+      </div>
+      <div class="four columns">
+        <%= image_tag 'microfibre.png', id: 'cloth' %>
+      </div>
+      <div class="four columns">
+        <%= image_tag "dock_cable.png", id: 'charge' %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="four columns">
+        <p>Unlosable Glasses</p>
+      </div>
+      <div class="four columns">
+        <p>Microfibre Cloth</p>
+      </div>
+      <div class="four columns">
+        <p>Charger & Cable</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="u-full-width" id="specifications">
+  <div class="container">
+    <h1>Technical Specifications</h1>
+    <div class="row">
+    <div class="four columns">
+      <!--  whats included -->
+      <article>
+        <h2>What's included</h2>
+        <ul>
+          <li>Unlosable glasses</li>
+          <li>Charging cable</li>
+          <li>Charging dock</li>
+          <li>Microfibre cleaning cloth</li>
+          <li>Documentation</li>
+        </ul>
+      </article>
+
+      <!-- battery and power -->
+      <article>
+        <h2>Battery and Power</h2>
+        <p>
+          Battery life up to 30 days. Battery life and charge cycles vary with use, settings, and other factors; actual results will vary. The Tzukuri app will notify you when your glasses require charging.
+        </p>
+        <ul>
+          <li>Battery type: Silver Oxide</li>
+          <li>Charge time: Three to four hours</li>
+        </ul>
+      </aticle>
+    </div>
+    <div class="four columns">
+      <!-- care -->
+      <article>
+        <!-- <h2>Care</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pulvinar fringilla mi in sodales. Sed lacinia turpis non quam blandit, ac semper tortor auctor. Ut at lacus ut metus mattis molestie. Quisque lectus velit, egestas vel laoreet ut, euismod vitae eros.</p> -->
+      </article>
+
+      <!-- materials -->
+      <article>
+        <h2>Materials</h2>
+        <ul>
+          <li>Frames: High quality, precision-milled cellulose acetate</li>
+          <li>Sun Lenses: Polarised, hand cut, 100% UV protection, polycarbonate, impact resistant</li>
+          <li>Optical Lenses: Hand cut, polycarbonate, impact resistant</li>
+        </ul>
+      </article>
+
+      <!-- environmental requirements -->
+      <article>
+        <h2>Environmental Requirements</h2>
+        <ul>
+          <li>Operating temperature: -10° to 45° C</li>
+          <li>Maximum operating altitude: 9,144 m</li>
+        </ul>
+      </article>
+    </div>
+    <div class="four columns">
+
+
+      <!-- syncing and notifications -->
+      <article>
+        <h2>Bluetooth and Notifications</h2>
+        <p>Each pair of Tzukuris connect to your iPhone using wireless Bluetooth Low Energy. Some features will require you to grant access to Location Services, Notifications and Motion & Fitness to function correctly. </p>
+        <ul>
+          <li>Bluetooth range: Up to 15m</li>
+          <li>Requires iPhone 5 or later running iOS 9 and above.</li>
+          <li>Compatible with: iPhone 5, iPhone 5C, iPhone SE, iPhone 6, iPhone 6 Plus, iPhone 6s, iPhone 6s Plus, iPhone 7, iPhone 7 Plus</p>
+        </ul>
+      </article>
+    </div>
+  </div>
+  </div>
+</div>
+
+<!-- stripe -->
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script>
+    // set the stripe keys
+    <% if Rails.env.development? %>
+        Stripe.setPublishableKey('pk_test_HWxqGZq4R2zTKm5915tgDas4');
+    <% else %>
+        Stripe.setPublishableKey('pk_live_VAzrbCZ5hRh2i3tXpoS9GL5I');
+    <% end %>
+</script>
