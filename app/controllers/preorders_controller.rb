@@ -1,8 +1,4 @@
 class PreordersController < ApplicationController
-    DOLLARS = 100
-    FULL_PRICE = 485 * DOLLARS
-
-
     def create
       code = preorder_params[:coupon]
 
@@ -10,18 +6,14 @@ class PreordersController < ApplicationController
       @gift = Gift.get(code) if !code.blank?
 
       if !@coupon.nil?
-        puts "HANDLING COUPON"
         handle_coupon(@coupon)
       elsif !@gift.nil?
-        puts "HANDLING GIFT"
         handle_gift(@gift)
       elsif !code.blank?
-        puts "HANDLING INVALID TOKEN"
         handle_invalid_token
         return
       else
-        puts "HANDLING REGULAR PAYMENT"
-        handle_payment(FULL_PRICE)
+        handle_payment(Tzukuri::FULL_PRICE)
       end
     end
 
@@ -33,13 +25,12 @@ class PreordersController < ApplicationController
 
     # calculate the coupon discount and then call handle payment to make the payment
     def handle_coupon(coupon)
-      amount = coupon.apply_discount(FULL_PRICE)
+      amount = coupon.apply_discount(Tzukuri::FULL_PRICE)
       handle_payment(amount, coupon)
     end
 
     # create a preorder without needing to charge the card
     def handle_gift(gift)
-
       build_params = preorder_params.except(:token, :coupon)
       build_params.merge!({gift_id: gift.id})
 
@@ -54,6 +45,7 @@ class PreordersController < ApplicationController
         return
       else
         preorder.send_confirmation
+        gift.send_redeemed
 
         render json: {
           success: true,

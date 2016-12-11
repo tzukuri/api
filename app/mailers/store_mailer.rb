@@ -3,15 +3,25 @@
 class StoreMailer < ActionMailer::Base
   default :from => "\"Tzukuri\" <hello@tzukuri.com>"
 
-  # send an email confirming a purchase
+  # sent from: Preorder controller - when Preorder is created (after card is charged)
   def preorder_confirmation(preorder)
     @preorder = preorder
-    mail(to: preorder.email, subject: "Thanks for your reservation")
+    mail(to: preorder.email, subject: "Thanks for ordering your Tzukuris")
   end
 
-  # send an email confirming an interest registration
-  def interest_confirmation(interest)
-    @interest = interest
-    mail(to:interest.email, subject: "Thanks for your interest in Tzukuri")
+  # sent from: Gift controller - when Gift is created (after card is charged)
+  def gift_confirmation(gift)
+    @gift = gift
+    mail(to: gift.purchased_by, subject: "Thanks for purchasing a Tzukuri Gift Card")
   end
+
+  # sent from: Preorder controller - when gift is redeemed
+  def gift_redeemed(gift)
+    @gift = gift
+    mail(to:gift.purchased_by, subject: "Your friend redeemed your Tzukuri Gift Card")
+  end
+
+  # todo: shipping update email (needs to be tied to be tied to the preorder being marked as in progress)
+
+  # todo: shipped email (needs to be tied to the preorder being marked as shipped)
 end

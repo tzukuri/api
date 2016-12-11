@@ -1,6 +1,7 @@
 class Preorder < ActiveRecord::Base
     attr_accessor :address1, :address2
-    
+
+    # preorder keeps track of whether or not is used a coupon, a charge or a gift to create it
     belongs_to :coupon
     belongs_to :charge
     belongs_to :gift
@@ -41,7 +42,7 @@ class Preorder < ActiveRecord::Base
     end
 
     def formatted_item
-      [utility.titleize, frame.titleize, size + "mm", lens.titleize].join(", ")
+      [utility.titleize, frame.titleize, lens.titleize, size + "mm"].join(" | ")
     end
 
     def send_confirmation
@@ -54,6 +55,10 @@ class Preorder < ActiveRecord::Base
 
     def charge?
       !charge.nil?
+    end
+
+    def coupon?
+      !coupon.nil?
     end
 
     private

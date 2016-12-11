@@ -1,15 +1,22 @@
 class Gift < ActiveRecord::Base
   attr_accessor :coupon
 
+  # gift keeps track of the charge_id
   belongs_to :charge
+  # preorder keeps track of whether or not it has a gift
   has_one :preorder
 
-  validates_presence_of :purchased_by, :expires_at
+  # requires a purchased_by email, expiry date and code
+  # doesn't require a charge_id as we generally need to wait for a call to Stripe
+  validates_presence_of :purchased_by, :expires_at, :code
+  validates_format_of :purchased_by,:with => Devise::email_regexp
   validates_uniqueness_of :charge_id, :allow_nil => true
   validates_uniqueness_of :code
 
+  # automatically generate a gift code and set expiry to a year from now on create
   before_validation :generate_gift_code, :set_expires_at, on: :create
 
+  # returns a gift object for a code if it is not redeemed and not expired
   def self.get(code)
     gift = where(code: normalise_code(code)).where("expires_at > ? OR expires_at IS NULL", Time.now).take
     return nil if gift.blank? || gift.redeemed?
@@ -21,7 +28,11 @@ class Gift < ActiveRecord::Base
   end
 
   def send_confirmation
-    # todo: send a confirmation email to the person who purchased the gift to give to their friend
+    StoreMailer.gift_confirmation(self).deliver_later
+  end
+
+  def send_redeemed
+    StoreMailer.gift_redeemed(self).deliver_later
   end
 
   private

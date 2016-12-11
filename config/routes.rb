@@ -128,8 +128,8 @@ Rails.application.routes.draw do
     get '/diagnostics/:token/:date/:file' => 'diagnostics#show'
 
     # mailer preview paths
-    # get '/mailers' => "rails/mailers#index"
-    # get 'mailers/*path' => "rails/mailers#preview"
+    get '/mailers' => "rails/mailers#index"
+    get 'mailers/*path' => "rails/mailers#preview"
 
     get '*page'                 => 'pages#index'
 

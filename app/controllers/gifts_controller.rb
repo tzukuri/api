@@ -1,10 +1,7 @@
 class GiftsController < ApplicationController
-    DOLLARS = 100
-    FULL_PRICE = 485 * DOLLARS
-
     def create
       code = gift_params[:coupon]
-      full_amount = FULL_PRICE
+      full_amount = Tzukuri::FULL_PRICE
 
       @coupon = Coupon.get(code) if !code.blank?
 
@@ -20,8 +17,6 @@ class GiftsController < ApplicationController
 
       # create a new gift
       @gift = Gift.create(gift_params.except(:coupon, :token))
-
-      # attempt to charge card
 
       # if the preorder is not valid, return an error (there was some error creating the preorder)
       if !@gift.valid?
@@ -52,7 +47,7 @@ class GiftsController < ApplicationController
 
         @gift.update_attributes(charge_id: tzu_charge.id)
 
-        # todo: send confirmation
+        @gift.send_confirmation
 
         render json: {
           success: true,
