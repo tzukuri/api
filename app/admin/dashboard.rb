@@ -1,74 +1,24 @@
 ActiveAdmin.register_page "Dashboard" do
     menu label: "General", parent: 'Dashboards'
-    
+
     content title: "General"  do
-    # all orders for the coming week
-        next_week = BetaOrder.all_next_week
-        next_week_ive_s = next_week.where(frame: 'ive', size: '48')
-        next_week_ive_l = next_week.where(frame: 'ive', size: '50.5')
-        next_week_ford_s = next_week.where(frame: 'ford', size: '49')
-        next_week_ford_l = next_week.where(frame: 'ford', size: '51.5')
 
-        # all orders for the coming month
-        next_month = BetaOrder.all_next_month
-        next_month_ive_s = next_month.where(frame: 'ive', size: '48')
-        next_month_ive_l = next_month.where(frame: 'ive', size: '50.5')
-        next_month_ford_s = next_month.where(frame: 'ford', size: '49')
-        next_month_ford_l = next_month.where(frame: 'ford', size: '51.5')
+      cutoff = Date.parse('12/12/2016')
+      orders = Preorder.where('created_at <= ?', cutoff).reverse
 
-        outstanding_deliveries = BetaOrder.where(delivery_method: 'ship', fulfilled: false)
-        outstanding_deliveries_ive_s = outstanding_deliveries.where(frame: 'ive', size: '48')
-        outstanding_deliveries_ive_l = outstanding_deliveries.where(frame: 'ive', size: '50.5')
-        outstanding_deliveries_ford_s = outstanding_deliveries.where(frame: 'ford', size: '49')
-        outstanding_deliveries_ford_l = outstanding_deliveries.where(frame: 'ford', size: '51.5')
-
-        columns do
-            column do
-                panel "Upcoming Personal Fittings (#{Date.today.strftime("%d-%m")} to #{(Date.today + 7.days).strftime("%d-%m")})" do
-                    text_node %{<strong>Total:</strong> #{next_week.count} | <strong>Ive (48mm):</strong> #{next_week_ive_s.count} | <strong>Ive (50.5mm):</strong> #{next_week_ive_l.count} | <strong>Ford (49mm):</strong> #{next_week_ford_s.count} | <strong>Ford (51.5mm):</strong> #{next_week_ford_l.count}}.html_safe
-                    table_for next_week.each do
-                        column("ID") {|order| link_to order.id}
-                        column("Name")   {|order| order.shipping_name}
-                        column("Email")   {|order| order.beta_user.email}
-                        column("Frame")   {|order| order.frame.titleize }
-                        column("Size")   {|order| order.size + "mm" }
-                        column("Address")   {|order| order.full_address }
-                        column("Phone")   {|order| order.phone }
-                        column("Delivery Method")   {|order| order.delivery_method.titleize }
-                        column("Time")   {|order| order.delivery_time.in_time_zone('Australia/Sydney').strftime("%a %d-%m-%Y %l:%M %P") if order.delivery_time.present?}
-                    end
-                end
-
-                panel "Upcoming Personal Fittings (#{Date.today.strftime("%d-%m")} to #{(Date.today + 1.month).strftime("%d-%m")})" do
-                    text_node %{<strong>Total:</strong> #{next_month.count} | <strong>Ive (48mm):</strong> #{next_month_ive_s.count} | <strong>Ive (50.5mm):</strong> #{next_month_ive_l.count} | <strong>Ford (49mm):</strong> #{next_month_ford_s.count} | <strong>Ford (51.5mm):</strong> #{next_month_ford_l.count}}.html_safe
-                    table_for next_month.each do
-                        column("ID") {|order| link_to order.id}
-                        column("Name")   {|order| order.shipping_name}
-                        column("Email")   {|order| order.beta_user.email}
-                        column("Frame")   {|order| order.frame.titleize }
-                        column("Size")   {|order| order.size + "mm" }
-                        column("Address")   {|order| order.full_address }
-                        column("Phone")   {|order| order.phone }
-                        column("Delivery Method")   {|order| order.delivery_method.titleize }
-                        column("Time")   {|order| order.delivery_time.in_time_zone('Australia/Sydney').strftime("%a %d-%m-%Y %l:%M %P") if order.delivery_time.present?}
-                    end
-                end
-
-                panel "Outstanding Deliveries " do
-                    text_node %{<strong>Total:</strong> #{outstanding_deliveries.count} | <strong>Ive (48mm):</strong> #{outstanding_deliveries_ive_s.count} | <strong>Ive (50.5mm):</strong> #{outstanding_deliveries_ive_l.count} | <strong>Ford (49mm):</strong> #{outstanding_deliveries_ford_s.count} | <strong>Ford (51.5mm):</strong> #{outstanding_deliveries_ford_l.count}}.html_safe
-                    table_for outstanding_deliveries.each do
-                        column("ID") {|order| link_to order.id}
-                        column("Name")   {|order| order.shipping_name}
-                        column("Email")   {|order| order.beta_user.email}
-                        column("Frame")   {|order| order.frame.titleize }
-                        column("Size")   {|order| order.size + "mm" }
-                        column("Address")   {|order| order.full_address }
-                        column("Phone")   {|order| order.phone }
-                        column("Delivery Method")   {|order| order.delivery_method.titleize }
-                    end
-                end
-
-            end
+      panel "Upcoming Orders (Placed on or before #{cutoff.strftime("%d/%m/%y")})" do
+        text_node %{<strong>Upcoming Orders:</strong> #{orders.count} | <strong>Total Orders:</strong> #{Preorder.all.count}}.html_safe
+        table_for orders.each do
+          column("ID") {|preorder| link_to preorder.id}
+          column("Name") {|preorder| preorder.name}
+          column("Email") {|preorder| preorder.email}
+          column("Shipping Address") {|preorder| "#{preorder.address_lines.join(', ')}, #{preorder.state}, #{preorder.postal_code}"}
+          column("Utility") {|preorder| preorder.utility.titleize}
+          column("Frame") {|preorder| preorder.frame.titleize}
+          column("Lens") {|preorder| preorder.lens.titleize}
+          column("Size") {|preorder| "#{preorder.size}mm"}
+          column("Gift") {|preorder| preorder.gift? ? status_tag("YES") : status_tag("NO")}
         end
+      end
     end
 end
