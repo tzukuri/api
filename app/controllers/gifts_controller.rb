@@ -67,6 +67,6 @@ class GiftsController < ApplicationController
     private
 
     def gift_params
-      params.permit(:purchased_by, :token, :coupon)
+      params.permit(:purchased_by, :token, :coupon, :engraving)
     end
 end

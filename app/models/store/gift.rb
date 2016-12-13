@@ -12,6 +12,7 @@ class Gift < ActiveRecord::Base
   validates_format_of :purchased_by,:with => Devise::email_regexp
   validates_uniqueness_of :charge_id, :allow_nil => true
   validates_uniqueness_of :code
+  validates_length_of :engraving, :maximum => 15, :allow_blank => true
 
   # automatically generate a gift code and set expiry to a year from now on create
   before_validation :generate_gift_code, :set_expires_at, on: :create

@@ -432,13 +432,12 @@ $(function() {
         var valid = true
         var serialised = form.serializeObject()
 
-        console.log(serialised)
-
         form.find('input').removeClass('error')
 
         // contact details
         var email = serialised["gift[purchased_by]"]
         var coupon = serialised["gift[coupon]"]
+        var engraving = serialised["gift[engraving]"]
 
         if (email.length == 0) {
             valid = addError("#gift_purchased_by")
@@ -448,7 +447,8 @@ $(function() {
             // store the order details in the navigation object
             preorderEngine.setOrderValues({
               purchased_by: email,
-              coupon: coupon
+              coupon: coupon,
+              engraving: engraving
             })
         }
 

@@ -3,7 +3,7 @@ ActiveAdmin.register_page "Dashboard" do
 
     content title: "General"  do
 
-      cutoff = Date.parse('12/12/2016')
+      cutoff = Date.parse('13/12/2016')
       orders = Preorder.where('created_at <= ?', cutoff).reverse
 
       panel "Upcoming Orders (Placed on or before #{cutoff.strftime("%d/%m/%y")})" do
@@ -17,6 +17,7 @@ ActiveAdmin.register_page "Dashboard" do
           column("Frame") {|preorder| preorder.frame.titleize}
           column("Lens") {|preorder| preorder.lens.titleize}
           column("Size") {|preorder| "#{preorder.size}mm"}
+          column("Engraving") {|preorder| preorder.gift.engraving if preorder.gift?}
           column("Gift") {|preorder| preorder.gift? ? status_tag("YES") : status_tag("NO")}
         end
       end

@@ -25,6 +25,11 @@ ActiveAdmin.register Preorder do
       column :lens do |preorder|
         preorder.lens.titleize
       end
+      column :engraving do |preorder|
+        if preorder.gift?
+          preorder.gift.engraving
+        end
+      end
       column :amount do |preorder|
         preorder.charge.amount/100 if preorder.charge?
       end
