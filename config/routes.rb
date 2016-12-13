@@ -101,6 +101,10 @@ Rails.application.routes.draw do
     resources :purchases
     resources :emails
     resources :rsvps
+    resources :gifts
+
+    # coupons
+    post '/coupons'             => 'coupons#validate'
 
     # beta routes
     get '/beta/forgot'          => 'beta#forgot',       :as => :beta_user_forgot
@@ -124,8 +128,8 @@ Rails.application.routes.draw do
     get '/diagnostics/:token/:date/:file' => 'diagnostics#show'
 
     # mailer preview paths
-    # get '/mailers' => "rails/mailers#index"
-    # get 'mailers/*path' => "rails/mailers#preview"
+    get '/mailers' => "rails/mailers#index"
+    get 'mailers/*path' => "rails/mailers#preview"
 
     get '*page'                 => 'pages#index'
 

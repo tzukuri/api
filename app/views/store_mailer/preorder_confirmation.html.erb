@@ -21,52 +21,112 @@
           <td style="text-align: center; font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; margin: 0; padding: 0;">
 
 
-            <h1 style="text-align: center; font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 38px; line-height: 1.2em; color: #111111; font-weight: 200; margin: 20px 0 10px; padding: 0;" align="center">T Z U K U R I</h1>
+            <h1 style="text-align: center; font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 32px; line-height: 1.2em; color: #1a1d1a; font-weight: 200; margin: 20px 0 10px; padding: 0;" align="center">T Z U K U R I</h1>
 
-            <div style="margin-left: -20px; margin-right: -20px; padding-left: 50px; padding-right: 50px; padding-top: 20px; padding-bottom: 30px;">
-              <h2 style="font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 24px; line-height: 1.2em; color: #111111; font-weight: 200; margin: 10px 0 20px; padding: 0; font-size:22px;">Thanks for your reservation</h2>
-              <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0; color: #686868">We have reserved your place. You will receive another email when glasses are ready to ship.</p>
+            <hr style="border: 0.5px solid #C1CBCC; margin-bottom:10px; margin-top: 30px; opacity: 0.2">
+
+            <div style="margin-left: -20px; margin-right: -20px; padding-left: 50px; padding-right: 50px; padding-top: 20px; padding-bottom: 20px;">
+              <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 20px; padding: 0; color: #686868; text-align: left"><%= @preorder.name.split(" ")[0] %>, <br/><br/> Thanks for ordering your very own pair of Tzukuris, we've spent a lot of time making sure they're really great and we hope you'll love them. We'll keep you updated as they're made and shipped out.</p>
             </div>
 
-            <%= image_tag "frames/#{@preorder.frame}/#{@preorder.frame}_black_#{@preorder.utility}.jpg", style: 'width: 50%; padding-bottom: 40px;' %>
+            <hr style="border: 0.5px solid #C1CBCC; margin-bottom:50px; margin-top: 0px; opacity: 0.2">
 
-          <div style="text-align: left; background-color: #C1CBCC; margin-left: -20px; margin-right: -20px; padding-left: 50px; padding-right: 50px; padding-top: 20px; padding-bottom: 30px;">
-          <h2 style="font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 24px; line-height: 1.2em; color: #111111; font-weight: 200; margin: 10px 0 20px; padding: 0; font-size:22px;">Reservation Details</h2>
-            <table width="100%" style="color: #686868; font-weight: 400; font-size: 10pt;">
+            <h2 style="font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 24px; line-height: 1.2em; color: #1a1d1a; font-weight: 200; margin: 10px 0 20px; padding: 0; font-size:22px; text-align: center">Order Confirmation</h2>
+
+            <%= image_tag "frames/#{@preorder.frame}/#{@preorder.frame}_black_#{@preorder.utility}.jpg", style: 'width: 45%; margin-top: 30px;' %>
+
+            <div style="text-align: left; background-color: #ffffff; margin-left: -20px; margin-right: -20px; padding-left: 50px; padding-right: 50px; padding-top: 20px; padding-bottom: 30px;">
+              <table width="100%" style="color: #686868; font-weight: 400; font-size: 10pt;">
+                <tr>
+                  <td width="33%" style="text-align: center; vertical-align: top">
+                    <p><span style="font-weight: 500">Utility:</span> <br/> <%= @preorder.utility.titleize %></p>
+                  </td>
+                  <td width="33%" style="text-align: center; vertical-align: top">
+                    <p><span style="font-weight: 500">Frame:</span> <br/> <%= @preorder.frame.titleize %></p>
+                  </td>
+                  <td width="33%" style="text-align: center; vertical-align: top">
+                    <p><span style="font-weight: 500">Lens:</span> <br/> <%= @preorder.lens.titleize %><br/> <%= @preorder.size %>mm </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="33%" style="text-align: center; vertical-align: top">
+                    <p><span style="font-weight: 500">Address:</span> <br/> <%= @preorder.formatted_address %></p>
+                  </td>
+                  <td width="33%" style="text-align: center; vertical-align: top">
+                    <p><span style="font-weight: 500">Purchase Date:</span> <br/> <%= @preorder.created_at.in_time_zone('Australia/Sydney').strftime("%A, %d/%m/%Y") %><br/><%= @preorder.created_at.in_time_zone('Australia/Sydney').strftime("%I:%M %p") %></p>
+                  </td>
+                  <td width="33%" style="text-align: center; vertical-align: top">
+                    <p><span style="font-weight: 500">Order #:</span> <br/> <%= @preorder.id %> </p>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- only display a total if they didn't use a gift card -->
+              <% if @preorder.charge? %>
+              <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 10 0 0px; padding: 0; color: #686868; text-align: center">
+                <span style="font-weight: 500">Total:</span> <%= @preorder.charge.amount / 100 %>
+                AUD with free shipping  <span style="font-size: 7pt">(incl. GST)</span>
+              </p>
+              <% end %>
+            </div>
+
+          <!-- <div style="text-align: left; background-color: #C1CBCC; margin-left: -20px; margin-right: -20px; padding-left: 50px; padding-right: 50px; padding-top: 20px; padding-bottom: 30px;">
+            <h2 style="font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 24px; line-height: 1.2em; color: #1a1d1a; font-weight: 200; margin: 10px 0 20px; padding: 0; font-size:22px;">Order Details</h2>
+            <table width="100%" style="color: #1a1d1a; font-weight: 400; font-size: 10pt;">
               <tr>
                 <td width="30%" style="font-weight: 500">Purchase Date</td>
-                <td width="70%"><%= Date.today.strftime("%A, %d/%m/%Y") %></td>
+                <td width="70%"><%#= Date.today.strftime("%A, %d/%m/%Y") %></td>
               </tr>
               <tr>
                 <td width="30%" style="font-weight: 500">Shipping Address</td>
-                <td width="70%"><%= @preorder.formatted_address %></td>
+                <td width="70%"><%#= @preorder.formatted_address %></td>
               </tr>
               <tr>
                 <td width="30%" style="font-weight: 500">Item</td>
-                <td width="70%"><%= @preorder.formatted_item %></td>
+                <td width="70%"><%#= @preorder.formatted_item %></td>
               </tr>
               <tr>
-                <td width="30%" style="font-weight: 500">Order ID</td>
-                <td width="70%"><%= @preorder.id %></td>
+                <td width="30%" style="font-weight: 500">Utility</td>
+                <td width="70%"><%#= @preorder.utility.titleize %></td>
+              </tr>
+              <tr>
+                <td width="30%" style="font-weight: 500">Frame</td>
+                <td width="70%"><%#= @preorder.frame.titleize %></td>
+              </tr>
+              <tr>
+                <td width="30%" style="font-weight: 500">Lens</td>
+                <td width="70%"><%#= @preorder.lens.titleize %>, <%= @preorder.size%>mm</td>
+              </tr>
+              <tr>
+                <td width="30%" style="font-weight: 500">Order #</td>
+                <td width="70%"><%#= @preorder.id %></td>
               </tr>
               <tr>
                 <td width="30%" style="font-weight: 500">Total</td>
-                <td width="70%"><%= @preorder.total %> AUD</td>
+                <td width="70%"><%#= @preorder.charge.amount/100 %> AUD (incl. GST)</td>
+              </tr>
+              <tr>
+                <td width="30%" style="font-weight: 500">Shipping</td>
+                <td width="70%">FREE</td>
               </tr>
             </table>
-          </div>
+          </div> -->
 
-          <div style="text-align: left; margin-left: -20px; margin-right: -20px; padding-left: 50px; padding-right: 50px; padding-top: 20px; padding-bottom: 20px;">
-            <h2 style="font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 24px; line-height: 1.2em; color: #111111; font-weight: 200; margin: 10px 0 20px; padding: 0; font-size:22px;">Prescription</h2>
-            <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0; color: #686868">
-              We will get in touch before making your glasses to get your prescription. Please keep in mind that we can only fulfill single vision prescriptions at this time.
-            </p>
-          </div>
+          <% if @preorder.lens == "prescription" %>
+          <hr style="border: 0.5px solid #C1CBCC; margin-bottom:10px; margin-top: 0px; opacity: 0.2">
 
-          <hr style="border: 0.5px solid #C1CBCC; margin-bottom:40px; opacity: 0.2">
+            <div style="text-align: left; margin-left: -20px; margin-right: -20px; padding-left: 50px; padding-right: 50px; padding-top: 20px; padding-bottom: 20px;">
+              <h2 style="font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 24px; line-height: 1.2em; color: #1a1d1a; font-weight: 200; margin: 10px 0 20px; padding: 0; font-size:22px; text-align:center">Prescription</h2>
+              <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0; color: #686868">
+                We will get in touch before making your glasses to get your prescription. Please keep in mind that we can only fulfill single vision prescriptions at this time.
+              </p>
+            </div>
+          <% end %>
+
+          <hr style="border: 0.5px solid #C1CBCC; margin-bottom:40px; margin-top: 0px; opacity: 0.2">
 
            <center>
-            <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 12px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0; color: #686868">Thanks for shopping with us, if you have any questions, please get in touch by replying to this email.</a></p>
+            <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 12px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0; color: #686868">If you have any questions or just want to say hi, please get in touch by replying to this email.</a></p>
             <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 12px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0; color: #686868">&copy; Tzukuri Pty. Ltd., 6 Lenthall Street, Kensington, 2033, NSW, Australia</p>
               </center>
           </td>

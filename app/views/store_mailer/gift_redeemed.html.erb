@@ -18,21 +18,23 @@
       <div class="content" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; display: block; max-width: 600px; margin: 0 auto; padding: 0;">
       <table style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; width: 100%; margin: 0; padding: 0;">
         <tr style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; margin: 0; padding: 0;">
-          <td style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; margin: 0; padding: 0;">
-            <h1 style="text-align: center; font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 38px; line-height: 1.2em; color: #111111; font-weight: 200; margin: 20px 0 10px; padding: 0;" align="center">T Z U K U R I </h1>
-            <h2 style="text-align: center; font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 28px; line-height: 1.2em; color: #111111; font-weight: 200; margin: 40px 0 10px; padding: 0;" align="center">Thanks for registering</h2>
+          <td style="text-align: center; font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; margin: 0; padding: 0;">
+            <h1 style="text-align: center; font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 32px; line-height: 1.2em; color: #1a1d1a; font-weight: 200; margin: 20px 0 10px; padding: 0;" align="center">T Z U K U R I</h1>
 
-            <br style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; margin: 0; padding: 0;" />
+            <hr style="border: 0.5px solid #C1CBCC; margin-bottom:10px; margin-top: 30px; opacity: 0.2">
+
+            <%= image_tag "giftcard.png", style: 'width: 45%; margin-top: 30px;' %>
+
+            <div style="margin-left: -20px; margin-right: -20px; padding-left: 50px; padding-right: 50px; padding-top: 20px; padding-bottom: 20px;">
+              <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 20px; padding: 0; color: #686868;">This is just a quick note to say that your friend <span style="font-weight: 500"><%= @gift.preorder.name %></span> redeemed the gift card you purchased. Thanks for giving the gift of Tzukuris, we'll take care of it from here.</p>
+            </div>
+
+            <hr style="border: 0.5px solid #C1CBCC; margin-bottom:40px; margin-top: 0px; opacity: 0.2">
 
             <center>
-            <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0;">This is just a courtesy email to confirm your registration. We'll be in touch as soon as the glasses are available to order.</p>
-              </center>
-
-            <br style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; margin: 0; padding: 0;" />
-
-           <center>
-            <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0;">If you have any questions, please get in touch with us at <a href="mailto:hello@tzukuri.com" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; color: #348eda; margin: 0; padding: 0;">hello@tzukuri.com</a>.</p>
-              </center>
+              <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 12px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0; color: #686868">If you have any questions or just want to say hi, please get in touch by replying to this email.</a></p>
+              <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 12px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0; color: #686868">&copy; Tzukuri Pty. Ltd., 6 Lenthall Street, Kensington, 2033, NSW, Australia</p>
+            </center>
           </td>
         </tr>
       </table>
@@ -47,9 +49,8 @@
 
 
 <style type="text/css">
-img { max-width: 600px !important; width: auto !important; }
+img { max-width: 600px !important; width: 80%; margin: 0 auto}
 body { -webkit-font-smoothing: antialiased !important; height: 100% !important; -webkit-text-size-adjust: none !important; width: 100% !important; }
 </style>
 </body>
 </html>
-

@@ -8,15 +8,6 @@ module Tzukuri
   THRESHOLD_SCORE_DEFAULT = 135     # minimum number of points a user must have to be selected
   NUM_THRESHOLD_USERS     = 100     # number of users that will be selected during the beta program
 
-  # discount codes
-  DISCOUNTS = {
-    :😎 => 100
-  }
-
   # model pricing
-  PRICING = {
-    :prescription => 485,
-    :non_prescription => 485,
-    :deposit => 85
-  }
+  FULL_PRICE = 485 * 100;
 end

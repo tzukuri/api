@@ -1,0 +1,94 @@
+<!doctype html>
+<html style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; margin: 0; padding: 0;">
+<head>
+<meta name="viewport" content="width=device-width">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+</head>
+
+<body bgcolor="#f6f6f6" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; -webkit-font-smoothing: antialiased; height: 100%; -webkit-text-size-adjust: none; width: 100% !important; margin: 0; padding: 0;">
+
+<!-- body -->
+<table class="body-wrap" bgcolor="#f6f6f6" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; width: 100%; margin: 0; padding: 20px;">
+  <tr style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; margin: 0; padding: 0;">
+    <td style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; margin: 0; padding: 0;"></td>
+    <td class="container" bgcolor="#FFFFFF" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; clear: both !important; display: block !important; max-width: 600px !important; margin: 0 auto; padding: 20px; border: 1px solid #f0f0f0;">
+
+      <!-- content -->
+      <div class="content" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; display: block; max-width: 600px; margin: 0 auto; padding: 0;">
+      <table style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; width: 100%; margin: 0; padding: 0;">
+        <tr style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; margin: 0; padding: 0;">
+          <td style="text-align: center; font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; margin: 0; padding: 0;">
+
+
+            <h1 style="text-align: center; font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 32px; line-height: 1.2em; color: #1a1d1a; font-weight: 200; margin: 20px 0 10px; padding: 0;" align="center">T Z U K U R I</h1>
+
+            <hr style="border: 0.5px solid #C1CBCC; margin-bottom:10px; margin-top: 30px; opacity: 0.2">
+
+            <div style="margin-left: -20px; margin-right: -20px; padding-left: 50px; padding-right: 50px; padding-top: 20px; padding-bottom: 20px;">
+              <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 20px; padding: 0; color: #686868; text-align: left">Thanks for giving a pair of Tzukuris. We've spent a lot of time making sure they're really great and we think they'll make the perfect gift. Please forward this email to your friend, or print it off and give it to them in person.</p>
+            </div>
+
+            <hr style="border: 0.5px solid #C1CBCC; margin-bottom:50px; margin-top: 0px; opacity: 0.2">
+
+            <h2 style="font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 24px; line-height: 1.2em; color: #1a1d1a; font-weight: 200; margin: 10px 0 20px; padding: 0; font-size:22px; text-align: center">Order Confirmation</h2>
+
+            <%= image_tag "giftcard.png", style: 'width: 45%; margin-top: 30px;' %>
+
+            <div style="text-align: left; background-color: #ffffff; margin-left: -20px; margin-right: -20px; padding-left: 50px; padding-right: 50px; padding-top: 20px; padding-bottom: 30px;">
+              <table width="100%" style="color: #686868; font-weight: 400; font-size: 10pt;">
+                <tr>
+                  <td width="33%" style="text-align: center; vertical-align: top">
+                    <p><span style="font-weight: 500">Code:</span> <br/> <span style="color: #307668"><%= @gift.code %></span></p>
+                  </td>
+                  <td width="33%" style="text-align: center; vertical-align: top">
+                    <p><span style="font-weight: 500">Purchase Date:</span> <br/> <%= @gift.created_at.in_time_zone('Australia/Sydney').strftime("%A, %d/%m/%Y") %><br/><%= @gift.created_at.in_time_zone('Australia/Sydney').strftime("%I:%M %p") %></p>
+                  </td>
+                  <td width="33%" style="text-align: center; vertical-align: top">
+                    <p><span style="font-weight: 500">Gift #:</span> <br/> <%= @gift.id %> </p>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 10 0 0px; padding: 0; color: #686868; text-align: center"><span style="font-weight: 500">Total:</span> <%= @gift.charge.amount / 100 %> AUD <span style="font-size: 7pt">(incl. GST)</span></p>
+
+            </div>
+
+            <hr style="border: 0.5px solid #C1CBCC; margin-bottom:20px; margin-top: 0px; opacity: 0.2">
+
+            <div style="text-align: left; background-color: #ffffff; margin-left: -20px; margin-right: -20px; padding-left: 50px; padding-right: 50px; padding-top: 20px; padding-bottom: 30px; text-align: left">
+              <h2 style="font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 24px; line-height: 1.2em; color: #1a1d1a; font-weight: 200; margin: 10px 0 20px; padding: 0; font-size:22px; text-align: center">How to Redeem</h2>
+
+              <ol style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: normal; color: #686868">
+                <li style="line-height: 1.6em;">Forward this email (or just the code) to the gift recipient.</li>
+                <li style="line-height: 1.6em;">The recipient should visit <a href="https://tzukuri.com/reserve" style="color:#307668; text-decoration:none">tzukuri.com/reserve</a> and choose their pair.</li>
+                <li style="line-height: 1.6em;">At checkout, the recipient should enter their six-character gift code (<span style="color: #307668"><%= @gift.code %></span>).</li>
+                <li style="line-height: 1.6em;">Both you and the recipient will receive an email confirming the order.</li>
+              </ol>
+            </div>
+
+            <hr style="border: 0.5px solid #C1CBCC; margin-bottom:40px; margin-top: 0px; opacity: 0.2">
+
+           <center>
+            <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 12px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0; color: #686868">If you have any questions or just want to say hi, please get in touch by replying to this email.</a></p>
+            <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 12px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0; color: #686868">&copy; Tzukuri Pty. Ltd., 6 Lenthall Street, Kensington, 2033, NSW, Australia</p>
+              </center>
+          </td>
+        </tr>
+      </table>
+      </div>
+      <!-- /content -->
+
+    </td>
+    <td style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; margin: 0; padding: 0;"></td>
+  </tr>
+</table>
+<!-- /body -->
+
+
+<style type="text/css">
+img { max-width: 600px !important; width: 80%; margin: 0 auto}
+body { -webkit-font-smoothing: antialiased !important; height: 100% !important; -webkit-text-size-adjust: none !important; width: 100% !important; }
+</style>
+</body>
+</html>

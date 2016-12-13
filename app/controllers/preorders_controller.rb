@@ -1,66 +1,119 @@
 class PreordersController < ApplicationController
-
-    # create a new preorder and charge the customer's card
     def create
-        preorder = Preorder.create(preorder_params.except(:token))
+      code = preorder_params[:coupon]
 
-        if preorder.valid?
+      @coupon = Coupon.get(code) if !code.blank?
+      @gift = Gift.get(code) if !code.blank?
 
-          begin
-            customer = Stripe::Customer.create(
-              card: preorder_params[:token],
-              description: preorder_params[:name],
-              email: preorder_params[:email],
-              metadata: {
-                preorder_discount: preorder.code,
-                preorder_remain: preorder.amount_remaining
-              }
-            )
-
-            charge = Stripe::Charge.create(
-              amount: 48500,
-              currency: 'aud',
-              customer: customer.id,
-              description: "[PREORDER] - #{preorder_params[:frame].titleize}, #{preorder_params[:size].titleize}, #{preorder_params[:utility].titleize}, #{preorder_params[:lens].titleize}"
-            )
-
-            # update the preorder with charge.id and customer.id
-            preorder.update_attributes({
-                customer_id: customer.id,
-                charge_id: charge.id
-            })
-
-            preorder.send_confirmation
-
-            render json: {
-              success: true,
-              preorder: preorder
-            }
-
-          rescue Stripe::CardError => error
-            preorder.destroy
-
-            render json: {
-              success: false,
-              errors: error.json_body[:error][:message]
-            }
-
-          end
-
-        else
-
-          render json: {
-            success: false,
-            errors: preorder.errors,
-            full_errors: preorder.errors.full_messages
-          }
-
-        end
+      if !@coupon.nil?
+        handle_coupon(@coupon)
+      elsif !@gift.nil?
+        handle_gift(@gift)
+      elsif !code.blank?
+        handle_invalid_token
+        return
+      else
+        handle_payment(Tzukuri::FULL_PRICE)
+      end
     end
 
     private
 
     def preorder_params
-        params.permit(:name, :email, :phone, {address_lines: []}, :country, :state, :postal_code, :utility, :frame, :size, :lens, :customer_id, :charge_id, :token, :code)
+        params.permit(:name, :email, :phone, {address_lines: []}, :country, :state, :postal_code, :utility, :frame, :size, :lens, :customer_id, :charge_id, :token, :coupon)
+    end
+
+    # calculate the coupon discount and then call handle payment to make the payment
+    def handle_coupon(coupon)
+      amount = coupon.apply_discount(Tzukuri::FULL_PRICE)
+      handle_payment(amount, coupon)
+    end
+
+    # create a preorder without needing to charge the card
+    def handle_gift(gift)
+      build_params = preorder_params.except(:token, :coupon)
+      build_params.merge!({gift_id: gift.id})
+
+      preorder = Preorder.create(build_params)
+
+      if !preorder.valid?
+        render json: {
+          success: false,
+          errors: preorder.errors,
+          full_errors: preorder.errors.full_messages
+        }
+        return
+      else
+        preorder.send_confirmation
+        gift.send_redeemed
+
+        render json: {
+          success: true,
+          preorder: preorder
+        }
+      end
+
+    end
+
+    # handle a payment with a coupon
+    def handle_payment(final_amount, coupon = nil)
+      # create the preorder params and merge the coupon id if one exists
+      build_params = preorder_params.except(:token, :coupon)
+      build_params.merge!({coupon_id: coupon.id}) unless coupon.nil?
+
+      preorder = Preorder.create(build_params)
+
+      # if the preorder is not valid, return an error (there was some error creating the preorder)
+      if !preorder.valid?
+        render json: {
+          success: false,
+          errors: preorder.errors,
+          full_errors: preorder.errors.full_messages
+        }
+        return
+      end
+
+      # the preorder is valid so attempt to charge the card
+      begin
+        customer = Stripe::Customer.create(
+          card: preorder_params[:token],
+          description: preorder_params[:name],
+          email: preorder_params[:email]
+        )
+
+        charge = Stripe::Charge.create(
+          amount: final_amount,
+          currency: 'aud',
+          customer: customer.id,
+          description: "[PREORDER] - #{preorder_params[:frame].titleize}, #{preorder_params[:size].titleize}, #{preorder_params[:utility].titleize}, #{preorder_params[:lens].titleize}"
+        )
+
+        tzu_charge = Charge.create(customer_id: customer.id, charge_id: charge.id, amount: final_amount)
+
+        preorder.update_attributes(charge_id: tzu_charge.id)
+
+        preorder.send_confirmation
+
+        render json: {
+          success: true,
+          preorder: preorder
+        }
+
+      rescue Stripe::CardError => error
+        preorder.destroy
+
+        render json: {
+          success: false,
+          errors: error.json_body[:error][:message]
+        }
+      end
+    end
+
+    # render an error if we detect a token that is invalid
+    def handle_invalid_token
+        render json: {
+          success: false,
+          errors: ["The deposit token you provided was invalid."]
+        }
     end
 end

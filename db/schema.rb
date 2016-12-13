@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161124234107) do
+ActiveRecord::Schema.define(version: 20161212221903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -187,6 +187,23 @@ ActiveRecord::Schema.define(version: 20161124234107) do
     t.string   "model"
   end
 
+  create_table "charges", force: :cascade do |t|
+    t.string   "customer_id"
+    t.string   "charge_id"
+    t.integer  "amount"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "coupons", force: :cascade do |t|
+    t.string   "code"
+    t.integer  "discount"
+    t.datetime "expires_at"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "device_batches", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -245,6 +262,16 @@ ActiveRecord::Schema.define(version: 20161124234107) do
 
   add_index "feedbacks", ["user_id"], name: "index_feedbacks_on_user_id", using: :btree
 
+  create_table "gifts", force: :cascade do |t|
+    t.string   "purchased_by"
+    t.string   "code"
+    t.datetime "expires_at"
+    t.integer  "charge_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "engraving"
+  end
+
   create_table "interests", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
@@ -284,11 +311,11 @@ ActiveRecord::Schema.define(version: 20161124234107) do
     t.string   "frame"
     t.string   "size"
     t.string   "lens"
-    t.string   "customer_id"
-    t.string   "charge_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "code"
+    t.integer  "coupon_id"
+    t.integer  "charge_id"
+    t.integer  "gift_id"
   end
 
   create_table "purchases", force: :cascade do |t|
