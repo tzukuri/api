@@ -19,27 +19,25 @@
       <table style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; width: 100%; margin: 0; padding: 0;">
         <tr style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; margin: 0; padding: 0;">
           <td style="text-align: center; font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; margin: 0; padding: 0;">
+            <h1 style="text-align: center; font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 12pt; line-height: 1.2em; color: #1a1d1a; font-weight: 100; margin: 0px 0px 0px; padding: 0;" align="center">T Z U K U R I</h1>
 
-
-            <h1 style="text-align: center; font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 32px; line-height: 1.2em; color: #1a1d1a; font-weight: 200; margin: 20px 0 10px; padding: 0;" align="center">T Z U K U R I</h1>
-
-            <hr style="border: 0.5px solid #C1CBCC; margin-bottom:10px; margin-top: 30px; opacity: 0.2">
+            <hr style=" border: 0.5px solid #C1CBCC; margin-bottom: 10px; margin-top: 20px; opacity: 0.2">
 
             <div style="margin-left: -20px; margin-right: -20px; padding-left: 50px; padding-right: 50px; padding-top: 20px; padding-bottom: 20px;">
-              <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 20px; padding: 0; color: #686868; text-align: left">Thanks for giving a pair of Tzukuris. We've spent a lot of time making sure they're really great and we think they'll make the perfect gift. Please forward this email to your friend, or print it off and give it to them in person.</p>
+              <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 20px; padding: 0; color: #686868; text-align: left">Thanks for giving a pair of Tzukuris. These beautiful, handmade eyeglasses will make the perfect gift. Please forward this email to your friend, or print it off and give it to them in person.</p>
             </div>
 
-            <hr style="border: 0.5px solid #C1CBCC; margin-bottom:50px; margin-top: 0px; opacity: 0.2">
+            <hr style="border: 0.5px solid #C1CBCC; margin-bottom:35px; margin-top: 0px; opacity: 0.2">
 
             <h2 style="font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 24px; line-height: 1.2em; color: #1a1d1a; font-weight: 200; margin: 10px 0 20px; padding: 0; font-size:22px; text-align: center">Order Confirmation</h2>
 
-            <%= image_tag "giftcard.png", style: 'width: 45%; margin-top: 30px;' %>
+            <%= image_tag "giftcard.png", style: 'width: 45%; margin-top: 15px;' %>
 
             <div style="text-align: left; background-color: #ffffff; margin-left: -20px; margin-right: -20px; padding-left: 50px; padding-right: 50px; padding-top: 20px; padding-bottom: 30px;">
               <table width="100%" style="color: #686868; font-weight: 400; font-size: 10pt;">
                 <tr>
                   <td width="33%" style="text-align: center; vertical-align: top">
-                    <p><span style="font-weight: 500">Code:</span> <br/> <span style="color: #307668"><%= @gift.code %></span></p>
+                    <p><span style="font-weight: 500">Token:</span> <br/> <span style="color: #307668"><%= @gift.code %></span></p>
                   </td>
                   <td width="33%" style="text-align: center; vertical-align: top">
                     <p><span style="font-weight: 500">Purchase Date:</span> <br/> <%= @gift.created_at.in_time_zone('Australia/Sydney').strftime("%A, %d/%m/%Y") %><br/><%= @gift.created_at.in_time_zone('Australia/Sydney').strftime("%I:%M %p") %></p>
@@ -60,9 +58,9 @@
               <h2 style="font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 24px; line-height: 1.2em; color: #1a1d1a; font-weight: 200; margin: 10px 0 20px; padding: 0; font-size:22px; text-align: center">How to Redeem</h2>
 
               <ol style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: normal; color: #686868">
-                <li style="line-height: 1.6em;">Forward this email (or just the code) to the gift recipient.</li>
+                <li style="line-height: 1.6em;">Forward this email (or just the token) to the gift recipient.</li>
                 <li style="line-height: 1.6em;">The recipient should visit <a href="https://tzukuri.com/reserve" style="color:#307668; text-decoration:none">tzukuri.com/reserve</a> and choose their pair.</li>
-                <li style="line-height: 1.6em;">At checkout, the recipient should enter their six-character gift code (<span style="color: #307668"><%= @gift.code %></span>).</li>
+                <li style="line-height: 1.6em;">At checkout, the recipient should enter their six-character gift token (<span style="color: #307668"><%= @gift.code %></span>).</li>
                 <li style="line-height: 1.6em;">Both you and the recipient will receive an email confirming the order.</li>
               </ol>
             </div>
