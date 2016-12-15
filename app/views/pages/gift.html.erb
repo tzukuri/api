@@ -11,13 +11,15 @@
     <h1>give the gift of Tzukuri</h1>
     <%= image_tag 'giftcard.png', class: '', style: 'width: 30%; margin-bottom: 50px' %>
     <div class="row">
-        <p>Want to gift a pair of Tzukuri Memorable Glasses to a friend? <br/>Gift them the choice of any pair this Christmas.</p>
+        <p>Want to gift a pair of Tzukuri Memorable Glasses to a friend? <br/>Give them the choice of any pair with complimentary <a href="">personal fitting</a> this Christmas.</p>
         <button id="welcome-continue" style="margin: 30px auto 20px auto;">continue &nbsp; &rarr;</button>
+        <br/><br/>
+        <a href="/reserve" style="font-size: 10pt">Want to buy a pair for yourself?</a>
     </div>
   </div>
 
   <div class="step-container hidden" id="step-checkout">
-        <h1>purchase your gift card</h1>
+        <h1>purchase your gift</h1>
 
         <div class="row step-content">
           <div class="six columns" id="glasses">
@@ -33,7 +35,7 @@
                   </div>
                 </dl>
 
-                <p>We will send you an email with your gift code. You can then forward to email to your friend, or print it out and give it to them in person.</p>
+                <p>We will send you an email with your gift token. You can then forward to email to your friend, or print it out and give it to them in person.</p>
 
               </div>
             </div>
@@ -65,7 +67,7 @@
 
               <%= label :gift, :engraving, "Engraving (Optional)" %>
               <%= f.text_field :engraving, placeholder:"Your custom message", maxlength: 15 %>
-              <p class="field-desc">Please ensure everything is spelled correctly. Your message will be permanently engraved on inside temple.</p>
+              <p class="field-desc">Please ensure everything is spelled correctly. Your message will be permanently engraved on the inside of the left arm.</p>
 
               <%= label :gift, :coupon, "Deposit Token (Optional)" %>
               <%= f.text_field :coupon, placeholder: 'Deposit token' %>
@@ -114,7 +116,7 @@
                 </div>
 
                 <button id="reserve-submit" type="submit" class="order-btn">
-                  <span id="reserve-for">order for 485 AUD</span>
+                  <span id="reserve-for">purchase for 485 AUD</span>
                 </button>
               </form>
 
