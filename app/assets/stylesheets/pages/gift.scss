@@ -292,8 +292,8 @@ body.gift {
           @include font-size(14px)
         }
 
-        img {
-          width: 70%;
+        &#step-welcome img {
+          width: 100%;
         }
 
         .select-utility, .select-frame, .select-lens, .select-size {
