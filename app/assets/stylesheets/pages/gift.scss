@@ -253,9 +253,9 @@ body.gift {
 }
 
 @media only screen and (max-width: 550px) {
-  body.reserve {
+  body.gift {
 
-    #reserve-nav {
+    #gift-nav {
       margin-top: 20px;
 
       a {
@@ -263,7 +263,7 @@ body.gift {
       }
     }
 
-    #reserve {
+    #gift {
       margin-top: 20px;
       margin-bottom: 20px;
 
@@ -319,8 +319,8 @@ body.gift {
 }
 
 @media only screen and (max-width: 350px) {
-  body.reserve {
-    #reserve-nav #nav-list li {
+  body.gift {
+    #gift-nav #nav-list li {
       margin: 0 5px 0 5px;
     }
   }
