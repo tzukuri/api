@@ -51,7 +51,7 @@ $(function() {
         $("#errors").html('An error has occurred, please try again.')
     });
 
-    $(document).on("tzukuri.page.load", function() {
+    $(document).on("ready", function() {
         // fade in the main view, set a small timeout to give the page time to render
         // fixme: remove the timeout
         $('#hero').removeClass('hidden')
