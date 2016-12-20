@@ -1,24 +1,5 @@
-// colour palette
-$myrtle-green: #2C7567;
-$lavender-grey: #C1CBCC;
-$dim-grey: #686868;
-$white: #FFFFFF;
-$eerie-black: #1A1D1A;
-$shadow-green: #97BAB3;
-
-// tzukuri colours
-$tz-active: $myrtle-green;
-$tz-inactive: #F6F6F6;
-$tz-background: $white;
-$tz-background-alt: $lavender-grey;
-$tz-title: $eerie-black;
-$tz-content: $dim-grey;
-$tz-error: #CF4339;
-$tz-success: #36C26E;
-$tz-sun: #A69386;
-
-// sizing variables
-$tz-border-radius: 20px;
+@import "tzukuri/variables";
+@import "tzukuri/mixins";
 
 // typography
 html, body {

@@ -1,3 +1,8 @@
+// strip the unit from any number
+@function x($num) {
+    @return ($num / ($num * 0 + 1));
+}
+
 // set a rem font size with a pixel fallback
 @mixin font-size($size) {
   @if unitless($size) {
@@ -5,7 +10,7 @@
   }
 
   font-size: $size;
-  font-size: ($size / $base-font-size) * 1rem;
+  font-size: x($size) / $base-font-size * 1rem;
 }
 
 // transitions
