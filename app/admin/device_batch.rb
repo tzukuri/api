@@ -59,6 +59,7 @@ ActiveAdmin.register DeviceBatch do
     PIN_LENGTH = 6
     PIN_PREFIX = 1
     MAC_INCREMENT = 2
+    HARDWARE_REV = "Rev3E"
 
     def create
       batch_size = create_params[:batch_size].to_i
@@ -81,11 +82,11 @@ ActiveAdmin.register DeviceBatch do
         pin = nil
         mac = generate_mac
         pin = generate_pin while pin.nil? || existing_pins.include?(pin) || new_pins.include?(pin)
-        serial = mac[0..6] + "FFFE" + mac[6..11]
+        serial = mac[0..5] + "FFFE" + mac[6..11]
 
         new_pins << pin
 
-        device = Device.create(mac_address: mac, pin: pin, device_batch_id: batch.id, serial: serial, hardware_revision: "Beta 😎")
+        device = Device.create(mac_address: mac, pin: pin, device_batch_id: batch.id, serial: serial, hardware_revision: HARDWARE_REV)
       end
 
       redirect_to admin_device_batch_path(batch)
