@@ -18,6 +18,7 @@ ActiveAdmin.register_page "Dashboard" do
           column("Lens") {|preorder| preorder.lens.titleize}
           column("Size") {|preorder| "#{preorder.size}mm"}
           column("Engraving") {|preorder| preorder.gift.engraving if preorder.gift?}
+          column("Order Date") {|preorder| preorder.created_at.in_time_zone('Australia/Sydney').strftime("%d/%m/%Y")}
           column("Gift") {|preorder| preorder.gift? ? status_tag("YES") : status_tag("NO")}
         end
       end

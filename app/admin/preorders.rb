@@ -7,12 +7,9 @@ ActiveAdmin.register Preorder do
       column :name
       column :email
       column :phone
-      column :address_lines do |preorder|
-        preorder.address_lines.join(", ")
+      column :address do |preorder|
+         "#{preorder.address_lines.join(', ')}, #{preorder.state}, #{preorder.postal_code}"
       end
-      column :country
-      column :state
-      column :postal_code
       column :utility do |preorder|
         preorder.utility.titleize
       end
@@ -30,6 +27,9 @@ ActiveAdmin.register Preorder do
           preorder.gift.engraving
         end
       end
+      column :order_date do |preorder|
+        preorder.created_at.in_time_zone('Australia/Sydney').strftime("%d/%m/%Y")
+      end
       column :amount do |preorder|
         preorder.charge.amount/100 if preorder.charge?
       end
@@ -38,9 +38,6 @@ ActiveAdmin.register Preorder do
       end
       column :gift do |preorder|
         preorder.gift? ? status_tag("YES") : status_tag("NO")
-      end
-      column :ordered_at do |preorder|
-        preorder.created_at.in_time_zone('Australia/Sydney')
       end
     end
 end
