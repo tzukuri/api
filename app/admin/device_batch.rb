@@ -1,9 +1,15 @@
 ActiveAdmin.register DeviceBatch do
-  menu parent: 'API'
+  menu label: "Device Groups", parent: 'API'
   permit_params :batch_size
   actions :all, :except => [:edit]
 
-  index do
+  config.clear_action_items!
+
+  action_item :only => :index do
+      link_to "New Device Group" , "/admin/device_batches/new"
+  end
+
+  index :title => "Device Groups" do
       id_column
 
       column("# Devices") { |device_batch| device_batch.devices.count }
@@ -17,7 +23,7 @@ ActiveAdmin.register DeviceBatch do
   end
 
   show do
-    panel "Batch Details" do
+    panel "Group Details" do
       table_for device_batch do
         column :id
         column("# Devices") { |device_batch| device_batch.devices.count }
@@ -29,7 +35,7 @@ ActiveAdmin.register DeviceBatch do
       end
     end
 
-    panel "Batch Devices" do
+    panel "Devices" do
       table_for device_batch.devices do
         column :id
         column :mac_address
@@ -49,7 +55,7 @@ ActiveAdmin.register DeviceBatch do
   end
 
   form do |f|
-      f.inputs "Request Batch" do
+      f.inputs "Request Group" do
         f.input :batch_size
       end
       f.actions
@@ -60,6 +66,8 @@ ActiveAdmin.register DeviceBatch do
     PIN_PREFIX = 1
     MAC_INCREMENT = 2
     HARDWARE_REV = "Rev3E"
+
+    before_filter { @page_title = "Device Groups" }
 
     def create
       batch_size = create_params[:batch_size].to_i
