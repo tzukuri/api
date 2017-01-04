@@ -30,6 +30,15 @@ ActiveAdmin.register Preorder do
       column :order_date do |preorder|
         preorder.created_at.in_time_zone('Australia/Sydney').strftime("%d/%m/%Y")
       end
+      column :status do |preorder|
+        if preorder.status == "in_progress"
+          status_tag preorder.status, :warn
+        elsif preorder.status == "shipped"
+          status_tag preorder.status, :ok
+        else
+          status_tag preorder.status
+        end
+      end
       column :amount do |preorder|
         preorder.charge.amount/100 if preorder.charge?
       end
@@ -40,4 +49,22 @@ ActiveAdmin.register Preorder do
         preorder.gift? ? status_tag("YES") : status_tag("NO")
       end
     end
+
+
+    # batch actions
+    # batch_action :wait do |ids|
+    #   Preorder.find(ids).each do |preorder|
+    #     OrderEvent.waiting(preorder.id)
+    #   end
+    #
+    #   redirect_to collection_path, alert: "#{ids.count} orders flagged as waiting"
+    # end
+    #
+    # batch_action :begin do |ids|
+    #   Preorder.find(ids).each do |preorder|
+    #     OrderEvent.in_progress(preorder.id)
+    #   end
+    #
+    #   redirect_to collection_path, alert: "#{ids.count} orders flagged as in progress"
+    # end
 end

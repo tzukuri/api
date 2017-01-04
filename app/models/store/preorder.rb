@@ -5,6 +5,7 @@ class Preorder < ActiveRecord::Base
     belongs_to :coupon
     belongs_to :charge
     belongs_to :gift
+    has_many :order_events
 
     validates_presence_of :name
     validates_presence_of :phone
@@ -59,6 +60,26 @@ class Preorder < ActiveRecord::Base
 
     def coupon?
       !coupon.nil?
+    end
+
+    def status
+      order_events.empty? ? "" : order_events.last.name
+    end
+
+    def last_event
+      order_events.empty? ? nil : order_events.last
+    end
+
+    def events
+      order_events
+    end
+
+    def self.in_progress
+      Preorder.all.select{|p| p.status == "in_progress"}
+    end
+
+    def self.waiting
+      Preorder.all.select{|p| p.status == "waiting" }
     end
 
     private

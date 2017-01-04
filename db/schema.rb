@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161212221903) do
+ActiveRecord::Schema.define(version: 20170103232434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -289,6 +289,13 @@ ActiveRecord::Schema.define(version: 20161212221903) do
   end
 
   add_index "log_entries", ["auth_token_id", "created_at", "type"], name: "index_log_entries_on_auth_token_id_and_created_at_and_type", order: {"created_at"=>:desc}, using: :btree
+
+  create_table "order_events", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "preorder_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "ownerships", force: :cascade do |t|
     t.integer  "user_id"
