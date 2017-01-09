@@ -2,6 +2,26 @@ ActiveAdmin.register Preorder do
     menu parent: 'Sales'
 
     index do
+
+      div :class => "row", :style => "margin-bottom: 20px; margin-top: 30px;" do
+        div :class => "three columns", :style => "text-align: center; border: 1px solid black; padding-top: 15px; clear: none" do
+          h1 Preorder.all.count
+          h3 "Total Preorders"
+        end
+        div :class => "three columns", :style => "text-align: center; border: 1px solid black; padding-top: 15px; clear: none" do
+          h1 Gift.all.count
+          h3 "Total Gifts"
+        end
+        div :class => "three columns", :style => "text-align: center; border: 1px solid black; padding-top: 15px; clear: none" do
+          h1 Preorder.where(lens: 'prescription').count
+          h3 "Prescription"
+        end
+        div :class => "three columns", :style => "text-align: center; border: 1px solid black; padding-top: 15px; clear: none" do
+          h1 Preorder.where(lens: 'non-prescription').count
+          h3 "Non-Prescription"
+        end
+      end
+
       selectable_column
       id_column
       column :name

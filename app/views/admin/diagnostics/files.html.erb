@@ -8,7 +8,7 @@
       <%= link_to @user.name, "/admin/users/#{@user.id}" %>
     <% end %>
     &nbsp;|&nbsp;
-    <%= @auth_token.api_device.name %>
+    <%= @auth_token.api_device.name if !@auth_token.nil? %>
     &nbsp;|&nbsp;
     <%= @data[:aggregates][:start_time].in_time_zone('Australia/Sydney').strftime('%d/%m/%y %l:%M %p') %> - <%= @data[:aggregates][:end_time].in_time_zone('Australia/Sydney').strftime('%d/%m/%y %l:%M %p')%> AEST
     </p>
