@@ -1,7 +1,4 @@
-<main>
-  <article>
-    <div class="panel">
-      <div class="content">
+      <div class="container">
         <!-- if the repond param is present, show buttons for accepting and rejecting -->
         <% if params["respond"] == "true" %>
         <div id="policy-changed">
@@ -42,10 +39,6 @@
             </center>
         <%end%>
       </div>
-    </div>
-  </article>
-</main>
-
 
 <script>
     $("#accept-privacy").click(function() {
