@@ -270,7 +270,8 @@ ActiveAdmin.register User do
                   dt "RADIUS"
                   dd format_text(zone.radius)
                   dt "START"
-                  dd format_time(zone.starttime)
+                  # dd format_time(zone.starttime)
+                  dd zone.starttime
                 end
               end
 
@@ -281,7 +282,8 @@ ActiveAdmin.register User do
                   dt "COORD"
                   dd format_coords(zone.latitude, zone.longitude)
                   dt "END"
-                  dd format_time(zone.endtime)
+                  # dd format_time(zone.endtime)
+                  dd zone.endtime
                 end
               end
             end
