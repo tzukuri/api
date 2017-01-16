@@ -13,4 +13,20 @@ class Quietzone < ActiveRecord::Base
   validates :radius,      presence: true
   validates :user_id,     presence: true
 
+  def start_time
+    return epoch_time(starttime)
+  end
+
+  def end_time
+    return epoch_time(endtime)
+  end
+
+  private
+
+  def epoch_time(ts)
+    return if ts.nil?
+    # quietzone timestamps are always stored as UTC
+    return Time.at(ts).utc
+  end
+
 end

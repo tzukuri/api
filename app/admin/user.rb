@@ -56,8 +56,13 @@ ActiveAdmin.register User do
       text.blank? ? empty : text
     end
 
+    def format_date(date, empty="Unknown")
+      date.blank? ? empty : date.in_time_zone('Australia/Sydney').strftime('%e %b %Y %l:%M %p')
+    end
+
     def format_time(time, empty="Unknown")
-      time.blank? ? empty : time.in_time_zone('Australia/Sydney').strftime('%e %b %Y %l:%M %p')
+      # todo: this is only used for quietzone time formats right now, so we dont need to convert timezone
+      time.blank? ? empty : time.strftime('%l:%M %p')
     end
 
     def format_link(link,  href="", empty="Unknown")
@@ -103,7 +108,7 @@ ActiveAdmin.register User do
               dt "EMAIL"
               dd format_link(user.email, "mailto:#{user.email}")
               dt "REGISTERED"
-              dd format_time(user.created_at)
+              dd format_date(user.created_at)
             end
           end
 
@@ -112,9 +117,9 @@ ActiveAdmin.register User do
               dt "LOCKED"
               dd format_bool(user.access_locked?, 'Locked', 'Unlocked')
               dt "LOCKED AT"
-              dd format_time(user.locked_at, "N/A")
+              dd format_date(user.locked_at, "N/A")
               dt "SIGNED IN"
-              dd format_time(user.current_sign_in_at)
+              dd format_date(user.current_sign_in_at)
             end
           end
 
@@ -172,7 +177,7 @@ ActiveAdmin.register User do
                   dt "COORD"
                   dd format_coords(glasses.latitude, glasses.longitude)
                   dt "COORD SET"
-                  dd format_time(glasses.coords_set_time) + " (#{time_ago_in_words(glasses.coords_set_time)} ago)"
+                  dd format_date(glasses.coords_set_time) + " (#{time_ago_in_words(glasses.coords_set_time)} ago)"
                 end
               end
 
@@ -224,7 +229,7 @@ ActiveAdmin.register User do
                   dt "VERSION"
                   dd "--"
                   dt "CREATED"
-                  dd format_time(token.api_device.created_at)
+                  dd format_date(token.api_device.created_at)
                   dt "DIAG TOKEN"
                   dd format_link(token.diagnostics_sync_token, "/admin/diagnostics/#{token.diagnostics_sync_token}")
                 end
@@ -270,8 +275,7 @@ ActiveAdmin.register User do
                   dt "RADIUS"
                   dd format_text(zone.radius)
                   dt "START"
-                  # dd format_time(zone.starttime)
-                  dd zone.starttime
+                  dd format_time(zone.start_time)
                 end
               end
 
@@ -282,8 +286,7 @@ ActiveAdmin.register User do
                   dt "COORD"
                   dd format_coords(zone.latitude, zone.longitude)
                   dt "END"
-                  # dd format_time(zone.endtime)
-                  dd zone.endtime
+                  dd format_time(zone.end_time)
                 end
               end
             end
