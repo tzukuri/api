@@ -15,4 +15,8 @@ class BetaMailerPreview < ActionMailer::Preview
   def send_beta_order_email
     BetaMailer.send_beta_order_email(BetaUser.first)
   end
+
+  def send_beta_pf_invite
+    BetaMailer.send_beta_pf_invite(BetaUser.first)
+  end
 end

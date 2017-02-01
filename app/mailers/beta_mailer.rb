@@ -29,6 +29,8 @@ class BetaMailer < ActionMailer::Base
     mail(to: 'sam@tzukuri.com, w@tzukuri.com', subject: "Alert - Incorrect Beta User Scores")
   end
 
-
-
+  def send_beta_pf_invite(beta_user)
+    @beta_user = beta_user
+    mail(to: beta_user.email, from: 'hello@tzukuri.com', subject: "Your Tzukuri Personal Fitting invite")
+  end
 end

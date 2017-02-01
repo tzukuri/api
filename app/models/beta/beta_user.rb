@@ -85,6 +85,10 @@ class BetaUser < ActiveRecord::Base
     BetaMailer.send_beta_forgot_link(self).deliver_later
   end
 
+  def send_pf_invite
+    BetaMailer.send_beta_pf_invite(self).deliver_later
+  end
+
   # social methods
   def twitter
     identities.where(:provider => 'twitter').first
