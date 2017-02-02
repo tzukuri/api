@@ -1,5 +1,5 @@
 class BetaMailer < ActionMailer::Base
-  default :from => "\"Tzukuri\" <beta@tzukuri.com>"
+  default :from => "\"Tzukuri\" <hello@tzukuri.com>"
 
   def send_beta_confirmation_email(beta_user)
     @beta_user = beta_user
@@ -31,6 +31,6 @@ class BetaMailer < ActionMailer::Base
 
   def send_beta_pf_invite(beta_user)
     @beta_user = beta_user
-    mail(to: beta_user.email, from: 'hello@tzukuri.com', subject: "Your Tzukuri Personal Fitting invite")
+    mail(to: beta_user.email, subject: "Your Tzukuri Personal Fitting invite")
   end
 end
