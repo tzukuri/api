@@ -86,7 +86,7 @@ class BetaUser < ActiveRecord::Base
   end
 
   def send_pf_invite
-    BetaMailer.send_beta_pf_invite(self).deliver_later
+    BetaMailer.send_personal_fitting_invite(self).deliver_later
   end
 
   # social methods
