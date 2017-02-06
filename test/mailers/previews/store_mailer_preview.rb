@@ -11,4 +11,8 @@ class StoreMailerPreview < ActionMailer::Preview
   def send_gift_redeemed
     StoreMailer.gift_redeemed(Gift.find(17))
   end
+
+  def send_personal_fitting_invite
+    StoreMailer.send_personal_fitting_invite('sam@tzukuri.com')
+  end
 end

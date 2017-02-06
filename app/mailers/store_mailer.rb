@@ -21,6 +21,10 @@ class StoreMailer < ActionMailer::Base
     mail(to:gift.purchased_by, subject: "Your friend redeemed your Tzukuri Gift Card")
   end
 
+  def send_personal_fitting_invite(email)
+    mail(to: email, subject: "Your Tzukuri Personal Fitting invite")
+  end
+
   # todo: shipping update email (needs to be tied to be tied to the preorder being marked as in progress)
 
   # todo: shipped email (needs to be tied to the preorder being marked as shipped)
