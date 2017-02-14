@@ -1,17 +1,76 @@
 footer {
-    @include font-size(13px);
-
-    text-align: center;
-    color: $tz-content;
+    background: $lavender-grey;
     padding: 30px;
+    color: white;
 
-    span {
-        margin-left: 20px;
-
-        a {
-            @include font-size(13px);
-
-            margin-left: 20px;
-        }
+    p, ul li, a {
+      @include font-size(14px);
+      color: white;
     }
+
+    a {
+      line-height: 200%;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .footer-head {
+      @include font-size(16px);
+      font-weight: 600;
+    }
+
+    #footer-subhead {
+      padding-top: 10px;
+    }
+
+    #footer-signup {
+      padding-top: 10px;
+
+      form {
+        input, button {
+          @include font-size(14px);
+          display: inline;
+        }
+
+        input {
+          border-radius: 20px;
+          margin-right: -5px;
+          width: 85%;
+        }
+      }
+    }
+
+    #social-links  {
+      padding-top: 20px;
+
+      a {
+        display: inline-block;
+        padding-right: 20px;
+      }
+    }
+
+    #sitemap {
+      padding-top: 10px;
+    }
+
+    hr {
+      border-top: 1px solid rgba(255, 255, 255, 1.00);
+    }
+
+    #footer-bottom {
+      p {
+        @include font-size(12px);
+      }
+
+      #quote {
+        float: left;
+      }
+
+      #copy {
+        float: right;
+      }
+    }
+
 }

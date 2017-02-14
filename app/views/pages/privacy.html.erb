@@ -1,44 +1,46 @@
-      <div class="container">
-        <!-- if the repond param is present, show buttons for accepting and rejecting -->
-        <% if params["respond"] == "true" %>
-        <div id="policy-changed">
-          <p>Our Privacy Policy has changed. To continue to use Tzukuri, please accept the new policy below.</p>
-          <button id="accept-privacy">accept</button>
-          <button id="reject-privacy">reject</button>
-        </div>
-        <%end%>
-
-        <!-- add an extra clas that slides the container down to accomodate the above div if params exist -->
-        <div id="policy-container" class="<%= 'policy-gap' if params["respond"] == "true" %>">
-          <h1>Privacy Policy</h1>
-          <p>Thank you for using Tzukuri. Information about yourself, and your metadata, are critical to the services we provide. This privacy policy tells you how we collect and use that information.</p>
-          <p></p>
-          <h1>Personal Information</h1>
-          <p>Tzukuri is a highly personal product, requiring access to information about your location, physical movement, physical environment, device and operating system, application usage patterns and Bluetooth history to function properly. Without it we wouldn't be able to provide the product we do.</p>
-          <p>This information is never shared with anyone else, unless required by law, and in situations where there's a serious threat to health and safety.</p>
-          <p>All other personal information collected by us, including registration information (such as your name and email address), and web analytics data is likewise never shared with anyone else, other than in the exceptions mentioned.</p>
-          <h1>How we protect your information</h1>
-          <p>Your personal information is encrypted and stored in Singapore in secure facilities. To help protect your privacy we maintain physical, technical and administrative safeguards. We update and test our security technology on an ongoing basis.</p>
-          <p>We train our employees about the importance of confidentiality and maintaining the privacy and security of your information. Access to your data is restricted to employees who need it to provide services to you.</p>
-          <h1>Our obligations</h1>
-          <p>We are bound by the provisions of the <a href="https://www.legislation.gov.au/Series/C2004A03712">Privacy Act 1988 (Cth)</a>, including the <a href="https://www.oaic.gov.au/privacy-law/privacy-act/australian-privacy-principles">Australian Privacy Principles</a>.</p>
-          <h1>Contact us</h1>
-          <p><a href="a@tzukuri.com">Email us</a> about your privacy concerns.</p>
-          <p>Alternatively, you can write to us at:<br>
-          6 Lenthall Street,<br>
-          Kensington, NSW, 2033<br>
-          Australia
-          </p>
-        </div>
-
-        <!-- if the repond param is present, show buttons for accepting and rejecting -->
-        <% if params["respond"] == "true" %>
-            <center>
-              <button id="accept-privacy">accept</button>
-              <button id="reject-privacy">reject</button>
-            </center>
-        <%end%>
+<div class="main">
+    <div class="container">
+      <!-- if the repond param is present, show buttons for accepting and rejecting -->
+      <% if params["respond"] == "true" %>
+      <div id="policy-changed">
+        <p>Our Privacy Policy has changed. To continue to use Tzukuri, please accept the new policy below.</p>
+        <button id="accept-privacy">accept</button>
+        <button id="reject-privacy">reject</button>
       </div>
+      <%end%>
+
+      <!-- add an extra clas that slides the container down to accomodate the above div if params exist -->
+      <div id="policy-container" class="<%= 'policy-gap' if params["respond"] == "true" %>">
+        <h1>Privacy Policy</h1>
+        <p>Thank you for using Tzukuri. Information about yourself, and your metadata, are critical to the services we provide. This privacy policy tells you how we collect and use that information.</p>
+        <p></p>
+        <h1>Personal Information</h1>
+        <p>Tzukuri is a highly personal product, requiring access to information about your location, physical movement, physical environment, device and operating system, application usage patterns and Bluetooth history to function properly. Without it we wouldn't be able to provide the product we do.</p>
+        <p>This information is never shared with anyone else, unless required by law, and in situations where there's a serious threat to health and safety.</p>
+        <p>All other personal information collected by us, including registration information (such as your name and email address), and web analytics data is likewise never shared with anyone else, other than in the exceptions mentioned.</p>
+        <h1>How we protect your information</h1>
+        <p>Your personal information is encrypted and stored in Singapore in secure facilities. To help protect your privacy we maintain physical, technical and administrative safeguards. We update and test our security technology on an ongoing basis.</p>
+        <p>We train our employees about the importance of confidentiality and maintaining the privacy and security of your information. Access to your data is restricted to employees who need it to provide services to you.</p>
+        <h1>Our obligations</h1>
+        <p>We are bound by the provisions of the <a href="https://www.legislation.gov.au/Series/C2004A03712">Privacy Act 1988 (Cth)</a>, including the <a href="https://www.oaic.gov.au/privacy-law/privacy-act/australian-privacy-principles">Australian Privacy Principles</a>.</p>
+        <h1>Contact us</h1>
+        <p><a href="a@tzukuri.com">Email us</a> about your privacy concerns.</p>
+        <p>Alternatively, you can write to us at:<br>
+        6 Lenthall Street,<br>
+        Kensington, NSW, 2033<br>
+        Australia
+        </p>
+      </div>
+
+      <!-- if the repond param is present, show buttons for accepting and rejecting -->
+      <% if params["respond"] == "true" %>
+          <center>
+            <button id="accept-privacy">accept</button>
+            <button id="reject-privacy">reject</button>
+          </center>
+      <%end%>
+    </div>
+</div>
 
 <script>
     $("#accept-privacy").click(function() {

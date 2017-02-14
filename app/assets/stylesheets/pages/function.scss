@@ -1,0 +1,69 @@
+@import "tzukuri/variables";
+@import "tzukuri/mixins";
+
+body.function {
+
+  #most-useful {
+    text-align: center;
+  }
+
+  #timely-intelligence {
+    text-align: center;
+    background-color: #c1cbcc;
+
+    #remember {
+      img {
+        // width: 90%;
+        margin-bottom: 30px;
+      }
+    }
+
+    #notification {
+      img {
+        // width: 100%;
+        margin-bottom: 30px;
+      }
+    }
+
+    #distancing {
+      img {
+        // width: 90%;
+        margin-bottom: 30px;
+      }
+    }
+
+  }
+
+  #beautifully-light {
+    text-align: center;
+
+    img {
+      width: 50%;
+    }
+
+    p {
+      width: 65%;
+      margin: 0 auto;
+      padding-bottom: 60px;
+    }
+  }
+
+  #visual-indulgence {
+    background-image: url('/assets/Tzukuri3212.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: 0 50%;
+
+    p, ul li {
+      color: $tz-title;
+    }
+  }
+
+  #little-things {
+    text-align: center;
+
+    i {
+      color: $tz-content;
+    }
+  }
+}

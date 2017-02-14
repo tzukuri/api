@@ -106,6 +106,9 @@ Rails.application.routes.draw do
     # coupons
     post '/coupons'             => 'coupons#validate'
 
+    # personal try on
+    post '/tryon'              => 'tryon#validate'
+
     # beta routes
     get '/beta/forgot'          => 'beta#forgot',       :as => :beta_user_forgot
     post '/beta/retrieve'       => 'beta#retrieve',     :as => :beta_user_retrieve

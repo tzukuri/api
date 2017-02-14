@@ -31,6 +31,7 @@ gem 'country_select'
 gem 'nokogiri', '~> 1.6.7.2'
 gem 'parallel'
 gem 'ruby-progressbar'
+gem 'createsend'
 
 #omniauth strategies
 gem 'omniauth-twitter'

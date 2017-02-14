@@ -1,0 +1,49 @@
+@import "tzukuri/variables";
+@import "tzukuri/mixins";
+
+#responsibility {
+  text-align: center;
+
+  h1, h2, p {
+    color: white;
+  }
+
+  background-image: url('/assets/responsibility-bg.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: 0 50%;
+}
+
+#new-craft {
+  h1 {
+    margin-top: 25%;
+  }
+}
+
+#process-highlights {
+
+  margin-top: 10px;
+
+  .feature {
+    margin: 0 auto;
+    width: 85px;
+    height: 85px;
+    margin-bottom: 20px;
+
+    .circle {
+      box-sizing: border-box;
+      border: 2px solid $tz-active;
+      color: $tz-active;
+      border-radius: 50%;
+      width: 85px;
+      height: 85px;
+      text-align:center;
+      display: table-cell;
+      vertical-align: middle;
+    }
+  }
+
+  .highlight {
+    text-align: center;
+  }
+}

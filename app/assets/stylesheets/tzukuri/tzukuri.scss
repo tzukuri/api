@@ -4,15 +4,38 @@
 // typography
 html, body {
     font-family: HelveticaNeueLT, Helvetica, sans-serif;
+    background-color: $tz-background-alt;
 }
 
-h1, h2, h3, p, a, ul, li {
-    line-height: 150%;
+a, ul, li {
+    line-height: 200%;
+
+    &.white {
+      color: white;
+    }
+}
+
+h1 {
+  color: $tz-title;
+  padding-bottom: 5px;
+  line-height: 100%;
+}
+
+h2, h3 {
+  color: $tz-content;
+  line-height: 150%;
+}
+
+h2 {
+  padding-bottom: 40px;
+}
+
+h3 {
+  padding-bottom: 0px;
 }
 
 h1, h2, h3 {
-    color: $tz-title;
-    font-weight: 200;
+    font-weight: 300;
 
     &.bold, .bold {
         font-weight: 300;
@@ -20,7 +43,7 @@ h1, h2, h3 {
 }
 
 h1 {
-    @include font-size(28px);
+    @include font-size(32px);
 
     &.h-lg {
         @include font-size(38px);
@@ -39,7 +62,7 @@ h2 {
     }
 
     &.h-sm {
-        @include font-size(20px);
+        @include font-size(18px);
     }
 }
 
@@ -48,9 +71,9 @@ h3 {
 }
 
 p, a {
-    @include font-size(18px);
+    @include font-size(16px);
 
-    font-weight: 300;
+    font-weight: 400;
 
     &.bold, .bold {
         font-weight: 500;
@@ -59,11 +82,22 @@ p, a {
 
 p {
     color: $tz-content;
+    font-weight: 400;
+    line-height: 150%;
+    padding-bottom: 10px;
+
+    &.bold {
+      font-weight:600;
+    }
 }
 
 a {
     color: $tz-active;
     text-decoration: none;
+}
+
+.bold {
+  font-weight: 600 !important;
 }
 
 // buttons
@@ -82,7 +116,7 @@ button, input[type=submit] {
     opacity: 1;
 
     &.sm-btn {
-        @include font-size(12px);
+        @include font-size(14px);
     }
 
     &.md-btn {
@@ -101,6 +135,16 @@ button, input[type=submit] {
             background-color: $tz-active;
             color: $white;
         }
+    }
+
+    &.alternate {
+      background-color: $white;
+      color: $tz-active;
+
+      &:hover {
+          background-color: $tz-active;
+          color: $white;
+      }
     }
 
     &:hover {
@@ -164,7 +208,7 @@ form {
     }
 
     .messages {
-        @include font-size(10px);
+        @include font-size(12px);
 
         margin: 0 auto;
         text-align: center;
@@ -184,24 +228,36 @@ form {
 
 // lists
 ul {
-    @include font-size(18px);
-
-    list-style-type: disc;
-    font-weight: 300;
+    @include font-size(15px);
     color: $tz-content;
     line-height: 200%;
 }
 
+// hr
+hr {
+  margin-top:20px;
+  margin-bottom: 20px;
+  border-top: 1px solid $tz-background-alt;
+}
+
 // panels
 .panel {
-    h1, h2, p, a {
-        padding-bottom: 20px;
-    }
+    padding-top: 40px;
+    padding-bottom: 40px;
 
     .spacer {
         margin-left: 15px;
         margin-right: 15px;
     }
+}
+
+.main {
+  padding-top: 60px;
+  background-color: white;
+}
+
+img {
+  width: 100%;
 }
 
 // colour classes

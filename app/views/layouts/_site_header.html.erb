@@ -1,14 +1,16 @@
 <header class="u-full-width">
   <div class="container">
-    <a id="tzukuri" href="/">TZUKURI</a>
-<!--     <a id="hamburger" class="fa fa-bars"></a>
-    <nav id="primary-nav">
-      <a href="/design" class="<%#= 'selected' if params[:page] == 'design' %>">design</a>
-      <a href="/technology" class="<%#= 'selected' if params[:page] == 'technology' %>">technology</a>
-      <a href="/craft"  class="<%#= 'selected' if params[:page] == 'craft' %>">craft</a>
-      <a href="/fitting" class="<%#= 'selected' if params[:page] == 'fitting' %>">personal fitting</a>
-      <a href="/story" class="<%#= 'selected' if params[:page] == 'story' %>">our story</a>
-      <button>reserve</button>
-    </nav> -->
+    <div class="three columns">
+      <a id="tzukuri" href="/">TZUKURI</a>
+    </div>
+    <div class="nine columns" style="float:right">
+      <a id="hamburger" class="fa fa-bars"></a>
+      <nav id="primary-id">
+        <a href="/function" class="<%= 'selected' if params[:page] == 'function' %>">function</a>
+        <a href="/form" class="<%= 'selected' if params[:page] == 'form' %>">form</a>
+        <a href="/care" class="<%= 'selected' if params[:page] == 'care' %>">care & craft</a>
+        <a href="/try" class="no-decoration"><button class="sm-btn">try them on</button></a>
+      </nav>
+    </div>
   </div>
 </header>

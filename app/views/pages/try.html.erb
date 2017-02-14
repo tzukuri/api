@@ -1,0 +1,79 @@
+<%= stylesheet_link_tag 'pages/try', media: 'all' %>
+<%= javascript_include_tag 'pages/try', :defer => "defer" %>
+<script type="text/javascript" src="https://calendly.com/assets/external/widget.js"></script>
+
+<div class="main">
+
+  <div class="panel container" id="try-on">
+    <div class="six columns">
+      <h1>pick the perfect pair</h1>
+      <h2 class="h-sm">personal try on brings the glasses to you</h2>
+      <p>One of the team members will meet you at your office, home or local café  to show you the glasses. You'll have to opportunity to hear our story and try on the different frames.</p>
+    </div>
+    <div class="six columns">
+      <%= image_tag 'Tzukuri3144.JPG' %>
+    </div>
+  </div>
+
+  <div class="panel u-full-width" id="book-now">
+    <div class="container" id="gate">
+      <h1>book your personal try on</h1>
+      <%= form_tag '/tryon', remote: true, id: 'try-form' do |f| %>
+          <label for="interest_name">Full Name</label>
+          <%= text_field_tag :name, nil, placeholder: "John Smith", autofocus: true %>
+
+          <label for="interest_email">Email Address</label>
+          <%= text_field_tag :email, nil, placeholder: 'example@tzukuri.com' %>
+
+          <label for="interest_city">Closest City</label>
+          <%= select_tag :city, options_for_select(["Sydney", "Melbourne", "Brisbane", "Perth", "Adelaide", "Canberra", "Darwin", "Hobart"]) %>
+
+          <p class="messages error"></p>
+
+          <%= button_tag(type: 'submit', id: 'interest-submit') do %>
+              book now
+          <% end %>
+
+      <% end %>
+    </div>
+
+    <div class="container" id="calendly">
+      <h1>select your time</h1>
+    </div>
+
+    <div class="container" id="coming-soon">
+      <h1>coming soon...</h1>
+      <br/><br/>
+      <p>Thanks for expressing your interest in a personal try on. Currently, we're only available in Sydney. You'll be the first to know when we come to your city.</p>
+    </div>
+  </div>
+
+  <div class="panel container" id="faq">
+    <div class="row">
+      <h1>frequently asked questions</h1>
+    </div>
+
+    <div class="row">
+      <div class="six columns">
+        <h3>Will there be an opportunity to purchase the glasses?</h3>
+        <p>At the end of the try on there will be an opportunity to purchase a pair for 485 AUD.</p>
+        <h3>Am I obliged to purchase a pair?</h3>
+        <p>Nope, there is absolutely no pressure to purchase a pair after your try on.</p>
+        <h3>How long does it take?</h3>
+        <p>Personal try on should take no longer than 20 minutes.</p>
+        <h3>Is this the only way to purchase a pair of Tzukuris?</h3>
+        <p>Buying eyewear online is hard, which is why we're offering personal try on. However, if you know what you want, you can buy a pair <a href="/reserve">here</a>.</p>
+      </div>
+      <div class="six columns">
+        <h3>How will I know when you arrive?</h3>
+        <p>One of the Tzukuri team will give you a call five minutes prior to your try on to let you know how far away they are.</p>
+        <h3>Can I invite others to my try on?</h3>
+        <p>Of course! You can invite as many people as you'd like. As long as someone is there to meet us, we'll show them the glasses.</p>
+        <h3>Does it cost anything to schedule a try on?</h3>
+        <p>No, there is no charge for scheduling a try on.</p>
+        <h3>I have another question</h3>
+        <p>Please get in touch with us <a href="http://help.tzukuri.com">here</a>.</p>
+      </div>
+    </div>
+  </div>
+</div>

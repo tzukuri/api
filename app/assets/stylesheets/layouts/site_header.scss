@@ -1,14 +1,11 @@
 header {
     border-bottom: 1px solid $tz-inactive;
+    border-top: 3px solid $tz-background-alt;
     text-align: center;
-    background-color: $white;
-    opacity: 0.95;
+    background: rgba(255, 255, 255, 0.7);
     z-index: 10;
-
-    .container {
-        padding-top: 10px;
-        padding-bottom: 5px;
-    }
+    position: fixed;
+    -webkit-backdrop-filter: blur(10px);
 
     #tzukuri {
         @include font-size(30px);
@@ -16,8 +13,6 @@ header {
         font-weight: 100;
         letter-spacing: 12px;
         color: $tz-title;
-        margin-top: 25px;
-        padding-bottom: 5px;
     }
 
     #hamburger {
@@ -26,13 +21,22 @@ header {
 
     nav {
         padding-bottom: 5px;
+        text-align: right;
 
-        a, button {
+        a {
             margin-left: 20px;
+
+            &.no-decoration:hover {
+              border-bottom: none;
+            }
+        }
+
+        a button {
+          margin-top: 10px;
         }
 
         a {
-            @include font-size(13px);
+            @include font-size(14px);
 
             letter-spacing: 0.5px;
             color: $tz-content;

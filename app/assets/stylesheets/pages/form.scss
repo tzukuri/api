@@ -1,0 +1,56 @@
+@import "tzukuri/variables";
+@import "tzukuri/mixins";
+
+body.form {
+  #designed {
+    text-align: center;
+
+    img {
+      width: 50%;
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+
+    h2 a {
+      @include font-size(18px);
+    }
+  }
+
+  #ive .quote, #ford .quote {
+    padding-top: 15px;
+    @include font-size(14px);
+    margin: 0 auto;
+  }
+
+  #ive .spec, #ford .spec {
+    @include font-size(14px);
+  }
+
+  #ive, #ford {
+    padding-top: 10px;
+  }
+
+  .model-named {
+    @include font-size(12px);
+    margin-bottom: 15px;
+    margin-top: 5px;
+  }
+
+  #balancing-act {
+    text-align: center;
+
+    .container {
+      border-top: 1px solid $tz-background-alt;
+    }
+
+    img {
+      margin-top: 40px;
+      width: 75%;
+    }
+  }
+
+  hr {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+}
