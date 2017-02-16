@@ -10,7 +10,7 @@ footer {
 
     a {
       line-height: 200%;
-      
+
       &:hover {
         text-decoration: underline;
       }
@@ -72,5 +72,16 @@ footer {
         float: right;
       }
     }
+}
 
+@media only screen and (max-width: $tabletPortrait) {
+  footer {
+    #footer-signup {
+      margin-bottom: 20px;
+    }
+
+    #copy {
+      float: left !important;
+    }
+  }
 }

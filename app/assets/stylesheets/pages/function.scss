@@ -5,33 +5,47 @@ body.function {
 
   #most-useful {
     text-align: center;
+    img {
+      width: 40%;
+    }
   }
 
   #timely-intelligence {
     text-align: center;
-    background-color: #c1cbcc;
 
     #remember {
       img {
-        // width: 90%;
+        margin-top: 50px;
+        width: 90%;
         margin-bottom: 30px;
       }
     }
 
     #notification {
       img {
-        // width: 100%;
+        width: 100%;
         margin-bottom: 30px;
       }
     }
 
     #distancing {
       img {
-        // width: 90%;
+        margin-top: 50px;
+        width: 90%;
         margin-bottom: 30px;
       }
     }
 
+  }
+
+  #interesting-info {
+    h3, i, p {
+      color: white;
+    }
+
+    h3, img {
+      margin-bottom: 20px;
+    }
   }
 
   #beautifully-light {
@@ -49,21 +63,69 @@ body.function {
   }
 
   #visual-indulgence {
-    background-image: url('/assets/Tzukuri3212.png');
+    background-image: url('/assets/glasses/lens-layout');
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: 0 50%;
+    min-height: 900px;
 
     p, ul li {
       color: $tz-title;
+    }
+
+    ul li {
+      list-style: disc;
+      line-height: 200%;
     }
   }
 
   #little-things {
     text-align: center;
 
-    i {
-      color: $tz-content;
+    img {
+      width: 33%;
+    }
+  }
+
+  #cta {
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: $tabletPortrait) {
+  body.function {
+    #most-useful {
+      img {
+        width: 80%;
+      }
+    }
+
+    #timely-intelligence {
+      img {
+        width: 50% !important;
+        margin-top: 20px !important;
+        margin-bottom: 20px !important;
+      }
+    }
+
+    #beautifully-light {
+      p {
+        width: 100%;
+      }
+
+      img {
+        width: 80%;
+      }
+    }
+
+    #visual-indulgence {
+      min-height: 0px;
+    }
+
+    #little-things {
+      img {
+        width: 10%;
+      }
     }
   }
 }

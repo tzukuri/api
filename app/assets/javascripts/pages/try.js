@@ -1,8 +1,9 @@
 $(function() {
+  $("#try-form").on('submit', function(e) {
+    $("#try-form button").html("booking...").addClass("disabled").prop("disabled", true)
+  })
+
   $('#try-form').on('ajax:success', function(e, data) {
-
-    console.log(data)
-
     var allow = data.allow
     var valid_email = data.valid_email
     var city = data.city
@@ -10,8 +11,11 @@ $(function() {
     var email = data.email
 
     // inject calendly widget to prevent from entering name and email again
-    var calendlyURL = "https://calendly.com/tzukuri/personal-fitting?name=" + name + "&email=" + email
-    var calendly = $("<div class=\"calendly-inline-widget\" data-url=" + calendlyURL + " style=\"min-width:320px;height:750px;\"></div>")
+    // var calendlyURL = "https://calendly.com/tzukuri/personal-fitting?name=" + name + "&email=" + email
+    // var calendly = $("<div class=\"calendly-inline-widget\" data-url=" + calendlyURL + " style=\"min-width:320px;height:750px;\"></div>")
+
+    // reset button
+    $("#try-form button").html("book now").removeClass("disabled").prop("disabled", false)
 
     if(!valid_email) {
       // todo: make them reenter their email
@@ -25,8 +29,8 @@ $(function() {
       // todo: show calendly
       console.log('allowing personal try on booking')
       // inject calendly and initialise
-      $("#calendly").append(calendly)
-      Calendly.initInlineWidgets()
+      // $("#calendly").append(calendly)
+      // Calendly.initInlineWidgets()
 
       $("#gate").fadeOut(function() {
         $("#calendly").fadeIn()
@@ -38,8 +42,8 @@ $(function() {
         $("#coming-soon").fadeIn()
       })
     }
-
   }).on('ajax:error', function(e, data) {
     console.log(data)
+    $("#try-form button").html("book now").removeClass("disabled").prop("disabled", false)
   });
 });

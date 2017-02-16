@@ -1,0 +1,67 @@
+<%= stylesheet_link_tag 'pages/craft', media: 'all' %>
+
+<div class="main">
+
+  <!-- new craft -->
+  <div class="panel">
+    <div class="container">
+      <div class="row" id="new-craft">
+        <div class="six columns">
+          <h1>a new craft</h1>
+          <h2 class="h-sm">manufacturing redesigned</h2>
+          <p>To incorporate electronics inside a pair of glasses required redesigning every step of eyewear manufacturing. Every pair requires 37 stages and 10 working days to complete.</p>
+        </div>
+        <div class="six columns">
+          <%= image_tag 'other/mini-mill' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- new craft -->
+  <div class="panel" id="materials">
+    <div class="container">
+      <h1>materials</h1>
+
+      <div class="row">
+        <%= image_tag 'icons/cellulose-acetate', id: 'cellulose-acetate' %>
+        <p><span class="bold">Frame:</span> Cellulose Acetate</p>
+        <p class="desc">A unique polymer made from plant fibre rather than fossil fuels. It is comfortable, durable and 100% recyclable and renewable.</p>
+      </div>
+
+      <div class="row">
+        <%= image_tag 'icons/digilycol-carbonate', id: 'digilycol-carbonate' %>
+        <p><span class="bold">Lenses:</span> Allyl Diglycol Carbonate</p>
+        <p class="desc">A thermosetting polymer with high abrasion resistance, high optical clarity yet half the weight of glass.</p>
+      </div>
+
+      <div class="row">
+        <%= image_tag 'icons/silver-oxide', id: 'silver-oxide' %>
+        <p><span class="bold">Battery:</span> Silver Oxide</p>
+        <p class="desc">A rechargeable solid-state battery with exceptional safety performance in higher temperature environments.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- software research -->
+  <div class="panel" id="app-science">
+    <div class="container">
+      <h1>app science</h1>
+      <h2 class="h-sm">software meets physics</h2>
+      <p>To more precisely measure the distance of a radio signal such as Bluetooth. We had to develop new methods of filtering out interference and reflection of radio waves.</p>
+      <%= image_tag 'icons/radio' %>
+    </div>
+  </div>
+
+  <div class="container"><hr/></div>
+
+  <div class="panel" id="cta">
+    <div class="container">
+      <h1>try them on</h1>
+      <h2 class="h-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+      <a href="/form"><a href="/try"><button class="alternate">try them on <i class="fa fa-chevron-right"></i></button></a>
+    </div>
+  </div>
+
+</div>

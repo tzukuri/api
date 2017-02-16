@@ -2,13 +2,13 @@
   <div class="container">
     <div class="three columns">
       <a id="tzukuri" href="/">TZUKURI</a>
+      <a id="hamburger" class="fa fa-bars"></a>
     </div>
     <div class="nine columns" style="float:right">
-      <a id="hamburger" class="fa fa-bars"></a>
-      <nav id="primary-id">
-        <a href="/function" class="<%= 'selected' if params[:page] == 'function' %>">function</a>
-        <a href="/form" class="<%= 'selected' if params[:page] == 'form' %>">form</a>
-        <a href="/care" class="<%= 'selected' if params[:page] == 'care' %>">care & craft</a>
+      <nav id="primary-nav">
+        <a href="/function" class="<%= 'selected' if params[:page] == 'function' %>">unlosable glasses</a>
+        <a href="/form" class="<%= 'selected' if params[:page] == 'form' %>">designed for life</a>
+        <a href="/craft" class="<%= 'selected' if params[:page] == 'craft' %>">intelligently made</a>
         <a href="/try" class="no-decoration"><button class="sm-btn">try them on</button></a>
       </nav>
     </div>

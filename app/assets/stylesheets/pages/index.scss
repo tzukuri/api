@@ -2,6 +2,18 @@
 @import "tzukuri/mixins";
 
 body.index {
+    h1 {
+      margin-bottom: 20px;
+      line-height: 140%;
+      width: 90%;
+    }
+
+    button {
+      i {
+        margin-left: 10px;
+      }
+    }
+
     #hero {
       @include transition(opacity 2s ease-in-out);
 
@@ -18,8 +30,23 @@ body.index {
       }
 
       #hero-content {
-          margin-top: 10%;
-          border-right: 1px solid $tz-background-alt;
+          margin-top: 13%;
+      }
+
+      .subhead {
+        padding-right: 80px;
+        line-height: 150%;
       }
     }
+}
+
+// tablet
+@media only screen and (max-width: $tabletPortrait) {
+  body.index {
+    #hero {
+      #hero-content {
+        margin-top: 0;
+      }
+    }
+  }
 }

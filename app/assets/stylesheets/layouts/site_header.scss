@@ -1,3 +1,6 @@
+@import "tzukuri/variables";
+@import "tzukuri/mixins";
+
 header {
     border-bottom: 1px solid $tz-inactive;
     border-top: 3px solid $tz-background-alt;
@@ -72,6 +75,7 @@ header {
         nav {
             @include transition(.5s ease-in-out);
 
+            text-align: center;
             padding-bottom: 0px;
             max-height: 0px;
             visibility: hidden;
@@ -83,19 +87,14 @@ header {
                 visibility: visible;
             }
 
-            button {
-                width: 70%;
-                margin: auto;
-                display: block;
-                margin-bottom: 20px;
-            }
-
             a {
-                border-top: 1px solid $tz-inactive;
                 display: block;
+                @include font-size(16px);
                 line-height: 250%;
-                font-size: 13pt;
-                margin-left: 0px;
+
+                &:hover {
+                  border-bottom: 0px solid black;
+                }
             }
         }
     }

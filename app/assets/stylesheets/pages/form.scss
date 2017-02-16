@@ -6,9 +6,14 @@ body.form {
     text-align: center;
 
     img {
-      width: 50%;
+      width: 85%;
       padding-top: 60px;
-      padding-bottom: 60px;
+      padding-bottom: 30px;
+    }
+
+    p {
+      width: 50%;
+      margin: 0 auto;
     }
 
     h2 a {
@@ -30,6 +35,7 @@ body.form {
     padding-top: 10px;
   }
 
+
   .model-named {
     @include font-size(12px);
     margin-bottom: 15px;
@@ -39,18 +45,50 @@ body.form {
   #balancing-act {
     text-align: center;
 
-    .container {
-      border-top: 1px solid $tz-background-alt;
+    img {
+      width: 75%;
     }
 
-    img {
-      margin-top: 40px;
-      width: 75%;
+    p {
+      padding-top: 20px;
+      width: 50%;
+      margin: 0 auto;
     }
   }
 
-  hr {
-    margin-top: 40px;
-    margin-bottom: 40px;
+
+  #interesting-info {
+    h3, i, p {
+      color: white;
+    }
+
+    h3, i {
+      margin-bottom: 20px;
+    }
+  }
+
+  #cta {
+    text-align: center;
+  }
+}
+
+
+@media only screen and (max-width: $tabletPortrait) {
+  body.form {
+    #designed {
+      p {
+        width: 100%;
+      }
+    }
+
+    #balancing-act {
+      img {
+        width: 90%;
+      }
+
+      p {
+        width: 100%;
+      }
+    }
   }
 }

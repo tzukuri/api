@@ -4,11 +4,13 @@
 
   <div class="panel" id="most-useful">
     <div class="container">
-      <h1>eyewear for the twenty first century</h1>
-      <h2 class="h-sm">the most useful pair of glasses you'll ever own</h2>
-      <%= image_tag 'Tzukuri3061_1.jpg', style: 'width: 85%' %>
+      <h1>meet our glasses</h1>
+      <h2 class="h-sm">after you lose yours</h2>
+      <%= image_tag 'glasses/face-down' %>
     </div>
   </div>
+
+  <div class="container"><hr/></div>
 
   <!-- timely intelligence -->
   <div class="panel" id="timely-intelligence">
@@ -18,18 +20,26 @@
 
       <div class="row">
         <div class="four columns" id="remember">
-          <%= image_tag 'app_screenshot_home.png' %>
+          <%= image_tag 'screenshots/home' %>
           <p>Remembers where you left your glasses.</p>
         </div>
         <div class="four columns" id="notification">
-          <%= image_tag 'app_screenshot_notification.png' %>
+          <%= image_tag 'screenshots/notification' %>
           <p>Lets you know when you've left your glasses behind.</p>
         </div>
         <div class="four columns" id="distancing">
-          <%= image_tag 'app_screenshot_locate.png' %>
+          <%= image_tag 'screenshots/locate' %>
           <p>Calculates the distance to your glasses.</p>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="panel" id="interesting-info" style="background-color: #c1cbcc; text-align: center;">
+    <div class="container">
+      <p class="bold">moon shot</p>
+      <%= image_tag 'icons/moon', style: 'width: 4%' %>
+      <p>Every pair has 400x more computing power than the computers that put humans on the moon.</p>
     </div>
   </div>
 
@@ -39,7 +49,7 @@
       <h1>beautifully light</h1>
       <h2 class="h-sm">handmade in Sydney</h2>
       <p>Even with 39 electronic components hidden inside, every pair weighs just 26.5 grams and is superbly comfortable to wear all day long.</p>
-      <%= image_tag 'glasses_hero.jpg' %>
+      <%= image_tag 'glasses/ive-side' %>
     </div>
   </div>
 
@@ -48,13 +58,13 @@
     <div class="container">
       <div class="six columns">
         <h1>visual indulgence</h1>
-        <h2 class="h-sm">provided by Carl Zeiss vision</h2>
-        <p>By using columbia resin #39 for our lenses, we deliver 98% optical clarity without the weight of glass. Treat your eyes and face today.</p>
-        <p>Our sun lenses are all:</p>
+        <h2 class="h-sm">provided by Carl Zeiss Vision</h2>
+        <p>By using columbia resin #39 for our lenses, we deliver 98% optical clarity without the weight of glass. Treat your eyes and face today. Our sun lenses are all:</p>
+        <br/>
         <ul>
-          <li>100% UVA/UVB protection;</li>
-          <li>Polarised;</li>
-          <li>Anti-scratch;</li>
+          <li>100% UVA/UVB protection</li>
+          <li>Polarised</li>
+          <li>Anti-scratch</li>
           <li>Anti-reflective</li>
         </ul>
       </div>
@@ -64,23 +74,23 @@
   <!-- little things -->
   <div class="panel" id="little-things">
     <div class="container">
-      <h1>built for every day</h1>
-      <h2 class="h-sm">every detail considered</h2>
+      <h1>little things</h1>
+      <h2 class="h-sm">for everyday use</h2>
 
       <div class="row">
         <div class="three columns"><br/></div>
         <div class="two columns">
-          <i class="fa fa-2x fa-leaf"></i>
+          <%= image_tag 'icons/hypoallergenic' %>
           <br/><br/>
           <p>Hypoallergenic</p>
         </div>
         <div class="two columns">
-          <i class="fa fa-2x fa-tint"></i>
+          <%= image_tag 'icons/waterproof' %>
           <br/><br/>
           <p>Waterproof</p>
         </div>
         <div class="two columns">
-          <i class="fa fa-2x fa-flash"></i>
+          <%= image_tag 'icons/battery' %>
           <br/><br/>
           <p>Up to 30 day battery life</p>
         </div>
@@ -88,5 +98,16 @@
       </div>
     </div>
   </div>
+
+  <div class="container"><hr/></div>
+
+  <div class="panel" id="cta">
+    <div class="container">
+      <h1>designed for life</h1>
+      <h2 class="h-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+      <a href="/form"><button class="alternate">learn about design <i class="fa fa-chevron-right"></i></button></a>
+    </div>
+  </div>
+
 
 </div>

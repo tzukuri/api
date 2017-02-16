@@ -23,7 +23,7 @@ h1 {
 
 h2, h3 {
   color: $tz-content;
-  line-height: 150%;
+  line-height: 100%;
 }
 
 h2 {
@@ -115,6 +115,11 @@ button, input[type=submit] {
     cursor: pointer;
     opacity: 1;
 
+    i {
+      color: white;
+      margin-left: 10px;
+    }
+
     &.sm-btn {
         @include font-size(14px);
     }
@@ -141,15 +146,32 @@ button, input[type=submit] {
       background-color: $white;
       color: $tz-active;
 
+      i {
+        color: $tz-active;
+      }
+
+      &.disabled:hover {
+        background-color: $white;
+        color: $tz-active;
+      }
+
       &:hover {
           background-color: $tz-active;
           color: $white;
+
+          i {
+            color: $white;
+          }
       }
     }
 
     &:hover {
         background-color: transparent;
         color: $tz-active;
+
+        i {
+          color: $tz-active;
+        }
     }
 }
 
@@ -238,6 +260,7 @@ hr {
   margin-top:20px;
   margin-bottom: 20px;
   border-top: 1px solid $tz-background-alt;
+  opacity:0.3;
 }
 
 // panels

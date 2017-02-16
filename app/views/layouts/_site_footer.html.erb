@@ -22,19 +22,21 @@
         <div id="sitemap">
           <a href="/function">function</a> |
           <a href="/form">form</a> |
-          <a href="/care">care & craft</a> |
+          <a href="/craft">craft & materials</a> |
           <a href="/try">try them on</a> |
           <a href="/reserve">buy</a>
           <br/>
+          <a href="/thankyou">team</a> |
           <a href="http://help.tzukuri.com">help</a> |
+          <a href="http://help.tzukuri.com">contact us</a> |
           <a href="/media">media</a> |
           <a href="/privacy">privacy</a>
         </div>
 
         <div id="social-links">
-          <a href="https://instagram.com/tzukuri"><i class="fa fa-2x fa-instagram"></i></a>
-          <a href="https://facebook.com/tzukuri"><i class="fa fa-2x fa-facebook"></i></a>
-          <a href="https://twitter.com/tzukuri"><i class="fa fa-2x fa-twitter"></i></a>
+          <a href="https://instagram.com/tzukuri" target="_blank"><i class="fa fa-2x fa-instagram"></i></a>
+          <a href="https://facebook.com/tzukuri" target="_blank"><i class="fa fa-2x fa-facebook"></i></a>
+          <a href="https://twitter.com/tzukuri" target="_blank"><i class="fa fa-2x fa-twitter"></i></a>
         </div>
       </div>
     </div>
@@ -44,7 +46,17 @@
     <!-- footer bottom -->
     <div class="row" id="footer-bottom">
       <div class="ten columns">
-        <p id="quote">'Seeking means having a goal. But finding means, being free, being open, having no goal.' <span class="bold">Herman Hesse</span></p>
+        <% if params[:page] == 'function' %>
+          <p id="quote">'Nothing can have value without being an object of utility.' <span class="bold">Karl Marx</span></p>
+        <% elsif params[:page] == 'form' %>
+          <p id="quote">'Design is a solution to a problem. Art is a question to a problem.' <span class="bold">John Maeda</span></p>
+        <% elsif params[:page] == 'try' %>
+          <p id="quote">'Who looks outside, dreams; who looks inside, awakes.' <span class="bold">Carl Jung</span></p>
+        <% elsif params[:page] == 'care' %>
+          <p id="quote">‘Whatever it is you do, you have to master your craft.’ <span class="bold">Snoop Dogg</span></p>
+        <% else %>
+          <p id="quote">'Seeking means having a goal. But finding means, being free, being open, having no goal.' <span class="bold">Herman Hesse</span></p>
+        <% end %>
       </div>
       <div class="two columns">
         <p id="copy">&copy; Tzukuri 2017</p>

@@ -1,3 +1,6 @@
+<%= stylesheet_link_tag 'pages/privacy', media: 'all' %>
+<%= javascript_include_tag 'pages/privacy', :defer => "defer" %>
+
 <div class="main">
     <div class="container">
       <!-- if the repond param is present, show buttons for accepting and rejecting -->
@@ -10,26 +13,190 @@
       <%end%>
 
       <!-- add an extra clas that slides the container down to accomodate the above div if params exist -->
-      <div id="policy-container" class="<%= 'policy-gap' if params["respond"] == "true" %>">
+      <div id="policy-container" class="panel <%= 'policy-gap' if params["respond"] == "true" %>">
         <h1>Privacy Policy</h1>
-        <p>Thank you for using Tzukuri. Information about yourself, and your metadata, are critical to the services we provide. This privacy policy tells you how we collect and use that information.</p>
-        <p></p>
-        <h1>Personal Information</h1>
-        <p>Tzukuri is a highly personal product, requiring access to information about your location, physical movement, physical environment, device and operating system, application usage patterns and Bluetooth history to function properly. Without it we wouldn't be able to provide the product we do.</p>
-        <p>This information is never shared with anyone else, unless required by law, and in situations where there's a serious threat to health and safety.</p>
-        <p>All other personal information collected by us, including registration information (such as your name and email address), and web analytics data is likewise never shared with anyone else, other than in the exceptions mentioned.</p>
-        <h1>How we protect your information</h1>
-        <p>Your personal information is encrypted and stored in Singapore in secure facilities. To help protect your privacy we maintain physical, technical and administrative safeguards. We update and test our security technology on an ongoing basis.</p>
-        <p>We train our employees about the importance of confidentiality and maintaining the privacy and security of your information. Access to your data is restricted to employees who need it to provide services to you.</p>
-        <h1>Our obligations</h1>
-        <p>We are bound by the provisions of the <a href="https://www.legislation.gov.au/Series/C2004A03712">Privacy Act 1988 (Cth)</a>, including the <a href="https://www.oaic.gov.au/privacy-law/privacy-act/australian-privacy-principles">Australian Privacy Principles</a>.</p>
-        <h1>Contact us</h1>
-        <p><a href="a@tzukuri.com">Email us</a> about your privacy concerns.</p>
-        <p>Alternatively, you can write to us at:<br>
-        6 Lenthall Street,<br>
-        Kensington, NSW, 2033<br>
-        Australia
+
+        <p>
+          This Policy was last updated on 26 September 2016.
+          <br/><br/>
+          Tzukuri is committed to protecting the personal information that we may collect and hold about you.  Information about yourself, and your metadata, are critical to the services we provide. This Policy sets out our procedures relating to management of your personal information.  We are not an APP entity for the purposes of the Privacy Act 1988 (Cth).
+          <br/><br/>
+          By voluntarily supplying us with your personal information, you are agreeing to be bound by this Policy.
+          <br/><br/>
+          Any amendments to this Policy will be notified to you by posting an updated version on our website.
+          <br/><br/>
+          Please note that our website contains links to other websites.  When a user has clicked on a link to another site, they leave our site and are no longer protected by this Policy.
         </p>
+
+        <br/>
+
+        <h1>Collection of personal information</h1>
+
+        <p>
+          Tzukuri is a highly personal product, requiring access to information about your location, physical movement, physical environment, device and operating system, application usage patterns and Bluetooth history to function properly. Without it we wouldn't be able to provide the product we do.
+          <br/><br/>
+          The personal information we may collect and hold about you includes:
+          <br/><br/>
+        </p>
+
+        <ul>
+          <li>contact information such as your name and address, phone number and email address</li>
+          <li>financial information, including bank account details and credit card details </li>
+          <li>business details, including ABN</li>
+          <li>your location (GPS)</li>
+        </ul>
+
+        <br/><br/>
+        <p>We also collect and hold non-personally identifiable information, such as:</p>
+        <br/><br/>
+
+        <ul>
+          <li>information about your phone, including iOS version, and iPhone model</li>
+          <li>motion activity data (step count, motion type)</li>
+          <li>raw sensor data collected in your environment (magnetometer, accelerometer)</li>
+          <li>application usage patterns</li>
+          <li>Bluetooth data from your glasses including signal strength and connection/disconnection times</li>
+        </ul>
+
+        <br/>
+
+        <h1>Cookies and Analytics</h1>
+
+        <p>
+          We use “cookies” and website analytics tools (such as Google Analytics) to help improve your experience using the Tzukuri site, and give us insight into who is using the site and how. An example of some of data collected by website analytic systems includes:
+        </p>
+        <br/><br/>
+        <ul>
+          <li>your IP address</li>
+          <li>the date and time of your visit to the site</li>
+          <li>the pages you accessed</li>
+          <li>the previous site you have visited</li>
+          <li>the type of browser you are using</li>
+          <li>the URL you visited</li>
+        </ul>
+        <br/><br/>
+
+        <p>By using the Tzukuri site you consent to the processing of your metadata by Google and other third party analytics systems.</p>
+        <br/>
+
+        <h1>Means of collection of personal information</h1>
+
+        <p>
+          Your personal information may be collected in a number of ways, including:
+        </p>
+        <br/>
+
+        <ul>
+          <li>through the Tzukuri app</li>
+          <li>when you use our website or complete a form on our website</li>
+          <li>directly by our staff when you seek, or enquire about, our products </li>
+        </ul>
+        <br/><br/>
+        <p>You need not provide all the information requested by us, but this may prevent us from providing some or all of our goods or services to you.</p>
+        <br/>
+
+        <h1>Use, disclosure & purpose</h1>
+
+        <p>We collect, hold and disclose your personal information for the following purposes: </p>
+        <br/>
+        <ul>
+          <li>as a necessary part of providing our goods to you</li>
+          <li>to promote and market our products and services to you or provide you with information that we believe may be of interest to you (unless as directed otherwise)</li>
+          <li>to store your data to display back to you, such as the location of your glasses</li>
+          <li>to personalise and customise your experiences with our website and products</li>
+          <li>to help us research the needs of our customers and to market our goods and services with a better understanding of your needs and the needs of customers generally</li>
+          <li>other purposes related to any of the above </li>
+        </ul>
+        <br/><br/>
+
+        <p>
+          We will only use your information for the purposes for which it was collected or a purpose related to the primary purpose if this use would be reasonably expected by you, or otherwise, with your consent.
+          <br/><br/>
+          We may disclose your information to necessary third parties who assist us to provide, manage, and administer our goods and services.  Information provided to third parties will be dealt with in accordance with that entity’s privacy policy.  People we may disclose your information to include:
+        </p>
+        <br/><br/>
+
+        <ul>
+          <li>third parties that provide goods and services to us or through us</li>
+          <li>third parties such as marketing and digital agencies who may send you our newsletters on our behalf</li>
+          <li>our website host or software application providers</li>
+          <li>other organisations listed as trade references in a credit application</li>
+        </ul>
+
+        <br/><br/>
+
+        <p>
+          We may disclose your personal information to overseas third parties located in Singapore, the United States and the European Union for the purposes of storing data.
+          <br/><br/>
+          Your location information is never shared with anyone else unless required by law, and in situations where there is a serious threat to health and safety.
+        </p>
+
+        <br/>
+
+        <h1>Quality, access to & correction of information</h1>
+
+        <p>
+          Your personal information is yours, and you are entitled to have access to it and seek corrections to it.  We require that requests for access be made in writing to the Privacy Officer via the details provided in this Policy. For your security we will take appropriate steps to verify your identity (or verify that you act as an authorised agent of the individual concerned) before granting a request to access any information.
+          <br/><br/>
+          We will respond to your request for access within a reasonable time after you make the request, and if access is granted, you will be provided your information within 30 days from your request.  We will, on request, provide you with access to your personal information, or update or correct your personal information, unless we are lawfully excluded from granting your request.
+          <br/><br/>
+          If we can’t provide you with access to your information or update your data, we will provide you with a written notice detailing reasons for the refusal and the process for making a complaint about the refusal.
+        </p>
+
+        <h1>Storage and security</h1>
+
+        <p>
+          Your personal information is stored encrypted on our servers, and can only be accessed by  employees who need access to the data to perform their role. All personal information is protected by safeguards including physical, technical and procedural methods.
+          <br/><br/>
+          We take reasonable steps to hold information securely in electronic or physical form.  We are committed to keeping secure the data you provide to us and we will take all reasonable precautions to protect your personally identifiable information from loss, misuse, interference, unauthorised access or alteration.
+          <br/><br/>
+          We aim to achieve this through:
+          <br/><br/>
+        </p>
+
+        <ul>
+          <li>imposing confidentiality requirements on our employees</li>
+          <li>implementing policies in relation to document storage security</li>
+          <li>implementing security measures to govern access to our systems</li>
+          <li>only providing access to personal information once proper identification has been given</li>
+          <li>controlling access to our premises</li>
+          <li>implementing website protection measures</li>
+        </ul>
+
+        <br/>
+
+        <h1>Dealing with us anonymously</h1>
+
+        <p>
+          Where lawful and practicable to do so, you can deal with us anonymously or using a pseudonym.  You can deal with us anonymously or using a pseudonym when making a general enquiry about the goods and services that we can offer to you including via telephone or our website.
+          <br/><br/>
+          At the time you purchase our goods or engage our services, it is no longer practicable for you to deal with us anonymously or using a pseudonym – credit card transactions and shipping bills need to be made out to real people. After you’ve received your Tzukuri’s you’re more than welcome to deal with us using a pseudonym again, however – we don’t mind if your glasses are registered to Mr Smith or Mr Squiggle.
+        </p>
+
+        <h1>Complaints</h1>
+
+        <p>
+          If you believe that we have breached a this Policy you may submit a written complaint.  The written complaint can be emailed or posted to the contact details below.  You must include your own contact details  if you would like a response regarding your complaint. Our Privacy Officer will consider your complaint and respond as soon as reasonably possible, but within 30 days from the date we receive the complaint.
+        </p>
+
+        <h1>Contact us</h1>
+
+        <p>If you wish to:</p>
+
+        <ul>
+          <li>gain access to your personal information</li>
+          <li>make a complaint about a breach of this Policy </li>
+          <li>contact us with a query about how your information is collected or used</li>
+          <li>contact us regarding any other matter concerning this Policy</li>
+        </ul>
+
+        <p>
+          you can speak directly with our staff who will do their best to try to resolve your issue as simply as possible.  Alternatively, you can write to us or send us an email so that our Privacy Officer  can consider the matter.  We will respond to you as soon as reasonably possible.
+        </p>
+        <br/>
+        <p>Contact Name: Privacy Officer</p>
+        <p>Postal Address: 6 Lenthall Street, Kensington, NSW, 2033</p>
+        <p>Email Address: <a href="mailto:hello@tzukuri.com">hello@tzukuri.com</a></p>
       </div>
 
       <!-- if the repond param is present, show buttons for accepting and rejecting -->
@@ -41,15 +208,3 @@
       <%end%>
     </div>
 </div>
-
-<script>
-    $("#accept-privacy").click(function() {
-      // redirect, this will be caught by the app to handle and accept state
-      window.location.href = 'tzukuri://privacy-accept';
-    });
-
-    $("#reject-privacy").click(function() {
-      // redirect, this will be caught by the app to handle a reject state
-      window.location.href = 'tzukuri://privacy-reject';
-    });
-</script>
