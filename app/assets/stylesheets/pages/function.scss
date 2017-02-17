@@ -56,18 +56,17 @@ body.function {
     }
 
     p {
-      width: 65%;
+      width: 55%;
       margin: 0 auto;
       padding-bottom: 60px;
     }
   }
 
   #visual-indulgence {
-    background-image: url('/assets/glasses/lens-layout');
+    background-image: url('/assets/glasses/lens-layout.png');
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: 0 50%;
-    min-height: 900px;
 
     p, ul li {
       color: $tz-title;
@@ -84,6 +83,13 @@ body.function {
 
     img {
       width: 33%;
+    }
+  }
+
+  #app-store {
+    margin-top: 20px;
+    img {
+      width: 15%;
     }
   }
 
@@ -117,6 +123,7 @@ body.function {
         width: 80%;
       }
     }
+
 
     #visual-indulgence {
       min-height: 0px;

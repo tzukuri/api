@@ -29,15 +29,23 @@ footer {
       padding-top: 10px;
 
       form {
+        display: inline;
+
         input, button {
           @include font-size(14px);
-          display: inline;
+        }
+
+        button {
+          margin: 0;
+          padding-left: 12px;
+          padding-right: 12px;
         }
 
         input {
+          float: left;
           border-radius: 20px;
-          margin-right: -5px;
-          width: 85%;
+          margin-right: 10px;
+          width: 75%;
         }
       }
     }
