@@ -1,5 +1,5 @@
 $(function() {
-    if (!$('body').hasClass('reserve')) return;
+    if (!$('body').hasClass('buy')) return;
 
     /**
     the preorderEngine maintains the order state as well as passing order details

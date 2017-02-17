@@ -1,7 +1,7 @@
 @import "tzukuri/variables";
 @import "tzukuri/mixins";
 
-body.function {
+body.unlosable-glasses {
 
   #most-useful {
     text-align: center;
@@ -46,6 +46,10 @@ body.function {
     h3, img {
       margin-bottom: 20px;
     }
+
+    img {
+      width: 4%;
+    }
   }
 
   #beautifully-light {
@@ -63,10 +67,8 @@ body.function {
   }
 
   #visual-indulgence {
-    background-image: image-url('glasses/lens-layout.png');
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position: 0 50%;
+    background:  image-url('glasses/lens-layout.png') no-repeat center center;
+    background-size: cover;
 
     p, ul li {
       color: $tz-title;
@@ -86,8 +88,15 @@ body.function {
     }
   }
 
+  #lt-divider {
+    hr {
+      margin-top: 0px;
+    }
+  }
+
   #app-store {
     margin-top: 20px;
+
     img {
       width: 15%;
     }
@@ -99,7 +108,7 @@ body.function {
 }
 
 @media only screen and (max-width: $tabletPortrait) {
-  body.function {
+  body.unlosable-glasses {
     #most-useful {
       img {
         width: 80%;
@@ -108,7 +117,6 @@ body.function {
 
     #timely-intelligence {
       img {
-        width: 50% !important;
         margin-top: 20px !important;
         margin-bottom: 20px !important;
       }
@@ -124,14 +132,41 @@ body.function {
       }
     }
 
+    #app-store {
+      img {
+        width: 30% !important;
+      }
+    }
+
+    #interesting-info {
+      img {
+        width: 10%;
+      }
+    }
 
     #visual-indulgence {
       min-height: 0px;
     }
 
+  }
+}
+
+@media only screen and (max-width: $smartphone) {
+  body.unlosable-glasses {
+
+    #timely-intelligence {
+      img {
+        width: 50% !important;
+      }
+    }
+
     #little-things {
       img {
-        width: 10%;
+        width: 15%;
+      }
+
+      p {
+        margin-bottom: 40px;
       }
     }
   }

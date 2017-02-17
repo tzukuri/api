@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Tzukuri<%= " - #{@page_title}" if @page_title %></title>
+        <title><%= "#{@page_title} | " if @page_title %>Tzukuri</title>
+        <meta name="Description" content="<%= @page_desc %>">
+
         <%= stylesheet_link_tag 'core', media: 'all' %>
         <%= csrf_meta_tags %>
 
         <meta name="viewport" content="width=device-width, maximum-scale=1.0, initial-scale=1.0, user-scalable=yes">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="Description" content="Beautifully handmade glasses you won't lose.">
         <meta name="twitter:site" content="@tzukuri">
 
         <meta property="fb:app_id" content="311590038897709">
@@ -63,14 +64,6 @@
     </head>
 
     <body class="<%= params[:page] || controller_name %>">
-        <!-- modal container -->
-        <div class="tzukuri-modal hidden">
-            <div id="spacer">
-                <!-- register interest modal -->
-                <%= render 'modals/register_interest' %>
-            </div>
-        </div>
-
         <!-- header -->
         <% if controller_name == "pages" %>
             <%= render 'layouts/site_header' %>

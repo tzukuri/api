@@ -1,7 +1,7 @@
 @import "tzukuri/variables";
 @import "tzukuri/mixins";
 
-body.reserve {
+body.buy {
 
     #reserve-nav {
       margin-top: 40px;
@@ -260,7 +260,7 @@ body.reserve {
 }
 
 @media only screen and (max-width: 550px) {
-  body.reserve {
+  body.buy {
 
     #reserve-nav {
       margin-top: 20px;
@@ -326,7 +326,7 @@ body.reserve {
 }
 
 @media only screen and (max-width: 350px) {
-  body.reserve {
+  body.buy {
     #reserve-nav #nav-list li {
       margin: 0 5px 0 5px;
     }

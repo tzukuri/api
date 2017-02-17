@@ -1,7 +1,8 @@
 footer {
     background: $lavender-grey;
-    padding: 30px;
     color: white;
+    padding-top: 30px;
+    padding-bottom: 30px;
 
     p, ul li, a {
       @include font-size(14px);
@@ -39,6 +40,15 @@ footer {
           margin: 0;
           padding-left: 12px;
           padding-right: 12px;
+
+          border-color: $white;
+          color: $white;
+
+          &:hover {
+            color: $tz-background-alt;
+            background-color: $white;
+          }
+
         }
 
         input {
@@ -60,7 +70,7 @@ footer {
     }
 
     #sitemap {
-      padding-top: 10px;
+      padding-top: 5px;
     }
 
     hr {
@@ -85,7 +95,7 @@ footer {
 @media only screen and (max-width: $tabletPortrait) {
   footer {
     #footer-signup {
-      margin-bottom: 20px;
+      margin-bottom: 40px;
     }
 
     #copy {

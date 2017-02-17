@@ -1,16 +1,12 @@
 <header class="u-full-width">
   <div class="container">
-    <div class="three columns">
       <a id="tzukuri" href="/">TZUKURI</a>
-      <a id="hamburger" class="fa fa-bars"></a>
-    </div>
-    <div class="nine columns" style="float:right">
       <nav id="primary-nav">
-        <a href="/function" class="<%= 'selected' if params[:page] == 'function' %>">unlosable glasses</a>
-        <a href="/form" class="<%= 'selected' if params[:page] == 'form' %>">designed for life</a>
-        <a href="/craft" class="<%= 'selected' if params[:page] == 'craft' %>">intelligently made</a>
-        <a href="/try" class="no-decoration"><button class="sm-btn">try them on</button></a>
+        <a href="/unlosable-glasses" class="<%= 'selected' if params[:page] == 'unlosable-glasses' %>">unlosable glasses</a>
+        <a href="/design-and-range" class="<%= 'selected' if params[:page] == 'design-and-range' %>">design and range</a>
+        <a href="/intelligently-made" class="<%= 'selected' if params[:page] == 'intelligently-made' %>">intelligently made</a>
+        <a href="/try-them-on" class="no-decoration" id="try-btn"><button class="sm-btn">try them on</button></a>
       </nav>
-    </div>
+      <a id="hamburger" class="fa fa-bars"></a>
   </div>
 </header>

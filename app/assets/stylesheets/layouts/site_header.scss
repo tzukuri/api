@@ -4,7 +4,6 @@
 header {
     border-bottom: 1px solid $tz-inactive;
     border-top: 3px solid $tz-background-alt;
-    text-align: center;
     background: rgba(255, 255, 255, 0.7);
     z-index: 10;
     position: fixed;
@@ -12,7 +11,7 @@ header {
 
     #tzukuri {
         @include font-size(30px);
-
+        float: left;
         font-weight: 100;
         letter-spacing: 12px;
         color: $tz-title;
@@ -64,12 +63,26 @@ header {
         #hamburger {
             display: block;
             float: right;
-            margin-top: 20px;
+            margin-top: -40px;
             font-size: 13pt;
+
+            &.fa-times {
+              margin-top: -50px;
+            }
+
+            &.fa-bars {
+              margin-top: -40px;
+            }
 
             &:hover {
                 text-decoration: none;
             }
+        }
+
+        #try-btn {
+          width: 75%;
+          margin: 0 auto;
+          padding-bottom: 20px;
         }
 
         nav {
@@ -93,6 +106,10 @@ header {
                 line-height: 250%;
 
                 &:hover {
+                  border-bottom: 0px solid black;
+                }
+
+                &.selected {
                   border-bottom: 0px solid black;
                 }
             }
