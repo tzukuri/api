@@ -2,9 +2,9 @@ class PagesController < ApplicationController
     def index
 
         meta = {
-          index: {title: "Beautifully handmade glasses you won't lose", description: "Have you ever lost a pair of valuable glasses or sunglasses? Not any more. Introducing Tzukuri the world's first unlosable glasses. Try them on today."},
-          unlosable_glasses: {title: "Meet our glasses after you lose yours", description: "The Tzukuri iPhone app notifies you if you leave your glasses behind, remembers where you last left them and calculates the distance to them."},
-          design_and_range: {title: "Glasses designed for life", description: "Beautifully designed optical, sunglasses or optical sunglasses, supremely balanced for comfort and style. Try them on today."},
+          index: {title: "Beautifully Handmade Glasses You Won't Lose", description: "Have you ever lost a pair of valuable glasses or sunglasses? Not any more. Introducing Tzukuri the world's first unlosable glasses. Try them on today."},
+          unlosable_glasses: {title: "Meet Our Glasses After You Lose Yours", description: "The Tzukuri iPhone app notifies you if you leave your glasses behind, remembers where you last left them and calculates the distance to them."},
+          design_and_range: {title: "Glasses Designed For Life", description: "Beautifully designed optical, sunglasses or optical sunglasses, supremely balanced for comfort and style. Try them on today."},
           intelligently_made: {title: "Glasses & Sunglasses Intelligently Made", description: "Made from a high optical clarity polymer half the weight of glass together with an integrated rechargeable battery. Try them on today"},
           try_them_on: {title: "Try on Unlosable Tzukuri Glasses Today", description: "Ever forgotten your glasses at a cafe? Or lost your sunglasses at the beach? Try a pair of Tzukuri unlosable glasses instead. Book Now"},
           team: {title: "Team", description: ""},
