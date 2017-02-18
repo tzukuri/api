@@ -25,6 +25,9 @@ $(function() {
       return
     }
 
+    // send a booking event to google analytics
+    ga('send', 'event', 'try-on', 'book');
+
     if (allow) {
       // todo: show calendly
       console.log('allowing personal try on booking')
