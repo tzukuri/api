@@ -287,6 +287,8 @@ $(function() {
               $("#step-checkout h1").html("thanks for your reservation")
               $("#reserve-nav").fadeOut()
 
+              // send a booking event to google analytics
+              ga('send', 'event', 'buy', 'purchase-complete', '', data.amount);
           } else {
               // there was an error creating the preorder/charging the card
               setFormError(data.errors)

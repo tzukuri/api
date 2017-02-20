@@ -5,12 +5,10 @@
 
   <div class="panel container" id="try-on">
     <div class="six columns">
-      <h1>pick the perfect pair</h1>
-      <h2 class="h-sm">personal try on brings the glasses to you</h2>
+      <h1>experience Tzukuri</h1>
+      <h2 class="h-sm">brings Tzukuri to you</h2>
 
-      <p>We understand that picking the perfect pair of glasses online is hard, which is why we'll to bring them to your home, office or local café.</p>
-
-      <p>You'll be able to try on the different frames, see how they look, feel how they balance, choose between Ive and Ford and try out the Tzukuri iOS app.</p>
+      <p>Choosing glasses without trying them on is difficult. To make it easier, we'll bring them to you - in your office, home or local cafe.</p>
 
     </div>
     <div class="six columns">
@@ -20,74 +18,70 @@
 
   <div class="container"><hr/></div>
 
-  <div class="panel u-full-width" id="book-now">
-    <div class="container">
-      <div id="gate">
-        <h1>book your personal try on</h1>
-        <%= form_tag '/tryon', remote: true, id: 'try-form' do |f| %>
-            <label for="interest_name">Full Name</label>
-            <%= text_field_tag :name, nil, placeholder: "John Smith", autofocus: true %>
+  <div class="panel container" id="purchase-options">
 
-            <label for="interest_email">Email Address</label>
-            <%= text_field_tag :email, nil, placeholder: 'example@tzukuri.com' %>
-
-            <label for="interest_city">Closest City</label>
-            <%= select_tag :city, options_for_select(["Sydney", "Melbourne", "Brisbane", "Perth", "Adelaide", "Canberra", "Darwin", "Hobart", "Other"]) %>
-
-            <p class="messages error"></p>
-
-            <%= button_tag(type: 'submit', id: 'interest-submit', class: 'alternate') do %>
-                book now
-            <% end %>
-
-        <% end %>
+    <div class="row" id="titles">
+      <div class="four columns">
+        <h2>Personal Try On</h2>
       </div>
-
-      <div id="calendly">
-        <h1>Tzukuri store</h1>
-        <p>Thanks for expressing your interest in a personal try on. We'll let you know when they're available in a few weeks. </p>
-        <br/>
-        <p>If you'd like to try the glasses on sooner, please visit our pop up store:</p>
-        <br/>
-        <p class="bold">1 Kensington Street, Chippendale NSW 2008</p>
-        <p class="bold">4 March - 4 April 2017</p>
-        <p class="bold">10am - 6pm</p>
+      <div class="four columns">
+        <h2>Tzukuri Pop up</h2>
       </div>
-
-      <div id="coming-soon">
-        <h1>coming soon...</h1>
-        <br/><br/>
-        <p>Thanks for expressing your interest in a personal try on. Currently, we're only available in Sydney. You'll be the first to know when we come to your city.</p>
+      <div class="four columns">
+        <h2>Order Online</h2>
       </div>
     </div>
-  </div>
 
-  <div class="container"><hr/></div>
+    <div class="row" id="available">
+      <div class="four columns">
+        <p class="bold">Available from April 10</p>
+      </div>
+      <div class="four columns">
+        <p class="bold">Open March 7</p>
+      </div>
+      <div class="four columns">
+        <p class="bold">Shipping from April 3</p>
+      </div>
+    </div>
 
-  <div class="panel container" id="faq">
+    <div class="row" id="desc">
+      <div class="four columns">
+        <p>Choosing glasses without trying them on is difficult. To make it easier, we'll bring them to your office, home or local cafe.</p>
+      </div>
+      <div class="four columns">
+        <p>We’ve repurposed the Old Clare Bottle Shop as a dedicated try on space for you to experience Unlosable Glasses.</p>
+      </div>
+      <div class="four columns">
+        <p>If you already know what you'd like, you can order online to have your Tzukuris shipped to your door. Australia only.</p>
+      </div>
+    </div>
+
+    <div class="row" id="action">
+      <div class="four columns">
+        <a href="/book-try-on"><button class="alternate">book now &nbsp; &rarr;</button></a>
+      </div>
+      <div class="four columns">
+        <a href="https://goo.gl/maps/ZdhPG1QdB6L2"><button class="alternate">map & directions &nbsp; &rarr;</button></a>
+      </div>
+      <div class="four columns">
+        <a href="/buy"><button class="alternate">order now &nbsp; &rarr;</button></a>
+      </div>
+    </div>
+
     <div class="row">
-      <h1>frequently asked questions</h1>
-    </div>
+      <div class="four columns">&nbsp;</div>
+      <div class="four columns">
+        <div id="address">
+          <p>The Old Clare Hotel</p>
+          <p>1 Kensington Street</p>
+          <p>Chippendale, NSW, 2008</p>
+        </div>
 
-    <div class="row">
-      <div class="six columns">
-        <p class="bold">Will there be an opportunity to purchase the glasses?</p>
-        <p>At the end of the try on there will be an opportunity to purchase a pair for 485 AUD.</p>
-        <p class="bold">How long does it take?</p>
-        <p>Personal try on should take no longer than 20 minutes.</p>
-        <p class="bold">Is this the only way to purchase a pair of Tzukuris?</p>
-        <p>Buying eyewear online is hard, which is why we're offering personal try on. However, if you know what you want, you can buy a pair <a href="/reserve">here</a>.</p>
+        <div id="hours">
+          <p>10am - 6pm</p>
+          <p>Monday - Sunday</p>
+        </div>
       </div>
-      <div class="six columns">
-        <p class="bold">How will I know when you arrive?</p>
-        <p>One of the Tzukuri team will give you a call five minutes prior to your try on to let you know how far away they are.</p>
-        <p class="bold">Can I invite others to my try on?</p>
-        <p>Of course! You can invite as many people as you'd like. As long as someone is there to meet us, we'll show them the glasses.</p>
-        <p class="bold">Does it cost anything to schedule a try on?</p>
-        <p>No, there is no charge for scheduling a try on.</p>
-        <p class="bold">I have another question</p>
-        <p>Please get in touch with us <a href="http://help.tzukuri.com">here</a>.</p>
-      </div>
+      <div class="four columns">&nbsp;</div>
     </div>
-  </div>
 </div>

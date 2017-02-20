@@ -1,47 +1,7 @@
 @import "tzukuri/variables";
 @import "tzukuri/mixins";
 
-body.try-them-on {
-
-  #purchase-options {
-    text-align: center;
-
-    #titles {
-      h2 { padding-bottom: 20px; }
-    }
-
-    #available {
-      p { padding-bottom: 20px; }
-    }
-
-    #desc {
-      p { padding-bottom: 40px; }
-    }
-
-    #action {
-
-    }
-
-    #address {
-      padding-top: 40px;
-    }
-
-    #hours {
-      padding-top: 20px;
-    }
-
-  }
-
-  #try-on {
-
-    h1 {
-      margin-top: 10%;
-    }
-
-    button {
-      margin-top: 20px;
-    }
-  }
+body.book-try-on {
 
   #book-now {
     text-align: center;
@@ -90,16 +50,7 @@ body.try-them-on {
 }
 
 @media only screen and (max-width: $tabletPortrait) {
-  body.try-them-on {
-
-    #try-on {
-      h1 {
-        margin-top: 0;
-      }
-      p {
-        margin-bottom: 30px;
-      }
-    }
+  body.book-try-on {
 
     #gate {
       form {

@@ -3,6 +3,10 @@
 
 body.buy {
 
+    ul li {
+      list-style: disc;
+    }
+
     #reserve-nav {
       margin-top: 40px;
       text-align: center;
@@ -41,7 +45,7 @@ body.buy {
 
     #reserve {
         margin-top: 40px;
-        margin-bottom: 80px;
+        margin-bottom: 40px;
 
         form {
             label {

@@ -49,7 +49,8 @@ class PreordersController < ApplicationController
 
         render json: {
           success: true,
-          preorder: preorder
+          preorder: preorder,
+          amount: 0
         }
       end
 
@@ -94,9 +95,34 @@ class PreordersController < ApplicationController
 
         preorder.send_confirmation
 
+        mailing_list = '6c5d27e782ed50c0aba4585cd925ea9d'
+        auth = {api_key: 'eb99798ca9551efbad763f40fd73b5f7'}
+
+        email = preorder_params['email']
+        name = preorder_params['name']
+        custom_fields = [
+          {Key: 'user_agent', Value: request.user_agent},
+          {Key: 'ip_address', Value: request.remote_ip},
+          {Key: 'country', Value: preorder_params['country']},
+          {Key: 'state', Value: preorder_params['state']},
+          {Key: 'postal_code', Value: preorder_params['postal_code']},
+          {Key: 'utility', Value: preorder_params['utility']},
+          {Key: 'frame', Value: preorder_params['frame']},
+          {Key: 'size', Value: preorder_params['size']},
+          {Key: 'lens', Value: preorder_params['lens']}
+        ]
+
+        begin
+          CreateSend::Subscriber.add(auth, mailing_list, email, name, custom_fields, false)
+        rescue Exception => e
+          # don't cause the submit to fail if the mailing list call fails
+          puts e
+        end
+
         render json: {
           success: true,
-          preorder: preorder
+          preorder: preorder,
+          amount: final_amount/100
         }
 
       rescue Stripe::CardError => error

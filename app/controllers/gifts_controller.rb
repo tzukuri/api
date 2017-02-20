@@ -51,7 +51,8 @@ class GiftsController < ApplicationController
 
         render json: {
           success: true,
-          gift: @gift
+          gift: @gift,
+          amount: full_amount/100
         }
 
       rescue Stripe::CardError => error

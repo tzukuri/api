@@ -55,6 +55,7 @@ $(function() {
         // fade in the main view, set a small timeout to give the page time to render
         // fixme: remove the timeout
         $('#hero').removeClass('hidden')
+        
         $('#scroll-indicator').removeClass('hidden')
 
         // setup a crossfader for the screenshots and text
