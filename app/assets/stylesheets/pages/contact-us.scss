@@ -1,0 +1,27 @@
+@import "tzukuri/variables";
+@import "tzukuri/mixins";
+
+body.contact-us {
+  #header {
+    p {
+      width: 50%;
+      margin: 0 auto;
+    }
+  }
+
+  #enquiry {
+    form {
+      width: 50%;
+      margin: 0 auto;
+    }
+  }
+
+  #thanks {
+    display: none;
+    margin-top: 20px;
+  }
+
+  #thanks, #header, #enquiry {
+    text-align: center;
+  }
+}

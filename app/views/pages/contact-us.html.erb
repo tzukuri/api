@@ -1,0 +1,37 @@
+<%= stylesheet_link_tag 'pages/contact-us', media: 'all' %>
+<%= javascript_include_tag 'pages/contact-us', :defer => "defer" %>
+
+<div class="main">
+  <div class="panel container">
+    <div class="row" id="header">
+        <h1>contact us</h1>
+        <br/>
+        <p>If you are unable to find a satisfactory answer to your question in our <a href="https://help.tzukuri.com">help section</a>, please fill out the form below. We'll get back to you as quickly as possible.</p>
+    </div>
+
+    <div class="container"><hr/></div>
+
+    <div class="row" id="enquiry">
+      <%= form_for Enquiry.new, url: enquire_path, remote: true do |message_form| %>
+          <label for="enquiry_name">Full Name</label>
+          <%= message_form.text_field :name, placeholder: "John Smith" %>
+
+          <label for="enquiry_email">Email Address</label>
+          <%= message_form.email_field :email, placeholder: "john@tzukuri.com"%>
+
+          <label for="enquiry_content">Content</label>
+          <%= message_form.text_area :content, placeholder: "Whats on your mind?" %>
+
+          <p class="messages error"></p>
+
+          <%= message_form.submit "send enquiry" %>
+      <% end %>
+    </div>
+
+    <div class="row" id="thanks">
+      <h2>Thanks for getting in touch</h2>
+      <p>We'll get back to you as soon as possible.</p>
+    </div>
+
+  </div>
+</div>
