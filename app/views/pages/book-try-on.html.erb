@@ -7,7 +7,7 @@
     <div class="container">
       <div id="gate">
         <h1>book your personal try on</h1>
-        <%= form_tag '/tryon', remote: true, id: 'try-form' do |f| %>
+        <%= form_tag '/tryon/validate', remote: true, id: 'try-form' do |f| %>
             <label for="interest_name">Full Name</label>
             <%= text_field_tag :name, nil, placeholder: "John Smith", autofocus: true %>
 

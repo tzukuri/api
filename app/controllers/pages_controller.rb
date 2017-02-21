@@ -10,6 +10,7 @@ class PagesController < ApplicationController
           book_try_on: {title: "Book your Tzukuri Personal Try On", description: "Choosing glasses without trying them on is difficult. To make it easier, we'll bring them to your office, home or local cafe."},
           team: {title: "Team", description: ""},
           buy: {title: "Purchase Unlosable Tzukuri Glasses", description: ""},
+          contact: {title: "Contact Us", description: ""},
           privacy: {title: "Privacy Policy", description: ""}
         }
 

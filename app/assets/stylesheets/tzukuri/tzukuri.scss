@@ -179,7 +179,12 @@ button, input[type=submit] {
 form {
     text-align: left;
 
-    input, select {
+    textarea {
+      min-height: 150px !important;
+      padding-top: 10px;
+    }
+
+    input, select, textarea {
         @include font-size(16px);
 
         @include border-radius(15px);
