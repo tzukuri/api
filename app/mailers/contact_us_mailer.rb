@@ -3,7 +3,7 @@ class ContactUsMailer < ActionMailer::Base
 
   def new_enquiry(enquiry)
     @enquiry = enquiry
-    mail(from: enquiry.email, subject: "Enquiry from #{enquiry.name}")
+    mail(from: enquiry.email, subject: "Tzukuri | Enquiry from #{enquiry.name}")
   end
 
 end
