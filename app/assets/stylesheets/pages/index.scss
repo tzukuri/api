@@ -64,3 +64,16 @@ body.index {
     }
   }
 }
+
+@media only screen and (max-width: $smartphone) {
+  body.index {
+    #hero-image {
+      margin-top: 20px;
+    }
+
+    #store #address {
+      padding-top: 20px;
+      padding-bottom: 40px;
+    }
+  }
+}

@@ -25,3 +25,22 @@ body.contact-us {
     text-align: center;
   }
 }
+
+@media only screen and (max-width: $tabletPortrait) {
+  body.contact-us {
+    #header p {
+      width: 90%;
+    }
+
+    #enquiry form {
+      width: 100%;
+
+      input[type=submit] {
+        width: 100%;
+        margin-top: 0px;
+        margin-bottom: 0px;
+      }
+    }
+
+  }
+}

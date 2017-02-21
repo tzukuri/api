@@ -6,20 +6,16 @@ body.try-them-on {
   #purchase-options {
     text-align: center;
 
-    #titles {
-      h2 { padding-bottom: 20px; }
+    .title {
+      padding-bottom: 20px;
     }
 
-    #available {
-      p { padding-bottom: 20px; }
+    .available {
+      padding-bottom: 20px;
     }
 
-    #desc {
-      p { padding-bottom: 40px; }
-    }
-
-    #action {
-
+    .desc {
+      padding-bottom: 40px;
     }
 
     #address {
@@ -29,7 +25,6 @@ body.try-them-on {
     #hours {
       padding-top: 20px;
     }
-
   }
 
   #try-on {
@@ -104,6 +99,24 @@ body.try-them-on {
     #gate {
       form {
         width: 100%;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: $smartphone) {
+  body.try-them-on {
+    #purchase-options {
+      .action button {
+        margin-bottom: 50px;
+      }
+
+      #address {
+        padding-top: 0px;
+      }
+
+      #hours {
+        padding-bottom: 40px;
       }
     }
   }
