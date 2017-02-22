@@ -4,10 +4,15 @@
 header {
     border-bottom: 1px solid $tz-inactive;
     border-top: 3px solid $tz-background-alt;
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 1);
     z-index: 10;
     position: fixed;
-    -webkit-backdrop-filter: blur(10px);
+
+    // if the browser supports -webkit-backdrop-filter
+    @supports (-webkit-backdrop-filter: blur(10px)) {
+      -webkit-backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.7);
+    }
 
     #tzukuri {
         @include font-size(30px);
