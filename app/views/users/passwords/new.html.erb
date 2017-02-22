@@ -1,32 +1,25 @@
-<div id="login-container">
+<%= stylesheet_link_tag 'users/passwords', media: 'all' %>
+<%#= javascript_include_tag 'users/passwords', :defer => "defer" %>
 
-  <h1 id="tzukuri-head">forgot password?</h1>
+ <%= render 'layouts/site_header' %>
 
-  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-    <%= devise_error_messages! %>
+ <body>
+   <div class="main">
+     <div class="container panel" id="forgot-password">
+       <h1>forgot your password?</h1>
+       <p>Enter your email address to reset your password.</p>
+       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+          <%= f.label :email, "Email Address" %>
+          <%= f.email_field :email, autofocus: true, placeholder: "john@tzukuri.com" %>
 
-    <div class="field">
-      <%= f.email_field :email, autofocus: true, placeholder: "email address" %>
-    </div>
+          <%= devise_error_messages! %>
 
-    <div class="actions">
-      <%= f.submit "send password reset instructions", id: "password_reset" %>
-    </div>
-  <% end %>
+          <%= f.submit "send password reset instructions", id: "password_reset" %>
+       <% end %>
 
-    <br/><br/>
-    <%= render "devise/shared/links" %>
+       <a href="/users/unlock/new">Didn't receive unlock instructions?</a>
+     </div>
+   </div>
+ </body>
 
-</div>
-
-
-<div id="main-map" class="blur"></div>
-
-<!-- JAVASCRIPT -->
-<script>
-  // inject the map into the view
-  tzukuri.map.inject({
-    element: 'main-map',
-    disableControls: true
-  })
-</script>
+ <%= render 'layouts/site_footer' %>

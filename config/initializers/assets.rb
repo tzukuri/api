@@ -15,3 +15,7 @@ Rails.application.config.assets.precompile += %w(pages/*.js pages/index.js)
 
 # precompile the individual css for each page
 Rails.application.config.assets.precompile += %w(pages/*.css pages/index.css)
+
+# precompile the css and js for the user pages (password reset, etc.)
+Rails.application.config.assets.precompile += %w( users/*.css )
+Rails.application.config.assets.precompile += %w( users/*.js )
