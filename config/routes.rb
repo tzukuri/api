@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     # devise routes
     # -----------------------------
     devise_for :admin_users, ActiveAdmin::Devise.config
-    devise_for :users
+    devise_for :users, :controllers => { :passwords => 'passwords', :unlocks => 'unlocks'}
 
     # devise for beta user with custom controllers for omniauth and registrations
     devise_for :beta_users, :controllers => {
