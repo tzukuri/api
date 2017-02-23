@@ -25,8 +25,9 @@ $(function() {
       return
     }
 
-    // send a booking event to google analytics
+    // send a booking event to google analytics and facebook
     ga('send', 'event', 'try-on', 'book');
+    fbq('track', 'Lead');
 
     if (allow) {
       // inject calendly and initialise

@@ -289,6 +289,7 @@ $(function() {
 
               // send a booking event to google analytics
               ga('send', 'event', 'buy', 'purchase-complete', '', data.amount);
+              fbq('track', 'Purchase', {value: data.amount, currency:'AUD'});
           } else {
               // there was an error creating the preorder/charging the card
               setFormError(data.errors)
