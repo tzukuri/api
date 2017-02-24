@@ -26,7 +26,7 @@ $(function() {
     }
 
     // send a booking event to google analytics and facebook
-    ga('send', 'event', 'try-on', 'book');
+    ga('send', 'event', 'book-try-on', 'email-entered');
     fbq('track', 'Lead');
 
     if (allow) {

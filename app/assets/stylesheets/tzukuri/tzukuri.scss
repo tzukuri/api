@@ -104,7 +104,7 @@ a {
 button, input[type=submit] {
     @include font-size(16px);
 
-    @include transition(0.5s ease-in-out);
+    @include transition(background-color 0.5s ease-in-out);
 
     @include border-radius($tz-border-radius);
 
