@@ -6,63 +6,169 @@
     <div class="container">
 
       <div class="row">
-        <h1>designed for life</h1>
-        <h2 class="h-sm">inspired by the human eye</h2>
-        <p>Our two frame shapes mimic the human eye's field of vision. This minimises visual obstruction when looking straight ahead.</p>
+        <h1>two beautiful frames</h1>
+        <h2 class="h-sm">designed for everyday comfort</h2>
+        <p>Our two frames were designed to be extremely comfortable to wear and suit a wide variety of face shapes.</p>
+        <br/>
+        <p>Both prescription and non-prescription are available for 485 AUD.</p>
       </div>
 
       <hr id="model-divider"/>
 
-      <div class="row">
+      <div class="row" id="range">
         <div class="six columns" id="ive">
           <h1>Ive</h1>
-          <p class="quote">'Different is easy, better is hard.' <span class="bold">Jonathan Ive</span></p>
+
           <%= image_tag 'frames/ive/ive_black_optical_flat.png' %>
-          <p class="spec">Optical</p>
+          <p class="spec bold">Optical</p>
+          <p class="spec">Single Vision Prescription</p>
+          <p class="spec">Non-Prescription</p>
+          <p class="spec">49mm</p>
+          <br/>
+          <a href="/buy"><button class="alternate tz-track"  data-category="design-and-range" data-event="buy-ive-optical">buy now &nbsp; &rarr;</button></a>
 
           <%= image_tag 'frames/ive/ive_black_sun_flat.png' %>
-          <p class="spec">Sun</p>
+          <p class="spec bold">Sun</p>
+          <p class="spec">Single Vision Prescription</p>
+          <p class="spec">Non-Prescription</p>
+          <p class="spec">49mm</p>
+          <br/>
+          <a href="/buy"><button class="alternate tz-track"  data-category="design-and-range" data-event="buy-ive-sun">buy now &nbsp; &rarr;</button></a>
         </div>
 
         <div class="six columns" id="ford">
           <h1>Ford</h1>
-          <p class="quote">'Any colour - so long as it's black' <span class="bold">Henry Ford</span></p>
+
           <%= image_tag 'frames/ford/ford_black_optical_flat.png' %>
-          <p class="spec">Optical</p>
+          <p class="spec bold">Optical</p>
+          <p class="spec">Single Vision Prescription</p>
+          <p class="spec">Non-Prescription</p>
+          <p class="spec">49.5 or 51mm</p>
+          <br/>
+          <a href="/buy"><button class="alternate tz-track"  data-category="design-and-range" data-event="buy-ford-optical">buy now &nbsp; &rarr;</button></a>
 
           <%= image_tag 'frames/ford/ford_black_sun_flat.png' %>
-          <p class="spec">Sun</p>
+          <p class="spec bold">Sun</p>
+          <p class="spec">Single Vision Prescription</p>
+          <p class="spec">Non-Prescription</p>
+          <p class="spec">49.5 or 51mm</p>
+          <br/>
+          <a href="/buy"><button class="alternate tz-track"  data-category="design-and-range" data-event="buy-ford-sun">buy now &nbsp; &rarr;</button></a>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="panel thin" id="interesting-info">
+  <div class="u-full-width" id="in-the-box">
     <div class="container">
-      <p class="bold">the human eye</p>
-      <%= image_tag 'icons/eye.png' %>
-      <p>The human eye is the most complex sense organ, made up of 30 separate identifiable components. It can detect up to 10 million colours and as little as a single photon.</p>
+      <h1>what's included</h1>
+      <div class="row">
+        <div class="four columns">
+          <%= image_tag 'glasses.png', id: 'unlosable' %>
+        </div>
+        <div class="four columns">
+          <%= image_tag 'microfibre.png', id: 'cloth' %>
+        </div>
+        <div class="four columns">
+          <%= image_tag "dock_cable.png", id: 'charge' %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="four columns">
+          <p class="bold">Unlosable Glasses</p>
+        </div>
+        <div class="four columns">
+          <p class="bold">Microfibre Cloth</p>
+        </div>
+        <div class="four columns">
+          <p class="bold">Charger & Cable</p>
+        </div>
+      </div>
     </div>
   </div>
 
-
-  <div class="panel" id="balancing-act">
+  <div class="u-full-width" id="specifications">
     <div class="container">
-      <%= image_tag 'glasses/ive-profile-charger.jpg' %>
+      <h1>technical specifications</h1>
+      <div class="row">
+      <div class="four columns">
+        <!--  whats included -->
+        <article>
+          <p class="bold">What's Included</p>
+          <ul>
+            <li>Unlosable glasses</li>
+            <li>Charging cable</li>
+            <li>Charging dock</li>
+            <li>Microfibre cleaning cloth</li>
+            <li>Documentation</li>
+          </ul>
+        </article>
 
-      <h1>balancing act</h1>
-      <h2 class="h-sm">for supreme comfort</h2>
-      <p>By weighting the back of the glasses with electronics we pivot the frame off your nose so they feel lighter and are less likely to leave pesky red marks.</p>
+        <!-- battery and power -->
+        <article>
+          <p class="bold">Battery and Power</p>
+          <p>
+            Battery life up to 30 days. Battery life and charge cycles vary with use, settings, and other factors; actual results will vary. The Tzukuri app will notify you when your glasses require charging.
+          </p>
+          <ul>
+            <li>Battery type: Silver Oxide</li>
+            <li>Charge time: Three to four hours</li>
+          </ul>
+        </aticle>
+      </div>
+      <div class="four columns">
+        <!-- care -->
+        <article>
+          <!-- <h2>Care</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pulvinar fringilla mi in sodales. Sed lacinia turpis non quam blandit, ac semper tortor auctor. Ut at lacus ut metus mattis molestie. Quisque lectus velit, egestas vel laoreet ut, euismod vitae eros.</p> -->
+        </article>
+
+        <!-- materials -->
+        <article>
+          <p class="bold">Materials</p>
+          <ul>
+            <li>Frames: High quality, precision-milled cellulose acetate.</li>
+            <li>Non-Prescription Sun: Brown polarised, hand cut, 100% UV protection.</li>
+            <li>Prescription Sun: Brown polarised single vision, hand cut, 100% UV protection, back anti-reflective coating, hard coat.</li>
+            <li>Prescription Optical: single vision, hand cut, back anti-reflective coating, hard coat.</li>
+          </ul>
+        </article>
+
+        <!-- environmental requirements -->
+        <article>
+          <p class="bold">Environmental Requirements</p>
+          <ul>
+            <li>Operating temperature: -10° to 45° C</li>
+            <li>Maximum operating altitude: 9,144 m</li>
+          </ul>
+        </article>
+      </div>
+      <div class="four columns">
+
+
+        <!-- syncing and notifications -->
+        <article>
+          <p class="bold">Bluetooth and Notifications</p>
+          <p>Each pair of Tzukuris connect to your iPhone using wireless Bluetooth Low Energy. Some features will require you to grant access to Location Services, Notifications and Motion & Fitness to function correctly. </p>
+          <ul>
+            <li>Bluetooth range: Up to 15m</li>
+            <li>Requires iPhone 5 or later running iOS 9 and above.</li>
+            <li>Compatible with: iPhone 5, iPhone 5C, iPhone SE, iPhone 6, iPhone 6 Plus, iPhone 6s, iPhone 6s Plus, iPhone 7, iPhone 7 Plus</p>
+          </ul>
+        </article>
+      </div>
+    </div>
     </div>
   </div>
 
-  <div class="container"><hr/></div>
+  <div class="container" id="lt-divider"><hr/></div>
 
   <div class="panel" id="cta">
     <div class="container">
       <h1>buy a pair today</h1>
       <h2 class="h-sm">your very own unlosable glasses</h2>
-      <a href="/try-them-on"><button class="tz-track" data-category="buy-now" data-event="click">buy now &nbsp; &rarr;</button></a>
+      <a href="/buy"><button class="tz-track" data-category="buy-now" data-event="click">buy now &nbsp; &rarr;</button></a>
     </div>
   </div>
 

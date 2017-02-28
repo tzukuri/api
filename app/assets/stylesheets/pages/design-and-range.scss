@@ -2,13 +2,18 @@
 @import "tzukuri/mixins";
 
 body.design-and-range {
+
+  #range {
+    margin-bottom:30px;
+  }
+
   #designed {
     text-align: center;
 
     img {
       width: 85%;
       padding-top: 60px;
-      padding-bottom: 30px;
+      padding-bottom: 20px;
     }
 
     p {
@@ -39,7 +44,6 @@ body.design-and-range {
   #ive, #ford {
     padding-top: 10px;
   }
-
 
   .model-named {
     @include font-size(12px);
@@ -89,11 +93,134 @@ body.design-and-range {
   #cta {
     text-align: center;
   }
+
+  #in-the-box {
+    padding-top: 40px;
+    padding-bottom: 30px;
+    background-color: $tz-background-alt;
+
+    p {
+      @include font-size(14px);
+    }
+
+    .row {
+      overflow: hidden;
+      max-height: 300px;
+      margin-top: 30px;
+
+      .columns {
+        text-align: center;
+      }
+    }
+
+    #unlosable {
+      width: 40%;
+    }
+
+    #charge {
+      width: 60%;
+    }
+
+    #cloth {
+      width: 50%;
+    }
+
+  }
+
+  #specifications {
+    padding-top: 40px;
+    padding-bottom: 40px;
+
+    article {
+      margin-top: 20px;
+
+      h2 {
+        @include font-size(24px);
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+
+      ul {
+        margin-left: 15px;
+        list-style: disc;
+      }
+
+      p {
+        padding-bottom: 10px;
+      }
+
+      li, p {
+          @include font-size(14px);
+          line-height: 200%;
+      }
+    }
+  }
 }
 
 
 @media only screen and (max-width: $tabletPortrait) {
   body.design-and-range {
+    #reserve-nav {
+      margin-top: 20px;
+
+      a {
+        @include font-size(14px);
+      }
+    }
+
+    #reserve {
+      margin-top: 20px;
+      margin-bottom: 20px;
+
+      .glasses-details {
+        text-align: center;
+      }
+
+      .step-container {
+
+        &#step-checkout {
+          #glasses {
+            position: inherit;
+          }
+
+          #thank-you hr {
+            display: block;
+          }
+        }
+
+        h1 {
+          @include font-size(22px);
+          padding-bottom: 30px;
+        }
+
+        p, a {
+          @include font-size(14px)
+        }
+
+        img {
+          width: 70%;
+        }
+
+        .select-utility, .select-frame, .select-lens, .select-size {
+          margin-bottom: 20px;
+
+          .select-title {
+            @include font-size(18px)
+          }
+        }
+
+        p.pricing {
+          padding-top: 0px;
+        }
+      }
+    }
+
+    #in-the-box {
+      .row .four {
+        width: 33%;
+      }
+    }
+
     #designed {
       p {
         width: 100%;
@@ -125,7 +252,7 @@ body.design-and-range {
 @media only screen and (max-width: $smartphone) {
   body.design-and-range {
     #ive {
-      margin-bottom: 40px;
+      margin-bottom: 50px;
     }
   }
 }
