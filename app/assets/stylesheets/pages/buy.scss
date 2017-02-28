@@ -43,9 +43,16 @@ body.buy {
       }
     }
 
+    #try-them-on {
+      button {
+        margin-top: 30px;
+      }
+    }
+
     #reserve {
         margin-top: 40px;
-        margin-bottom: 40px;
+        margin-bottom: 20px;
+        min-height: 350px;
 
         form {
             label {
@@ -107,7 +114,7 @@ body.buy {
 
             img {
                 width: 100%;
-                cursor: pointer;
+                // cursor: pointer;
             }
 
             h1 {
@@ -119,7 +126,7 @@ body.buy {
 
             p {
                 &.pricing {
-                    @include font-size(14px);
+                    @include font-size(16px);
                     padding-top: 40px;
                     color: $tz-content;
                 }
@@ -201,11 +208,20 @@ body.buy {
         }
     }
 
-    #in-the-box {
-      padding-top: 40px;
-      padding-bottom: 30px;
-      background-color: $tz-background-alt;
+    .contracted {
+      max-height: 30px !important;
+      overflow: hidden;
+      padding-top: 0px !important;
+      padding-bottom: 0px !important;
+      @include transition(max-height 0.5s ease-out);
+    }
 
+    #in-the-box, #specifications {
+      max-height: 1000px;
+      @include transition(max-height 0.5s ease-out);
+    }
+
+    #in-the-box {
       p {
         @include font-size(14px);
       }
@@ -213,7 +229,6 @@ body.buy {
       .row {
         overflow: hidden;
         max-height: 300px;
-        margin-top: 30px;
 
         .columns {
           text-align: center;
@@ -235,8 +250,7 @@ body.buy {
     }
 
     #specifications {
-      padding-top: 40px;
-      padding-bottom: 40px;
+      margin-bottom: 20px;
 
       article {
         margin-top: 20px;
@@ -267,6 +281,7 @@ body.buy {
   body.buy {
 
     #reserve-nav {
+      display: none;
       margin-top: 20px;
 
       a {

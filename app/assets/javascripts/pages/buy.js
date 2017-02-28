@@ -1,6 +1,32 @@
 $(function() {
     if (!$('body').hasClass('buy')) return;
 
+    $("#in-the-box-toggle").on('click', function(e) {
+      if ($(e.target).hasClass('fa-plus')) {
+        // remove plus and expand
+        $(e.target).removeClass('fa-plus').addClass('fa-minus')
+        $("#in-the-box").removeClass('contracted')
+
+      } else {
+        // remove minus and contract
+        $(e.target).removeClass('fa-minus').addClass('fa-plus')
+        $("#in-the-box").addClass('contracted')
+      }
+    })
+
+    $("#tech-specs-toggle").on('click', function(e) {
+      if ($(e.target).hasClass('fa-plus')) {
+        // remove plus and expand
+        $(e.target).removeClass('fa-plus').addClass('fa-minus')
+        $("#specifications").removeClass('contracted')
+
+      } else {
+        // remove minus and contract
+        $(e.target).removeClass('fa-minus').addClass('fa-plus')
+        $("#specifications").addClass('contracted')
+      }
+    })
+
     /**
     the preorderEngine maintains the order state as well as passing order details
     to the API. It also handles updating the DOM where the updates are directly related to the
@@ -439,7 +465,7 @@ $(function() {
 
     // pulse the images on mouse over
     $('.select-utility img, .select-frame img, .select-lens img, .select-size img').on('mouseenter', function() {
-        $(this).tzAnimate('pulse')
+        // $(this).tzAnimate('pulse')
     })
 
     // user is shown apple pay but wants to use the normal form

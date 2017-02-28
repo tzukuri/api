@@ -245,24 +245,59 @@
 
   </div>
 
-  <div class="u-full-width" id="in-the-box">
-    <div class="container">
-      <h1>what's included</h1>
-      <div class="row">
-        <div class="four columns">
-          <%= image_tag 'glasses.png', id: 'unlosable' %>
-        </div>
-        <div class="four columns">
-          <%= image_tag 'microfibre.png', id: 'cloth' %>
-        </div>
-        <div class="four columns">
-          <%= image_tag "dock_cable.png", id: 'charge' %>
-        </div>
-      </div>
+  <div class="container"><hr/></div>
 
-      <div class="row">
+  <div class="panel container" id="try-them-on">
+    <div class="row" style="text-align: center;">
+      <h1>want to try them on?</h1>
+    </div>
+    <br/><br/>
+    <div class="row" style="text-align:center;">
+      <div class="four columns">
+        <h2 class="title">Personal Try On</h2>
+        <p>Choosing glasses without trying them on is difficult. To make it easier, we'll bring them to your office, home or local cafe.</p>
+        <button class="alternate">book now &nbsp; &rarr;</button>
+      </div>
+      <div class="four columns">
+        <h2 class="title">Visit our Store</h2>
+        <p>We’ve repurposed the Old Clare Bottle Shop as a dedicated try on space for you to experience Unlosable Glasses.</p>
+        <button class="alternate">directions &nbsp; &rarr;</button>
+      </div>
+      <div class="four columns">
+        <h2 class="title">Mailing List</h2>
+        <p>Sign up with your email and we'll let you know when the glasses are available in your area.</p>
+        <button class="alternate">register email &nbsp; &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container"><hr/></div>
+
+  <div class="container contracted" id="in-the-box">
+    <div class="row">
+      <div class="ten columns" style="text-align:left;">
+        <h1>what's included</h1>
+      </div>
+      <div class="two columns" style="text-align:right;">
+        <i class="fa fa-2x fa-plus" id="in-the-box-toggle"></i>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="four columns">
+        <%= image_tag 'glasses.png', id: 'unlosable' %>
+      </div>
+      <div class="four columns">
+        <%= image_tag 'microfibre.png', id: 'cloth' %>
+      </div>
+      <div class="four columns">
+        <%= image_tag "dock_cable.png", id: 'charge' %>
+      </div>
+    </div>
+
+    <div class="row">
         <div class="four columns">
-          <p>Unlosable Glasses</p>
+          <p class=>Unlosable Glasses</p>
         </div>
         <div class="four columns">
           <p>Microfibre Cloth</p>
@@ -271,17 +306,25 @@
           <p>Charger & Cable</p>
         </div>
       </div>
-    </div>
   </div>
 
-  <div class="u-full-width" id="specifications">
-    <div class="container">
-      <h1>technical specifications</h1>
-      <div class="row">
+  <div class="container"><hr/></div>
+
+  <div class="container contracted" id="specifications">
+    <div class="row">
+      <div class="ten columns" style="text-align:left;">
+        <h1>technical specifications</h1>
+      </div>
+      <div class="two columns" style="text-align:right;">
+        <i class="fa fa-2x fa-plus" id="tech-specs-toggle"></i>
+      </div>
+    </div>
+
+    <div class="row">
       <div class="four columns">
         <!--  whats included -->
         <article>
-          <h2>What's included</h2>
+          <p class="bold">What's Included</p>
           <ul>
             <li>Unlosable glasses</li>
             <li>Charging cable</li>
@@ -293,7 +336,7 @@
 
         <!-- battery and power -->
         <article>
-          <h2>Battery and Power</h2>
+          <p class="bold">Battery and Power</p>
           <p>
             Battery life up to 30 days. Battery life and charge cycles vary with use, settings, and other factors; actual results will vary. The Tzukuri app will notify you when your glasses require charging.
           </p>
@@ -312,17 +355,18 @@
 
         <!-- materials -->
         <article>
-          <h2>Materials</h2>
+          <p class="bold">Materials</p>
           <ul>
             <li>Frames: High quality, precision-milled cellulose acetate.</li>
-            <li>Sun Lenses: Polarised, hand cut, 100% UV protection, anti-reflective, scratch resistant.</li>
-            <li>Optical Lenses: Hand cut, anti-reflective, scratch resistant.</li>
+            <li>Non-Prescription Sun: Brown polarised, hand cut, 100% UV protection.</li>
+            <li>Prescription Sun: Brown polarised single vision, hand cut, 100% UV protection, back anti-reflective coating, hard coat.</li>
+            <li>Prescription Optical: single vision, hand cut, back anti-reflective coating, hard coat.</li>
           </ul>
         </article>
 
         <!-- environmental requirements -->
         <article>
-          <h2>Environmental Requirements</h2>
+          <p class="bold">Environmental Requirements</p>
           <ul>
             <li>Operating temperature: -10° to 45° C</li>
             <li>Maximum operating altitude: 9,144 m</li>
@@ -334,7 +378,7 @@
 
         <!-- syncing and notifications -->
         <article>
-          <h2>Bluetooth and Notifications</h2>
+          <p class="bold">Bluetooth and Notifications</p>
           <p>Each pair of Tzukuris connect to your iPhone using wireless Bluetooth Low Energy. Some features will require you to grant access to Location Services, Notifications and Motion & Fitness to function correctly. </p>
           <ul>
             <li>Bluetooth range: Up to 15m</li>
@@ -344,9 +388,9 @@
         </article>
       </div>
     </div>
-    </div>
   </div>
 
+  <br/>
 </div>
 
 <!-- stripe -->

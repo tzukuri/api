@@ -2,13 +2,12 @@
 @import "tzukuri/mixins";
 
 body.design-and-range {
-
-  #range {
-    margin-bottom:30px;
-  }
-
   #designed {
     text-align: center;
+
+    #range {
+      margin-bottom:30px;
+    }
 
     img {
       width: 85%;
@@ -29,69 +28,6 @@ body.design-and-range {
       margin-top: 40px;
       margin-bottom: 40px;
     }
-  }
-
-  #ive .quote, #ford .quote {
-    padding-top: 15px;
-    @include font-size(14px);
-    margin: 0 auto;
-  }
-
-  #ive .spec, #ford .spec {
-    @include font-size(14px);
-  }
-
-  #ive, #ford {
-    padding-top: 10px;
-  }
-
-  .model-named {
-    @include font-size(12px);
-    margin-bottom: 15px;
-    margin-top: 5px;
-  }
-
-  #balancing-act {
-    text-align: center;
-
-    img {
-      width: 75%;
-    }
-
-    p {
-      padding-top: 20px;
-      width: 50%;
-      margin: 0 auto;
-    }
-  }
-
-  #interesting-info {
-    background-color: $tz-background-alt;
-    text-align: center;
-
-    h3, p {
-      color: white;
-    }
-
-    h3 {
-      margin-bottom: 20px;
-    }
-
-    p {
-      width: 65%;
-      margin: 0 auto;
-      padding-bottom: 0;
-    }
-
-    img {
-      margin-top: 20px;
-      margin-bottom: 20px;
-      width: 4%;
-    }
-  }
-
-  #cta {
-    text-align: center;
   }
 
   #in-the-box {
@@ -155,104 +91,42 @@ body.design-and-range {
       }
     }
   }
-}
 
-
-@media only screen and (max-width: $tabletPortrait) {
-  body.design-and-range {
-    #reserve-nav {
-      margin-top: 20px;
-
-      a {
-        @include font-size(14px);
-      }
-    }
-
-    #reserve {
-      margin-top: 20px;
-      margin-bottom: 20px;
-
-      .glasses-details {
-        text-align: center;
-      }
-
-      .step-container {
-
-        &#step-checkout {
-          #glasses {
-            position: inherit;
-          }
-
-          #thank-you hr {
-            display: block;
-          }
-        }
-
-        h1 {
-          @include font-size(22px);
-          padding-bottom: 30px;
-        }
-
-        p, a {
-          @include font-size(14px)
-        }
-
-        img {
-          width: 70%;
-        }
-
-        .select-utility, .select-frame, .select-lens, .select-size {
-          margin-bottom: 20px;
-
-          .select-title {
-            @include font-size(18px)
-          }
-        }
-
-        p.pricing {
-          padding-top: 0px;
-        }
-      }
-    }
-
-    #in-the-box {
-      .row .four {
-        width: 33%;
-      }
-    }
-
-    #designed {
-      p {
-        width: 100%;
-      }
-    }
-
-    #balancing-act {
-      img {
-        width: 90%;
-      }
-
-      p {
-        width: 100%;
-      }
-    }
-
-    #interesting-info {
-      img {
-        width: 10%;
-      }
-
-      p {
-        width: 90%;
-      }
-    }
+  #cta {
+    text-align: center;
   }
-}
 
-@media only screen and (max-width: $smartphone) {
-  body.design-and-range {
-    #ive {
-      margin-bottom: 50px;
-    }
+  // for tablets and smaller
+  @media only screen and (max-width: $tabletPortrait) {
+      #designed {
+        p {
+          width: 100%;
+        }
+      }
+
+      #in-the-box {
+        .row .four {
+          width: 33%;
+        }
+      }
+
+      #balancing-act {
+        img {
+          width: 90%;
+        }
+
+        p {
+          width: 100%;
+        }
+      }
+  }
+
+  // for smartphones and smaller
+  @media only screen and (max-width: $smartphone) {
+      #designed {
+        #ive {
+          margin-bottom: 50px;
+        }
+      }
   }
 }

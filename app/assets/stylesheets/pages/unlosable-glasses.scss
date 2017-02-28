@@ -2,30 +2,6 @@
 @import "tzukuri/mixins";
 
 body.unlosable-glasses {
-
-  #balancing-act {
-    text-align: center;
-
-    img {
-      width: 75%;
-    }
-
-    p {
-      padding-top: 20px;
-      width: 50%;
-      margin: 0 auto;
-    }
-  }
-
-  #bluetooth {
-    h1 {
-      margin-top: 10%;
-    }
-    img {
-      width: 80%;
-    }
-  }
-
   #the-range {
     img {
       width: 90%;
@@ -43,13 +19,6 @@ body.unlosable-glasses {
 
     .row {
       text-align: center;
-    }
-  }
-
-  #most-useful {
-    text-align: center;
-    img {
-      // width: 40%;
     }
   }
 
@@ -79,19 +48,12 @@ body.unlosable-glasses {
       }
     }
 
-  }
+    #app-store {
+      margin-top: 20px;
 
-  #interesting-info {
-    h3, i, p {
-      color: white;
-    }
-
-    h3, img {
-      margin-bottom: 20px;
-    }
-
-    img {
-      width: 4%;
+      img {
+        width: 18%;
+      }
     }
   }
 
@@ -127,6 +89,20 @@ body.unlosable-glasses {
     }
   }
 
+  #balancing-act {
+    text-align: center;
+
+    img {
+      width: 75%;
+    }
+
+    p {
+      padding-top: 20px;
+      width: 50%;
+      margin: 0 auto;
+    }
+  }
+
   #little-things {
     text-align: center;
 
@@ -135,31 +111,43 @@ body.unlosable-glasses {
     }
   }
 
-  #lt-divider {
-    hr {
-      margin-top: 0px;
-    }
-  }
-
-  #app-store {
-    margin-top: 20px;
-
-    img {
-      width: 15%;
-    }
-  }
-
   #cta {
     text-align: center;
   }
-}
 
-@media only screen and (max-width: $tabletPortrait) {
-  body.unlosable-glasses {
-    #most-useful {
-      img {
-        width: 80%;
+  // for tablets and smaller
+  @media only screen and (max-width: $tabletPortrait) {
+    #the-range {
+      p {
+        width: 90%;
       }
+    }
+
+    #timely-intelligence {
+      img {
+        margin-top: 20px !important;
+        margin-bottom: 20px !important;
+      }
+
+      #app-store {
+        img {
+          width: 25% !important;
+        }
+      }
+    }
+
+    #beautifully-light {
+      p {
+        width: 100%;
+      }
+
+      img {
+        width: 60%;
+      }
+    }
+
+    #visual-indulgence {
+      min-height: 0px;
     }
 
     #balancing-act {
@@ -171,59 +159,40 @@ body.unlosable-glasses {
         width: 100%;
       }
     }
-
-    #timely-intelligence {
-      img {
-        margin-top: 20px !important;
-        margin-bottom: 20px !important;
-      }
-    }
-
-    #beautifully-light {
-      p {
-        width: 100%;
-      }
-
-      img {
-        width: 80%;
-      }
-    }
-
-    #app-store {
-      img {
-        width: 30% !important;
-      }
-    }
-
-    #interesting-info {
-      img {
-        width: 10%;
-      }
-    }
-
-    #visual-indulgence {
-      min-height: 0px;
-    }
-
   }
-}
 
-@media only screen and (max-width: $smartphone) {
-  body.unlosable-glasses {
+  // for smartphones and smaller
+  @media only screen and (max-width: $smartphone) {
+    #the-range {
+      h1 {
+        width: 80%;
+        margin: 0 auto;
+      }
+    }
 
     #timely-intelligence {
+      padding-bottom: 0px;
+
       img {
         width: 50% !important;
+      }
+
+      #app-store {
+        img {
+          width: 40% !important;
+        }
       }
     }
 
     #little-things {
+      padding-bottom: 0px;
+
       img {
         width: 15%;
       }
 
       p {
-        margin-bottom: 40px;
+        margin-bottom: 20px;
       }
     }
   }
