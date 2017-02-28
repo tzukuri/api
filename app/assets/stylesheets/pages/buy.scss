@@ -208,6 +208,112 @@ body.buy {
         }
     }
 
+    #purchase {
+      .frame-col {
+        text-align: center;
+        margin-top: 40px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        box-sizing: border-box;
+
+        img {
+          width: 75%;
+        }
+
+        .lens-controls {
+          margin-top: 10px;
+          margin-bottom: 15px;
+
+          .control {
+            width: 25px;
+            height: 25px;
+            display: inline-block;
+            border-radius: 50%;
+            box-sizing: border-box;
+
+            &.sun {
+              background-color: #AB9B8B;
+            }
+
+            &.optical {
+              background-color: white;
+              border: 2px solid $tz-content;
+            }
+
+            &:hover {
+              cursor: pointer;
+            }
+
+            &.selected {
+              border: 2px solid $tz-active;
+            }
+          }
+        }
+
+        .frame-name {
+          @include font-size(22px);
+          margin-top: 20px;
+        }
+
+        .frame-detail {
+          margin-bottom: 10px;
+          @include font-size(14px);
+          a {
+            @include font-size(14px);
+          }
+        }
+      }
+    }
+
+    #checkout {
+      display: none;
+
+      #order-details {
+
+        .glasses {
+          width: 80%;
+          @include sticky;
+          top: 150px;
+          display: none;
+        }
+      }
+
+      p {
+        @include font-size(14px);
+      }
+
+      .section-head {
+        @include font-size(18px);
+        margin-top: 10px;
+      }
+
+      #lens-group, #prescription-group, #new_preorder, #payment-form {
+        display: none;
+      }
+
+      dl {
+        margin-top: 20px;
+        margin-bottom: 10px;
+
+          // @include font-size(16px);
+          color: $tz-content;
+          line-height: 150%;
+
+          dt, dd {
+              display: inline-block;
+          }
+
+          dt {
+              text-align: right;
+              font-weight: 600;
+          }
+
+          dd {
+              text-transform: capitalize;
+          }
+      }
+    }
+
     .contracted {
       max-height: 30px !important;
       overflow: hidden;
