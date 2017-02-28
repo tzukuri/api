@@ -56,6 +56,11 @@ body.unlosable-glasses {
   #timely-intelligence {
     text-align: center;
 
+    h2 + p {
+      width: 50%;
+      margin: 0 auto 40px auto;
+    }
+
     #remember {
       img {
         margin-top: 50px;
