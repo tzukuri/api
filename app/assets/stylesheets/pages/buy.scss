@@ -208,11 +208,20 @@ body.buy {
         }
     }
 
+    #store-head {
+      text-align: center;
+      padding-bottom: 20px;
+
+      h2 {
+        padding-bottom: 0px;
+      }
+    }
+
     #purchase {
       .frame-col {
         text-align: center;
-        margin-top: 40px;
-        padding-top: 20px;
+        // margin-top: 40px;
+        // padding-top: 20px;
         padding-bottom: 20px;
         box-sizing: border-box;
 
@@ -268,12 +277,22 @@ body.buy {
     #checkout {
       display: none;
 
+      #order-complete {
+        display: none;
+        text-align: center;
+        margin-top: 10%;
+
+        p, a {
+          @include font-size(16px)
+        }
+      }
+
       #order-details {
+        @include sticky;
+        top: 100px;
 
         .glasses {
-          width: 80%;
-          @include sticky;
-          top: 150px;
+          width: 90%;
           display: none;
         }
       }
@@ -287,15 +306,15 @@ body.buy {
         margin-top: 10px;
       }
 
-      #lens-group, #prescription-group, #new_preorder, #payment-form {
+      #lens-group-optical, #lens-group-sun, #prescription-group, #size-group, #new_preorder, #payment-form {
         display: none;
       }
 
       dl {
-        margin-top: 20px;
+        margin-top: 40px;
         margin-bottom: 10px;
 
-          // @include font-size(16px);
+          @include font-size(14px);
           color: $tz-content;
           line-height: 150%;
 

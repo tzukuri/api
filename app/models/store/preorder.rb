@@ -19,12 +19,12 @@ class Preorder < ActiveRecord::Base
     validate :charge_or_gift
 
     validates :utility, inclusion: {
-      in: ['optical', 'sun'],
+      in: ['Optical', 'Sun'],
       message: "%{value} is not a valid utility"
     }
 
     validates :frame, inclusion: {
-      in: ['ive', 'ford'],
+      in: ['Ive', 'Ford'],
       message: "%{value} is not a valid frame"
     }
 
@@ -34,7 +34,7 @@ class Preorder < ActiveRecord::Base
     }
 
     validates :lens, inclusion: {
-      in: ['prescription', 'non-prescription'],
+      in: ['Prescription', 'Non-Prescription', 'Prescription Reading', 'Prescription Distance'],
       message: "%{value} is not a valid lens type"
     }
 

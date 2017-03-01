@@ -1,250 +1,13 @@
 <%= stylesheet_link_tag 'pages/buy', media: 'all' %>
+
 <%= javascript_include_tag 'pages/buy', :defer => "defer" %>
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 
 <div class="main">
-  <!-- <div class="container" id="reserve-nav">
-    <ul id="nav-list">
-      <li><a href="#" id="utility">utility</a></li>
-      <li><a href="#" id="frame">frame</a></li>
-      <li><a href="#" id="lens">lens</a></li>
-      <li><a href="#" id="checkout">checkout</a></li>
-      <hr id="nav-indicator">
-    </ul>
+  <div class="panel container" style="text-align: center;" id="store-head">
+    <h1>Tzukuri online store</h1>
+    <h2 class="h-sm">pick the perfect pair</h2>
   </div>
-
-  <div id="reserve" class="container">
-
-    <div class="step-container hidden" id="step-utility">
-      <h1>choose between optical and sun</h1>
-      <div class="row">
-        <div class="five columns">
-            <div class="select-utility" data-utility="optical">
-              <%#= image_tag 'frames/ford/ford_black_optical.jpg' %>
-              <p class="select-title">optical</p>
-            </div>
-        </div>
-        <div class="two columns">&nbsp;</div>
-        <div class="five columns">
-            <div class="select-utility" data-utility="sun">
-              <%#= image_tag 'frames/ive/ive_black_sun.jpg' %>
-              <p class="select-title">sun</p>
-            </div>
-        </div>
-      </div>
-      <p class="pricing">Both available for <span id="non-prescription"></span> AUD. Shipping 4-6 weeks.</p>
-      <br/><br/>
-    </div>
-
-    <div class="step-container hidden" id="step-frame">
-      <h1>choose your frames</h1>
-      <div class="row">
-        <div class="five columns select-frame" data-frame="ford">
-            <%= image_tag 'frames/ford/ford_black_sun.jpg', class: 'sun' %>
-            <%= image_tag 'frames/ford/ford_black_optical.jpg', class: 'optical' %>
-            <p class="select-title">ford</p>
-        </div>
-        <div class="two columns">&nbsp;</div>
-        <div class="five columns select-frame" data-frame="ive">
-            <%= image_tag 'frames/ive/ive_black_sun.jpg', class: 'sun' %>
-            <%= image_tag 'frames/ive/ive_black_optical.jpg', class: 'optical' %>
-            <p class="select-title">ive</p>
-        </div>
-      </div>
-      <p class="pricing">Both available for <span id="non-prescription"></span> AUD. Shipping 4-6 weeks.</p>
-    </div>
-
-    <div class="step-container hidden" id="step-lens">
-      <h1>choose your lenses</h1>
-      <div class="row" id="lens-type">
-        <div class="six columns select-lens" data-lens="prescription">
-            <%= image_tag 'prescription.png', style: 'width: 35%;' %>
-            <p class="select-title">prescription</p>
-            <p class="pricing"><!--<span id="prescription"></span> AUD Total Single vision only. We will contact you to obtain your prescription.</p>
-        </div>
-        <div class="six columns select-lens" data-lens="non-prescription">
-            <%= image_tag 'non_prescription.png', style: 'width: 35%;' %>
-            <p class="select-title">non-prescription</p>
-            <!-- <p class="pricing"><span id="non-prescription"></span> AUD Total</p>
-        </div>
-      </div>
-
-      <div class="row" id="lens-size">
-          <div class="six columns select-size" data-size="49">
-            <%= image_tag 'frames/ford/ford_black_optical.jpg', class: 'optical', style: 'width: 73%' %>
-            <%= image_tag 'frames/ford/ford_black_sun.jpg', class: 'sun', style: 'width: 73%' %>
-            <p class="select-title">49mm</p>
-            <p class="pricing">This size will fit most people</p>
-          </div>
-
-          <div class="six columns select-size" data-size="51.5">
-            <%= image_tag 'frames/ford/ford_black_optical.jpg', class: 'optical', style: 'width: 80%' %>
-            <%= image_tag 'frames/ford/ford_black_sun.jpg', class: 'sun', style: 'width: 80%' %>
-            <p class="select-title">51.5mm</p>
-            <p class="pricing">Choose this size if most glasses are too small</p>
-          </div>
-      </div>
-    </div>
-
-    <div class="step-container hidden" id="step-checkout">
-          <h1>complete your reservation</h1>
-
-          <div class="row step-content">
-            <div class="six columns" id="glasses">
-              <div class="row" id="checkout-images">
-                <%= image_tag 'frames/ford/ford_black_sun.jpg', class: 'ford sun' %>
-                <%= image_tag 'frames/ford/ford_black_optical.jpg', class: 'ford optical' %>
-                <%= image_tag 'frames/ive/ive_black_optical.jpg', class: 'ive optical' %>
-                <%= image_tag 'frames/ive/ive_black_sun.jpg', class: 'ive sun' %>
-              </div>
-              <div class="row">
-                <div class="twelve columns glasses-details">
-                  <dl>
-                    <dt>Utility:</dt>
-                    <dd id="utility-selection"></dd>
-                    </br>
-
-                    <dt>Frame:</dt>
-                    <dd id="frame-selection"></dd>
-                    <br/>
-                    <dt>Lens:</dt>
-                    <dd id="lens-selection"></dd>
-                    <br/>
-                    <dt>Size:</dt>
-                    <dd id="size-selection"></dd>
-                    <br/>
-                    <div id="total-price">
-                      <dt>Total:</dt>
-                      <dd id="total-selection"></dd>
-                    </div>
-                  </dl>
-
-                  <p>Includes complimentary shipping and Personal Setup. <span id="contact-prescription">We will contact you to obtain your prescription before your glasses are ready to ship.</span></p>
-
-                </div>
-              </div>
-            </div>
-            <div class="one column" style="height: 1px;">&nbsp;</div>
-            <div class="five columns" id="shipping">
-
-              <!-- the user has apple pay enabled -->
-              <!-- <div id="apple-pay">
-                <div class="apple-pay-button-with-text apple-pay-button-black-with-text">
-                  <span class="text">Buy with</span>
-                  <span class="logo"></span>
-                </div>
-                <p><a href="" id="ignore-apple-pay">Don't want to use Apple Pay?</a></p>
-
-                <p class="pricing">You will be charged <span id="prescription"></span> AUD</p>
-
-              </div>
-
-              <!-- the user does not have apple pay enabled, so show the regular payment
-              <div id="regular-pay">
-                <%= form_for Preorder.new, :html => {:method => :post}, remote:true do |f| %>
-
-                <!-- contact details
-                <p class="section-head">Contact information</p>
-
-                <%= label :purchase, :name, "Full Name" %>
-                <%= f.text_field :name, placeholder: 'John Smith', autofocus: true %>
-
-                <%= label :purchase, :email, "Email Address" %>
-                <%= f.text_field :email, placeholder: 'john@tzukuri.com' %>
-
-                <%= label :purchase, :phone, "Contact Number" %>
-                <%= f.telephone_field :phone,    placeholder: '04XX XXX XXX' %>
-
-                <!-- shipping details
-                <p class="section-head">Shipping information</p>
-
-                <%= label :purchase, :address1, "Shipping Address 1" %>
-                <%= f.text_field :address1, placeholder: 'Street name, number, etc.' %>
-
-                <%= label :purchase, :address2, "Shipping Address 2" %>
-                <%= f.text_field :address2, placeholder: 'City, suburb, etc.' %>
-
-                <%= label :purchase, :state, "State" %>
-                <%= f.text_field   :state, placeholder: 'New South Wales' %>
-
-                <%= label :purchase, :postcode, "Postal Code" %>
-                <%= f.text_field :postal_code, placeholder: '1234', maxlength: 4 %>
-
-                <%= label :purchase, :country, "Country" %>
-                <%= f.text_field :country,  placeholder: 'country', value: 'Australia', disabled: true %>
-
-                <%= label :purchase, :coupon, "Deposit Token (Optional)" %>
-                <%= f.text_field :coupon, placeholder: 'Deposit token' %>
-
-                <% end %>
-
-                <form id="payment-form">
-                  <p class="section-head" style="padding-top: 15px;">Payment information</p>
-
-                  <div id="cc">
-                      <label for="">Credit Card Number</label>
-                      <input id="payment_ccNumber" name="number" type="text" data-stripe="number" placeholder="4000 0566 5566 5556">
-
-                      <label ford="">Expiry Date</label>
-                      <select name="month" style="width: 49%" data-stripe="exp-month">
-                        <option value="1">Jan (01)</option>
-                        <option value="2">Feb (02)</option>
-                        <option value="3">Mar (03)</option>
-                        <option value="4">Apr (04)</option>
-                        <option value="5">May (05)</option>
-                        <option value="6">Jun (06)</option>
-                        <option value="7">Jul (07)</option>
-                        <option value="8">Aug (08)</option>
-                        <option value="9">Sep (09)</option>
-                        <option value="10">Oct (10)</option>
-                        <option value="11">Nov (11)</option>
-                        <option value="12">Dec (12)</option>
-                      </select>
-
-                      <select name="year" style="width: 49%" data-stripe="exp-year">
-                        <option>2016</option>
-                        <option>2017</option>
-                        <option>2018</option>
-                        <option>2019</option>
-                        <option>2020</option>
-                        <option>2021</option>
-                        <option>2022</option>
-                        <option>2023</option>
-                        <option>2024</option>
-                        <option>2025</option>
-                        <option>2026</option>
-                      </select>
-
-                      <label for="">Security Code</label>
-                      <input id="payment_cvv" name="CVV" type="text" placeholder="Security code" data-stripe="CVV">
-                  </div>
-
-                  <button id="reserve-submit" type="submit" class="order-btn">
-                    <span id="reserve-for">reserve for 485 AUD</span>
-                  </button>
-                </form>
-
-                <button id="gift-redeem" class="order-btn" style="display: none; margin: 30px auto 20px auto;">
-                  <span>redeem gift code</span>
-                </button>
-
-                <div id="submit-spinner" class="loader" style="display:none"></div>
-
-                <p id="error-messages"></p>
-              </div>
-
-              <!-- the user has completed their registration
-              <div id="thank-you">
-                <hr>
-                <p>Thanks for reserving your Tzukuris. You should receive an order confirmation shortly. <br/><br/> If you have any questions please get in touch at <a href="mailto:hello@tzukuri.com">hello@tzukuri.com</a>.</p>
-              </div>
-
-            </div>
-          </div>
-
-    </div>
-
-  </div> -->
-
 
   <div class="panel container" id="purchase">
     <div class="row">
@@ -267,23 +30,25 @@
 
   <div class="panel container" id="checkout">
     <div class="row">
-      <a href="#" id="checkout-back">&larr; &nbsp; back</a>
-    </div>
-    <br/><br/>
-
-    <div class="row">
       <!-- order details -->
       <div class="six columns" id="order-details">
+        <a href="#" id="checkout-back">&larr; &nbsp; back to frame selection</a><br/><br/><br/>
+
         <%= image_tag 'frames/ford/ford_black_optical.jpg', id:'Ford-Optical', class:'glasses' %>
         <%= image_tag 'frames/ford/ford_black_sun.jpg', id: 'Ford-Sun', class: 'glasses' %>
 
         <%= image_tag 'frames/ive/ive_black_optical.jpg', id:'Ive-Optical', class: 'glasses' %>
         <%= image_tag 'frames/ive/ive_black_sun.jpg', id: 'Ive-Sun', class: 'glasses' %>
 
-
-        <dl>
+        <dl id="order-desc">
           <dt>Frame:</dt>
-          <dd id="frame-selection">ive</dd>
+          <dd id="frame"></dd>
+          <br>
+          <dt>Utility:</dt>
+          <dd id="utility"></dd>
+          <br>
+          <dt>Lens:</dt>
+          <dd id="lens"></dd>
           <br>
           <div id="total-price">
             <dt>Total:</dt>
@@ -294,34 +59,53 @@
         <p>Includes complementary Australia-wide shipping.</p>
 
       </div>
-      <!-- checkout form -->
-      <div class="six columns">
-        <p class="section-head">Glasses Information</p>
 
-        <form>
+      <div class="six columns">
+        <div id="order-form">
+        <form id="glasses-form">
+          <p class="section-head">Glasses Information</p>
+
           <div id="utility-group">
-            <label>Optical or Sun?</label>
+            <label>Lens Type</label>
             <select id="utility-select">
-              <option>- SELECT -</option>
+              <option selected disabled hidden>- SELECT -</option>
               <option>Optical</option>
               <option>Sun</option>
             </select>
           </div>
 
-          <div id="lens-group">
-            <label>Lens Selection</label>
-            <select id="lens-select">
-              <option>- SELECT -</option>
-              <option>Non-Prescription (Plano)</option>
+          <div id="size-group">
+            <label>Size</label>
+            <select id="size-select">
+              <option selected disabled hidden>- SELECT -</option>
+              <option value="49">49mm</option>
+              <option value="51.5">51.5mm</option>
+            </select>
+          </div>
+
+          <div id="lens-group-optical">
+            <label>Lens Type</label>
+            <select id="lens-select-optical">
+              <option selected disabled hidden>- SELECT -</option>
+              <option>Non-Prescription</option>
               <option>Prescription Reading</optical>
               <option>Prescription Distance</optical>
+            </select>
+          </div>
+
+          <div id="lens-group-sun">
+            <label>Lens Type</label>
+            <select id="lens-select-sun">
+              <option selected disabled hidden>- SELECT -</option>
+              <option>Non-Prescription</option>
+              <option>Prescription</optical>
             </select>
           </div>
 
           <div id="prescription-group">
             <label>How will we get your prescription?</label>
             <select id="prescription-select">
-              <option>- SELECT -</option>
+              <option selected disabled hidden>- SELECT -</option>
               <option>I will email it to hello@tzukuri.com</option>
               <option>Please call me to discuss</option>
             </select>
@@ -401,37 +185,20 @@
             <span id="reserve-for">purchase for 485 AUD</span>
           </button>
         </form>
+
+        <div id="submit-spinner" class="loader" style="display:none"></div>
+        <p id="error-messages"></p>
+      </div>
+
+        <div id="order-complete">
+          <p>Thank you for purchasing your Tzukuris. You should receive an order confirmation shortly.</p>
+          <p>If you have any questions, please <a href="/contact-us">get in touch</a>.</p>
+        </div>
       </div>
     </div>
   </div>
 
   <div class="container"><hr/></div>
-
-  <!-- <div class="panel container" id="try-them-on">
-    <div class="row" style="text-align: center;">
-      <h1>want to try them on?</h1>
-    </div>
-    <br/><br/>
-    <div class="row" style="text-align:center;">
-      <div class="four columns">
-        <h2 class="title">Personal Try On</h2>
-        <p>Choosing glasses without trying them on is difficult. To make it easier, we'll bring them to your office, home or local cafe.</p>
-        <button class="alternate">book now &nbsp; &rarr;</button>
-      </div>
-      <div class="four columns">
-        <h2 class="title">Visit our Store</h2>
-        <p>We’ve repurposed the Old Clare Bottle Shop as a dedicated try on space for you to experience Unlosable Glasses.</p>
-        <button class="alternate">directions &nbsp; &rarr;</button>
-      </div>
-      <div class="four columns">
-        <h2 class="title">Mailing List</h2>
-        <p>Sign up with your email and we'll let you know when the glasses are available in your area.</p>
-        <button class="alternate">register email &nbsp; &rarr;</button>
-      </div>
-    </div>
-  </div> -->
-
-  <!-- <div class="container"><hr/></div> -->
 
   <div class="container contracted" id="in-the-box">
     <div class="row">
@@ -439,7 +206,7 @@
         <h1>what's included</h1>
       </div>
       <div class="two columns" style="text-align:right;">
-        <i class="fa fa-2x fa-plus" id="in-the-box-toggle"></i>
+        <i class="fa fa-plus" id="in-the-box-toggle"></i>
       </div>
     </div>
 
@@ -476,7 +243,7 @@
         <h1>technical specifications</h1>
       </div>
       <div class="two columns" style="text-align:right;">
-        <i class="fa fa-2x fa-plus" id="tech-specs-toggle"></i>
+        <i class="fa fa-plus" id="tech-specs-toggle"></i>
       </div>
     </div>
 
@@ -553,8 +320,6 @@
   <br/>
 </div>
 
-<!-- stripe -->
-<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script>
     // set the stripe keys
     <% if Rails.env.development? %>

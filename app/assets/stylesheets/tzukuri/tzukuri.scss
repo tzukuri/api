@@ -208,6 +208,20 @@ form {
         }
     }
 
+    select {
+      background: $tz-inactive image-url('icons/dropdown-indicator.png') no-repeat right center;
+       background-size: 40px 40px; /*TO ACCOUNT FOR @2X IMAGE FOR RETINA */
+      //  background-position-x: -20px;
+      // background-size:
+      //   5px 5px,
+      //   5px 5px,
+      //   10em 10em;
+      // background-repeat: no-repeat;
+
+      // background-image: url(/icons/dropdown-indicator.png) no-repeat right center;
+      //  background-size: 40px 37px; /*TO ACCOUNT FOR @2X IMAGE FOR RETINA */
+    }
+
     .section-head {
         padding-bottom: 15px;
         color: $tz-title;
