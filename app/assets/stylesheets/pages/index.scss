@@ -15,8 +15,22 @@ body.index {
     }
 
     #store {
+      background:  image-url('other/old-clare.jpg') no-repeat center center;
+      background-size: cover;
+
+      .container .row {
+        padding: 30px;
+        background: rgba(255, 255, 255, 0.8);
+
+        // if the browser supports -webkit-backdrop-filter
+        @supports (-webkit-backdrop-filter: blur(10px)) {
+          -webkit-backdrop-filter: blur(10px);
+        }
+      }
+
       a {
         text-decoration: underline;
+        // color: white
       }
     }
 
