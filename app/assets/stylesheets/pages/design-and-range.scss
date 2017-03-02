@@ -19,6 +19,10 @@ body.design-and-range {
     p {
       width: 50%;
       margin: 0 auto;
+
+      em {
+        font-weight: bold;
+      }
     }
 
     h2 a {
@@ -50,7 +54,12 @@ body.design-and-range {
       }
     }
 
-    #unlosable {
+    img {
+      max-height: 395px;
+      width: 40%;
+    }
+
+    /*#unlosable {
       width: 40%;
     }
 
@@ -60,7 +69,7 @@ body.design-and-range {
 
     #cloth {
       width: 50%;
-    }
+    }*/
 
   }
 
