@@ -1,18 +1,46 @@
 @import "tzukuri/variables";
 @import "tzukuri/mixins";
 
-body.design-and-range {
+body.the-range {
 
   #designed {
     text-align: center;
 
     #range {
       margin-bottom:30px;
+
+
+      .frame-head {
+        margin-bottom: 20px;
+      }
+
+      .frame-spec {
+        margin-bottom: 40px;
+      }
+
+      .model-detail {
+
+        &.top {
+          margin-bottom: 80px;
+        }
+
+        .spec {
+          @include font-size(14px)
+        }
+
+      }
+    }
+
+    #all-prescription {
+      margin-top: 70px;
+      p {
+        @include font-size(14px);
+      }
     }
 
     img {
       width: 85%;
-      padding-top: 60px;
+      // padding-top: 60px;
       padding-bottom: 20px;
     }
 

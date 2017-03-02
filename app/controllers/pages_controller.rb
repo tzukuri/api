@@ -3,15 +3,15 @@ class PagesController < ApplicationController
 
         meta = {
           index: {title: "Beautifully Handmade Glasses You Won't Lose", description: "Have you ever lost a pair of valuable glasses or sunglasses? Not any more. Introducing Tzukuri the world's first unlosable glasses. Try them on today."},
-          unlosable_glasses: {title: "Meet Our Glasses After You Lose Yours", description: "The Tzukuri iPhone app notifies you if you leave your glasses behind, remembers where you last left them and calculates the distance to them."},
-          design_and_range: {title: "Glasses Designed For Life", description: "Beautifully designed optical, sunglasses or optical sunglasses, supremely balanced for comfort and style. Try them on today."},
-          intelligently_made: {title: "Glasses & Sunglasses Intelligently Made", description: "Made from a high optical clarity polymer half the weight of glass together with an integrated rechargeable battery. Try them on today"},
-          try_them_on: {title: "Try on Unlosable Tzukuri Glasses Today", description: "Ever forgotten your glasses at a cafe? Or lost your sunglasses at the beach? Try a pair of Tzukuri unlosable glasses instead. Book Now"},
+          unlosable_glasses: {title: "Beautifully Handmade Glasses You Won't Lose", description: "The Tzukuri iPhone app notifies you if you leave your glasses behind, remembers where you last left them and calculates the distance to them."},
+          the_range: {title: "The Range", description: "Beautifully designed optical, sunglasses or optical sunglasses, supremely balanced for comfort and style. Try them on today."},
+          intelligently_made: {title: "Intelligently Made", description: "Made from a high optical clarity polymer half the weight of glass together with an integrated rechargeable battery. Try them on today"},
           book_try_on: {title: "Book your Tzukuri Personal Try On", description: "Choosing glasses without trying them on is difficult. To make it easier, we'll bring them to your office, home or local cafe."},
           team: {title: "Team", description: ""},
-          buy: {title: "Purchase Unlosable Tzukuri Glasses", description: ""},
+          buy: {title: "Purchase Unlosable Glasses", description: ""},
           contact_us: {title: "Contact Us", description: ""},
-          privacy: {title: "Privacy Policy", description: ""}
+          privacy: {title: "Privacy Policy", description: ""},
+          retail: {title: "Tzukuri Sydney Store", description: ""}
         }
 
         @html_klass = params[:page]
