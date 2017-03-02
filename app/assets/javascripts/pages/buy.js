@@ -265,9 +265,14 @@ var el, couponTimer, order, CheckoutWidget = {
           CheckoutWidget.showFormSpinner(false)
 
           if (data.success) {
+            ga('send', 'event', 'buy', 'purchase-complete');
+
             el.orderDiv.fadeOut(function() {
               el.orderCompleteDiv.fadeIn()
             })
+          } else {
+            CheckoutWidget.setFormError("An error occured while submitting your order.")
+            CheckoutWidget.showFormSpinner(false)
           }
         }).fail(function(error) {
           CheckoutWidget.setFormError("An error occured while submitting your order.")

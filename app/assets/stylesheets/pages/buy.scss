@@ -7,205 +7,10 @@ body.buy {
       list-style: disc;
     }
 
-    #reserve-nav {
-      margin-top: 40px;
-      text-align: center;
-
-      #nav-list {
-          padding: 0;
-          text-align: center;
-
-          #nav-indicator {
-            margin: 0;
-            width: 0px;
-            border: 0.5px solid $eerie-black;
-            transition: 1s ease;
-          }
-
-          li {
-            display: inline-block;
-            margin: 0 10px 0 10px;
-            padding: 5px 0 5px 0;
-
-            a {
-              text-decoration: none;
-              color: $shadow-green;
-
-              &.current {
-                color: $eerie-black;
-              }
-
-              &.complete {
-                color: $tz-active;
-              }
-            }
-          }
-      }
-    }
-
     #try-them-on {
       button {
         margin-top: 30px;
       }
-    }
-
-    #reserve {
-        margin-top: 40px;
-        margin-bottom: 20px;
-        min-height: 350px;
-
-        form {
-            label {
-                margin-left: 5%;
-            }
-        }
-
-        .glasses-details {
-            text-align: left;
-            padding-top: 30px;
-
-            p, a {
-              @include font-size(14px);
-              padding-top: 20px;
-              padding-bottom: 20px;
-            }
-
-            dl {
-                @include font-size(14px);
-                color: $tz-content;
-                line-height: 150%;
-
-                dt, dd {
-                    display: inline-block;
-                }
-
-                dt {
-                    text-align: right;
-                    font-weight: 600;
-                }
-
-                dd {
-                    text-transform: capitalize;
-                }
-            }
-        }
-
-        .step-container {
-            text-align: center;
-            display: block;
-            @include animation(fadeIn 1.5s ease-in-out);
-
-            #error-messages {
-                @include font-size(14px);
-                display: none;
-                color: $tz-error;
-                text-align: center;
-                padding-top: 10px;
-                padding-bottom: 20px;
-            }
-
-            #contact-prescription {
-              display: none;
-            }
-
-            &.hidden {
-                display: none;
-            }
-
-            img {
-                width: 100%;
-                // cursor: pointer;
-            }
-
-            h1 {
-                @include font-size(32px);
-                padding-bottom: 50px;
-                margin: 0 auto;
-                line-height: 150%;
-            }
-
-            p {
-                &.pricing {
-                    @include font-size(16px);
-                    padding-top: 40px;
-                    color: $tz-content;
-                }
-
-                &.select-title {
-                    @include font-size(20px);
-                    // font-weight: 300;
-                    line-height: 150%;
-                    padding-top: 20px;
-                    color: $tz-active;
-                }
-            }
-
-            &#step-utility {}
-            &#step-frame {}
-            &#step-lens {
-
-              #lens-type{}
-
-              #lens-size{
-                display: none;
-              }
-
-            }
-
-            &#step-checkout {
-              #apple-pay {
-                  display: none;
-
-                  .apple-pay-button-with-text {
-                      height: 50px;
-                      margin-bottom: 20px;
-                  }
-
-                  a {
-                      font-size: 10pt;
-                  }
-
-                  .pricing {
-                      padding-top: 20px;
-                  }
-              }
-
-              #regular-pay {
-                  .pricing {
-                      padding-top: 0px;
-                      text-align: center;
-                  }
-              }
-
-              #thank-you {
-                display: none;
-
-                p {
-                  margin-top: 20px;
-                  margin-bottom: 20px;
-                }
-
-                p, a {
-                  @include font-size(16px)
-                }
-
-                hr {
-                  display: none;
-                  margin-top: 0px;
-                  margin-bottom: 30px;
-                }
-              }
-
-              #glasses {
-                @include sticky;
-                top: 100px;
-              }
-            }
-        }
-
-        .select-type, .select-frame, .select-size, .select-lens {
-            cursor: pointer;
-        }
     }
 
     #store-head {
@@ -311,6 +116,13 @@ body.buy {
         .glasses {
           width: 90%;
           display: none;
+        }
+      }
+
+      #order-form {
+        #error-messages {
+          color: $tz-error;
+          text-align: center;
         }
       }
 
@@ -424,61 +236,14 @@ body.buy {
 @media only screen and (max-width: 550px) {
   body.buy {
 
-    #reserve-nav {
-      display: none;
-      margin-top: 20px;
-
-      a {
-        @include font-size(14px);
-      }
+    #ive-optical {
+      margin-bottom: 40px;
     }
 
-    #reserve {
-      margin-top: 20px;
-      margin-bottom: 20px;
-
-      .glasses-details {
-        text-align: center;
-      }
-
-      .step-container {
-
-        &#step-checkout {
-          #glasses {
-            position: inherit;
-          }
-
-          #thank-you hr {
-            display: block;
-          }
-        }
-
-        h1 {
-          @include font-size(22px);
-          padding-bottom: 30px;
-        }
-
-        p, a {
-          @include font-size(14px)
-        }
-
-        img {
-          width: 70%;
-        }
-
-        .select-utility, .select-frame, .select-lens, .select-size {
-          margin-bottom: 20px;
-
-          .select-title {
-            @include font-size(18px)
-          }
-        }
-
-        p.pricing {
-          padding-top: 0px;
-        }
-      }
-    }
+    #checkout #order-details {
+     position: relative;
+     top: 0px;
+   }
 
     #in-the-box {
       .row .four {
