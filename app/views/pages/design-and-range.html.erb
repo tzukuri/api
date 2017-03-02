@@ -1,5 +1,7 @@
 <%= stylesheet_link_tag 'pages/design-and-range', media: 'all' %>
 
+<%= render 'layouts/action_bar' %>
+
 <div class="main">
   <!-- designed -->
   <div class="panel" id="designed">
@@ -25,7 +27,7 @@
           <p class="spec">Non-Prescription</p>
           <p class="spec">49mm</p>
           <br/>
-          <a href="/buy"><button class="alternate tz-track"  data-category="design-and-range" data-event="buy-ive-optical">buy now &nbsp; &rarr;</button></a>
+          <a href="/buy?frame=Ive&utility=Optical"><button class="alternate tz-track"  data-category="design-and-range" data-event="buy-ive-optical">buy now &nbsp; &rarr;</button></a>
 
           <%= image_tag 'frames/ive/ive_black_sun_flat.png' %>
           <p class="spec bold">Sun</p>
@@ -33,7 +35,7 @@
           <p class="spec">Non-Prescription</p>
           <p class="spec">49mm</p>
           <br/>
-          <a href="/buy"><button class="alternate tz-track"  data-category="design-and-range" data-event="buy-ive-sun">buy now &nbsp; &rarr;</button></a>
+          <a href="/buy?frame=Ive&utility=Sun"><button class="alternate tz-track"  data-category="design-and-range" data-event="buy-ive-sun">buy now &nbsp; &rarr;</button></a>
         </div>
 
         <div class="six columns" id="ford">
@@ -45,7 +47,7 @@
           <p class="spec">Non-Prescription</p>
           <p class="spec">49.5 or 51mm</p>
           <br/>
-          <a href="/buy"><button class="alternate tz-track"  data-category="design-and-range" data-event="buy-ford-optical">buy now &nbsp; &rarr;</button></a>
+          <a href="/buy?frame=Ford&utility=Optical"><button class="alternate tz-track"  data-category="design-and-range" data-event="buy-ford-optical">buy now &nbsp; &rarr;</button></a>
 
           <%= image_tag 'frames/ford/ford_black_sun_flat.png' %>
           <p class="spec bold">Sun</p>
@@ -53,7 +55,7 @@
           <p class="spec">Non-Prescription</p>
           <p class="spec">49.5 or 51mm</p>
           <br/>
-          <a href="/buy"><button class="alternate tz-track"  data-category="design-and-range" data-event="buy-ford-sun">buy now &nbsp; &rarr;</button></a>
+          <a href="/buy?frame=Ford&utility=Sun"><button class="alternate tz-track"  data-category="design-and-range" data-event="buy-ford-sun">buy now &nbsp; &rarr;</button></a>
         </div>
       </div>
     </div>

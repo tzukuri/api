@@ -1,0 +1,62 @@
+@import "tzukuri/variables";
+@import "tzukuri/mixins";
+
+.action-bar {
+  position:fixed;
+  width: 450px;
+  bottom: 10px;
+  left: 50%;
+  margin-left: -225px;
+  z-index: 100000;
+  @include transition(0.5s ease-in-out);
+
+  &.hidden {
+    bottom: -27px;
+  }
+
+  .action-btn {
+    text-align: center;
+    width: 32.7%;
+    display: inline-block;
+    background-color: $tz-active;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    @include transition(0.5s ease-in-out);
+
+    &:hover {
+      background-color: white;
+      cursor: pointer;
+      border: 1px solid $tz-active;
+      a { color: $tz-active; }
+    }
+
+    a {
+      color: white;
+      @include font-size(14px)
+    }
+
+    &.left {
+      border-top-left-radius: 25px;
+      border-bottom-left-radius: 25px;
+      margin-right: -4px;
+    }
+
+    &.mid {
+      // border-left: 1px solid white;
+      // border-right: 1px solid white;
+    }
+
+    &.right {
+      border-top-right-radius: 25px;
+      border-bottom-right-radius: 25px;
+      margin-left: -4px;
+    }
+  }
+}
+
+@media only screen and (max-width: $smartphone) {
+  .action-bar {
+    width: 300px;
+    margin-left: -150px;
+  }
+}

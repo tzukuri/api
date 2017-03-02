@@ -2,6 +2,7 @@
 @import "tzukuri/mixins";
 
 body.design-and-range {
+
   #designed {
     text-align: center;
 
@@ -123,6 +124,12 @@ body.design-and-range {
 
   // for smartphones and smaller
   @media only screen and (max-width: $smartphone) {
+
+    .action-bar {
+      width: 300px;
+      margin-left: -150px;
+    }
+
       #designed {
         #ive {
           margin-bottom: 50px;

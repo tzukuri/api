@@ -1,0 +1,31 @@
+@import "tzukuri/variables";
+@import "tzukuri/mixins";
+
+body.retail {
+  #retail-head {
+    text-align: center;
+    p {
+      margin-top: 30px;
+    }
+  }
+
+  #store-detail {
+    margin-top: 30px;
+    background-color: RGBA(244, 244, 244, 1.00);
+
+    #address-hours {
+
+      #address, #hours {
+        margin-top: 20px;
+        margin-left: 30px;
+        margin-bottom: 20px;
+      }
+    }
+    
+    #store-img {
+      background:  image-url('other/old-clare.jpg') no-repeat center center;
+      background-size: cover;
+      min-height: 330px;
+    }
+  }
+}
