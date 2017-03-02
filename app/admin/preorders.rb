@@ -42,23 +42,21 @@ ActiveAdmin.register Preorder do
       column :lens do |preorder|
         preorder.lens.titleize
       end
-      column :engraving do |preorder|
-        if preorder.gift?
-          preorder.gift.engraving
-        end
+      column :prescription_method do |preorder|
+        preorder.prescription_method
       end
       column :order_date do |preorder|
         preorder.created_at.in_time_zone('Australia/Sydney').strftime("%d/%m/%Y")
       end
-      column :status do |preorder|
-        if preorder.status == "in_progress"
-          status_tag preorder.status, :warn
-        elsif preorder.status == "shipped"
-          status_tag preorder.status, :ok
-        else
-          status_tag preorder.status
-        end
-      end
+      # column :status do |preorder|
+      #   if preorder.status == "in_progress"
+      #     status_tag preorder.status, :warn
+      #   elsif preorder.status == "shipped"
+      #     status_tag preorder.status, :ok
+      #   else
+      #     status_tag preorder.status
+      #   end
+      # end
       column :amount do |preorder|
         preorder.charge.amount/100 if preorder.charge?
       end

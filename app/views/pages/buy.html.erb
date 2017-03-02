@@ -1,46 +1,54 @@
 <%= stylesheet_link_tag 'pages/buy', media: 'all' %>
-
+<%= stylesheet_link_tag 'layouts/action_bar', media: 'all' %>
+<%= javascript_include_tag 'layouts/action_bar', :defer => "defer" %>
 <%= javascript_include_tag 'pages/buy', :defer => "defer" %>
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
+<%= render 'layouts/action_bar', { :type => "compact" } %>
 
 <div class="main">
 
   <!-- store header -->
   <div class="panel container" id="store-head">
     <h1>Tzukuri online store</h1>
-    <h2 class="h-sm">pick the perfect pair</h2>
+    <h2 class="h-sm">free shipping. free prescription lenses. 20 day returns.</h2>
   </div>
 
   <!-- frame selection -->
   <div class="panel container" id="purchase">
     <div class="row">
       <div class="six columns frame-col">
-        <%= image_tag 'frames/ive/ive_black_optical.jpg'  %>
-        <br/><br/>
-        <p class="frame-name">Ive</p>
-        <p class="frame-detail">Matte Black &middot; 485 AUD</p>
-        <button id="buy-ive">buy now</button>
-      </div>
-      <div class="six columns frame-col">
-        <%= image_tag 'frames/ford/ford_black_optical.jpg' %>
-        <br/><br/>
-        <p class="frame-name">Ford</p>
-        <p class="frame-detail">Matte Black &middot; 485 AUD</p>
-        <button id="buy-ford">buy now</button>
-      </div>
-      <!-- <div class="four columns">
-        <div class="purchase-opt">
-          <h2>Tzukuri Store</h2>
-          <p>If you'd like to check out the glasses in person, come to our first retail store.</p>
-          <button class="alternate">directions &nbsp; &rarr;</button>
+        <div id="ive-sun">
+          <%= image_tag 'frames/ive/ive_black_sun.jpg' %>
+          <p class="frame-name">Ive &middot; Sun</p>
+          <p class="frame-detail">Matte Black &middot; 485 AUD</p>
+          <button id="buy" class="tz-track" data-category="buy" data-event="ive-sun-select">select</button>
         </div>
 
-        <div class="purchase-opt">
-          <h2>Still can't decide?</h2>
-          <p>Leave your email with us and we'll be in touch to help you with your purchase.</p>
-          <button class="alternate">enter email &nbsp; &rarr;</button>
+        <div id="ive-optical">
+          <%= image_tag 'frames/ive/ive_black_optical.jpg'  %>
+          <p class="frame-name">Ive &middot; Optical</p>
+          <p class="frame-detail">Matte Black &middot; 485 AUD</p>
+          <button id="buy" class="tz-track" data-category="buy" data-event="ive-optical-select">select</button>
         </div>
-      </div> -->
+      </div>
+
+      <div class="six columns frame-col">
+
+        <div id="ford-sun">
+          <%= image_tag 'frames/ford/ford_black_sun.jpg' %>
+          <p class="frame-name">Ford &middot; Sun</p>
+          <p class="frame-detail">Matte Black &middot; 485 AUD</p>
+          <button id="buy" class="tz-track" data-category="buy" data-event="ford-sun-select">select</button>
+        </div>
+
+        <div id="ford-optical">
+          <%= image_tag 'frames/ford/ford_black_optical.jpg' %>
+          <p class="frame-name">Ford &middot; Optical</p>
+          <p class="frame-detail">Matte Black &middot; 485 AUD</p>
+          <button id="buy" class="tz-track" data-category="buy" data-event="ford-optical-select">select</button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -73,7 +81,7 @@
           </div>
         </dl>
 
-        <p>Includes complementary Australia-wide shipping.</p>
+        <p>Includes free Australia-wide shipping.</p>
 
       </div>
 
@@ -81,24 +89,6 @@
         <div id="order-form">
         <form id="glasses-form">
           <p class="section-head">Glasses Information</p>
-
-          <div id="utility-group">
-            <label>Lens Type</label>
-            <select id="utility-select">
-              <option selected disabled hidden>- SELECT -</option>
-              <option>Optical</option>
-              <option>Sun</option>
-            </select>
-          </div>
-
-          <div id="size-group">
-            <label>Size</label>
-            <select id="size-select">
-              <option selected disabled hidden>- SELECT -</option>
-              <option value="49">49mm</option>
-              <option value="51.5">51.5mm</option>
-            </select>
-          </div>
 
           <div id="lens-group-optical">
             <label>Lens Type</label>
@@ -116,6 +106,15 @@
               <option selected disabled hidden>- SELECT -</option>
               <option>Non-Prescription</option>
               <option>Prescription</optical>
+            </select>
+          </div>
+
+          <div id="size-group">
+            <label>Size</label>
+            <select id="size-select">
+              <option selected disabled hidden>- SELECT -</option>
+              <option value="49">49mm</option>
+              <option value="51.5">51.5mm</option>
             </select>
           </div>
 
@@ -155,6 +154,9 @@
 
         <%= label :purchase, :country, "Country" %>
         <%= f.text_field :country,  placeholder: 'country', value: 'Australia', disabled: true %>
+
+        <%= label :purchase, :coupon, "Promotional Token (Optional)" %>
+        <%= f.text_field :coupon, placeholder: 'Promotional token' %>
 
         <% end %>
 

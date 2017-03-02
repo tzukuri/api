@@ -1,4 +1,4 @@
-var el, order, CheckoutWidget = {
+var el, couponTimer, order, CheckoutWidget = {
 
   elements: {
     utilitySelect: $("#utility-select"),
@@ -7,15 +7,16 @@ var el, order, CheckoutWidget = {
     prescriptionSelect: $('#prescription-select'),
     sizeSelect: $('#size-select'),
 
-    buyFordButton: $("#buy-ford"),
-    buyIveButton: $("#buy-ive"),
+    buyIveSun: $("#ive-sun #buy"),
+    buyIveOptical: $("#ive-optical #buy"),
+    buyFordSun: $("#ford-sun #buy"),
+    buyFordOptical: $("#ford-optical #buy"),
 
     backButton: $("#checkout-back"),
 
     checkoutFrame: $('#checkout'),
     purchaseFrame: $('#purchase'),
 
-    utilityFormGroup: $("#utility-group"),
     lensSunFormGroup: $("#lens-group-sun"),
     lensOpticalFormGroup: $('#lens-group-optical'),
     prescriptionFormGroup: $("#prescription-group"),
@@ -23,7 +24,7 @@ var el, order, CheckoutWidget = {
     orderForm: $("#new_preorder"),
     paymentForm: $("#payment-form"),
     glassesForm: $("#glasses-form"),
-
+    couponInput: $("#preorder_coupon"),
     orderDescription: $("#order-desc"),
 
     fordOptical: $("#Ford-Optical"),
@@ -40,7 +41,7 @@ var el, order, CheckoutWidget = {
     frame: undefined,
     utility: undefined,
     lens: undefined,
-    prescription: undefined,
+    prescription_method: undefined,
 
     name: undefined,
     email: undefined,
@@ -48,7 +49,7 @@ var el, order, CheckoutWidget = {
 
     address_lines: undefined,
     state: undefined,
-    postalCode: undefined,
+    postal_code: undefined,
     country: undefined,
 
     token: undefined
@@ -57,7 +58,6 @@ var el, order, CheckoutWidget = {
   init: function() {
     el = this.elements
     order = _.clone(this.order)
-    console.log(order)
 
     this.bindUIActions()
   },
@@ -84,12 +84,25 @@ var el, order, CheckoutWidget = {
       CheckoutWidget.prescriptionChange(this.value)
     })
 
-    // bind actions to buy clicks
-    el.buyFordButton.on('click', function() {
-      CheckoutWidget.selectFrame('Ford')
+    el.couponInput.on('input', function() {
+      CheckoutWidget.checkCoupon(this.value)
     })
-    el.buyIveButton.on('click', function() {
-      CheckoutWidget.selectFrame('Ive')
+
+    // bind actions to buy clicks
+    el.buyIveSun.on('click', function() {
+      CheckoutWidget.selectModel('Ive', 'Sun')
+    })
+
+    el.buyIveOptical.on('click', function() {
+      CheckoutWidget.selectModel('Ive', 'Optical')
+    })
+
+    el.buyFordSun.on('click', function() {
+      CheckoutWidget.selectModel('Ford', 'Sun')
+    })
+
+    el.buyFordOptical.on('click', function() {
+      CheckoutWidget.selectModel('Ford', 'Optical')
     })
 
     // checkout back
@@ -166,7 +179,10 @@ var el, order, CheckoutWidget = {
       order.postal_code = postcode
       order.state = state
       order.country = country
+      order.coupon = coupon
     }
+
+    console.log(order)
 
     return valid
   },
@@ -270,36 +286,6 @@ var el, order, CheckoutWidget = {
     }
   },
 
-  // called when the utility changes
-  utilityChange: function(utility) {
-    if (utility == "Sun") {
-      el.lensOpticalFormGroup.fadeOut(function() {
-        el.lensSelectOptical.prop('selectedIndex', 0);
-        el.lensSunFormGroup.fadeIn()
-      })
-    } else {
-      el.lensSunFormGroup.fadeOut(function() {
-        el.lensSelectSun.prop('selectedIndex', 0);
-        el.lensOpticalFormGroup.fadeIn()
-      })
-    }
-
-    order.prescription = null
-    order.lens = null
-    el.prescriptionSelect.prop('selectedIndex', 0)
-    el.prescriptionFormGroup.fadeOut()
-
-    CheckoutWidget.getGlassesEl(order.frame, order.utility).fadeOut(function() {
-      CheckoutWidget.getGlassesEl(order.frame, utility).fadeIn()
-    })
-
-    order.utility = utility
-
-    CheckoutWidget.updateOrderDesc()
-
-    console.log(order)
-  },
-
   sizeChange: function(size) {
     order.size = size
   },
@@ -312,7 +298,7 @@ var el, order, CheckoutWidget = {
 
     // if they have select non-prescription, we don't need to ask for their prescription
     if (lens == "Non-Prescription") {
-      order.prescription = null
+      order.prescription_method = null
       el.prescriptionFormGroup.fadeOut()
       el.orderForm.fadeIn()
       el.paymentForm.fadeIn()
@@ -320,34 +306,37 @@ var el, order, CheckoutWidget = {
     } else {
       el.prescriptionFormGroup.fadeIn()
     }
-
-    console.log(order)
   },
 
   // called when the prescription delivery select is changed
   prescriptionChange: function(value) {
-    order.prescription = value
+    order.prescription_method = value
     el.orderForm.fadeIn()
     el.paymentForm.fadeIn()
 
     CheckoutWidget.updateOrderDesc()
-
-    console.log(order)
   },
 
-  // proceed to checkout with the selected frame
-  selectFrame: function(frame) {
+  selectModel: function(frame, utility) {
     order.frame = frame
+    order.utility = utility
 
     if (frame == "Ive") {
       order.size = "48"
-    } else {
+    } else if (frame == "Ford") {
       el.sizeFormGroup.show()
     }
 
-    CheckoutWidget.updateOrderDesc()
+    if (utility == "Optical") {
+      el.lensOpticalFormGroup.show()
+    } else if (utility == "Sun") {
+      el.lensSunFormGroup.show()
+    }
 
-    CheckoutWidget.getGlassesEl(frame).fadeIn()
+    $(".action-bar").addClass('no-display')
+
+    CheckoutWidget.updateOrderDesc()
+    CheckoutWidget.getGlassesEl(frame, utility).fadeIn()
 
     el.purchaseFrame.fadeOut(function() {
       el.checkoutFrame.fadeIn()
@@ -372,39 +361,78 @@ var el, order, CheckoutWidget = {
       el.prescriptionFormGroup.hide()
       el.sizeFormGroup.hide()
 
+      el.orderCompleteDiv.hide()
+      el.orderDiv.show()
+
+      $(".action-bar").removeClass('no-display')
+
       // reset the order object
       order = _.clone(CheckoutWidget.order)
-      console.log(order)
     })
+  },
+
+  handleCoupon: function(coupon) {
+    var finalAmount = 485
+    finalAmount -= (coupon.discount / 100)
+    CheckoutWidget.updatePrice(finalAmount)
+  },
+
+  // update the price on the view
+  updatePrice: function(newPrice) {
+    // update the values and pulse to bring focus
+    $("#total-selection").html(newPrice + " AUD")
+    $("#reserve-for").html("reserve for " + newPrice + " AUD")
+
+    $("#reserve-submit").tzAnimate('pulse')
+    $("#total-selection").tzAnimate('pulse')
+  },
+
+  // make a request to the server to validate the coupon
+  checkCoupon: function(coupon) {
+    // wait until finished typing then submit request
+    clearTimeout(couponTimer)
+
+    couponTimer = setTimeout(function() {
+      var data = {"coupon": coupon}
+
+      $.post('/coupons', data).done(function(data) {
+        if (data.type == "COUPON") {
+          // handle coupon
+          CheckoutWidget.handleCoupon(data.token)
+        } else {
+          // no coupon
+          CheckoutWidget.updatePrice(485)
+        }
+      })
+    }, 300)
   }
 }
-
 
 $(function() {
     if (!$('body').hasClass('buy')) return;
 
-    $("#in-the-box-toggle").on('click', function(e) {
-      if ($(e.target).hasClass('fa-plus')) {
+    $("#in-the-box").on('click', function(e) {
+      if ($("#in-the-box-toggle").hasClass('fa-plus')) {
         // remove plus and expand
-        $(e.target).removeClass('fa-plus').addClass('fa-minus')
+        $("#in-the-box-toggle").removeClass('fa-plus').addClass('fa-minus')
         $("#in-the-box").removeClass('contracted')
 
       } else {
         // remove minus and contract
-        $(e.target).removeClass('fa-minus').addClass('fa-plus')
+        $("#in-the-box-toggle").removeClass('fa-minus').addClass('fa-plus')
         $("#in-the-box").addClass('contracted')
       }
     })
 
-    $("#tech-specs-toggle").on('click', function(e) {
-      if ($(e.target).hasClass('fa-plus')) {
+    $("#specifications").on('click', function(e) {
+      if ($("#tech-specs-toggle").hasClass('fa-plus')) {
         // remove plus and expand
-        $(e.target).removeClass('fa-plus').addClass('fa-minus')
+        $("#tech-specs-toggle").removeClass('fa-plus').addClass('fa-minus')
         $("#specifications").removeClass('contracted')
 
       } else {
         // remove minus and contract
-        $(e.target).removeClass('fa-minus').addClass('fa-plus')
+        $("#tech-specs-toggle").removeClass('fa-minus').addClass('fa-plus')
         $("#specifications").addClass('contracted')
       }
     })
@@ -416,13 +444,8 @@ $(function() {
     var utilityParam = $.urlParam('utility')
     var sentWithParams = false
 
-    if (frameParam == "Ive" || frameParam == "Ford") {
+    if ((frameParam == "Ive" || frameParam == "Ford") && (utilityParam == "Optical" || utilityParam == "Sun")) {
       sentWithParams = true
-
-      CheckoutWidget.selectFrame(frameParam)
-
-      if (utilityParam == "Optical" || utilityParam == "Sun") {
-          el.utilitySelect.val(utilityParam).trigger('change')
-      }
+      CheckoutWidget.selectModel(frameParam, utilityParam)
     }
 });

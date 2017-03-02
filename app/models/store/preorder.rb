@@ -17,6 +17,7 @@ class Preorder < ActiveRecord::Base
 
     # ensure only the charge or the gift ID is set
     validate :charge_or_gift
+    validate :prescription_method_if_prescription
 
     validates :utility, inclusion: {
       in: ['Optical', 'Sun'],
@@ -87,6 +88,19 @@ class Preorder < ActiveRecord::Base
     def charge_or_gift
       unless charge_id.blank? || gift_id.blank?
         errors.add(:base, "Specify a charge or gift, not both")
+      end
+    end
+
+    # only require a prescription method if the prescription is present
+    def prescription_method_if_prescription
+      puts lens
+      puts prescription_method
+
+      if (lens == "Prescription" || lens == "Prescription Reading" || lens == "Prescription Distance")
+        if (prescription_method != "I will email it to hello@tzukuri.com" && prescription_method != "Please call me to discuss")
+          puts 'adding error'
+          errors.add(:base, "Prescription requires a prescription method")
+        end
       end
     end
 

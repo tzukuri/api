@@ -1,14 +1,25 @@
 <%= stylesheet_link_tag 'layouts/action_bar', media: 'all' %>
 <%= javascript_include_tag 'layouts/action_bar', :defer => "defer" %>
 
-<div class="action-bar">
-  <div class="action-btn left">
-    <a href="/buy">buy online</a>
+<% if defined?(type) && type == "compact" %>
+  <div class="action-bar compact">
+    <div class="action-btn left">
+      <a href="/retail" class="tz-track" data-category="action-bar" data-event="retail-click">try in store</a>
+    </div>
+    <div class="action-btn right">
+      <a href="#" class="tz-track" data-category="action-bar" data-event="cant-decide-click">can't decide?</a>
+    </div>
   </div>
-  <div class="action-btn mid">
-    <a href="/retail">try in store</a>
+<% else %>
+  <div class="action-bar">
+    <div class="action-btn left">
+      <a href="/buy" class="tz-track" data-category="action-bar" data-event="buy-click">buy now</a>
+    </div>
+    <div class="action-btn mid">
+      <a href="/retail" class="tz-track" data-category="action-bar" data-event="retail-click">try in store</a>
+    </div>
+    <div class="action-btn right">
+      <a href="#" class="tz-track" data-category="action-bar" data-event="cant-decide-click">can't decide?</a>
+    </div>
   </div>
-  <div class="action-btn right">
-    <a href="#">can't decide?</a>
-  </div>
-</div>
+<% end %>

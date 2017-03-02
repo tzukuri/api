@@ -20,7 +20,7 @@ class PreordersController < ApplicationController
     private
 
     def preorder_params
-        params.permit(:name, :email, :phone, {address_lines: []}, :country, :state, :postal_code, :utility, :frame, :size, :lens, :customer_id, :charge_id, :token, :coupon)
+        params.permit(:name, :email, :phone, {address_lines: []}, :country, :state, :postal_code, :utility, :frame, :size, :lens, :prescription_method, :customer_id, :charge_id, :token, :coupon)
     end
 
     # calculate the coupon discount and then call handle payment to make the payment
