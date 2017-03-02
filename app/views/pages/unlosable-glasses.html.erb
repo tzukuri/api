@@ -16,18 +16,33 @@
     <div class="container">
       <div class="row">
         <h1>introducing unlosable glasses</h1>
-        <h2 class="h-sm">beautifully handmade glasses you won't lose</h2>
-        <p>Seamlessly sealed inside every Tzukuri frame is the world's smallest Bluetooth tracker to help you find your glasses when they're lost, and notify you when you leave them behind..</p>
+        <h2 class="h-sm">beautiful handmade glasses you won't lose</h2>
+        <p>Every Tzukuri designer frame seamlessly embeds the world's smallest Bluetooth tracker to help you find your glasses when they're lost, and notify you if you leave them behind.</p>
 
         <!-- <a href="/design-and-range"><button class="alternate">view the range &nbsp; &rarr;</button></a> -->
       </div>
-      <div class="row">
-        <div class="six columns left-row">
-          <%= image_tag 'frames/ford/ford_black_optical_flat.png' %>
+      <div id="frames">
+        <div class="row">
+          <div class="six columns right-row">
+              <%= image_tag 'frames/ive/ive_black_optical_flat.png' %>
+            </div>
+            <div class="six columns left-row">
+              <%= image_tag 'frames/ford/ford_black_optical_flat.png' %>
+            </div>
         </div>
-        <div class="six columns right-row">
-          <%= image_tag 'frames/ive/ive_black_optical_flat.png' %>
+        <div class="row">
+          <div class="six columns right-row">
+              <%= image_tag 'frames/ive/ive_black_sun_flat.png' %>
+            </div>
+            <div class="six columns left-row">
+              <%= image_tag 'frames/ford/ford_black_sun_flat.png' %>
+            </div>
         </div>
+      </div>
+
+      <div class="row" id="cta">
+        <p>Free shipping. Free prescriptions. Free returns for 20 days.<br>All frames including lenses <em>$485 AUD</em></p>
+        <p><a href="/buy"><button class="alternate tz-track" data-category="buy-now" data-event="click">buy now &nbsp; &rarr;</button></a></p>
       </div>
     </div>
   </div>
@@ -51,9 +66,9 @@
   <!-- timely intelligence -->
   <div class="panel" id="timely-intelligence">
     <div class="container">
-      <h1>timely intelligence</h1>
-      <h2 class="h-sm">served by the Tzukuri iOS app</h2>
-      <p>Install the Tzukuri app and pair it to your glasses to start tracking their location and receiving notifications when you forget them.</p>
+      <h1>timely and useful</h1>
+      <h2 class="h-sm">the Tzukuri iOS app</h2>
+      <p>The Tzukuri app and glasses work with your phone to track your glasses location and notify you if you leave them behind.</p>
 
       <div class="row">
         <div class="four columns" id="remember">
@@ -66,7 +81,7 @@
         </div>
         <div class="four columns" id="distancing">
           <%= image_tag 'screenshots/locate.png' %>
-          <p>Estimates the distance to your glasses.</p>
+          <p>Estimates the distance to your glasses to help you find them.</p>
         </div>
       </div>
 
@@ -81,53 +96,81 @@
   <div class="panel">
     <div class="container">
       <h1>tracking</h1>
-      <h2 class="h-sm"></h2>
-      <p></p>
-      <ul>
-        <li>uses Bluetooth to connect your phone and glasses</li>
-        <li>when your glasses are nearby and connected to your phone, the app tracks your glasses location with your phone's GPS</li>
-        <li>you can see the current and last known location of your glasses on the map</li>
-      </ul>
+      <h2 class="h-sm">know where your glasses are outdoors</h2>
+
+      <div class="row">
+        <div class="eight columns">
+          <p>Throughout the day as you wear your glasses and carry your phone, the Tzukuri app updates a map to show you the current location of your glasses by recording your phone's GPS position. The app only tracks your glasses when they're nearby, e.g when you're wearing or carrying them.</p>
+          <p>We know when they're nearby because they'll connect to your phone automatically - Tzukuri glasses contain the world's smallest Bluetooth Low Energy device which communicates with the Tzukuri app and can connect over approximately 15m.</p>
+          <p>When your glasses disconnect the app stops tracking their location, and you can see their last known location on the map.</p>
+        </div>
+        <div class="four columns">
+          <%= image_tag 'screenshots/home.png' %>
+        </div>
+      </div>
     </div>
   </div>
+
+  <div class="container"><hr/></div>
 
   <div class="panel">
     <div class="container">
       <h1>notifications</h1>
-      <h2 class="h-sm"></h2>
-      <p></p>
-      <ul>
-        <li>when you leave your glasses behind somewhere and they disconnect from your phone, the app will notify you</li>
-        <li>you can turn notifications off at home and work with Quiet Zones</li>
-      </ul>
+      <h2 class="h-sm">don't forget your glasses</h2>
+
+      <div class="row">
+        <div class="eight columns">
+          <p>No one wants to forget their glasses, and the Tzukuri app tries to help with notifications that remind you when you do.</p>
+          <p>When your glasses disconnect from your phone you'll receive a notification alerting you that you may have left your glasses behind. In normal day to day use this will happen when you're around 15m away from your glasses - or when you've left a restaurant, cafe or bar, and taken a few steps outside.</p>
+          <p>Notifications can be silenced in certain locations with Quiet Zones. For example, in a large house you might walk around and regularly disconnect your glasses, triggering notifications even though your glasses are perfectly safe. Adding a quiet zone around the house prevents these notifications from appearing. Zones can be activated at certain times of the day as well, so you can be reminded to take your glasses home with you when you leave work while preventing notifications during work hours.</p>
+        </div>
+        <div class="four columns">
+          <%= image_tag 'screenshots/notification.png' %>
+        </div>
+      </div>
     </div>
   </div>
+
+  <div class="container"><hr/></div>
 
   <div class="panel">
     <div class="container">
       <h1>locate</h1>
-      <h2 class="h-sm"></h2>
-      <p></p>
-      <ul>
-        <li>when your glasses are lost, see their last location on a map</li>
-        <li>if they're close and your phone can connect to them, see an estimated distance between your phone and glasses, helping guide you to where they are.</li>
-      </ul>
+      <h2 class="h-sm">know where your glasses are indoors</h2>
+
+      <div class="row">
+        <div class="eight columns">
+          <p>Finding your glasses at home or in an office can be tricky because it's so easy to forget where you last placed them, and even if you do remember they've often since been moved by other people.</p>
+          <p>When you know roughly which room your glasses are in but don't know where to start looking for them, the locate feature can help you find their exact location. After tapping Locate, the Tzukuri app connects to your glasses and starts estimating the distance between them and your phone.</p>
+          <p>As you walk towards your glasses the distance decreases, and as you walk away from them it increases. By walking around a room you can quickly pinpoint not only the direction but also the distance to your glasses. Find the right direction, and walk towards your glasses, and you</p>
+        </div>
+        <div class="four columns">
+          <%= image_tag 'screenshots/locate.png' %>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="panel">
+  <div class="container"><hr/></div>
+
+  <div class="panel" id="battery-tech">
     <div class="container">
-      <h1>advanced battery</h1>
-      <h2 class="h-sm">unlike a Samsung, it won't explode (change...)</h2>
-      <ul>
-        <li>Silver Zinc</li>
-        <li>Won't explode, resistent to overheating</li>
-        <li>Charge with USB charger</li>
-        <li>Recharge takes X  (??) hours</li>
-      </ul>
-      <%= image_tag 'glasses/ive-profile-charger.jpg' %>
+      <h1>month long power</h1>
+      <h2 class="h-sm">superior performance, superior safety</h2>
+
+      <div class="row">
+        <div class="five columns">
+          <%= image_tag 'glasses/ive-profile-charger.jpg' %>
+        </div>
+        <div class="seven columns">
+          <p>The silver zinc battery used in Tzukuri glasses is chemically free from the overheating and explosion issues that affect Lithium Ion batteries (used by most consumer electronic devices). With the battery kept so close to your head, and for long periods of time, it was important to select a battery that wouldn't risk your safety.</p>
+          <p>A fully charged battery can last up to <em>30 days</em> depending on use, and when low can be recharged with the included USB charger. A depleted battery takes around <em>4 hours</em> to charge.</p>
+        </div>
+      </div>
     </div>
   </div>
+
+  <div class="container"><hr/></div>
 
   <!-- <div class="panel thin" id="interesting-info" style="background-color: #c1cbcc; text-align: center;">
     <div class="container">
@@ -140,12 +183,22 @@
   <!-- beautifully light -->
   <div class="panel" id="beautifully-light">
     <div class="container">
-      <h1>handmade in Sydney</h1>
-      <h2 class="h-sm">engineered light</h2>
-      <p>Even with 39 electronic components hidden inside, every pair weighs just 26.5 grams and is comfortable to wear all day long.</p>
-      <h2>balanced for comfort</h2>
-      <p>By weighting the back of the glasses with electronics the frame is pivoted off your nose so it feels lighter and is less likely to leave red marks.</p>
-      <%= image_tag 'glasses/ive-side.jpg' %>
+      <h1>tech you want to wear</h1>
+      <h2 class="h-sm">handmade in Sydney</h2>
+
+      <div class="row">
+        <div class="eight columns">
+          <h3>engineered light</h3>
+          <p>Even with 39 electronic components hidden inside, every pair weighs just 26.5 grams and is comfortable to wear all day long.</p>
+          <h3>balanced for comfort</h3>
+          <p>By weighting the back of the glasses with electronics the frame is pivoted off your nose so it feels lighter and is less likely to leave red marks.</p>
+          <h3>innovative manufacturing, kept local</h3>
+          <p>Incorporating electronics inside a pair of glasses required a complete redesign of the eyewear manufacturing process. Every pair requires 37 stages, 10 hand finishing steps and 10 working days to complete. <a href="/intelligently-made">Read more</a>.</p>
+        </div>
+        <div class="four columns">
+          <%= image_tag 'glasses/ive-side.jpg' %>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -213,7 +266,7 @@
     <div class="container">
       <h1>buy a pair today</h1>
       <h2 class="h-sm">your very own unlosable glasses</h2>
-      <a href="/try-them-on"><button class="tz-track" data-category="buy-now" data-event="click">buy now &nbsp; &rarr;</button></a>
+      <a href="/buy"><button class="tz-track" data-category="buy-now" data-event="click">buy now &nbsp; &rarr;</button></a>
     </div>
   </div>
 </div>
