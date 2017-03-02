@@ -132,9 +132,13 @@ body.unlosable-glasses {
   }
 
   #battery-tech {
+    .row {
+      margin-top: 15px;
+    }
+    
     .row p {
       max-width: 500px;
-      padding-left: 20px;
+      padding-left: 100px;
 
       em {
         font-weight: bold;
