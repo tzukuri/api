@@ -171,7 +171,6 @@ body.buy {
     }
 
     #in-the-box, #specifications {
-      max-height: 1000px;
       @include transition(max-height 0.5s ease-out);
     }
 
@@ -235,6 +234,10 @@ body.buy {
 
 @media only screen and (max-width: 550px) {
   body.buy {
+
+    #tech-specs-toggle, #in-the-box-toggle {
+      display: none;
+    }
 
     #ive-optical {
       margin-bottom: 40px;
