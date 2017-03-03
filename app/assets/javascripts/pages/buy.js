@@ -217,7 +217,6 @@ var el, couponTimer, order, CheckoutWidget = {
     }
 
     $('#error-messages').html(message).show()
-    // $('#reserve-submit, #gift-redeem').tzAnimate('shake')
   },
 
   showFormSpinner: function(show) {
@@ -283,7 +282,7 @@ var el, couponTimer, order, CheckoutWidget = {
   },
 
   // returns the element that contains the glasses image
-  getGlassesEl: function(frame, utility = "Optical") {
+  getGlassesEl: function(frame, utility) {
     if (utility == "Optical") {
       return frame == "Ive" ? el.iveOptical : el.fordOptical
     } else if (utility == "Sun") {
