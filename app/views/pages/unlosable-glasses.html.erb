@@ -1,6 +1,6 @@
 <%= stylesheet_link_tag 'pages/unlosable-glasses', media: 'all' %>
 
-<%= render 'layouts/action_bar' %>
+<%= render 'layouts/action_bar', { :type => "compact" } %>
 
 <div class="main">
   <!-- the range -->
@@ -9,7 +9,7 @@
       <div class="row">
         <h1>introducing unlosable glasses</h1>
         <h2 class="h-sm">beautiful handmade glasses you won't lose</h2>
-        <p>Every Tzukuri designer frame seamlessly embeds the world's smallest Bluetooth tracker to help you find your glasses when they're lost, and notify you if you leave them behind.</p>
+        <p>Sealed seamlessly inside every frame are the world's smallest Bluetooth chip to help you find your glasses when they're lost, and notify you if you leave them behind.</p>
       </div>
       <div id="frames">
         <div class="row">
@@ -39,6 +39,11 @@
 
   <!-- separator -->
   <div class="container"><hr/></div>
+
+  <div class="panel container" id="video">
+    <h1>see how they work</h1>
+    <iframe src="https://www.youtube.com/embed/dGlKZZ6DsaM?controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+  </div>
 
   <!-- timely intelligence -->
   <div class="panel" id="timely-intelligence">
@@ -72,7 +77,7 @@
   <!-- separator -->
   <div class="container"><hr/></div>
 
-  <div class="panel">
+  <!-- <div class="panel">
     <div class="container">
       <h1>tracking</h1>
       <h2 class="h-sm">know where your glasses are outdoors</h2>
@@ -130,9 +135,30 @@
     </div>
   </div>
 
+  <div class="container"><hr/></div> -->
+
+  <div class="panel" id="balancing-act">
+    <div class="container">
+      <%= image_tag 'glasses/ive-profile-charger.jpg' %>
+
+      <h1>30 day</h1>
+      <h2 class="h-sm">battery life</h2>
+      <p>The specially formulated silver zinc battery delivers up to 30 days battery life on a single charge. Silver delivers remarkable safety performance compared to traditional lithium batteries. The glasses can be easily recharged using the included charging dock.</p>
+    </div>
+  </div>
+
   <div class="container"><hr/></div>
 
-  <div class="panel" id="battery-tech">
+  <div class="panel" id="beautifully-light">
+    <div class="container">
+      <h1>beautifully light</h1>
+      <h2 class="h-sm">handmade in Sydney</h2>
+      <p>Even with 39 electronic components hidden inside, every pair weighs just 26.5 grams and is superbly comfortable to wear all day long.</p>
+      <%= image_tag 'glasses/ive-side.jpg' %>
+    </div>
+  </div>
+
+  <!-- <div class="panel" id="battery-tech">
     <div class="container">
       <h1>month long power</h1>
       <h2 class="h-sm">superior performance, superior safety</h2>
@@ -147,12 +173,11 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
-  <div class="container"><hr/></div>
+  <!-- <div class="container"><hr/></div> -->
 
-  <!-- beautifully light -->
-  <div class="panel" id="beautifully-light">
+  <!-- <div class="panel" id="beautifully-light">
     <div class="container">
       <h1>tech you want to wear</h1>
       <h2 class="h-sm">handmade in Sydney</h2>
@@ -171,13 +196,13 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- visual indulgence -->
   <div class="panel u-full-width" id="visual-indulgence">
     <div class="container">
       <div class="six columns">
-        <h1>lenses</h1>
+        <h1>visual indulgence</h1>
         <h2 class="h-sm">provided by Carl Zeiss Vision</h2>
         <p>By using Columbia Resin #39 for our lenses, we deliver 98% optical clarity without the weight of glass. Our sun lenses are all:</p>
         <br/>
@@ -192,7 +217,7 @@
   </div>
 
   <!-- separator -->
-  <div class="container"><hr/></div>
+  <!-- <div class="container"><hr/></div> -->
 
   <!-- little things -->
   <div class="panel" id="little-things">
