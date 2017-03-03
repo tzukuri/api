@@ -86,7 +86,7 @@ class PreordersController < ApplicationController
           amount: final_amount,
           currency: 'aud',
           customer: customer.id,
-          description: "[PREORDER] - #{preorder_params[:frame].titleize}, #{preorder_params[:size].titleize}, #{preorder_params[:utility].titleize}, #{preorder_params[:lens].titleize}"
+          description: "#{preorder_params[:frame].titleize}, #{preorder_params[:size].titleize}, #{preorder_params[:utility].titleize}, #{preorder_params[:lens].titleize}"
         )
 
         tzu_charge = Charge.create(customer_id: customer.id, charge_id: charge.id, amount: final_amount)
