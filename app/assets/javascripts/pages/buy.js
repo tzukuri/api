@@ -357,6 +357,11 @@ var el, couponTimer, order, CheckoutWidget = {
       el.paymentForm.trigger('reset')
       el.orderForm.trigger('reset')
 
+      // reset description fields
+      el.orderDescription.find('#frame').html("")
+      el.orderDescription.find('#utility').html("")
+      el.orderDescription.find('#lens').html("")
+
       el.allGlasses.hide()
       el.orderForm.hide()
       el.paymentForm.hide()

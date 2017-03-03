@@ -97,7 +97,7 @@ body.unlosable-glasses {
     .row {
       margin-top: 15px;
     }
-    
+
     .row p {
       max-width: 500px;
       padding-left: 100px;
@@ -218,6 +218,12 @@ body.unlosable-glasses {
         img {
           width: 40% !important;
         }
+      }
+    }
+
+    #battery-tech {
+      .row p {
+        padding-left: 0px;
       }
     }
 
