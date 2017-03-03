@@ -21,7 +21,7 @@ body.index {
 
       .container .row {
         padding: 30px;
-        background: rgba(255, 255, 255, 0.8);
+        background: rgba(255, 255, 255, 0.95);
 
         // if the browser supports -webkit-backdrop-filter
         @supports (-webkit-backdrop-filter: blur(10px)) {
