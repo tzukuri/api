@@ -100,6 +100,7 @@ Rails.application.routes.draw do
     resources :preorders
     resources :purchases
     resources :emails
+    resources :leads
     resources :rsvps
     resources :gifts
 

@@ -112,6 +112,10 @@ body.unlosable-glasses {
     background:  image-url('glasses/lens-layout.png') no-repeat center center;
     background-size: cover;
 
+    h2 {
+      text-shadow: 0px 0px 2px rgba(255, 255, 255, 0.55);
+    }
+
     p, ul li {
       color: $tz-title;
     }
@@ -146,10 +150,6 @@ body.unlosable-glasses {
     img {
       width: 33%;
     }
-  }
-
-  #cta {
-    text-align: center;
   }
 
   // for tablets and smaller

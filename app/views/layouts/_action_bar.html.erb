@@ -3,19 +3,36 @@
 
 <% if defined?(type) && type == "compact" %>
   <div class="action-bar compact">
-    <a href="/retail" class="tz-track" data-category="action-bar" data-event="retail-click">
+    <a href="/buy" class="tz-track" data-category="action-bar" data-event="buy-click">
       <div class="action-btn left">
+        buy now
+      </div>
+    </a>
+    <a href="/retail" class="tz-track" data-category="action-bar" data-event="retail-click">
+      <div class="action-btn right">
         try in store
       </div>
     </a>
-    <a href="#" class="tz-track" data-category="action-bar" data-event="cant-decide-click">
+    <!--<a href="#" class="tz-track" data-category="action-bar" data-event="cant-decide-click">
       <div class="action-btn right">
         can't decide?
       </div>
-    </a>
+    </a> -->
   </div>
 <% else %>
-  <div class="action-bar">
+  <div class="action-bar compact">
+    <a href="/buy" class="tz-track" data-category="action-bar" data-event="buy-click">
+      <div class="action-btn left">
+        buy now
+      </div>
+    </a>
+    <a href="/retail" class="tz-track" data-category="action-bar" data-event="retail-click">
+      <div class="action-btn right">
+        try in store
+      </div>
+    </a>
+  </div>
+  <!-- <div class="action-bar">
     <a href="/buy" class="tz-track" data-category="action-bar" data-event="buy-click">
       <div class="action-btn left">
         buy now
@@ -31,5 +48,5 @@
         can't decide?
       </div>
     </a>
-  </div>
+  </div> -->
 <% end %>

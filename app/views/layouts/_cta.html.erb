@@ -1,0 +1,51 @@
+<!-- separator -->
+<div class="container"><hr/></div>
+
+<!-- call to action -->
+<div class="panel" id="cta">
+  <div class="container">
+    <h1>buy a pair today</h1>
+    <h2 class="h-sm">your very own unlosable glasses</h2>
+    <a href="/buy"><button class="tz-track alternate" data-category="unlosable-glasses" data-event="buy-now-click">buy now &nbsp; &rarr;</button></a>
+  </div>
+</div>
+
+<div class="panel" id="extra_cta">
+  <div class="container">
+    <div class="row">
+      <a href="/retail">
+        <div class="six columns" id="old_clare">
+          <div class="bg"></div>
+          <section>
+            <h1>try in store</h1>
+            <h2 class="h-sm">sydney retail store</h2>
+            <p>
+              The Old Clare Bottle Shop<br>
+              1 Kensington Street<br>
+              Chippendale, NSW, 2008
+            </p>
+          </section>
+        </div>
+      </a>
+      <div class="six columns" id="cant-decide">
+        <section>
+          <h1>can't decide?</h1>
+          <p>We can help you pick a frame, answer questions, and <a href="/book-try-on">book a personal try on</a>.</p>
+          <%= form_for Lead.new, remote: true do |f| %>
+            <p>
+              <%= f.email_field :email, placeholder: 'email address', required: true %><button type="submit" class="alternate">&rarr;</button>
+            </p>
+          <% end %>
+        </section>
+        <div id="cant-decide-status" class="hidden" style="display: none">
+          <div></div>
+          <section class="hidden" style="display: none">
+            <h1>thanks</h1>
+            <h2 class="h-sm">we'll be in touch asap to see how we can help</h2>
+            <p><a href="#" id="close-cant-decide-status"><button class="alternate">&rarr;</button></a></p>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

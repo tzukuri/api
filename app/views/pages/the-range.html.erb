@@ -179,15 +179,10 @@
     </div>
   </div>
 
-  <!-- separator -->
-  <div class="container" id="lt-divider"><hr/></div>
-
-  <!-- call to action -->
-  <div class="panel" id="cta">
-    <div class="container">
-      <h1>buy a pair today</h1>
-      <h2 class="h-sm">your very own unlosable glasses</h2>
-      <a href="/buy"><button class="tz-track alternate" data-category="the-range" data-event="buy-now-click">buy now &nbsp; &rarr;</button></a>
-    </div>
-  </div>
+  <%= render partial: 'layouts/cta' %>
 </div>
+
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag 'layouts/cta' %>
+  <%= stylesheet_link_tag 'layouts/cta' %>
+<% end %>
