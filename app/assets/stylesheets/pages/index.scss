@@ -74,13 +74,21 @@ body.index {
       padding-bottom: 20px;
 
       img {
-        height: 23px;
+        height: 21px;
         width: auto;
-        margin-bottom: 7px;
+        margin-bottom: 0px;
+        padding-bottom: 6px;
+      }
+
+      // smh review
+      #article-2-logo {
+        height: 27px;
+        padding-bottom: 0px;
       }
 
       h1 {
-        padding-top: 15px;
+        margin-top: 15px;
+        padding-top: 0px;
         font-weight: 300;
         font-size: 1.2rem;
         line-height: 100%;
@@ -126,6 +134,16 @@ body.index {
     #store #address {
       padding-top: 20px;
       padding-bottom: 40px;
+    }
+
+    #press {
+      h1 {
+        margin-top: 3px;
+      }
+    }
+
+    #article-2-logo {
+      margin-top: 15px;
     }
   }
 }
