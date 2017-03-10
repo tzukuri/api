@@ -1,3 +1,5 @@
+@import "tzukuri/variables";
+
 #cta {
   text-align: center;
 }
@@ -147,6 +149,44 @@
 
       form p {
         margin-bottom: 0px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: $tabletPortrait) {
+  #extra_cta #cant-decide {
+    section {
+      p {
+        font-size: 0.87rem;
+        margin-bottom: 10px;
+
+        a {
+          font-size: 0.87rem;
+        }
+      }
+
+      form input {
+        min-height: 35px;
+      }
+
+      button {
+        padding: 5px 8px 5px 8px !important;
+      }
+    }
+  }
+
+}
+
+@media only screen and (max-width: $smartphone) {
+  #extra_cta #cant-decide {
+    section {
+      margin-left: 0px;
+      padding-right: 0px;
+      text-align: center;
+
+      form p {
+        text-align: center;
       }
     }
   }
