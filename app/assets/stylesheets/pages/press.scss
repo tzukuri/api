@@ -1,3 +1,5 @@
+@import "tzukuri/variables";
+
 body.press #press {
     h1.header {
         margin-bottom: 50px;
@@ -25,13 +27,17 @@ body.press #press {
             color: #333;
         }
 
-        img.print {
+        .image {
             float: right;
-            width: 220px;
+            display: inline-block;
             margin-left: 25px;
             margin-bottom: 15px;
-            padding: 5px;
-            border: 1px solid #f5f5f5;
+
+            img {
+                width: 220px;
+                padding: 5px;
+                border: 1px solid #f5f5f5;
+            }
         }
 
         p {
@@ -67,5 +73,44 @@ body.press #press {
         margin-top: 40px;
         border-top: 1px solid #f0f0f0;
         padding-top: 40px;
+    }
+}
+
+@media only screen and (max-width: $smartphone) {
+    body.press #press {
+        .article {
+            .three {
+                img {
+                    width: 65%;
+                }
+            }
+
+            p {
+                &.date {
+                    margin-top: 6px;
+                    margin-bottom: 1px;
+                    font-size: 0.9rem;
+                }
+
+                &.original {
+                    margin-bottom: 20px;
+
+                    a {
+                        line-height: 100%;
+                    }
+                }
+            }
+
+            .image {
+                float: none;
+                display: block;
+                text-align: center;
+                margin-left: 0px;
+            }
+
+            section p {
+                clear: both;
+            }
+        }
     }
 }
