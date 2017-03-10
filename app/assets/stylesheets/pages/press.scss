@@ -1,0 +1,61 @@
+body.press #press {
+    h1.header {
+        margin-bottom: 50px;
+    }
+
+    .article {
+        .three {
+            p {
+                line-height: 100%;
+            }
+
+            a {
+                font-size: 0.8rem;
+            }
+
+            img {
+                width: 85%;
+            }
+        }
+
+        h1 {
+            font-size: 1.45rem;
+            padding-bottom: 0px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        p {
+            line-height: 135%;
+            padding-bottom: 0px;
+            margin-bottom: 10px;
+            color: #555;
+            font-size: 0.95rem;
+
+            &.date {
+                font-weight: 300;
+                color: #777;
+                margin-top: 2px;
+            }
+
+            &.continue {
+                text-align: center;
+            }
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            padding-bottom: 0px;
+            margin-bottom: 5px;
+            margin-top: 20px;
+            color: #333;
+            font-weight: 300;
+        }
+    }
+
+    .article + .article {
+        margin-top: 40px;
+        border-top: 1px solid #f0f0f0;
+        padding-top: 40px;
+    }
+}
