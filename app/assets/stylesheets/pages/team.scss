@@ -9,9 +9,31 @@ body.team {
   }
 
   .blurb {
-    width:60%;
+    width: 60%;
     margin: 0 auto;
     text-align: center;
     line-height: 180%;
+  }
+
+  .row {
+    text-align: center;
+  }
+
+  h2 {
+    font-weight: 600;
+    font-size: 1rem;
+    padding-bottom: 0px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+
+  img.apple {
+    width: 11px;
+  }
+
+  li {
+    line-height: 100%;
+    margin-bottom: 10px;
+    font-size: 1rem;
   }
 }
