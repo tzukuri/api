@@ -1,46 +1,180 @@
 <% content_for :javascript_includes do %>
-    <%#= javascript_include_tag 'vendor/jquery.justified' %>
-    <%#= stylesheet_link_tag 'vendor/jquery.justified' %>
     <%= javascript_include_tag 'pages/gallery' %>
     <%= stylesheet_link_tag 'pages/gallery' %>
     <script>
         var photos = [
-            {url: "<%= image_url 'gallery/social/0.jpg' %>", width: 1080, height: 1080},
-            {url: "<%= image_url 'gallery/social/1.jpg' %>", width: 1080, height: 1080},
-            {url: "<%= image_url 'gallery/social/2.jpg' %>", width: 1092, height: 1200},
-            {url: "<%= image_url 'gallery/social/3.jpg' %>", width: 1080, height: 1349},
-            {url: "<%= image_url 'gallery/social/4.jpg' %>", width: 1080, height: 1080},
-            {url: "<%= image_url 'gallery/social/5.jpg' %>", width: 1080, height: 1080},
-            {url: "<%= image_url 'gallery/social/6.jpg' %>", width: 1080, height: 1080},
-            {url: "<%= image_url 'gallery/social/7.jpg' %>", width: 750, height: 750},
-            {url: "<%= image_url 'gallery/social/8.jpg' %>", width: 1080, height: 1080},
-            {url: "<%= image_url 'gallery/social/9.jpg' %>", width: 1080, height: 1080},
-            {url: "<%= image_url 'gallery/social/10.jpg' %>", width: 1080, height: 1080},
-            {url: "<%= image_url 'gallery/social/11.jpg' %>", width: 1200, height: 900},
-            {url: "<%= image_url 'gallery/social/12.jpg' %>", width: 1080, height: 1080},
-            {url: "<%= image_url 'gallery/social/13.jpg' %>", width: 1080, height: 1080},
-            {url: "<%= image_url 'gallery/social/14.jpg' %>", width: 1080, height: 1080},
-            {url: "<%= image_url 'gallery/social/15.jpg' %>", width: 1080, height: 1080},
-            {url: "<%= image_url 'gallery/social/16.jpg' %>", width: 1080, height: 720},
-            {url: "<%= image_url 'gallery/social/17.jpg' %>", width: 1080, height: 1080},
-            {url: "<%= image_url 'gallery/social/18.jpg' %>", width: 1080, height: 1297}
+            {
+                url: "<%= image_url 'gallery/social/0.jpg' %>",
+                width: 1080,
+                height: 1080,
+                network: 'ig',
+                user: 'sanstzukuri',
+                comment: 'The wonderfully and multitalented @keeganjoyce wearing @tzukuri Ives.',
+                source: 'https://www.instagram.com/p/BRQiH39hBgy/'
+            },
+            {
+                url: "<%= image_url 'gallery/social/1.jpg' %>",
+                width: 1080,
+                height: 1080,
+                network: 'ig',
+                user: 'andrewrothwell',
+                comment: '@Tzukuri at the most laid back Greek island destination. #unloseable #glasses #alloccasions',
+                source: 'https://www.instagram.com/p/BJU74HQjPV6/'
+            },
+            {
+                url: "<%= image_url 'gallery/social/2.jpg' %>",
+                width: 1092,
+                height: 1200,
+                network: 'tw',
+                user: 'holasammy',
+                comment: 'So I\'ve got my unlosable glasses from @tzukuri. All I need now is a sunny day Come on already Sydney - you had one job!',
+                source: 'https://twitter.com/holasammy/status/839669765874442242'
+            },
+            {
+                url: "<%= image_url 'gallery/social/3.jpg' %>",
+                width: 1080,
+                height: 1349,
+                network: 'ig',
+                user: 'tzukurisan',
+                comment: 'Showing @tarynwilliams Tzukuris. Look forward to working on some stuff together. #design',
+                source: 'https://www.instagram.com/p/BQfMQ4eAc8-/'
+            },
+            {
+                url: "<%= image_url 'gallery/social/4.jpg' %>",
+                width: 1080,
+                height: 1080,
+                network: 'ig',
+                user: 'kasiastelmach',
+                comment: 'First person to get a pair of beta Tzukuri sunglasses the worlds #1st unloseable glasses handmade in Australia. So proud & honoured to be supporting this new tech startup! Stay tuned for updates! #handmade #tzukuri #sunglasses #worldsfirst #australia #tech #startup #innovation #trackyourglasses',
+                source: 'https://www.instagram.com/p/BJAhxLPBDGb/'
+            },
+            {
+                url: "<%= image_url 'gallery/social/5.jpg' %>",
+                width: 1080,
+                height: 1080,
+                network: 'ig',
+                user: 'tzukurisan',
+                comment: 'So we\'re doing a pop up store!',
+                source: 'https://www.instagram.com/p/BRLC-C8B5Mn/'
+            },
+            {
+                url: "<%= image_url 'gallery/social/6.jpg' %>",
+                width: 1080,
+                height: 1080,
+                network: 'ig',
+                user: 'henrykphoto',
+                comment: 'Just got my first beta pair of #tzukuri delivered.. I won\'t be loosing these anytime soon @tzukuri @allenliao_ #newtech #unloseablesunglasses',
+                source: 'https://www.instagram.com/p/BJ1kLInB8bj/'
+            },
+            {
+                url: "<%= image_url 'gallery/social/7.jpg' %>",
+                width: 750,
+                height: 750,
+                network: 'ig',
+                user: 'kasiastelmach',
+                comment: 'Rocking Tzukuri glasses! #lovetech #neverloseyourglasses #tracking #aussiemade',
+                source: 'https://www.instagram.com/p/BJAjl84BV1y/'
+            },
+            {
+                url: "<%= image_url 'gallery/social/8.jpg' %>",
+                width: 1080,
+                height: 1080,
+                network: 'ig',
+                user: 'sanstzukuri',
+                comment: 'The up and coming young actor @benhall23 in @tzukuri Ives.',
+                source: 'https://www.instagram.com/p/BRQiYwLBYgy/'
+            },
+            {
+                url: "<%= image_url 'gallery/social/9.jpg' %>",
+                width: 1080,
+                height: 1080,
+                network: 'ig',
+                user: 'abbielee1989',
+                comment: 'Unlosable ,you say? I\'m listening,I say. You can can track them with a app and they\'re handmade In Australia,you say? SOLD I say!!!! #tzukuri #sunglasses #glasses #unlosableglasses #startup #startuplife #siliconvalley',
+                source: 'https://www.instagram.com/p/BRXN4U_hUM7/'
+            },
+            {
+                url: "<%= image_url 'gallery/social/10.jpg' %>",
+                width: 1080,
+                height: 1080,
+                network: 'ig',
+                user: 'sanstzukuri',
+                comment: '@abbielee1989 wearing Optical Ive @tzukuri',
+                source: 'https://www.instagram.com/p/BRhMeK4FEq2/'
+            },
+            {
+                url: "<%= image_url 'gallery/social/11.jpg' %>",
+                width: 1200,
+                height: 900,
+                network: 'tw',
+                user: 'mdm_z',
+                comment: 'If you\'re near Central Park, make sure you check out the @tzukuri pop up. These are seriously sexy shades.',
+                source: 'https://twitter.com/mdm_z/status/839026178346274816'
+            },
+            {
+                url: "<%= image_url 'gallery/social/12.jpg' %>",
+                width: 1080,
+                height: 1080,
+                network: 'ig',
+                user: 'sanstzukuri',
+                comment: 'Joris from the @theoldclare',
+                source: 'https://www.instagram.com/p/BRh0CSClhmj/'
+            },
+            {
+                url: "<%= image_url 'gallery/social/13.jpg' %>",
+                width: 1080,
+                height: 1080,
+                network: 'ig',
+                user: 'annavaughanarchitects',
+                comment: 'Clever glasses...#tzukuri',
+                source: 'https://www.instagram.com/p/BRXjn-mA7ui/'
+            },
+            {
+                url: "<%= image_url 'gallery/social/14.jpg' %>",
+                width: 1080,
+                height: 1080,
+                network: 'ig',
+                user: 'sanstzukuri',
+                comment: 'Super slashie @stephenfryactually wearing @tzukuri Ford 51.5mm',
+                source: 'https://www.instagram.com/p/BRQi1LkBIQQ/'
+            },
+            {
+                url: "<%= image_url 'gallery/social/15.jpg' %>",
+                width: 1080,
+                height: 1080,
+                network: 'ig',
+                user: 'horizonhabitats',
+                comment: 'Just met this fellow #SBHS old boy, who is developing a pair of glasses you can never lose! #tzukuri. Keep an eye out for this company (pardon the pun...)',
+                source: 'https://www.instagram.com/p/BIr0yIohNnM/'
+            },
+            {
+                url: "<%= image_url 'gallery/social/16.jpg' %>",
+                width: 1080,
+                height: 720,
+                network: 'ig',
+                user: 'simonmonk',
+                comment: 'Day 19 - trekking over the 5,240m Gophu La pass on the Snowman Trek, Bhutan. Could have really done with sunscreen but it was frozen as hard as an iced cream. #selfie #bhutan #snowman #tzukuri #worldnomads #nikon',
+                source: 'https://www.instagram.com/p/BMi28bQj3_-/'
+            },
+            {
+                url: "<%= image_url 'gallery/social/17.jpg' %>",
+                width: 1080,
+                height: 1080,
+                network: 'ig',
+                user: 'andrewrothwell',
+                comment: '@Tzukuri Aegean sunset. #colour #perfect',
+                source: 'https://www.instagram.com/p/BJa7qaPjkfb/'
+            },
+            {
+                url: "<%= image_url 'gallery/social/18.jpg' %>",
+                width: 1080,
+                height: 1297,
+                network: 'ig',
+                user: 'benhall23',
+                comment: 'This is what I was opening :) unloseable handmade sunnies from @tzukuri currently in beta testing. Blows me away that this was designed and created by you @allenliao_ watch these take off #tzukuri #neverleavemysunniesathepubagain',
+                source: 'https://www.instagram.com/p/BK7zHKYD8LY/'
+            }
         ];
-
-        $('#images-container').empty().justifiedImages({
-            images : photos,
-            rowHeight: 400,
-            maxRowHeight: 500,
-
-            thumbnailPath: function(photo, width, height){
-                return photo.url;
-            },
-
-            getSize: function(photo) {
-                return {width: photo.width, height: photo.height};
-            },
-
-            margin: 1
-        });
     </script>
 <% end %>
 
