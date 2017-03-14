@@ -36,3 +36,23 @@ body.retail {
     height: 500px;
   }
 }
+
+@media only screen and (max-width: $tabletPortrait) {
+  body.retail .details-centre {
+    #hours {
+      display: block;
+      margin-left: 0px;
+      margin-top: 20px;
+    }
+  }
+}
+
+@media only screen and (max-width: $smartphone) {
+  body.retail .details-centre {
+    #hours {
+      display: block;
+      margin-left: 0px;
+      margin-top: 20px;
+    }
+  }
+}
