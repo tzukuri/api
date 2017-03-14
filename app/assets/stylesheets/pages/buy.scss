@@ -167,11 +167,6 @@ body.buy {
       overflow: hidden;
       padding-top: 0px !important;
       padding-bottom: 0px !important;
-      @include transition(max-height 0.5s ease-out);
-    }
-
-    #in-the-box, #specifications {
-      @include transition(max-height 0.5s ease-out);
     }
 
     #in-the-box {
@@ -202,6 +197,15 @@ body.buy {
         width: 50%;
       }
 
+      .row:first-child {
+        margin-bottom: 30px;
+      }
+
+      &.contracted {
+        .row:first-child {
+          margin-bottom: 0px;
+        }
+      }
     }
 
     #specifications {
@@ -225,8 +229,8 @@ body.buy {
         }
 
         li, p {
-            @include font-size(14px);
-            line-height: 200%;
+          @include font-size(14px);
+          line-height: 200%;
         }
       }
     }
@@ -235,8 +239,16 @@ body.buy {
 @media only screen and (max-width: 550px) {
   body.buy {
 
-    #tech-specs-toggle, #in-the-box-toggle {
-      display: none;
+    #in-the-box, #specifications {
+      .row:first-child {
+        position: relative;
+      }
+
+      #tech-specs-toggle, #in-the-box-toggle {
+        position: absolute;
+        right: 0px;
+        top: 8px;
+      }
     }
 
     #ive-optical {
