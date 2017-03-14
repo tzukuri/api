@@ -227,5 +227,14 @@ body.index {
     #article-2-logo {
       margin-top: 15px;
     }
+
+    #two-panels {
+      height: 400px;
+      
+      > a > div {
+        display: block;
+        width: 100%;
+      }
+    }
   }
 }
