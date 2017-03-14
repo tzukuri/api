@@ -1,8 +1,16 @@
-<%= stylesheet_link_tag 'pages/intelligently-made', media: 'all' %>
-
 <%= render 'layouts/action_bar', { :type => "compact" } %>
 
 <div class="main">
+  <div class="header">
+    <div class="bg photo"></div>
+    <div class="bg gradient"></div>
+    <div class="container content">
+      <div>
+        <h1>our story</h1>
+        <h2>two years in the making</h2>
+      </div>
+    </div>
+  </div>
 
   <!-- new craft -->
   <div class="panel">
@@ -60,6 +68,7 @@
 </div>
 
 <% content_for :javascript_includes do %>
+  <%= stylesheet_link_tag 'pages/intelligently-made', media: 'all' %>
   <%= javascript_include_tag 'layouts/cta' %>
   <%= stylesheet_link_tag 'layouts/cta' %>
 <% end %>

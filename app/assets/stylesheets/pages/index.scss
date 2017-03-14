@@ -2,7 +2,6 @@
 @import "tzukuri/mixins";
 
 body.index {
-
     h1 {
       margin-bottom: 20px;
       line-height: 140%;
@@ -12,25 +11,6 @@ body.index {
     button {
       i {
         margin-left: 10px;
-      }
-    }
-
-    #store {
-      background:  image-url('other/old-clare.jpg') no-repeat center center;
-      background-size: cover;
-
-      .container .row {
-        padding: 30px;
-        background: rgba(255, 255, 255, 0.95);
-
-        // if the browser supports -webkit-backdrop-filter
-        @supports (-webkit-backdrop-filter: blur(10px)) {
-          -webkit-backdrop-filter: blur(10px);
-        }
-      }
-
-      a {
-        text-decoration: underline;
       }
     }
 
@@ -70,9 +50,10 @@ body.index {
     }
 
     #press {
-      padding-top: 20px;
-      padding-bottom: 20px;
+      padding-top: 10px;
+      padding-bottom: 5px;
 
+      // masthead
       img {
         height: 21px;
         width: auto;
@@ -80,14 +61,9 @@ body.index {
         padding-bottom: 6px;
       }
 
-      // smh review
-      #article-2-logo {
-        height: 27px;
-        padding-bottom: 0px;
-      }
-
+      // title
       h1 {
-        margin-top: 15px;
+        margin-top: 12px;
         padding-top: 0px;
         font-weight: 300;
         font-size: 1.2rem;
@@ -97,10 +73,21 @@ body.index {
         color: #555;
       }
 
+      // smh review
+      #article-2-logo {
+        height: 27px;
+        padding-bottom: 0px;
+      }
+
+      // lead
       p {
         font-size: 0.9rem;
         font-weight: 300;
         color: #666;
+      }
+
+      .six.columns > a {
+        line-height: 100%;
       }
 
       #more-press {
@@ -109,9 +96,100 @@ body.index {
         a {
           font-size: 0.9rem;
           font-weight: 300;
+
+          &:hover {
+            text-decoration: underline;
+          }
         }
       }
     }
+
+    #press-divider {
+      hr {
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+    }
+
+
+    #two-panels {
+      padding-top: 25px;
+      position: relative;
+      height: 200px;
+      font-size: 0px;
+
+      > a {
+        line-height: 100%;
+        font-size: 0px;
+
+        > div {
+          position: relative;
+          width: 50%;
+          height: 200px;
+          display: inline-block;
+        }
+      }
+
+      .bg {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center 0px;
+        filter: grayscale(100%);
+      }
+
+      .gradient {
+        background: -moz-linear-gradient(left, rgba(0,0,0,0) 0%, rgba(0,0,0,0.20) 69%, rgba(0,0,0,0.20) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(left, rgba(0,0,0,0) 0%,rgba(0,0,0,0.20) 69%,rgba(0,0,0,0.20) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(0,0,0,0.20) 69%,rgba(0,0,0,0.20) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#40000000',GradientType=1 ); /* IE6-9 */
+      }
+
+      .content {
+        position: absolute;
+        z-index: 2;
+        right: 40px;
+        bottom: 40px;
+        text-align: right;
+        color: white;
+        font-size: 1.8rem;
+        font-weight: 300;
+        text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
+      }
+
+      h1 {
+        font-size: 1.8rem;
+        font-weight: 300;
+        line-height: 130%;
+        color: #666;
+        margin-bottom: 7px;
+        padding-bottom: 0px;
+      }
+
+      p {
+        font-weight: 300;
+        font-size: 0.95rem;
+        color: #666;
+      }
+
+      #store {
+        .photo {
+          background-image: image-url('other/old-clare-homepage.jpg');
+        }
+      }
+
+      #gallery {
+        .photo {
+          background-image: image-url('other/gallery-homepage.jpg');
+          background-position: 0px -40px;
+        }
+      }
+    }
+
 }
 
 // tablet

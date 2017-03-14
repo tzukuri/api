@@ -2,27 +2,37 @@
 @import "tzukuri/mixins";
 
 body.retail {
+  .header .photo {
+    background-image: image-url('headers/retail.jpg');
+  }
+
   #retail-head {
     text-align: center;
   }
 
-  #store-detail {
-    margin-top: 30px;
-    background-color: RGBA(244, 244, 244, 1.00);
+  .details-centre {
+    #address, #hours {
+      display: inline-block;
+      vertical-align: top;
 
-    #address-hours {
+      p {
+        padding-bottom: 0px;
+        color: #333;
 
-      #address, #hours {
-        margin-top: 20px;
-        margin-left: 30px;
-        margin-bottom: 20px;
+        &:first-child {
+          margin-bottom: 10px;
+        }
       }
     }
 
-    #store-img {
-      background:  image-url('other/old-clare.jpg') no-repeat center center;
-      background-size: cover;
-      min-height: 330px;
+    #hours {
+      margin-left: 80px;
     }
+  }
+
+  iframe {
+    width: 100%;
+    margin-top: 50px;
+    height: 500px;
   }
 }

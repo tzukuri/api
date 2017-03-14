@@ -511,3 +511,89 @@ button:focus {
     transform: rotate(360deg);
   }
 }
+
+/* photo header */
+.header {
+  position: relative;
+  height: 250px;
+  line-height: 250px;
+  text-align: center;
+  margin-bottom: 50px;
+
+  .content {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+
+    h1, h2 {
+      text-align: right;
+      color: white;
+      text-shadow: 0px 0px 2px rgba(0,0,0,0.25);
+    }
+
+    h2 {
+      padding-bottom: 0px;
+      font-size: 1.2rem;
+    }
+  }
+
+  .bg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    height: 250px;
+  }
+
+  .photo {
+    background-position: center 0px;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .gradient {
+    background: -moz-linear-gradient(left, rgba(0,0,0,0) 0%, rgba(0,0,0,0.25) 69%, rgba(0,0,0,0.25) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, rgba(0,0,0,0) 0%,rgba(0,0,0,0.25) 69%,rgba(0,0,0,0.25) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(0,0,0,0.25) 69%,rgba(0,0,0,0.25) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#40000000',GradientType=1 ); /* IE6-9 */
+  }
+}
+
+.header + .panel {
+  padding-top: 0px;
+}
+
+/* green detail panel */
+.details-centre {
+  text-align: center;
+}
+
+.details {
+  margin-top: 30px;
+  display: inline-block;
+  padding: 30px 45px;
+  background-color: #dfebec;
+  font-weight: 400;
+  border-radius: 5px;
+
+  p {
+    width: 100% !important;
+    margin: 0px !important;
+    color: #333;
+
+    &:last-child {
+      padding-bottom: 0px;
+      margin-bottom: 0px;
+    }
+  }
+
+  em {
+    font-weight: bold;
+  }
+}
+
+#details-buy {
+  p + p {
+    padding-top: 10px;
+  }
+}

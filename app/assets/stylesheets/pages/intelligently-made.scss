@@ -1,6 +1,11 @@
 @import "tzukuri/variables";
 @import "tzukuri/mixins";
 
+.header .photo {
+  background-image: image-url('headers/story.jpg');
+  background-position: center center;
+}
+
 #responsibility {
   text-align: center;
 

@@ -2,9 +2,13 @@
 @import "tzukuri/mixins";
 
 body.the-range {
-
   #designed {
+    padding-top: 0px;
     text-align: center;
+
+    .header .photo {
+      background-image: image-url('headers/range.jpg');
+    }
 
     #range {
       margin-bottom:30px;
@@ -128,10 +132,6 @@ body.the-range {
           line-height: 200%;
       }
     }
-  }
-
-  #cta {
-    text-align: center;
   }
 
   // for tablets and smaller
