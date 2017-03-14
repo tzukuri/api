@@ -1,0 +1,52 @@
+<% content_for :javascript_includes do %>
+    <%#= javascript_include_tag 'vendor/jquery.justified' %>
+    <%#= stylesheet_link_tag 'vendor/jquery.justified' %>
+    <%= javascript_include_tag 'pages/gallery' %>
+    <%= stylesheet_link_tag 'pages/gallery' %>
+    <script>
+        var photos = [
+            {url: "<%= image_url 'gallery/social/0.jpg' %>", width: 1080, height: 1080},
+            {url: "<%= image_url 'gallery/social/1.jpg' %>", width: 1080, height: 1080},
+            {url: "<%= image_url 'gallery/social/2.jpg' %>", width: 1092, height: 1200},
+            {url: "<%= image_url 'gallery/social/3.jpg' %>", width: 1080, height: 1349},
+            {url: "<%= image_url 'gallery/social/4.jpg' %>", width: 1080, height: 1080},
+            {url: "<%= image_url 'gallery/social/5.jpg' %>", width: 1080, height: 1080},
+            {url: "<%= image_url 'gallery/social/6.jpg' %>", width: 1080, height: 1080},
+            {url: "<%= image_url 'gallery/social/7.jpg' %>", width: 750, height: 750},
+            {url: "<%= image_url 'gallery/social/8.jpg' %>", width: 1080, height: 1080},
+            {url: "<%= image_url 'gallery/social/9.jpg' %>", width: 1080, height: 1080},
+            {url: "<%= image_url 'gallery/social/10.jpg' %>", width: 1080, height: 1080},
+            {url: "<%= image_url 'gallery/social/11.jpg' %>", width: 1200, height: 900},
+            {url: "<%= image_url 'gallery/social/12.jpg' %>", width: 1080, height: 1080},
+            {url: "<%= image_url 'gallery/social/13.jpg' %>", width: 1080, height: 1080},
+            {url: "<%= image_url 'gallery/social/14.jpg' %>", width: 1080, height: 1080},
+            {url: "<%= image_url 'gallery/social/15.jpg' %>", width: 1080, height: 1080},
+            {url: "<%= image_url 'gallery/social/16.jpg' %>", width: 1080, height: 720},
+            {url: "<%= image_url 'gallery/social/17.jpg' %>", width: 1080, height: 1080},
+            {url: "<%= image_url 'gallery/social/18.jpg' %>", width: 1080, height: 1297}
+        ];
+
+        $('#images-container').empty().justifiedImages({
+            images : photos,
+            rowHeight: 400,
+            maxRowHeight: 500,
+
+            thumbnailPath: function(photo, width, height){
+                return photo.url;
+            },
+
+            getSize: function(photo) {
+                return {width: photo.width, height: photo.height};
+            },
+
+            margin: 1
+        });
+    </script>
+<% end %>
+
+<div class="main" id="gallery">
+    <div class="panel container">
+        <h1>gallery</h1>
+        <div id="images-container"></div>
+    </div>
+</div>
