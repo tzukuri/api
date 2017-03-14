@@ -1,4 +1,6 @@
 <% content_for :javascript_includes do %>
+    <%= javascript_include_tag 'layouts/cta' %>
+    <%= stylesheet_link_tag 'layouts/cta' %>
     <%= javascript_include_tag 'pages/gallery' %>
     <%= stylesheet_link_tag 'pages/gallery' %>
     <script>
@@ -178,9 +180,13 @@
     </script>
 <% end %>
 
+<%= render 'layouts/action_bar', type: 'gallery' %>
+
 <div class="main" id="gallery">
     <div class="panel container">
         <h1>gallery</h1>
         <div id="images-container"></div>
     </div>
+
+    <%= render partial: 'layouts/cta' %>
 </div>

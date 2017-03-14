@@ -1,11 +1,11 @@
 <%= stylesheet_link_tag 'layouts/action_bar', media: 'all' %>
 <%= javascript_include_tag 'layouts/action_bar', :defer => "defer" %>
 
-<% if defined?(type) && type == "compact" %>
+<% if defined?(type) && type == "store" %>
   <div class="action-bar compact">
-    <a href="/buy" class="tz-track" data-category="action-bar" data-event="buy-click">
+    <a href="/gallery" class="tz-track" data-category="action-bar" data-event="gallery-click">
       <div class="action-btn left">
-        buy now
+        gallery
       </div>
     </a>
     <a href="/retail" class="tz-track" data-category="action-bar" data-event="retail-click">
@@ -19,11 +19,29 @@
       </div>
     </a> -->
   </div>
-<% else %>
+<% elsif defined?(type) && type == "gallery" %>
   <div class="action-bar compact">
     <a href="/buy" class="tz-track" data-category="action-bar" data-event="buy-click">
       <div class="action-btn left">
         buy now
+      </div>
+    </a>
+    <a href="/retail" class="tz-track" data-category="action-bar" data-event="retail-click">
+      <div class="action-btn right">
+        try in store
+      </div>
+    </a>
+  </div>
+<% else %>
+  <div class="action-bar">
+    <a href="/buy" class="tz-track" data-category="action-bar" data-event="buy-click">
+      <div class="action-btn left">
+        buy now
+      </div>
+    </a>
+    <a href="/gallery" class="tz-track" data-category="action-bar" data-event="gallery-click">
+      <div class="action-btn mid">
+        gallery
       </div>
     </a>
     <a href="/retail" class="tz-track" data-category="action-bar" data-event="retail-click">
