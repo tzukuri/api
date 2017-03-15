@@ -513,7 +513,7 @@ button:focus {
 }
 
 /* photo header */
-.header {
+.main > .header, .panel > .header {
   position: relative;
   height: 250px;
   line-height: 250px;
