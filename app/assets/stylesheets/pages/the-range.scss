@@ -35,6 +35,48 @@ body.the-range {
       }
     }
 
+    #designers {
+      margin-top: 80px;
+
+      img + h1 {
+        margin-bottom: 15px;
+      }
+
+      #designers-description p {
+        width: 100%;
+        line-height: 200%;
+      }
+    }
+
+    #beautifully-light {
+      text-align: center;
+
+      .seven.columns {
+        text-align: center;
+
+        > div {
+          max-width: 400px;
+          text-align: left;
+          display: inline-block;
+          padding-top: 20px;
+
+          p {
+            width: auto;
+            margin: 10px 0px 0px 0px;
+          }
+
+          p + h3 {
+            margin-top: 40px;
+          }
+        }
+      }
+
+      img {
+        width: 65%;
+        padding-top: 15px;
+      }
+    }
+
     #all-prescription {
       margin-top: 70px;
       p {
@@ -136,6 +178,31 @@ body.the-range {
 
   // for tablets and smaller
   @media only screen and (max-width: $tabletPortrait) {
+    #designers {
+      .row {
+        .columns {
+          width: 100%;
+          float: none;
+          margin-left: 0px;
+        }
+      }
+
+      img {
+        width: 50%;
+      }
+
+      a button {
+        width: 50%;
+      }
+
+      #designers-description p {
+        margin-top: 40px;
+        margin-bottom: 40px;
+        line-height: 150% !important;
+        width: 75% !important;
+      }
+    }
+
       #designed {
         p {
           width: 100%;
@@ -161,7 +228,6 @@ body.the-range {
 
   // for smartphones and smaller
   @media only screen and (max-width: $smartphone) {
-
     .action-bar {
       width: 300px;
       margin-left: -150px;
