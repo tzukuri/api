@@ -3,6 +3,10 @@
 
 #gallery {}
 
+.main {
+  padding-bottom: 1px;
+}
+
 #description {
   .desc-section {
     margin-bottom: 20px;
@@ -17,6 +21,12 @@
 
     button {
       margin-top: 20px;
+    }
+
+    li {
+      line-height: 150%;
+      font-size: 1rem;
+      font-weight: 400;
     }
   }
 }
@@ -90,6 +100,7 @@
     li, p {
       @include font-size(14px);
       line-height: 200%;
+      list-style-type: disc;
     }
   }
 }
