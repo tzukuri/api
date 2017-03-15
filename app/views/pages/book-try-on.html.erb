@@ -2,11 +2,14 @@
 <%= javascript_include_tag 'pages/book-try-on', :defer => "defer" %>
 <script type="text/javascript" src="https://calendly.com/assets/external/widget.js"></script>
 
+<%= render 'layouts/action_bar', type: 'cant-decide' %>
+
 <div class="main">
   <div class="panel u-full-width" id="book-now">
     <div class="container">
       <div id="gate">
         <h1>book your personal try on</h1>
+        <h2>can't decide? try them on</h2>
         <%= form_tag '/tryon/validate', remote: true, id: 'try-form' do |f| %>
             <label for="interest_name">Full Name</label>
             <%= text_field_tag :name, nil, placeholder: "John Smith", autofocus: true %>
