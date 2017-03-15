@@ -127,6 +127,8 @@ body.index {
           width: 50%;
           height: 200px;
           display: inline-block;
+          box-sizing: border-box;
+          border-bottom: 1px solid white;
         }
       }
 
@@ -179,6 +181,8 @@ body.index {
         .photo {
           background-image: image-url('other/old-clare-homepage.jpg');
         }
+
+        border-right: 1px solid white;
       }
 
       #gallery {
@@ -233,6 +237,10 @@ body.index {
       > a > div {
         display: block;
         width: 100%;
+      }
+
+      #store {
+        border-right: none;
       }
     }
   }
