@@ -1,0 +1,167 @@
+<%= stylesheet_link_tag 'pages/checkout', media: 'all' %>
+<%= javascript_include_tag 'pages/checkout', :defer => "defer" %>
+
+<div class="main">
+
+<div class="panel container" id="checkout">
+  <div class="row">
+    <!-- order details -->
+    <div class="six columns" id="order-details">
+      <%= image_tag 'frames/ford/ford_black_optical.jpg', id:'Ford-Optical', class:'glasses' %>
+      <%= image_tag 'frames/ford/ford_black_sun.jpg', id: 'Ford-Sun', class: 'glasses' %>
+
+      <%= image_tag 'frames/ive/ive_black_optical.jpg', id:'Ive-Optical', class: 'glasses' %>
+      <%= image_tag 'frames/ive/ive_black_sun.jpg', id: 'Ive-Sun', class: 'glasses' %>
+
+      <dl id="order-desc">
+        <dt>Frame:</dt>
+        <dd id="frame"></dd>
+        <br>
+        <dt>Utility:</dt>
+        <dd id="utility"></dd>
+        <br>
+        <dt>Lens:</dt>
+        <dd id="lens"></dd>
+        <br>
+        <div id="total-price">
+          <dt>Total:</dt>
+          <dd id="total-selection">485 AUD</dd>
+        </div>
+      </dl>
+
+      <p>Includes free Australia-wide shipping.</p>
+
+    </div>
+
+    <div class="six columns">
+      <div id="order-form">
+      <form id="glasses-form">
+        <p class="section-head">Glasses Information</p>
+
+        <div id="lens-group-optical">
+          <label>Lens Type</label>
+          <select id="lens-select-optical">
+            <option selected disabled hidden>- SELECT -</option>
+            <option>Non-Prescription</option>
+            <option>Prescription Reading</optical>
+            <option>Prescription Distance</optical>
+          </select>
+        </div>
+
+        <div id="lens-group-sun">
+          <label>Lens Type</label>
+          <select id="lens-select-sun">
+            <option selected disabled hidden>- SELECT -</option>
+            <option>Non-Prescription</option>
+            <option>Prescription</optical>
+          </select>
+        </div>
+
+        <div id="size-group">
+          <label>Size</label>
+          <select id="size-select">
+            <option selected disabled hidden>- SELECT -</option>
+            <option value="49">49mm</option>
+            <option value="51.5">51.5mm</option>
+          </select>
+        </div>
+
+        <div id="prescription-group">
+          <label>How will we get your prescription?</label>
+          <select id="prescription-select">
+            <option selected disabled hidden>- SELECT -</option>
+            <option>I will email it to hello@tzukuri.com</option>
+            <option>Please call me to discuss</option>
+          </select>
+        </div>
+      </form>
+
+      <%= form_for Preorder.new, :html => {:method => :post}, remote:true do |f| %>
+
+      <p class="section-head">Contact information</p>
+
+      <%= label :purchase, :name, "Full Name" %>
+      <%= f.text_field :name, placeholder: 'John Smith', autofocus: true %>
+
+      <%= label :purchase, :email, "Email Address" %>
+      <%= f.text_field :email, placeholder: 'john@tzukuri.com' %>
+
+      <%= label :purchase, :phone, "Contact Number" %>
+      <%= f.telephone_field :phone,    placeholder: '04XX XXX XXX' %>
+
+      <p class="section-head">Shipping information</p>
+
+      <%= label :purchase, :address1, "Address" %>
+      <%= f.text_field :address1, placeholder: 'Street name, number, etc.' %>
+
+      <%= label :purchase, :postcode, "Postal Code"  %>
+      <%= f.text_field :postal_code, placeholder: '1234', maxlength: 4 %>
+
+      <%= label :purchase, :state, "State"%>
+      <%= f.select :state, options_for_select: ['New South Wales', 'ACT', 'Victoria', 'Northern Territory', 'Queensland', 'South Australia', 'Tasmania', 'Western Australia'] %>
+
+      <%= label :purchase, :country, "Country" %>
+      <%= f.text_field :country,  placeholder: 'country', value: 'Australia', disabled: true %>
+
+      <%= label :purchase, :coupon, "Promotional Token (Optional)" %>
+      <%= f.text_field :coupon, placeholder: 'Promotional token' %>
+
+      <% end %>
+
+      <form id="payment-form">
+        <p class="section-head" style="padding-top: 15px;">Payment information</p>
+
+        <div id="cc">
+            <label for="">Credit Card Number</label>
+            <input id="payment_ccNumber" name="number" type="text" data-stripe="number" placeholder="4000 0566 5566 5556">
+
+            <label ford="">Expiry Date</label>
+            <select name="month" style="width: 49%" data-stripe="exp-month">
+              <option value="1">Jan (01)</option>
+              <option value="2">Feb (02)</option>
+              <option value="3">Mar (03)</option>
+              <option value="4">Apr (04)</option>
+              <option value="5">May (05)</option>
+              <option value="6">Jun (06)</option>
+              <option value="7">Jul (07)</option>
+              <option value="8">Aug (08)</option>
+              <option value="9">Sep (09)</option>
+              <option value="10">Oct (10)</option>
+              <option value="11">Nov (11)</option>
+              <option value="12">Dec (12)</option>
+            </select>
+
+            <select name="year" style="width: 49%" data-stripe="exp-year">
+              <option>2017</option>
+              <option>2018</option>
+              <option>2019</option>
+              <option>2020</option>
+              <option>2021</option>
+              <option>2022</option>
+              <option>2023</option>
+              <option>2024</option>
+              <option>2025</option>
+              <option>2026</option>
+            </select>
+
+            <label for="">Security Code</label>
+            <input id="payment_cvv" name="CVV" type="text" placeholder="Security code" data-stripe="CVV">
+        </div>
+
+        <button id="reserve-submit" type="submit" class="order-btn">
+          <span id="reserve-for">purchase for 485 AUD</span>
+        </button>
+      </form>
+
+      <div id="submit-spinner" class="loader" style="display:none"></div>
+      <p id="error-messages"></p>
+    </div>
+
+      <div id="order-complete">
+        <p>Thank you for purchasing your Tzukuris. You should receive an order confirmation shortly.</p>
+        <p>If you have any questions, please <a href="/contact-us">get in touch</a>.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

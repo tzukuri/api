@@ -1,0 +1,68 @@
+@import "tzukuri/variables";
+@import "tzukuri/mixins";
+
+#checkout {
+  display: none;
+
+  #order-complete {
+    display: none;
+    text-align: center;
+    margin-top: 10%;
+
+    p, a {
+      @include font-size(16px)
+    }
+  }
+
+  #order-details {
+    @include sticky;
+    top: 100px;
+
+    .glasses {
+      width: 90%;
+      display: none;
+    }
+  }
+
+  #order-form {
+    #error-messages {
+      color: $tz-error;
+      text-align: center;
+    }
+  }
+
+  p {
+    @include font-size(14px);
+  }
+
+  .section-head {
+    @include font-size(18px);
+    margin-top: 10px;
+  }
+
+  #lens-group-optical, #lens-group-sun, #prescription-group, #size-group, #new_preorder, #payment-form {
+    display: none;
+  }
+
+  dl {
+    margin-top: 40px;
+    margin-bottom: 10px;
+
+      @include font-size(14px);
+      color: $tz-content;
+      line-height: 150%;
+
+      dt, dd {
+          display: inline-block;
+      }
+
+      dt {
+          text-align: right;
+          font-weight: 600;
+      }
+
+      dd {
+          text-transform: capitalize;
+      }
+  }
+}

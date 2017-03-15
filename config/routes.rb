@@ -138,6 +138,11 @@ Rails.application.routes.draw do
     get '/mailers' => "rails/mailers#index"
     get 'mailers/*path' => "rails/mailers#preview"
 
+    get '/ive-optical' => "store#show"
+    get '/ive-sun' => "store#show"
+    get '/ford-optical' => "store#show"
+    get '/ford-sun' => "store#show"
+
     get '*page'                 => 'pages#index'
 
     root 'pages#index', page: 'index'

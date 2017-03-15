@@ -15,7 +15,6 @@ var el, couponTimer, order, CheckoutWidget = {
     backButton: $("#checkout-back"),
 
     checkoutFrame: $('#checkout'),
-    purchaseFrame: $('#purchase'),
 
     lensSunFormGroup: $("#lens-group-sun"),
     lensOpticalFormGroup: $('#lens-group-optical'),
@@ -60,6 +59,8 @@ var el, couponTimer, order, CheckoutWidget = {
     order = _.clone(this.order)
 
     this.bindUIActions()
+
+    el.checkoutFrame.fadeIn()
   },
 
   bindUIActions: function() {
@@ -347,39 +348,6 @@ var el, couponTimer, order, CheckoutWidget = {
     })
   },
 
-  // go back to frame selection and reset
-  goBack: function() {
-    // todo: reset order details
-    el.checkoutFrame.fadeOut(function() {
-      el.purchaseFrame.fadeIn()
-
-      el.glassesForm.trigger('reset')
-      el.paymentForm.trigger('reset')
-      el.orderForm.trigger('reset')
-
-      // reset description fields
-      el.orderDescription.find('#frame').html("")
-      el.orderDescription.find('#utility').html("")
-      el.orderDescription.find('#lens').html("")
-
-      el.allGlasses.hide()
-      el.orderForm.hide()
-      el.paymentForm.hide()
-      el.lensOpticalFormGroup.hide()
-      el.lensSunFormGroup.hide()
-      el.prescriptionFormGroup.hide()
-      el.sizeFormGroup.hide()
-
-      el.orderCompleteDiv.hide()
-      el.orderDiv.show()
-
-      $(".action-bar").removeClass('no-display')
-
-      // reset the order object
-      order = _.clone(CheckoutWidget.order)
-    })
-  },
-
   handleCoupon: function(coupon) {
     var finalAmount = 485
     finalAmount -= (coupon.discount / 100)
@@ -418,8 +386,6 @@ var el, couponTimer, order, CheckoutWidget = {
 }
 
 $(function() {
-    if (!$('body').hasClass('buy')) return;
-
     $("#in-the-box").on('click', function(e) {
       if ($("#in-the-box-toggle").hasClass('fa-plus')) {
         // remove plus and expand
@@ -446,15 +412,10 @@ $(function() {
       }
     })
 
-    CheckoutWidget.init()
-
     // handle url params
     var frameParam = $.urlParam('frame')
     var utilityParam = $.urlParam('utility')
-    var sentWithParams = false
 
-    if ((frameParam == "Ive" || frameParam == "Ford") && (utilityParam == "Optical" || utilityParam == "Sun")) {
-      sentWithParams = true
-      CheckoutWidget.selectModel(frameParam, utilityParam)
-    }
+    CheckoutWidget.init()
+    CheckoutWidget.selectModel(frameParam, utilityParam)
 });

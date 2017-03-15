@@ -1,0 +1,95 @@
+@import "tzukuri/variables";
+@import "tzukuri/mixins";
+
+#gallery {}
+
+#description {
+  .desc-section {
+    margin-bottom: 20px;
+
+    h2 {
+      padding-bottom: 15px;
+    }
+
+    .pricing {
+      padding-bottom: 15px;
+    }
+
+    button {
+      margin-top: 20px;
+    }
+  }
+}
+
+.contracted {
+  max-height: 30px !important;
+  overflow: hidden;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+#in-the-box {
+  p {
+    @include font-size(14px);
+    margin-top: 20px;
+    font-weight: 600;
+  }
+
+  .row {
+    overflow: hidden;
+    max-height: 300px;
+
+    .columns {
+      text-align: center;
+    }
+  }
+
+  #unlosable {
+    width: 40%;
+  }
+
+  #charge {
+    width: 60%;
+  }
+
+  #cloth {
+    width: 50%;
+  }
+
+  .row:first-child {
+    margin-bottom: 30px;
+  }
+
+  &.contracted {
+    .row:first-child {
+      margin-bottom: 0px;
+    }
+  }
+}
+
+#specifications {
+  margin-bottom: 20px;
+
+  article {
+    margin-top: 20px;
+
+    h2 {
+      @include font-size(24px);
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    ul {
+      margin-left: 20px;
+    }
+
+    p {
+      padding-bottom: 10px;
+    }
+
+    li, p {
+      @include font-size(14px);
+      line-height: 200%;
+    }
+  }
+}

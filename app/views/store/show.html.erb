@@ -1,0 +1,172 @@
+<%= stylesheet_link_tag 'store/show', media: 'all' %>
+
+<div class="main">
+    <div class="container panel">
+      <div class="seven columns" id="gallery">
+        <%#= render 'GALLERY_PARTIAL', utility: @utility, frame: @frame %>
+        &nbsp;
+      </div>
+
+      <div class="five columns" id="description">
+
+        <div class="desc-section">
+          <h2><%= @frame %> &middot; <%= @utility %></h2>
+          <p>Matte Black</p>
+          <p>$485 AUD</p>
+          <a href="<%="/checkout?utility=#{@utility}&frame=#{@frame}"%>"><button class="alternate" style="width: 100%;">checkout &nbsp; &rarr;</button></a>
+        </div>
+
+        <hr>
+
+        <div class="desc-section">
+          <p class="bold">Description</p>
+          <p><%= @frame %>'s are a modern adaptation of a classic style, hand manufactured using high quality cellulose acetate. Featuring a keyhole bridge and a sandblasted matte quality finish.</p>
+        </div>
+
+        <div class="desc-section">
+          <p class="bold">Lenses</p>
+          <ul>
+            <li>Prescription: Single-vision, <%= @colour %>, back anti-reflective coating, scratch resistant hard-coat.</li>
+            <li>Non-Prescription: <%= @colour.capitalize %>, Back anti-reflective coating, scratch resistant hard-coat.</li>
+          </ul>
+        </div>
+
+        <div class="desc-section">
+          <p class="bold">Delivery & Returns</p>
+          <p>We offer free shipping on all orders within Australia. We are currently unable to ship internationally.</p>
+          <p>Ships in 4 - 6 weeks.</p>
+          <p>Free returns within 20 days.</p>
+        </div>
+
+        <div class="desc-section">
+          <p class="bold">Compatibility</p>
+          <p>Tzukuri is only compatible with iPhone 5 or later.</p>
+        </div>
+
+        <div class="desc-section">
+          <p class="bold">Need help?</p>
+          <p>If you have any questions, please <a href="/contact-us">get in touch</a>.
+        </div>
+      </div>
+    </div>
+
+    <!-- whats in the box -->
+    <div class="container contracted" id="in-the-box">
+      <div class="row">
+        <div class="ten columns" style="text-align:left;">
+          <h1>what's included</h1>
+        </div>
+        <div class="two columns" style="text-align:right;">
+          <i class="fa fa-plus" id="in-the-box-toggle"></i>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="four columns">
+          <%= image_tag 'glasses.png', id: 'unlosable' %>
+        </div>
+        <div class="four columns">
+          <%= image_tag 'microfibre.png', id: 'cloth' %>
+        </div>
+        <div class="four columns">
+          <%= image_tag "dock_cable.png", id: 'charge' %>
+        </div>
+      </div>
+
+      <div class="row">
+          <div class="four columns">
+            <p class=>Unlosable Glasses</p>
+          </div>
+          <div class="four columns">
+            <p>Microfibre Cloth</p>
+          </div>
+          <div class="four columns">
+            <p>Charger & Cable</p>
+          </div>
+        </div>
+    </div>
+
+    <div class="container"><hr/></div>
+
+    <!-- tech specs -->
+    <div class="container contracted" id="specifications">
+      <div class="row">
+        <div class="ten columns" style="text-align:left;">
+          <h1>technical specifications</h1>
+        </div>
+        <div class="two columns" style="text-align:right;">
+          <i class="fa fa-plus" id="tech-specs-toggle"></i>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="four columns">
+          <!--  whats included -->
+          <article>
+            <p class="bold">What's Included</p>
+            <ul>
+              <li>Unlosable glasses</li>
+              <li>Charging cable</li>
+              <li>Charging dock</li>
+              <li>Microfibre cleaning cloth</li>
+              <li>Documentation</li>
+            </ul>
+          </article>
+
+          <!-- battery and power -->
+          <article>
+            <p class="bold">Battery and Power</p>
+            <p>
+              Battery life up to 30 days. Battery life and charge cycles vary with use, settings, and other factors; actual results will vary. The Tzukuri app will notify you when your glasses require charging.
+            </p>
+            <ul>
+              <li>Battery type: Silver Oxide</li>
+              <li>Charge time: Three to four hours</li>
+            </ul>
+          </aticle>
+        </div>
+        <div class="four columns">
+          <!-- care -->
+          <article>
+            <!-- <h2>Care</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pulvinar fringilla mi in sodales. Sed lacinia turpis non quam blandit, ac semper tortor auctor. Ut at lacus ut metus mattis molestie. Quisque lectus velit, egestas vel laoreet ut, euismod vitae eros.</p> -->
+          </article>
+
+          <!-- materials -->
+          <article>
+            <p class="bold">Materials</p>
+            <ul>
+              <li>Frames: High quality, precision-milled cellulose acetate.</li>
+              <li>Non-Prescription Sun: Brown polarised, hand cut, 100% UV protection.</li>
+              <li>Prescription Sun: Brown polarised single vision, hand cut, 100% UV protection, back anti-reflective coating, hard coat.</li>
+              <li>Prescription Optical: single vision, hand cut, back anti-reflective coating, hard coat.</li>
+            </ul>
+          </article>
+
+          <!-- environmental requirements -->
+          <article>
+            <p class="bold">Environmental Requirements</p>
+            <ul>
+              <li>Operating temperature: <span style="white-space: nowrap">-10° to 45° C</span></li>
+              <li>Maximum operating altitude: 9,144m</li>
+            </ul>
+          </article>
+        </div>
+        <div class="four columns">
+
+
+          <!-- syncing and notifications -->
+          <article>
+            <p class="bold">Bluetooth and Notifications</p>
+            <p>Each pair of Tzukuris connect to your iPhone using wireless Bluetooth Low Energy. Some features will require you to grant access to Location Services, Notifications and Motion &amp; Fitness to function correctly. </p>
+            <ul>
+              <li>Bluetooth range: Up to 15m</li>
+              <li>Requires iPhone 5 or later running iOS 9 and above.</li>
+              <li>Compatible with: iPhone 5, iPhone 5C, iPhone SE, iPhone 6, iPhone 6 Plus, iPhone 6s, iPhone 6s Plus, iPhone 7, iPhone 7 Plus</p>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </div>
+
+</div>
