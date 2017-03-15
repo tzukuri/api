@@ -1,20 +1,70 @@
 <%= stylesheet_link_tag 'store/show', media: 'all' %>
-<%= javascript_include_tag 'pages/checkout', :defer => "defer" %>
+<%= javascript_include_tag 'store/show', :defer => "defer" %>
+
+<%#= render 'layouts/action_bar' %>
+
+<script>
+  var images = [
+    <% if @frame == 'Ive' %>
+      <% if @utility == 'Optical' %>
+        {
+          url: "<%= image_url 'frames/ive/ive_black_optical.jpg' %>"
+        },
+        {
+          url: "<%= image_url 'frames/ive/ive_black_optical_side.jpg' %>"
+        }
+      <% end %>
+      <% if @utility == 'Sun' %>
+        {
+          url: "<%= image_url 'frames/ive/ive_black_sun.jpg' %>"
+        },
+        {
+          url: "<%= image_url 'frames/ive/ive_black_sun_side.jpg' %>"
+        }
+      <% end %>
+    <% end %>
+    <% if @frame == 'Ford' %>
+      <% if @utility == 'Optical' %>
+        {
+          url: "<%= image_url 'frames/ford/ford_black_optical.jpg' %>"
+        },
+        {
+          url: "<%= image_url 'frames/ive/ford_black_optical_side.jpg' %>"
+        }
+      <% end %>
+      <% if @utility == 'Sun' %>
+        {
+          url: "<%= image_url 'frames/ford/ford_black_sun.jpg' %>"
+        },
+        {
+          url: "<%= image_url 'frames/ive/ford_black_sun_side.jpg' %>"
+        }
+      <% end %>
+    <% end %>
+  ]
+</script>
 
 <div class="main">
     <div class="container panel">
       <div class="seven columns" id="gallery">
         <%#= render 'GALLERY_PARTIAL', utility: @utility, frame: @frame %>
         &nbsp;
+        <div id="selected"></div>
+        <p style="text-align: center; margin-top: 30px;">
+          <a href="/gallery"><button class="alternate" style="width: 190px;">gallery &nbsp; &rarr;</button></a>
+        </p>
+        <p style="text-align: center;">
+          <a href="/retail"><button class="alternate" style="width: 190px;">try them on &nbsp; &rarr;</button></a>
+        </p>
       </div>
 
       <div class="five columns" id="description">
 
-        <div class="desc-section">
+        <div class="desc-section" id="desc-header">
           <h2><%= @frame %> &middot; <%= @utility %></h2>
           <p>Matte Black</p>
           <p>$485 AUD</p>
-          <a href="<%="/checkout?utility=#{@utility}&frame=#{@frame}"%>"><button class="alternate" style="width: 100%;">checkout &nbsp; &rarr;</button></a>
+          <a href="<%="/checkout?utility=#{@utility}&frame=#{@frame}"%>"><button class="alternate" id="checkout-btn">checkout &nbsp; &rarr;</button></a>
         </div>
 
         <hr>

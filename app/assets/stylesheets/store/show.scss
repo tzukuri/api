@@ -1,10 +1,16 @@
 @import "tzukuri/variables";
 @import "tzukuri/mixins";
 
-#gallery {}
+#gallery {
+  #selected {
+    padding-right: 20px;
+    padding-top: 0px;
+  }
+}
 
 .main {
   padding-bottom: 1px;
+  padding-top: 80px;
 }
 
 #description {
@@ -21,6 +27,10 @@
 
     button {
       margin-top: 20px;
+    }
+
+    #checkout-btn {
+      width: 100%;
     }
 
     li {
@@ -102,5 +112,38 @@
       line-height: 200%;
       list-style-type: disc;
     }
+  }
+}
+
+@media only screen and (max-width: $tabletPortrait) {
+  #in-the-box {
+    .row .four {
+      width: 33% !important;
+    }
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  #in-the-box, #specifications {
+    .row:first-child {
+      position: relative !important;
+    }
+
+    #tech-specs-toggle, #in-the-box-toggle {
+      position: absolute !important;
+      right: 0px !important;
+      top: 8px !important;
+    }
+  }
+}
+
+@media only screen and (max-width: $smartphone) {
+  #desc-header {
+    text-align: center !important;
+    margin-top: 50px;
+  }
+
+  #checkout-btn {
+    width: 50% !important;
   }
 }
