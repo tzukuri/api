@@ -1,6 +1,8 @@
 <%= stylesheet_link_tag 'pages/checkout', media: 'all' %>
 <%= javascript_include_tag 'pages/checkout', :defer => "defer" %>
 
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
 <div class="main">
 
 <div class="panel container" id="checkout">
@@ -165,3 +167,13 @@
   </div>
 </div>
 </div>
+
+
+<script>
+    // set the stripe keys
+    <% if Rails.env.development? %>
+        Stripe.setPublishableKey('pk_test_HWxqGZq4R2zTKm5915tgDas4');
+    <% else %>
+        Stripe.setPublishableKey('pk_live_VAzrbCZ5hRh2i3tXpoS9GL5I');
+    <% end %>
+</script>

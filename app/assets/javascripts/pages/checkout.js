@@ -343,9 +343,7 @@ var el, couponTimer, order, CheckoutWidget = {
     CheckoutWidget.updateOrderDesc()
     CheckoutWidget.getGlassesEl(frame, utility).fadeIn()
 
-    el.purchaseFrame.fadeOut(function() {
-      el.checkoutFrame.fadeIn()
-    })
+    el.checkoutFrame.fadeIn()
   },
 
   handleCoupon: function(coupon) {
