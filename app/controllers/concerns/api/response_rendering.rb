@@ -8,7 +8,7 @@ module Api::ResponseRendering
             # print exception and add to appsignal
             Rails.logger.warn exception.inspect
             Rails.logger.warn exception.backtrace.join("\n")
-            Appsignal.add_exception(exception)
+            # Appsignal.add_exception(exception)
             payload = response_for_error(:unknown_error)
             render json: payload, status: 500
         end
@@ -20,7 +20,7 @@ module Api::ResponseRendering
 
         # callbacks returned false and prevented save
         rescue_from ActiveRecord::RecordNotSaved do |exception|
-            Appsignal.add_exception(exception)
+            # Appsignal.add_exception(exception)
             payload = response_for_error(:unknown_error)
             render json: payload, status: 400
         end
@@ -39,7 +39,7 @@ module Api::ResponseRendering
         # lookup failed. these should be handled by the action,
         # so this is considered an implementation error
         rescue_from ActiveRecord::RecordNotFound do |exception|
-            Appsignal.add_exception(exception)
+            # Appsignal.add_exception(exception)
             payload = response_for_error(:unknown_record)
             render json: payload, status: 404
         end
@@ -65,11 +65,11 @@ module Api::ResponseRendering
 
     private
         def response_for_error(error, other_data = {})
-            Appsignal.increment_counter(error.to_s, 1)
-            {
-                success: false,
-                error: error.to_s,
-                description: I18n.t(error.to_s)
-            }.merge(other_data)
+            # Appsignal.increment_counter(error.to_s, 1)
+            # {
+            #     success: false,
+            #     error: error.to_s,
+            #     description: I18n.t(error.to_s)
+            # }.merge(other_data)
         end
 end

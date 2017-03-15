@@ -53,9 +53,5 @@ class Api::ApiController < ApplicationController
 
         # "log the user in" by retrieving the user record
         @user = @token.user
-        Appsignal.tag_request(
-            user: @user.id,
-            auth_token: @token.id
-        )
     end
 end
