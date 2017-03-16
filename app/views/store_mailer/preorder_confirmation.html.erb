@@ -31,7 +31,7 @@
 
             <h2 style="font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 24px; line-height: 1.2em; color: #1a1d1a; font-weight: 200; margin: 10px 0 20px; padding: 0; font-size:22px; text-align: center">Order Confirmation</h2>
 
-            <%= image_tag "frames/#{@preorder.frame}/#{@preorder.frame}_black_#{@preorder.utility}.jpg", style: 'width: 45%; margin-top: 30px;' %>
+            <%= image_tag "frames/#{@preorder.frame.downcase}/#{@preorder.frame.downcase}_black_#{@preorder.utility.downcase}.jpg", style: 'width: 45%; margin-top: 30px; margin-bottom: 30px;' %>
 
             <div style="text-align: left; background-color: #ffffff; margin-left: -20px; margin-right: -20px; padding-left: 50px; padding-right: 50px; padding-top: 20px; padding-bottom: 30px;">
               <table width="100%" style="color: #686868; font-weight: 400; font-size: 10pt;">
