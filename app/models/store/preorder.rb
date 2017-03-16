@@ -68,10 +68,10 @@ class Preorder < ActiveRecord::Base
         end
       end
 
-      if lens == "Prescription"
-        sku = sku + "-P"
-      else
+      if lens == "Non-Prescription"
         sku = sku + "-NP"
+      else
+        sku = sku + "-P"
       end
 
       return sku
