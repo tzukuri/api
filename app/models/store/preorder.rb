@@ -51,6 +51,32 @@ class Preorder < ActiveRecord::Base
       StoreMailer.preorder_confirmation(self).deliver_later
     end
 
+    def sku
+      sku = frame.upcase
+
+      if utility == "Sun"
+        sku = sku + "-SU"
+      else
+        sku = sku + "-OP"
+      end
+
+      if frame == "Ford"
+        if size == '49'
+          sku = sku + "-RE"
+        else
+          sku = sku + "-LG"
+        end
+      end
+
+      if lens == "Prescription"
+        sku = sku + "-P"
+      else
+        sku = sku + "-NP"
+      end
+
+      return sku
+    end
+
     def gift?
       !gift.nil?
     end

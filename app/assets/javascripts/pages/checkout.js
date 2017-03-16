@@ -264,8 +264,21 @@ var el, couponTimer, order, CheckoutWidget = {
         $.post('/preorders', order).done(function(data) {
           CheckoutWidget.showFormSpinner(false)
 
+          var order = data.preorder
+          
           if (data.success) {
             ga('send', 'event', 'buy', 'purchase-complete');
+
+            ga('ecommerce:addItem', {
+              'id': order.id,
+              'name': order.frame+ " " + order.utility + " " + order.size + " " + order.lens,
+              'sku': data.sku,
+              'category': 'unlosable-glasses',
+              'price': data.amount,
+              'quantity': '1'
+            });
+
+            ga('ecommerce:send');
 
             el.orderDiv.fadeOut(function() {
               el.orderCompleteDiv.fadeIn()

@@ -122,6 +122,7 @@ class PreordersController < ApplicationController
         render json: {
           success: true,
           preorder: preorder,
+          sku: preorder.sku,
           amount: final_amount/100
         }
 
