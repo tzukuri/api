@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170303014512) do
+ActiveRecord::Schema.define(version: 20170316221952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -200,8 +200,9 @@ ActiveRecord::Schema.define(version: 20170303014512) do
     t.integer  "discount"
     t.datetime "expires_at"
     t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "max_redemptions"
   end
 
   create_table "device_batches", force: :cascade do |t|
