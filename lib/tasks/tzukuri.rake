@@ -15,12 +15,12 @@ namespace :tzukuri do
       out_str = "time, value\n"
 
       Tzukuri::Diagnostics.analyse(
-        sync_tokens: [sync_token]
+        sync_tokens: sync_tokens
       ) { |entry|
         out_string << "#{entry.time}, #{entry.value.to_i}\n" if entry.type == "bleReadBattery"
       }
 
-      write_report(out_str, 'battery_readings', "report_#{Time.now.strftime('%s')}_#{sync_token}.csv")
+      write_report(out_str, 'battery_readings', "report_#{Time.now.strftime('%s')}_#{sync_tokens}.csv")
     end
 
     desc "How many times per day do user's open the app?"
