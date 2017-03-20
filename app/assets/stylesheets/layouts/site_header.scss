@@ -1,8 +1,7 @@
 @import "tzukuri/variables";
 @import "tzukuri/mixins";
 
-header {
-    //border-top: 3px solid $tz-background-alt;
+body > header {
     background-color: transparent;
     border-bottom: 1px solid transparent;
     z-index: 1000;
@@ -44,10 +43,6 @@ header {
             }
         }
 
-        a button {
-          //margin-top: 10px;
-        }
-
         a {
             @include font-size(14px);
 
@@ -76,20 +71,11 @@ header {
         box-shadow: 0px 0px 5px rgba(0,0,0,0.03);
         line-height: 60px;
 
-        // if the browser supports -webkit-backdrop-filter
-        /*@supports (-webkit-backdrop-filter: blur(10px)) {
-            -webkit-backdrop-filter: blur(10px);
-            background-color: rgba(255, 255, 255, 0.9);
-        }*/
-
         #tzukuri {
             color: $tz-title;
-            //top: 18px;
         }
 
         nav {
-            //top: 7px;
-
             a {
                 color: $tz-content;
 
@@ -103,7 +89,7 @@ header {
 }
 
 @media only screen and (max-width: $tabletPortrait) {
-    header {
+    body > header {
         text-align: left;
 
         h1 {

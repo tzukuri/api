@@ -2,8 +2,22 @@
 @import "tzukuri/mixins";
 
 body.retail {
-  .header .photo {
-    background-image: image-url('headers/retail.jpg');
+  .hero {
+    height: 450px;
+
+    .bg {
+      height: 450px;
+    }
+
+    .photo {
+      background-image: image-url('retail/header.jpg');
+    }
+
+    .content {
+      h1 {
+        padding-top: 200px;
+      }
+    }
   }
 
   #retail-head {

@@ -1,4 +1,26 @@
 body.team {
+  .hero {
+    height: 600px;
+
+    .bg {
+      height: 600px;
+    }
+
+    .photo {
+      background-image: image-url('team/header.jpg');
+    }
+
+    .content {
+      h1 {
+        padding-top: 200px;
+      }
+
+      p {
+        margin-top: 30px;
+      }
+    }
+  }
+
   #thankyou {
     p {
       line-height:100%;

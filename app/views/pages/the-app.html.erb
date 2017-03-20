@@ -1,0 +1,94 @@
+<% content_for :javascript_includes do %>
+    <%= javascript_include_tag 'layouts/cta' %>
+    <%= stylesheet_link_tag 'layouts/cta' %>
+    <%= stylesheet_link_tag 'pages/the-app', media: 'all' %>
+<% end %>
+
+<%= render 'layouts/action_bar', type: '' %>
+
+<div class="main">
+    <div class="hero">
+        <div class="bg photo"></div>
+        <div class="container content">
+            <div>
+                <h1>timely and useful</h1>
+                <h2>the Tzukuri iOS app</h2>
+            </div>
+        </div>
+    </div>
+    <div class="panel container">
+        <div class="feature">
+            <div class="feature-header" id="tracking">
+                <div class="bg"></div>
+                <%= image_tag 'screenshots/home.png', class: 'phone' %>
+                <div class="blurb">
+                    <h1>tracking</h1>
+                    <h2>know where your glasses are outdoors</h2>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="eight columns">
+                        <p>Throughout the day as you wear your glasses and carry your phone, the Tzukuri app updates a map to show you the current location of your glasses by recording your phone's GPS position. The app only tracks your glasses when they're nearby, e.g when you're wearing or carrying them.</p>
+                        <p>We know when they're nearby because they'll connect to your phone automatically - Tzukuri glasses contain the world's smallest Bluetooth Low Energy device which communicates with the Tzukuri app and can connect over approximately 15m.</p>
+                        <p>When your glasses disconnect the app stops tracking their location, and you can see their last known location on the map.</p>
+                    </div>
+                    <div class="four columns">
+                        <%= image_tag 'screenshots/tracking.png' %>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="feature">
+            <div class="feature-header" id="notification">
+                <div class="bg"></div>
+                <%= image_tag 'screenshots/notification.png', class: 'phone right' %>
+                <div class="blurb">
+                    <h1>notifications</h1>
+                    <h2>don't forget your glasses</h2>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="eight columns">
+                        <p>No one wants to forget their glasses, and the Tzukuri app tries to help with notifications that remind you when you do.</p>
+                        <p>When your glasses disconnect from your phone you'll receive a notification alerting you that you may have left your glasses behind. In normal day to day use this will happen when you're around 15m away from your glasses - or when you've left a restaurant, cafe or bar, and taken a few steps outside.</p>
+                        <p>Notifications can be silenced in certain locations with Quiet Zones. For example, in a large house you might walk around and regularly disconnect your glasses, triggering notifications even though your glasses are perfectly safe. Adding a quiet zone around the house prevents these notifications from appearing. Zones can be activated at certain times of the day as well, so you can be reminded to take your glasses home with you when you leave work while preventing notifications during work hours.</p>
+                    </div>
+                    <div class="four columns">
+                        <%= image_tag 'screenshots/force_touch.png' %>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="feature">
+            <div class="feature-header" id="locate">
+                <div class="bg"></div>
+                <%= image_tag 'screenshots/locate.png', class: 'phone' %>
+                <div class="blurb">
+                    <h1>locate</h1>
+                    <h2>know where your glasses are indoors</h2>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="eight columns">
+                        <p>Finding your glasses at home or in an office can be tricky because it's so easy to forget where you last placed them, and even if you do remember they've often since been moved by other people.</p>
+                        <p>When you know roughly which room your glasses are in but don't know where to start looking for them, the locate feature can help you find their exact location. After tapping Locate, the Tzukuri app connects to your glasses and starts estimating the distance between them and your phone.</p>
+                        <p>As you walk towards your glasses the distance decreases, and as you walk away from them it increases. By walking around a room you can quickly pinpoint not only the direction but also the distance to your glasses. Find the right direction, and walk towards your glasses, and you</p>
+                    </div>
+                    <div class="four columns">
+                        <%= image_tag 'screenshots/locate_closeup.png' %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%= render partial: 'layouts/cta' %>
+</div>

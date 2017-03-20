@@ -6,35 +6,27 @@ body.the-range {
     position: static;
   }
 
-  .header {
+  .hero {
     height: 1000px;
-    position: relative;
-    top: -60px;
+    margin-bottom: 60px;
 
-    .photo {
-      background-image: image-url('range/header.jpg');
+    .bg {
       height: 1000px;
     }
 
+    .photo {
+      background-image: image-url('range/header.jpg');
+    }
+
     .content {
-      h1, h2 {
-        //color: #333;
-        color: white;
-        text-shadow: none;
-        text-align: left;
-      }
+      position: relative;
 
       h1 {
-        font-size: 3.0rem;
-        font-weight: 200;
-        margin-bottom: 0px;
-        margin-top: 180px;
-        padding-bottom: 0px;
+        padding-top: 180px;
       }
 
-      h2 {
-        font-size: 2.0rem;
-        font-weight: 200;
+      p {
+        padding-top: 60px;
       }
     }
 
@@ -44,35 +36,12 @@ body.the-range {
       bottom: 50px;
       left: 50%;
       margin-left: -255px;
+      text-align: center;
       
       p {
         color: #555;
       }
     }
-
-    #blurb {
-      position: absolute;
-      //top: 335px;
-      top: 305px;
-      left: 0px;
-      right: 0px;
-
-      div {
-        width: 1140px;
-        margin: 0px auto;
-
-        > p {          
-          text-align: left;
-          width: 350px;
-          line-height: 175%;
-          margin: 0px;
-          font-size: 1.3rem;
-          font-weight: 300;
-          color: white;
-        }
-      }
-    }
-    
   }
 
   #designed {
