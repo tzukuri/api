@@ -2,6 +2,14 @@
 <%= javascript_include_tag 'pages/privacy', :defer => "defer" %>
 
 <div class="main">
+    <div class="hero">
+        <div class="bg photo"></div>
+        <div class="container content">
+            <div>
+                <h1>privacy policy</h1>
+            </div>
+        </div>
+    </div>
     <div class="container">
       <!-- if the repond param is present, show buttons for accepting and rejecting -->
       <% if params["respond"] == "true" %>
@@ -14,8 +22,6 @@
 
       <!-- add an extra clas that slides the container down to accomodate the above div if params exist -->
       <div id="policy-container" class="panel <%= 'policy-gap' if params["respond"] == "true" %>">
-        <h1>Privacy Policy</h1>
-
         <p>
           This Policy was last updated on 4 May 2017.
         </p>

@@ -3,7 +3,15 @@ body.privacy {
   .container {
     #policy-container {
         &.policy-gap {
-            margin-top:175px;
+            margin-top: 175px;
+        }
+
+        ul {
+            padding-left: 1rem;
+
+            li {
+                list-style: disc;
+            }
         }
 
         /* text */
@@ -45,15 +53,15 @@ body.privacy {
     #policy-changed {
         background-color: #F5F5F5;
         opacity: 0.95;
-        text-align:center;
+        text-align: center;
         padding: 20px;
-        margin-left:-20px;
-        margin-right:-20px;
-        position:fixed;
+        margin-left: -20px;
+        margin-right: -20px;
+        position: fixed;
         top: 0;
 
         p {
-            text-align:center;
+            text-align: center;
         }
 
         #accept-privacy {
@@ -61,5 +69,4 @@ body.privacy {
             color: white;
         }
     }
-  }
 }

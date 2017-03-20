@@ -2,10 +2,8 @@
 @import "tzukuri/mixins";
 
 body.unlosable-glasses {
-  .header {
+  .hero {
     height: 500px;
-    position: relative;
-    top: -60px;
 
     .bg {
       height: 500px;
@@ -15,22 +13,15 @@ body.unlosable-glasses {
       background-image: image-url('unlosable/header.jpg');
     }
 
-    .shade {
-      background-color: rgba(0,0,0,0.25);
-    }
-
-    .content > div {
-      padding-top: 220px;
-    }
-
     .content {
       h1 {
-        font-size: 2.1rem;
+        padding-top: 220px;
+        //font-size: 2.1rem;
         text-align: center;
       }
 
       h2 {
-        font-size: 1.3rem;
+        //font-size: 1.3rem;
         text-align: center;
       }
     }
