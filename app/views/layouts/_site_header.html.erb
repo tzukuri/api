@@ -1,9 +1,12 @@
+<%= javascript_include_tag 'layouts/site_header', defer: 'defer' %>
+
 <header class="u-full-width">
   <div class="container">
       <a id="tzukuri" href="/">TZUKURI</a>
       <nav id="primary-nav">
         <a href="/unlosable-glasses" class="<%= 'selected' if params[:page] == 'unlosable-glasses' %>">unlosable glasses</a>
         <a href="/the-range" class="<%= 'selected' if params[:page] == 'the-range' %>">the range</a>
+        <a href="/the-app" class="<%= 'selected' if params[:page] == 'the-app' %>">the app</a>
         <a href="/intelligently-made" class="<%= 'selected' if params[:page] == 'intelligently-made' %>">intelligently made</a>
         <a href="/buy" class="no-decoration" id="try-btn"><button class="tz-track" data-category="nav" data-event="buy-now-click">buy now</button></a>
       </nav>
