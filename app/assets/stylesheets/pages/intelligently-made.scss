@@ -1,9 +1,22 @@
 @import "tzukuri/variables";
 @import "tzukuri/mixins";
 
-.header .photo {
-  background-image: image-url('headers/story.jpg');
-  background-position: center center;
+.hero {
+  height: 260px;
+
+  .bg {
+    height: 260px;
+  }
+
+  .photo {
+    //background-image: image-url('retail/header.jpg');
+  }
+
+  .content {
+    h1 {
+      //padding-top: 200px;
+    }
+  }
 }
 
 #responsibility {
