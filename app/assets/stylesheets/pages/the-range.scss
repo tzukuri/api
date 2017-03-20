@@ -2,13 +2,83 @@
 @import "tzukuri/mixins";
 
 body.the-range {
+  .container {
+    position: static;
+  }
+
+  .header {
+    height: 1000px;
+    position: relative;
+    top: -60px;
+
+    .photo {
+      background-image: image-url('range/header.jpg');
+      height: 1000px;
+    }
+
+    .content {
+      h1, h2 {
+        //color: #333;
+        color: white;
+        text-shadow: none;
+        text-align: left;
+      }
+
+      h1 {
+        font-size: 3.0rem;
+        font-weight: 200;
+        margin-bottom: 0px;
+        margin-top: 180px;
+        padding-bottom: 0px;
+      }
+
+      h2 {
+        font-size: 2.0rem;
+        font-weight: 200;
+      }
+    }
+
+    .details {
+      background-color: rgba(255,255,255,0.85);
+      position: absolute;
+      bottom: 50px;
+      left: 50%;
+      margin-left: -255px;
+      
+      p {
+        color: #555;
+      }
+    }
+
+    #blurb {
+      position: absolute;
+      //top: 335px;
+      top: 305px;
+      left: 0px;
+      right: 0px;
+
+      div {
+        width: 1140px;
+        margin: 0px auto;
+
+        > p {          
+          text-align: left;
+          width: 350px;
+          line-height: 175%;
+          margin: 0px;
+          font-size: 1.3rem;
+          font-weight: 300;
+          color: white;
+        }
+      }
+    }
+    
+  }
+
   #designed {
     padding-top: 0px;
     text-align: center;
 
-    .header .photo {
-      background-image: image-url('headers/range.jpg');
-    }
 
     #range {
       margin-bottom:30px;
@@ -36,8 +106,6 @@ body.the-range {
     }
 
     #designers {
-      margin-top: 80px;
-
       img + h1 {
         margin-bottom: 15px;
       }
@@ -45,24 +113,70 @@ body.the-range {
       #designers-description p {
         width: 100%;
         line-height: 200%;
+        font-size: 1.4rem;
+        font-weight: 300;
       }
     }
 
     #beautifully-light {
       text-align: center;
+      margin: 40px 0px 0px 0px;
+      padding-top: 40px;
+      padding-bottom: 80px;
+      position: relative;
+
+      .photo {
+        background-image: image-url('range/tech.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        top: 0px;
+        height: 100%;
+      }
+
+      .content {
+        position: relative;
+      }
+
+      h1 {
+        font-size: 2.1rem;
+        margin-top: 40px;
+        text-align: right;
+        color: #444;
+      }
+
+      h2 {
+        font-size: 1.3rem;
+        text-align: right;
+        color: #444;
+      }
 
       .seven.columns {
-        text-align: center;
+        text-align: right;
 
         > div {
-          max-width: 400px;
+          max-width: 420px;
+          background-color: rgba(255,255,255,0.85);
+          border-radius: 5px;
+          padding: 40px 50px;
           text-align: left;
           display: inline-block;
-          padding-top: 20px;
+
+          h3 {
+            font-size: 1.4rem;
+          }
 
           p {
             width: auto;
             margin: 10px 0px 0px 0px;
+            font-size: 1.2rem;
+            font-weight: 300;
+          }
+
+          p:last-child {
+            padding-bottom: 0px;
           }
 
           p + h3 {
@@ -77,10 +191,52 @@ body.the-range {
       }
     }
 
+    #visual-indulgence {
+      background:  image-url('range/visual.jpg') no-repeat center center;
+      background-size: cover;
+      padding: 100px 0px;
+      margin-bottom: 80px;
+
+      h1 {
+        font-size: 2.1rem;
+        color: #333;
+        text-align: left;
+      }
+
+      h2 {
+        font-size: 1.3rem;
+        color: #333;
+        text-align: left;
+      }
+
+      p, ul li {
+        color: #333;
+        text-align: left;
+        padding-left: 0px;
+        font-size: 1.2rem;
+        font-weight: 300;
+      }
+
+      p {
+        width: 75%;
+        margin: 0px;
+      }
+
+      ul li {
+        list-style: disc;
+        line-height: 200%;
+      }
+
+      ul {
+        padding-left: 20px;
+      }
+    }
+
     #all-prescription {
       margin-top: 70px;
       p {
         @include font-size(14px);
+        width: 40%;
       }
     }
 

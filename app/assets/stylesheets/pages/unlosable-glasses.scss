@@ -2,7 +2,351 @@
 @import "tzukuri/mixins";
 
 body.unlosable-glasses {
-  #video {
+  .header {
+    height: 500px;
+    position: relative;
+    top: -60px;
+
+    .bg {
+      height: 500px;
+    }
+
+    .photo {
+      background-image: image-url('unlosable/header.jpg');
+    }
+
+    .shade {
+      background-color: rgba(0,0,0,0.25);
+    }
+
+    .content > div {
+      padding-top: 220px;
+    }
+
+    .content {
+      h1 {
+        font-size: 2.1rem;
+        text-align: center;
+      }
+
+      h2 {
+        font-size: 1.3rem;
+        text-align: center;
+      }
+    }
+  }
+
+  .large.container {
+    max-width: 1140px;
+  }
+
+  #intro {
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 300;
+    width: 50%;
+    margin: 70px auto 40px auto;
+    //background-color: #f9f9f9;
+  }
+
+  #fords {
+    width: 250px;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 70px;
+    position: relative;
+    left: -5px;
+  }
+
+  .three-features {
+    font-size: 0px;
+    margin-bottom: 40px;
+    //background-color: #f9f9f9;
+
+    > div {
+      display: inline-block;
+      vertical-align: top;
+      width: 360px;
+      height: 360px;
+      margin-right: 30px;
+      border-radius: 5px;
+      background-repeat: no-repeat;
+      background-position: 0px 0px;
+      background-size: cover;
+      position: relative;
+      overflow: hidden;
+
+      .gradient {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 50%,rgba(0,0,0,0.15) 69%, rgba(0,0,0,0.45) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 50%,rgba(0,0,0,0.15) 69%,rgba(0,0,0,0.65) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 50%,rgba(0,0,0,0.15) 69%,rgba(0,0,0,0.65) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      }
+
+      h1 {
+        position: absolute;
+        top: 20px;
+        left: 0px;
+        right: 0px;
+        text-align: center;
+
+        span {
+          display: inline-block;
+          width: 28px;
+          height: 28px;
+          border-radius: 28px;
+          border: 2px solid white;
+          font-weight: 400;
+          color: white;
+          font-size: 15px;
+          line-height: 30px;
+          background-color: rgba(0,0,0,0.75);
+        }
+      }
+
+      &:last-child {
+        margin-right: 0px;
+      }
+
+      p {
+        color: white;
+        font-size: 1.2rem;
+        font-weight: 300;
+        position: absolute;
+        bottom: 15px;
+        left: 0px;
+        right: 0px;
+        text-align: center;
+        text-shadow: 0px 0px 3px rgba(0,0,0,0.35);
+        width: auto !important;
+        margin: 0px !important;
+      }
+    }
+  }
+
+  #the-range {
+    position: relative;
+    height: 490px;
+    margin-top: 130px;
+
+    #box {
+      position: absolute;
+      width: 100%;
+      left: -390px;
+      top: 0px;
+      margin-top: 0px;
+    }
+
+    #range {
+      position: absolute;
+      top: 40px;
+      left: 760px;
+      right: 0px;
+
+      p {
+        font-size: 1.4rem;
+        font-weight: 300;
+        text-align: center;
+      }
+
+      p + p {
+        margin-top: 5px;
+      }
+    }
+
+    #gallery {
+      position: absolute;
+      bottom: 80px;
+      left: 760px;
+      right: 0px;
+      text-align: center;
+
+      div {
+        width: 180px;
+        margin: 0px auto 13px auto;
+        font-size: 0px;
+        border-radius: 5px;
+        overflow: hidden;
+
+        img {
+          width: 120px;
+          height: 120px;
+        }
+
+        div {
+          width: 60px;
+          height: 120px;
+          display: inline-block;
+          vertical-align: top;
+
+          img {
+            width: 60px;
+            height: 60px;
+          }
+        }
+      }
+    }
+  }
+
+  #easy-to-use {
+    box-sizing: border-box;
+    padding-top: 60px;
+    position: relative;
+    padding-bottom: 60px;
+    overflow: hidden;
+    background-color: #f9f9f9;
+
+    h1 {
+      line-height: 130%;
+      text-align: center;
+      margin-bottom: 30px;
+      margin-top: 10px;
+    }
+
+    p {
+      font-size: 1.3rem;
+      font-weight: 300;
+      margin-bottom: 20px;
+      padding: 0px 35px 0px 35px;
+      text-align: center;
+
+      &:last-child {
+        margin-bottom: 0px;
+      }
+    }
+
+    li {
+      font-size: 1.1rem;
+      line-height: 150%;
+      text-align: center;
+      margin-bottom: 40px;
+      font-weight: 300;
+
+      i {
+        display: block;
+        font-weight: bold;
+      }
+    }
+
+    #wall {
+      width: 250px;
+    }
+  }
+
+  #designed-to-be-useful {
+    box-sizing: border-box;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    background-image: image-url('unlosable/useful.jpg');
+    background-repeat: no-repeat;
+
+    .bg {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      background: -moz-linear-gradient(left, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.65) 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(left, rgba(0,0,0,0) 0%,rgba(0,0,0,0.55) 50%,rgba(0,0,0,0.65) 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(0,0,0,0.55) 50%,rgba(0,0,0,0.65) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      z-index: 1;
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      line-height: 130%;
+      text-align: center;
+      margin-bottom: 30px;
+      color: white;
+    }
+
+    p {
+      font-size: 1.4rem;
+      font-weight: 300;
+      margin-bottom: 20px;
+      padding: 0px 35px 0px 35px;
+      color: white;
+
+      &:last-child {
+        margin-bottom: 0px;
+      }
+    }
+
+    li {
+      font-size: 1.1rem;
+      line-height: 150%;
+      text-align: center;
+      margin-bottom: 40px;
+      color: white;
+
+      i {
+        display: block;
+      }
+    }
+  }
+
+  #advanced-manufacturing {
+    box-sizing: border-box;
+    padding-top: 60px;
+    position: relative;
+    padding-bottom: 0px;
+    background-color: white;
+
+    .container:last-child {
+      font-size: 0px;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    h1 {
+      line-height: 130%;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    p {
+      font-size: 1.4rem;
+      font-weight: 300;
+      margin-bottom: 20px;
+      margin: 0px auto 20px auto;
+      width: 80%;
+      text-align: center;
+      //padding: 0px 35px 0px 35px;
+
+      &:last-child {
+        margin-bottom: 0px;
+      }
+    }
+
+    li {
+      font-size: 1.1rem;
+      line-height: 150%;
+      text-align: center;
+      margin-bottom: 40px;
+
+      i {
+        display: block;
+      }
+    }
+
+    #beacon {
+      width: 550px;
+      margin-left: 180px;
+    }
+  }
+
+  /*#video {
     text-align: center;
 
     iframe {
@@ -11,151 +355,28 @@ body.unlosable-glasses {
       border: 1px solid #f0f0f0;
       margin-top: 40px;
     }
-  }
-
-  #the-range {
-    padding-top: 0px;
-    position: relative;
-
-    .header .photo {
-      background-image: image-url('headers/unlosable.jpg');
-    }
-
-    img {
-      width: 90%;
-      margin-top: 50px;
-    }
-
-    p {
-      width: 50%;
-      margin: 0 auto;
-    }
-
-    .left-row, .right-row {
-      text-align: center;
-    }
-
-    .row {
-      text-align: center;
-    }
-
-    #frames {
-      margin-bottom: 40px;
-
-      p:first-child {
-        padding-bottom: 50px;
-        text-align: center;
-      }
-    }
-  }
-
-  #timely-intelligence {
-    text-align: center;
-
-    h2 + p {
-      width: 50%;
-      margin: 0 auto 40px auto;
-    }
-
-    #remember {
-      img {
-        margin-top: 50px;
-        width: 90%;
-        margin-bottom: 30px;
-      }
-    }
-
-    #notification {
-      img {
-        width: 100%;
-        margin-bottom: 30px;
-      }
-    }
-
-    #distancing {
-      img {
-        margin-top: 50px;
-        width: 90%;
-        margin-bottom: 30px;
-      }
-    }
-
-    #app-store {
-      margin-top: 20px;
-
-      img {
-        width: 18%;
-      }
-    }
-  }
-
-  #beautifully-light {
-    text-align: center;
-
-    img {
-      width: 50%;
-    }
-
-    p {
-      width: 55%;
-      margin: 0 auto;
-      padding-bottom: 60px;
-    }
-  }
-
-  #battery-tech {
-    .row {
-      margin-top: 15px;
-    }
-
-    .row p {
-      max-width: 500px;
-      padding-left: 100px;
-
-      em {
-        font-weight: bold;
-      }
-    }
-  }
-
-  #visual-indulgence {
-    background:  image-url('glasses/lens-layout.png') no-repeat center center;
-    background-size: cover;
-
-    h2 {
-      text-shadow: 0px 0px 2px rgba(255, 255, 255, 0.55);
-    }
-
-    p, ul li {
-      color: $tz-title;
-    }
-
-    ul li {
-      list-style: disc;
-      line-height: 200%;
-    }
-
-    ul {
-      padding-left: 20px;
-    }
-  }
-
-  #balancing-act {
-    text-align: center;
-
-    img {
-      width: 75%;
-    }
-
-    p {
-      padding-top: 20px;
-      width: 50%;
-      margin: 0 auto;
-    }
-  }
+  }*/
 
   #little-things {
     text-align: center;
+    padding-top: 80px;
+    padding-bottom: 70px;
+    margin-bottom: 20px;
+    background-size: cover;
+    background-image: image-url('unlosable/little.jpg');
+
+    h1, h2, p {
+      color: white;
+    }
+
+    h1 {
+      padding-right: 8px;
+    }
+
+    h2 {
+      padding-right: 8px;
+      padding-bottom: 45px;
+    }
 
     img {
       width: 33%;
