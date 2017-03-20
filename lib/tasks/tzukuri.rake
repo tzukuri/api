@@ -17,7 +17,7 @@ namespace :tzukuri do
       Tzukuri::Diagnostics.analyse(
         sync_tokens: sync_tokens
       ) { |entry|
-        out_string << "#{entry.time}, #{entry.value.to_i}\n" if entry.type == "bleReadBattery"
+        out_str << "#{entry.time}, #{entry.value.to_i}\n" if entry.type == "bleReadBattery"
       }
 
       write_report(out_str, 'battery_readings', "report_#{Time.now.strftime('%s')}_#{sync_tokens}.csv")
