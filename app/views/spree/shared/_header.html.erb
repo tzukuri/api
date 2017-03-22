@@ -1,0 +1,18 @@
+<div id="spree-header">
+  <header id="header" data-hook>
+    <div class="container">
+      <a id="tzukuri" href="/">TZUKURI</a>
+      <nav id="primary-nav">
+        <a href="/unlosable-glasses" class="<%= 'selected' if params[:page] == 'unlosable-glasses' %>">unlosable glasses</a>
+        <a href="/the-range" class="<%= 'selected' if params[:page] == 'the-range' %>">the range</a>
+        <a href="/intelligently-made" class="<%= 'selected' if params[:page] == 'intelligently-made' %>">intelligently made</a>
+        <a href="/buy" class="no-decoration" id="try-btn"><button class="tz-track" data-category="nav" data-event="buy-now-click">buy now</button></a>
+      </nav>
+      <a id="hamburger" class="fa fa-bars"></a>
+    </div>
+  </header>
+
+  <!-- <div class="container">
+    <%= render partial: 'spree/shared/main_nav_bar' if store_menu? %>
+  </div> -->
+</div>
