@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.3'
+gem 'rails', '4.2.6'
 gem 'pg'
 
 gem 'sass-rails'
@@ -14,7 +14,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
-gem 'activeadmin', '~> 1.0.0.pre1'
+gem 'activeadmin', '~> 1.0.0.pre5'
 gem 'devise', '~> 3.2'
 gem 'draper', '~> 1.3'
 gem 'omniauth', '~> 1.2.2'
@@ -47,6 +47,13 @@ gem 'fb_graph'
 # queue
 gem 'que'
 gem 'que-web'
+
+# spree
+gem 'spree', '~> 3.1.0'
+gem 'spree_auth_devise', '~> 3.1.0'
+gem 'spree_gateway', '~> 3.1.0'
+gem 'spree_dynamic_variants', github: 'hefan/spree_dynamic_variants', branch: 'master'
+gem 'spree_social_products', github: 'spree-contrib/spree_social_products', branch: 'master'
 
 group :test do
   gem 'minitest-reporters', '1.0.5'

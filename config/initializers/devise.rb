@@ -1,3 +1,5 @@
+Devise.secret_key = "c8834290356b2c319ec0b24501f592d76cc0336a53a78684d911aca219f622ee3818ad662f0ed66a73137e635c3eedac5e8c"
+
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
