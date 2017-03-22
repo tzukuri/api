@@ -12,7 +12,6 @@
         <% next if @product.images.include?(i) %>
         <li class='vtmb tmb-<%= i.viewable.id %>'>
           <%= link_to('', i.attachment.url(:product)) %>
-          <%#= link_to(image_tag(i.attachment.url(:mini), class: "thumbnail"), i.attachment.url(:product)) %>
         </li>
       <% end %>
     <% end %>

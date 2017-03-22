@@ -1,0 +1,42 @@
+@import "variables";
+@import "mixins";
+
+#product_show {
+  border-bottom: 1px solid $tz-background-alt;
+  background-color: #F2F2F2;
+  padding-top: 50px;
+  padding-bottom: 30px;
+  margin-bottom: 50px;
+
+  hr {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  #help p,a {
+    @include font-size(14px);
+  }
+}
+
+#shipping-returns {
+  @include border-radius(5px);
+  margin-top:20px;
+  margin-bottom: 40px;
+  background-color: #F2F2F2;
+  padding: 20px;
+  text-align: center;
+
+  h2 {
+    padding-bottom: 20px;
+  }
+}
+
+.product-section-title {
+  padding-bottom: 20px;
+}
+
+
+.contract {
+  height: 80px;
+  overflow: hidden;
+}

@@ -1,0 +1,22 @@
+@import "tzukuri";
+
+// Core variables and mixins
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+@import "bootstrap/normalize";
+@import "bootstrap/type";
+@import "bootstrap/grid";
+@import "bootstrap/utilities";
+@import "bootstrap/responsive-utilities";
+
+// Reset the box-sizing
+* {
+  @include box-sizing(border-box);
+}
+*:before,
+*:after {
+  @include box-sizing(border-box);
+}
+
+// custom css overrides
+@import "header"

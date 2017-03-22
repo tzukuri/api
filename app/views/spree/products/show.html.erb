@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <% @body_id = 'product-details' %>
 
 <% cache cache_key_for_product do %>
@@ -9,6 +10,68 @@
           <div id="product-images" data-hook="product_images">
             <!-- main product image -->
             <div id="main-image" style="text-align: center;" data-hook>
+=======
+<!-- <% @body_id = 'product-details' %>
+
+<% cache cache_key_for_product do %>
+  <div data-hook="product_show" class="row" itemscope itemtype="https://schema.org/Product">
+    <div class="col-md-4 col-sm-5" data-hook="product_left_part">
+      <div data-hook="product_left_part_wrap">
+        <div id="product-images" data-hook="product_images">
+          <div id="main-image" class="panel panel-default" data-hook>
+            <div class="panel-body text-center">
+              <%= product_image(@product, itemprop: "image") %>
+            </div>
+          </div>
+          <div id="thumbnails" data-hook>
+            <%= render partial: 'thumbnails' %>
+          </div>
+        </div>
+
+        <div data-hook="product_properties">
+          <%= render partial: 'properties' %>
+        </div>
+
+        <div data-hook="promotions">
+          <%= render partial: 'promotions' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-8 col-sm-7" data-hook="product_right_part">
+      <div data-hook="product_right_part_wrap">
+        <div id="product-description" data-hook="product_description">
+          <h1 class="product-title" itemprop="name"><%= @product.name %></h1>
+
+          <div class="well" itemprop="description" data-hook="description">
+            <%= product_description(@product) %>
+          </div>
+
+          <div id="cart-form" data-hook="cart_form">
+            <%= render partial: 'cart_form' %>
+          </div>
+        </div>
+
+        <div id="taxon-crumbs" class=" five " data-hook="product_taxons">
+          <%= render partial: 'taxons' %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %> -->
+
+<% @body_id = 'product-details' %>
+
+<% cache cache_key_for_product do %>
+  <div id="product_show" class="full-width" data-hook="product_show" itemscope itemtype="https://schema.org/Product">
+    <div class="container">
+      <div class="row">
+        <!-- gallery column -->
+        <div class="col-md-7" data-hook="product_left_part">
+          <div id="product-images" data-hook="product_images">
+            <!-- main product image -->
+            <div id="main-image" style="text-align: center; height: 500px" data-hook>
+>>>>>>> * Added Spree 3.1
               <%= product_image(@product, itemprop: "image") %>
             </div>
 
@@ -17,10 +80,17 @@
               <%= render partial: 'thumbnails' %>
             </div>
 
+<<<<<<< HEAD
+=======
+            <!-- <div data-hook="product_properties">
+              <%= render partial: 'properties' %>
+            </div> -->
+>>>>>>> * Added Spree 3.1
 
           </div>
         </div>
         <!-- order input column -->
+<<<<<<< HEAD
         <div class="five columns" data-hook="product_right_part">
           <div id="product-description" data-hook="product_description">
             <h1 class="product-title" itemprop="name"><%= @product.name %></h1>
@@ -40,6 +110,43 @@
     </div>
   </div>
 
+=======
+        <div class="col-md-offset-1 col-md-4" data-hook="product_right_part">
+        <div id="product-description" data-hook="product_description">
+          <h1 class="product-title" itemprop="name"><%= @product.name %></h1>
+
+          <p><%= display_price(@product) %> <%= @product.currency %></p>
+
+          <div itemprop="description" data-hook="description">
+            <p><%= product_description(@product) %></p>
+          </div>
+
+          <div id="cart-form" data-hook="cart_form">
+            <%= render partial: 'cart_form' %>
+          </div>
+
+          <hr/>
+
+          <div id="help">
+            <p>If you have any questions, or need help choosing the perfect pair, please <a href="">get in touch</a>.</p>
+          </div>
+
+        </div>
+
+        <div id="taxon-crumbs" class=" five " data-hook="product_taxons">
+          <%= render partial: 'taxons' %>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="container">
+    <div data-hook="product_properties">
+      <%= render partial: 'properties' %>
+    </div>
+  </div> -->
+>>>>>>> * Added Spree 3.1
 
   <!-- product detail -->
   <div class="container">
@@ -51,7 +158,128 @@
     </div>
   </div>
 
+<<<<<<< HEAD
   <%= render partial: 'layouts/whats_included' %>
   <%= render partial: 'layouts/tech_specs' %>
 
+=======
+  <!-- whats in the box -->
+  <div class="container contract" id="in-the-box">
+    <div class="row">
+      <div class="col-md-10" style="text-align:left;">
+        <h2>What's Included</h2>
+      </div>
+      <div class="col-md-2" style="text-align:right;">
+        <!-- <i class="fa fa-plus" id="in-the-box-toggle"></i> -->
+        <li><i class="pe-7s-glasses" style="font-size: 40px; margin-bottom: 0px"></i></li>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <%= image_tag 'glasses.png', id: 'unlosable' %>
+      </div>
+      <div class="col-md-4">
+        <%= image_tag 'microfibre.png', id: 'cloth' %>
+      </div>
+      <div class="col-md-4">
+        <%= image_tag "dock_cable.png", id: 'charge' %>
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+          <p class=>Unlosable Glasses</p>
+        </div>
+        <div class="col-md-4">
+          <p>Microfibre Cloth</p>
+        </div>
+        <div class="col-md-4">
+          <p>Charger & Cable</p>
+        </div>
+      </div>
+  </div>
+
+  <!-- tech specs -->
+  <div class="container contract  " id="tech-specs">
+    <div class="row">
+      <div class="col-md-10" style="text-align:left;">
+        <h2>Technical Specifications</h2>
+      </div>
+      <div class="col-md-2" style="text-align:right;">
+        <i class="fa fa-plus" id="tech-specs-toggle"></i>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-4">
+        <!--  whats included -->
+        <article>
+          <p class="bold">What's Included</p>
+          <ul>
+            <li>Unlosable glasses</li>
+            <li>Charging cable</li>
+            <li>Charging dock</li>
+            <li>Microfibre cleaning cloth</li>
+            <li>Documentation</li>
+          </ul>
+        </article>
+
+        <!-- battery and power -->
+        <article>
+          <p class="bold">Battery and Power</p>
+          <p>
+            Battery life up to 30 days. Battery life and charge cycles vary with use, settings, and other factors; actual results will vary. The Tzukuri app will notify you when your glasses require charging.
+          </p>
+          <ul>
+            <li>Battery type: Silver Oxide</li>
+            <li>Charge time: Three to four hours</li>
+          </ul>
+        </aticle>
+      </div>
+
+      <div class="col-md-4">
+        <!-- care -->
+        <article>
+          <!-- <h2>Care</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pulvinar fringilla mi in sodales. Sed lacinia turpis non quam blandit, ac semper tortor auctor. Ut at lacus ut metus mattis molestie. Quisque lectus velit, egestas vel laoreet ut, euismod vitae eros.</p> -->
+        </article>
+
+        <!-- materials -->
+        <article>
+          <p class="bold">Materials</p>
+          <ul>
+            <li>Frames: High quality, precision-milled cellulose acetate.</li>
+            <li>Non-Prescription Sun: Brown polarised, hand cut, 100% UV protection.</li>
+            <li>Prescription Sun: Brown polarised single vision, hand cut, 100% UV protection, back anti-reflective coating, hard coat.</li>
+            <li>Prescription Optical: single vision, hand cut, back anti-reflective coating, hard coat.</li>
+          </ul>
+        </article>
+
+        <!-- environmental requirements -->
+        <article>
+          <p class="bold">Environmental Requirements</p>
+          <ul>
+            <li>Operating temperature: <span style="white-space: nowrap">-10° to 45° C</span></li>
+            <li>Maximum operating altitude: 9,144m</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="col-md-4">
+        <!-- syncing and notifications -->
+        <article>
+          <p class="bold">Bluetooth and Notifications</p>
+          <p>Each pair of Tzukuris connect to your iPhone using wireless Bluetooth Low Energy. Some features will require you to grant access to Location Services, Notifications and Motion &amp; Fitness to function correctly. </p>
+          <ul>
+            <li>Bluetooth range: Up to 15m</li>
+            <li>Requires iPhone 5 or later running iOS 9 and above.</li>
+            <li>Compatible with: iPhone 5, iPhone 5C, iPhone SE, iPhone 6, iPhone 6 Plus, iPhone 6s, iPhone 6s Plus, iPhone 7, iPhone 7 Plus</p>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </div>
+>>>>>>> * Added Spree 3.1
 <% end %>

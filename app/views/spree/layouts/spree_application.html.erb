@@ -6,14 +6,18 @@
 <!--[if gt IE 9]><!--><html lang="<%= I18n.locale %>"><!--<![endif]-->
   <head data-hook="inside_head">
     <%= render partial: 'spree/shared/head' %>
+<<<<<<< HEAD
 
     <link rel="stylesheet" media="screen" href="/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css">
     <link rel="stylesheet" media="screen" href="/fonts/pe-icon-7-filled/css/pe-icon-7-filled.css">
+=======
+>>>>>>> * Added Spree 3.1
   </head>
   <body class="<%= body_class %>" id="<%= @body_id || 'default' %>" data-hook="body">
     <%= render partial: 'spree/shared/google_analytics.js' %>
     <%= render partial: 'spree/shared/header' %>
 
+<<<<<<< HEAD
     <div class="u-full-width main" data-hook>
 
       <div class="hero store">
@@ -37,4 +41,21 @@
   <!-- tzukuri footer -->
   <%= render partial: 'layouts/site_footer' %>
 
+=======
+    <div class="container">
+      <div class="row" data-hook>
+        <%= breadcrumbs(@taxon) %>
+
+        <%= render partial: 'spree/shared/sidebar' if content_for? :sidebar %>
+
+        <div id="content" class="<%= !content_for?(:sidebar) ? "col-sm-12" : "col-sm-8 col-md-9" %>" data-hook>
+          <%= flash_messages %>
+          <%= yield %>
+        </div>
+
+        <%= yield :templates %>
+      </div>
+    </div>
+  </body>
+>>>>>>> * Added Spree 3.1
 </html>

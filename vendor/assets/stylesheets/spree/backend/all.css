@@ -10,4 +10,6 @@
  *= require spree/backend/spree_simple_delivery
  *= require spree/backend/spree_prescription
  *= require spree/backend/spree_preorder
+ *= require spree/backend/spree_social_products
+
 */

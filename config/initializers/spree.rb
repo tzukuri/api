@@ -13,7 +13,6 @@ Spree.config do |config|
   # Example:
   # Uncomment to stop tracking inventory levels in the application
   # config.track_inventory_levels = false
-
   # by default, automatically captue payments (instead of two-step auth/capture)
   config.auto_capture = true
 
