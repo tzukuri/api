@@ -1,5 +1,6 @@
 <% @body_id = 'cart' %>
 <div class="container" id="cart-container" data-hook="cart_container">
+<<<<<<< HEAD
 
   <% if @order.line_items.empty? %>
     <div id="empty-cart" data-hook="empty_cart">
@@ -95,6 +96,8 @@
 
 <!-- <% @body_id = 'cart' %>
 <div class="container" id="cart-container" data-hook="cart_container">
+=======
+>>>>>>> building out user flow
   <h1><%= Spree.t(:shopping_cart) %></h1>
 
   <% if @order.line_items.empty? %>
@@ -122,11 +125,19 @@
             <div class="three columns">
               <div id="empty-cart" data-hook>
                 <%= form_tag empty_cart_path, method: :put do %>
+<<<<<<< HEAD
                   <p id="clear_cart_link" data-hook>
                     <%= submit_tag Spree.t(:empty_cart), class: 'btn btn-default' %>
                     <%= Spree.t(:or) %>
                     <%= link_to Spree.t(:continue_shopping), products_path, class: 'continue' %>
                   </p>
+=======
+                  <!-- <p id="clear_cart_link" data-hook>
+                    <%= submit_tag Spree.t(:empty_cart), class: 'btn btn-default' %>
+                    <%= Spree.t(:or) %>
+                    <%= link_to Spree.t(:continue_shopping), products_path, class: 'continue' %>
+                  </p> -->
+>>>>>>> building out user flow
                 <% end %>
               </div>
             </div>
@@ -167,4 +178,8 @@
 <script>
   Spree.current_order_id = "<%= @order.number %>"
   Spree.current_order_token = "<%= @order.guest_token %>"
+<<<<<<< HEAD
 </script> -->
+=======
+</script>
+>>>>>>> building out user flow

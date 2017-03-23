@@ -1,5 +1,6 @@
 @import "core";
 
+<<<<<<< HEAD
 @import "spree/frontend/spree_prescription";
 @import "spree/frontend/spree_preorder";
 
@@ -33,12 +34,21 @@
   #taxon-optical {
     padding-bottom: 50px;
   }
+=======
+// store home content
+#store-home-content {
+>>>>>>> building out user flow
 
   .utility-img {
     text-align: center;
     img {
+<<<<<<< HEAD
       width: 80%;
       margin-top: 10px;
+=======
+      width: 70%;
+      margin-top: 35px;
+>>>>>>> building out user flow
     }
   }
 
@@ -46,6 +56,7 @@
     background-color: $tz-inactive;
     padding: 50px;
     @include border-radius(5px);
+<<<<<<< HEAD
     @include transition(background-color ease-in-out 0.6s);
 
     h1 {
@@ -59,10 +70,21 @@
     &:hover {
       cursor: pointer;
       background-color: $tz-background-alt;
+=======
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    &:hover {
+      cursor: pointer;
+>>>>>>> building out user flow
     }
   }
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> building out user flow
 // product show
 #product_show {
   border-bottom: 1px solid $tz-background-alt;
@@ -71,6 +93,7 @@
   padding-bottom: 30px;
   margin-bottom: 50px;
 
+<<<<<<< HEAD
   #help p,a {
     @include font-size(14px);
   }
@@ -85,6 +108,16 @@
   }
 
 
+=======
+  hr {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  #help p,a {
+    @include font-size(14px);
+  }
+>>>>>>> building out user flow
 }
 
 #shipping-returns {
@@ -104,6 +137,7 @@
   padding-bottom: 20px;
 }
 
+<<<<<<< HEAD
 // orders edit
 #cart-container {
   margin-top: 50px;
@@ -167,10 +201,34 @@
       label {
         display: inline;
       }
+=======
+
+// .contract {
+//   height: 80px;
+//   overflow: hidden;
+// }
+
+#in-the-box {
+  padding-top: 40px;
+  padding-bottom: 30px;
+
+  p {
+    @include font-size(14px);
+  }
+
+  .row {
+    overflow: hidden;
+    max-height: 300px;
+    margin-top: 30px;
+
+    .columns {
+      text-align: center;
+>>>>>>> building out user flow
     }
   }
 
   img {
+<<<<<<< HEAD
     width: auto;
   }
 
@@ -270,10 +328,56 @@
     line-height: 150%;
     div {
       margin-bottom: 10px;
+=======
+    max-height: 395px;
+    width: 40%;
+  }
+
+  /*#unlosable {
+    width: 40%;
+  }
+
+  #charge {
+    width: 60%;
+  }
+
+  #cloth {
+    width: 50%;
+  }*/
+
+}
+
+#specifications {
+  padding-top: 40px;
+  padding-bottom: 40px;
+
+  article {
+    margin-top: 20px;
+
+    h2 {
+      @include font-size(24px);
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    ul {
+      margin-left: 15px;
+      list-style: disc;
+    }
+
+    p {
+      padding-bottom: 10px;
+    }
+
+    li, p {
+        @include font-size(14px);
+        line-height: 200%;
+>>>>>>> building out user flow
     }
   }
 }
 
+<<<<<<< HEAD
 // products
 #products {
   padding-top: 50px;
@@ -395,5 +499,39 @@
     #recover-password {
       @include font-size(14px);
     }
+=======
+// orders edit
+#cart-container {
+  margin-top: 50px;
+
+  h1 {
+    margin-bottom: 20px;
+  }
+
+  #outside_cart_form {
+    button, [type=submit] {
+      margin: 0;
+      width: 100%;
+      margin-top: 25px;
+    }
+
+    #empty-cart {
+      text-align: center;
+    }
+
+    #clear-cart {
+      margin-bottom: 10px;
+    }
+
+    #checkout-link {
+      // width: 100%;
+      margin-top: 0px;
+      margin-bottom: 25px;
+    }
+  }
+
+  #cart-detail {
+    margin-bottom: 25px;
+>>>>>>> building out user flow
   }
 }

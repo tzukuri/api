@@ -7,10 +7,13 @@
 
  *= require_self
  *= require_tree .
+<<<<<<< HEAD
 
  *= require spree/frontend/spree_simple_delivery
  *= require spree/frontend/spree_prescription
  *= require spree/frontend/spree_preorder
  *= require spree/frontend/spree_dynamic_variants
  *= require spree/frontend/spree_social_products
+=======
+>>>>>>> building out user flow
 */

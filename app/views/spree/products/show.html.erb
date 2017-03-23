@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <% @body_id = 'product-details' %>
 
 <% cache cache_key_for_product do %>
@@ -60,14 +61,16 @@
   </div>
 <% end %> -->
 
+=======
+>>>>>>> building out user flow
 <% @body_id = 'product-details' %>
 
 <% cache cache_key_for_product do %>
-  <div id="product_show" class="full-width" data-hook="product_show" itemscope itemtype="https://schema.org/Product">
+  <div id="product_show" class="u-full-width" data-hook="product_show" itemscope itemtype="https://schema.org/Product">
     <div class="container">
       <div class="row">
         <!-- gallery column -->
-        <div class="col-md-7" data-hook="product_left_part">
+        <div class="seven columns" data-hook="product_left_part">
           <div id="product-images" data-hook="product_images">
             <!-- main product image -->
             <div id="main-image" style="text-align: center; height: 500px" data-hook>
@@ -91,6 +94,7 @@
         </div>
         <!-- order input column -->
 <<<<<<< HEAD
+<<<<<<< HEAD
         <div class="five columns" data-hook="product_right_part">
           <div id="product-description" data-hook="product_description">
             <h1 class="product-title" itemprop="name"><%= @product.name %></h1>
@@ -112,6 +116,9 @@
 
 =======
         <div class="col-md-offset-1 col-md-4" data-hook="product_right_part">
+=======
+        <div class="five columns" data-hook="product_right_part">
+>>>>>>> building out user flow
         <div id="product-description" data-hook="product_description">
           <h1 class="product-title" itemprop="name"><%= @product.name %></h1>
 
@@ -125,6 +132,7 @@
             <%= render partial: 'cart_form' %>
           </div>
 
+          <br/>
           <hr/>
 
           <div id="help">
@@ -133,9 +141,9 @@
 
         </div>
 
-        <div id="taxon-crumbs" class=" five " data-hook="product_taxons">
+        <!-- <div id="taxon-crumbs" class=" five " data-hook="product_taxons">
           <%= render partial: 'taxons' %>
-        </div>
+        </div> -->
       </div>
       </div>
     </div>
@@ -158,6 +166,7 @@
     </div>
   </div>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   <%= render partial: 'layouts/whats_included' %>
   <%= render partial: 'layouts/tech_specs' %>
@@ -282,4 +291,9 @@
     </div>
   </div>
 >>>>>>> * Added Spree 3.1
+=======
+  <%= render partial: 'layouts/whats_included' %>
+  <%= render partial: 'layouts/tech_specs' %>
+
+>>>>>>> building out user flow
 <% end %>
