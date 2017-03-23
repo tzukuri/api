@@ -1,0 +1,168 @@
+@import "core";
+
+// store home content
+#store-home-content {
+
+  .utility-img {
+    text-align: center;
+    img {
+      width: 70%;
+      margin-top: 35px;
+    }
+  }
+
+  .utility-box {
+    background-color: $tz-inactive;
+    padding: 50px;
+    @include border-radius(5px);
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+
+// product show
+#product_show {
+  border-bottom: 1px solid $tz-background-alt;
+  background-color: #F2F2F2;
+  padding-top: 50px;
+  padding-bottom: 30px;
+  margin-bottom: 50px;
+
+  hr {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  #help p,a {
+    @include font-size(14px);
+  }
+}
+
+#shipping-returns {
+  @include border-radius(5px);
+  margin-top:20px;
+  margin-bottom: 40px;
+  background-color: #F2F2F2;
+  padding: 20px;
+  text-align: center;
+
+  h2 {
+    padding-bottom: 20px;
+  }
+}
+
+.product-section-title {
+  padding-bottom: 20px;
+}
+
+
+// .contract {
+//   height: 80px;
+//   overflow: hidden;
+// }
+
+#in-the-box {
+  padding-top: 40px;
+  padding-bottom: 30px;
+
+  p {
+    @include font-size(14px);
+  }
+
+  .row {
+    overflow: hidden;
+    max-height: 300px;
+    margin-top: 30px;
+
+    .columns {
+      text-align: center;
+    }
+  }
+
+  img {
+    max-height: 395px;
+    width: 40%;
+  }
+
+  /*#unlosable {
+    width: 40%;
+  }
+
+  #charge {
+    width: 60%;
+  }
+
+  #cloth {
+    width: 50%;
+  }*/
+
+}
+
+#specifications {
+  padding-top: 40px;
+  padding-bottom: 40px;
+
+  article {
+    margin-top: 20px;
+
+    h2 {
+      @include font-size(24px);
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    ul {
+      margin-left: 15px;
+      list-style: disc;
+    }
+
+    p {
+      padding-bottom: 10px;
+    }
+
+    li, p {
+        @include font-size(14px);
+        line-height: 200%;
+    }
+  }
+}
+
+// orders edit
+#cart-container {
+  margin-top: 50px;
+
+  h1 {
+    margin-bottom: 20px;
+  }
+
+  #outside_cart_form {
+    button, [type=submit] {
+      margin: 0;
+      width: 100%;
+      margin-top: 25px;
+    }
+
+    #empty-cart {
+      text-align: center;
+    }
+
+    #clear-cart {
+      margin-bottom: 10px;
+    }
+
+    #checkout-link {
+      // width: 100%;
+      margin-top: 0px;
+      margin-bottom: 25px;
+    }
+  }
+
+  #cart-detail {
+    margin-bottom: 25px;
+  }
+}

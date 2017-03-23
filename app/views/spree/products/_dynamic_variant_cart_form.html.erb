@@ -9,7 +9,7 @@
     <%= hidden_field_tag "product_id", @product.id %>
 
     <% if @product.price_in(current_currency) and !@product.price.nil? %>
-      <div data-hook="product_price" class="columns five <% if !@product.has_variants? %> alpha <% else %> omega <% end %>">
+      <div data-hook="product_price">
 
         <!-- <div id="product-price">
           <div>

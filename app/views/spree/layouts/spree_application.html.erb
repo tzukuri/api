@@ -6,24 +6,30 @@
 <!--[if gt IE 9]><!--><html lang="<%= I18n.locale %>"><!--<![endif]-->
   <head data-hook="inside_head">
     <%= render partial: 'spree/shared/head' %>
+
+    <link rel="stylesheet" media="screen" href="/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css">
+    <link rel="stylesheet" media="screen" href="/fonts/pe-icon-7-filled/css/pe-icon-7-filled.css">
+    
   </head>
   <body class="<%= body_class %>" id="<%= @body_id || 'default' %>" data-hook="body">
     <%= render partial: 'spree/shared/google_analytics.js' %>
     <%= render partial: 'spree/shared/header' %>
 
-    <div class="container">
-      <div class="row" data-hook>
-        <%= breadcrumbs(@taxon) %>
+    <div class="u-full-width main" data-hook>
+      <div class="hero" style="background-color: gray;"></div>
 
-        <%= render partial: 'spree/shared/sidebar' if content_for? :sidebar %>
+      <%#= breadcrumbs(@taxon) %>
 
-        <div id="content" class="<%= !content_for?(:sidebar) ? "col-sm-12" : "col-sm-8 col-md-9" %>" data-hook>
-          <%= flash_messages %>
-          <%= yield %>
-        </div>
+      <%#= render partial: 'spree/shared/sidebar' if content_for? :sidebar %>
 
-        <%= yield :templates %>
-      </div>
-    </div>
+      <%= yield %>
+
+      <%= yield :templates %>
+    </div
+
   </body>
+
+  <!-- tzukuri footer -->
+  <%= render partial: 'layouts/site_footer' %>
+
 </html>

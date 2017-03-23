@@ -37,7 +37,7 @@ body.the-range {
       left: 50%;
       margin-left: -255px;
       text-align: center;
-      
+
       p {
         color: #555;
       }
@@ -231,73 +231,6 @@ body.the-range {
     #model-divider {
       margin-top: 40px;
       margin-bottom: 40px;
-    }
-  }
-
-  #in-the-box {
-    padding-top: 40px;
-    padding-bottom: 30px;
-    background-color: $tz-background-alt;
-
-    p {
-      @include font-size(14px);
-    }
-
-    .row {
-      overflow: hidden;
-      max-height: 300px;
-      margin-top: 30px;
-
-      .columns {
-        text-align: center;
-      }
-    }
-
-    img {
-      max-height: 395px;
-      width: 40%;
-    }
-
-    /*#unlosable {
-      width: 40%;
-    }
-
-    #charge {
-      width: 60%;
-    }
-
-    #cloth {
-      width: 50%;
-    }*/
-
-  }
-
-  #specifications {
-    padding-top: 40px;
-    padding-bottom: 40px;
-
-    article {
-      margin-top: 20px;
-
-      h2 {
-        @include font-size(24px);
-        padding-top: 10px;
-        padding-bottom: 10px;
-      }
-
-      ul {
-        margin-left: 15px;
-        list-style: disc;
-      }
-
-      p {
-        padding-bottom: 10px;
-      }
-
-      li, p {
-          @include font-size(14px);
-          line-height: 200%;
-      }
     }
   }
 

@@ -1,0 +1,36 @@
+@import "tzukuri/variables";
+@import "tzukuri/mixins";
+
+#in-the-box {
+  padding-top: 40px;
+  padding-bottom: 30px;
+  background-color: $tz-background-alt;
+
+  p {
+    @include font-size(14px);
+  }
+
+  .row {
+    overflow: hidden;
+    max-height: 300px;
+    margin-top: 30px;
+
+    .columns {
+      text-align: center;
+    }
+  }
+
+  img {
+    max-height: 395px;
+    width: 40%;
+  }
+}
+
+// for tablets and smaller
+@media only screen and (max-width: $tabletPortrait) {
+    #in-the-box {
+      .row .four {
+        width: 33%;
+      }
+    }
+}

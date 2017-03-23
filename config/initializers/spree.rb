@@ -16,3 +16,11 @@ Spree.config do |config|
 end
 
 Spree.user_class = "Spree::User"
+
+# use larger than default product images
+Spree::Image.attachment_definitions[:attachment][:styles] = {
+  mini: '48x48',
+  small: '110x110',
+  product: '635x500',
+  large: '650x650'
+}

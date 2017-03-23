@@ -7,6 +7,4 @@
 
  *= require_self
  *= require_tree .
- *= require spree/frontend/spree_dynamic_variants
- *= require spree/frontend/spree_social_products
 */

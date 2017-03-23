@@ -1,0 +1,31 @@
+@import "tzukuri/variables";
+@import "tzukuri/mixins";
+
+#specifications {
+  padding-top: 40px;
+  padding-bottom: 40px;
+
+  article {
+    margin-top: 20px;
+
+    h2 {
+      @include font-size(24px);
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    ul {
+      margin-left: 15px;
+      list-style: disc;
+    }
+
+    p {
+      padding-bottom: 10px;
+    }
+
+    li, p {
+        @include font-size(14px);
+        line-height: 200%;
+    }
+  }
+}
