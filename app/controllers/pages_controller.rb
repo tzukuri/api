@@ -11,7 +11,8 @@ class PagesController < ApplicationController
           buy: {title: "Purchase Unlosable Glasses", description: ""},
           contact_us: {title: "Contact Us", description: ""},
           privacy: {title: "Privacy Policy", description: ""},
-          retail: {title: "Tzukuri Sydney Store", description: ""}
+          retail: {title: "Tzukuri Sydney Store", description: ""},
+          careers: {title: "Careers", description: "Work with the team at Tzukuri"}
         }
 
         @html_klass = params[:page]
