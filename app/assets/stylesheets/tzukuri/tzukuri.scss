@@ -184,7 +184,7 @@ form {
       padding-top: 10px;
     }
 
-    input, select, textarea {
+    input[type=text], input[type="tel"], input[type="email"], input[type="number"], select, textarea {
         @include font-size(16px);
 
         @include border-radius(20px);
@@ -195,7 +195,7 @@ form {
         box-sizing: border-box;
         display: inline-block;
         min-height: 40px;
-        background-color: white;
+        background-color: $tz-inactive;
         border: 1px solid #DDDDDD;
         color: $tz-content;
         margin: 0 auto;
@@ -235,7 +235,8 @@ form {
 
     label {
         @include font-size(13px);
-
+        text-transform: uppercase;
+        letter-spacing: 1px;
         margin-left: 25px;
         line-height: 200%;
         color: $tz-content;

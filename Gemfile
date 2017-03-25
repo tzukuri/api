@@ -48,16 +48,14 @@ gem 'fb_graph'
 gem 'que'
 gem 'que-web'
 
-<<<<<<< HEAD
 gem 'sentry-raven'
-=======
+
 # spree
 gem 'spree', '~> 3.1.0'
 gem 'spree_auth_devise', '~> 3.1.0'
 gem 'spree_gateway', '~> 3.1.0'
 gem 'spree_dynamic_variants', github: 'hefan/spree_dynamic_variants', branch: 'master'
 gem 'spree_social_products', github: 'spree-contrib/spree_social_products', branch: 'master'
->>>>>>> * Added Spree 3.1
 
 group :test do
   gem 'minitest-reporters', '1.0.5'
