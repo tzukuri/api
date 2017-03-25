@@ -184,7 +184,11 @@ form {
       padding-top: 10px;
     }
 
+<<<<<<< HEAD
     input[type=text], input[type="tel"], input[type="email"], input[type="number"], input[type="password"], select, textarea {
+=======
+    input[type=text], input[type="tel"], input[type="email"], input[type="number"], select, textarea {
+>>>>>>> Fixed routing issues. Updating CSS and HTML for checkout pages. Updated store defaults
         @include font-size(16px);
 
         @include border-radius(20px);

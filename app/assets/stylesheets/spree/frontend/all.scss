@@ -138,6 +138,7 @@
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // orders edit
 #cart-container {
   margin-top: 50px;
@@ -202,31 +203,44 @@
         display: inline;
       }
 =======
+=======
+// orders edit
+#cart-container {
+  margin-top: 50px;
+>>>>>>> Fixed routing issues. Updating CSS and HTML for checkout pages. Updated store defaults
 
-// .contract {
-//   height: 80px;
-//   overflow: hidden;
-// }
-
-#in-the-box {
-  padding-top: 40px;
-  padding-bottom: 30px;
-
-  p {
-    @include font-size(14px);
+  h1 {
+    margin-bottom: 20px;
   }
 
-  .row {
-    overflow: hidden;
-    max-height: 300px;
-    margin-top: 30px;
+  #empty-cart {
+    text-align: center;
 
+    button {
+      margin-top: 20px;
+      margin-bottom: 50px;
+    }
+
+  }
+
+  #outside_cart_form {
+    button, [type=submit] {
+      margin: 0;
+      width: 100%;
+      margin-top: 25px;
+    }
+
+<<<<<<< HEAD
     .columns {
       text-align: center;
 >>>>>>> building out user flow
+=======
+    #clear-cart {
+      margin-bottom: 10px;
+>>>>>>> Fixed routing issues. Updating CSS and HTML for checkout pages. Updated store defaults
     }
-  }
 
+<<<<<<< HEAD
   img {
 <<<<<<< HEAD
     width: auto;
@@ -332,51 +346,63 @@
     max-height: 395px;
     width: 40%;
   }
+=======
+    #checkout-link {
+      // width: 100%;
+      // margin-top: 0px;
+      margin-bottom: 25px;
+    }
+>>>>>>> Fixed routing issues. Updating CSS and HTML for checkout pages. Updated store defaults
 
-  /*#unlosable {
-    width: 40%;
+    #update-button {
+      margin-top: 0px;
+      margin-bottom: 20px;
+    }
   }
 
-  #charge {
-    width: 60%;
+  #cart-detail {
+    margin-bottom: 25px;
   }
-
-  #cloth {
-    width: 50%;
-  }*/
-
 }
 
-#specifications {
+// checkout
+#checkout {
+  // background-color: #F2F2F2;
   padding-top: 40px;
-  padding-bottom: 40px;
 
-  article {
-    margin-top: 20px;
+  #address-submit {
+    margin-bottom: 50px;
+    text-align: center;
 
-    h2 {
-      @include font-size(24px);
-      padding-top: 10px;
-      padding-bottom: 10px;
+    input[type="submit"] {
+      width: 100%;
     }
 
-    ul {
-      margin-left: 15px;
-      list-style: disc;
+    #save-user-address {
+      label {
+        display: inline;
+      }
     }
+  }
 
-    p {
-      padding-bottom: 10px;
-    }
+  #checkout-summary, #returns-summary {
+    background-color: #F2F2F2;
+    padding: 30px;
+    @include border-radius(8px);
 
+<<<<<<< HEAD
     li, p {
         @include font-size(14px);
         line-height: 200%;
 >>>>>>> building out user flow
+=======
+    h3 {
+      margin-bottom: 30px;
+>>>>>>> Fixed routing issues. Updating CSS and HTML for checkout pages. Updated store defaults
     }
   }
-}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 // products
 #products {
@@ -503,35 +529,52 @@
 // orders edit
 #cart-container {
   margin-top: 50px;
+=======
+  #returns-summary {
+    margin-top: 30px;
+  }
+>>>>>>> Fixed routing issues. Updating CSS and HTML for checkout pages. Updated store defaults
 
-  h1 {
-    margin-bottom: 20px;
+  #checkout-content {
+    margin-top: 50px;
   }
 
-  #outside_cart_form {
-    button, [type=submit] {
-      margin: 0;
-      width: 100%;
-      margin-top: 25px;
+  #checkout-step-address {
+    margin-top: 20px;
+
+    li {
+      margin-right: 20px;
+      a {
+        color: $tz-content;
+      }
     }
 
-    #empty-cart {
-      text-align: center;
-    }
-
-    #clear-cart {
-      margin-bottom: 10px;
-    }
-
-    #checkout-link {
-      // width: 100%;
-      margin-top: 0px;
-      margin-bottom: 25px;
+    .active a {
+      font-weight: bold;
+      color: $tz-active;
     }
   }
 
+  #checkout_form_address {
+    h2 {
+      margin-left: 20px;
+      padding-bottom: 20px;
+    }
+
+    #checkout-address-form  {
+      margin-top: 30px;
+    }
+  }
+
+<<<<<<< HEAD
   #cart-detail {
     margin-bottom: 25px;
 >>>>>>> building out user flow
+=======
+  #checkout-step-address {
+    li {
+      display: inline;
+    }
+>>>>>>> Fixed routing issues. Updating CSS and HTML for checkout pages. Updated store defaults
   }
 }

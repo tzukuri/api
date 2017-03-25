@@ -56,6 +56,7 @@ gem 'spree', '~> 3.1.0'
 gem 'spree_auth_devise', '~> 3.1.0'
 gem 'spree_gateway', '~> 3.1.0'
 gem 'spree_social_products', github: 'spree-contrib/spree_social_products', branch: 'master'
+gem 'spree_mail_settings', github: 'spree-contrib/spree_mail_settings', branch: '3-1-stable'
 
 # tzukuri spree extensions
 gem 'spree_garbage_cleaner', git: 'https://github.com/tzukuri/spree-garbage-cleaner.git'
