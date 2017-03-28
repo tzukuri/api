@@ -184,7 +184,7 @@ form {
       padding-top: 10px;
     }
 
-    input[type=text], input[type="tel"], input[type="email"], input[type="number"], select, textarea {
+    input[type=text], input[type="tel"], input[type="email"], input[type="number"], input[type="password"], select, textarea {
         @include font-size(16px);
 
         @include border-radius(20px);
@@ -241,6 +241,11 @@ form {
         line-height: 200%;
         color: $tz-content;
         display: block;
+
+        &.error {
+          color: $tz-error;
+          text-transform: none;
+        }
     }
 
     // buttons should not have a set width

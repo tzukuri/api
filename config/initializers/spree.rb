@@ -20,6 +20,8 @@ Spree.config do |config|
   # use AUD by default
   config.currency = "AUD"
 
+  config.admin_interface_logo = 'logo/typo_logo.png'
+  config.logo = 'logo/typo_logo.png'
 
 end
 
@@ -32,3 +34,6 @@ Spree::Image.attachment_definitions[:attachment][:styles] = {
   product: '635x500',
   large: '650x650'
 }
+
+# disable the registration step at checkout, all users checkout as 'guest users'
+Spree::Auth::Config[:registration_step] = false

@@ -126,6 +126,10 @@
     }
   }
 
+  img {
+    width: auto;
+  }
+
   #checkout-summary, #returns-summary {
     background-color: #F2F2F2;
     padding: 30px;
@@ -144,18 +148,23 @@
     margin-top: 50px;
   }
 
-  #checkout-step-address {
+  #checkout-step-address, #checkout-step-payment, #checkout-step-confirm, #checkout-step-complete {
     margin-top: 20px;
 
     li {
+      display: inline;
       margin-right: 20px;
       a {
-        color: $tz-content;
+        color: $tz-background-alt;
       }
     }
 
     .active a {
       font-weight: bold;
+      color: $tz-content;
+    }
+
+    .completed a {
       color: $tz-active;
     }
   }
@@ -170,10 +179,75 @@
       margin-top: 30px;
     }
   }
+}
 
-  #checkout-step-address {
-    li {
-      display: inline;
+#payment {
+
+  h2 {
+    padding-bottom: 20px;
+  }
+
+  #card-name {
+    margin-top: 30px;
+  }
+
+  #credit-card-image {
+    width: auto;
+  }
+}
+
+#order_details {
+  h2 {
+    padding-bottom: 20px;
+  }
+  h3 {
+    padding-bottom: 20px;
+  }
+  .address.vcard {
+    line-height: 150%;
+    div {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+#order-complete {
+  img {
+    width: auto;
+  }
+
+  h2 {
+    padding-bottom: 20px;
+  }
+  h3 {
+    padding-bottom: 20px;
+  }
+  .address.vcard {
+    line-height: 150%;
+    div {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+// taxons
+#taxons {
+  margin-top: 50px;
+  margin-bottom: 50px;
+
+  .product-list-item  {
+    text-align: center;
+
+    .product-body {
+      margin-bottom: 15px;
+      .info {
+        @include font-size(22px);
+        padding-bottom: 15px;
+      }
+    }
+    .product-footer {
+      margin-bottom: 100px;
+      color: $tz-content;
     }
   }
 }

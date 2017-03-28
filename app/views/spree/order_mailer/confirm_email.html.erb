@@ -1,0 +1,110 @@
+<table class="row header">
+  <tr>
+    <td>
+      <p style="margin-top: 20px;">
+        Hi <%= @order.bill_address.firstname %>,
+        <%#= Spree.t('order_mailer.confirm_email.dear_customer') %>
+      </p>
+      <p>
+        Thanks for ordering your Tzukuris, we'll let you know when they're on their way. Please keep this email for your own records.
+        <%#= Spree.t('order_mailer.confirm_email.instructions') %>
+      </p>
+
+      <hr/>
+
+      <h6 style="margin-bottom: 15px;">
+        <%= Spree.t('order_mailer.confirm_email.order_summary', number: @order.number) %>
+      </h6>
+
+      <p style="margin-bottom: 20px;">
+        <%= @order.created_at %>
+      </p>
+
+      <table class="container">
+        <tr>
+          <td class="wrapper">
+            <table class="twelve columns">
+              <%= render collection: @order.line_items, partial: 'spree/shared/mailer_line_item', as: :line_item %>
+              <%= render 'spree/order_mailer/subtotal', order: @order %>
+              <% if @order.line_item_adjustments.exists? %>
+                <% if @order.all_adjustments.promotion.eligible.exists? %>
+                  <% @order.all_adjustments.promotion.eligible.group_by(&:label).each do |label, adjustments| %>
+                    <tr>
+                      <td class="six sub-columns">
+                        <%= Spree.t(:promotion) %> <%= label %>:
+                      </td>
+                      <td class="six sub-columns last right">
+                        <%= Spree::Money.new(adjustments.sum(&:amount), currency: @order.currency) %>
+                      </td>
+                    </tr>
+                  <% end %>
+                <% end %>
+              <% end %>
+              <% @order.shipments.group_by { |s| s.selected_shipping_rate.try(:name) }.each do |name, shipments| %>
+                <tr>
+                  <td class="six sub-columns">
+                    <%= Spree.t(:shipping) %> <%= name %>:
+                  </td>
+                  <td class="six sub-columns last right">
+                    <%= Spree::Money.new(shipments.sum(&:discounted_cost), currency: @order.currency) %>
+                  </td>
+                </tr>
+              <% end %>
+              <% if @order.all_adjustments.eligible.tax.exists? %>
+                <% @order.all_adjustments.eligible.tax.group_by(&:label).each do |label, adjustments| %>
+                  <tr>
+                    <td class="six sub-columns">
+                      <%= Spree.t(:tax) %> <%= label %>:
+                    </td>
+                    <td class="six sub-columns last right">
+                      <%= Spree::Money.new(adjustments.sum(&:amount), currency: @order.currency) %>
+                    </td>
+                  </tr>
+                <% end %>
+              <% end %>
+              <% @order.adjustments.eligible.each do |adjustment| %>
+                <% next if (adjustment.source_type == 'Spree::TaxRate') || (adjustment.amount == 0) %>
+                <%= render 'spree/order_mailer/adjustment', adjustment: adjustment %>
+              <% end %>
+              <%= render 'spree/order_mailer/total', order: @order %>
+            </table>
+          </td>
+        </tr>
+
+        <!-- shipping details -->
+        <tr>
+          <td class="wrapper">
+            <table class="twelve columns">
+                <hr/>
+                <tr>
+                  <td class="six sub-columns">
+                    <p style="font-weight: bold">Billing Address</p>
+                    <%= render 'spree/shared/address', address: @order.bill_address %>
+                  </td>
+                  <td class="six sub-columns">
+                    <p style="font-weight: bold">Shipping Address</p>
+                    <% if !@order.ship_address.nil? %>
+                      <%= render 'spree/shared/address', address: @order.ship_address %>
+                    <% else %>
+                      <%= render 'spree/shared/address', address: @order.bill_address %>
+                    <% end %>
+                  </td>
+                </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+
+      <hr/>
+
+      <p>
+        Got a question? Head to our <a href="http://help.tzukuri.com">help page</a>, or you can simply reply to this email and we'll do our best to help you out.
+      </p>
+
+      <!-- <p>
+        <%= Spree.t('order_mailer.confirm_email.thanks') %>
+      </p> -->
+    </td>
+    <td class="expander"></td>
+  </tr>
+</table>
