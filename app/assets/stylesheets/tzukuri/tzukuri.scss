@@ -185,10 +185,14 @@ form {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     input[type=text], input[type="tel"], input[type="email"], input[type="number"], input[type="password"], select, textarea {
 =======
     input[type=text], input[type="tel"], input[type="email"], input[type="number"], select, textarea {
 >>>>>>> Fixed routing issues. Updating CSS and HTML for checkout pages. Updated store defaults
+=======
+    input[type=text], input[type="tel"], input[type="email"], input[type="number"], input[type="password"], select, textarea {
+>>>>>>> UI cleanup for confirm and payment. Now sending emails successfully with new email templates
         @include font-size(16px);
 
         @include border-radius(20px);
@@ -244,6 +248,10 @@ form {
         margin-left: 25px;
         line-height: 200%;
         color: $tz-content;
+<<<<<<< HEAD
+=======
+        display: block;
+>>>>>>> UI cleanup for confirm and payment. Now sending emails successfully with new email templates
 
         &.error {
           color: $tz-error;

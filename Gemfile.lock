@@ -7,14 +7,6 @@ GIT
       spree_core (> 3.1)
 
 GIT
-  remote: git://github.com/spree-contrib/spree_mail_settings.git
-  revision: e292a7e843e80ddf0337c68ed4093c702ee60f62
-  branch: 3-1-stable
-  specs:
-    spree_mail_settings (3.1.0)
-      spree_backend (~> 3.1.0.beta)
-
-GIT
   remote: git://github.com/spree-contrib/spree_social_products.git
   revision: a7b7bb1b36914e6bc4f744c13947caed0b04e098
   branch: master
@@ -672,9 +664,12 @@ DEPENDENCIES
   spree_dynamic_variants!
   spree_garbage_cleaner!
   spree_gateway (~> 3.1.0)
+<<<<<<< HEAD
   spree_preorder!
   spree_prescription!
   spree_simple_delivery!
+=======
+>>>>>>> UI cleanup for confirm and payment. Now sending emails successfully with new email templates
   spree_social_products!
   stripe!
   therubyracer
