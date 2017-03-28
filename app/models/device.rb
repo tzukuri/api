@@ -31,8 +31,8 @@ class Device < ActiveRecord::Base
     end
 
     def unlink_from!(user:, reason:)
-        # only attempt to revoke if the ownership exists, otherwise return 200 so the app removes the glasses
-        if ownership = ownerships.where(user_id: user.id).first!
+        # only attempt to revoke if the ownership exists, otherwise return 200 so the app removes
+        if ownership = ownerships.where(user_id: user.id).first
           ownership.revoke!(reason: reason)
         end
     end
