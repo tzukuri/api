@@ -664,12 +664,9 @@ DEPENDENCIES
   spree_dynamic_variants!
   spree_garbage_cleaner!
   spree_gateway (~> 3.1.0)
-<<<<<<< HEAD
   spree_preorder!
   spree_prescription!
   spree_simple_delivery!
-=======
->>>>>>> UI cleanup for confirm and payment. Now sending emails successfully with new email templates
   spree_social_products!
   stripe!
   therubyracer

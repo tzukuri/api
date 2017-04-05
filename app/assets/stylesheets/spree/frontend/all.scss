@@ -1,54 +1,151 @@
 @import "core";
 
-<<<<<<< HEAD
 @import "spree/frontend/spree_prescription";
 @import "spree/frontend/spree_preorder";
 
-.hero {
-  height: 300px;
+.hero.taxon {
+  text-align: center;
+}
+
+.hero.store {
+  height: 500px;
 
   .bg.photo {
-    height: 300px;
+    height: 500px;
     background-image: image-url('headers/store.jpg');
   }
 
   .shade {
-    height: 300px;
+    height: 500px;
   }
 
   .content {
     h1 {
-      padding-top: 75px;
+      padding-top: 150px;
+      padding-bottom: 1.5vw;
     }
 
-    padding-top: 40px;
-    padding-bottom: 40px;
+    p {
+      padding-bottom: 1.5vw;
+    }
   }
 }
 
 // store home content
 #store-home-content {
-  padding-top: 50px;
-  padding-bottom: 50px;
+  background-color: white;
+
+  #utility-section {
+    &::after {
+      content:"";
+      display:block;
+      clear:both;
+    }
+  }
+
+  #social-proof {
+    padding-bottom: 1.5vw;
+
+    .tzukuri {
+      font-size: 1.875rem;
+      line-height: 100%;
+      vertical-align: middle;
+      display: inline-block;
+      font-weight: 200;
+      letter-spacing: 10px;
+      position: relative;
+    }
+
+    .row {
+      .ig-photo {
+        text-align: center;
+        .photo {
+          width: 100%;
+          height: 250px;
+          margin-bottom: 20px;
+          background-size: cover;
+          background-position: center;
+
+          &.one {
+            background-image: image-url('gallery/social/26.jpg');
+          }
+
+          &.two {
+            background-image: image-url('gallery/social/2.jpg');
+          }
+
+          &.three {
+            background-image: image-url('gallery/social/10.jpg');
+          }
+
+          &.four {
+            background-image: image-url('gallery/social/25.jpg');
+          }
+
+        }
+      }
+    }
+  }
+
+  #cant-decide {
+    height: 400px;
+    background-image: image-url('store/cant-decide.png');
+    background-size: cover;
+    background-position: center;
+
+    .section-content {
+      padding-top: 5%;
+      width: 30%;
+    }
+  }
+
+  .section-content {
+    text-align: left;
+    margin-left: 5vw;
+    padding-top: 15%;
+    width: 50%;
+    h1 {
+      margin-bottom: 20px;
+    }
+  }
+
+  .half-section {
+    float: left;
+    // position: relative;
+    width: 50%;
+    height: 350px;
+    margin-top: 1.5vw;
+    margin-bottom: 1.5vw;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    .half-section-banner {
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+
+      &.eyeglasses {
+        background-image: image-url('store/eyeglasses.png');
+      }
+
+      &.sunglasses {
+        margin-left: 1.5vw;
+        background-image: image-url('store/sunglasses.png');
+      }
+    }
+  }
 
   #taxon-optical {
     padding-bottom: 50px;
   }
-=======
-// store home content
-#store-home-content {
->>>>>>> building out user flow
 
   .utility-img {
     text-align: center;
     img {
-<<<<<<< HEAD
       width: 80%;
       margin-top: 10px;
-=======
-      width: 70%;
-      margin-top: 35px;
->>>>>>> building out user flow
     }
   }
 
@@ -56,7 +153,6 @@
     background-color: $tz-inactive;
     padding: 50px;
     @include border-radius(5px);
-<<<<<<< HEAD
     @include transition(background-color ease-in-out 0.6s);
 
     h1 {
@@ -70,21 +166,10 @@
     &:hover {
       cursor: pointer;
       background-color: $tz-background-alt;
-=======
-    margin-top: 20px;
-    margin-bottom: 20px;
-
-    &:hover {
-      cursor: pointer;
->>>>>>> building out user flow
     }
   }
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> building out user flow
 // product show
 #product_show {
   border-bottom: 1px solid $tz-background-alt;
@@ -93,7 +178,6 @@
   padding-bottom: 30px;
   margin-bottom: 50px;
 
-<<<<<<< HEAD
   #help p,a {
     @include font-size(14px);
   }
@@ -108,16 +192,6 @@
   }
 
 
-=======
-  hr {
-    margin-top: 30px;
-    margin-bottom: 30px;
-  }
-
-  #help p,a {
-    @include font-size(14px);
-  }
->>>>>>> building out user flow
 }
 
 #shipping-returns {
@@ -137,8 +211,6 @@
   padding-bottom: 20px;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 // orders edit
 #cart-container {
   margin-top: 50px;
@@ -158,10 +230,25 @@
   }
 
   #outside_cart_form {
+    #continue-shopping {
+      @include font-size(14px);
+    }
+
+    #checkout-subtotal {
+      @include font-size(18px);
+      font-weight: 600;
+      text-align: right;
+    }
+
+    #checkout-free-shipping {
+      @include font-size(14px);
+      text-align: right;
+      margin-bottom: 1.5vw;
+    }
+
     button, [type=submit] {
       margin: 0;
       width: 100%;
-      margin-top: 25px;
     }
 
     #clear-cart {
@@ -185,6 +272,130 @@
   }
 }
 
+// confirm table
+#order-detail-head {
+  margin-top: 40px;
+  margin-bottom: 10px;
+}
+
+#line-items {
+  width: 100%;
+
+  thead {
+    tr {
+      th {
+
+        &.cart-item-description-header {
+          text-align: left;
+        }
+
+        &.price, &.qty, &.total {
+          text-align: center;
+        }
+
+        text-transform: uppercase;
+        color: $tz-content;
+        @include font-size(14px);
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      color: $tz-content;
+
+      td {
+        &.price, &.order-qty, &.total {
+          text-align: center;
+        }
+      }
+
+      .order_item_image {
+        padding: 1.5vw 1.5vw 1.5vw 0;
+        img {
+          vertical-align: middle;
+        }
+      }
+
+      .order_item_description {
+        h4 {
+          margin-bottom: 5px;
+        }
+
+        .variant-option-name {
+          color: $tz-content;
+          display: block;
+          @include font-size(14px);
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
+}
+
+// checkout form partial
+#cart-detail {
+  display: table;
+  width: 100%;
+
+  thead {
+    tr#cart_items_headers {
+      th {
+
+        &.cart-item-description-header {
+          text-align: left;
+        }
+
+        &.cart-item-price-header, &.cart-item-quantity-header, &.cart-item-total-header  {
+          text-align: center;
+        }
+
+        text-transform: uppercase;
+        color: $tz-content;
+        @include font-size(14px);
+      }
+    }
+  }
+
+  tbody {}
+}
+
+// checkout form line item
+.line-item {
+  color: $tz-content;
+
+  td {
+    &.cart-item-price, &.cart-item-quantity, &.cart-item-total {
+      text-align: center;
+    }
+
+    &.cart-item-quantity {
+      width: 10%;
+    }
+  }
+
+  .cart-item-image {
+    padding: 1.5vw 1.5vw 1.5vw 0;
+    img {
+      vertical-align: middle;
+    }
+  }
+
+  .cart-item-description {
+    h4 {
+      @include font-size(26px);
+      margin-bottom: 5px;
+    }
+
+    .variant-option-name {
+      color: $tz-content;
+      display: block;
+      @include font-size(14px);
+      margin-bottom: 5px;
+    }
+  }
+}
+
 // checkout
 #checkout {
   // background-color: #F2F2F2;
@@ -202,48 +413,7 @@
       label {
         display: inline;
       }
-=======
-=======
-// orders edit
-#cart-container {
-  margin-top: 50px;
->>>>>>> Fixed routing issues. Updating CSS and HTML for checkout pages. Updated store defaults
-
-  h1 {
-    margin-bottom: 20px;
-  }
-
-  #empty-cart {
-    text-align: center;
-
-    button {
-      margin-top: 20px;
-      margin-bottom: 50px;
     }
-
-  }
-
-  #outside_cart_form {
-    button, [type=submit] {
-      margin: 0;
-      width: 100%;
-      margin-top: 25px;
-    }
-
-<<<<<<< HEAD
-    .columns {
-      text-align: center;
->>>>>>> building out user flow
-=======
-    #clear-cart {
-      margin-bottom: 10px;
->>>>>>> Fixed routing issues. Updating CSS and HTML for checkout pages. Updated store defaults
-    }
-
-<<<<<<< HEAD
-  img {
-<<<<<<< HEAD
-    width: auto;
   }
 
   img {
@@ -258,6 +428,10 @@
     h3 {
       margin-bottom: 30px;
     }
+    table {
+      width: 100%;
+      color: $tz-content;
+    }
   }
 
   #returns-summary {
@@ -265,11 +439,10 @@
   }
 
   #checkout-content {
-    margin-top: 50px;
+    margin-top: 30px;
   }
 
   #checkout-step-address, #checkout-step-payment, #checkout-step-confirm, #checkout-step-complete {
-<<<<<<< HEAD
     margin-top: 20px;
 
     li {
@@ -293,31 +466,109 @@
   #checkout_form_address {
     h2 {
       margin-left: 20px;
-      padding-bottom: 20px;
+      padding-bottom: 1.5vw;
+    }
+
+    #shipping {
+      padding-top: 1.5vw;
     }
 
     #checkout-address-form  {
-      margin-top: 30px;
+      margin-top: 1.5vw;
     }
   }
 }
 
 #payment {
 
+  #payment-methods {
+    li fieldset > div {
+      margin-top:  15px;
+      margin-bottom: 40px;
+      background-color: #F2F2F2;
+      padding: 30px 30px 20px 30px;
+      @include border-radius(10px);
+    }
+  }
+
+  #secured {
+    margin-left: 25px;
+    margin-top: 10px;
+
+    p, a {
+      @include font-size(13px);
+      color: #CECDCF;
+    }
+
+    a {
+      text-decoration: underline;
+    }
+
+    i {
+      margin-right: 10px;
+    }
+  }
+
+  #payment-method-fields {
+    li label {
+      margin-left: 0px;
+    }
+  }
+
+  #existing_cards {
+    table {
+      width: 100%;
+      color: $tz-content;
+    }
+  }
+
   h2 {
     padding-bottom: 20px;
   }
 
   #card-name {
-    margin-top: 30px;
+    margin-top: 15px;
   }
 
   #credit-card-image {
-    width: auto;
+    // width: auto;
+    margin-bottom: 10px;
+  }
+
+  .errorExplanation, #coupon_status {
+    background-color: $tz-error;
+    color: white;
+    text-align: center;
+    @include font-size(14px);
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 5px;
+    @include border-radius(10px);
+  }
+}
+
+#errorExplanation {
+  background-color: $tz-error;
+  text-align: center;
+  @include font-size(14px);
+  margin-bottom: 40px;
+  padding: 5px;
+  padding-top: 10px;
+  @include border-radius(10px);
+
+  ul li, p {
+    @include font-size(16px);
+    color: white;
+  }
+
+  p {
+    font-weight: 600;
   }
 }
 
 #order_details {
+  color: $tz-content;
+
   h2 {
     padding-bottom: 20px;
   }
@@ -347,68 +598,10 @@
     line-height: 150%;
     div {
       margin-bottom: 10px;
-=======
-    max-height: 395px;
-    width: 40%;
-  }
-=======
-    #checkout-link {
-      // width: 100%;
-      // margin-top: 0px;
-      margin-bottom: 25px;
     }
->>>>>>> Fixed routing issues. Updating CSS and HTML for checkout pages. Updated store defaults
-
-    #update-button {
-      margin-top: 0px;
-      margin-bottom: 20px;
-    }
-  }
-
-  #cart-detail {
-    margin-bottom: 25px;
   }
 }
 
-// checkout
-#checkout {
-  // background-color: #F2F2F2;
-  padding-top: 40px;
-
-  #address-submit {
-    margin-bottom: 50px;
-    text-align: center;
-
-    input[type="submit"] {
-      width: 100%;
-    }
-
-    #save-user-address {
-      label {
-        display: inline;
-      }
-    }
-  }
-
-  #checkout-summary, #returns-summary {
-    background-color: #F2F2F2;
-    padding: 30px;
-    @include border-radius(8px);
-
-<<<<<<< HEAD
-    li, p {
-        @include font-size(14px);
-        line-height: 200%;
->>>>>>> building out user flow
-=======
-    h3 {
-      margin-bottom: 30px;
->>>>>>> Fixed routing issues. Updating CSS and HTML for checkout pages. Updated store defaults
-    }
-  }
-
-<<<<<<< HEAD
-<<<<<<< HEAD
 // products
 #products {
   padding-top: 50px;
@@ -420,12 +613,6 @@
     padding: 40px;
     padding-bottom: 20px;
     margin-top: 20px;
-    @include transition(background-color ease-in-out 0.6s);
-
-    &:hover {
-      background-color: $tz-background-alt;
-      cursor: pointer;
-    }
 
     .product-body {
       .info {
@@ -530,134 +717,5 @@
     #recover-password {
       @include font-size(14px);
     }
-=======
-// orders edit
-#cart-container {
-  margin-top: 50px;
-=======
-  #returns-summary {
-    margin-top: 30px;
-  }
->>>>>>> Fixed routing issues. Updating CSS and HTML for checkout pages. Updated store defaults
-
-  #checkout-content {
-    margin-top: 50px;
-  }
-
-  #checkout-step-address {
-=======
->>>>>>> UI cleanup for confirm and payment. Now sending emails successfully with new email templates
-    margin-top: 20px;
-
-    li {
-      display: inline;
-      margin-right: 20px;
-      a {
-        color: $tz-background-alt;
-      }
-    }
-
-    .active a {
-      font-weight: bold;
-      color: $tz-content;
-    }
-
-    .completed a {
-      color: $tz-active;
-    }
-  }
-
-  #checkout_form_address {
-    h2 {
-      margin-left: 20px;
-      padding-bottom: 20px;
-    }
-
-    #checkout-address-form  {
-      margin-top: 30px;
-    }
-  }
-}
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-  #cart-detail {
-    margin-bottom: 25px;
->>>>>>> building out user flow
-=======
-  #checkout-step-address {
-    li {
-      display: inline;
-=======
-#payment {
-
-  h2 {
-    padding-bottom: 20px;
-  }
-
-  #card-name {
-    margin-top: 30px;
-  }
-
-  #credit-card-image {
-    width: auto;
-  }
-}
-
-#order_details {
-  h2 {
-    padding-bottom: 20px;
-  }
-  h3 {
-    padding-bottom: 20px;
-  }
-  .address.vcard {
-    line-height: 150%;
-    div {
-      margin-bottom: 10px;
-    }
-  }
-}
-
-#order-complete {
-  img {
-    width: auto;
-  }
-
-  h2 {
-    padding-bottom: 20px;
-  }
-  h3 {
-    padding-bottom: 20px;
-  }
-  .address.vcard {
-    line-height: 150%;
-    div {
-      margin-bottom: 10px;
-    }
-  }
-}
-
-// taxons
-#taxons {
-  margin-top: 50px;
-  margin-bottom: 50px;
-
-  .product-list-item  {
-    text-align: center;
-
-    .product-body {
-      margin-bottom: 15px;
-      .info {
-        @include font-size(22px);
-        padding-bottom: 15px;
-      }
-    }
-    .product-footer {
-      margin-bottom: 100px;
-      color: $tz-content;
->>>>>>> UI cleanup for confirm and payment. Now sending emails successfully with new email templates
-    }
->>>>>>> Fixed routing issues. Updating CSS and HTML for checkout pages. Updated store defaults
   }
 }

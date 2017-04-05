@@ -8,6 +8,7 @@
  *= require_self
  *= require_tree .
 <<<<<<< HEAD
+<<<<<<< HEAD
 
  *= require spree/frontend/spree_simple_delivery
  *= require spree/frontend/spree_prescription
@@ -16,4 +17,9 @@
  *= require spree/frontend/spree_social_products
 =======
 >>>>>>> building out user flow
+=======
+ *= require spree/frontend/spree_simple_delivery
+ *= require spree/frontend/spree_prescription
+ *= require spree/frontend/spree_preorder
+>>>>>>> More design changes. Added some migrations from spree extensons. Reorganised some assets
 */

@@ -71,10 +71,10 @@
 =======
   <div class="container" id="store-home-content">
     <!-- optical row -->
-    <div class="row">
+    <div class="row" id=taxon-optical>
       <%= link_to nested_taxons_path(Spree::Taxon.find_by_name('Optical')), class: 'six columns utility-box' do %>
-        <h1>Optical</h1>
-        <p>Browse our range of optical frames &rarr;</p>
+        <h1>Eyeglasses</h1>
+        <p>Browse our unisex eyeglasses frames &rarr;</p>
       <% end %>
       <div class="six columns utility-img">
         <%= image_tag 'frames/ive/ive_black_optical.jpg' %>
@@ -82,15 +82,16 @@
     </div>
 
     <!-- sun row -->
-    <div class="row">
+    <div class="row" id="taxon-sun">
       <div class="six columns utility-img">
         <%= image_tag 'frames/ford/ford_black_sun.jpg' %>
       </div>
 
       <%= link_to nested_taxons_path(Spree::Taxon.find_by_name('Sun')), class: 'six columns utility-box' do %>
-        <h1>Sun</h1>
-        <p>Browse our range of sun frames &rarr;</p>
+        <h1>Sunglasses</h1>
+        <p>Browse our unisex sunglasses frames &rarr;</p>
       <% end %>
     </div>
+
   </div>
 >>>>>>> building out user flow

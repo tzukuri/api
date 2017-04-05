@@ -30,8 +30,5 @@ deploy.sh
 # ignore spree product asset folders
 public/spree/products/
 public/images/prescription/
-
-public/images/prescription
 public/spree
-
 .env
