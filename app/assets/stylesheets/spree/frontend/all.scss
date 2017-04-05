@@ -1,13 +1,45 @@
 @import "core";
 
+// todo: refactor this out
+@import "spree/frontend/spree_prescription";
+@import "spree/frontend/spree_preorder";
+
+.hero {
+  height: 300px;
+
+  .bg.photo {
+    height: 300px;
+    background-image: image-url('headers/store.jpg');
+  }
+
+  .shade {
+    height: 300px;
+  }
+
+  .content {
+    h1 {
+      padding-top: 75px;
+    }
+
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}
+
 // store home content
 #store-home-content {
+  padding-top: 50px;
+  padding-bottom: 50px;
+
+  #taxon-optical {
+    padding-bottom: 50px;
+  }
 
   .utility-img {
     text-align: center;
     img {
-      width: 70%;
-      margin-top: 35px;
+      width: 80%;
+      margin-top: 10px;
     }
   }
 
@@ -15,11 +47,19 @@
     background-color: $tz-inactive;
     padding: 50px;
     @include border-radius(5px);
-    margin-top: 20px;
-    margin-bottom: 20px;
+    @include transition(background-color ease-in-out 0.6s);
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    p {
+      padding-bottom: 0px;
+    }
 
     &:hover {
       cursor: pointer;
+      background-color: $tz-background-alt;
     }
   }
 }
@@ -33,14 +73,20 @@
   padding-bottom: 30px;
   margin-bottom: 50px;
 
-  hr {
-    margin-top: 30px;
-    margin-bottom: 30px;
-  }
-
   #help p,a {
     @include font-size(14px);
   }
+
+  #price {
+    margin-top: 5px;
+  }
+
+  #product-description {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+
 }
 
 #shipping-returns {
@@ -232,22 +278,103 @@
 
 // taxons
 #taxons {
-  margin-top: 50px;
-  margin-bottom: 50px;
+  padding-top: 50px;
+  padding-bottom: 50px;
 
   .product-list-item  {
+    border-radius: 5px;
     text-align: center;
+    padding: 40px;
+    padding-bottom: 20px;
+    margin-top: 20px;
+    @include transition(background-color ease-in-out 0.6s);
+
+    &:hover {
+      background-color: $tz-background-alt;
+      cursor: pointer;
+    }
 
     .product-body {
-      margin-bottom: 15px;
       .info {
         @include font-size(22px);
         padding-bottom: 15px;
       }
+
+      img {
+        margin-bottom: 40px;
+      }
     }
     .product-footer {
-      margin-bottom: 100px;
       color: $tz-content;
     }
   }
+}
+
+// thumbnails
+#product-thumbnails {
+  text-align: center;
+
+  .thumbnail {
+    width: auto;
+  }
+
+  li {
+
+    a {
+      width: 10px;
+      height: 10px;
+      display:block;
+    }
+
+    background-color: $tz-background-alt;
+    border-radius: 50%;
+    margin-left: 10px;
+    display: inline-block;
+
+    &.selected {
+      background-color: $tz-active;
+    }
+  }
+}
+
+// cart info
+.cart-info {
+
+  i {
+    @include font-size(22px);
+  }
+
+  &:hover {
+    border-bottom: none;
+    color: $tz-active;
+  }
+
+  &.empty {}
+  &.full {}
+}
+
+// product_properties
+#product_properties {
+  dt, dd {
+    color: $tz-content;
+    margin-bottom: 15px;
+  }
+
+  dt {
+    float: left;
+    clear: left;
+    margin-right: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    min-width: 100px;
+  }
+
+  dd {
+    margin-left: 0px;
+  }
+}
+
+// store show
+#main-image {
+  margin-top: 20%;
 }

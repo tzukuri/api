@@ -57,6 +57,12 @@ gem 'spree_gateway', '~> 3.1.0'
 gem 'spree_dynamic_variants', github: 'hefan/spree_dynamic_variants', branch: 'master'
 gem 'spree_social_products', github: 'spree-contrib/spree_social_products', branch: 'master'
 
+# tzukuri spree extensions
+gem 'spree_simple_delivery', path: '../spree/spree_simple_delivery'
+gem 'spree_prescription', path: '../spree/spree_prescription'
+gem 'spree_preorder', path: '../spree/spree_preorder'
+gem 'spree_garbage_cleaner', path: '../spree/spree-garbage-cleaner'
+
 group :test do
   gem 'minitest-reporters', '1.0.5'
   gem 'mini_backtrace',     '0.1.3'

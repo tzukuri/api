@@ -12,3 +12,5 @@
 //= require spree/frontend/spree_auth
 //= require spree/frontend/spree_dynamic_variants
 //= require spree/frontend/spree_social_products
+//= require spree/frontend/spree_prescription
+//= require spree/frontend/spree_preorder

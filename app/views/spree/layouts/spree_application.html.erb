@@ -9,14 +9,23 @@
 
     <link rel="stylesheet" media="screen" href="/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css">
     <link rel="stylesheet" media="screen" href="/fonts/pe-icon-7-filled/css/pe-icon-7-filled.css">
-    
+
   </head>
   <body class="<%= body_class %>" id="<%= @body_id || 'default' %>" data-hook="body">
     <%= render partial: 'spree/shared/google_analytics.js' %>
     <%= render partial: 'spree/shared/header' %>
 
     <div class="u-full-width main" data-hook>
-      <div class="hero" style="background-color: gray;"></div>
+
+      <div class="hero store">
+        <div class="bg photo"></div>
+        <div class="bg shade"></div>
+        <div class="container content">
+          <h1>online store</h1>
+          <p>buy your unlosable glasses online</p>
+          <!-- <h2>Try our range in both optical and sun</h2> -->
+        </div>
+      </div>
 
       <%#= breadcrumbs(@taxon) %>
 
@@ -25,7 +34,7 @@
       <%= yield %>
 
       <%= yield :templates %>
-    </div
+    </div>
 
   </body>
 

@@ -27,7 +27,11 @@ deploy.sh
 .idea/
 .DS_Store
 
-.env
+# ignore spree product asset folders
+public/spree/products/
+public/images/prescription/
 
 public/images/prescription
 public/spree
+
+.env

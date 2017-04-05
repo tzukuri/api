@@ -7,4 +7,7 @@
 
  *= require_self
  *= require_tree .
+ *= require spree/frontend/spree_simple_delivery
+ *= require spree/frontend/spree_prescription
+ *= require spree/frontend/spree_preorder
 */

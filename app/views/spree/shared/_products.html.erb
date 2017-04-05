@@ -17,29 +17,29 @@
 </div>
 
 <% if products.any? %>
-  <div id="products row" data-hook>
-    <% products.each do |product| %>
-      <% url = spree.product_path(product, taxon_id: @taxon.try(:id)) %>
-
-      <div id="product_<%= product.id %>" class="product-list-item six columns"  itemscope itemtype="https://schema.org/Product">
-        <% cache(@taxon.present? ? [I18n.locale, current_currency, @taxon, product] : cache_key_for_product(product)) do %>
-          <div class="product-body">
-            <%= link_to url, itemprop: "url" do %>
+  <% products.each_slice(2) do |slice| %>
+    <div class="products row">
+      <% slice.each do |product| %>
+        <% url = spree.product_path(product, taxon_id: @taxon.try(:id)) %>
+        <%= link_to url, itemprop: "url" do %>
+        <div id="product_<%= product.id %>" class="product-list-item six columns"  itemscope itemtype="https://schema.org/Product">
+          <% cache(@taxon.present? ? [I18n.locale, current_currency, @taxon, product] : cache_key_for_product(product)) do %>
+            <div class="product-body">
               <%= product_image(product, itemprop: 'image') %>
               <%= content_tag(:span, truncate(product.name, length: 50), class: 'info', itemprop: 'name', title: product.name) %>
-            <% end %>
-          </div>
-
-          <div class="product-footer">
-            <span itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-              <span class="price selling lead" itemprop="price"><%= display_price(product) %></span>
-            </span>
-          </div>
+            </div>
+            <div class="product-footer">
+              <span itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                <span class="price selling lead" itemprop="price"><%= display_price(product) %></span>
+              </span>
+            </div>
+          <% end %>
+        </div>
         <% end %>
-      </div>
-    <% end %>
-    <% reset_cycle("classes") %>
-  </div>
+      <% end %>
+      <% reset_cycle("classes") %>
+    </div>
+  <% end %>
 <% end %>
 
 <% if products.respond_to?(:total_pages) %>

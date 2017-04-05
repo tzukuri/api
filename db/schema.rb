@@ -760,6 +760,16 @@ ActiveRecord::Schema.define(version: 20170316221952) do
 
   add_index "spree_preferences", ["key"], name: "index_spree_preferences_on_key", unique: true, using: :btree
 
+  create_table "spree_prescriptions", force: :cascade do |t|
+    t.integer  "spree_order_id"
+    t.integer  "spree_line_item_id"
+    t.string   "method"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
+  end
+
   create_table "spree_prices", force: :cascade do |t|
     t.integer  "variant_id",                          null: false
     t.decimal  "amount",     precision: 10, scale: 2
@@ -820,6 +830,8 @@ ActiveRecord::Schema.define(version: 20170316221952) do
     t.string   "meta_title"
     t.datetime "discontinue_on"
     t.boolean  "dynamic_variants",     default: false
+    t.boolean  "accepts_prescription", default: false
+    t.boolean  "preorder",             default: false
   end
 
   add_index "spree_products", ["available_on"], name: "index_spree_products_on_available_on", using: :btree

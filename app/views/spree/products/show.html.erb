@@ -8,7 +8,7 @@
         <div class="seven columns" data-hook="product_left_part">
           <div id="product-images" data-hook="product_images">
             <!-- main product image -->
-            <div id="main-image" style="text-align: center; height: 500px" data-hook>
+            <div id="main-image" style="text-align: center;" data-hook>
               <%= product_image(@product, itemprop: "image") %>
             </div>
 
@@ -17,49 +17,29 @@
               <%= render partial: 'thumbnails' %>
             </div>
 
-            <!-- <div data-hook="product_properties">
-              <%= render partial: 'properties' %>
-            </div> -->
 
           </div>
         </div>
         <!-- order input column -->
         <div class="five columns" data-hook="product_right_part">
-        <div id="product-description" data-hook="product_description">
-          <h1 class="product-title" itemprop="name"><%= @product.name %></h1>
+          <div id="product-description" data-hook="product_description">
+            <h1 class="product-title" itemprop="name"><%= @product.name %></h1>
 
-          <p><%= display_price(@product) %> <%= @product.currency %></p>
+            <p id="price"><%= display_price(@product) %> <%= @product.currency %></p>
 
-          <div itemprop="description" data-hook="description">
-            <p><%= product_description(@product) %></p>
+            <div id="product-description" itemprop="description" data-hook="description">
+              <p><%= product_description(@product) %></p>
+            </div>
+
+            <div id="cart-form" data-hook="cart_form">
+              <%= render partial: 'cart_form' %>
+            </div>
           </div>
-
-          <div id="cart-form" data-hook="cart_form">
-            <%= render partial: 'cart_form' %>
-          </div>
-
-          <br/>
-          <hr/>
-
-          <div id="help">
-            <p>If you have any questions, or need help choosing the perfect pair, please <a href="">get in touch</a>.</p>
-          </div>
-
         </div>
-
-        <!-- <div id="taxon-crumbs" class=" five " data-hook="product_taxons">
-          <%= render partial: 'taxons' %>
-        </div> -->
-      </div>
       </div>
     </div>
   </div>
 
-  <!-- <div class="container">
-    <div data-hook="product_properties">
-      <%= render partial: 'properties' %>
-    </div>
-  </div> -->
 
   <!-- product detail -->
   <div class="container">
