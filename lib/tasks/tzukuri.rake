@@ -8,7 +8,7 @@ namespace :tzukuri do
 
   namespace :diag do
 
-    desc "get a list of production users"
+    desc "get a list of users that have a production pair of glasses linked to their account"
     task :prod_users => :environment do
       production_devices = Device.where(hardware_revision: "Rev3E")
 
@@ -20,10 +20,29 @@ namespace :tzukuri do
       out_str = "name, email\n"
 
       prod_users.each do |user|
-        out_str << "#{user.name}, #{user.email}"
+        out_str << "#{user.name}, #{user.email}\n"
       end
 
       write_report(out_str, "prod_users", "report_#{Time.now.strftime('%s')}.csv")
+    end
+
+
+    desc "get a list of users that have a beta pair of glasses linked to their account"
+    task :beta_users => :environment do
+      beta_devices = Device.where(hardware_revision: "Beta 😎")
+
+      beta_users = []
+      beta_devices.each do |d|
+        beta_users << d.current_owner if !d.current_owner.nil?
+      end
+
+      out_str = "name, email\n"
+
+      beta_users.each do |user|
+        out_str << "#{user.name}, #{user.email}\n"
+      end
+
+      write_report(out_str, "beta_users", "report_#{Time.now.strftime('%s')}.csv")
     end
 
     desc "How long does the battery last on a user's glasses?"
