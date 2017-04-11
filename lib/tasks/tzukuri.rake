@@ -7,6 +7,25 @@ include ActionView::Helpers::DateHelper
 namespace :tzukuri do
 
   namespace :diag do
+
+    desc "get a list of production users"
+    task :prod_users => :environment do
+      production_devices = Device.where(hardware_revision: "Rev3E")
+
+      prod_users = []
+      production_devices.each do |d|
+        prod_users << d.current_owner if !d.current_owner.nil?
+      end
+
+      out_str = "name, email\n"
+
+      prod_users.each do |user|
+        out_string << "#{user.name}, #{user.email}"
+      end
+
+      write_report(out_str, "prod_users", "report_#{Time.now.strftime('%s')}.csv")
+    end
+
     desc "How long does the battery last on a user's glasses?"
     task :battery_readings => :environment do
       sync_tokens, dates = parse_args(ENV)
