@@ -33,6 +33,31 @@ namespace :tzukuri do
       end
     end
 
+    desc "generate a single CSV battery report for all production users"
+    task :agg_prod_battery_report => :environment do
+      prod_users = get_production_users
+      start_time = Time.now.strftime('%s')
+      out_str = "time, value\n"
+
+      prod_users.each do |user|
+        puts "generating report for #{user.name}"
+
+          user.auth_tokens.each do |auth_token|
+            puts "generating csv for #{auth_token.diagnostics_sync_token}"
+
+            Tzukuri::Diagnostics.analyse(
+              sync_tokens: [auth_token.diagnostics_sync_token],
+              entry_types: ['bleReadBattery']
+            ) { |entry|
+              out_str << "#{entry.time}, #{entry.value.to_i}, #{auth_token.diagnostics_sync_token}\n"
+            }
+          end
+      end
+
+      write_report(out_str, "agg_prod_report", "report_#{Time.now.strftime('%s')}.csv")
+    end
+
+
     desc "get a list of users that have a production pair of glasses linked to their account"
     task :prod_users => :environment do
       prod_users = get_production_users
