@@ -57,6 +57,30 @@ namespace :tzukuri do
       write_report(out_str, "agg_prod_report", "report_#{Time.now.strftime('%s')}.csv")
     end
 
+    desc "generate a single CSV battery report for all beta users"
+    task :agg_beta_battery_report => :environment do
+      beta_users = get_beta_users
+      start_time = Time.now.strftime('%s')
+      out_str = "time, value\n"
+
+      beta_users.each do |user|
+        puts "generating report for #{user.name}"
+
+          user.auth_tokens.each do |auth_token|
+            puts "generating csv for #{auth_token.diagnostics_sync_token}"
+
+            Tzukuri::Diagnostics.analyse(
+              sync_tokens: [auth_token.diagnostics_sync_token],
+              entry_types: ['bleReadBattery']
+            ) { |entry|
+              out_str << "#{entry.time}, #{entry.value.to_i}, #{auth_token.diagnostics_sync_token}\n"
+            }
+          end
+      end
+
+      write_report(out_str, "agg_beta_report", "report_#{Time.now.strftime('%s')}.csv")
+    end
+
 
     desc "get a list of users that have a production pair of glasses linked to their account"
     task :prod_users => :environment do
@@ -229,6 +253,17 @@ namespace :tzukuri do
       end
 
       return prod_users
+    end
+
+    def get_beta_users
+      beta_devices = Device.where(hardware_revision: "Beta 😎")
+
+      beta_users = []
+      beta_devices.each do |d|
+        beta_users << d.current_owner if !d.current_owner.nil?
+      end
+
+      return beta_users
     end
 
     def parse_args(env)
