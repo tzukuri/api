@@ -58,10 +58,10 @@ gem 'spree_dynamic_variants', github: 'hefan/spree_dynamic_variants', branch: 'm
 gem 'spree_social_products', github: 'spree-contrib/spree_social_products', branch: 'master'
 
 # tzukuri spree extensions
-gem 'spree_garbage_cleaner', git: 'git@github.com:tzukuri/spree-garbage-cleaner.git'
-gem 'spree_simple_delivery', git: 'git@github.com:tzukuri/spree_simple_delivery.git'
-gem 'spree_prescription', git: 'git@github.com:tzukuri/spree_prescription.git'
-gem 'spree_preorder', git: 'git@github.com:tzukuri/spree_preorder.git'
+gem 'spree_garbage_cleaner', git: 'https://github.com/tzukuri/spree-garbage-cleaner.git'
+gem 'spree_simple_delivery', git: 'https://github.com/tzukuri/spree_simple_delivery.git'
+gem 'spree_prescription', git: 'https://github.com/tzukuri/spree_prescription.git'
+gem 'spree_preorder', git: 'https://github.com/tzukuri/spree_preorder.git'
 # gem 'spree_simple_delivery', path: '../spree/spree_simple_delivery'
 # gem 'spree_prescription', path: '../spree/spree_prescription'
 # gem 'spree_preorder', path: '../spree/spree_preorder'
