@@ -1,0 +1,14 @@
+<% @body_id = 'login' %>
+<div class="container" id="login-container">
+  <h3 id="login-title"><%= Spree.t(:login_as_existing) %></h3>
+  <div id="existing-customer" data-hook="login">
+      <% if flash[:alert] %>
+        <div class="alert alert-danger"><%= flash[:alert] %></div>
+      <% end %>
+      <%= render :partial => 'spree/shared/login' %>
+      <div style="text-align: center">
+        <%= link_to Spree.t(:forgot_password), spree.recover_password_path, id: 'recover-password' %>
+      </div>
+      <div data-hook="login_extras"></div>
+  </div>
+</div>

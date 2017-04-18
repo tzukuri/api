@@ -274,8 +274,8 @@
   }
 }
 
-// taxons
-#taxons {
+// products
+#products {
   padding-top: 50px;
   padding-bottom: 50px;
 
@@ -375,4 +375,25 @@
 // store show
 #main-image {
   margin-top: 20%;
+}
+
+
+// login form
+
+#login-container {
+  padding-bottom: 30px;
+
+  #login-title {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin-left: 25%;
+  }
+  #existing-customer {
+    width: 50%;
+    margin: 0 auto;
+
+    #recover-password {
+      @include font-size(14px);
+    }
+  }
 }

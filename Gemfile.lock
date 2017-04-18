@@ -43,7 +43,7 @@ GIT
 
 GIT
   remote: https://github.com/tzukuri/spree_preorder.git
-  revision: 530595cc9558b9405ce51bfc380855ba1bf9f0cf
+  revision: 235bed278686e7c5b9ac4defa686d80baed84a27
   specs:
     spree_preorder (3.1.4)
       spree_core (~> 3.1.4)

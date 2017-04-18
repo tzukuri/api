@@ -1,3 +1,5 @@
+<div class="container" id="products">
+
 <% content_for :head do %>
   <% if products.respond_to?(:total_pages) %>
     <%= rel_next_prev_link_tags products %>
@@ -45,3 +47,4 @@
 <% if products.respond_to?(:total_pages) %>
   <%= paginate products, theme: 'twitter-bootstrap-3' %>
 <% end %>
+</div>
