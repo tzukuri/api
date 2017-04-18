@@ -1,25 +1,12 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 <div id="taxons">
-  <!-- <h1 class="taxon-title"><%= @taxon.name %></h1> -->
-=======
-<div class="container">
-=======
-<div class="container" id="taxons">
-<<<<<<< HEAD
->>>>>>> UI cleanup for confirm and payment. Now sending emails successfully with new email templates
-  <h1 class="taxon-title"><%= @taxon.name %></h1>
-=======
-  <!-- <h1 class="taxon-title"><%= @taxon.name %></h1> -->
->>>>>>> More design changes. Added some migrations from spree extensons. Reorganised some assets
 
-  <!-- <% content_for :sidebar do %>
-    <div data-hook="taxon_sidebar_navigation">
-      <%= render partial: 'spree/shared/taxonomies' %>
-      <%= render partial: 'spree/shared/filters' if @taxon.leaf? %>
+  <div class="hero taxon">
+    <div class="bg photo"></div>
+    <div class="bg shade"></div>
+    <div class="container content">
+      <h1><%= @taxon.name %></h1>
     </div>
-  <% end %> -->
->>>>>>> building out user flow
+  </div>
 
   <div data-hook="taxon_products">
     <%= render partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon } %>
