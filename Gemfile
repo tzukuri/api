@@ -32,6 +32,7 @@ gem 'nokogiri', '~> 1.6.7.2'
 gem 'parallel'
 gem 'ruby-progressbar'
 gem 'createsend'
+gem 'gon'
 
 #omniauth strategies
 gem 'omniauth-twitter'
@@ -54,7 +55,6 @@ gem 'sentry-raven'
 gem 'spree', '~> 3.1.0'
 gem 'spree_auth_devise', '~> 3.1.0'
 gem 'spree_gateway', '~> 3.1.0'
-gem 'spree_dynamic_variants', github: 'hefan/spree_dynamic_variants', branch: 'master'
 gem 'spree_social_products', github: 'spree-contrib/spree_social_products', branch: 'master'
 
 # tzukuri spree extensions
@@ -63,12 +63,14 @@ gem 'spree_simple_delivery', git: 'https://github.com/tzukuri/spree_simple_deliv
 gem 'spree_prescription', git: 'https://github.com/tzukuri/spree_prescription.git'
 gem 'spree_preorder', git: 'https://github.com/tzukuri/spree_preorder.git'
 gem 'spree_createsend', git: 'https://github.com/tzukuri/spree_createsend.git'
+gem 'spree_dynamic_variants', git: 'https://github.com/tzukuri/spree_dynamic_variants.git'
 
 # gem 'spree_simple_delivery', path: '../spree/spree_simple_delivery'
 # gem 'spree_prescription', path: '../spree/spree_prescription'
 # gem 'spree_preorder', path: '../spree/spree_preorder'
 # gem 'spree_garbage_cleaner', path: '../spree/spree-garbage-cleaner'
 # gem 'spree_createsend', path: '../spree/spree_createsend'
+# gem 'spree_dynamic_variants', path: '../spree/spree_dynamic_variants'
 
 group :test do
   gem 'minitest-reporters', '1.0.5'
