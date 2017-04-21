@@ -1,12 +1,4 @@
 GIT
-  remote: git://github.com/hefan/spree_dynamic_variants.git
-  revision: 70e848131567f74229442ea8ae136b616ba7ae8d
-  branch: master
-  specs:
-    spree_dynamic_variants (3.2.0)
-      spree_core (> 3.1)
-
-GIT
   remote: git://github.com/spree-contrib/spree_social_products.git
   revision: a7b7bb1b36914e6bc4f744c13947caed0b04e098
   branch: master

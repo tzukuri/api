@@ -6,30 +6,14 @@
 <!--[if gt IE 9]><!--><html lang="<%= I18n.locale %>"><!--<![endif]-->
   <head data-hook="inside_head">
     <%= render partial: 'spree/shared/head' %>
-<<<<<<< HEAD
-<<<<<<< HEAD
 
     <link rel="stylesheet" media="screen" href="/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css">
     <link rel="stylesheet" media="screen" href="/fonts/pe-icon-7-filled/css/pe-icon-7-filled.css">
-=======
->>>>>>> * Added Spree 3.1
-=======
-
-    <link rel="stylesheet" media="screen" href="/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css">
-    <link rel="stylesheet" media="screen" href="/fonts/pe-icon-7-filled/css/pe-icon-7-filled.css">
-<<<<<<< HEAD
-    
->>>>>>> building out user flow
-=======
-
->>>>>>> More design changes. Added some migrations from spree extensons. Reorganised some assets
   </head>
   <body class="<%= body_class %>" id="<%= @body_id || 'default' %>" data-hook="body">
     <%= render partial: 'spree/shared/google_analytics.js' %>
     <%= render partial: 'spree/shared/header' %>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     <div class="u-full-width main" data-hook>
 
       <div class="hero store">
@@ -41,8 +25,6 @@
         </div>
       </div>
 
-      <%#= render partial: 'spree/shared/sidebar' if content_for? :sidebar %>
-
       <%= yield %>
 
       <%= yield :templates %>
@@ -53,37 +35,4 @@
   <!-- tzukuri footer -->
   <%= render partial: 'layouts/site_footer' %>
 
-=======
-    <div class="container">
-      <div class="row" data-hook>
-        <%= breadcrumbs(@taxon) %>
-=======
-    <div class="u-full-width main" data-hook>
-
-      <div class="hero store">
-        <div class="bg photo"></div>
-        <div class="bg shade"></div>
-        <div class="container content">
-          <h1>online store</h1>
-          <p>buy your unlosable glasses online</p>
-        </div>
-      </div>
-
-      <%#= render partial: 'spree/shared/sidebar' if content_for? :sidebar %>
->>>>>>> building out user flow
-
-      <%= yield %>
-
-      <%= yield :templates %>
-    </div>
-
-  </body>
-<<<<<<< HEAD
->>>>>>> * Added Spree 3.1
-=======
-
-  <!-- tzukuri footer -->
-  <%= render partial: 'layouts/site_footer' %>
-
->>>>>>> building out user flow
 </html>
