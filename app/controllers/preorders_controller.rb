@@ -13,7 +13,7 @@ class PreordersController < ApplicationController
         handle_invalid_token
         return
       else
-        handle_payment(Tzukuri::FULL_PRICE)
+        handle_payment(price)
       end
     end
 
@@ -23,9 +23,14 @@ class PreordersController < ApplicationController
         params.permit(:name, :email, :phone, {address_lines: []}, :country, :state, :postal_code, :utility, :frame, :size, :lens, :prescription_method, :customer_id, :charge_id, :token, :coupon)
     end
 
+    def price
+        isPrescription = (preorder_params['lens'] != 'Non-Prescription')
+        isPrescription ? Tzukuri::PRESCRIPTION_PRICE : Tzukuri::NONPRESCRIPTION_PRICE
+    end
+
     # calculate the coupon discount and then call handle payment to make the payment
     def handle_coupon(coupon)
-      amount = coupon.apply_discount(Tzukuri::FULL_PRICE)
+      amount = coupon.apply_discount(price)
       handle_payment(amount, coupon)
     end
 

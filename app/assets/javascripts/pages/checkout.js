@@ -54,9 +54,16 @@ var el, couponTimer, order, CheckoutWidget = {
     token: undefined
   },
 
+  pricing: {
+    displayed: tzukuri.pricing.nonprescriptionPrice,
+    frame: tzukuri.pricing.nonprescriptionPrice,
+    discount: 0.0
+  },
+
   init: function() {
     el = this.elements
     order = _.clone(this.order)
+    pricing = _.clone(this.pricing);
 
     this.bindUIActions()
 
@@ -321,9 +328,13 @@ var el, couponTimer, order, CheckoutWidget = {
       el.orderForm.fadeIn()
       el.paymentForm.fadeIn()
       el.prescriptionSelect.prop('selectedIndex', 0);
+      pricing.frame = tzukuri.pricing.nonprescriptionPrice;
     } else {
       el.prescriptionFormGroup.fadeIn()
+      pricing.frame = order.frame = tzukuri.pricing.prescriptionPrice;
     }
+
+    CheckoutWidget.updatePrice();
   },
 
   // called when the prescription delivery select is changed
@@ -360,19 +371,29 @@ var el, couponTimer, order, CheckoutWidget = {
   },
 
   handleCoupon: function(coupon) {
-    var finalAmount = 485
-    finalAmount -= (coupon.discount / 100)
-    CheckoutWidget.updatePrice(finalAmount)
+    pricing.discount = coupon.discount;
+    CheckoutWidget.updatePrice();
   },
 
   // update the price on the view
-  updatePrice: function(newPrice) {
-    // update the values and pulse to bring focus
-    $("#total-selection").html(newPrice + " AUD")
-    $("#reserve-for").html("reserve for " + newPrice + " AUD")
+  updatePrice: function() {
+      var price = pricing.frame;
+      if (pricing.discount > 0.0) {
+          price -= (pricing.discount / 100);
+      }
 
-    $("#reserve-submit").tzAnimate('pulse')
-    $("#total-selection").tzAnimate('pulse')
+      if (price == pricing.displayed) {
+          return;
+      }
+
+      // update the values and pulse to bring focus
+      $("#total-selection").html(price + " AUD");
+      $("#reserve-for").html("reserve for " + price + " AUD");
+
+      $("#reserve-submit").tzAnimate('pulse');
+      $("#total-selection").tzAnimate('pulse');
+
+      pricing.displayed = price;
   },
 
   // make a request to the server to validate the coupon
@@ -389,7 +410,8 @@ var el, couponTimer, order, CheckoutWidget = {
           CheckoutWidget.handleCoupon(data.token)
         } else {
           // no coupon
-          CheckoutWidget.updatePrice(485)
+          pricing.discount = 0.0;
+          CheckoutWidget.updatePrice();
         }
       })
     }, 300)

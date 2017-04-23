@@ -9,5 +9,7 @@ module Tzukuri
   NUM_THRESHOLD_USERS     = 100     # number of users that will be selected during the beta program
 
   # model pricing
-  FULL_PRICE = 485 * 100;
+  FULL_PRICE = 485 * 100
+  PRESCRIPTION_PRICE = 485 * 100
+  NONPRESCRIPTION_PRICE = 385 * 100
 end
