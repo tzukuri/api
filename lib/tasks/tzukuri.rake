@@ -25,7 +25,7 @@ namespace :tzukuri do
             sync_tokens: [auth_token.diagnostics_sync_token],
             entry_types: ['bleDisconnected']
           ) { |entry|
-            out_str << "#{entry.time}, #{entry.value.to_i}\n"
+            out_str << "#{entry.time}, bleDisconnected\n"
           }
 
           write_report(out_str, "prod_disconnect_report/#{start_time}/#{user.email}", "report_#{Time.now.strftime('%s')}_#{auth_token.diagnostics_sync_token}.csv")
