@@ -331,7 +331,7 @@ var el, couponTimer, order, CheckoutWidget = {
       pricing.frame = tzukuri.pricing.nonprescriptionPrice;
     } else {
       el.prescriptionFormGroup.fadeIn()
-      pricing.frame = order.frame = tzukuri.pricing.prescriptionPrice;
+      pricing.frame = tzukuri.pricing.prescriptionPrice;
     }
 
     CheckoutWidget.updatePrice();
