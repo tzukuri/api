@@ -8,6 +8,31 @@ namespace :tzukuri do
 
   namespace :diag do
 
+    desc "generate a disconnect report for all production users"
+    task :prod_disconnect_report => :environment do
+      prod_users = get_production_users
+      start_time = Time.now.strftime('%s')
+
+      prod_users.each do |user|
+        puts "generating report for #{user.name}"
+
+        user.auth_tokens.each do |auth_token|
+          puts "generating csv for #{auth_token.diagnostics_sync_token}"
+
+          out_str = "time, value\n"
+
+          Tzukuri::Diagnostics.analyse(
+            sync_tokens: [auth_token.diagnostics_sync_token],
+            entry_types: ['bleDisconnected']
+          ) { |entry|
+            out_str << "#{entry.time}, bleDisconnected\n"
+          }
+
+          write_report(out_str, "prod_disconnect_report/#{start_time}/#{user.email}", "report_#{Time.now.strftime('%s')}_#{auth_token.diagnostics_sync_token}.csv")
+        end
+      end
+    end
+
     desc "generate a battery report for all production users"
     task :prod_battery_report => :environment do
       prod_users = get_production_users
