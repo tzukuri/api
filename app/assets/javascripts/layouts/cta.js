@@ -30,6 +30,8 @@ $(function() {
     $('#cant-decide').on('ajax:success', function(e, data, status, xhr) {
         if ((data != null) && (data.success == true)) {
             showStatus('thanks', "we'll be in touch asap to see how we can help");
+            fbq('track', 'Lead');
+            ga('send', 'event', 'mailing-list', 'register');
         } else {
             var text = DEFAULT_ERROR_TEXT;
             if (data.reason != null)

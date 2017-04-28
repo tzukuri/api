@@ -177,3 +177,9 @@
         Stripe.setPublishableKey('pk_live_VAzrbCZ5hRh2i3tXpoS9GL5I');
     <% end %>
 </script>
+
+<% content_for :javascript_includes do %>
+  <script>
+    fbq('track', 'InitiateCheckout');
+  </script>
+<% end %>

@@ -9,9 +9,6 @@ Rails.application.config.assets.version = '1.0'
 # precompile the core manifests
 Rails.application.config.assets.precompile += %w(core.js core.css)
 
-# make the fb js file available
-Rails.application.config.assets.precompile += %w(fb.js)
-
 # precompile the individual javascript for each page
 # todo: figure out why index.js does not get caught in pages/*.js
 Rails.application.config.assets.precompile += %w(pages/*.js pages/index.js)

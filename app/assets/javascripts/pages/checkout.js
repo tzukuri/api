@@ -255,7 +255,11 @@ var el, couponTimer, order, CheckoutWidget = {
         // one or more form fields are invalid
         CheckoutWidget.setFormError("Some fields are missing or invalid.")
         return
-    };
+    } else {
+      try {
+        fbq('track', 'AddPaymentInfo');
+      } catch(e) {}
+    }
 
     CheckoutWidget.showFormSpinner(true)
 
@@ -286,6 +290,15 @@ var el, couponTimer, order, CheckoutWidget = {
             });
 
             ga('ecommerce:send');
+
+            try {
+              fbq('track', 'Purchase', {
+                content_ids: [data.sku],
+                content_type: 'product',
+                value: data.amount,
+                currency: 'AUD'
+              });
+            } catch(e) {}
 
             el.orderDiv.fadeOut(function() {
               el.orderCompleteDiv.fadeIn()

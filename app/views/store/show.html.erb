@@ -221,3 +221,16 @@
     </div>
 
 </div>
+
+<% content_for :javascript_includes do %>
+  <script>
+    var sku = '<%= @frame.upcase %><%= (@utility == 'Optical') ? '-OP' : '-SU' %>-RE-NP';
+    fbq('track', 'ViewContent', {
+      content_ids: [sku],
+      content_type: 'product',
+      value: 385.0,
+      currency: 'AUD'
+    });
+  </script>
+<% end %>
+
