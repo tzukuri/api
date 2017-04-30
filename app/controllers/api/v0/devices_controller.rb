@@ -78,7 +78,7 @@ class Api::V0::DevicesController < Api::ApiController
 
       detail = params.require(:device).permit(:design, :colour, :size, :pin)
 
-      render_error if detail[:design].blank? || detail[:colour].blank? || detail[:size].blank? || detail[:pin].blank?
+      render_error(:validation_error) if detail[:design].blank? || detail[:colour].blank? || detail[:size].blank? || detail[:pin].blank?
 
       @device.update_attributes(detail)
 
