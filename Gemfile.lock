@@ -364,6 +364,8 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    sentry-raven (2.4.0)
+      faraday (>= 0.7.6, < 1.0)
     shellany (0.0.1)
     simple_oauth (0.3.1)
     sinatra (1.4.7)
@@ -457,6 +459,7 @@ DEPENDENCIES
   ruby_rncryptor (~> 3.0.0)
   sass-rails
   sdoc (~> 0.4.0)
+  sentry-raven
   stripe!
   therubyracer
   turbolinks

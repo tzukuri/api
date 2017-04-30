@@ -5,10 +5,10 @@ module Api::ResponseRendering
         # rescue all other exceptions. handlers are checked
         # bottom to top so this handler will be checked last
         rescue_from StandardError do |exception|
-            # print exception and add to appsignal
+            # print exception and add to sentry
             Rails.logger.warn exception.inspect
             Rails.logger.warn exception.backtrace.join("\n")
-            # Appsignal.add_exception(exception)
+            Raven.capture_exception(exception)
             payload = response_for_error(:unknown_error)
             render json: payload, status: 500
         end
@@ -20,7 +20,7 @@ module Api::ResponseRendering
 
         # callbacks returned false and prevented save
         rescue_from ActiveRecord::RecordNotSaved do |exception|
-            # Appsignal.add_exception(exception)
+            Raven.capture_exception(exception)
             payload = response_for_error(:unknown_error)
             render json: payload, status: 400
         end
@@ -39,7 +39,7 @@ module Api::ResponseRendering
         # lookup failed. these should be handled by the action,
         # so this is considered an implementation error
         rescue_from ActiveRecord::RecordNotFound do |exception|
-            # Appsignal.add_exception(exception)
+            Raven.capture_exception(exception)
             payload = response_for_error(:unknown_record)
             render json: payload, status: 404
         end
@@ -65,7 +65,7 @@ module Api::ResponseRendering
 
     private
         def response_for_error(error, other_data = {})
-            # Appsignal.increment_counter(error.to_s, 1)
+            Raven.capture_message(error.to_s)
             {
                 success: false,
                 error: error.to_s,

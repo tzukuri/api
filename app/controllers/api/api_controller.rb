@@ -53,5 +53,6 @@ class Api::ApiController < ApplicationController
 
         # "log the user in" by retrieving the user record
         @user = @token.user
+        Raven.user_context(id: @user.id) unless @user.nil?
     end
 end

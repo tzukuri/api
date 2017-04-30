@@ -34,5 +34,9 @@ module Api
     # so we can use sub directories within the models and controllers folders
     config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**}')]
     config.autoload_paths += Dir[Rails.root.join('app', 'controllers', '{**}')]
+
+    Raven.configure do |config|
+      config.dsn = 'https://f6fea340882946bba108b769cc6bab88:51018425337e425eb0881c0209564573@sentry.io/163344'
+    end
   end
 end
