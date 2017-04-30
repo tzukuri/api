@@ -79,6 +79,10 @@
         <% end %>
     </body>
 
+    <script src="https://cdn.ravenjs.com/3.14.2/raven.min.js"></script>
+    <script>
+        Raven.config('https://f6fea340882946bba108b769cc6bab88@sentry.io/163344').install()
+    </script>
     <%= javascript_include_tag 'core' %>
     <%= yield :javascript_includes %>
 
