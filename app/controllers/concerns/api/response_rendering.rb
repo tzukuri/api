@@ -66,10 +66,10 @@ module Api::ResponseRendering
     private
         def response_for_error(error, other_data = {})
             # Appsignal.increment_counter(error.to_s, 1)
-            # {
-            #     success: false,
-            #     error: error.to_s,
-            #     description: I18n.t(error.to_s)
-            # }.merge(other_data)
+            {
+                success: false,
+                error: error.to_s,
+                description: I18n.t(error.to_s)
+            }.merge(other_data)
         end
 end
