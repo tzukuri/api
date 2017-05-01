@@ -459,9 +459,23 @@ $(function() {
     })
 
     // handle url params
-    var frameParam = $.urlParam('frame')
-    var utilityParam = $.urlParam('utility')
+    var frameParam = $.urlParam('frame');
+    var utilityParam = $.urlParam('utility');
 
-    CheckoutWidget.init()
-    CheckoutWidget.selectModel(frameParam, utilityParam)
+    // facebook "add to cart" followed immediately by initiating checkout
+    var sku = frameParam.toUpperCase();
+    sku += (utilityParam == 'Optical') ? '-OP' : '-SU';
+    sku += '-RE-NP';
+
+    fbq('track', 'AddToCart', {
+      content_ids: [sku],
+      content_type: 'product',
+      value: 385.0,
+      currency: 'AUD'
+    });
+    
+    fbq('track', 'InitiateCheckout');
+
+    CheckoutWidget.init();
+    CheckoutWidget.selectModel(frameParam, utilityParam);
 });
