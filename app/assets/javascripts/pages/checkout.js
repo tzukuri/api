@@ -300,6 +300,8 @@ var el, couponTimer, order, CheckoutWidget = {
               });
             } catch(e) {}
 
+            try{ __adroll.record_user({"adroll_segments": "jl6pndx8"})} catch(err) {}
+
             el.orderDiv.fadeOut(function() {
               el.orderCompleteDiv.fadeIn()
             })
@@ -473,7 +475,7 @@ $(function() {
       value: 385.0,
       currency: 'AUD'
     });
-    
+
     fbq('track', 'InitiateCheckout');
 
     CheckoutWidget.init();
