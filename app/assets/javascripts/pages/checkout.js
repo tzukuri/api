@@ -276,7 +276,7 @@ var el, couponTimer, order, CheckoutWidget = {
           CheckoutWidget.showFormSpinner(false)
 
           var order = data.preorder
-          
+
           if (data.success) {
             ga('send', 'event', 'buy', 'purchase-complete');
 
@@ -368,7 +368,8 @@ var el, couponTimer, order, CheckoutWidget = {
     if (frame == "Ive") {
       order.size = "48"
     } else if (frame == "Ford") {
-      el.sizeFormGroup.show()
+      // el.sizeFormGroup.show()
+      order.size = "49"
     }
 
     if (utility == "Optical") {
