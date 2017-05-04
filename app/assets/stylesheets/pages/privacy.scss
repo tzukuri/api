@@ -1,18 +1,44 @@
 body.privacy {
 
   .container {
-    h1 {
-      margin-bottom: 20px;
-      margin-top: 20px;
-    }
-
     #policy-container {
         &.policy-gap {
             margin-top:175px;
         }
 
+        /* text */
+        p + p {
+            margin-top: 5px;
+        }
+
+        /* lists */
+        ul {
+            padding-left: 2em;
+        }
+
+        ul + p {
+            margin-top: 20px;
+        }
+
+        p + ul {
+            margin-top: 10px;
+        }
+
         ul li {
           list-style: disc;
+        }
+
+
+        /* headings */
+        h1 {
+          margin-bottom: 20px;
+          margin-top: 20px;
+        }
+
+        p + h1, ul + h1 {
+            margin-top: 40px;
+            margin-bottom: 5px;
+            font-size: 28px;
         }
     }
 
