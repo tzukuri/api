@@ -4,6 +4,7 @@
         <title><%= "#{@page_title} | " if @page_title %>Tzukuri</title>
         <meta name="Description" content="<%= @page_desc %>">
         <meta charset="utf-8">
+        <link rel="canonical" href="https://tzukuri.com<%= request.path %>">
 
         <%= stylesheet_link_tag 'core', media: 'all' %>
         <%= csrf_meta_tags %>
@@ -16,8 +17,8 @@
         <meta property="og:url" content="http://www.tzukuri.com<%= request.path %>">
         <meta property="og:description" content="Beautifully handmade glasses you won't lose.">
         <meta property="og:title" content="Unlosable Glasses">
-        <meta property="og:image" content="http://www.tzukuri.com/og.png">
-        <meta property="og:image:secure_url" content="https://www.tzukuri.com/og.png">
+        <meta property="og:image" content="http://tzukuri.com/og.png">
+        <meta property="og:image:secure_url" content="https://tzukuri.com/og.png">
 
         <meta name="apple-mobile-web-app-capable" content="yes" />
 
