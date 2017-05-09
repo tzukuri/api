@@ -139,15 +139,6 @@
         document.getElementsByTagName("head")[0].appendChild(mf);
       })();
     </script>
-    <script>
-        (function(doc) {
-          var xtb = document.createElement("script");
-          xtb.type = "text/javascript";
-          xtb.async = true;
-          xtb.src = document.location.protocol + "//app.exitbee.com/c/744/exitbee.js";
-          document.getElementsByTagName("head")[0].appendChild(xtb);
-        }())
-    </script>
     <script type="text/javascript">
         (function() {
             var reactful_client_id="941597";
@@ -157,10 +148,19 @@
             document.getElementsByTagName('head')[0].appendChild(el);
         })();
     </script>
-    <script>
-      (function(e,t,n,c,r){c=e.createElement(t),c.async=1,c.src=n,
-      r=e.getElementsByTagName(t)[0],r.parentNode.insertBefore(c,r)})
-      (document,"script","https://cdn.quicksprout.com/qs.js");
-    </script>
     <script src="//pixel.convertize.io/2011.js"></script>
+    <script type="text/javascript">
+        var trackcmp_email = '';
+        var trackcmp = document.createElement("script");
+        trackcmp.async = true;
+        trackcmp.type = 'text/javascript';
+        trackcmp.src = '//trackcmp.net/visit?actid=649173215&e='+encodeURIComponent(trackcmp_email)+'&r='+encodeURIComponent(document.referrer)+'&u='+encodeURIComponent(window.location.href);
+        var trackcmp_s = document.getElementsByTagName("script");
+        if (trackcmp_s.length) {
+            trackcmp_s[0].parentNode.appendChild(trackcmp);
+        } else {
+            var trackcmp_h = document.getElementsByTagName("head");
+            trackcmp_h.length && trackcmp_h[0].appendChild(trackcmp);
+        }
+    </script>
 </html>
