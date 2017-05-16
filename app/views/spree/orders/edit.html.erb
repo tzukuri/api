@@ -1,9 +1,13 @@
 <% @body_id = 'cart' %>
+
+<div class="hero">
+  <div class="bg photo"></div>
+  <div class="bg shade"></div>
+  <div class="container content">
+  </div>
+</div>
+
 <div class="container" id="cart-container" data-hook="cart_container">
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Fixed routing issues. Updating CSS and HTML for checkout pages. Updated store defaults
 
   <% if @order.line_items.empty? %>
     <div id="empty-cart" data-hook="empty_cart">
@@ -12,177 +16,28 @@
       <%= link_to spree.root_path do %>
         <button>Continue shopping</button>
       <% end %>
-
-
-      <!-- <div class="alert alert-info"><%= Spree.t(:your_cart_is_empty) %></div> -->
-      <!-- <p><%= link_to Spree.t(:continue_shopping), products_path, class: 'btn btn-default' %></p> -->
     </div>
   <% else %>
-    <h1><%= Spree.t(:shopping_cart) %></h1>
-
+    <h1>Your cart</h1>
     <div id="outside_cart_form" data-hook="outside_cart_form">
       <%= form_for @order, url: update_cart_path, html: { id: 'update-cart' } do |order_form| %>
         <div data-hook="inside_cart_form">
-
           <div data-hook="cart_items" class="table-responsive">
             <%= render partial: 'form', locals: { order_form: order_form } %>
           </div>
-
           <div class="row">
-            <div class="six columns" id="coupon_code">
-              <div class="seven columns">
-                <%= order_form.label :coupon_code %>
-                <%= order_form.text_field :coupon_code, size: '30', class: 'form-control' %>
-              </div>
-
-              <div class="five columns">
-                <%= button_tag 'Apply Coupon', class: 'alternate' %>
-              </div>
+            <div class="eight columns">
+              <a href="#" id="continue-shopping">< continue shopping</a>
             </div>
-            <div class="six columns">
+            <div class="four columns">
+              <p id="checkout-subtotal">Cart Subtotal (<%= @order.quantity %> items): <%= order_form.object.display_total %></p>
+              <p id="checkout-free-shipping">Free shipping AU/NZ ($ AUD)</p>
+
               <%= button_tag class: 'btn btn-lg btn-success', id: 'checkout-link', name: 'checkout' do %>
-                <%= Spree.t(:checkout) %>
+                Proceed to checkout
               <% end %>
             </div>
           </div>
-
-          <div class="row">
-            <div class="six columns">
-              <%= button_tag class: 'alternate', id: 'update-button' do %>
-                <%#= Spree.t(:update) %>
-                Update Cart
-              <% end %>
-            </div>
-
-            <div class="six columns">
-              &nbsp;
-            </div>
-          </div>
-          <!-- update / checkout  -->
-          <!-- <div class="links col-md-3 navbar-form pull-right text-right" data-hook="cart_buttons">
-            <div class="form-group">
-              <%= button_tag class: 'btn btn-lg btn-success', id: 'checkout-link', name: 'checkout' do %>
-                <%= Spree.t(:checkout) %>
-              <% end %>
-            </div>
-          </div> -->
-
-          <!-- coupon code -->
-          <!-- <div class='col-md-6 form-inline pull-right' data-hook='coupon_code'>
-            <label>
-              <%= order_form.label :coupon_code %>
-              <%= order_form.text_field :coupon_code, size: '30', class: 'form-control' %>
-              <%= button_tag Spree.t(:coupon_code_apply), class: 'btn btn-default' %>
-            </label>
-          </div> -->
-        </div>
-      <% end %>
-    </div>
-
-    <!-- <div id="empty-cart" class="col-md-3 pull-left" data-hook>
-      <%= form_tag empty_cart_path, method: :put do %>
-        <p id="clear_cart_link" data-hook>
-          <%= submit_tag Spree.t(:empty_cart), class: 'btn btn-default' %>
-          <%= Spree.t(:or) %>
-          <%= link_to Spree.t(:continue_shopping), products_path, class: 'continue' %>
-        </p>
-      <% end %>
-    </div> -->
-  <% end %>
-</div>
-
-<script>
-  Spree.current_order_id = "<%= @order.number %>"
-  Spree.current_order_token = "<%= @order.guest_token %>"
-</script>
-
-
-<!-- <% @body_id = 'cart' %>
-<div class="container" id="cart-container" data-hook="cart_container">
-<<<<<<< HEAD
-=======
->>>>>>> building out user flow
-=======
->>>>>>> Fixed routing issues. Updating CSS and HTML for checkout pages. Updated store defaults
-  <h1><%= Spree.t(:shopping_cart) %></h1>
-
-  <% if @order.line_items.empty? %>
-    <div data-hook="empty_cart">
-      <div class="alert alert-info"><%= Spree.t(:your_cart_is_empty) %></div>
-      <p><%= link_to Spree.t(:continue_shopping), products_path, class: 'btn btn-default' %></p>
-    </div>
-  <% else %>
-    <div id="outside_cart_form" data-hook="outside_cart_form">
-      <%= form_for @order, url: 'update_cart_path', html: { id: 'update-cart' } do |order_form| %>
-        <div data-hook="inside_cart_form">
-
-          <div class="row" data-hook="cart_items">
-            <%= render partial: 'form', locals: { order_form: order_form } %>
-          </div>
-
-          <div class="row">
-            <div class="three columns">
-              <%= button_tag class: 'alternate', id: 'update-button' do %>
-                <%#= Spree.t(:update) %>
-                Update Cart
-              <% end %>
-            </div>
-
-            <div class="three columns">
-              <div id="empty-cart" data-hook>
-                <%= form_tag empty_cart_path, method: :put do %>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                  <p id="clear_cart_link" data-hook>
-                    <%= submit_tag Spree.t(:empty_cart), class: 'btn btn-default' %>
-                    <%= Spree.t(:or) %>
-                    <%= link_to Spree.t(:continue_shopping), products_path, class: 'continue' %>
-                  </p>
-=======
-                  <!-- <p id="clear_cart_link" data-hook>
-                    <%= submit_tag Spree.t(:empty_cart), class: 'btn btn-default' %>
-                    <%= Spree.t(:or) %>
-                    <%= link_to Spree.t(:continue_shopping), products_path, class: 'continue' %>
-                  </p> -->
->>>>>>> building out user flow
-=======
-                  <p id="clear_cart_link" data-hook>
-                    <%= submit_tag Spree.t(:empty_cart), class: 'btn btn-default' %>
-                    <%= Spree.t(:or) %>
-                    <%= link_to Spree.t(:continue_shopping), products_path, class: 'continue' %>
-                  </p>
->>>>>>> Fixed routing issues. Updating CSS and HTML for checkout pages. Updated store defaults
-                <% end %>
-              </div>
-            </div>
-
-            <div class="six columns">
-              <div id="coupon_code" data-hook='coupon_code'>
-                <div class="six columns">
-                  <%= order_form.label :coupon_code %>
-                  <%= order_form.text_field :coupon_code, size: '30', class: 'form-control' %>
-                </div>
-                <div class="six columns">
-                  <%= button_tag  id: 'apply-coupon', class: 'alternate' do %>
-                  Apply Coupon
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="six columns">
-              &nbsp;
-            </div>
-
-            <div class="six columns">
-              <%= button_tag class: '', id: 'checkout-link', name: 'checkout' do %>
-                <%= Spree.t(:checkout) %>
-              <% end %>
-            </div>
-          </div>
-
         </div>
       <% end %>
     </div>
@@ -192,12 +47,4 @@
 <script>
   Spree.current_order_id = "<%= @order.number %>"
   Spree.current_order_token = "<%= @order.guest_token %>"
-<<<<<<< HEAD
-<<<<<<< HEAD
-</script> -->
-=======
 </script>
->>>>>>> building out user flow
-=======
-</script> -->
->>>>>>> Fixed routing issues. Updating CSS and HTML for checkout pages. Updated store defaults

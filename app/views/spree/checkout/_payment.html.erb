@@ -1,16 +1,23 @@
 <div id="payment" data-hook>
-  <h2><%= Spree.t(:payment_information) %></h2>
+  <!-- <h2><%= Spree.t(:payment_information) %></h2> -->
+  <h2>Payment Method</h2>
+
   <div data-hook="checkout_payment_step">
     <% if @payment_sources.present? %>
       <div class="card_options">
-        <%= radio_button_tag 'use_existing_card', 'yes', true %>
-        <label for="use_existing_card_yes">
-          <%= Spree.t(:use_existing_cc) %>
-        </label>
-        <%= radio_button_tag 'use_existing_card', 'no' %>
-        <label for="use_existing_card_no">
-          <%= Spree.t(:use_new_cc_or_payment_method) %>
-        </label>
+        <div>
+          <%= radio_button_tag 'use_existing_card', 'yes', true %>
+          <label for="use_existing_card_yes">
+            <%= Spree.t(:use_existing_cc) %>
+          </label>
+        </div>
+
+        <div>
+          <%= radio_button_tag 'use_existing_card', 'no' %>
+          <label for="use_existing_card_no">
+            <%= Spree.t(:use_new_cc_or_payment_method) %>
+          </label>
+        </div>
       </div>
 
       <div id="existing_cards">
@@ -32,6 +39,7 @@
         </p>
       </div>
     <% end %>
+
 
     <%= render partial: 'spree/checkout/payment/storecredit' %>
 
@@ -64,6 +72,6 @@
 </div>
 
 <div class="well text-right form-buttons" data-hook="buttons">
-  <%= submit_tag Spree.t(:save_and_continue), class: 'btn btn-lg btn-success primary' %>
+  <%= submit_tag 'Continue to order confirmation', class: 'btn btn-lg btn-success primary' %>
   <script>Spree.disableSaveOnClick();</script>
 </div>

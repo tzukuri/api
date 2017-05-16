@@ -1,20 +1,27 @@
 <% @body_id = 'checkout-page' %>
+
 <% content_for :google_analytics do %>
   <%= render partial: 'spree/shared/google_checkout.js', locals: { order: @order, step_number: (@order.checkout_steps.index(@order.state) + 1) } %>
 <% end %>
 
+<div class="hero">
+  <div class="bg photo"></div>
+  <div class="bg shade"></div>
+  <div class="container content">
+  </div>
+</div>
+
 <div id="checkout" data-hook>
   <div class="container">
-    <%= render partial: 'spree/shared/error_messages', locals: { target: @order } %>
 
     <h1 data-hook="checkout_title"><%= Spree.t(:checkout) %></h1>
 
     <%= checkout_progress %>
 
-    <hr/>
-
     <div class="row" id="checkout-content" data-hook="checkout_content">
-      <div class="<%= if @order.state != 'confirm' then 'eight columns' else 'twelve columns' end %>" data-hook="checkout_form_wrapper">
+      <div class="<%= if @order.state != 'confirm' then 'seven columns' else 'twelve columns' end %>" data-hook="checkout_form_wrapper">
+        <%= render partial: 'spree/shared/error_messages', locals: { target: @order } %>
+
         <%= form_for @order, url: update_checkout_path(@order.state), html: { id: "checkout_form_#{@order.state}" } do |form| %>
           <% if @order.state == 'address' || !@order.email? %>
             <h2>Email Address</h2>
@@ -28,6 +35,7 @@
         <% end %>
       </div>
       <% if @order.state != 'confirm' %>
+        <div class="one column">&nbsp;</div>
         <div class="four columns">
           <div id="checkout-summary" data-hook="checkout_summary_box" >
             <%= render partial: 'summary', locals: { order: @order } %>
