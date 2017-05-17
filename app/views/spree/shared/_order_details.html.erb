@@ -1,34 +1,21 @@
 <div class="row steps-data">
 
   <% if order.has_step?("address") %>
-    <div class="three columns" data-hook="order-bill-address">
+    <div class="four columns" data-hook="order-bill-address">
       <h3><%= Spree.t(:billing_address) %> <%= link_to "(#{Spree.t(:edit)})", checkout_state_path(:address) unless order.completed? %></h3>
       <%= render 'spree/shared/address', address: order.bill_address %>
     </div>
 
     <% if order.has_step?("delivery") %>
-      <div class="three columns" data-hook="order-ship-address">
+      <div class="four columns" data-hook="order-ship-address">
         <h3><%= Spree.t(:shipping_address) %> <%= link_to "(#{Spree.t(:edit)})", checkout_state_path(:address) unless order.completed? %></h3>
         <%= render 'spree/shared/address', address: order.ship_address %>
       </div>
-
-      <!-- <div class="three columns" data-hook="order-shipment">
-        <h3><%= Spree.t(:shipments) %> <%= link_to "(#{Spree.t(:edit)})", checkout_state_path(:delivery) unless order.completed? %></h3>
-        <div class="delivery">
-          <% order.shipments.each do |shipment| %>
-            <div>
-              <i class='fa fa-truck'></i>
-              <%= Spree.t(:shipment_details, stock_location: shipment.stock_location.name, shipping_method: shipment.selected_shipping_rate.name) %>
-            </div>
-          <% end %>
-        </div>
-        <%= render 'spree/shared/shipment_tracking', order: order if order.shipped? %>
-      </div> -->
     <% end %>
   <% end %>
 
   <% if order.has_step?("payment") %>
-    <div class="three columns" data-hook="order-payment">
+    <div class="four columns" data-hook="order-payment">
       <h3><%= Spree.t(:payment_information) %> <%= link_to "(#{Spree.t(:edit)})", checkout_state_path(:payment) unless order.completed? %></h4>
       <div class="payment-info">
         <% order.payments.valid.each do |payment| %>
@@ -39,7 +26,6 @@
   <% end %>
 </div>
 
-<h3 id="order-detail-head">Order Details</h3>
 
 <table id='line-items' class="table" data-hook="order_details">
   <col width="20%" valign="middle" halign="center">

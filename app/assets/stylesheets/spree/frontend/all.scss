@@ -72,6 +72,13 @@
   }
 }
 
+// order details
+.steps-data > div {
+  background-color: #f2f2f2;
+  @include border-radius(5px);
+  padding: 1.5vw;
+}
+
 // store home content
 #store-home-content {
   background-color: white;
@@ -87,8 +94,8 @@
   .section-content {
     text-align: left;
     margin-left: 5vw;
-    padding-top: 15%;
     width: 50%;
+    @include vertical-align();
     h1 {
       margin-bottom: 20px;
     }
@@ -361,6 +368,7 @@
 
 #line-items {
   width: 100%;
+  margin-top: 3vw;
 
   thead {
     tr {
@@ -410,6 +418,12 @@
           margin-bottom: 5px;
         }
       }
+    }
+  }
+
+  tfoot {
+    tr td.total {
+      text-align: center;
     }
   }
 }
@@ -650,21 +664,17 @@
 #order_details {
   color: $tz-content;
 
-  h2 {
-    padding-bottom: 20px;
-  }
   h3 {
-    padding-bottom: 20px;
+    padding-bottom: 1vw;
   }
   .address.vcard {
     line-height: 150%;
-    div {
-      margin-bottom: 10px;
-    }
   }
 }
 
 #order-complete {
+  color: $tz-content;
+  
   img {
     width: auto;
   }

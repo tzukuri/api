@@ -4,13 +4,18 @@
   <% end %>
 <% end %>
 
+<div class="hero">
+  <div class="bg photo"></div>
+  <div class="bg shade"></div>
+  <div class="container content">
+  </div>
+</div>
+
 <div id="order-complete" class="panel container">
   <fieldset id="order_summary" data-hook>
-    <!-- <legend><%= Spree.t(:order_number, number: @order.number) %></legend> -->
-    <h2><%= accurate_title %></h2>
-    <% if order_just_completed?(@order) %>
-      <strong><%= Spree.t(:thank_you_for_your_order) %></strong>
-    <% end %>
+    <h2>Order <%= @order.number %> received</h2>
+    <p>Thank you for your order! You should receive a confirmation email shortly.</p>
+    <br/>
 
     <div id="order" data-hook>
       <%= render partial: 'spree/shared/order_details', locals: { order: @order } %>
@@ -18,12 +23,7 @@
       <br class="clear" />
 
       <p data-hook="links">
-        <%= link_to Spree.t(:back_to_store), spree.root_path, class: "button" %>
-        <% unless order_just_completed?(@order) %>
-          <% if try_spree_current_user && respond_to?(:account_path) %>
-            <%= link_to Spree.t(:my_account), account_path, class: "button" %>
-          <% end %>
-        <% end %>
+        <%= link_to '< back to store', spree.root_path, class: "button" %>
       </p>
     </div>
   </fieldset>
