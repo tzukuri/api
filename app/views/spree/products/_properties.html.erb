@@ -1,11 +1,12 @@
 <% unless @product_properties.empty? %>
-  <!-- <h2 class="product-section-title"><%= Spree.t('properties')%></h2>
+  <div id="product_properties">
+    <% @product_properties.each do |product_property| %>
+      <div class="row">
+        <div class="five columns prop-title"><%= product_property.property.presentation %></div>
+        <div class="seven columns prop-value"><%= product_property.value %></div>
+      </div>
+    <% end %>
 
-  <dl>
-    <dt>Coffee</dt>
-    <dd>Black hot drink</dd>
-    <dt>Milk</dt>
-    <dd>White cold drink</dd>
-  </dl> -->
-
+    <% reset_cycle('properties') %>
+  </div>
 <% end %>

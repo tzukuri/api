@@ -106,7 +106,7 @@ button, input[type=submit] {
 
     @include transition(background-color 0.5s ease-in-out);
 
-    @include border-radius($tz-border-radius);
+    @include border-radius(5px);
 
     background-color: $tz-active;
     border: 1px solid $tz-active;
@@ -188,7 +188,7 @@ form {
 
         @include font-size(16px);
 
-        @include border-radius(20px);
+        @include border-radius(5px);
 
         @include appearance(none);
 
@@ -203,7 +203,7 @@ form {
         width: 100%;
         padding-left: 20px;
         padding-right: 20px;
-        margin-bottom: 15px;
+        margin-bottom: 1vw;
 
         @include placeholder {
           color: #CECDCF;
@@ -239,10 +239,9 @@ form {
     }
 
     label {
-        @include font-size(13px);
+        @include font-size(12px);
         text-transform: uppercase;
         letter-spacing: 1px;
-        margin-left: 25px;
         line-height: 200%;
         color: $tz-content;
 
@@ -287,8 +286,8 @@ ul {
 
 // hr
 hr {
-  margin-top:20px;
-  margin-bottom: 20px;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
   border-top: 1px solid $tz-background-alt;
   opacity:0.3;
 }

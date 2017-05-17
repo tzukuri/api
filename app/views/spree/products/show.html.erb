@@ -11,7 +11,7 @@
 <% cache cache_key_for_product do %>
     <div id="product_show" class="u-full-width" data-hook="product_show" itemscope itemtype="https://schema.org/Product">
       <div class="container">
-        <div class="row">
+        <div class="row" id="product-detail">
           <!-- gallery column -->
           <div class="seven columns" data-hook="product_left_part">
             <div id="product-images" data-hook="product_images">
@@ -26,32 +26,62 @@
               </div>
             </div>
           </div>
+
           <!-- order input column -->
           <div class="five columns" data-hook="product_right_part">
             <div id="product-description" data-hook="product_description">
               <h1 class="product-title" itemprop="name"><%= @product.name %></h1>
-
               <p id="price"><%= display_price(@product) %> <%= @product.currency %></p>
-
-              <div id="product-description" itemprop="description" data-hook="description">
-                <p><%= product_description(@product) %></p>
-              </div>
-
+              <p><%= product_description(@product) %></p>
               <div id="cart-form" data-hook="cart_form">
                 <%= render partial: 'cart_form' %>
               </div>
+
+              <div class="row" id="product-features">
+                <div class="four columns">
+                  <i class="pe-7s-like"></i>
+                  <p>Made in Sydney</p>
+                </div>
+                <div class="four columns">
+                  <i class="pe-7s-shopbag"></i>
+                  <p>Free shipping to AU and NZ</p>
+                </div>
+                <div class="four columns">
+                  <i class="pe-7s-date"></i>
+                  <p>Risk-free 21 day trial</p>
+                </div>
+              </div>
+
+              <hr/>
+
+              <%= render partial: 'properties' %>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- product detail -->
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8 col-md-offset-2" id="shipping-returns">
-          <h2>Free shipping. Free returns.</h2>
-          <p>We have a 20-day, no questions asked returns policy for all of our frames.</p> <p>Ship them back to us, or return them in store for a full refund.</p>
+    <%= render partial: 'layouts/social_proof' %>
+
+    <%= render partial: 'layouts/cant_decide' %>
+
+    <div class="u-full-width" id="shipping-detail">
+      <div class="container">
+        <div class="six columns">
+          <h1>Fast and free shipping</h1>
+
+          <p>We currently ship to Australia and New Zealand. All orders are shipped via Express Post and generally arrive within 2 business days. Processing times depend on your lens type:</p>
+
+          <ul>
+            <li><span class="bold">Non-Prescription:</span> Shipped within 1 - 2 business days.</li>
+            <li><span class="bold">Prescription:</span> Shipped within 7 business days of receiving your prescription.</li>
+          </ul>
+        </div>
+
+        <div class="six columns">
+          <h1>Risk-free 21 day trial</h1>
+          <p>We’re so confident you’ll love your Tzukuris that if you decide they're not the best glasses you've ever owned within 21 days we'll organise return shipping and refund every cent of your money.</p>
+          <p>Get in touch at <a href="mailto:hello@tzukuri.com">hello@tzukuri.com</a>.
         </div>
       </div>
     </div>
