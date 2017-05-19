@@ -4,9 +4,8 @@
   <div class="bg photo"></div>
   <div class="bg shade"></div>
   <div class="container content">
-    <h1>beautiful. unlosable.</h1>
-    <p>discover your next pair of glasses with <span class="bold">free returns for 21 days</span>. </p>
-    <button class="alternate">browse all frames</button>
+    <h1>Beautiful. Unlosable.</h1>
+    <p>Discover your next pair of glasses with <span class="bold">free shipping</span> and <span class="bold">free returns for 21 days</span>. </p>
   </div>
 </div>
 
@@ -14,25 +13,25 @@
   <div id="utility-section">
 
     <div class="half-section">
-      <a href="shop/t/optical">
+      <%= link_to nested_taxons_path(Spree::Taxon.find_by_name('Optical')) do %>
         <div class="half-section-banner eyeglasses">
           <div class="section-content">
-            <h1>eyeglasses</h1>
-            <h3>browse our range of unisex <br/>eyeglasses frames &rsaquo;</h3>
+            <h1>Eyeglasses</h1>
+            <p>Browse our range of unisex eyeglasses frames ></p>
           </div>
         </div>
-      </a>
+      <% end %>
     </div>
 
     <div class="half-section">
-      <a href="shop/t/sun">
+      <%= link_to nested_taxons_path(Spree::Taxon.find_by_name('Sun')) do %>
         <div class="half-section-banner sunglasses">
           <div class="section-content">
-            <h1>sunglasses</h1>
-            <h3>browse our range of unisex <br/>sunglasses frames &rsaquo; </h3>
+            <h1>Sunglasses</h1>
+            <p>Browse our range of unisex sunglasses frames ></p>
           </div>
         </div>
-      </a>
+      <% end %>
     </div>
 
   </div>

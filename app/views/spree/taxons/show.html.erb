@@ -1,12 +1,4 @@
-<div id="taxons">
-
-  <div class="hero taxon">
-    <div class="bg photo"></div>
-    <div class="bg shade"></div>
-    <div class="container content">
-      <h1><%= @taxon.name %></h1>
-    </div>
-  </div>
+<div id="taxons" class="no-hero">
 
   <div data-hook="taxon_products">
     <%= render partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon } %>

@@ -1,15 +1,9 @@
 
 <% @body_id = 'product-details' %>
 
-<div class="hero">
-  <div class="bg photo"></div>
-  <div class="bg shade"></div>
-  <div class="container content">
-  </div>
-</div>
-
 <% cache cache_key_for_product do %>
     <div id="product_show" class="u-full-width" data-hook="product_show" itemscope itemtype="https://schema.org/Product">
+
       <div class="container">
         <div class="row" id="product-detail">
           <!-- gallery column -->
@@ -30,14 +24,14 @@
           <!-- order input column -->
           <div class="five columns" data-hook="product_right_part">
             <div id="product-description" data-hook="product_description">
-              <h1 class="product-title" itemprop="name"><%= @product.name %></h1>
+              <h1 id="title" itemprop="name"><%= @product.name %></h1>
               <p id="price"><%= display_price(@product) %> <%= @product.currency %></p>
-              <p><%= product_description(@product) %></p>
+              <p id="description"><%= product_description(@product) %></p>
               <div id="cart-form" data-hook="cart_form">
                 <%= render partial: 'cart_form' %>
               </div>
 
-              <div class="row" id="product-features">
+              <div class="row" id="features">
                 <div class="four columns">
                   <i class="pe-7s-like"></i>
                   <p>Made in Sydney</p>
@@ -67,7 +61,7 @@
 
     <div class="u-full-width" id="shipping-detail">
       <div class="container">
-        <div class="six columns">
+        <div class="six columns" id="free-shipping">
           <h1>Fast and free shipping</h1>
 
           <p>We currently ship to Australia and New Zealand. All orders are shipped via Express Post and generally arrive within 2 business days. Processing times depend on your lens type:</p>
@@ -77,8 +71,7 @@
             <li><span class="bold">Prescription:</span> Shipped within 7 business days of receiving your prescription.</li>
           </ul>
         </div>
-
-        <div class="six columns">
+        <div class="six columns" id="free-returns">
           <h1>Risk-free 21 day trial</h1>
           <p>We’re so confident you’ll love your Tzukuris that if you decide they're not the best glasses you've ever owned within 21 days we'll organise return shipping and refund every cent of your money.</p>
           <p>Get in touch at <a href="mailto:hello@tzukuri.com">hello@tzukuri.com</a>.

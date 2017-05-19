@@ -1,0 +1,46 @@
+@import "tzukuri/variables";
+@import "tzukuri/mixins";
+
+#cant-decide {
+  height: 400px;
+  background-image: image-url('store/cant-decide.png');
+  background-size: cover;
+  background-position: center;
+
+  .container {
+    @include vertical-align();
+
+    .content {
+      width: 60%;
+
+      h1,p {
+        padding-bottom: 1.5vw;
+      }
+
+      button {
+        width: 45%;
+      }
+    }
+  }
+
+  @media only screen and (max-width: $smartphone) {
+
+    height: 60vh;
+
+    .container .content {
+      width: 100%;
+
+      h1, p {
+        padding-bottom: 5vw;
+        text-align: center;
+      }
+
+      button {
+        width: 100%;
+        &#try-on {
+          margin-bottom: 5vw;
+        }
+      }
+    }
+  }
+}

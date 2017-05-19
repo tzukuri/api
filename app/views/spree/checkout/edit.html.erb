@@ -4,14 +4,7 @@
   <%= render partial: 'spree/shared/google_checkout.js', locals: { order: @order, step_number: (@order.checkout_steps.index(@order.state) + 1) } %>
 <% end %>
 
-<div class="hero">
-  <div class="bg photo"></div>
-  <div class="bg shade"></div>
-  <div class="container content">
-  </div>
-</div>
-
-<div id="checkout" data-hook>
+<div id="checkout" class="no-hero" data-hook>
   <div class="container">
 
     <h1 data-hook="checkout_title"><%= Spree.t(:checkout) %></h1>

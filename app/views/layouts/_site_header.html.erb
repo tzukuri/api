@@ -1,6 +1,6 @@
 <%= javascript_include_tag 'layouts/site_header', defer: 'defer' %>
 
-<header class="u-full-width">
+<header class="u-full-width <%= 'no-bg' if ['spree/taxons', 'spree/products', 'spree/orders', 'spree/checkout'].include? params[:controller] %>">
   <div class="container">
       <a id="tzukuri" href="/">TZUKURI</a>
       <nav id="primary-nav">
@@ -17,9 +17,9 @@
           </noscript>
         </span>
         <script>Spree.fetch_cart()</script>
-
-
       </nav>
-      <a id="hamburger" class="fa fa-bars"></a>
+      <div id="hamburger">
+        <a class="fa fa-bars"></a>
+      </div>
   </div>
 </header>

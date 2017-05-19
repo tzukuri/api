@@ -45,6 +45,7 @@
   background-clip: padding-box;  /* stops bg color from leaking outside the border: */
 }
 
+// support sticky on webkite and mozilla
 @mixin sticky {
   position: -webkit-sticky;
   position: -moz-sticky;
@@ -64,6 +65,7 @@
   }
 }
 
+// style placeholder for a given element
 @mixin placeholder {
   @include optional-at-root('::-webkit-input-placeholder') {
     @content;
@@ -82,10 +84,20 @@
   }
 }
 
+// vertical align within container
 @mixin vertical-align($position: relative) {
   position: $position;
   top: 50%;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
+}
+
+// apply a clearfix to an element
+%clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 }
