@@ -37,4 +37,11 @@ class PagesController < ApplicationController
             raise ActionController::RoutingError.new('')
         end
     end
+
+    def inject_no_bg_header
+      no_bg_pages = ['index']
+      return 'no-bg' if no_bg_pages.include? params[:page]
+    end
+
+    helper_method :inject_no_bg_header
 end

@@ -6,12 +6,16 @@
 // ---- HOME ----
 
 // home/index.html.erb
-#home-page {
+#panel {
+  background-color: white;
+
   .hero.store {
     height: 40vh;
+    min-height: 350px;
 
     .bg {
       height: 40vh;
+      min-height: 350px;
     }
 
     .bg.photo {
@@ -168,10 +172,13 @@
   background-color: #f2f2f2;
   @include border-radius(5px);
   padding: 1.5vw;
+  margin-bottom: 3vh;
 }
+
 #line-items {
-  width: 100%;
   margin-top: 3vw;
+  table-layout:fixed;
+  width: 100%;
 
   thead {
     tr {
@@ -236,10 +243,9 @@
   background-color: $tz-error;
   text-align: center;
   @include font-size(14px);
-  margin-bottom: 40px;
   padding: 5px;
-  padding-top: 10px;
-  @include border-radius(10px);
+  margin-top: 3vh;
+  @include border-radius(5px);
 
   ul li, p {
     @include font-size(16px);
@@ -282,7 +288,7 @@
 // ---- PRODUCTS ----
 
 // products/show.html.erb
-#product-details {
+#panel {
   #product_show {
     background-color: #F2F2F2;
     padding-top: 7vw;
@@ -693,11 +699,14 @@
   }
 
   h2 {
-    padding-bottom: 20px;
+    padding-bottom: 3vh;
+    padding-top: 4vh;
   }
+
   h3 {
     padding-bottom: 20px;
   }
+
   .address.vcard {
     line-height: 150%;
     div {
@@ -711,7 +720,6 @@
 // checkout/edit.html.erb
 #checkout {
   #address-submit {
-    margin-bottom: 50px;
     text-align: center;
 
     input[type="submit"] {
@@ -729,26 +737,28 @@
     width: auto;
   }
 
-  #checkout-summary, #returns-summary {
-    background-color: #F2F2F2;
-    padding: 30px;
-    @include border-radius(8px);
-
-    h3 {
-      margin-bottom: 30px;
-    }
-    table {
-      width: 100%;
-      color: $tz-content;
-    }
-  }
-
-  #returns-summary {
-    margin-top: 30px;
-  }
-
   #checkout-content {
-    margin-top: 30px;
+    #checkout-sidebar {
+      margin-bottom: 3vh;
+
+      #checkout-summary, #returns-summary {
+        background-color: #F2F2F2;
+        padding: 30px;
+        @include border-radius(5px);
+
+        h3 {
+          margin-bottom: 30px;
+        }
+        table {
+          width: 100%;
+          color: $tz-content;
+        }
+      }
+
+      #returns-summary {
+        margin-top: 3vh;
+      }
+    }
   }
 
   #checkout-step-address, #checkout-step-payment, #checkout-step-confirm, #checkout-step-complete {
@@ -774,12 +784,8 @@
 
   #checkout_form_address {
     h2 {
-      margin-left: 20px;
-      padding-bottom: 1.5vw;
-    }
-
-    #shipping {
-      padding-top: 1.5vw;
+      padding-bottom: 3vh;
+      padding-top: 4vh;
     }
 
     #checkout-address-form  {
@@ -791,19 +797,29 @@
 // checkout/_payment.html.erb
 #payment {
 
+  h2 {
+    padding-bottom: 3vh;
+    padding-top: 4vh;
+  }
+
+  p {
+    padding-bottom: 0px;
+  }
+
   #payment-methods {
     li fieldset > div {
       margin-top:  15px;
       margin-bottom: 40px;
       background-color: #F2F2F2;
-      padding: 30px 30px 20px 30px;
-      @include border-radius(10px);
+      padding: 3vh;
+      @include border-radius(5px);
     }
   }
 
   #secured {
-    margin-left: 25px;
-    margin-top: 10px;
+    p {
+      padding-top: 2vh;
+    }
 
     p, a {
       @include font-size(13px);
@@ -815,7 +831,7 @@
     }
 
     i {
-      margin-right: 10px;
+      margin-right: 5px;
     }
   }
 
@@ -853,13 +869,18 @@
     margin-top: 20px;
     margin-bottom: 10px;
     padding: 5px;
-    @include border-radius(10px);
+    @include border-radius(5px);
   }
 }
 
 // checkout/_confirm.html.erb
 #order_details {
   color: $tz-content;
+
+  h2 {
+    padding-bottom: 3vh;
+    padding-top: 4vh;
+  }
 
   h3 {
     padding-bottom: 1vw;

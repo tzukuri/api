@@ -1,8 +1,8 @@
 function checkScrollState() {
     if($(window).scrollTop() > 18) {
-        $('body > header').addClass('scrolling');
+        $('header').addClass('scrolling');
     } else {
-        $('body > header').removeClass('scrolling');
+        $('header').removeClass('scrolling');
     }
 }
 

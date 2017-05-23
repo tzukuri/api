@@ -1,16 +1,10 @@
 // loaded from their respective files
 var tzukuri = (function () {
   return {
-    // contains API for interacting with tzukuri modals
-    modal: modal,
-    // fixme: currently broken, but should implement an API that gives us access to a map
-    // map: map,
-    // contains all the sizing details, etc. for each model of tzukuri
-    models: models,
-    // contains all the pricing information for different models
-    pricing: pricing,
     // takes a container containing images and slowly fades between them
     crossfade: crossfade,
+    // set up events to support hamburger menu on mobile
+    hamburger: hamburger(),
     // tracking for ga/fb
     tracking: tracking()
   }
@@ -25,12 +19,13 @@ var tzukuriLoad = function() {
   $.event.trigger({
     type:    "tzukuri.page.load"
   });
+
+  // initialisations
+  tzukuri.tracking.init()
+  tzukuri.hamburger.init()
 }
 
 $(document).ready(tzukuriLoad);
-$(document).on('page:load', tzukuriLoad);
-
-tzukuri.tracking.init()
 
 // -----------------------------
 // javascript extensions

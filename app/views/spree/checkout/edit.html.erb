@@ -29,15 +29,15 @@
       </div>
       <% if @order.state != 'confirm' %>
         <div class="one column">&nbsp;</div>
-        <div class="four columns">
+        <div class="four columns" id="checkout-sidebar">
           <div id="checkout-summary" data-hook="checkout_summary_box" >
             <%= render partial: 'summary', locals: { order: @order } %>
           </div>
 
-          <div id="returns-summary">
+          <!-- <div id="returns-summary">
             <h3>Free Shipping. Free Returns</h3>
             <p>We have a 20-day, no questions asked returns policy for all of our frames.</p>
-          </div>
+          </div> -->
         </div>
       <% end %>
     </div>

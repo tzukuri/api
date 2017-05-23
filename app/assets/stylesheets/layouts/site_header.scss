@@ -1,166 +1,152 @@
 @import "tzukuri/variables";
 @import "tzukuri/mixins";
 
-body > header {
-    background-color: transparent;
-    border-bottom: 1px solid transparent;
-    z-index: 1000;
-    position: fixed;
-    transition-property: background-color, border-bottom-color, line-height;
-    transition-duration: 0.25s;
-    color: white;
-    height: 65px;
+#menu {
+  background-color: $tz-background;
+  border-right: 1px solid $tz-inactive;
+  box-sizing: border-box;
 
-    .container {
-      @include vertical-align();
-    }
-
-    &.no-bg {
-      #tzukuri, nav a {
-        color: $tz-content;
-      }
-
-      #hamburger a {
+  ul {
+    li {
+      border-bottom: 1px solid $tz-inactive;
+      padding: 3.5vw;
+      a {
         color: $tz-active;
       }
     }
+  }
+}
 
-    #tzukuri {
+// mobile only styles
+header#mobile-head {
+  display: none;
+
+  .container {
+    #hamburger, #link-to-cart {
+      width: 20%;
+    }
+
+    #logo {
+      width: 60%;
+    }
+  }
+}
+
+// desktop only styles
+header#desktop-head {}
+
+// styles common to both mobile and desktop
+header {
+  background-color: transparent;
+  border-bottom: 1px solid transparent;
+  transition-property: background-color, border-bottom-color, line-height;
+  transition-duration: 0.25s;
+
+  &.no-bg .container {
+    #hamburger i, #link-to-cart i, #link-to-cart a, #navigation li a {
+      color: $tz-content !important;
+    }
+    #logo #tzukuri {
+      color: $tz-title;
+    }
+  }
+
+  &.scrolling {
+      border-bottom: 1px solid $tz-inactive;
+      background-color: rgba(255, 255, 255, 0.99);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0px 0px 5px rgba(0,0,0,0.03);
+
+      .container {
+        #hamburger i {
+          color: $tz-active;
+        }
+
+        #link-to-cart i, #link-to-cart a, #navigation ul li a {
+          color: $tz-content;
+        }
+
+        #logo #tzukuri {
+          color: $tz-title;
+        }
+      }
+  }
+
+  .container {
+    display: flex;
+
+    div {
+      text-align: center;
+    }
+
+    #hamburger {
+      i {
+        float: left;
+      }
+    }
+
+    #logo {
+      #tzukuri {
         @include font-size(30px);
         font-weight: 200;
         letter-spacing: 10px;
         color: white;
-        float: left;
-        line-height: 100%;
-        margin-top: 7px;
-    }
-
-    #hamburger {
-      @include font-size(22px);
-      display: none;
-      margin-top: -30px;
-      float: right;
-
-      a {
-        color: white;
       }
     }
 
-    nav {
-      float: right;
+    #navigation {
+      ul {
+        float: right;
+        margin-top: 7px;
+      }
+
+      ul li {
+        display: inline;
 
         a {
-            @include font-size(14px);
+          @include font-size(14px);
+          letter-spacing: 0.5px;
+          margin-left: 20px;
+          color: white;
 
-            letter-spacing: 0.5px;
-            color: white;
-            // margin-bottom: 5px;
-            transition-property: color, border-bottom-color;
-            transition-duration: 0.6s;
-            margin-left: 20px;
-
-            &.no-decoration:hover {
-              border-bottom: none;
-            }
-
-            &.selected {
-                color: white;
-                border-bottom: 1px solid white;
-            }
-
-            &:hover {
-                color: $tz-title;
-                border-bottom: 1px solid $tz-title;
-            }
+          &:hover {
+              color: $tz-title;
+              border-bottom: 1px solid $tz-title;
+          }
         }
+
+        &#shop-now a:hover{
+          border-bottom: none;
+        }
+      }
     }
 
-    &.scrolling {
-        border-bottom: 1px solid $tz-inactive;
-        background-color: rgba(255, 255, 255, 0.99);
-        -webkit-backdrop-filter: blur(10px);
-        box-shadow: 0px 0px 5px rgba(0,0,0,0.03);
-        // line-height: 60px;
-
-        #tzukuri {
-            color: $tz-title;
-        }
-
-        #hamburger a {
-          color: $tz-active;
-        }
-
-        nav {
-            a {
-                color: $tz-content;
-
-                &.selected {
-                    color: $tz-content;
-                    border-bottom-color: $tz-content;
-                }
-            }
-        }
+    #link-to-cart {
+      a {
+        float: right;
+      }
     }
+
+    #hamburger, #link-to-cart {
+      i {
+        @include font-size(26px);
+        line-height: 60px;
+      }
+
+      a, i {
+        color: white;
+      }
+    }
+  }
 }
 
+// switch between mobile and desktop headers on tablet landscape
 @media only screen and (max-width: $tabletLandscape) {
-    body > header {
-        text-align: left;
+  header#mobile-head {
+    display: block;
+  }
 
-        h1 {
-            float: left;
-        }
-
-        #hamburger {
-            display: block;
-
-            &.fa-times {
-              margin-top: -50px;
-            }
-
-            &.fa-bars {
-              color: white;
-            }
-
-            &:hover {
-                text-decoration: none;
-            }
-        }
-
-        #try-btn {
-          width: 75%;
-          margin: 0 auto;
-          padding-bottom: 20px;
-        }
-
-        nav {
-            @include transition(.5s ease-in-out);
-
-            text-align: center;
-            padding-bottom: 0px;
-            max-height: 0px;
-            visibility: hidden;
-            overflow: hidden;
-            width: 100%;
-
-            &.shown {
-                max-height: 300px;
-                visibility: visible;
-            }
-
-            a {
-                display: block;
-                @include font-size(16px);
-                // line-height: 250%;
-
-                &:hover {
-                  border-bottom: 0px solid black;
-                }
-
-                &.selected {
-                  border-bottom: 0px solid black;
-                }
-            }
-        }
-    }
+  header#desktop-head {
+    display: none;
+  }
 }

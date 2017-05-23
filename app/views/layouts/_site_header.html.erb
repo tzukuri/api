@@ -1,25 +1,50 @@
 <%= javascript_include_tag 'layouts/site_header', defer: 'defer' %>
 
-<header class="u-full-width <%= 'no-bg' if ['spree/taxons', 'spree/products', 'spree/orders', 'spree/checkout'].include? params[:controller] %>">
-  <div class="container">
-      <a id="tzukuri" href="/">TZUKURI</a>
-      <nav id="primary-nav">
-        <a href="/unlosable-glasses" class="<%= 'selected' if params[:page] == 'unlosable-glasses' %>">unlosable glasses</a>
-        <a href="/the-range" class="<%= 'selected' if params[:page] == 'the-range' %>">the range</a>
-        <a href="/the-app" class="<%= 'selected' if params[:page] == 'the-app' %>">the app</a>
-        <a href="/intelligently-made" class="<%= 'selected' if params[:page] == 'intelligently-made' %>">intelligently made</a>
-        <a href="/shop" class="no-decoration" id="try-btn"><button class="tz-track" data-category="nav" data-event="buy-now-click">buy now</button></a>
+<!-- navigation slide out menu (mobile only) -->
+<nav id="menu">
+  <ul class="menu-section-list">
+    <li><a href="/unlosable-glasses">unlosable glasses</a></li>
+    <li><a href="/unlosable-glasses">the range</a></li>
+    <li><a href="/unlosable-glasses">the app</a></li>
+    <li><a href="/unlosable-glasses">intelligently made</a></li>
+    <li><a href="/shop"><button>buy now</button></a></li>
+  </ul>
+</nav>
 
-        <!-- spree cart link -->
-        <span id="link-to-cart" data-hook>
-          <noscript>
-            <%= link_to Spree.t(:cart), '/cart' %>
-          </noscript>
-        </span>
-        <script>Spree.fetch_cart()</script>
-      </nav>
-      <div id="hamburger">
-        <a class="fa fa-bars"></a>
-      </div>
+<!-- mobile header -->
+<header class="u-full-width fixed-header <%= inject_no_bg_header %>" id="mobile-head">
+  <div class="container">
+    <div id="hamburger">
+      <i class="pe-7f-menu"></i>
+    </div>
+    <div id="logo">
+      <a id="tzukuri" href="/">TZUKURI</a>
+    </div>
+    <div id="link-to-cart">
+      <a class="cart-info full" href="/shop/cart"><i class="pe-7f-cart"></i></a>
+    </div>
   </div>
 </header>
+
+<!-- desktop header -->
+<header class="u-full-width fixed-header <%= inject_no_bg_header %>" id="desktop-head">
+  <div class="container row">
+    <div class="three columns" id="logo">
+      <a id="tzukuri" href="/">TZUKURI</a>
+    </div>
+    <div class="eight columns" id="navigation">
+      <ul>
+        <li><a href="/unlosable-glasses">unlosable glasses</a></li>
+        <li><a href="/unlosable-glasses">the range</a></li>
+        <li><a href="/unlosable-glasses">the app</a></li>
+        <li><a href="/unlosable-glasses">intelligently made</a></li>
+        <li id="shop-now"><a href="/shop"><button>buy now</button></a></li>
+      </ul>
+    </div>
+    <div class="one column" id="link-to-cart">
+      <a class="cart-info full" href="/shop/cart"><i class="pe-7f-cart"></i></a>
+    </div>
+  </div>
+</header>
+
+<script>Spree.fetch_cart()</script>

@@ -72,17 +72,13 @@
 
     <body class="<%= params[:page] || controller_name %>">
         <!-- header -->
-        <% if controller_name == "pages" || controller_name == "store" %>
-            <%= render 'layouts/site_header' %>
-        <% end %>
+        <%= render 'layouts/site_header' %>
 
-        <!-- content -->
-        <%= yield %>
-
-        <!-- footer -->
-        <% if controller_name == "pages" || controller_name == "store" %>
-            <%= render 'layouts/site_footer' %>
-        <% end %>
+        <!-- main content -->
+        <main id="panel">
+          <%= yield %>
+          <%= render 'layouts/site_footer' %>
+        </main>
     </body>
 
     <script src="https://cdn.ravenjs.com/3.14.2/raven.min.js"></script>

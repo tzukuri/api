@@ -101,7 +101,7 @@ a {
 }
 
 .no-hero {
-  padding-top: 6vw;
+  padding-top: 10vh;
 }
 
 // buttons
@@ -221,15 +221,6 @@ form {
     select {
       background: $tz-inactive image-url('icons/dropdown-indicator.png') no-repeat right center;
        background-size: 40px 40px; /*TO ACCOUNT FOR @2X IMAGE FOR RETINA */
-      //  background-position-x: -20px;
-      // background-size:
-      //   5px 5px,
-      //   5px 5px,
-      //   10em 10em;
-      // background-repeat: no-repeat;
-
-      // background-image: url(/icons/dropdown-indicator.png) no-repeat right center;
-      //  background-size: 40px 37px; /*TO ACCOUNT FOR @2X IMAGE FOR RETINA */
     }
 
     .section-head {
@@ -255,11 +246,15 @@ form {
         }
     }
 
+    input[type=checkbox], input[type=radio] {
+      width: auto;
+    }
+
     // buttons should not have a set width
     input[type=submit], button {
         width: auto;
         display: block;
-        margin: 30px auto 40px auto;
+        margin: 3vh auto 3vh auto;
     }
 
     .messages {
@@ -345,19 +340,15 @@ button:focus {
     outline: none;
 }
 
-@media only screen and (max-width: 720px) {
+@media only screen and (max-width:$tabletLandscape) {
     form {
         input, select {
             width: 100%;
         }
-
-        label {
-            margin-left: 5%;
-        }
     }
 
     button, input[type=submit] {
-        width: 100%;
+        width: 100% !important;
     }
 }
 

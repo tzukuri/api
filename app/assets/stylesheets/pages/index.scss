@@ -17,6 +17,7 @@ body.index {
     #hero {
       @include transition(opacity 2s ease-in-out);
       padding-bottom: 0px;
+      padding-top: 12vh;
 
       &.hidden {
           opacity: 0;
@@ -221,7 +222,7 @@ body.index {
       img {
         padding-bottom: 0px;
       }
-      
+
       h1 {
         margin-top: 3px;
       }
@@ -233,7 +234,7 @@ body.index {
 
     #two-panels {
       height: 400px;
-      
+
       > a > div {
         display: block;
         width: 100%;
