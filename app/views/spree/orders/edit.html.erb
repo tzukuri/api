@@ -1,6 +1,6 @@
 <% @body_id = 'cart' %>
 
-<div class="container" id="cart-container" data-hook="cart_container">
+<div class="container no-hero" id="cart-container" data-hook="cart_container">
 
   <% if @order.line_items.empty? %>
     <div id="empty-cart" data-hook="empty_cart">
@@ -19,10 +19,10 @@
             <%= render partial: 'form', locals: { order_form: order_form } %>
           </div>
           <div class="row">
-            <div class="eight columns">
+            <div class="seven columns">
               <a href="#" id="continue-shopping">< continue shopping</a>
             </div>
-            <div class="four columns">
+            <div class="five columns">
               <p id="checkout-subtotal">Cart Subtotal (<%= @order.quantity %> items): <%= order_form.object.display_total %></p>
               <p id="checkout-free-shipping">Free shipping AU/NZ ($ AUD)</p>
 

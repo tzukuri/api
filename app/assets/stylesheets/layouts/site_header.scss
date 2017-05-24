@@ -33,7 +33,13 @@ header#mobile-head {
 }
 
 // desktop only styles
-header#desktop-head {}
+header#desktop-head {
+  .container {
+    #logo #tzukuri {
+      float: left;
+    }
+  }
+}
 
 // styles common to both mobile and desktop
 header {

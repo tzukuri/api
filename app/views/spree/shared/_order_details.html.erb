@@ -27,7 +27,7 @@
 </div>
 
 
-<table id='line-items' class="table" data-hook="order_details">
+<table class="table" data-hook="order_details">
   <col width="20%" valign="middle" halign="center">
   <col width="35%" valign="middle">
   <col width="15%" valign="middle" halign="center">
@@ -37,8 +37,8 @@
   <thead data-hook>
     <tr class="active" data-hook="order_details_line_items_headers">
       <th colspan="2">ITEM</th>
-      <th class="price">UNIT PRICE</th>
-      <th class="qty">QUANTITY</th>
+      <th class="price">PRICE</th>
+      <th class="qty">QTY</th>
       <th class="total"><span><%= Spree.t(:total) %></span></th>
     </tr>
   </thead>
@@ -48,9 +48,9 @@
       <tr data-hook="order_details_line_item_row">
         <td data-hook="order_item_image" class="order_item_image">
           <% if item.variant.images.length == 0 %>
-            <%= link_to small_image(item.variant.product), item.variant.product %>
+            <%= link_to product_image(item.variant.product), item.variant.product %>
           <% else %>
-            <%= link_to image_tag(item.variant.images.first.attachment.url(:small)), item.variant.product %>
+            <%= link_to image_tag(item.variant.images.first.attachment.url(:product)), item.variant.product %>
           <% end %>
         </td>
         <td data-hook="order_item_description" class="order_item_description">

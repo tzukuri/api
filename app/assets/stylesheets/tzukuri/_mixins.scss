@@ -101,3 +101,9 @@
     clear: both;
   }
 }
+
+@mixin not-last-child($selector) {
+  & #{$selector}:not(:last-child) {
+    @content;
+  }
+}
