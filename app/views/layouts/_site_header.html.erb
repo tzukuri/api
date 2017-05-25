@@ -12,7 +12,7 @@
 </nav>
 
 <!-- mobile header -->
-<header class="u-full-width fixed-header <%= inject_no_bg_header %>" id="mobile-head">
+<header class="u-full-width fixed-header <%= inject_no_bg_header if params[:controller] != "spree/user_sessions" %>" id="mobile-head">
   <div class="container">
     <div id="hamburger">
       <i class="pe-7f-menu"></i>
@@ -27,7 +27,7 @@
 </header>
 
 <!-- desktop header -->
-<header class="u-full-width fixed-header <%= inject_no_bg_header %>" id="desktop-head">
+<header class="u-full-width fixed-header <%= inject_no_bg_header if params[:controller] != "spree/user_sessions" %>" id="desktop-head">
   <div class="container row">
     <div class="three columns" id="logo">
       <a id="tzukuri" href="/">TZUKURI</a>

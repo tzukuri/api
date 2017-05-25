@@ -3,9 +3,11 @@
 
 #cant-decide {
   height: 400px;
-  background-image: image-url('store/cant-decide.png');
+  background-image: image-url('store/cant-decide-2.png');
   background-size: cover;
   background-position: center;
+  background-color: #FAFAFA;
+  margin-bottom: 1.5vw;
 
   .container {
     @include vertical-align();

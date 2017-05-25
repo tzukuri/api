@@ -12,6 +12,7 @@
   .hero.store {
     height: 40vh;
     min-height: 350px;
+    background-color: #FAFAFA;
 
     .bg {
       height: 40vh;
@@ -19,11 +20,12 @@
     }
 
     .bg.photo {
+      // background-image: none;
       background-image: image-url('store/header-3.jpg');
     }
 
     .bg.shade {
-      background-color: rgba(0, 0, 0, 0.3);
+      background-color: rgba(0, 0, 0, 0.4);
     }
 
     .content {
@@ -53,26 +55,28 @@
         margin-top: 1.5vw;
         margin-bottom: 1.5vw;
 
-        &:hover {
-          cursor: pointer;
-        }
-
         .half-section-banner {
           height: 100%;
           background-size: cover;
           background-position: center;
+
+          &:hover {
+            cursor: pointer;
+          }
 
           &.eyeglasses, &.sunglasses {
             background-color: #F2F2F2;
           }
 
           &.eyeglasses {
-            background-image: image-url('store/eyeglasses.png');
+            background-color: #FAFAFA;
+            background-image: image-url('store/eyeglasses-6.png');
           }
 
           &.sunglasses {
             margin-left: 1.5vw;
-            background-image: image-url('store/sunglasses.png');
+            background-color: #FAFAFA;
+            background-image: image-url('store/sunglasses-6.png');
           }
 
           .section-content {
@@ -81,7 +85,7 @@
             width: 50%;
 
             h1 {
-              margin-bottom: 20px;
+              margin-bottom: 1.5vh;
             }
 
             p {
@@ -93,7 +97,6 @@
 
             i {
               margin-left: 5px;
-              -webkit-text-stroke: 2px #F1EBE8;
             }
           }
         }
@@ -1016,11 +1019,11 @@
 #taxons {
 
   .hero.taxon.sunglasses .bg.photo {
-    background-image: image-url('store/sunglasses.png');
+    background-image: image-url('store/taxon-sunglasses.png');
   }
 
   .hero.taxon.eyeglasses .bg.photo {
-    background-image: image-url('store/eyeglasses.png');
+    background-image: image-url('store/taxon-eyeglasses-3.png');
   }
 
   @media only screen and (max-width: $tabletLandscape) {
