@@ -148,6 +148,11 @@
     @include border-radius($tz-border-radius);
     background-color: $tz-panel-bg;
     padding: 2.5vh;
+    color: $tz-content;
+
+    @media only screen and (max-width: $smartphone) {
+      margin-bottom: 1.5vh;
+    }
 
     .address.vcard {
       line-height: 200%;
@@ -223,10 +228,17 @@
 
 // shared/_products.html.erb
 #products {
+  margin-top: 4vh;
+  margin-bottom: 4vh;
+
+  @include not-last-child('.products.row') {
+    margin-bottom: 4vh;
+  }
+
   .product-list-item  {
     border-radius: $tz-border-radius;
     text-align: center;
-    padding: 8vh 4vw 8vh 4vw;
+    padding: 0 4vw 0 4vw;
 
     .product-body {
       .info {
@@ -244,23 +256,11 @@
     }
   }
 
-  @media only screen and (max-width: $tabletLandscape) {
-
-    margin-top: 4vh;
-    margin-bottom: 4vh;
-
-    .product-list-item {
-      padding: 0 4vw 0 4vw;
-    }
-
-    @include not-last-child('.products') {
-      margin-bottom: 6vh;
-    }
-
+  @media only screen and (max-width: $smartphone) {
     .products {
       @include not-last-child('a') {
         .product-list-item {
-          margin-bottom: 6vh;
+          margin-bottom: 4vh;
         }
       }
     }
@@ -346,7 +346,7 @@
     .columns {
       background-color: $tz-panel-bg;
       padding: 2vw;
-      min-height: 300px;
+      // min-height: 300px;
       @include border-radius($tz-border-radius);
     }
 
@@ -451,8 +451,17 @@
     }
 
     #shipping-detail {
-      #free-shipping {
-        margin-bottom: 5vh;
+      .container {
+        width: 100%;
+        padding: 0;
+
+        .columns {
+          padding: 5vh;
+        }
+
+        #free-shipping {
+          margin-bottom: 1.5vh;
+        }
       }
     }
   }
@@ -743,12 +752,9 @@
 
   #checkout_form_address {
     h2 {
+      padding-bottom: 0;
       padding-bottom: 3vh;
-      padding-top: 4vh;
-    }
-
-    #checkout-address-form  {
-      margin-top: 1.5vw;
+      padding-top: 3vh;
     }
   }
 }
@@ -816,7 +822,7 @@
   }
 
   #credit-card-image {
-    // width: auto;
+    width: auto;
     margin-bottom: 10px;
   }
 
