@@ -3,7 +3,6 @@
 
 <% cache cache_key_for_product do %>
     <div id="product_show" class="u-full-width" data-hook="product_show" itemscope itemtype="https://schema.org/Product">
-
       <div class="container">
         <div class="row" id="product-detail">
           <!-- gallery column -->
@@ -55,8 +54,6 @@
       </div>
     </div>
 
-    <%= render partial: 'layouts/social_proof' %>
-
     <%= render partial: 'layouts/cant_decide' %>
 
     <div class="u-full-width" id="shipping-detail">
@@ -78,6 +75,8 @@
         </div>
       </div>
     </div>
+
+    <%= render partial: 'layouts/social_proof' %>
 
     <%= render partial: 'layouts/whats_included' %>
     <%= render partial: 'layouts/tech_specs' %>

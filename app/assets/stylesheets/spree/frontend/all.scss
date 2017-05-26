@@ -346,7 +346,7 @@
     .columns {
       background-color: $tz-panel-bg;
       padding: 2vw;
-      // min-height: 300px;
+      text-align: center;
       @include border-radius($tz-border-radius);
     }
 
