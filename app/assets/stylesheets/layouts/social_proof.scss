@@ -6,6 +6,7 @@
   padding-bottom: 5vh;
   background-color: #FAFAFA;
   margin-bottom: 1.5vw;
+  margin-top: 1.5vw;
 
   .container {
     .social-blurb {
@@ -35,6 +36,9 @@
     position: relative;
   }
 
-  @media only screen and (max-width: $smartphone) {
+  @media only screen and (max-width: $tabletLandscape) {
+    .container .social-blurb {
+      width: 100%;
+    }
   }
 }

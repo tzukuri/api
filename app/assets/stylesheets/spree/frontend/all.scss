@@ -17,15 +17,14 @@
     .bg {
       height: 40vh;
       min-height: 350px;
-    }
 
-    .bg.photo {
-      // background-image: none;
-      background-image: image-url('store/header-3.jpg');
-    }
+      &.shade {
+        background-color: rgba(0, 0, 0, 0.4);
+      }
 
-    .bg.shade {
-      background-color: rgba(0, 0, 0, 0.4);
+      &.photo {
+        background-image: image-url('store/header-3.jpg');
+      }
     }
 
     .content {
@@ -52,8 +51,7 @@
         float: left;
         width: 50%;
         height: 350px;
-        margin-top: 1.5vw;
-        margin-bottom: 1.5vw;
+        margin: 1.5vw 0 1.5vw 0;
 
         .half-section-banner {
           height: 100%;
@@ -65,17 +63,15 @@
           }
 
           &.eyeglasses, &.sunglasses {
-            background-color: #F2F2F2;
+            background-color: $tz-panel-bg;
           }
 
           &.eyeglasses {
-            background-color: #FAFAFA;
             background-image: image-url('store/eyeglasses-6.png');
           }
 
           &.sunglasses {
             margin-left: 1.5vw;
-            background-color: #FAFAFA;
             background-image: image-url('store/sunglasses-6.png');
           }
 
@@ -102,40 +98,7 @@
         }
       }
     }
-
-    #taxon-optical {
-      padding-bottom: 50px;
-    }
-
-    .utility-img {
-      text-align: center;
-      img {
-        width: 80%;
-        margin-top: 10px;
-      }
-    }
-
-    .utility-box {
-      background-color: $tz-inactive;
-      padding: 50px;
-      @include border-radius(5px);
-      @include transition(background-color ease-in-out 0.6s);
-
-      h1 {
-        margin-bottom: 10px;
-      }
-
-      p {
-        padding-bottom: 0px;
-      }
-
-      &:hover {
-        cursor: pointer;
-        background-color: $tz-background-alt;
-      }
-    }
   }
-
 
   @media only screen and (max-width: $smartphone) {
     .hero.store {
@@ -180,73 +143,61 @@
 // ---- SHARED ----
 
 // shared/_order_details.html.erb
-.steps-data > div {
-  background-color: #f2f2f2;
-  @include border-radius(5px);
-  padding: 2.5vh;
-  margin-bottom: 3vh;
-}
+#order_details_container {
+  .steps-data > div {
+    @include border-radius($tz-border-radius);
+    background-color: $tz-panel-bg;
+    padding: 2.5vh;
 
-#line-items {
-  margin-top: 3vw;
-  table-layout:fixed;
-  width: 100%;
-
-  thead {
-    tr {
-      th {
-
-        &.cart-item-description-header {
-          width: 45%;
-          text-align: left;
-        }
-
-        &.price, &.qty, &.total {
-          text-align: center;
-        }
-
-        text-transform: uppercase;
-        color: $tz-content;
-        @include font-size(14px);
-      }
+    .address.vcard {
+      line-height: 200%;
     }
   }
+  .table.order_details {
+    color: $tz-content;
+    width: 100%;
+    table-layout: fixed;
 
-  tbody {
-    tr {
-      color: $tz-content;
+    // styles that apply to all rows, header, body, footer, etc.
+    thead, tbody, tfoot {
+      tr th, tr td {
+        padding: 1.5vh 0 1.5vh 0;
 
-      td {
-        &.price, &.order-qty, &.total {
-          text-align: center;
-        }
-      }
-
-      .order_item_image {
-        padding: 1.5vw 1.5vw 1.5vw 0;
-        img {
-          vertical-align: middle;
-        }
-      }
-
-      .order_item_description {
-        h4 {
-          margin-bottom: 5px;
-        }
-
-        .variant-option-name {
-          color: $tz-content;
-          display: block;
+        @media only screen and (max-width: $smartphone) {
           @include font-size(14px);
-          margin-bottom: 5px;
         }
       }
     }
-  }
 
-  tfoot {
-    tr td.total {
-      text-align: center;
+    // table header
+    thead {
+      tr th {
+        text-transform: uppercase;
+
+        &.qty {
+          text-align: center;
+        }
+      }
+    }
+
+    // table body / foter
+    tbody, tfoot {
+      tr td {
+        &.order-qty {
+          text-align: center;
+        }
+        &.order_item_description {
+          h1 {
+            font-weight: 600;
+            margin-bottom: 1vh;
+          }
+        }
+        &.order_item_image {
+          a img {
+            width: 70%;
+          }
+        }
+      }
     }
   }
 }
@@ -256,9 +207,9 @@
   background-color: $tz-error;
   text-align: center;
   @include font-size(14px);
-  padding: 5px;
+  padding: 1vh;
   margin-top: 3vh;
-  @include border-radius(5px);
+  @include border-radius($tz-border-radius);
 
   ul li, p {
     @include font-size(16px);
@@ -273,7 +224,7 @@
 // shared/_products.html.erb
 #products {
   .product-list-item  {
-    border-radius: 5px;
+    border-radius: $tz-border-radius;
     text-align: center;
     padding: 8vh 4vw 8vh 4vw;
 
@@ -302,6 +253,10 @@
       padding: 0 4vw 0 4vw;
     }
 
+    @include not-last-child('.products') {
+      margin-bottom: 6vh;
+    }
+
     .products {
       @include not-last-child('a') {
         .product-list-item {
@@ -317,9 +272,10 @@
 // products/show.html.erb
 #panel {
   #product_show {
-    background-color: #F2F2F2;
+    background-color: $tz-panel-bg;
     padding-top: 7vw;
     padding-bottom: 3vw;
+    margin-bottom: 1.5vw;
 
     .container #product-detail {
       #product-images {
@@ -384,8 +340,15 @@
   }
 
   #shipping-detail {
-    margin-top: 7vh;
-    margin-bottom: 7vh;
+    margin-top: 1.5vw;
+    margin-bottom: 1.5vw;
+
+    .columns {
+      background-color: $tz-panel-bg;
+      padding: 2vw;
+      min-height: 300px;
+      @include border-radius($tz-border-radius);
+    }
 
     h1 {
       padding-bottom: 1.5vw;
@@ -693,6 +656,7 @@
 
   .cart-item-image {
     padding: 1.5vw 1.5vw 1.5vw 0;
+
     img {
       max-width: 200px;
       vertical-align: middle;
@@ -710,82 +674,6 @@
       display: block;
       @include font-size(14px);
       margin-bottom: 5px;
-    }
-  }
-}
-
-// orders/show.html.erb
-#order-complete {
-  color: $tz-content;
-
-  img {
-    width: auto;
-  }
-
-  table {
-    width: 100%;
-    table-layout: fixed;
-
-    thead {
-      tr th {
-        padding: 0;
-        padding-top: 1.5vh;
-        padding-bottom: 1.5vh;
-        // @include font-size(14px);
-        text-transform: uppercase;
-
-        &.qty {
-          text-align: center;
-        }
-      }
-    }
-    tbody, tfoot {
-      tr td {
-        padding: 0;
-        padding-top: 1.5vh;
-        padding-bottom: 1.5vh;
-        // @include font-size(14px);
-
-        &.order-qty {
-          text-align: center;
-        }
-
-        &.order_item_description {
-          h4 {
-            font-weight: 600;
-            margin-bottom: 1vh;
-          }
-        }
-
-        &.order_item_image {
-          a img {
-            width: 70%;
-          }
-        }
-      }
-    }
-
-
-      @media only screen and (max-width: $smartphone) {
-        tbody tr td, tfoot tr td, thead tr th {
-          @include font-size(14px);
-        }
-      }
-  }
-
-  h2 {
-    padding-bottom: 3vh;
-    padding-top: 4vh;
-  }
-
-  h3 {
-    padding-bottom: 20px;
-  }
-
-  .address.vcard {
-    line-height: 150%;
-    div {
-      margin-bottom: 10px;
     }
   }
 }
@@ -944,61 +832,11 @@
   }
 }
 
-// checkout/_confirm.html.erb
-#order_details {
-  color: $tz-content;
-
-  table {
-    width: 100%;
-    table-layout: fixed;
-
-    thead {
-      tr th {
-        padding: 0;
-        padding-top: 1.5vh;
-        padding-bottom: 1.5vh;
-        // @include font-size(14px);
-        text-transform: uppercase;
-
-        &.qty {
-          text-align: center;
-        }
-      }
-    }
-
-    tbody, tfoot {
-      tr td {
-        padding: 0;
-        padding-top: 1.5vh;
-        padding-bottom: 1.5vh;
-        // @include font-size(14px);
-
-        &.order-qty {
-          text-align: center;
-        }
-
-        &.order_item_description {
-          h4 {
-            font-weight: 600;
-            margin-bottom: 1vh;
-          }
-        }
-
-        &.order_item_image {
-          a img {
-            width: 70%;
-          }
-        }
-      }
-    }
-  }
-
-  @media only screen and (max-width: $smartphone) {
-    table {
-      tbody tr td, tfoot tr td, thead tr th {
-        @include font-size(14px);
-      }
-    }
+// checkout/_confirm and order/_complete
+#order_confirm, #order-complete {
+  .table.order_details {
+    margin-top: 3vh;
+    margin-bottom: 3vh;
   }
 
   h2 {
@@ -1007,11 +845,7 @@
   }
 
   h3 {
-    padding-bottom: 1vw;
-  }
-
-  .address.vcard {
-    line-height: 150%;
+    padding-bottom: 1vh;
   }
 }
 

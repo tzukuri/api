@@ -155,4 +155,9 @@ header {
   header#desktop-head {
     display: none;
   }
+
+  header .container #logo #tzukuri, header .container #hamburger i, header .container #link-to-cart a i {
+    @include font-size(22px);
+    line-height: 60px;
+  }
 }
