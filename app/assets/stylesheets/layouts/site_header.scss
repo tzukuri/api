@@ -75,6 +75,11 @@ header {
         #logo #tzukuri {
           color: $tz-title;
         }
+
+        #navigation ul li a.active {
+          color: $tz-title;
+          border-bottom: 1px solid $tz-title;
+        }
       }
   }
 
@@ -109,15 +114,16 @@ header {
       ul li {
         display: inline;
 
+
         a {
           @include font-size(14px);
           letter-spacing: 0.5px;
           margin-left: 20px;
           color: white;
 
-          &:hover {
-              color: $tz-title;
-              border-bottom: 1px solid $tz-title;
+          &:hover, &.active {
+              color: white;
+              border-bottom: 1px solid white;
           }
         }
 

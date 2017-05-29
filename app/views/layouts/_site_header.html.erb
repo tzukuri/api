@@ -34,10 +34,10 @@
     </div>
     <div class="eight columns" id="navigation">
       <ul>
-        <li><a href="/unlosable-glasses">unlosable glasses</a></li>
-        <li><a href="/unlosable-glasses">the range</a></li>
-        <li><a href="/unlosable-glasses">the app</a></li>
-        <li><a href="/unlosable-glasses">intelligently made</a></li>
+        <li><a class="<%= 'active' if params[:page] == 'unlosable-glasses'%>" href="/unlosable-glasses">unlosable glasses</a></li>
+        <li><a class="<%= 'active' if params[:page] == 'the-range'%>" href="/the-range">the range</a></li>
+        <li><a class="<%= 'active' if params[:page] == 'the-app'%>" href="/the-app">the app</a></li>
+        <li><a class="<%= 'active' if params[:page] == 'intelligently-made'%>" href="/intelligently-made">intelligently made</a></li>
         <li id="shop-now"><a href="/shop"><button>buy now</button></a></li>
       </ul>
     </div>

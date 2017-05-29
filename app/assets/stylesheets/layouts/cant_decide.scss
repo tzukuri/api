@@ -25,8 +25,20 @@
     }
   }
 
+  @media only screen and (max-width: $tabletLandscape) {
+    height: 45vw;
+
+    button {
+      width: 100%;
+      &#try-on {
+        margin-top: 2vh;
+        margin-bottom: 2vh;
+      }
+    }
+  }
+
   @media only screen and (max-width: $smartphone) {
-    height: 60vh;
+    height: 50vh;
 
     .container .content {
       width: 100%;
@@ -34,18 +46,6 @@
       h1, p {
         padding-bottom: 5vw;
         text-align: center;
-      }
-    }
-  }
-
-  @media only screen and (max-width: $tabletLandscape) {
-    height: 55vh;
-
-    button {
-      width: 100%;
-      &#try-on {
-        margin-top: 2vh;
-        margin-bottom: 2vh;
       }
     }
   }
