@@ -7,53 +7,13 @@ body.retail {
   }
 
   #retail-head {
-    text-align: center;
-  }
-
-  .details-centre {
-    #address, #hours {
-      display: inline-block;
-      vertical-align: top;
-
-      p {
-        padding-bottom: 0px;
-        color: #333;
-
-        &:first-child {
-          margin-bottom: 10px;
-        }
-      }
-    }
-
-    #hours {
-      margin-left: 80px;
-    }
+    margin-bottom: 25px;
   }
 
   iframe {
     width: 100%;
-    margin-top: 50px;
+    margin-top: 20px;
     height: 500px;
     border: 1px solid #f0f0f0;
-  }
-}
-
-@media only screen and (max-width: $tabletPortrait) {
-  body.retail .details-centre {
-    #hours {
-      display: block;
-      margin-left: 0px;
-      margin-top: 20px;
-    }
-  }
-}
-
-@media only screen and (max-width: $smartphone) {
-  body.retail .details-centre {
-    #hours {
-      display: block;
-      margin-left: 0px;
-      margin-top: 20px;
-    }
   }
 }
